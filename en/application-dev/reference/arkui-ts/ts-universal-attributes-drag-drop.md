@@ -3,17 +3,25 @@
 The drag and drop control attributes set whether a component can respond to drag events.
 
 > **NOTE**
->
+> 
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
->
-> The following components support drag-and-drop control: [\<Text>](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [\<Video>](ts-media-components-video.md), [\<List>](ts-container-list.md), and [\<Grid>](ts-container-grid.md).
+
+By default, ArkUI components cannot be dragged.
+
+When the **draggable** attribute of the following components is set to **true**, the components can respond to drag events. In this case, you do not need to configure data transmission for the components to drag them. To drag other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+
+- The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+
+- The following component supports drop actions by default: **\<Video>**.
+
+- The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
 
 
 ## Attributes
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| allowDrop | Array\<[UnifiedDataType](../apis/js-apis-data-udmf.md#unifieddatatype)> | Type of data that can be dropped to the component.<br>Default value: empty<br>|
+| allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | Type of data that can be dropped to the component.<br>Default value: empty<br>|
 | draggable | boolean | Whether the component is draggable.<br>Default value: **false**<br>|
 
 
@@ -21,7 +29,8 @@ The drag and drop control attributes set whether a component can respond to drag
 
 ```ts
 // xxx.ets
-import UDMF from '@ohos.data.UDMF';
+import UDC from '@ohos.data.unifiedDataChannel';
+import UTD from '@ohos.data.uniformTypeDescriptor';
 @Entry
 @Component
 struct ImageExample {
@@ -36,7 +45,7 @@ struct ImageExample {
       Text ('Image drag and drop')
         .fontSize('30dp')
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
-        Image($r('app.media.1'))
+        Image($r('app.media.icon'))
           .width(100)
           .height(100)
           .border({ width: 1 })
@@ -72,7 +81,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop(["File.Media.Text", "File.Media.Image"])
+          .allowDrop([UTD.UniformDataType.TEXT])
           .onDrop((event: DragEvent, extraParams: string) => {
             let jsonString = JSON.parse(extraParams);
             this.uri = jsonString.extraInfo;
@@ -103,7 +112,7 @@ struct ImageExample {
           .border({width: 1})
           .height('90%')
           .width('100%')
-          .allowDrop(["File.Media.Image"])
+          .allowDrop([UTD.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
             console.log("enter onDrop")
             let dragData = event.getData();
@@ -111,7 +120,7 @@ struct ImageExample {
             if(dragData != undefined) {
               let arr = dragData.getRecords();
               if(arr.length > 0) {
-                let image = <UDMF.Image>(arr[0]);
+                let image = <UDC.Image>(arr[0]);
                 this.uri = image.imageUri;
                 let jsonString = JSON.parse(extraParams);
                 this.BblockArr.splice(jsonString.insertIndex, 0, this.uri);

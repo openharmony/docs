@@ -63,7 +63,7 @@
     - [拍照实现方案](camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
     - [使用人像模式拍照](camera-mode.md)
-    - [双路预览](dual-channel-preview.md)
+    - [双路预览](camera-dual-channel-preview.md)
     - [性能提升方案（仅对系统应用开放）](camera-performance-improvement.md)
 - 图片
   - [图片开发概述](image-overview.md)

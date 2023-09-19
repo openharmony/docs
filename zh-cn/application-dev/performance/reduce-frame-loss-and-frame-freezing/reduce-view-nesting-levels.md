@@ -42,7 +42,7 @@ struct AspectRatioExample12 {
 @Entry
 @Component
 struct AspectRatioExample11 {
-  @State children: Number[] = Array.from(Array(900), (v, k) => k);
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
 
   build() {
     Scroll() {

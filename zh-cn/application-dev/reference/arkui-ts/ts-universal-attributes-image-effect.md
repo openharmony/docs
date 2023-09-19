@@ -244,7 +244,7 @@ struct LightUpExample {
       })
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {
-          this.selectedDate.setFullYear(value.year, value.month, value.day)
+          this.selectedDate.setFullYear(value.year as number, value.month, value.day)
           console.info('select current date is: ' + JSON.stringify(value))
         })
         .lightUpEffect(0.6)

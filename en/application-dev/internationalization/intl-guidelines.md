@@ -24,7 +24,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -47,9 +47,9 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
       | kf | Whether capitalization is considered when sorting or comparing strings.|
 
    
-   ```js
+   ```ts
    let locale = "zh-CN";
-   let options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
+   let options: Intl.LocaleOptions = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
    let localeObj = new Intl.Locale(locale, options);
    ```
 
@@ -57,7 +57,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **toString** to obtain the string representing a **Locale** object, including the language, region, and other options.
      
-   ```js
+   ```ts
    let localeStr = localeObj.toString(); // localeStr = "zh-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
@@ -65,7 +65,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **maximize** to maximize locale information; that is, supplement the missing script and region information.
      
-   ```js
+   ```ts
    let maximizedLocale = localeObj.maximize();
    let maximizedLocaleStr = maximizedLocale.toString(); // localeStr = "zh-Hans-CN-u-ca-chinese-co-pinyin-kf-false
    ```
@@ -74,7 +74,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **minimize** to minimize locale information; that is, delete the unnecessary script and region information.
      
-   ```js
+   ```ts
    let minimizedLocale = localeObj.minimize();
    let minimizedLocaleStr = minimizedLocale.toString(); // zh-u-ca-chinese-co-pinyin-kf-false
    ```
@@ -99,7 +99,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -107,14 +107,14 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
    Use the default constructor of **DateTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **DateTimeFormat** object.
 
-   ```js
+   ```ts
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6).
    
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    ```
 
@@ -122,8 +122,8 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **format** to format a **Date** object. A string is returned as the formatting result.
      
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    let date = new Date(2022, 12, 12, 12, 12, 12);
    let formatResult = dateTimeFormat.format(date); // formatResult = "January 12, 2023, Thursday, 12:12:12 pm, China Standard Time"
@@ -133,7 +133,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **formatRange** to format a period. This API requires the input of two **Date** objects, which respectively indicate the start date and end date of a period. A string is returned as the formatting result.
      
-   ```js
+   ```ts
    let startDate = new Date(2021, 11, 17, 3, 24, 0);
    let endDate = new Date(2021, 11, 18, 3, 24, 0);
    let datefmt = new Intl.DateTimeFormat("en-GB");
@@ -144,8 +144,8 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **DateTimeFormat** object.
      
-   ```js
-   let options = {dateStyle: "full", timeStyle: "full"};
+   ```ts
+   let options: Intl.DateTimeOptions = {dateStyle: "full", timeStyle: "full"};
    let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
@@ -169,7 +169,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -177,14 +177,14 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
    Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object (**intl** is the name of the imported module).
 
-   ```js
+   ```ts
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6).
+     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md##numberoptions6).
    
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    ```
 
@@ -192,8 +192,8 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **format** to format a number. A string is returned as the formatting result.
      
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    let number = 1234.5678;
    let formatResult = numberFormat.format(number); // formatResult = "1235"
@@ -203,8 +203,8 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
 
      Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **NumberFormat** object.
      
-   ```js
-   let options = {compactDisplay: "short", notation: "compact"};
+   ```ts
+   let options: Intl.NumberOptions = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
    let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
@@ -228,7 +228,7 @@ Users in different regions have different requirements for string sorting. [Coll
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -236,14 +236,14 @@ Users in different regions have different requirements for string sorting. [Coll
 
    Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object (**intl** is the name of the imported module).
 
-   ```js
+   ```ts
    let collator = new Intl.Collator();
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
      The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
    
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    ```
 
@@ -251,7 +251,7 @@ Users in different regions have different requirements for string sorting. [Coll
 
      Call **compare** to compare two input strings. This API returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths. This allows you to sort character strings based on the comparison result.
      
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    let str1 = "first string";
    let str2 = "second string";
@@ -265,7 +265,7 @@ Users in different regions have different requirements for string sorting. [Coll
 
      Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **Collator** object.
      
-   ```js
+   ```ts
    let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    let options = collator.resolvedOptions(); // options = {"localeMatcher": "best fit", "locale": "zh-CN", "usage": "sort", "sensitivity": "variant", "ignorePunctuation": "false", "numeric": false, "caseFirst": "false", "collation": "default"}
    ```
@@ -289,7 +289,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -297,13 +297,13 @@ According to grammars in certain languages, the singular or plural form of a nou
 
    Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object (**intl** is the name of the imported module).
 
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules();
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8).
    
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
@@ -311,7 +311,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
      Call **select** to determine the singular-plural type for an input number. This API returns a string as the category of the input number, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
      
-   ```js
+   ```ts
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    let number = 1234.5678;
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
@@ -337,7 +337,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
    Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```js
+   ```ts
    import Intl from '@ohos.intl';
    ```
 
@@ -345,13 +345,13 @@ According to grammars in certain languages, the singular or plural form of a nou
 
    Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object (**intl** is the name of the imported module).
    
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
      Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8).
    
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
@@ -359,7 +359,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
      Call **format** to format the relative time. This API receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. A string is returned as the formatting result.
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
    let unit = "year";
@@ -370,7 +370,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
      On obtaining each part of the relative time format, customize the relative time formatting result.
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
    let unit = "year";
@@ -381,7 +381,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
      Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8).
      
-   ```js
+   ```ts
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```

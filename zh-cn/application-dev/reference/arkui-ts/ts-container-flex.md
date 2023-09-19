@@ -148,7 +148,7 @@ struct FlexExample2 {
 // xxx.ets
 @Component
 struct JustifyContentFlex {
-  justifyContent : number
+  justifyContent : number = 0;
 
   build() {
     Flex({ justifyContent: this.justifyContent }) {
@@ -197,7 +197,7 @@ struct FlexExample3 {
 // xxx.ets
 @Component
 struct AlignItemsFlex {
-  alignItems : number
+  alignItems : number = 0
 
   build() {
     Flex({ alignItems: this.alignItems }) {
@@ -246,7 +246,7 @@ struct FlexExample4 {
 // xxx.ets
 @Component
 struct AlignContentFlex {
-  alignContent: number
+  alignContent: number = 0
 
   build() {
     Flex({ wrap: FlexWrap.Wrap, alignContent: this.alignContent }) {

@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 ```
 
@@ -33,9 +33,12 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 try {
-  inputDeviceCooperate.enable(true, (error) => {
+  inputDeviceCooperate.enable(true, (error: BusinessError) => {
     if (error) {
       console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -74,11 +77,14 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 try {
   inputDeviceCooperate.enable(true).then(() => {
     console.log(`Keyboard mouse crossing enable success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -113,11 +119,14 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
 try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
+  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
     if (error) {
       console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -163,13 +172,16 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -195,9 +207,12 @@ stop(callback: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 try {
-  inputDeviceCooperate.stop((error) => {
+  inputDeviceCooperate.stop((error: BusinessError) => {
     if (error) {
       console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -225,11 +240,14 @@ stop(): Promise\<void>
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 try {
   inputDeviceCooperate.stop().then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -254,10 +272,13 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
+  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: boolean) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -295,12 +316,15 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { BusinessError } from '@ohos.base'
+
 let deviceDescriptor = "descriptor";
 try {
-  inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
+  inputDeviceCooperate.getState(deviceDescriptor).then((data: boolean) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -327,11 +351,15 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+
+function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+  return false;
+}
 try {
-  inputDeviceCooperate.on('cooperation', (data) => {
-    console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
-  });
+  inputDeviceCooperate.on('cooperation', callback);
 } catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -356,23 +384,31 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 **示例**：
 
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+
 // 取消注册单个回调函数
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callbackOn(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
+  return false;
+}
+function callbackOff() {
+  console.log(`Keyboard mouse crossing event`);
   return false;
 }
 try {
-  inputDeviceCooperate.on('cooperation', callback);
-  inputDeviceCooperate.off("cooperation", callback);
+  inputDeviceCooperate.on('cooperation', callbackOn);
+  inputDeviceCooperate.off("cooperation", callbackOff);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+
 // 取消注册所有回调函数
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callback(deviceDescriptor: string, eventMsg: inputDeviceCooperate.EventMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(deviceDescriptor)}`);
   return false;
 }
 try {

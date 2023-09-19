@@ -13,7 +13,7 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 ## Modules to Import
 
 
-```js
+```ts
 import prompt from '@system.prompt';
 ```
 
@@ -33,15 +33,17 @@ Shows the toast.
 
 **Example**
 
-```js
-export default {    
-  showToast() {        
-    prompt.showToast({            
-      message: 'Message Info',            
+```ts
+import prompt from '@system.prompt';
+class A{
+  showToast() {
+    prompt.showToast({
+      message: 'Message Info',
       duration: 2000
-    });    
+    });
   }
 }
+export default new A()
 ```
 
 
@@ -62,27 +64,29 @@ Shows the dialog box.
 
 **Example**
 
-```js
-export default {    
-  showDialog() {       
-    prompt.showDialog({           
-      title: 'Title Info',            
-      message: 'Message Info',          
-      buttons: [                
-        {                    
-           text: 'button',                   
-           color: '#666666'          
-         },            
-       ],            
-       success: function(data) {                
-         console.log('dialog success callback, click button : ' + data.index);           
-       },            
-       cancel: function() {                
-         console.log('dialog cancel callback');            
-       },
-     });    
+```ts
+import prompt from '@system.prompt';
+class B{
+  showDialog() {
+    prompt.showDialog({
+      title: 'Title Info',
+      message: 'Message Info',
+      buttons: [
+        {
+          text: 'button',
+          color: '#666666'
+        },
+      ],
+      success: (data)=> {
+        console.log('dialog success callback, click button : ' + data.index);
+      },
+      cancel: ()=> {
+        console.log('dialog cancel callback');
+      },
+    });
   }
 }
+export default new B()
 ```
 
 ## prompt.showActionMenu<sup>6+</sup>
@@ -97,35 +101,37 @@ Shows the action menu.
 
 | Name    | Type                                      | Mandatory  | Description                  |
 | ------- | ---------------------------------------- | ---- | -------------------- |
-| options | [ShowActionMenuOptions](#showactionmenuoptions) | Yes   | Options for showing the action menu.|
+| options | [ShowActionMenuOptions](#showactionmenuoptions6) | Yes   | Options for showing the action menu.|
 
 
 **Example**
 
-```js
-export default {    
-  showActionMenu() {        
-    prompt.showActionMenu({            
-      title: 'Title Info',            
-      buttons: [                
-        {                    
-          text: 'item1',                    
-          color: '#666666'            
-        },                
-        {                    
-           text: 'item2',                    
-           color: '#000000'         
-        },           
-      ],            
-      success: function(tapIndex) {                
-        console.log('dialog success callback, click button : ' + data.tapIndex);           
-      },            
-      fail: function(errMsg) {                
-        console.log('dialog fail callback' + errMsg);            
-      },       
-    });    
+```ts
+import prompt from '@system.prompt';
+class C{
+  showActionMenu() {
+    prompt.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        },
+        {
+          text: 'item2',
+          color: '#000000'
+        },
+      ],
+      success: (tapIndex)=> {
+        console.log('dialog success callback, click button : ' + data.tapIndex);
+      },
+      fail: (errMsg)=> {
+        console.log('dialog fail callback' + errMsg);
+      },
+    });
   }
 }
+export default new C()
 ```
 ## ShowToastOptions
 

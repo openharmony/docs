@@ -1068,7 +1068,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 ```js
 try {
-  pointer.getTouchpadScrollSwitch ((error: Error, state: boolean) => {
+  pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {

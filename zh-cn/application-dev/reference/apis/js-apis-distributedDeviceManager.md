@@ -828,7 +828,12 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
   class Data {
     action: deviceManager.DeviceStateChange = 0
-    device: deviceManager.DeviceBasicInfo = {}
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
   }
 
   try {
@@ -866,7 +871,12 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
   class Data {
     action: deviceManager.DeviceStateChange = 0
-    device: deviceManager.DeviceBasicInfo = {}
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
   }
 
   try {
@@ -903,7 +913,12 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
   import { BusinessError } from '@ohos.base'
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {}
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
   }
   
   try {
@@ -940,7 +955,12 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
   import { BusinessError } from '@ohos.base'
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {}
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
   }
 
   try {

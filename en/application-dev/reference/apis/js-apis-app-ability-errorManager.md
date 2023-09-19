@@ -20,7 +20,7 @@ Registers an error observer.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -28,9 +28,9 @@ Registers an error observer.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | number | Index of the observer.|
+| Type| Description|
+| -------- | -------- |
+| number | Index of the observer.|
 
 **Error codes**
 
@@ -43,7 +43,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
 ```ts
-let observer = {
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
     },
@@ -59,7 +62,9 @@ let observerId = -1;
 try {
     observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -72,7 +77,7 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -90,9 +95,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
 let observerId = 100;
 
-function unregisterErrorObserverCallback(err) {
+function unregisterErrorObserverCallback(err: BusinessError) {
     if (err) {
         console.error('------------ unregisterErrorObserverCallback ------------', err);
     }
@@ -100,7 +108,9 @@ function unregisterErrorObserverCallback(err) {
 try {
     errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -113,7 +123,7 @@ Deregisters an error observer. This API uses a promise to return the result.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
@@ -136,17 +146,24 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
     
 ```ts
+import errorManager from '@ohos.app.ability.errorManager';
+import { BusinessError } from '@ohos.base';
+
 let observerId = 100;
 try {
     errorManager.off('error', observerId)
         .then((data) => {
             console.log('----------- unregisterErrorObserver success ----------', data);
         })
-        .catch((err) => {
+        .catch((err: BusinessError) => {
             console.error('----------- unregisterErrorObserver fail ----------', err);
     });
 } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
 }
 
 ```
+
+ <!--no_check--> 

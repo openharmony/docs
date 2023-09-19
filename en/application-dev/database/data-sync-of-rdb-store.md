@@ -10,16 +10,9 @@ You can synchronize the application data in a local RDB store on a device to oth
 
 OpenHamony supports synchronization of the relational data of an application across multiple devices.
 
-- Distributed table list
+- Distributed table list<br>After a table is created for an application in an RDB store, you can set it as a distributed table. When querying the RDB store of a remote device, you can obtain the distributed table name of the remote device based on the local table name.
 
-  After a table is created for an application in an RDB store, you can set it as a distributed table. When querying the RDB store of a remote device, you can obtain the distributed table name of the remote device based on the local table name.
-
-- Synchronization mode
-
-  Data can be synchronized between devices in either of the following ways:
-
-  - Pushing data from a local device to a remote device. 
-  - Pulling data from a remote device to a local device.
+- Synchronization mode<br>Data can be synchronized between devices in either of the following ways: <br>- Pushing data from a local device to a remote device. <br>- Pulling data from a remote device to a local device.
 
 
 ## Working Principles
@@ -74,70 +67,86 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
 
 1. Import the module.
    
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore';
    ```
 
-2. Apply for the required permission.
+2. Apply for required permissions.
 
-   1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+   1. Apply for the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
    2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Create an RDB store and set a table for distributed synchronization.
    
-   ```js
-   const STORE_CONFIG = {
-     name: 'RdbTest.db', // Database file name.
-     securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
-   };
-   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', null, (err) => {
-       // Set the table for distributed synchronization.
-       store.setDistributedTables(['EMPLOYEE']);
-       // Perform related operations.
-     })
-   })
+   ```ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import { BusinessError } from "@ohos.base";
+
+   class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
+         securityLevel: relationalStore.SecurityLevel.S1
+       };
+          
+       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
+         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+           // Set the table for distributed synchronization.
+           store.setDistributedTables(['EMPLOYEE']);
+           // Perform related operations.
+         })
+       })
+     }
+   }
    ```
 
 4. Synchronize data across devices. After **sync()** is called to trigger a synchronization, data is synchronized from the local device to all other devices on the network.
    
-   ```js
+   ```ts
    // Construct the predicate object for synchronizing the distributed table.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    // Call sync() to synchronize data.
-   store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
-     // Check whether data synchronization is successful.
-     if (err) {
-       console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in syncing data.');
-     for (let i = 0; i < result.length; i++) {
-       console.info(`device:${result[i][0]},status:${result[i][1]}`);
-     }
-   })
+   if(store != undefined)
+   {
+     (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
+       // Check whether data synchronization is successful.
+       if (err) {
+         console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info('Succeeded in syncing data.');
+       for (let i = 0; i < result.length; i++) {
+         console.info(`device:${result[i][0]},status:${result[i][1]}`);
+       }
+     })
+   }
    ```
 
 5. Subscribe to changes in the distributed data. The data synchronization triggers the **observer** callback registered in **on()**. The input parameter of the callback is the ID of the device whose data changes.
    
-   ```js
-   let observer = function storeObserver(devices) {
-     for (let i = 0; i < devices.length; i++) {
-       console.info(`The data of device:${devices[i]} has been changed.`);
-     }
-   }
-   
+   ```ts
+   let devices: string | undefined = undefined;
    try {
      // Register an observer to listen for the changes of the distributed data.
      // When data in the RDB store changes, the registered callback will be invoked to return the data changes.
-     store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
+         if(devices != undefined){
+           for (let i = 0; i < devices.length; i++) {
+             console.info(`The data of device:${devices[i]} has been changed.`);
+           }
+         }
+       });
+     }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
-   
    // You can unsubscribe from the data changes if required.
    try {
-     store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
@@ -150,30 +159,37 @@ Most of the APIs for cross-device data synchronization of RDB stores are execute
    > The value of **deviceIds** can be obtained by [deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
    
-   ```js
+   ```ts
    // Obtain device IDs.
    import deviceManager from '@ohos.distributedDeviceManager';
-   let dmInstance = null;
-   let deviceId = null;
+   import { BusinessError } from '@ohos.base'
+
+   let dmInstance: deviceManager.DeviceManager;
+   let deviceId: string | undefined = undefined ;
 
    try {
-    dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-    let devices = dmInstance.getAvailableDeviceListSync();
-    deviceId = devices[0].networkId;
+     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     let devices = dmInstance.getAvailableDeviceListSync();
 
-    // Construct a predicate object for querying the distributed table.
-    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-    // Query data from the specified remote device and return the query result.
-    store.remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
-     function (err, resultSet) {
-       if (err) {
-         console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-        console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-      }
-    )
+     deviceId = devices[0].networkId;
+
+     // Construct a predicate object for querying the distributed table.
+     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+     // Query data from the specified remote device and return the query result.
+     if(store != undefined && deviceId != undefined) {
+       (store as relationalStore.RdbStore).remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
+         (err: BusinessError, resultSet: relationalStore.ResultSet) => {
+           if (err) {
+             console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
+             return;
+           }
+           console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+         }
+       )
+     }
    } catch (err) {
-   console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```

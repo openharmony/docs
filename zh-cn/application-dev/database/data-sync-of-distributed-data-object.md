@@ -115,7 +115,10 @@
 ## 接口说明
 
 以下是分布式对象跨设备数据同步功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式数据对象](../reference/apis/js-apis-data-distributedobject.md)。
-本模块接口仅支持在JS文件中使用。
+
+> **说明：**
+>
+> 本模块接口仅支持在JS文件中使用。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -211,18 +214,14 @@
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
      
    ```js
-   function changeCallback(sessionId, changeData) {
-     console.info(`change: ${sessionId}`);
-   
-     if (changeData !== null && changeData !== undefined) {
-       changeData.forEach(element => {
-         console.info(`The element ${localObject[element]} changed.`);
+   localObject.on("change", ({sessionId, fields}) => {
+     console.info("change" + sessionId);
+     if (fields != null && fields != undefined) {
+       fields.forEach(element => {
+         console.info("changed !" + element + " " + localObject[element]);
        });
      }
-   }
-   
-   // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
-   localObject.on("change", this.changeCallback.bind(this));
+   })
    ```
 
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
@@ -257,7 +256,14 @@
      
    ```js
    // 删除变更回调changeCallback
-   localObject.off('change', this.changeCallback);
+   localObject.off('change', ({sessionId, fields}) => {
+     console.info("change" + sessionId);
+     if (fields != null && fields != undefined) {
+       fields.forEach(element => {
+         console.info("changed !" + element + " " + localObject[element]);
+       });
+     }
+   });
    // 删除所有的变更回调
    localObject.off('change'); 
    ```
@@ -265,11 +271,9 @@
 9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
      
    ```js
-   function statusCallback(sessionId, networkId, status) {
+   localObject.on('status', ({sessionId, networkId, status}) => {
      // 业务处理
-   }
-   
-   localObject.on('status', this.statusCallback);
+   });
    ```
 
 10. 保存和撤回已保存的数据对象。
@@ -294,7 +298,9 @@
      
     ```js
     // 删除上下线回调statusCallback
-    localObject.off('status', this.statusCallback);
+    localObject.off('status', ({sessionId, deviceId, status}) => {
+      // 业务处理
+    });
     // 删除所有的上下线回调
     localObject.off('status');
     ```

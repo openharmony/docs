@@ -43,7 +43,7 @@ destroy(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-this.context.destroy((err: Error) => {
+this.context.destroy((err: BusinessError) => {
   if(err) {
     console.log('Failed to destroy context.');
     return;
@@ -71,7 +71,7 @@ destroy(): Promise\<void>;
 ```ts
 this.context.destroy().then(() => {
   console.log('Succeed in destroying context.');
-}).catch((err: Error)=>{
+}).catch((err: BusinessError)=>{
   console.log('Failed to destroy context.');
 });
 ```

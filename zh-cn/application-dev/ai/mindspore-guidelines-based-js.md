@@ -32,58 +32,76 @@
 3. 加载数据。模型执行之前需要先获取输入，再向输入的张量中填充数据。
 4. 执行推理并读取输出。使用predict接口进行模型推理。
 
+```ts
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
 
-```js
-@State inputName: string = 'mnet_caffemodel_nhwc.bin';
-@State T_model_predict: string = 'Test_MSLiteModel_predict'
-inputBuffer: any = null;
-build() {
-  Row() {
-  Column() {
-    Text(this.T_model_predict)
-      .focusable(true)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
-      .onClick(async () => {
-         let syscontext = globalThis.context;
-         syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-           this.inputBuffer = buffer;
-           console.log('=========input bin byte length: ' + this.inputBuffer.byteLength)
-         }).catch(error => {
-           console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-         })
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
 
-         // 1.创建上下文
-         let context: mindSporeLite.Context = {};
-         context.target = ['cpu'];
-         context.cpu = {}
-         context.cpu.threadNum = 1;
-         context.cpu.threadAffinityMode = 0;
-         context.cpu.precisionMode = 'enforce_fp32';
-         
-         // 2.加载模型
-         let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
-         let msLiteModel = await mindSporeLite.loadModelFromFile(modelFile, context);
-         
-         // 3.设置输入数据
-         const modelInputs = msLiteModel.getInputs();
-         modelInputs[0].setData(this.inputBuffer.buffer);
-         
-         // 4.执行推理并打印输出
-         console.log('=========MSLITE predict start=====')
-         msLiteModel.predict(modelInputs).then((modelOutputs) => {
-           let output0 = new Float32Array(modelOutputs[0].getData());
-           for (let i = 0; i < output0.length; i++) {
-               console.log(output0[i].toString());
-           }
-         })
-         console.log('=========MSLITE predict success=====')
-       })
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
   }
-  .width('100%')
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
   }
-  .height('100%')
+
 }
+```
+
+```ts
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+let inputBuffer : ArrayBuffer | null = null;
+let inputName: string = 'mnet_caffemodel_nhwc.bin';
+
+globalContext.resourceManager.getRawFileContent(inputName).then((buffer : ArrayBuffer) => {
+  inputBuffer = buffer;
+  console.log('=========input bin byte length: ' + buffer.byteLength)
+})
+// 1.创建上下文
+let context: mindSporeLite.Context = {};
+context.target = ['cpu'];
+context.cpu = {}
+context.cpu.threadNum = 1;
+context.cpu.threadAffinityMode = 0;
+context.cpu.precisionMode = 'enforce_fp32';
+
+// 2.加载模型
+let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
+let msLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile, context);
+
+// 3.设置输入数据
+let modelInputs : mindSporeLite.MSTensor[] = msLiteModel.getInputs();
+if (inputBuffer != null) {
+  modelInputs[0].setData(inputBuffer as ArrayBuffer);
+}
+
+// 4.执行推理并打印输出
+console.log('=========MSLITE predict start=====')
+msLiteModel.predict(modelInputs).then((modelOutputs : mindSporeLite.MSTensor) => {
+  let output0 = new Float32Array(modelOutputs[0].getData());
+  for (let i = 0; i < output0.length; i++) {
+    console.log(output0[i].toString());
+  }
+  })
+console.log('=========MSLITE predict success=====')
 ```
 
 ## 调测验证

@@ -52,6 +52,7 @@ The **FilePicker** provides the following interfaces by file type:
 5. After the UI is returned from the **FilePicker** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the file descriptor (FD). Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
 
    ```ts
+   const uri = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
@@ -107,7 +108,7 @@ The **FilePicker** provides the following interfaces by file type:
    > Currently, **DocumentSelectOptions** cannot be used to obtain the file name. To obtain the file name, use **startAbilityForResult()**.
 
    ```ts
-   async function example() {
+   async function example(): Promise<void> {
      let config: Want = {
        action: 'ohos.want.action.OPEN_FILE',
        parameters: {
@@ -121,11 +122,11 @@ The **FilePicker** provides the following interfaces by file type:
          return;
        }
        // Obtain the URI of the document.
-       let select_item_list = result.want.parameters.select_item_list;
+       let select_item_list: SomeType[] = result.want.parameters.select_item_list;
        // Obtain the name of the document.
-       let file_name_list = result.want.parameters.file_name_list;
+       let file_name_list: SomeOtherType[] = result.want.parameters.file_name_list;
      } catch (error) {
-        let err: BusinessError = error as BusinessError;
+        const err: BusinessError = error as BusinessError;
        console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
      }
    }
@@ -176,6 +177,7 @@ The **FilePicker** provides the following interfaces by file type:
 
    ```ts
    let uri: string;
+   const uri = '';
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];

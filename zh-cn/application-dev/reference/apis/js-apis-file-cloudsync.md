@@ -9,8 +9,8 @@
 
 ## 导入模块
 
-```js
-import cloudSync from '@ohos.file.cloudSync'
+```ts
+import cloudSync from '@ohos.file.cloudSync';
 ```
 
 ## SyncState
@@ -79,7 +79,7 @@ constructor()
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync()
   ```
 
@@ -113,7 +113,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -151,10 +151,10 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
-  function callback(pg) {
+  let callback = (pg: cloudSync.SyncProgress) => {
     console.info("gallery sync state：" + pg.state + "error type:" + pg.error);
   }
 
@@ -192,7 +192,7 @@ off(evt: 'progress'): void
 
 **示例：**
 
-  ```js
+  ```ts
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -233,16 +233,17 @@ start(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
 	  console.info("syncState：" + pg.state);
   });
 
-  gallerySync.start().then(function() {
+  gallerySync.start().then(() => {
 	  console.info("start sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -278,10 +279,11 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.start((err) => {
+  gallerySync.start((err: BusinessError) => {
     if (err) {
       console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -322,12 +324,13 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop().then(function() {
+  gallerySync.stop().then(() => {
 	  console.info("stop sync successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -364,10 +367,11 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let gallerySync = new cloudSync.GallerySync();
 
-  gallerySync.stop((err) => {
+  gallerySync.stop((err: BusinessError) => {
     if (err) {
       console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -416,7 +420,7 @@ constructor()
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download()
   ```
 
@@ -450,7 +454,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
@@ -488,10 +492,10 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
-  function callback(pg) {
+  let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state + "error type:" + pg.error);
   }
 
@@ -529,7 +533,7 @@ off(evt: 'progress'): void
 
 **示例：**
 
-  ```js
+  ```ts
   let download = new cloudSync.Download();
 
   download.on('progress', (pg: cloudSync.DownloadProgress) => {
@@ -563,7 +567,8 @@ start(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -571,9 +576,9 @@ start(uri: string): Promise&lt;void&gt;
 	  console.info("download state:" + pg.state);
   });
 
-  download.start(uri).then(function() {
+  download.start(uri).then(() => {
 	  console.info("start download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -621,11 +626,12 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.start(uri, (err) => {
+  download.start(uri, (err: BusinessError) => {
     if (err) {
       console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -672,13 +678,14 @@ stop(uri: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri).then(function() {
+  download.stop(uri).then(() => {
 	  console.info("stop download successfully");
-  }).catch(function(err) {
+  }).catch((err: BusinessError) => {
 	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -716,11 +723,12 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
-  download.stop(uri, (err) => {
+  download.stop(uri, (err: BusinessError) => {
     if (err) {
       console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {

@@ -15,7 +15,7 @@ The **mediaquery** module provides different styles for different media types.
 
 ## Modules to Import
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 ```
 
@@ -30,20 +30,21 @@ Sets the media query condition. This API returns the corresponding media query l
 
 **Parameters**
 
-| Name      | Type    | Mandatory  | Description                                      |
-| --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
+| Name   | Type  | Mandatory| Description                                                        |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| condition | string | Yes  | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------ | ---------------------- |
+| Type              | Description                                        |
+| ------------------ | -------------------------------------------- |
 | MediaQueryListener | Media query listener, which is used to register or deregister the listening callback.|
 
 **Example**
 
-```js
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+```ts
+import mediaquery from '@ohos.mediaquery'
+let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
 
@@ -71,10 +72,10 @@ Registers the media query listener. The callback is triggered when the media att
 
 **Parameters**
 
-| Name     | Type                              | Mandatory  | Description              |
-| -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Listener type. The value is fixed at **'change'**.|
-| callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
+| Name  | Type                            | Mandatory| Description                    |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.|
+| callback | Callback&lt;MediaQueryResult&gt; | Yes  | Callback registered with media query.    |
 
 **Example**
 
@@ -98,11 +99,11 @@ Deregisters the media query listener, so that no callback is triggered when the 
 
 **Example**
 
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
-    function onPortrait(mediaQueryResult) {
+    function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
         } else {
@@ -141,7 +142,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait'
   listener = mediaquery.matchMediaSync('(orientation: landscape)')
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       this.color = '#FFD700'
       this.text = 'Landscape'
@@ -152,7 +153,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) // Bind the JS instance.
+    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 

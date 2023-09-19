@@ -146,7 +146,7 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-Requests the temporary permission for the application to access a USB device. This API uses a promise to return the result.
+Requests the temporary permission for the application to access a USB device. This API uses a promise to return the result. By default, system applications are granted the device access permission.
 
 **System capability**: SystemCapability.USB.USBManager
 

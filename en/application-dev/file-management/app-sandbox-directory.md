@@ -46,10 +46,9 @@ The following figure shows the application file directories. The path of a file 
 
 3. Level 3 directories **el1/** and **el2/** indicate directories for files of different encryption levels (els).
    - **el1**: directory for the data that can be accessed once the device starts. This directory contains device-focused files.
-   - **el2**: directory for the data that can be accessed only after at lease one successful unlock operation (by PIN, fingerprint, or facial authentication, or password-free sign-in) upon the start of the device. This directory contains user-focused files.
-   
+   - **el2**: directory for the data that can be accessed only after at lease one successful unlock operation (by PIN, fingerprint, or facial authentication, or password-free sign-in) upon the start of the device. This directory contains user-focused files.<br>
    Unless otherwise required, application data is placed in the **el2** directory for security purposes. However, the data that needs to be accessed before the screen is unlocked (such as the clock, alarm, and wallpaper data) can be placed in the **el1** directory. For details about the operations on **el** directories, see [Obtaining and Modifying el Directories](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
-   
+
 4. Level 4 and level 5 directories:
    The application's global data is stored in the **files**, **cache**, **preferences**, **temp**, and **distributedfiles** folders in **base**. You can use **ApplicationContext** to obtain the application file paths of these folders.
 
@@ -68,28 +67,11 @@ The following figure shows the application file directories. The path of a file 
 
    | Folder| Context Attribute Name| Type| Description|
    | -------- | -------- | -------- | -------- |
-   | bundle | bundleCodeDir | Installation file directory| Directory for saving the HAPs after an application is installed.<br>This directory is cleared when the application is uninstalled.<br> Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../reference/apis/js-apis-resource-manager.md) instead.|
+   | bundle | bundleCodeDir | Installation file directory| Directory for saving the HAPs after an application is installed.<br>This directory is cleared when the application is uninstalled.<br>Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../reference/apis/js-apis-resource-manager.md) instead.<br>You can place the application's code resource data, including the HAPs of the application, reusable library files, and plug-ins, in this directory. The code in this directory can be dynamically loaded. |
    | base | NA | Directory for local device files| Directory for saving the application's persistent data on the device. Subdirectories include **files/**, **cache/**, **temp/**, and **haps/**.<br>This directory is cleared when the application is uninstalled.|
-   | database | databaseDir | Database directory| Directory in **el1** for saving the files operated by the distributed database service.<br>This directory is cleared when the application is uninstalled.|
-   | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.|
-   | files | filesDir | Application file directory| Directory for saving the application's persistent files on the device.<br>This directory is cleared when the application is uninstalled.|
-   | cache | cacheDir | Application cache file directory| Directory for caching the downloaded files of the application or saving the cache files regenerated on the device.<br>This directory is automatically cleared when the size of the **cache** directory reaches the quota or the system storage space reaches a certain threshold. The user can also clear this directory by using a system space management application. <br>The application needs to check whether the file still exists and determine whether to cache the file again.|
-   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preference data managed by using database APIs.<br>This directory is cleared when the application is uninstalled. For details, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).|
-   | temp | tempDir | Temporary file directory| Directory for saving the files generated and required during the application's runtime on the device. <br>This directory is cleared when the application exits.|
-
-   The application scenarios of the application file directories are as follows:
-
-   - Installation file directory<br>
-      Used to store the code resource data of the application, including the HAPs of the application, reusable library files, and plug-ins. The code stored in this directory can be dynamically loaded.
-   - Database directory<br>
-      Used to store only the application's private database data, such as database files. This directory can be used to store distributed database data only.
-   - Distributed file directory<br>
-      Used to store the application's data used for distributed scenarios, including file sharing, file backup, and file processing across devices. The data stored in this directory enables the application to run smoothly on multiple devices.
-   - Application file directory<br>
-      Used to store private data of the application, including persistent files, images, media files, and log files. The data is stored in this directory to ensure privacy, security, and permanent validity.
-   - Cache application file directory<br>
-      Used to store cached data of the application, including offline data, cached images, database backup, and temporary files. Data stored in this directory may be automatically deleted by the system. Therefore, do not store important data in this directory.
-   - Preferences file directory<br>
-      Used to store application preferences data, including preference files and configuration files. This directory applied to storing only a small amount of data.
-   - Temporary file directory<br>
-      Used to store temporarily generated data of an application, including cached database data and images, temporary log files, downloaded application installation package. The data stored in this directory is deleted after being used.
+   | database | databaseDir | Database directory| Directory in **el1** for saving the files operated by the distributed database service.<br>This directory is cleared when the application is uninstalled.<br>This directory can be used to store the application's private database data, such as database files, in distributed scenarios only. |
+   | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.<br>You can place the application's data used for distributed scenarios, including file sharing, file backup, and file processing across devices, in this directory. The data stored in this directory enables the application to run smoothly on multiple devices. |
+   | files | filesDir | Application file directory| Directory for saving the application's persistent files on the device.<br>This directory is cleared when the application is uninstalled.<br>You can place the application's private data, including persistent files, images, media files, and log files, in this directory. The data is stored in this directory to ensure privacy, security, and permanent validity. |
+   | cache | cacheDir | Application cache file directory| Directory for caching the downloaded files of the application or saving the cache files regenerated on the device.<br>This directory is automatically cleared when the size of the **cache** directory reaches the quota or the system storage space reaches a certain threshold. The user can also clear this directory by using a system space management application. <br>The application needs to check whether the file still exists and determine whether to cache the file again.<br>You can place the cached data of the application, including offline data, cached images, database backup, and temporary files, in this directory. Data stored in this directory may be automatically deleted by the system. Therefore, do not store important data in this directory. |
+   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preference data managed by using database APIs.<br>This directory is cleared when the application is uninstalled. For details, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).<br>You can place application preferences data, including preference files and configuration files, in this directory. This directory applied to storing only a small amount of data. |
+   | temp | tempDir | Temporary file directory| Directory for saving the files generated and required during the application's runtime on the device. <br>This directory is cleared when the application exits.<br>You can place temporarily generated data of an application, including cached database data and images, temporary log files, downloaded application installation package, in this directory. The data stored in this directory can be deleted immediately after being used. |

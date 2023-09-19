@@ -140,25 +140,25 @@ sendMouseEvent(event: MouseEvent): boolean
 import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
 
 class Utils {
-  static rect_left
-  static rect_top
-  static rect_right
-  static rect_bottom
-  static rect_value
+  static rect_left: number
+  static rect_top: number
+  static rect_right: number
+  static rect_bottom: number
+  static rect_value: Record<string, number>
 
   //获取组件所占矩形区域坐标
-  static getComponentRect(key) {
+  static getComponentRect(key:string):Record<string, number> {
     let strJson = getInspectorByKey(key)
-    let obj = JSON.parse(strJson)
+    let obj:Record<string, string> = JSON.parse(strJson)
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
-    let rectInfo = JSON.parse('[' + obj.$rect + ']')
+    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    this.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
-    return this.rect_value = {
-      "left": this.rect_left, "top": this.rect_top, "right": this.rect_right, "bottom": this.rect_bottom
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    return Utils.rect_value = {
+      "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }
   }
 }

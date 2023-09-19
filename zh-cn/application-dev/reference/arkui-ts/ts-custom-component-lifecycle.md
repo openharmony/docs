@@ -155,7 +155,7 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params) {
+  aboutToReuse(params: Object) {
     console.info("Recycle Child")
   }
 
@@ -220,7 +220,7 @@ struct Index {
   build() {
     Column() {
       CustomLayout() {
-        ForEach([1, 2, 3], (index) => {
+        ForEach([1, 2, 3], (index: number) => {
           Text('Sub' + index)
             .fontSize(30)
             .borderWidth(2)
@@ -233,7 +233,11 @@ struct Index {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => {};
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
 
   onLayout(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
     let pos = 0;

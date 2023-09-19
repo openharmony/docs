@@ -313,33 +313,35 @@ class IdlTestImp extends IdlTestServiceStub {
 import Want from '@ohos.app.ability.Want';
 import rpc from "@ohos.rpc";
 
-export default class ServiceAbility {
-    onStart() {
-        console.info('ServiceAbility onStart');
-    };
-    onStop() {
-        console.info('ServiceAbility onStop');
-    };
-    onCommand(want: Want, startId: number) {
-        console.info('ServiceAbility onCommand');
-    };
-    onConnect(want: Want) {
-        console.info('ServiceAbility onConnect');
-        try {
-            console.log('ServiceAbility want:' + typeof(want));
-            console.log('ServiceAbility want:' + JSON.stringify(want));
-            console.log('ServiceAbility want name:' + want.bundleName)
-        } catch(err) {
-            console.log('ServiceAbility error:' + err)
-        }
-        console.info('ServiceAbility onConnect end');
-        return new IdlTestImp('connect') as rpc.RemoteObject;
-    };
-    onDisconnect(want: Want) {
-        console.info('ServiceAbility onDisconnect');
-        console.info('ServiceAbility want:' + JSON.stringify(want));
+class ServiceAbility {
+  onStart() {
+    console.info('ServiceAbility onStart');
+  }
+  onStop() {
+    console.info('ServiceAbility onStop');
+  }
+  onCommand(want: Want, startId: number) {
+    console.info('ServiceAbility onCommand');
+  }
+  onConnect(want: Want) {
+    console.info('ServiceAbility onConnect');
+    try {
+      console.log('ServiceAbility want:' + typeof(want));
+      console.log('ServiceAbility want:' + JSON.stringify(want));
+      console.log('ServiceAbility want name:' + want.bundleName)
+    } catch(err) {
+      console.log('ServiceAbility error:' + err)
     }
-};
+    console.info('ServiceAbility onConnect end');
+    return new IdlTestImp('connect') as rpc.RemoteObject;
+  }
+  onDisconnect(want: Want) {
+    console.info('ServiceAbility onDisconnect');
+    console.info('ServiceAbility want:' + JSON.stringify(want));
+  }
+}
+
+export default new ServiceAbility()
 ```
 
 #### 客户端调用IPC方法

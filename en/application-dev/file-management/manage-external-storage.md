@@ -11,14 +11,15 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
 - When an external storage device is inserted, the StorageDaemon process obtains an insertion event over netlink and creates a disk device and volume. The created volume is in the **UNMOUNTED** state.
 
 - Then, the StorageDaemon process checks the volume. The volume transits to the **CHECKING** state.
-  - The StorageDaemon process mounts the volume if the check is successful. If the mount operation is successful, the volume state changes to **MOUNTED** and StorageManager is instructed to send the COMMON_EVENT_VOLUME_MOUNTED broadcast.
+  - If the check is successful, the StorageDaemon process mounts the volume. If the mount operation is successful, the volume state changes to **MOUNTED** and StorageManager is instructed to send the COMMON_EVENT_VOLUME_MOUNTED broadcast.
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the device is directly removed, the volume information is deleted and COMMON_EVENT_VOLUME_BAD_REMOVAL is broadcast.
   - If the user chooses **Eject device**, the volume state changes to **EJECTING** and the COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
-
-- For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+    
+    For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+    
+  - If the user removes the card, the volume status changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the card is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
 
 ## Available APIs
 
@@ -28,13 +29,13 @@ The following table describes the broadcast related parameters.
 
 **Table 1** Broadcast parameters
 
-| Broadcast| Parameter| 
+| Broadcast| Parameter|
 | -------- | -------- |
-| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
-| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
-| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.| 
-| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
-| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
+| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
+| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
+| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.|
+| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
+| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
 
 ## How to Develop
 

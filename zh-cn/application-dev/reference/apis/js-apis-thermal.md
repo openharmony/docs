@@ -38,7 +38,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 ```js
 try {
-    thermal.registerThermalLevelCallback(level => {
+    thermal.registerThermalLevelCallback((level: thermal.ThermalLevel) => {
         console.info('thermal level is: ' + level);
     });
     console.info('register thermal level callback success.');
@@ -108,7 +108,7 @@ getLevel(): ThermalLevel
 
 ```js
 try {
-    var level = thermal.getLevel();
+    let level = thermal.getLevel();
     console.info('thermal level is: ' + level);
 } catch(err) {
     console.error('get thermal level failed, err: ' + err);
@@ -134,7 +134,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 **示例：**
 
 ```js
-thermal.subscribeThermalLevel((level) => {
+thermal.subscribeThermalLevel((err: BusinessError<void>, level: thermal.ThermalLevel) => {
     console.info('thermal level is: ' + level);
 });
 ```
@@ -182,7 +182,7 @@ getThermalLevel(): ThermalLevel
 **示例：**
 
 ```js
-var level = thermal.getThermalLevel();
+let level = thermal.getThermalLevel();
 console.info('thermal level is: ' + level);
 ```
 

@@ -346,7 +346,7 @@ connection.getDefaultHttpProxy((error, data) => {
 
 getDefaultHttpProxy(): Promise\<HttpProxy>;
 
-Obtains the default proxy configuration of the network.
+Obtains the default HTTP proxy configuration of the network.
 If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
 This API uses a promise to return the result.
 
@@ -1349,7 +1349,7 @@ Registers a listener for **netAvailable** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle.|
 
 **Example**
@@ -1388,7 +1388,7 @@ Registers a listener for **netBlockStatusChange** events. This API uses an async
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
 | callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | Yes  | Callback used to return the network handle (**netHandle**) and network status (**blocked**).|
 
 **Example**
@@ -1415,7 +1415,7 @@ netCon.unregister(function (error) {
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
+on(type: 'netCapabilitiesChange', callback: Callback<NetCapabilityInfo>): void
 
 Registers a listener for **netCapabilitiesChange** events.
 
@@ -1427,8 +1427,8 @@ Registers a listener for **netCapabilitiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo)> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
 
 **Example**
 
@@ -1467,7 +1467,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return the network handle (**netHandle**) and connection information (**connectionProperties**).|
 
 **Example**
@@ -1506,7 +1506,7 @@ Registers a listener for **netLost** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle (**netHandle**).|
 
 **Example**
@@ -1545,7 +1545,7 @@ Registers a listener for **netUnavailable** events.
 
 | Name  | Type           | Mandatory| Description                                                        |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | Yes  | Event type. The value is fixed to **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
+| type     | string          | Yes  | Event type. This field has a fixed value of **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
 | callback | Callback\<void> | Yes  | Callback used to return the result, which is empty.|
 
 **Example**
@@ -1949,6 +1949,17 @@ Provides an instance that bears data network capabilities.
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  Yes | Network transmission capabilities and bearer types of the data network.                               |
 | bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
+
+## NetCapabilityInfo<sup>10+</sup>
+
+Provides an instance that bears data network capabilities.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name                    | Type                               | Mandatory | Description                                                        |
+| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle         | [NetHandle](#nethandle) |  Yes | Handle of the data network.                               |
+| netCap |  [NetCapabilities](#netcapabilities)       |  No |  Network transmission capabilities and bearer types of the data network.|
 
 ## NetCapabilities<sup>8+</sup>
 

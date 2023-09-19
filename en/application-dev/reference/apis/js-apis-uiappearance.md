@@ -40,16 +40,37 @@ Sets the system color mode. This API uses an asynchronous callback to return the
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
 | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [UI Appearance Error Codes](../errorcodes/errorcode-uiappearance.md).
+
+| ID| Error Message|
+| -- | -- |
+| 500001 | Internal error. |
+
 **Example**
+
   ```ts
-uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (err) => {
-  console.info(`${err}`);
-})
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
+      if (error) {
+        console.error('Set dark-mode failed, ' + error.message);
+      } else {
+        console.info('Set dark-mode successfully.');
+      }
+    })
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
+}
   ```
 
 
@@ -64,6 +85,7 @@ Sets the system color mode. This API uses a promise to return the result.
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
@@ -74,13 +96,29 @@ Sets the system color mode. This API uses a promise to return the result.
 | ------ | ------------------------------ |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [UI Appearance Error Codes](../errorcodes/errorcode-uiappearance.md).
+
+| ID| Error Message|
+| -- | -- |
+| 500001 | Internal error. |
+
 **Example**
+
   ```ts
-uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
-    console.log('Set dark-mode successfully.');
-}).catch((err) => {
-    console.log(`Set dark-mode failed, ${err}`);
-});
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
+      console.info('Set dark-mode successfully.');
+    }).catch((error:Error) => {
+      console.error('Set dark-mode failed, ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Set dark-mode failed, ' + message);
+}
   ```
 
 
@@ -95,12 +133,29 @@ Obtains the system color mode.
 **System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Return value**
+
 | Type| Description|
 | -- | -- |
 |[DarkMode](#darkmode) | Color mode obtained.|
 
+**Error codes**
+
+For details about the error codes, see [UI Appearance Error Codes](../errorcodes/errorcode-uiappearance.md).
+
+| ID| Error Message|
+| -- | -- |
+| 500001 | Internal error. |
+
 **Example**
+
   ```ts
-let darkMode = uiAppearance.getDarkMode();
-console.log(`Get dark-mode ${darkMode}`);
+import uiAppearance from '@ohos.uiAppearance'
+import { BusinessError } from '@ohos.base';
+try {
+    let darkMode = uiAppearance.getDarkMode();
+    console.info('Get dark-mode ' + darkMode);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('Get dark-mode failed, ' + message);
+}
   ```

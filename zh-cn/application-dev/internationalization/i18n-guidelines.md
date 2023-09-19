@@ -365,7 +365,7 @@ try {
      调用isValidNumber接口来判断输入的电话号码的格式是否正确。
 
    ```ts
-   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
    ```
 
 4. 电话号码格式化。
@@ -373,7 +373,7 @@ try {
      调用电话号码格式化对象的format接口来对输入的电话号码进行格式化。
 
    ```ts
-   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
    ```
 
 ## 度量衡转换

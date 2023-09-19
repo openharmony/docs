@@ -128,7 +128,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 ```ts
 let currentIme = inputMethod.getCurrentInputMethod();
 try{
-  inputMethod.switchInputMethod(currentIme, (err: Error, result: boolean) => {
+  inputMethod.switchInputMethod(currentIme, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
       return;
@@ -184,7 +184,7 @@ try {
     } else {
       console.error('Failed to switchInputMethod.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
 } catch (err) {
@@ -257,7 +257,7 @@ try {
     icon: "",
     iconId: 0,
     extra: extra
-  }, (err: Error, result: boolean) => {
+  }, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
@@ -329,7 +329,7 @@ try {
     } else {
       console.error('Failed to switchCurrentInputMethodSubtype.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -390,7 +390,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 let currentIme = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-  inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType, (err: Error, result: boolean) => {
+  inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType, (err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
       return;
@@ -450,7 +450,7 @@ try {
     } else {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -704,7 +704,7 @@ try {
       enterKeyType: 1
     }
   };
-  inputMethodController.attach(true, textConfig, (err: Error) => {
+  inputMethodController.attach(true, textConfig, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to attach: ${JSON.stringify(err)}`);
       return;
@@ -762,7 +762,7 @@ try {
   };
   inputMethodController.attach(true, textConfig).then(() => {
     console.log('Succeeded in attaching inputMethod.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -801,7 +801,7 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.showTextInput((err: Error) => {
+inputMethodController.showTextInput((err: BusinessError) => {
   if (err) {
     console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
     return;
@@ -843,7 +843,7 @@ showTextInput(): Promise&lt;void&gt;
 ```ts
 inputMethodController.showTextInput().then(() => {
   console.log('Succeeded in showing text input.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
 ```
@@ -881,7 +881,7 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.hideTextInput((err: Error) => {
+inputMethodController.hideTextInput((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
     return;
@@ -925,7 +925,7 @@ hideTextInput(): Promise&lt;void&gt;
 ```ts
 inputMethodController.hideTextInput().then(() => {
   console.log('Succeeded in hiding inputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
 })
 ```
@@ -956,7 +956,7 @@ detach(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.detach((err: Error) => {
+inputMethodController.detach((err: BusinessError) => {
   if (err) {
     console.error(`Failed to detach: ${JSON.stringify(err)}`);
     return;
@@ -993,7 +993,7 @@ detach(): Promise&lt;void&gt;
 ```ts
 inputMethodController.detach().then(() => {
   console.log('Succeeded in detaching inputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to detach: ${JSON.stringify(err)}`);
 });
 ```
@@ -1032,7 +1032,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 try {
   let windowId: number = 2000;
-  inputMethodController.setCallingWindow(windowId, (err: Error) => {
+  inputMethodController.setCallingWindow(windowId, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
       return;
@@ -1085,7 +1085,7 @@ try {
   let windowId: number = 2000;
   inputMethodController.setCallingWindow(windowId).then(() => {
     console.log('Succeeded in setting callingWindow.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -1123,7 +1123,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
-  inputMethodController.updateCursor(cursorInfo, (err: Error) => {
+  inputMethodController.updateCursor(cursorInfo, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
       return;
@@ -1172,7 +1172,7 @@ try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
   inputMethodController.updateCursor(cursorInfo).then(() => {
     console.log('Succeeded in updating cursorInfo.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -1211,7 +1211,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 ```ts
 try {
-  inputMethodController.changeSelection('text', 0, 5, (err: Error) => {
+  inputMethodController.changeSelection('text', 0, 5, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
       return;
@@ -1261,7 +1261,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 try {
   inputMethodController.changeSelection('test', 0, 5).then(() => {
     console.log('Succeeded in changing selection.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -1299,7 +1299,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 ```ts
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
-  inputMethodController.updateAttribute(inputAttribute, (err: Error) => {
+  inputMethodController.updateAttribute(inputAttribute, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
       return;
@@ -1348,7 +1348,7 @@ try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
   inputMethodController.updateAttribute(inputAttribute).then(() => {
     console.log('Succeeded in updating attribute.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -1387,7 +1387,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 try {
-  inputMethodController.stopInputSession((err: Error, result: boolean) => {
+  inputMethodController.stopInputSession((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
       return;
@@ -1440,7 +1440,7 @@ try {
     } else {
       console.error('Failed to stopInputSession.');
     }
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -1480,7 +1480,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.showSoftKeyboard((err: Error) => {
+inputMethodController.showSoftKeyboard((err: BusinessError) => {
   if (!err) {
     console.log('Succeeded in showing softKeyboard.');
   } else {
@@ -1523,7 +1523,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 ```ts
 inputMethodController.showSoftKeyboard().then(() => {
   console.log('Succeeded in showing softKeyboard.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to show softKeyboard: ${JSON.stringify(err)}`);
 });
 ```
@@ -1560,7 +1560,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.hideSoftKeyboard((err: Error) => {
+inputMethodController.hideSoftKeyboard((err: BusinessError) => {
   if (!err) {
     console.log('Succeeded in hiding softKeyboard.');
   } else {
@@ -1603,7 +1603,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 ```ts
 inputMethodController.hideSoftKeyboard().then(() => {
   console.log('Succeeded in hiding softKeyboard.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
 ```
@@ -1631,7 +1631,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-inputMethodController.stopInput((err: Error, result: boolean) => {
+inputMethodController.stopInput((err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to stopInput: ${JSON.stringify(err)}`);
     return;
@@ -1673,7 +1673,7 @@ inputMethodController.stopInput().then((result: boolean) => {
   } else {
     console.error('Failed to stopInput.');
   }
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to stopInput: ${JSON.stringify(err)}`);
 })
 ```
@@ -2577,7 +2577,7 @@ let inputMethodProperty: inputMethod.InputMethodProperty = {
   id: 'propertyId',
 }
 try {
-  inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err: Error, data: Array<InputMethodSubtype>) => {
+  inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
       console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
@@ -2630,7 +2630,7 @@ let inputMethodProperty: inputMethod.InputMethodProperty = {
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing inputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2665,7 +2665,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 ```ts
 try {
-  inputMethodSetting.listCurrentInputMethodSubtype((err: Error, data: Array<InputMethodSubtype>) => {
+  inputMethodSetting.listCurrentInputMethodSubtype((err: BusinessError, data: Array<InputMethodSubtype>) => {
     if (err) {
       console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
@@ -2706,7 +2706,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
     console.log('Succeeded in listing currentInputMethodSubtype.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2748,7 +2748,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 ```ts
 try {
-  inputMethodSetting.getInputMethods(true, (err: Error, data: Array<inputMethod.InputMethodProperty>) => {
+  inputMethodSetting.getInputMethods(true, (err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
     if (err) {
       console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
       return;
@@ -2801,7 +2801,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
     console.log('Succeeded in getting inputMethods.');
-  }).catch((err: Error) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
 } catch(err) {
@@ -2835,7 +2835,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 try {
-  inputMethodSetting.showOptionalInputMethods((err: Error, data: boolean) => {
+  inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
     if (err) {
       console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
       return;
@@ -2874,7 +2874,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 ```ts
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
   console.log('Succeeded in showing optionalInputMethods.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 })
 ```
@@ -2900,7 +2900,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
 
 ```ts
-inputMethodSetting.listInputMethod((err: Error, data: Array<inputMethod.InputMethodProperty>) => {
+inputMethodSetting.listInputMethod((err: BusinessError, data: Array<inputMethod.InputMethodProperty>) => {
   if (err) {
     console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
     return;
@@ -2932,7 +2932,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 ```ts
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
   console.log('Succeeded in listing inputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
 })
 ```
@@ -2958,7 +2958,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-inputMethodSetting.displayOptionalInputMethod((err: Error) => {
+inputMethodSetting.displayOptionalInputMethod((err: BusinessError) => {
   if (err) {
     console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
     return;
@@ -2990,7 +2990,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 ```ts
 inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
 })
 ```

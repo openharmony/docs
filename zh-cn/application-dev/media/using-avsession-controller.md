@@ -191,13 +191,11 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    });
 
    // 注册元数据更新监听
-   let metaFilter = ['assetId', 'title', 'description'];
-   controller.on('metadataChange', metaFilter, (metadata: AVSessionManager.AVMetadata) => {
+   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
      console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
    // 注册播放状态更新监听
-   let playbackFilter = ['state', 'speed', 'loopMode'];
-   controller.on('playbackStateChange', playbackFilter, (playbackState: AVSessionManager.AVPlaybackState) => {
+   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
      console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
    // 注册会话支持的命令变更监听

@@ -11,20 +11,22 @@ A PageAbility accesses a ServiceExtensionAbility in the same way as it accesses 
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
-let want = {
+let want: Want = {
     bundleName: "com.ohos.stage",
     abilityName: "com.ohos.stage.ServiceExtensionAbility"
 };
 
-let faConnect = {
-    onConnect:function (elementName, proxy) {
+let faConnect: common.ConnectOptions = {
+    onConnect: (elementName, proxy) => {
         console.info("Faconnection onConnect called.");
     },
-    onDisconnect:function (elementName) {
+    onDisconnect: (elementName) => {
         console.info("Faconnection onDisconnect called.");
     },
-    onFailed:function (code) {
+    onFailed: (code) => {
         console.info("Faconnection onFailed code is: " + code);
     }
 };
@@ -39,20 +41,22 @@ A ServiceAbility or DataAbility accesses a ServiceExtensionAbility in the same w
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
-let want = {
+let want: Want = {
     bundleName: "com.ohos.stage",
     abilityName: "com.ohos.stage.ServiceExtensionAbility"
 };
 
-let faConnect = {
-    onConnect:function (elementName, proxy) {
+let faConnect: common.ConnectOptions = {
+    onConnect: (elementName, proxy) => {
         console.info("Faconnection onConnect called.");
     },
-    onDisconnect:function (elementName) {
+    onDisconnect: (elementName) => {
         console.info("Faconnection onDisconnect called.");
     },
-    onFailed:function (code) {
+    onFailed: (code) => {
         console.info("Faconnection onFailed code is: " + code);
     }
 };

@@ -1,4 +1,4 @@
-# # @ohos.net.socket (Socket Connection) 
+# @ohos.net.socket (Socket Connection) 
 
 The **socket** module implements data transfer over TCP, UDP, Web, and TLS socket connections.
 
@@ -2515,7 +2515,7 @@ tcpServer.on('connect', function(client) {
 
 ### off('close')<sup>10+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void
+off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -5708,7 +5708,7 @@ tlsServer.on('connect', function(client) {
 
 ### off('close')<sup>10+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void
+off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 

@@ -25,26 +25,33 @@ Called when the application is switched from the background to the foreground.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-globalThis.applicationStateChangeCallback = {
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
     onApplicationForeground() {
         console.info('applicationStateChangeCallback onApplicationForeground');
+    },
+    onApplicationBackground() {
+        console.info('applicationStateChangeCallback onApplicationBackground');
     }
 }
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1. Obtain an applicationContext object.
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        }
     }
     onDestroy() {
-        let applicationContext = globalThis.applicationContext;
-        // 3. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        let applicationContext = this.context.getApplicationContext();
+        // 1. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
+        if (applicationContext != undefined) {
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+        }
     }
 }
 ```
@@ -61,8 +68,12 @@ Called when the application is switched from the foreground to the background.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
-globalThis.applicationStateChangeCallback = {
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+    onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+    },
     onApplicationBackground() {
         console.info('applicationStateChangeCallback onApplicationBackground');
     }
@@ -71,17 +82,20 @@ globalThis.applicationStateChangeCallback = {
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1. Obtain an applicationContext object.
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        if (applicationContext != undefined) {
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        }
         console.log('Resgiter applicationStateChangeCallback');
     }
     onDestroy() {
-        let applicationContext = globalThis.applicationContext;
-        // 3. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        let applicationContext = this.context.getApplicationContext();
+        // 1. Use applicationContext.off() to unsubscribe from the 'applicationStateChange' event.
+        if (applicationContext != undefined) {
+            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+        }
     }
 }
 ```

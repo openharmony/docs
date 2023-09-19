@@ -192,37 +192,37 @@ This example uses \@LocalStorage as an example to show how to:
 - Use \@LocalStorageLink to create a two-way data synchronization with the given attribute in LocalStorage.
 
   ```ts
-// Create a new instance and initialize it with the given object.
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+  // Create a new instance and initialize it with the given object.
+  let storage = new LocalStorage();
+  storage['PropA'] = 47;
 
-@Component
-struct Child {
-  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
-  @LocalStorageLink('PropA') storLink2: number = 1;
+  @Component
+  struct Child {
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+    @LocalStorageLink('PropA') storLink2: number = 1;
 
-  build() {
-    Button(`Child from LocalStorage ${this.storLink2}`)
-      // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
-      .onClick(() => this.storLink2 += 1)
-  }
-}
-// Make LocalStorage accessible from the @Component decorated component.
-@Entry(storage)
-@Component
-struct CompA {
-  // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
-  @LocalStorageLink('PropA') storLink1: number = 1;
-
-  build() {
-    Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
-        .onClick(() => this.storLink1 += 1)
-      // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
-      Child()
+    build() {
+      Button(`Child from LocalStorage ${this.storLink2}`)
+        // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
+        .onClick(() => this.storLink2 += 1)
     }
   }
-}
+  // Make LocalStorage accessible from the @Component decorated component.
+  @Entry(storage)
+  @Component
+  struct CompA {
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
+    @LocalStorageLink('PropA') storLink1: number = 1;
+
+    build() {
+      Column({ space: 15 }) {
+        Button(`Parent from LocalStorage ${this.storLink1}`) // initial value from LocalStorage will be 47, because 'PropA' initialized already
+          .onClick(() => this.storLink1 += 1)
+        // The @Component decorated child component automatically obtains access to the CompA LocalStorage instance.
+        Child()
+      }
+    }
+  }
   ```
 
 
@@ -235,39 +235,39 @@ In this example, the **CompA** and **Child** components create local data that i
 - In the **Child** component, the value of **storProp2** bound to **Text** is still 47.
 
   ```ts
-// Create a new instance and initialize it with the given object.
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+  // Create a new instance and initialize it with the given object.
+  let storage = new LocalStorage();
+  storage['PropA'] = 47;
 
-// Make LocalStorage accessible from the @Component decorated component.
-@Entry(storage)
-@Component
-struct CompA {
-  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
-  @LocalStorageProp('PropA') storProp1: number = 1;
+  // Make LocalStorage accessible from the @Component decorated component.
+  @Entry(storage)
+  @Component
+  struct CompA {
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+    @LocalStorageProp('PropA') storProp1: number = 1;
 
-  build() {
-    Column({ space: 15 }) {
-      // The initial value is 47. After the button is clicked, the value is incremented by 1. The change takes effect only in storProp1 in the current component and is not synchronized to LocalStorage.
-      Button(`Parent from LocalStorage ${this.storProp1}`)
-        .onClick(() => this.storProp1 += 1)
-      Child()
+    build() {
+      Column({ space: 15 }) {
+        // The initial value is 47. After the button is clicked, the value is incremented by 1. The change takes effect only in storProp1 in the current component and is not synchronized to LocalStorage.
+        Button(`Parent from LocalStorage ${this.storProp1}`)
+          .onClick(() => this.storProp1 += 1)
+        Child()
+      }
     }
   }
-}
 
-@Component
-struct Child {
-  // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
-  @LocalStorageProp('PropA') storProp2: number = 2;
+  @Component
+  struct Child {
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
+    @LocalStorageProp('PropA') storProp2: number = 2;
 
-  build() {
-    Column({ space: 15 }) {
-      // When CompA changes, the current storProp2 does not change, and 47 is displayed.
-      Text(`Parent from LocalStorage ${this.storProp2}`)
+    build() {
+      Column({ space: 15 }) {
+        // When CompA changes, the current storProp2 does not change, and 47 is displayed.
+        Text(`Parent from LocalStorage ${this.storProp2}`)
+      }
     }
   }
-}
   ```
 
 
@@ -322,71 +322,71 @@ Changes in the **Child** custom component:
 1. The update of **playCountLink** is synchronized to LocalStorage, and the parent and sibling child custom components are re-rendered accordingly.
 
    ```ts
-class Data {
-  countStorage: number = 0;
-}
-let data: Data = { countStorage: 1 }
-let storage = new LocalStorage(data);
+   class Data {
+     countStorage: number = 0;
+   }
+   let data: Data = { countStorage: 1 }
+   let storage = new LocalStorage(data);
 
-@Component
-struct Child {
-  // Name the child component instance.
-  label: string = 'no name';
-  // Two-way synchronization with countStorage in LocalStorage.
-  @LocalStorageLink('countStorage') playCountLink: number = 0;
+   @Component
+   struct Child {
+     // Name the child component instance.
+     label: string = 'no name';
+     // Two-way synchronization with countStorage in LocalStorage.
+     @LocalStorageLink('countStorage') playCountLink: number = 0;
 
-  build() {
-    Row() {
-      Text(this.label)
-        .width(50).height(60).fontSize(12)
-      Text(`playCountLink ${this.playCountLink}: inc by 1`)
-        .onClick(() => {
-          this.playCountLink += 1;
-        })
-        .width(200).height(60).fontSize(12)
-    }.width(300).height(60)
-  }
-}
+     build() {
+       Row() {
+         Text(this.label)
+           .width(50).height(60).fontSize(12)
+         Text(`playCountLink ${this.playCountLink}: inc by 1`)
+           .onClick(() => {
+             this.playCountLink += 1;
+           })
+           .width(200).height(60).fontSize(12)
+       }.width(300).height(60)
+     }
+   }
 
-@Entry(storage)
-@Component
-struct Parent {
-  @LocalStorageLink('countStorage') playCount: number = 0;
+   @Entry(storage)
+   @Component
+   struct Parent {
+     @LocalStorageLink('countStorage') playCount: number = 0;
 
-  build() {
-    Column() {
-      Row() {
-        Text('Parent')
-          .width(50).height(60).fontSize(12)
-        Text(`playCount ${this.playCount} dec by 1`)
-          .onClick(() => {
-            this.playCount -= 1;
-          })
-          .width(250).height(60).fontSize(12)
-      }.width(300).height(60)
+     build() {
+       Column() {
+         Row() {
+           Text('Parent')
+             .width(50).height(60).fontSize(12)
+           Text(`playCount ${this.playCount} dec by 1`)
+             .onClick(() => {
+               this.playCount -= 1;
+             })
+             .width(250).height(60).fontSize(12)
+         }.width(300).height(60)
 
-      Row() {
-        Text('LocalStorage')
-          .width(50).height(60).fontSize(12)
-        Text(`countStorage ${this.playCount} incr by 1`)
-          .onClick(() => {
-            let countStorage: number | undefined = storage.get<number>('countStorage');
-            if (countStorage != undefined){
-              countStorage += 1;
-              storage.set<number>('countStorage', countStorage);
-            }
-          })
-          .width(250).height(60).fontSize(12)
-      }.width(300).height(60)
+         Row() {
+           Text('LocalStorage')
+             .width(50).height(60).fontSize(12)
+           Text(`countStorage ${this.playCount} incr by 1`)
+             .onClick(() => {
+               let countStorage: number | undefined = storage.get<number>('countStorage');
+              if (countStorage != undefined){
+                 countStorage += 1;
+                 storage.set<number>('countStorage', countStorage);
+               }
+             })
+             .width(250).height(60).fontSize(12)
+         }.width(300).height(60)
 
-      Child({ label: 'ChildA' })
-      Child({ label: 'ChildB' })
+         Child({ label: 'ChildA' })
+         Child({ label: 'ChildB' })
 
-      Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
-        .width(300).height(60).fontSize(12)
-    }
-  }
-}
+         Text(`playCount in LocalStorage for debug ${storage.get<number>('countStorage')}`)
+           .width(300).height(60).fontSize(12)
+       }
+     }
+   }
    ```
 
 

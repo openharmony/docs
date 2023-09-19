@@ -19,24 +19,26 @@ You can call **on('stateChange')** to listen for state changes. For details abou
      
    ```ts
    import audio from '@ohos.multimedia.audio';
-   
-   let audioStreamInfo = {
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+
+   let audioStreamInfo: audio.AudioStreamInfo = {
      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
      channels: audio.AudioChannel.CHANNEL_2,
      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
    };
-   
-   let audioCapturerInfo = {
+
+   let audioCapturerInfo: audio.AudioCapturerInfo = {
      source: audio.SourceType.SOURCE_TYPE_MIC,
      capturerFlags: 0
    };
-   
-   let audioCapturerOptions = {
+
+   let audioCapturerOptions: audio.AudioCapturerOptions = {
      streamInfo: audioStreamInfo,
      capturerInfo: audioCapturerInfo
    };
-   
+
    audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
      if (err) {
        console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
@@ -50,7 +52,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
      
    ```ts
-   audioCapturer.start((err) => {
+   audioCapturer.start((err: BusinessError) => {
      if (err) {
        console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -62,16 +64,16 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 3. Specify the recording file path and call **read()** to read the data in the buffer.
      
    ```ts
-   let file = fs.openSync(path, 0o2 | 0o100);
-   let bufferSize = await audioCapturer.getBufferSize();
-   let buffer = await audioCapturer.read(bufferSize, true);
+   let file: fs.File = fs.openSync(path, 0o2 | 0o100);
+   let bufferSize: number = await audioCapturer.getBufferSize();
+   let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
    fs.writeSync(file.fd, buffer);
    ```
 
 4. Call **stop()** to stop recording.
      
    ```ts
-   audioCapturer.stop((err) => {
+   audioCapturer.stop((err: BusinessError) => {
      if (err) {
        console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -83,7 +85,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 5. Call **release()** to release the instance.
      
    ```ts
-   audioCapturer.release((err) => {
+   audioCapturer.release((err: BusinessError) => {
      if (err) {
        console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
      } else {
@@ -104,18 +106,18 @@ import fs from '@ohos.file.fs';
 const TAG = 'AudioCapturerDemo';
 
 export default class AudioCapturerDemo {
-  private audioCapturer = undefined;
-  private audioStreamInfo = {
+  private audioCapturer: audio.AudioCapturer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
     channels: audio.AudioChannel.CHANNEL_1,
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
   }
-  private audioCapturerInfo = {
+  private audioCapturerInfo: audio.AudioCapturerInfo = {
     source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type.
     capturerFlags: 0 // Flag indicating an AudioCapturer.
   }
-  private audioCapturerOptions = {
+  private audioCapturerOptions: audio.AudioCapturerOptions = {
     streamInfo: this.audioStreamInfo,
     capturerInfo: this.audioCapturerInfo
   }
@@ -130,12 +132,12 @@ export default class AudioCapturerDemo {
 
       console.info(`${TAG}: create AudioCapturer success`);
       this.audioCapturer = capturer;
-      this.audioCapturer.on('markReach', 1000, (position) => { // Subscribe to the markReach event. A callback is triggered when the number of captured frames reaches 1000.
+      this.audioCapturer.on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of captured frames reaches 1000.
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      this.audioCapturer.on('periodReach', 2000, (position) => { // Subscribe to the periodReach event. A callback is triggered when the number of captured frames reaches 2000.
+      this.audioCapturer.on('periodReach', 2000, (position: number) => { // Subscribe to the periodReach event. A callback is triggered when the number of captured frames reaches 2000.
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
@@ -147,7 +149,7 @@ export default class AudioCapturerDemo {
   // Start audio recording.
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
+    if (stateGroup.indexOf(this.audioCapturer.state.valueOf()) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
       console.error(`${TAG}: start failed`);
       return;
     }
@@ -160,10 +162,14 @@ export default class AudioCapturerDemo {
     let fd = file.fd;
     let numBuffersToCapture = 150; // Write data for 150 times.
     let count = 0;
+     class Options {
+       offset: number
+       length: number
+     }
     while (numBuffersToCapture) {
       let bufferSize = await this.audioCapturer.getBufferSize();
       let buffer = await this.audioCapturer.read(bufferSize, true);
-      let options = {
+      let options: Options = {
         offset: count * bufferSize,
         length: bufferSize
       };
@@ -181,12 +187,12 @@ export default class AudioCapturerDemo {
   // Stop recording.
   async stop() {
     // The AudioCapturer can be stopped only when it is in the STATE_RUNNING or STATE_PAUSED state.
-    if (this.audioCapturer.state !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
     await this.audioCapturer.stop(); // Stop recording.
-    if (this.audioCapturer.state === audio.AudioState.STATE_STOPPED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Capturer stopped');
     } else {
       console.error('Capturer stop failed');
@@ -196,12 +202,12 @@ export default class AudioCapturerDemo {
   // Release the instance.
   async release() {
     // The AudioCapturer can be released only when it is not in the STATE_RELEASED or STATE_NEW state.
-    if (this.audioCapturer.state === audio.AudioState.STATE_RELEASED || this.audioCapturer.state === audio.AudioState.STATE_NEW) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || this.audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
     await this.audioCapturer.release(); // Release the instance.
-    if (this.audioCapturer.state == audio.AudioState.STATE_RELEASED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Capturer released');
     } else {
       console.error('Capturer release failed');

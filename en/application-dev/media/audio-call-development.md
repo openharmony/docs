@@ -13,33 +13,34 @@ This process is similar to the process of [using AudioRenderer to develop audio 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // The process is similar to the process of using AudioRenderer to develop audio playback. The key differences lie in the audioRendererInfo parameter and audio data source.
 export default class VoiceCallDemoForAudioRenderer {
-  private renderModel = undefined;
-  private audioStreamInfo = {
+  private renderModel: audio.AudioRenderer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
     channels: audio.AudioChannel.CHANNEL_2, // Channel.
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   }
-  private audioRendererInfo = {
+  private audioRendererInfo: audio.AudioRendererInfo = {
     // Parameters corresponding to the call scenario need to be used.
     content: audio.ContentType.CONTENT_TYPE_SPEECH, // Audio content type: speech.
     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication.
     rendererFlags: 0 // AudioRenderer flag. The default value is 0.
   }
-  private audioRendererOptions = {
+  private audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: this.audioStreamInfo,
     rendererInfo: this.audioRendererInfo
   }
   // Create an AudioRenderer instance, and set the events to listen for.
   init() {
-    audio.createAudioRenderer(this.audioRendererOptions, (err, renderer) => { // Create an AudioRenderer instance.
+    audio.createAudioRenderer(this.audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // Create an AudioRenderer instance.
       if (!err) {
         console.info(`${TAG}: creating AudioRenderer success`);
         this.renderModel = renderer;
-        this.renderModel.on('stateChange', (state) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
+        this.renderModel.on('stateChange', (state: audio.AudioState) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
           if (state == 1) {
             console.info('audio renderer state is: STATE_PREPARED');
           }
@@ -47,7 +48,7 @@ export default class VoiceCallDemoForAudioRenderer {
             console.info('audio renderer state is: STATE_RUNNING');
           }
         });
-        this.renderModel.on('markReach', 1000, (position) => { // Subscribe to the markReach event. A callback is triggered when the number of rendered frames reaches 1000.
+        this.renderModel.on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of rendered frames reaches 1000.
           if (position == 1000) {
             console.info('ON Triggered successfully');
           }
@@ -59,13 +60,13 @@ export default class VoiceCallDemoForAudioRenderer {
   }
   // Start audio rendering.
   async start() {
-    let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.renderModel.state) === -1) { // Rendering can be started only when the AudioRenderer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
+    let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
+    if (stateGroup.indexOf(this.renderModel.state.valueOf()) === -1) { // Rendering can be started only when the AudioRenderer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
       console.error(TAG + 'start failed');
       return;
     }
     await this.renderModel.start(); // Start rendering.
-    const bufferSize = await this.renderModel.getBufferSize();
+    const bufferSize: number = await this.renderModel.getBufferSize();
     // The process of reading audio file data is used as an example. In actual audio call development, audio data transmitted from the peer needs to be read.
     let context = getContext(this);
     let path = context.filesDir;
@@ -75,15 +76,19 @@ export default class VoiceCallDemoForAudioRenderer {
     let stat = await fs.stat(filePath);
     let buf = new ArrayBuffer(bufferSize);
     let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+    class Option {
+      offset: number = 0
+      length: number = 0
+    }
     for (let i = 0; i < len; i++) {
-      let options = {
+      let options: Option = {
         offset: i * bufferSize,
         length: bufferSize
       };
       let readsize = await fs.read(file.fd, buf, options);
       // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
-      let writeSize = await new Promise((resolve, reject) => {
-        this.renderModel.write(buf, (err, writeSize) => {
+      let writeSize: number = await new Promise((resolve, reject) => {
+        this.renderModel.write(buf, (err: BusinessError, writeSize: number) => {
           if (err) {
             reject(err);
           } else {
@@ -91,11 +96,11 @@ export default class VoiceCallDemoForAudioRenderer {
           }
         });
       });
-      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the STATE_RELEASED state.
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the STATE_RELEASED state.
         fs.close(file);
         await this.renderModel.stop();
       }
-      if (this.renderModel.state === audio.AudioState.STATE_RUNNING) {
+      if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // The rendering stops if the file finishes reading.
           fs.close(file);
           await this.renderModel.stop();
@@ -106,12 +111,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // Pause the rendering.
   async pause() {
     // Rendering can be paused only when the AudioRenderer is in the STATE_RUNNING state.
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
     await this.renderModel.pause(); // Pause rendering.
-    if (this.renderModel.state === audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is paused.');
     } else {
       console.error('Pausing renderer failed.');
@@ -120,12 +125,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // Stop rendering.
   async stop() {
     // Rendering can be stopped only when the AudioRenderer is in the STATE_RUNNING or STATE_PAUSED state.
-    if (this.renderModel.state !== audio.AudioState.STATE_RUNNING && this.renderModel.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.renderModel.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.renderModel.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
     await this.renderModel.stop(); // Stop rendering.
-    if (this.renderModel.state === audio.AudioState.STATE_STOPPED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Renderer stopped.');
     } else {
       console.error('Stopping renderer failed.');
@@ -134,12 +139,12 @@ export default class VoiceCallDemoForAudioRenderer {
   // Release the instance.
   async release() {
     // The AudioRenderer can be released only when it is not in the STATE_RELEASED state.
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
     await this.renderModel.release(); // Release the instance.
-    if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
+    if (this.renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer released');
     } else {
       console.error('Renderer release failed.');
@@ -155,40 +160,41 @@ This process is similar to the process of [using AudioCapturer to develop audio 
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 const TAG = 'VoiceCallDemoForAudioCapturer';
 // The process is similar to the process of using AudioCapturer to develop audio recording. The key differences lie in the audioCapturerInfo parameter and audio data stream direction.
 export default class VoiceCallDemoForAudioCapturer {
-  private audioCapturer = undefined;
-  private audioStreamInfo = {
+  private audioCapturer: audio.AudioCapturer = undefined;
+  private audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // Sampling rate.
     channels: audio.AudioChannel.CHANNEL_1, // Channel.
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
   }
-  private audioCapturerInfo = {
+  private audioCapturerInfo: audio.AudioCapturerInfo = {
     // Parameters corresponding to the call scenario need to be used.
     source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // Audio source type: voice communication.
     capturerFlags: 0 // AudioCapturer flag. The default value is 0.
   }
-  private audioCapturerOptions = {
+  private audioCapturerOptions: audio.AudioCapturerOptions = {
     streamInfo: this.audioStreamInfo,
     capturerInfo: this.audioCapturerInfo
   }
   // Create an AudioCapturer instance, and set the events to listen for.
   init() {
-    audio.createAudioCapturer(this.audioCapturerOptions, (err, capturer) => { // Create an AudioCapturer instance.
+    audio.createAudioCapturer(this.audioCapturerOptions, (err: BusinessError, capturer: audio.AudioCapturer) => { // Create an AudioCapturer instance.
       if (err) {
         console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
       console.info(`${TAG}: create AudioCapturer success`);
       this.audioCapturer = capturer;
-      this.audioCapturer.on('markReach', 1000, (position) => { // Subscribe to the markReach event. A callback is triggered when the number of captured frames reaches 1000.
+      this.audioCapturer.on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of captured frames reaches 1000.
         if (position === 1000) {
           console.info('ON Triggered successfully');
         }
       });
-      this.audioCapturer.on('periodReach', 2000, (position) => { // Subscribe to the periodReach event. A callback is triggered when the number of captured frames reaches 2000.
+      this.audioCapturer.on('periodReach', 2000, (position: number) => { // Subscribe to the periodReach event. A callback is triggered when the number of captured frames reaches 2000.
         if (position === 2000) {
           console.info('ON Triggered successfully');
         }
@@ -197,8 +203,8 @@ export default class VoiceCallDemoForAudioCapturer {
   }
   // Start audio recording.
   async start() {
-    let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // Recording can be started only when the AudioRenderer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
+    let stateGroup: number[] = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
+    if (stateGroup.indexOf(this.audioCapturer.state.valueOf()) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
       console.error(`${TAG}: start failed`);
       return;
     }
@@ -210,10 +216,14 @@ export default class VoiceCallDemoForAudioCapturer {
     let fd = file.fd;
     let numBuffersToCapture = 150; // Write data for 150 times.
     let count = 0;
+    class Options {
+      offset: number = 0
+      length: number = 0
+    }
     while (numBuffersToCapture) {
-      let bufferSize = await this.audioCapturer.getBufferSize();
-      let buffer = await this.audioCapturer.read(bufferSize, true);
-      let options = {
+      let bufferSize: number = await this.audioCapturer.getBufferSize();
+      let buffer: ArrayBuffer = await this.audioCapturer.read(bufferSize, true);
+      let options: Options = {
         offset: count * bufferSize,
         length: bufferSize
       };
@@ -230,12 +240,12 @@ export default class VoiceCallDemoForAudioCapturer {
   // Stop recording.
   async stop() {
     // The AudioCapturer can be stopped only when it is in STATE_RUNNING or STATE_PAUSED state.
-    if (this.audioCapturer.state !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state !== audio.AudioState.STATE_PAUSED) {
+    if (this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && this.audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
     await this.audioCapturer.stop(); // Stop recording.
-    if (this.audioCapturer.state === audio.AudioState.STATE_STOPPED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_STOPPED) {
       console.info('Capturer stopped');
     } else {
       console.error('Capturer stop failed');
@@ -244,12 +254,12 @@ export default class VoiceCallDemoForAudioCapturer {
   // Release the instance.
   async release() {
     // The AudioCapturer can be released only when it is not in the STATE_RELEASED or STATE_NEW state.
-    if (this.audioCapturer.state === audio.AudioState.STATE_RELEASED || this.audioCapturer.state === audio.AudioState.STATE_NEW) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || this.audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
     await this.audioCapturer.release(); // Release the instance.
-    if (this.audioCapturer.state == audio.AudioState.STATE_RELEASED) {
+    if (this.audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Capturer released');
     } else {
       console.error('Capturer release failed');

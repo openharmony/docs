@@ -45,18 +45,22 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var moduleName = "feature";
-var isEnabled = false;
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
         .then(() => {
             console.info('setOverlayEnabled success');
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
             console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
 } catch (err) {
-    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -74,7 +78,7 @@ Enables or disables a module with the overlay feature in the current application
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.              |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -88,8 +92,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var moduleName = "feature";
-var isEnabled = false;
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
@@ -100,7 +106,9 @@ try {
         console.info('setOverlayEnabled success');
     });
 } catch (err) {
-    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -144,19 +152,23 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
-var isEnabled = false;
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
             console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
 } catch (err) {
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -179,7 +191,7 @@ Enables or disables a module with the overlay feature in another application. Th
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.   |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the processing result obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -195,9 +207,11 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
-var isEnabled = false;
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
+let isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (err, data) => {
@@ -208,7 +222,9 @@ try {
         console.info('setOverlayEnabledByBundleName successfully');
     });
 } catch (err) {
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -245,14 +261,18 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
         console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
     } catch(err) {
-        console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -270,7 +290,7 @@ Obtains the information about a module with the overlay feature in the current a
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
-| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -285,7 +305,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let moduleName = "feature";
 try {
     overlay.getOverlayModuleInfo(moduleName, (err, data) => {
         if (err) {
@@ -295,7 +317,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -331,14 +355,18 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetModuleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let targetModuleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -356,7 +384,7 @@ Obtains the information about modules with the overlay feature in the current ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | Yes   | HAP name of the target module specified by modules with the overlay feature.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -370,7 +398,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetModuleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let targetModuleName = "feature";
 try {
     overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
         if (err) {
@@ -380,7 +410,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -423,15 +455,19 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -454,7 +490,7 @@ Obtains the information about a module with the overlay feature in another appli
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -470,8 +506,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let bundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
@@ -482,7 +520,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -503,7 +543,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -517,7 +557,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var bundleName = "com.example.myapplication_xxxxx";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let bundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, (err, data) => {
@@ -528,7 +570,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -571,15 +615,19 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let targetBundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -602,7 +650,7 @@ Obtains the information about modules with the overlay feature in another applic
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -618,8 +666,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let targetBundleName = "com.example.myapplication_xxxxx";
+let moduleName = "feature";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {
@@ -630,7 +680,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -651,7 +703,7 @@ Obtains the information about all modules with the overlay feature in another ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -665,7 +717,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var targetBundleName = "com.example.myapplication_xxxxx";
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
+let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (err, data) => {
@@ -676,7 +730,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 

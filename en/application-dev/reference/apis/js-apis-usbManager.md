@@ -161,7 +161,7 @@ console.log(`${bool}`);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-Requests the temporary permission for the application to access a USB device. This API uses a promise to return the result.
+Requests the temporary device access permission for the application. This API uses a promise to return the result. System applications are granted the device access permission by default, and you do not need to apply for the permission separately.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -190,7 +190,7 @@ usb.requestRight(devicesName).then((ret) => {
 
 removeRight(deviceName: string): boolean
 
-Removes the permission for the application to access a USB device.
+Removes the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -219,7 +219,7 @@ if (usb.removeRight(devicesName)) {
 
 addRight(bundleName: string, deviceName: string): boolean
 
-Adds the permission for the application to access a USB device.
+Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
 [requestRight](#usbrequestright) triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
 

@@ -25,9 +25,6 @@
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
           - [Inter-Application HSP Development](quick-start/cross-app-hsp.md)
-      - Atomic Service
-        - [Atomic Service Development](quick-start/atomicService.md)
-        - [Atomic Service Space Management (for System Applications Only)](quick-start/atomicService-aging.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -76,11 +73,14 @@
           - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
           - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
           - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+        - [MVVM](quick-start/arkts-mvvm.md)
+        - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
         - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
+        - [Best Practices for Rendering Control](quick-start/arkts-rendering-control-best-practices.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -299,8 +299,10 @@
           - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Modal Transition](ui/arkts-modal-transition.md)
           - [Shared Element Transition](ui/arkts-shared-element-transition.md)
+          - [Page Transition Animation (Not Recommended)](ui/arkts-page-transition-animation.md)
         - [Component Animation](ui/arkts-component-animation.md)
         - Animation Curve
+          - [Animation Curve Overview](ui/arkts-curve-overview.md)
           - [Traditional Curve](ui/arkts-traditional-curve.md)
           - [Spring Curve](ui/arkts-spring-curve.md)
         - [Animation Smoothing](ui/arkts-animation-smoothing.md)
@@ -478,6 +480,7 @@
         - [Developing Audio Call](media/audio-call-development.md)
       - [Video Playback](media/video-playback.md)
       - [Video Recording](media/video-recording.md)
+      - [Screen Capture](media/avscreen-capture.md)
       - Audio and Video Codecs
         - [Obtaining Supported Codecs](media/obtain-supported-codecs.md)
         - [Audio Encoding](media/audio-encoding.md)
@@ -508,6 +511,7 @@
       - Best Practices
         - [Camera Photographing Sample](media/camera-shooting-case.md)
         - [Camera Recording Sample](media/camera-recording-case.md)
+        - [Implementation Solution for Portrait Mode] (media/camera-mode.md)
         - [Using Performance Improvement Features (for System Applications Only)](media/camera-performance-improvement.md)
     - Image
       - [Image Overview](media/image-overview.md)
@@ -629,7 +633,7 @@
     - [Transient Task](task-management/transient-task.md)
     - [Continuous Task](task-management/continuous-task.md)
     - [Deferred Task](task-management/work-scheduler.md)
-    - [Agent-powered Reminder](task-management/agent-powered-reminder.md)     
+    - [Agent-powered Reminder](task-management/agent-powered-reminder.md)
     - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
   - Device Management
     - USB Service
@@ -698,6 +702,8 @@
       - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
     - Device Management
       - [USB DDK Development](napi/usb-ddk-guidelines.md)
+    - Data Management
+      - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - Debugging Tools
@@ -724,14 +730,18 @@
         - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis/js-apis-app-ability-abilityConstant.md)
         - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis/js-apis-app-ability-abilityLifecycleCallback.md)
         - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis/js-apis-app-ability-abilityStage.md)
+        - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](reference/apis/js-apis-app-ability-actionExtensionAbility.md)
         - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis/js-apis-app-ability-applicationStateChangeCallback.md)
         - [@ohos.app.ability.common (Context)](reference/apis/js-apis-app-ability-common.md)
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](reference/apis/js-apis-app-ability-extensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
+        - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
         - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis/js-apis-app-ability-uiAbility.md)
+        - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionAbility.md)
+        - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](reference/apis/js-apis-app-ability-uiExtensionContentSession.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
         - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
@@ -758,6 +768,7 @@
         - [@ohos.app.form.formBindingData (formBindingData)](reference/apis/js-apis-app-form-formBindingData.md)
         - [@ohos.app.form.formHost (FormHost)](reference/apis/js-apis-app-form-formHost.md)
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis/js-apis-app-form-formInfo.md)
+        - [@ohos.app.form.formObserver (formObserver)](reference/apis/js-apis-app-form-formObserver.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis/js-apis-app-form-formProvider.md)
         - [@ohos.application.uriPermissionManager (URI Permission Management)](reference/apis/js-apis-uripermissionmanager.md)
       - Both Models (To Be Deprecated Soon)
@@ -822,6 +833,7 @@
           - [ProcessInformation](reference/apis/js-apis-inner-application-processInformation.md)
           - [ServiceExtensionContext](reference/apis/js-apis-inner-application-serviceExtensionContext.md)
           - [UIAbilityContext](reference/apis/js-apis-inner-application-uiAbilityContext.md)
+          - [UIExtensionContext](reference/apis/js-apis-inner-application-uiExtensionContext.md)
           - [shellCmdResult](reference/apis/js-apis-inner-application-shellCmdResult.md)
           - [WindowExtensionContext](reference/apis/js-apis-inner-application-windowExtensionContext.md)
         - wantAgent
@@ -915,6 +927,7 @@
       - [@ohos.arkui.dragController (DragController)](reference/apis/js-apis-arkui-dragController.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.arkui.inspector (Layout Callback)](reference/apis/js-apis-arkui-inspector.md)
+      - [@ohos.arkui.performanceMonitor (Performance Monitor)](reference/apis/js-apis-arkui-performancemonitor.md)
       - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (Interpolation Calculation)](reference/apis/js-apis-curve.md)
       - [@ohos.font (Custom Font Registration)](reference/apis/js-apis-font.md)
@@ -934,9 +947,6 @@
       - [@ohos.screen (Screen)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (Screenshot)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (Window)](reference/apis/js-apis-window.md)
-      - webgl
-        - [WebGL](reference/apis/js-apis-webgl.md)
-        - [WebGL2](reference/apis/js-apis-webgl2.md)
     - Multimedia
       - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (Audio Management)](reference/apis/js-apis-audio.md)
@@ -955,7 +965,7 @@
       - [@ohos.resourceManager (Resource Manager)](reference/apis/js-apis-resource-manager.md)
     - Background Task
       - [@ohos.distributedMissionManager (Distributed Mission Management)](reference/apis/js-apis-distributedMissionManager.md)
-      - [@ohos.reminderAgentManager (reminderAgentManager)](reference/apis/js-apis-reminderAgentManager.md)
+      - [@ohos.reminderAgentManager (Agent-Powered Reminders)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
       - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](reference/apis/js-apis-resourceschedule-workScheduler.md)
       - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
@@ -982,7 +992,8 @@
       - [@ohos.data.distributedKVStore (Distributed KV Store)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (User Preferences)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (RDB Store)](reference/apis/js-apis-data-relationalStore.md)
-      - [@ohos.data.UDMF (Unified Data Management Framework)](reference/apis/js-apis-data-udmf.md)
+      - [@ohos.data.unifiedDataChannel (Unified Data Channel)](reference/apis/js-apis-data-unifiedDataChannel.md)
+      - [@ohos.data.uniformTypeDescriptor (Standard Data Definition)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (Value Bucket)](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
@@ -1004,6 +1015,7 @@
       - [@ohos.fileshare (File Sharing)](reference/apis/js-apis-fileShare.md)
     - AI
       - [@ohos.ai.mindSporeLite (Inference)](reference/apis/js-apis-mindSporeLite.md)
+      - [@ohos.ai.intelligentVoice (Intelligent Voice)](reference/apis/js-apis-intelligentVoice.md)
     - Telephony Service
       - [@ohos.contact (Contacts)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (Call)](reference/apis/js-apis-call.md)
@@ -1093,8 +1105,8 @@
       - [@ohos.deviceAttest (Device Attestation)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos.deviceStatus.dragInteraction (Drag)](reference/apis/js-apis-devicestatus-draginteraction.md)
       - [@ohos.deviceInfo (Device Information)](reference/apis/js-apis-device-info.md)
-      - [@ohos.distributedDeviceManager (Device Management) (Recommended)](reference/apis/js-apis-distributedDeviceManager.md)
-      - [@ohos.distributedHardware.deviceManager (Device Management) (To Be Deprecated Soon)](reference/apis/js-apis-device-manager.md)
+      - [@ohos.distributedDeviceManager (Device Management)](reference/apis/js-apis-distributedDeviceManager.md)
+      - [@ohos.distributedHardware.deviceManager (Device Management)](reference/apis/js-apis-device-manager.md)
       - [@ohos.driver.deviceManager (Peripheral Management)](reference/apis/js-apis-driver-deviceManager.md)
       - [@ohos.geoLocationManager (Geolocation Manager)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](reference/apis/js-apis-multimodalinput-gestureevent.md)
@@ -1112,6 +1124,7 @@
       - [@ohos.multimodalInput.touchEvent (Touch Event)](reference/apis/js-apis-touchevent.md)
       - [@ohos.multimodalInput.shortKey (Shortcut Key)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (System Power Management)](reference/apis/js-apis-power.md)
+      - [@ohos.resourceschedule.deviceStandby (Device Standby)](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.runningLock (Runninglock)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (Sensor)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (Data Item Settings)](reference/apis/js-apis-settings.md)
@@ -1144,6 +1157,7 @@
       - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
       - [@ohos.enterprise.networkManager (Network Management)](reference/apis/js-apis-enterprise-networkManager.md)
       - [@ohos.enterprise.restrictions (Restrictions)](reference/apis/js-apis-enterprise-restrictions.md)
+      - [@ohos.enterprise.usbManager (USB Management)](reference/apis/js-apis-enterprise-usbManager.md)
       - [@ohos.enterprise.wifiManager (Wi-Fi Management)](reference/apis/js-apis-enterprise-wifiManager.md)
     - Common Library
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
@@ -1296,6 +1310,7 @@
       - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](reference/arkui-ts/ts-basic-components-blank.md)
       - [Button](reference/arkui-ts/ts-basic-components-button.md)
+      - [CalendarPicker](reference/arkui-ts/ts-basic-components-calendarpicker.md)
       - [Checkbox](reference/arkui-ts/ts-basic-components-checkbox.md)
       - [CheckboxGroup](reference/arkui-ts/ts-basic-components-checkboxgroup.md)
       - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
@@ -1341,7 +1356,6 @@
       - [Web](reference/arkui-ts/ts-basic-components-web.md)
       - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
     - Container Components
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [Badge](reference/arkui-ts/ts-container-badge.md)
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
@@ -1409,6 +1423,7 @@
         - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
         - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
         - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Calendar Picker Dialog Box](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
         - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
         - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
@@ -1419,6 +1434,7 @@
     - [Enums](reference/arkui-ts/ts-appendix-enums.md)
     - [Types](reference/arkui-ts/ts-types.md)
     - Components No Longer Maintained 
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - APIs No Longer Maintained
       - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1603,6 +1619,8 @@
       - [Ability Error Codes](reference/errorcodes/errorcode-ability.md)
       - [Distributed Scheduler Error Codes](reference/errorcodes/errorcode-DistributedSchedule.md)
       - [Form Error Codes](reference/errorcodes/errorcode-form.md)
+    - AI
+      - [Intelligent Voice Error Codes](reference/errorcodes/errorcode-intelligentVoice.md)
     - Bundle Management
       - [Bundle Error Codes](reference/errorcodes/errorcode-bundle.md)
       - [zlib Error Codes](reference/errorcodes/errorcode-zlib.md)
@@ -1614,6 +1632,7 @@
       - [Animator Error Codes](reference/errorcodes/errorcode-animator.md)
       - [promptAction Error Codes](reference/errorcodes/errorcode-promptAction.md)
       - [Router Error Codes](reference/errorcodes/errorcode-router.md)
+      - [UI Appearance Error Codes](reference/errorcodes/errorcode-uiappearance.md)
     - Graphics
       - [colorSpaceManager Error Codes](reference/errorcodes/errorcode-colorspace-manager.md)
       - [Display Error Codes](reference/errorcodes/errorcode-display.md)
@@ -1623,6 +1642,7 @@
       - [Media Error Codes](reference/errorcodes/errorcode-media.md)
       - [AVSession Management Error Codes](reference/errorcodes/errorcode-avsession.md)
       - [Camera Error Codes](reference/errorcodes/errorcode-camera.md)
+      - [Image Error Codes](reference/errorcodes/errorcode-image.md)
     - Resource Management
       - [I18N Error Codes](reference/errorcodes/errorcode-i18n.md)
       - [Resource Manager Error Codes](reference/errorcodes/errorcode-resource-manager.md)
@@ -1815,8 +1835,8 @@
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
       - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
-      - [OHOS::Media::OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
-      - [OHOS::Media::OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+      - [OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+      - [OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
       - [OHOS::Media::OhosPixelMapInfo](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
       - [OhosImageDecodingOps](reference/native-apis/_ohos_image_decoding_ops.md)
       - [OhosImageReceiverInfo](reference/native-apis/_ohos_image_receiver_info.md)

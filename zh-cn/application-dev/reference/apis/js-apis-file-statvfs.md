@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import statvfs from '@ohos.file.statvfs';
 ```
 
@@ -38,11 +38,12 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  let path = "/dev";
-  statvfs.getFreeSize(path).then((number) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let path: string = "/dev";
+  statvfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize promise successfully, Size: " + number);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -68,9 +69,10 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  let path = "/dev";
-  statvfs.getFreeSize(path, (err, number) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let path: string = "/dev";
+  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -105,11 +107,12 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  let path = "/dev";
-  statvfs.getTotalSize(path).then((number) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let path: string = "/dev";
+  statvfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize promise successfully, Size: " + number);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -135,9 +138,10 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  let path = "/dev";
-  statvfs.getTotalSize(path, (err, number) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let path: string = "/dev";
+  statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
     } else {

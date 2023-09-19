@@ -18,8 +18,7 @@
    [各类Context的获取方式](../application-models/application-context-stage.md)。
    ```ts
    function getCameraManager(context: featureAbility.Context): camera.CameraManager {
-     let cameraManager: camera.CameraManager;
-     cameraManager = camera.getCameraManager(context);
+     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
      return cameraManager;
    }
    ```
@@ -33,31 +32,35 @@
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length <= 0) {
+     if (cameraArray != undefined && cameraArray.length > 0) {
+       for (let index = 0; index < cameraArray.length; index++) {
+         console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
+         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
+         console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
+         console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
+       }
+       return cameraArray;
+     } else {
        console.error("cameraManager.getSupportedCameras error");
-       return null;
+       return [];
      }
-     for (let index = 0; index < cameraArray.length; index++) {
-       console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
-       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
-       console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
-       console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
-     }
-     return cameraArray;
    }
    ```
 
 4. 通过getSupportedOutputCapability()方法，获取当前设备支持的所有输出流，如预览流、拍照流等。输出流在CameraOutputCapability中的各个profile字段中。
      
    ```ts
-   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability> {
+   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability | undefined> {
      // 创建相机输入流
-     let cameraInput: camera.CameraInput;
+     let cameraInput: camera.CameraInput | undefined = undefined;
      try {
        cameraInput = cameraManager.createCameraInput(cameraDevice);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to createCameraInput errorCode = ' + err.code);
+     }
+     if (cameraInput === undefined) {
+       return undefined;
      }
      // 监听cameraInput错误信息
      cameraInput.on('error', cameraDevice, (error: BusinessError) => {
@@ -69,7 +72,7 @@
      let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
      if (!cameraOutputCapability) {
        console.error("cameraManager.getSupportedOutputCapability error");
-       return null;
+       return undefined;
      }
      console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
      return cameraOutputCapability;

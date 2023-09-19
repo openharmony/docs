@@ -15,17 +15,17 @@
 下表给出了当前长时任务支持的类型，包含数据传输、音频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
-| 参数名 | 描述 | 场景举例 |
-| -------- | -------- | -------- |
-| DATA_TRANSFER | 数据传输 | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音频播放 | 音乐类应用在后台播放音乐。 |
-| AUDIO_RECORDING | 录音 | 录音机在后台录音。 |
-| LOCATION | 定位导航 | 导航类应用后台导航。 |
-| BLUETOOTH_INTERACTION | 蓝牙相关 | 通过蓝牙传输分享的文件。 |
-| MULTI_DEVICE_CONNECTION | 多设备互联 | 分布式业务连接。 |
-| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | 通过WLAN传输分享的文件。 |
-| VOIP | 音视频通话（仅对系统应用开放） | 系统聊天类应用后台音频电话。 |
-| TASK_KEEPING | 计算任务（仅对特定设备开放） | 杀毒软件 |
+| 参数名 | 描述 | 配置项 | 场景举例 |
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
+| AUDIO_PLAYBACK | 音频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
+| AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
+| LOCATION | 定位导航 | location | 导航类应用后台导航。 |
+| BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
+| MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
+| WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
+| VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| TASK_KEEPING | 计算任务（仅对特定设备开放） | taskKeeping  | 杀毒软件 |
 
 
 - 申请了DATA_TRANSFER（数据传输）的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis/js-apis-request.md)托管给系统执行。
@@ -65,7 +65,7 @@
    在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型。
 
    
-   ```ts
+  ```json
    "module": {
        "abilities": [
            {
@@ -76,15 +76,15 @@
        ],
        ...
    }
-   ```
+  ```
 
 3. 导入模块。
    
-   ```ts
+  ```ts
     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
     import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
     import { BusinessError } from '@ohos.base';
-   ```
+  ```
 
 4. 申请和取消长时任务。
 
@@ -94,7 +94,7 @@
 
    **设备本应用**申请长时任务示例代码如下：
 
-   ```ts
+  ```ts
    @Entry
    @Component
    struct Index {
@@ -180,135 +180,135 @@
        .height('100%')
      }
    }
-   ```
+  ```
 
    **跨设备或跨应用**申请长时任务示例代码如下：
    
-   ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import rpc from '@ohos.rpc';
-    
-    const MSG_SEND_METHOD: string = 'CallSendMsg'
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import rpc from '@ohos.rpc';
 
-    let mContext: Context;
+  const MSG_SEND_METHOD: string = 'CallSendMsg'
 
-    function startContinuousTask() {
-      let wantAgentInfo : wantAgent.WantAgentInfo = {
-        // 点击通知后，将要执行的动作列表
-        wants: [
-          {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility",
-          }
-        ],
-        // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
-        // 使用者自定义的一个私有值
-        requestCode: 0,
-        // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-      };
+  let mContext: Context;
 
-      // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-      wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
-        backgroundTaskManager.startBackgroundRunning(mContext,
-          backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-          console.info(`Succeeded in operationing startBackgroundRunning.`);
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-        });
-      });
-    }
-
-    function stopContinuousTask() {
-      backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
-        console.info(`Succeeded in operationing stopBackgroundRunning.`);
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-      });
-    }
-
-    class MyParcelable {
-      num: number = 0;
-      str: String = '';
-
-      constructor(num: number, string: string) {
-        this.num = num;
-        this.str = string;
-      }
-
-      marshalling(messageSequence: rpc.MessageSequence) {
-        messageSequence.writeInt(this.num);
-        messageSequence.writeString(this.str);
-        return true;
-      }
-
-      unmarshalling(messageSequence: rpc.MessageSequence) {
-        this.num = messageSequence.readInt();
-        this.str = messageSequence.readString();
-        return true;
-      }
-    }
-
-    function sendMsgCallback(data: rpc.MessageSequence) {
-      console.info('BgTaskAbility funcCallBack is called ' + data);
-      let receivedData = new MyParcelable(0, '');
-      data.readParcelable(receivedData);
-      console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-      // 可以根据Caller端发送的序列化数据的str值，执行不同的方法。
-      if (receivedData.str === 'start_bgtask') {
-        startContinuousTask();
-      } else if (receivedData.str === 'stop_bgtask') {
-        stopContinuousTask();
-      }
-      return new MyParcelable(10, 'Callee test');
-    }
-
-    export default class BgTaskAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.info("[Demo] BgTaskAbility onCreate");
-        this.callee.on('test', sendMsgCallback);
-
-        try {
-          this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
-        } catch (error) {
-          console.error(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
+  function startContinuousTask() {
+    let wantAgentInfo : wantAgent.WantAgentInfo = {
+      // 点击通知后，将要执行的动作列表
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "com.example.myapplication.MainAbility",
         }
-        mContext = this.context;
-      }
-
-      onDestroy() {
-        console.info('[Demo] BgTaskAbility onDestroy');
-      }
-
-      onWindowStageCreate(windowStage: window.WindowStage) {
-        console.info('[Demo] BgTaskAbility onWindowStageCreate');
-
-        windowStage.loadContent('pages/Index', (error, data) => {
-          if (error.code) {
-            console.error(`load content failed with error ${JSON.stringify(error)}`);
-            return;
-          }
-          console.info(`load content succeed with data ${JSON.stringify(data)}`);
-        });
-      }
-
-      onWindowStageDestroy() {
-        console.info('[Demo] BgTaskAbility onWindowStageDestroy');
-      }
-
-      onForeground() {
-        console.info('[Demo] BgTaskAbility onForeground');
-      }
-
-      onBackground() {
-        console.info('[Demo] BgTaskAbility onBackground');
-      }
+      ],
+      // 点击通知后，动作类型
+      operationType: wantAgent.OperationType.START_ABILITY,
+      // 使用者自定义的一个私有值
+      requestCode: 0,
+      // 点击通知后，动作执行属性
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
-   ```
+
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(mContext,
+        backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+        console.info(`Succeeded in operationing startBackgroundRunning.`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+      });
+    });
+  }
+
+  function stopContinuousTask() {
+    backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
+      console.info(`Succeeded in operationing stopBackgroundRunning.`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+
+  class MyParcelable implements rpc.Parcelable {
+    num: number = 0;
+    str: String = '';
+
+    constructor(num: number, string: string) {
+      this.num = num;
+      this.str = string;
+    }
+
+    marshalling(messageSequence: rpc.MessageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+
+    unmarshalling(messageSequence: rpc.MessageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
+  }
+
+  function sendMsgCallback(data: rpc.MessageSequence) {
+    console.info('BgTaskAbility funcCallBack is called ' + data);
+    let receivedData: MyParcelable = new MyParcelable(0, '');
+    data.readParcelable(receivedData);
+    console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+    // 可以根据Caller端发送的序列化数据的str值，执行不同的方法。
+    if (receivedData.str === 'start_bgtask') {
+      startContinuousTask();
+    } else if (receivedData.str === 'stop_bgtask') {
+      stopContinuousTask();
+    }
+    return new MyParcelable(10, 'Callee test');
+  }
+
+  export default class BgTaskAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      console.info("[Demo] BgTaskAbility onCreate");
+      this.callee.on('test', sendMsgCallback);
+
+      try {
+        this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
+      } catch (error) {
+        console.error(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
+      }
+      mContext = this.context;
+    }
+
+    onDestroy() {
+      console.info('[Demo] BgTaskAbility onDestroy');
+    }
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      console.info('[Demo] BgTaskAbility onWindowStageCreate');
+
+      windowStage.loadContent('pages/Index', (error, data) => {
+        if (error.code) {
+          console.error(`load content failed with error ${JSON.stringify(error)}`);
+          return;
+        }
+        console.info(`load content succeed with data ${JSON.stringify(data)}`);
+      });
+    }
+
+    onWindowStageDestroy() {
+      console.info('[Demo] BgTaskAbility onWindowStageDestroy');
+    }
+
+    onForeground() {
+      console.info('[Demo] BgTaskAbility onForeground');
+    }
+
+    onBackground() {
+      console.info('[Demo] BgTaskAbility onBackground');
+    }
+  };
+  ```
 
 
 ### FA模型
@@ -322,9 +322,8 @@
 2. 配置权限和声明后台模式类型。
 
    在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
-
    
-   ```js
+  ```json
    "module": {
        "package": "com.example.myapplication",
        "abilities": [
@@ -341,118 +340,116 @@
            }
        ]
    }
-   ```
+  ```
 
 3. 导入模块。
    
-   ```js
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import featureAbility from '@ohos.ability.featureAbility';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-    import rpc from "@ohos.rpc";
-    import { BusinessError } from '@ohos.base';
-   ```
+  ```js
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+  import featureAbility from '@ohos.ability.featureAbility';
+  import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+  import rpc from "@ohos.rpc";
+  import { BusinessError } from '@ohos.base';
+  ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 startBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
    
-   ```js
-    function startContinuousTask() {
-      let wantAgentInfo: wantAgent.WantAgentInfo = {
-        // 点击通知后，将要执行的动作列表
-        wants: [
-          {
-            bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
-          }
-        ],
-        // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
-        // 使用者自定义的一个私有值
-        requestCode: 0,
-        // 点击通知后，动作执行属性
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-      };
-
-      // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
-      wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-          backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-          console.info(`Succeeded in operationing startBackgroundRunning.`);
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-        });
-      });
-    }
-
-    function stopContinuousTask() {
-      backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-        console.info(`Succeeded in operationing stopBackgroundRunning.`);
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-      });
-    }
-
-    async function processAsyncJobs() {
-      // 此处执行具体的长时任务。
-
-      // 长时任务执行完，调用取消接口，释放资源。
-      stopContinuousTask();
-    }
-
-    let mMyStub: MyStub;
-
-    class MyStub extends rpc.RemoteObject {
-      constructor(des) {
-        if (typeof des === 'string') {
-          super(des);
-        } else {
-          return null;
+  ```js
+  function startContinuousTask() {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
+      // 点击通知后，将要执行的动作列表
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "com.example.myapplication.MainAbility"
         }
-      }
-
-      onRemoteRequest(code, data, reply, option) {
-        console.log('ServiceAbility onRemoteRequest called');
-        // code 的具体含义用户自定义
-        if (code === 1) {
-          // 接收到申请长时任务的请求码
-          startContinuousTask();
-          // 此处执行具体长时任务
-        } else if (code === 2) {
-          // 接收到取消长时任务的请求码
-          stopContinuousTask();
-        } else {
-          console.log('ServiceAbility unknown request code');
-        }
-        return true;
-      }
-    }
-
-    export default {
-      onStart(want) {
-        console.info('ServiceAbility onStart');
-        mMyStub = new MyStub("ServiceAbility-test");
-        // 在执行长时任务前，调用申请接口。
-        startContinuousTask();
-        processAsyncJobs();
-      },
-      onStop() {
-        console.info('ServiceAbility onStop');
-      },
-      onConnect(want) {
-        console.info('ServiceAbility onConnect');
-        return mMyStub;
-      },
-      onReconnect(want) {
-        console.info('ServiceAbility onReconnect');
-      },
-      onDisconnect() {
-        console.info('ServiceAbility onDisconnect');
-      },
-      onCommand(want, restart, startId) {
-        console.info('ServiceAbility onCommand');
-      }
+      ],
+      // 点击通知后，动作类型
+      operationType: wantAgent.OperationType.START_ABILITY,
+      // 使用者自定义的一个私有值
+      requestCode: 0,
+      // 点击通知后，动作执行属性
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
-   ```
+
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+        backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+        console.info(`Succeeded in operationing startBackgroundRunning.`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+      });
+    });
+  }
+
+  function stopContinuousTask() {
+    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+      console.info(`Succeeded in operationing stopBackgroundRunning.`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+
+  async function processAsyncJobs() {
+    // 此处执行具体的长时任务。
+
+    // 长时任务执行完，调用取消接口，释放资源。
+    stopContinuousTask();
+  }
+
+  let mMyStub: MyStub;
+
+  class MyStub extends rpc.RemoteObject {
+    constructor(des: string) {
+      super(des);
+    }
+
+    onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
+      console.log('ServiceAbility onRemoteRequest called');
+      // code 的具体含义用户自定义
+      if (code === 1) {
+        // 接收到申请长时任务的请求码
+        startContinuousTask();
+        // 此处执行具体长时任务
+      } else if (code === 2) {
+        // 接收到取消长时任务的请求码
+        stopContinuousTask();
+      } else {
+        console.log('ServiceAbility unknown request code');
+      }
+      return true;
+    }
+  }
+
+  class ServiceAbility {
+    onStart(want: Want) {
+      console.info('ServiceAbility onStart');
+      let mMyStub: MyStub = new MyStub("ServiceAbility-test");
+      // 在执行长时任务前，调用申请接口。
+      startContinuousTask();
+      processAsyncJobs();
+    },
+    onStop() {
+      console.info('ServiceAbility onStop');
+    },
+    onConnect(want: Want) {
+      console.info('ServiceAbility onConnect');
+      return mMyStub;
+    },
+    onReconnect(want: Want) {
+      console.info('ServiceAbility onReconnect');
+    },
+    onDisconnect() {
+      console.info('ServiceAbility onDisconnect');
+    },
+    onCommand(want: Want, startId: number) {
+      console.info('ServiceAbility onCommand');
+    }
+  }
+
+  export default new ServiceAbility();
+  ```
 
 
 ## 相关实例

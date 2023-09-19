@@ -65,7 +65,7 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 **示例：**
 
 ```ts
-import { BusinessError } from 'ohos.base'
+import { BusinessError } from '@ohos.base'
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -108,7 +108,7 @@ write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;vo
 **示例：**
 
 ```ts
-import { BusinessError } from 'ohos.base'
+import { BusinessError } from '@ohos.base'
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,

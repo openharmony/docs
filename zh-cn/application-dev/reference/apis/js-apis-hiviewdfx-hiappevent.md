@@ -45,7 +45,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```ts
-import { BusinessError } from 'ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -102,7 +102,7 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from 'ohos.base';
+import { BusinessError } from '@ohos.base';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,

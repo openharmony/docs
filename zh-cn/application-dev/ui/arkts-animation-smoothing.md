@@ -28,7 +28,8 @@ Column() {
     .scale(this.scaleToggle ? 1 : 0.5)
     // 第三步：通过点击事件改变状态变量值，影响可动画属性值
     .onclick(() => {
-      this.scaleToggle = !this.scaleToggle;
+      let sets = new SetSlt()
+      sets.set()
     })
     // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
     .animation(CurAn)
@@ -42,16 +43,15 @@ Column() {
 ```ts
 import curves from '@ohos.curves';
 class SetSlt{
-  scaleToggle:boolean = true
+  isAnimation:boolean = true
   set():void{
-    this.scaleToggle = !this.scaleToggle;
+    this.isAnimation = !this.isAnimation;
   }
 }
-let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 @Entry
 @Component
 struct AnimationToAnimationDemo {
-  @State isAnimation: boolean = false;
+  @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
     Column() {
@@ -64,14 +64,13 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
-        .scale({ x: this.isAnimation ? 2 : 1, y: this.isAnimation ? 2 : 1 })
+        .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
         .animation({ curve: curves.springMotion(0.4, 0.8) })
 
       Button('Click')
         .margin({ top: 200 })
         .onClick(() => {
-          let sets = new SetSlt()
-          sets.set()
+          this.SetAnimation.set()
         })
     }
     .width('100%')

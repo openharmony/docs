@@ -36,12 +36,13 @@ Use **backup.getLocalCapabilities()** to obtain capability files.
   import backup from '@ohos.file.backup';
   import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
 
   // Obtain the application file path.
   let context = getContext(this) as common.UIAbilityContext;
   let filesDir = context.filesDir;
 
-  async function getLocalCapabilities() {
+  async function getLocalCapabilities(): Promise<void> {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
@@ -106,7 +107,7 @@ You can save the file to a local directory as required.
   let filesDir = context.filesDir;
   // Create a SessionBackup instance for data backup.
   let g_session: backup.SessionBackup;
-  function createSessionBackup() {
+  function createSessionBackup(): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
@@ -153,7 +154,7 @@ You can save the file to a local directory as required.
     return sessionBackup;
   }
 
-  async function sessionBackup () {
+  async function sessionBackup (): Promise<void> {
     g_session = createSessionBackup();
     // Select the application to be backed up based on the capability file obtained by backup.getLocalCapabilities().
     // You can also back up data based on the application bundle name.
@@ -181,21 +182,21 @@ When all the data of the application is ready, the service starts to restore the
   import { BusinessError } from '@ohos.base';
   // Create a SessionRestore instance for data restoration.
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File) {
+  async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
     }
     await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
+  function createSessionRestore(): backup.SessionRestore {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
         // Set bundlePath based on the actual situation.
-        let bundlePath: string;
+        let bundlePath: string = '';
         if (!fs.accessSync(bundlePath)) {
           console.info('onFileReady bundlePath err : ' + bundlePath);
         }
@@ -231,7 +232,7 @@ When all the data of the application is ready, the service starts to restore the
     return sessionRestore;
   }
 
-  async function restore01 () {
+  async function restore01 (): Promise<void> {
     g_session = createSessionRestore();
     const restoreApps: string[] = [
       "com.example.hiworld",
@@ -275,20 +276,20 @@ If the application has not been installed, you can install the application and t
   let filesDir = context.filesDir;
   // Create a SessionRestore instance for data restoration.
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File) {
+  async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
     }
     await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
+  function createSessionRestore(): backup.SessionRestore {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
-        let bundlePath: string;
+        let bundlePath: string = '';
         if( file.uri == "/data/storage/el2/restore/bundle.hap" )
         {
           // Set the path of the application installation package based on actual situation.
@@ -330,7 +331,7 @@ If the application has not been installed, you can install the application and t
     return sessionRestore;
   }
 
-  async function restore02 () {
+  async function restore02 (): Promise<void> {
     g_session = createSessionRestore();
     const restoreApps: string[] = [
       "com.example.hiworld",

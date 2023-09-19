@@ -31,7 +31,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-UIAbility创建时回调，执行初始化业务逻辑操作。
+UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -250,7 +250,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
 
-当传入新的Want，ability再次被拉起时会回调执行该方法。
+UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

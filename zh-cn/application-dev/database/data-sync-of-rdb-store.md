@@ -67,7 +67,7 @@
 
 1. 导入模块。
      
-   ```js
+   ```ts
    import relationalStore from '@ohos.data.relationalStore';
    ```
 
@@ -78,59 +78,75 @@
 
 3. 创建关系型数据库，设置将需要进行分布式同步的表。
      
-   ```js
-   const STORE_CONFIG = {
-     name: 'RdbTest.db', // 数据库文件名
-     securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
-   };
-   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', null, (err) => {
-       // 设置分布式同步表。
-       store.setDistributedTables(['EMPLOYEE']);
-       // 进行数据的相关操作
-     })
-   })
+   ```ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import { BusinessError } from "@ohos.base";
+
+   class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
+         securityLevel: relationalStore.SecurityLevel.S1
+       };
+          
+       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
+         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+           // 设置分布式同步表。
+           store.setDistributedTables(['EMPLOYEE']);
+           // 进行数据的相关操作
+         })
+       })
+     }
+   }
    ```
 
 4. 分布式数据同步。使用SYNC_MODE_PUSH触发同步后，数据将从本设备向组网内的其它所有设备同步。
      
-   ```js
+   ```ts
    // 构造用于同步分布式表的谓词对象
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    // 调用同步数据的接口
-   store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
-     // 判断数据同步是否成功
-     if (err) {
-       console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in syncing data.');
-     for (let i = 0; i < result.length; i++) {
-       console.info(`device:${result[i][0]},status:${result[i][1]}`);
-     }
-   })
+   if(store != undefined)
+   {
+     (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
+       // 判断数据同步是否成功
+       if (err) {
+         console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info('Succeeded in syncing data.');
+       for (let i = 0; i < result.length; i++) {
+         console.info(`device:${result[i][0]},status:${result[i][1]}`);
+       }
+     })
+   }
    ```
 
 5. 分布式数据订阅。数据同步变化将触发订阅回调方法执行，回调方法的入参为发生变化的设备ID。
      
-   ```js
-   let observer = function storeObserver(devices) {
-     for (let i = 0; i < devices.length; i++) {
-       console.info(`The data of device:${devices[i]} has been changed.`);
-     }
-   }
-   
+   ```ts
+   let devices: string | undefined = undefined;
    try {
      // 调用分布式数据订阅接口，注册数据库的观察者
      // 当分布式数据库中的数据发生更改时，将调用回调
-     store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
+         if(devices != undefined){
+           for (let i = 0; i < devices.length; i++) {
+             console.info(`The data of device:${devices[i]} has been changed.`);
+           }
+         }
+       });
+     }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
-   
    // 当前不需要订阅数据变化时，可以将其取消。
    try {
-     store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     if(store != undefined) {
+       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, observer);
+     }
    } catch (err) {
      console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
@@ -143,31 +159,38 @@
    > deviceIds通过调用[deviceManager.getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
      
-   ```js
+   ```ts
    // 获取deviceIds
    import deviceManager from '@ohos.distributedDeviceManager';
-   let dmInstance = null;
-   let deviceId = null;
+   import { BusinessError } from '@ohos.base'
+
+   let dmInstance: deviceManager.DeviceManager;
+   let deviceId: string | undefined = undefined ;
 
    try {
-    dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-    let devices = dmInstance.getAvailableDeviceListSync();
-    deviceId = devices[0].networkId;
+     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     let devices = dmInstance.getAvailableDeviceListSync();
 
-    // 构造用于查询分布式表的谓词对象
-    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-    // 调用跨设备查询接口，并返回查询结果
-    store.remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
-     function (err, resultSet) {
-       if (err) {
-         console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-        console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-      }
-    )
+     deviceId = devices[0].networkId;
+
+     // 构造用于查询分布式表的谓词对象
+     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+     // 调用跨设备查询接口，并返回查询结果
+     if(store != undefined && deviceId != undefined) {
+       (store as relationalStore.RdbStore).remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
+         (err: BusinessError, resultSet: relationalStore.ResultSet) => {
+           if (err) {
+             console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
+             return;
+           }
+           console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+         }
+       )
+     }
    } catch (err) {
-   console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```
 

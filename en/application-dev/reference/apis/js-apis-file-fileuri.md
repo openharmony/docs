@@ -8,7 +8,7 @@ The **fileUri** module allows the uniform resource identifier (URI) of a file to
 
 ## Modules to Import
 
-```js
+```ts
 import fileuri from "@ohos.file.fileuri";
 ```
 
@@ -16,27 +16,28 @@ Before using this module, you need to obtain the path of the file in the applica
 
 **Stage Model**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 **FA Model**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
  
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -75,12 +76,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-```js
-let path = pathDir + '/test';
-let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
-let fileUriObject = new fileuri.FileUri(uri);
-console.info("The name of FileUri is " + fileUriObject.name);
-```
+  ```ts
+  let path = pathDir + '/test';
+  let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let fileUriObject = new fileuri.FileUri(uri);
+  console.info("The name of FileUri is " + fileUriObject.name);
+  ```
 
 ### toString<sup>10+</sup>
 
@@ -98,11 +99,11 @@ Obtains the URI of the string type.
 
 **Example**
 
-```js
-let path = pathDir + '/test';
-let fileUriObject = new fileuri.FileUri(path);
-console.info("The uri of FileUri is " + fileUriObject.toString());
-```
+  ```ts
+  let path = pathDir + '/test';
+  let fileUriObject = new fileuri.FileUri(path);
+  console.info("The uri of FileUri is " + fileUriObject.toString());
+  ```
 
 ## fileUri.getUriFromPath
 
@@ -133,7 +134,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-let filePath = pathDir + "test.txt";
-let uri = fileuri.getUriFromPath(filePath);
+  ```ts
+  let filePath = pathDir + "test.txt";
+  let uri = fileuri.getUriFromPath(filePath);
   ```

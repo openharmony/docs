@@ -9,12 +9,13 @@ For details about the APIs used to develop a file manager application, see [User
 ## How to Develop
 
 1. Apply for permissions required.
-
+   
    Apply for the **ohos.permission.FILE_ACCESS_MANAGER** and **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permissions. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+   
    > **NOTE**
    >
    > - **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
-   >- **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
+   > - **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
 2. Import dependent modules.
 
    ```ts
@@ -36,10 +37,10 @@ For details about the APIs used to develop a file manager application, see [User
    ```ts
    // Obtain the application context.
    let context = getContext(this) as common.UIAbilityContext;
-
+   
    // Create a helper object for connecting to all file management servers in the system.
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper() {
+   function createFileAccessHelper(): void {
      try {    // this.context is the context passed from EntryAbility.
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
@@ -51,7 +52,7 @@ For details about the APIs used to develop a file manager application, see [User
      }
    }
    let rootInfos: Array<fileAccess.RootInfo> = [];
-   async function getRoots() {
+   async function getRoots(): Promise<void>{
      let rootIterator: fileAccess.RootIterator;
      let isDone: boolean = false;
      try {
@@ -103,7 +104,7 @@ For details about the APIs used to develop a file manager application, see [User
     let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
-
+   
    // Start from the specified directory.
    let fileInfoDir = fileInfos[0]; // fileInfoDir indicates information about a directory.
    let subFileInfos: Array<fileAccess.FileInfo> = [];
@@ -137,10 +138,10 @@ For details about the APIs used to develop a file manager application, see [User
    // Create a file.
    // sourceUri is the URI in fileinfo of the Download directory.
    // You need to use the obtained URI for development.
-   async function creatFile() {
+   async function creatFile(): Promise<void> {
      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
      let displayName: string = "file1";
-     let fileUri: string;
+     let fileUri: string = "";
      try {
        // Obtain fileAccessHelperAllServer by referring to the sample code of fileAccess.createFileAccessHelper.
        fileUri = await fileAccessHelperAllServer.createFile(sourceUri, displayName);

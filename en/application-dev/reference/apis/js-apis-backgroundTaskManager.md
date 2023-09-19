@@ -17,7 +17,7 @@ If a privileged system application needs to use certain system resources (for ex
 
 ## Modules to Import
 
-```js
+```ts
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
@@ -47,7 +47,7 @@ The default duration of delayed suspension is 3 minutes when the battery level i
 
 **Example**
 
-  ```js
+  ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
   let myReason = 'test requestSuspendDelay';
@@ -79,11 +79,12 @@ Obtains the remaining duration before the application is suspended. This API use
 
 **Example**
 
-  ```js
+  ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import { BusinessError } from '@ohos.base';
 
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
-  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err, res) => {
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err: BusinessError, res: number) => {
       if(err) {
           console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
@@ -115,14 +116,17 @@ Obtains the remaining duration before the application is suspended. This API use
 
 **Example**
 
-  ```js
-  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
-  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
-      console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-  }).catch( err => {
-      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-  })
-  ```
+```ts
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+
+let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+    backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+}).catch((err : BusinessError) => {
+    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
+})
+```
 
 
 ## backgroundTaskManager.cancelSuspendDelay
@@ -141,7 +145,9 @@ Cancels the suspension delay.
 
 **Example**
 
-  ```js
+  ```ts
+  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
   ```
@@ -173,31 +179,32 @@ FA model:
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation startBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation startBackgroundRunning succeeded");
+  }
 }
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo : wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility"
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+  backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
 });
 
 ```
@@ -207,35 +214,38 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation startBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation startBackgroundRunning succeeded");
+  }
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            operationType: wantAgent.OperationType.START_ABILITY,
-            requestCode: 0,
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo : wantAgent.WantAgentInfo = {
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        }
+      ],
+      operationType: wantAgent.OperationType.START_ABILITY,
+      requestCode: 0,
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-        });
-    }
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(this.context,
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+    });
+  }
 };
 ```
 
@@ -265,32 +275,33 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Example**
 
-FA model:
+FA model (JS code is required for development):
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-let wantAgentInfo = {
-    wants: [
-        {
-            bundleName: "com.example.myapplication",
-            abilityName: "EntryAbility"
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo : wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      bundleName: "com.example.myapplication",
+      abilityName: "EntryAbility"
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-        console.info("Operation startBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    });
+wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+  backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+    console.info("Operation startBackgroundRunning succeeded");
+  }).catch((err: BusinessError) => {
+    console.error("Operation startBackgroundRunning failed Cause: " + err);
+  });
 });
 ```
 
@@ -299,31 +310,34 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            operationType: wantAgent.OperationType.START_ABILITY,
-            requestCode: 0,
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo : wantAgent.WantAgentInfo = {
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        }
+      ],
+      operationType: wantAgent.OperationType.START_ABILITY,
+      requestCode: 0,
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            backgroundTaskManager.startBackgroundRunning(this.context,
-                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                console.info("Operation startBackgroundRunning succeeded");
-            }).catch((err) => {
-                console.error("Operation startBackgroundRunning failed Cause: " + err);
-            });
-        });
-    }
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj : WantAgent) => {
+      backgroundTaskManager.startBackgroundRunning(this.context,
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+        console.info("Operation startBackgroundRunning succeeded");
+      }).catch((err: BusinessError) => {
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
+      });
+    });
+  }
 };
 ```
 
@@ -344,18 +358,19 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 
 **Example**
 
-FA model:
+FA model (JS code is required for development):
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation stopBackgroundRunning succeeded");
+  }
 }
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
@@ -367,19 +382,22 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    } else {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }
+function callback(err: BusinessError, data: void) {
+  if (err) {
+    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  } else {
+    console.info("Operation stopBackgroundRunning succeeded");
+  }
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        backgroundTaskManager.stopBackgroundRunning(this.context, callback);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+  }
 };
 ```
 
@@ -410,11 +428,12 @@ FA model:
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation stopBackgroundRunning succeeded");
-}).catch((err) => {
-    console.error("Operation stopBackgroundRunning failed Cause: " + err);
+  console.info("Operation stopBackgroundRunning succeeded");
+}).catch((err: BusinessError) => {
+  console.error("Operation stopBackgroundRunning failed Cause: " + err);
 });
 
 ```
@@ -424,15 +443,18 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-            console.info("Operation stopBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation stopBackgroundRunning failed Cause: " + err);
-        });
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+      console.info("Operation stopBackgroundRunning succeeded");
+    }).catch((err: BusinessError) => {
+      console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    });
+  }
 };
 ```
 

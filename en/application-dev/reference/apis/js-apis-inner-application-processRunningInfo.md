@@ -9,7 +9,7 @@ The **ProcessRunningInfo** module defines the running information of a process.
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import appManager from '@ohos.application.appManager';
 ```
 
 ## Attributes
@@ -29,11 +29,12 @@ The process running information is obtained by using [getProcessRunningInfos](js
 
 **Example**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import appManager from '@ohos.application.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getProcessRunningInfos().then((data) => {
     console.log('success: ${JSON.stringify(data)}');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('failed: ${JSON.stringify(error)}');
 });
 ```

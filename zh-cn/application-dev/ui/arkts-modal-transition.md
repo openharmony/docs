@@ -38,18 +38,18 @@
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
   
    ```ts
-  class PresentTmp{
-    isPresent: boolean = false;
-    set(){
-      this.isPresent = !this.isPresent;
-    }
-  }
+   class PresentTmp{
+     isPresent: boolean = false;
+     set(){
+       this.isPresent = !this.isPresent;
+     }
+   }
    // 模态转场控制变量
    @State isPresent: boolean = false;
    
    Button('Click to present model view')
      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
-     .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.None)
+     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.None)
      .onClick(() => {
        // 改变状态变量，让模态界面显示
        let setPre:PresentTmp = new PresentTmp()
@@ -121,7 +121,7 @@ struct BindContentCoverDemo {
         this.isPresent = !this.isPresent;
       })
       // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
-      .bindContentCover($$this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
+      .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
       .justifyContent(FlexAlign.Center)
       .backgroundColor(0XF56C6C)
       .width(100)
@@ -206,7 +206,7 @@ struct BindSheetDemo {
         .fontSize(20)
         .margin(10)
           // 通过选定的半模态接口，绑定模态展示界面，style中包含两个参数，一个是设置半模态的高度，不设置时默认高度是Large,一个是是否显示控制条DragBar,默认是true显示控制条
-        .bindSheet($$this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+        .bindSheet(this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
       }
     }
     .justifyContent(FlexAlign.Center)
@@ -226,27 +226,27 @@ struct BindSheetDemo {
 
 ```ts
 class BMD{
-  value:string = ''
-  action:Function|undefined = undefined
+  value:ResourceStr = ''
+  action:() => void = () => {}
 }
 @Entry
 @Component
 struct BindMenuDemo {
 
   // 第一步: 定义一组数据用来表示菜单按钮项
-  private items = [
+  @State items:BMD[] = [
     {
       value: '菜单项1',
       action: () => {
         console.info('handle Menu1 select')
       }
-    } as BMD,
+    },
     {
       value: '菜单项2',
       action: () => {
         console.info('handle Menu2 select')
       }
-    } as BMD,
+    },
   ]
 
   build() {
@@ -284,9 +284,8 @@ struct BindContextMenuDemo {
   @Builder MyMenu() {
     Row() {
       Column() {
-        ForEach(this.num, (item: number, index?: number|undefined) => {
-          if(index){
-            Row() {
+        ForEach(this.num, (item: number, index: number = 0) => {
+          Row() {
               Text(item.toString())
                 .fontSize(20)
                 .fontColor(Color.White)
@@ -295,7 +294,6 @@ struct BindContextMenuDemo {
             .width('100%')
             .aspectRatio(2)
             .justifyContent(FlexAlign.Center)
-          }
         })
       }
       .width('100%')

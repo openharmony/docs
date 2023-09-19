@@ -8,7 +8,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 
 ## Modules to Import
 
-```js
+```ts
 import storageStatistics from "@ohos.file.storageStatistics";
 ```
 
@@ -51,12 +51,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then(function(number){
-      console.info("getTotalSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+    console.info("getTotalSizeOfVolume successfully:"+ number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSizeOfVolume failed with error:"+ err);
   });
   ```
 
@@ -94,11 +95,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, function(error, number){
-      // Do something.
-      console.info("getTotalSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getTotalSizeOfVolume successfully:"+ number);
   });
   ```
 
@@ -141,12 +143,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then(function(number){
-      console.info("getFreeSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+    console.info("getFreeSizeOfVolume successfully:"+ number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSizeOfVolume failed with error:"+ err);
   });
   
   ```
@@ -185,11 +188,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, function(error, number){
-      // Do something.
-      console.info("getFreeSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getFreeSizeOfVolume successfully:"+ number);
   });
   ```
 
@@ -209,7 +213,7 @@ Obtains the space (in bytes) of an application. This API uses a promise to retur
 
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
-  | packageName | string | Yes  | Bundle name of the application.|
+  | packageName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -232,12 +236,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let packageName = "";
-  storageStatistics.getBundleStats(packageName).then(function(BundleStats){
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
-  }).catch(function(err){
-      console.info("getBundleStats failed with error:"+ err);
+  storageStatistics.getBundleStats(packageName).then((bundleStats: storageStatistics.Bundlestats) => {
+    console.info("getBundleStats successfully:"+ JSON.stringify(bundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getBundleStats failed with error:"+ err);
   });
   ```
 
@@ -275,11 +280,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let packageName = "";
-  storageStatistics.getBundleStats(packageName, function(error, BundleStats){
-      // Do something.
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+    // Do something.
+    console.info("getBundleStats successfully:"+ JSON.stringify(bundleStats));
   });
   ```
 
@@ -309,7 +315,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let bundleStats = storageStatistics.getCurrentBundleStats();
   console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
   ```
@@ -340,10 +346,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getCurrentBundleStats(function(error, bundleStats){
-      // Do something.
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+    // Do something.
+    console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
   });
   ```
 
@@ -389,7 +396,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let number = storageStatistics.getTotalSize();
   console.info("getTotalSize successfully:"+ JSON.stringify(number));
   ```
@@ -426,10 +434,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getTotalSize(function(error, number){
-      // Do something.
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
   ```
 
@@ -465,7 +474,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
+  ```ts
   let number = storageStatistics.getFreeSize();
   console.info("getFreeSize successfully:"+ JSON.stringify(number));
   ```
@@ -502,10 +511,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getFreeSize(function(error, number){
-      // Do something.
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getFreeSize successfully:"+ JSON.stringify(number));
   });
   ```
 
@@ -541,11 +551,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getSystemSize().then(function(number){
-      console.info("getSystemSize successfully:"+ number);
-  }).catch(function(err){
-      console.info("getSystemSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize().then((number: number) => {
+    console.info("getSystemSize successfully:"+ number);
+  }).catch((err: BusinessError) => {
+    console.info("getSystemSize failed with error:"+ err);
   });
   ```
 
@@ -581,10 +592,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getSystemSize(function(error, number){
-      // Do something.
-      console.info("getSystemSize successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getSystemSize successfully:"+ number);
   });
   ```
 
@@ -620,10 +632,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getUserStorageStats().then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:"+ JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
       console.info("getUserStorageStats failed with error:"+ err);
   });
   ```
@@ -660,10 +673,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  storageStatistics.getUserStorageStats(function(error, StorageStats){
-      // Do something.
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // Do something.
+    console.info("getUserStorageStats successfully:"+ JSON.stringify(storageStats));
   });
   ```
 
@@ -706,12 +720,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:"+ JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:"+ err);
   });
   ```
 
@@ -749,11 +764,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 **Example**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
-      // Do something.
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // Do something.
+    console.info("getUserStorageStats successfully:"+ JSON.stringify(storageStats));
   });
   ```
 

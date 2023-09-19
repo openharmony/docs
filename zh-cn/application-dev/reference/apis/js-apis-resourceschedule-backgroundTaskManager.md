@@ -558,7 +558,7 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
 } catch (error) {
-    console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    console.error(`resetAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 

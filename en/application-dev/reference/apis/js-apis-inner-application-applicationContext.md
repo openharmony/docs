@@ -18,6 +18,8 @@ import common from '@ohos.app.ability.common';
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
@@ -46,13 +48,14 @@ Registers a listener to monitor the ability lifecycle of the application.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        let AbilityLifecycleCallback = {
+        let AbilityLifecycleCallback: AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
                 console.log('AbilityLifecycleCallback onAbilityCreate ability: ${ability}');
             },
@@ -115,7 +118,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -152,7 +155,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -188,26 +191,26 @@ Registers a listener for system environment changes. This API uses an asynchrono
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
-        globalThis.applicationContext = this.context.getApplicationContext();
-        let environmentCallback = {
+        let environmentCallback: EnvironmentCallback = {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
+                console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${level}');
             }
         };
         // 1. Obtain an applicationContext object.
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2. Use applicationContext.on() to subscribe to the 'environment' event.
         callbackId = applicationContext.on('environment', environmentCallback);
-        console.log('registerEnvironmentCallback callbackId: ${callbackId}');
+        console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
     }
 }
 ```
@@ -233,7 +236,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
@@ -269,7 +272,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
@@ -298,11 +301,12 @@ Registers a listener for application foreground/background state changes. This A
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
 
 export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        globalThis.applicationStateChangeCallback = {
+        let applicationStateChangeCallback: ApplicationStateChangeCallback = {
             onApplicationForeground() {
                 console.info('applicationStateChangeCallback onApplicationForeground');
             },
@@ -311,48 +315,11 @@ export default class MyAbility extends UIAbility {
             }
         }
 
-        globalThis.applicationContext = this.context.getApplicationContext();
         // 1. Obtain an applicationContext object.
-        let applicationContext = globalThis.applicationContext;
-        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
-        applicationContext.on('applicationStateChange', globalThis.ApplicationStateChangeCallback);
-        console.log('Resgiter applicationStateChangeCallback');
-    }
-}
-```
-
-## ApplicationContext.off(type: 'applicationStateChange', callback: AsyncCallback\<void>)<sup>10+</sup>
-
-off(type: 'applicationStateChange', callback: AsyncCallback<**void**>): **void**;
-
-Deregisters the listener for application foreground/background state changes based on a given callback.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                            |
-| -------- | ------------------------ | ---- | -------------------------------- |
-| type     | string | Yes  | Event type. The value is fixed at **'applicationStateChange'**, indicating that the application switches from the foreground to the background or vice versa.            |
-| callback | AsyncCallback\<void>     | No  | Callback that has been used for the registration.|
-
-**Example**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onDestroy() {
-        globalThis.applicationStateChangeCallback = {
-            onApplicationForeground() {
-                console.info('applicationStateChangeCallback onApplicationForeground');
-            },
-            onApplicationBackground() {
-                console.info('applicationStateChangeCallback onApplicationBackground');
-            }
-        }
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('applicationStateChange', globalThis.ApplicationStateChangeCallback);
+        // 2. Use applicationContext.on() to subscribe to the 'applicationStateChange' event.
+        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        console.log('Resgiter applicationStateChangeCallback');
     }
 }
 ```
@@ -411,11 +378,19 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-applicationContext.getRunningProcessInformation().then((data) => {
-    console.log('The process running information is: ${JSON.stringify(data)}');
-}).catch((error) => {
-    console.error('error: ${JSON.stringify(error)}');
-});
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation().then((data) => {
+            console.log('The process running information is: ${JSON.stringify(data)}');
+        }).catch((error: BusinessError) => {
+            console.error('error: ${JSON.stringify(error)}');
+        });
+    }
+}
 ```
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
@@ -444,13 +419,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-applicationContext.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('The process running information is: ${JSON.stringify(data)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation((err, data) => {
+            if (err) {
+                console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
+            } else {
+                console.log('The process running information is: ${JSON.stringify(data)}');
+            }
+        })
     }
-})
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -478,7 +460,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-applicationContext.killAllProcesses();
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses();
+    }
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -506,9 +495,18 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-applicationContext.killAllProcesses(error => {
-    if (error) {
-        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses(error => {
+            if (error) {
+                console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+            }
+        });
     }
-});
+}
 ```
+
+ <!--no_check--> 

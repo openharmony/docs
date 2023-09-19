@@ -16,6 +16,8 @@
   - [Animator Error Codes](errorcode-animator.md)
   - [promptAction Error Codes](errorcode-promptAction.md)
   - [Router Error Codes](errorcode-router.md)
+  - [UI Appearance Error Codes](errorcode-uiappearance.md)
+  - [Drag Event Error Codes](errorcode-drag-event.md)
 - Graphics
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
   - [Display Error Codes](errorcode-display.md)
@@ -25,6 +27,7 @@
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
   - [Camera Error Codes](errorcode-camera.md)
+  - [Image Error Codes](errorcode-image.md)
 - Resource Management
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)

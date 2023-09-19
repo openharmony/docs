@@ -608,20 +608,6 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 | value             | object                                                       | Yes  | Value of the data item. The value range varies by service.                              |
 | callback          | AsyncCallback\<boolean>                                      | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
 
-**Example**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-// The value of the data item is a string.
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-    console.log('Callback return whether value is set.');
-});
-```
 
 ## settings.setValue<sup>(deprecated)</sup>
 
@@ -652,21 +638,6 @@ Sets the value for a data item. This API uses a promise to return the result.
 | Type             | Description                                              |
 | ----------------- | -------------------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
-
-**Example**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValue API will update its value.)
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-// The value of the data item is a string.
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-    console.log('Callback return whether value is set.');
-});
-```
 
 ## setting.getValue<sup>(deprecated)</sup>
 

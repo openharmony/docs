@@ -604,7 +604,7 @@ let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 
 buf1.copy(buf2, 8, 16, 20);
@@ -633,8 +633,11 @@ Creates and returns an iterator that contains key-value pairs of this **Buffer**
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (let pair of buf.entries()) {
-  console.log(pair.toString());
+let pair = buf.entries()
+let next: IteratorResult<Object[]> = pair.next()
+while (!next.done) {
+  console.info("buffer: " + next.value)
+  next = pair.next()
 }
 ```
 
@@ -796,7 +799,8 @@ Creates and returns an iterator that contains the keys of this **Buffer** instan
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (const key of buf.keys()) {
+let numbers = Array.from(buf.values())
+for (const key of numbers) {
   console.log(key.toString());
 }
 ```
@@ -1766,7 +1770,7 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.allocUninitializedFromPool(26);
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 const buf2 = buf1.subarray(0, 3);
 console.log(buf2.toString('ascii', 0, buf2.length));
@@ -1932,7 +1936,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 console.log(buf1.toString('utf-8'));
 // Print: abcdefghijklmnopqrstuvwxyz
@@ -1958,8 +1962,11 @@ Creates and returns an iterator that contains the values of this **Buffer** inst
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (let value of buf1.values()) {
-  console.log(value.toString());
+let pair = buf1.values()
+let next:IteratorResult<number> = pair.next()
+while (!next.done) {
+  console.log(next.value.toString());
+  next = pair.next()
 }
 ```
 
@@ -2913,8 +2920,14 @@ A constructor used to create a **Blob** instance.
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob = new buffer.Blob(['a', 'b', 'c']);
-let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
+let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
+
+class option {
+  endings: string = ""
+  type: string = ""
+}
+let o1: option = {endings:'native', type: 'MIME'}
+let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 ```
 
 ### arrayBuffer
@@ -2932,10 +2945,12 @@ Puts the **Blob** data into an **ArrayBuffer** instance. This API uses a promise
 
 **Example**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
-pro.then(val => {
-  let uintarr = new Uint8Array(val);
+pro.then((val: ArrayBuffer) => {
+  let uintarr: Uint8Array = new Uint8Array(val);
   console.log(uintarr.toString());
 });
 ```
@@ -2962,7 +2977,9 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
 
 **Example**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
 ```
@@ -2982,9 +2999,11 @@ Returns text in UTF-8 format. This API uses a promise to return the result.
 
 **Example**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
-pro.then(val => {
-    console.log(val)
+pro.then((val: string) => {
+  console.log(val)
 });
 ```

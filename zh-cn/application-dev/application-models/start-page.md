@@ -57,11 +57,13 @@ export class GlobalContext {
 import Want from '@ohos.application.Want';
 import { GlobalContext } from './GlobalContext';
 
-export default class EntryAbility{  
+class EntryAbility {  
   onNewWant(want: Want) { 
     GlobalContext.getContext().setObject("newWant", want);  
   }
 }
+
+export default new EntryAbility()
 ```
 
 
@@ -162,7 +164,7 @@ struct Index {
 import featureAbility from '@ohos.ability.featureAbility';
 import router from '@ohos.router';
 
-export default class EntryAbility {
+class EntryAbility {
   onCreate() {
     featureAbility.getWant().then((want) => {
       if (want.parameters) {
@@ -173,9 +175,11 @@ export default class EntryAbility {
         }
       }
     })
-  };
+  }
   onDestroy() {
     // ...
-  };
+  }
 }
+
+export default new EntryAbility()
 ```

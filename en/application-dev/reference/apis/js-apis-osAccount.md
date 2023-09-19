@@ -9,7 +9,7 @@ The **osAccount** module provides basic capabilities for managing OS accounts, i
 
 ## Modules to Import
 
-```js
+```ts
 import account_osAccount from '@ohos.account.osAccount';
 ```
 
@@ -28,7 +28,7 @@ Obtains an **AccountManager** instance.
 | [AccountManager](#accountmanager) | **AccountManager** instance obtained.|
 
 **Example**
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   ```
 
@@ -78,7 +78,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
 | 12300009 | Account has been activated. |
 
 **Example**: Activate OS account 100.
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let localId: number = 100;
   try {
@@ -90,7 +90,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
       }
     });
   } catch (err) {
-    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
+    console.log('activateOsAccount failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -129,7 +129,7 @@ Activates an OS account. This API uses a promise to return the result.
 | 12300009 | Account has been activated. |
 
 **Example**: Activate OS account 100.
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -166,7 +166,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -178,7 +178,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
       }
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -204,7 +204,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   try {
     let accountManager = account_osAccount.getAccountManager();
@@ -214,7 +214,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
+    console.log('checkMultiOsAccountEnabled failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -245,7 +245,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -294,7 +294,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -337,7 +337,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -388,7 +388,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -426,7 +426,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -464,7 +464,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -500,7 +500,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -538,7 +538,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -579,7 +579,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -628,7 +628,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -665,7 +665,7 @@ Checks whether this OS account has been verified. This API uses a promise to ret
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -709,7 +709,7 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
@@ -764,7 +764,7 @@ Deletes an OS account. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
@@ -814,7 +814,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 
 **Example**: Disable Wi-Fi for OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -869,7 +869,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 
 **Example**: Remove the constraint on the use of Wi-Fi for OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -915,7 +915,7 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
 
 **Example**: Set the name of OS account 100 to **demoName**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -969,7 +969,7 @@ Sets a name for an OS account. This API uses a promise to return the result.
 
 **Example**: Set the name of OS account 100 to **demoName**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1009,7 +1009,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1049,7 +1049,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1085,7 +1085,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1123,7 +1123,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1161,7 +1161,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -1206,7 +1206,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -1247,9 +1247,9 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BusinessError, localId: number) => {
@@ -1295,10 +1295,10 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId: number) => {
       console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
@@ -1334,7 +1334,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1374,7 +1374,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1415,7 +1415,7 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 **Example**: Obtain all constraints of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1464,7 +1464,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 **Example**: Obtain all constraints of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1505,7 +1505,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1544,7 +1544,7 @@ Obtains information about all the OS accounts created. This API uses a promise t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1580,7 +1580,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1618,7 +1618,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1664,7 +1664,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1715,7 +1715,7 @@ Creates an OS account. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1762,10 +1762,11 @@ Creates an OS account and associates it with the specified domain account. This 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
       (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
@@ -1814,10 +1815,11 @@ Creates an OS account and associates it with the specified domain account. This 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
@@ -1854,7 +1856,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1891,7 +1893,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -1934,7 +1936,7 @@ Obtains information about the OS account of the given ID. This API uses an async
 
 **Example**: Query information about OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -1982,7 +1984,7 @@ Obtains information about the OS account of the given ID. This API uses a promis
 
 **Example**: Query information about OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2019,7 +2021,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2054,7 +2056,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2092,7 +2094,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2129,7 +2131,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2172,7 +2174,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
 
 **Example**: Obtain the profile photo of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2220,7 +2222,7 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
 
 **Example**: Obtain the profile photo of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2266,7 +2268,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
 
 **Example**: Set a profile photo for OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2319,7 +2321,7 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
 
 **Example**: Set a profile photo for OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2363,7 +2365,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -2407,7 +2409,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -2447,7 +2449,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 **Example**: Obtain the SN of the OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2491,7 +2493,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 **Example**: Obtain the SN of the OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2535,7 +2537,7 @@ Subscribes to the OS account activation states, including the states of the acco
 
 **Example**
 
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
     console.log('receive localId:' + receiveLocalId);
@@ -2576,7 +2578,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 
 **Example**
 
-  ```js
+  ```ts
   let accountManager = account_osAccount.getAccountManager();
   function offCallback(){
     console.log('off enter')
@@ -2614,7 +2616,7 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
@@ -2658,7 +2660,7 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let testUid: number = 1000000;
@@ -2699,7 +2701,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2737,7 +2739,7 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2780,7 +2782,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2829,7 +2831,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   try {
@@ -2864,7 +2866,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err: BusinessError, isEnabled: boolean) => {
@@ -2896,7 +2898,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled: boolean) => {
@@ -2930,7 +2932,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -2971,7 +2973,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 
 **Example**: Check whether OS account 100 is activated.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3006,7 +3008,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3049,7 +3051,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3081,7 +3083,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err: BusinessError, isTestable: boolean) => {
@@ -3113,7 +3115,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
     accountManager.isTestOsAccount().then((isTestable: boolean) => {
@@ -3145,7 +3147,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err: BusinessError, isVerified: boolean) => {
@@ -3180,7 +3182,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3221,10 +3223,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  let localId: number = 100;
   accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
@@ -3254,7 +3255,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err: BusinessError, count: number)=>{
@@ -3288,7 +3289,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count: number) => {
@@ -3318,7 +3319,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err: BusinessError, localId: number) => {
@@ -3350,7 +3351,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((localId: number) => {
@@ -3381,7 +3382,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -3420,7 +3421,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let uid: number = 12345678;
@@ -3454,7 +3455,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
@@ -3495,7 +3496,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
@@ -3529,7 +3530,7 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 **Example**: Obtain all constraints of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3567,7 +3568,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 
 **Example**: Obtain all constraints of OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3598,7 +3599,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
@@ -3630,7 +3631,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray: number[]) => {
@@ -3662,7 +3663,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
@@ -3693,7 +3694,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
@@ -3723,7 +3724,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
@@ -3752,7 +3753,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType: account_osAccount.OsAccountType) => {
@@ -3784,7 +3785,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
@@ -3815,7 +3816,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID: string) => {
@@ -3846,7 +3847,7 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -3882,7 +3883,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber: number = 12345;
@@ -3914,7 +3915,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 **Example**: Obtain the SN of the OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3950,7 +3951,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 **Example**: Obtain the SN of the OS account 100.
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
   let localId: number = 100;
@@ -3978,7 +3979,7 @@ A constructor used to create an instance for user authentication.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example** 
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   ```
 
@@ -3999,7 +4000,7 @@ Obtains version information.
 | number | Version information obtained.|
 
 **Example** 
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let version: number = userAuth.getVersion();
   console.log('getVersion version = ' + version);
@@ -4038,12 +4039,12 @@ Obtains the available status of the authentication capability corresponding to t
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **Example** 
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
-    let status = userAuth.getAvailableStatus(authType, authTrustLevel);
+    let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
   } catch (e) {
     console.log('getAvailableStatus exception = ' + JSON.stringify(e));
@@ -4077,15 +4078,15 @@ Obtains the executor property based on the request. This API uses an asynchronou
 | 12300002 | Invalid request. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType>  = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request = {
+  let request: account_osAccount.GetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     keys: keys
   };
@@ -4131,15 +4132,15 @@ Obtains the executor property based on the request. This API uses a promise to r
 | 12300002 | Invalid request. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let keys = [
+  let keys: Array<account_osAccount.GetPropertyType> = [
     account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request = {
+  let request: account_osAccount.GetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     keys: keys
   };
@@ -4181,10 +4182,10 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
 | 12300002 | Invalid request. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request = {
+  let request: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
@@ -4234,16 +4235,16 @@ Sets the property for the initialization algorithm. This API uses a promise to r
 | 12300002 | Invalid request. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
-  let request2 = {
+  let request: account_osAccount.SetPropertyRequest = {
     authType: account_osAccount.AuthType.PIN,
     key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
-    userAuth.setProperty(request2).then(() => {
+    userAuth.setProperty(request).then(() => {
       console.log('setProperty successfully');
     }).catch((err: BusinessError) => {
       console.log('setProperty failed, error = ' + JSON.stringify(err));
@@ -4296,14 +4297,14 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300112 | Authentication service is busy. |
 
 **Example**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
+      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -4357,15 +4358,15 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300112 | Authentication service is busy. |
 
 **Example**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let userID: number = 100;
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
+      onResult: (result,extraInfo) => {
         console.log('authUser result = ' + result);
         console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
       }
@@ -4401,11 +4402,11 @@ Cancels an authentication.
 | 12300002 | Invalid contextId. |
 
 **Example**
-  ```js
+  ```ts
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextId = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+  let contextId: Uint8Array = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -4435,7 +4436,7 @@ A constructor used to create an instance for PIN authentication.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example** 
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   ```
 
@@ -4466,7 +4467,7 @@ Register a PIN inputer.
 | 12300103 | Inputer already registered. |
 
 **Example**
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
@@ -4494,7 +4495,7 @@ Unregisters this PIN inputer.
 **Required permissions**: ohos.permission.ACCESS_PIN_AUTH
 
 **Example**
-  ```js
+  ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
@@ -4532,8 +4533,8 @@ Register a credential inputer.
 | 12300106 | Unsupported authType. |
 
 **Example**
-  ```js
-  let authType = account_osAccount.AuthType.DOMAIN;
+  ```ts
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     account_osAccount.InputerManager.registerInputer(authType, {
@@ -4572,8 +4573,8 @@ Unregisters this credential inputer.
 | 12300002  | Invalid authType. |
 
 **Example**
-  ```js
-  let authType = account_osAccount.AuthType.DOMAIN;
+  ```ts
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
   try {
     account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
@@ -4607,24 +4608,25 @@ Authenticates a domain account.
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                       callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4637,9 +4639,9 @@ Authenticates a domain account.
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
-  let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.DOMAIN;
-  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -4670,24 +4672,25 @@ Authenticates a domain account in a pop-up window.
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4720,9 +4723,9 @@ Authenticates a domain account by the authorization token.
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
@@ -4731,13 +4734,14 @@ Authenticates a domain account by the authorization token.
                     callback: account_osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      callback.onResult(0, {
+      let result: account_osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
-      });
+      };
+      callback.onResult(0, result);
     },
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4753,7 +4757,7 @@ Authenticates a domain account by the authorization token.
 
 ### getAccountInfo<sup>10+</sup>
 
-getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
 Obtains information about a domain account.
 
@@ -4765,30 +4769,34 @@ Obtains information about a domain account.
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domain   | string  | Yes  | Domain to which the account belongs.|
-| accountName   | string  | Yes  | Name of the account.|
+| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | Yes  | Options for obtaining the domain account information.|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
       // mock getting account information
       // notify result
-      let code: BusinessError
-      callback(code, {
-        domain: domain,
-        accountName: accountName,
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let accountInfo: account_osAccount.DomainAccountInfo = {
+        domain: options.domain,
+        accountName: options.accountName,
         accountId: 'xxxx'
-      })
+      };
+      callback(code, accountInfo);
     },
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4820,24 +4828,29 @@ Obtains the authentication status of a domain account.
 | callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
-      let code: BusinessError;
-      callback(code, {
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let statusInfo: account_osAccount.AuthStatusInfo = {
         remainTimes: 5,
         freezingTime: 0
-      })
+      };
+      callback(code, statusInfo);
     },
     bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
@@ -4867,16 +4880,16 @@ Binds a domain account.
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4884,8 +4897,12 @@ Binds a domain account.
                   callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify binding result
-      let code: BusinessError;
-      callback(code)
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      callback(code);
     },
     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
@@ -4913,16 +4930,16 @@ Unbinds a domain account.
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4931,8 +4948,12 @@ Unbinds a domain account.
     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify unbinding result
-      let code: BusinessError;
-      callback(code)
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      callback(code);
     },
     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
@@ -4945,7 +4966,7 @@ Unbinds a domain account.
 
 isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a domain account token is valid.
+Checks whether the specified domain account token is valid.
 
 **System API**: This is a system API.
 
@@ -4956,20 +4977,20 @@ Checks whether a domain account token is valid.
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array | Yes| Domain account token.|
+| token | Uint8Array | Yes| Domain account token to check.|
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -4980,7 +5001,11 @@ Checks whether a domain account token is valid.
                           callback: AsyncCallback<boolean>) => {
       // mock checking operation
       // notify checking result
-      let code: BusinessError
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
       callback(code, true);
     },
     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
@@ -5006,16 +5031,16 @@ Obtains the domain access token based on the specified conditions.
 | callback   | AsyncCallback&lt;Uint8Array&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback, BusinessError } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                     callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                     callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                     callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -5026,9 +5051,13 @@ Obtains the domain access token based on the specified conditions.
                           callback: AsyncCallback<boolean>) => {},
     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
       // mock getting operation
-      //let token = new Uint8Array([0]);
       // notify result
-      let code: BusinessError
+      let code: BusinessError = {
+        code: 0,
+        name: "",
+        message: ""
+      };
+      let token: Uint8Array = new Uint8Array([0]);
       callback(code, token);
     }
   }
@@ -5063,16 +5092,16 @@ Registers a domain plug-in.
 | 12300201 | The domain plugin has been registered. |
 
 **Example**
-  ```js
+  ```ts
   import { AsyncCallback } from './@ohos.base';
-  let plugin = {
+  let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},
     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                   callback: account_osAccount.IUserAuthCallback) => {},
     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
                   callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (domain: string, accountName: string,
+    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
@@ -5104,7 +5133,7 @@ Unregisters this domain plug-in.
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **Example**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
@@ -5150,8 +5179,8 @@ Authenticates a domain account.
 | 12300114 | Authentication service exception. |
 
 **Example**
-  ```js
-  let domainAccountInfo = {
+  ```ts
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5202,7 +5231,7 @@ Authenticates this domain account in a pop-up window.
 | 12300114 | Authentication service exception. |
 
 **Example**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.authWithPopup({
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -5251,7 +5280,7 @@ Authenticates a domain account in a pop-up window.
 | 12300114 | Authentication service exception. |
 
 **Example**
-  ```js
+  ```ts
   try {
     account_osAccount.DomainAccountManager.authWithPopup(100, {
       onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
@@ -5292,9 +5321,9 @@ Checks whether a domain account exists.
 | 12300013 | Network exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5344,9 +5373,9 @@ Checks whether a domain account exists.
 | 12300013 | Network exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
@@ -5390,9 +5419,9 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
@@ -5445,9 +5474,9 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 | 12300003 | Account not found. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let domainAccountInfo = {
+  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
@@ -5481,7 +5510,7 @@ A constructor used to create an instance for user IDM.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example** 
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   ```
 
@@ -5510,7 +5539,7 @@ Opens a session to obtain the challenge value. This API uses an asynchronous cal
 | 12300001 | System service exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5548,7 +5577,7 @@ Opens a session to obtain the challenge value. This API uses a promise to return
 | 12300001 | System service exception. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5594,7 +5623,7 @@ Adds credential information, including the credential type, subtype, and token (
 | 12300115 | The number of credentials reaches the upper limit. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
@@ -5606,7 +5635,7 @@ Adds credential information, including the credential type, subtype, and token (
   let credentialInfo: account_osAccount.CredentialInfo = {
     credType: account_osAccount.AuthType.PIN,
     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-    token: null
+    token: new Uint8Array([]),
   };
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
@@ -5655,16 +5684,16 @@ Updates credential information. This API uses a callback to return the result.
 | 12300111 | Operation timeout. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let credentialInfo = {
+  let credentialInfo: account_osAccount.CredentialInfo = {
     credType: account_osAccount.AuthType.PIN,
     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-    token: null
+    token: new Uint8Array([]),
   };
   pinAuth.registerInputer({
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
@@ -5677,7 +5706,9 @@ Updates credential information. This API uses a callback to return the result.
         if (result != account_osAccount.ResultCode.SUCCESS) {
           return;
         }
-        credentialInfo.token = extraInfo.token;
+        if (extraInfo.token != null) {
+          credentialInfo.token = extraInfo.token;
+        }
         try {
           userIDM.updateCredential(credentialInfo, {
             onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
@@ -5706,7 +5737,7 @@ Closes this session to terminate IDM.
 **Required permissions**: ohos.permission.MANAGE_USER_IDM
 
 **Example**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
   ```
@@ -5737,7 +5768,7 @@ Cancels an entry based on the challenge value.
 | 12300002 | Invalid challenge. |
 
 **Example**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let challenge: Uint8Array = new Uint8Array([0]);
   try {
@@ -5774,7 +5805,7 @@ Deletes a user based on the authentication token. This API uses a callback to re
 | 12300101 | Token is invalid. |
 
 **Example**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let token: Uint8Array = new Uint8Array([0]);
   try {
@@ -5819,7 +5850,7 @@ Deletes user credential information.
 | 12300102 | Credential not enrolled. |
 
 **Example**
-  ```js
+  ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   let credentialId: Uint8Array = new Uint8Array([0]);
   let token: Uint8Array = new Uint8Array([0]);
@@ -5861,7 +5892,7 @@ Obtains authentication information. This API uses an asynchronous callback to re
 | 12300102 | Credential not enrolled. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5902,7 +5933,7 @@ Obtains authentication information of the specified type. This API uses an async
 | 12300102 | Credential not enrolled. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5949,7 +5980,7 @@ Obtains authentication information of the specified type. This API uses a promis
 | 12300102 | Credential not enrolled. |
 
 **Example**
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
@@ -5993,10 +6024,10 @@ Called to set data in a PIN operation.
 | 12300002 | Invalid pinSubType. |
 
 **Example**
-  ```js
+  ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer = {
+  let inputer: account_osAccount.IInputer = {
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
         if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
@@ -6030,10 +6061,10 @@ Called to obtain data.
 | callback   | [IInputData](#iinputdata8)  | Yes  | Called to input the PIN.|
 
 **Example**
-  ```js
+  ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer = {
+  let inputer: account_osAccount.IInputer = {
     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
         if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
@@ -6071,9 +6102,9 @@ Called to return the result code and authentication result.
 | extraInfo | [AuthResult](#authresult8)  | Yes  | Specific authentication result information. If the authentication is successful, the authentication token is returned in **extrainfo**. If the authentication fails, the remaining authentication time is returned. If the authentication executor is locked, the freezing time is returned.|
 
 **Example**
-  ```js
-  let authCallback = {
-    onResult: (result: account_osAccount.AuthSubType, extraInfo: account_osAccount.IInputData) => {
+  ```ts
+  let authCallback: account_osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -6099,9 +6130,9 @@ Called to acquire identity authentication information.
 | extraInfo | any     | Yes  | Reserved.                    |
 
 **Example**
-  ```js
-  let authCallback = {
-    onResult: (result: account_osAccount.AuthSubType, extraInfo: account_osAccount.IInputData) => {
+  ```ts
+  let authCallback: account_osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
@@ -6137,8 +6168,8 @@ Called to return the result code and request result information.
 | extraInfo | [RequestResult](#requestresult8)  | Yes  | Specific information to be transferred.|
 
 **Example**
-  ```js
-  let idmCallback = {
+  ```ts
+  let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
       console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
@@ -6165,8 +6196,8 @@ Called to acquire IDM information.
 | extraInfo | any     | Yes  | Reserved.                    |
 
 **Example**
-  ```js
-  let idmCallback = {
+  ```ts
+  let idmCallback: account_osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));
@@ -6587,4 +6618,29 @@ Defines the options for obtaining a domain access token.
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.  |
 | domainAccountToken | Uint8Array | Yes  | Token of the domain account.|
 | businessParams | { [key: string]: object } | Yes  | Service parameters customized by the service party based on the request protocol.|
+| callerUid | number | Yes  | Unique identifier of the caller.|
+
+## GetDomainAccountInfoOptions<sup>10+</sup>
+
+Defines the options for obtaining domain account information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| accountName | string | Yes  | Domain account name.|
+| domain      | string | No  | Domain name.    |
+
+## GetDomainAccountInfoPluginOptions<sup>10+</sup>
+
+Defines the options for obtaining domain account information using a plugin. The **GetDomainAccountInfoPluginOptions** class inherits from [**GetDomainAccountInfoOptions**](#getdomainaccountinfooptions10).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
 | callerUid | number | Yes  | Unique identifier of the caller.|

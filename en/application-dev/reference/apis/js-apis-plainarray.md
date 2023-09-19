@@ -53,7 +53,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 ```
 
 
@@ -82,7 +82,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const plainArray = new PlainArray();
+const plainArray: PlainArray<string> = new PlainArray();
 let result = plainArray.isEmpty();
 ```
 
@@ -118,7 +118,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
 ```
@@ -155,7 +155,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
@@ -193,7 +193,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
@@ -231,7 +231,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
@@ -269,7 +269,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
@@ -307,7 +307,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
@@ -338,7 +338,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
@@ -371,7 +371,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 ```
 
@@ -407,7 +407,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
@@ -445,7 +445,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
@@ -485,7 +485,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
@@ -519,7 +519,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string | number> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
@@ -551,7 +551,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
@@ -577,7 +577,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
@@ -617,10 +617,10 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
-plainArray.forEach((value, index) => {
+plainArray.forEach((value: string, index?: number) => {
     console.log("value:" + value, "index:" + index);
 });
 ```
@@ -651,22 +651,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let plainArray = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 
-// Method 1:
-for (let item of plainArray) { 
-  console.log("key:" + item[0]);
-  console.log("value:" + item[1]);
-}
-
-// Method 2:
 let iter = plainArray[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```

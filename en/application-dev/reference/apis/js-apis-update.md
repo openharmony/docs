@@ -51,17 +51,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 try {
-  const upgradeInfo = {
-    upgradeApp: "com.ohos.ota.updateclient",
-    businessType: {
-      vendor: update.BusinessVendor.PUBLIC,
-      subType: update.BusinessSubType.FIRMWARE
+      const upgradeInfo: update.UpgradeInfo = {
+        upgradeApp: "com.ohos.ota.updateclient",
+        businessType: {
+          vendor: update.BusinessVendor.PUBLIC,
+          subType: update.BusinessSubType.FIRMWARE
+        }
+      };
+      let updater = update.getOnlineUpdater(upgradeInfo);
+    } catch(error) {
+      console.error(`Fail to get updater error: ${error}`);
     }
-  };
-  let updater = update.getOnlineUpdater(upgradeInfo);
-} catch(error) {
-  console.error(`Fail to get updater error: ${error}`);
-}
 ```
 
 ## update.getRestorer
@@ -158,9 +158,9 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
-});
+updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
+      console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+    });
 ```
 
 ### checkNewVersion
@@ -190,13 +190,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
-  // Version digest information
-  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
-}).catch(err => {
-  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-});
+updater.checkNewVersion()
+      .then((result: update.CheckResult) => {
+        console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+        // Version digest information
+        console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+      })
+      .catch((err: BusinessError)=>{
+        console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+      })
 ```
 
 ###  getNewVersionInfo
@@ -226,9 +228,9 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getNewVersionInfo((err, info) => {
-  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
+updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
+      console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+      console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -259,11 +261,11 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getNewVersionInfo().then(info => {
-  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
-}).catch(err => {
-  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
+updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
+    console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+    console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
+}).catch((err: BusinessError) => {
+    console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -297,19 +299,20 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
-  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
-  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -348,19 +351,19 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -392,7 +395,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getCurrentVersionInfo((err, info) => {
+updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -426,11 +429,11 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getCurrentVersionInfo().then(info => {
+updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -464,7 +467,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
@@ -509,14 +512,13 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
-
-updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+updater.getCurrentVersionDescription(descriptionOptions).then((info: Array<update.ComponentDescription>) => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -548,7 +550,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getTaskInfo((err, info) => {
+updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
 ```
@@ -580,9 +582,9 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getTaskInfo().then(info => {
+updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -617,16 +619,16 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Download options
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
 };
-updater.download(versionDigestInfo, downloadOptions, (err) => {
+updater.download(versionDigestInfo, downloadOptions, (err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -666,18 +668,18 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Download options
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-  order: update.Order.DOWNLOAD // Download
+   order: update.Order.DOWNLOAD // Download
 };
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -712,15 +714,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for resuming download
-const resumeDownloadOptions = {
+const resumeDownloadOptions : update.ResumeDownloadOptions= {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -760,17 +762,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for resuming download
-const resumeDownloadOptions = {
+const resumeDownloadOptions: update.ResumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(() => {
   console.log(`resumeDownload start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -805,15 +807,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for pausing download
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err: BusinessError) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -853,17 +855,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for pausing download
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(() => {
   console.log(`pauseDownload`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -898,15 +900,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Installation options
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // Installation command
 };
-updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+updater.upgrade(versionDigestInfo, upgradeOptions, (err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -946,17 +948,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Installation options
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // Installation command
 };
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -991,15 +993,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for clearing errors
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
-updater.clearError(versionDigestInfo, clearOptions, (err) => {
+updater.clearError(versionDigestInfo, clearOptions, (err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1039,17 +1041,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for clearing errors
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1081,7 +1083,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getUpgradePolicy((err, policy) => {
+updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1114,10 +1116,10 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.getUpgradePolicy().then(policy => {
+updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1150,12 +1152,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
+  autoUpgradePeriods: [ { start: 120, end: 240 }] // Automatic update period, in minutes
 };
-updater.setUpgradePolicy(policy, (err) => {
+updater.setUpgradePolicy(policy, (err: BusinessError) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
 ```
@@ -1193,14 +1195,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
 };
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1232,7 +1234,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-updater.terminateUpgrade((err) => {
+updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1266,7 +1268,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 ```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1297,12 +1299,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-updater.on(eventClassifyInfo, (eventInfo) => {
+updater.on(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
 });
 ```
@@ -1332,12 +1334,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-updater.off(eventClassifyInfo, (eventInfo) => {
+updater.off(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
 });
 ```
@@ -1405,7 +1407,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 ```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
@@ -1441,7 +1443,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 };
@@ -1485,13 +1487,13 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 };
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
@@ -1523,7 +1525,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
@@ -1560,13 +1562,13 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
@@ -1596,14 +1598,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.on(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1633,14 +1635,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ```

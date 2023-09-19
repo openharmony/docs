@@ -112,7 +112,7 @@ struct SideBarContainerExample {
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-        ForEach(this.arr, (item, index) => {
+        ForEach(this.arr, (item: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
             Text("Index0" + item)
@@ -123,10 +123,11 @@ struct SideBarContainerExample {
           .onClick(() => {
             this.current = item
           })
-        }, item => item)
+        }, (item: string) => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
+
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -147,7 +148,7 @@ struct SideBarContainerExample {
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
-    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
+    .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })
   }
 }
 ```

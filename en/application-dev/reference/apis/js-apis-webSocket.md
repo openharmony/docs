@@ -538,7 +538,7 @@ ws.off('message');
 
 ### on('close')<sup>6+</sup>
 
-on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
+on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 Enables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -549,7 +549,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<{ code: number, reason: string }\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -562,7 +562,7 @@ ws.on('close', (err, value) => {
 
 ### off('close')<sup>6+</sup>
 
-off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>): void
+off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 
 Disables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -576,7 +576,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<{ code: number, reason: string }\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -654,6 +654,17 @@ Defines the optional parameters carried in the request for closing a WebSocket c
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | code   | number | No  | Error code. Set this parameter based on the actual situation. The default value is **1000**.|
 | reason | string | No  | Error cause. Set this parameter based on the actual situation. The default value is an empty string ("").|
+
+## CloseResult<sup>10+</sup>
+
+Represents the result obtained from the **close** event reported when the WebSocket connection is closed.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| code   | number | Yes  | Error code for closing the connection.|
+| reason | string | Yes  | Error cause for closing the connection.|
 
 ## Result Codes for Closing a WebSocket Connection
 

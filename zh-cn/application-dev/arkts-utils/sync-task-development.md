@@ -110,10 +110,10 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
                 let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-                w.onmessage = () => {
+                w.onmessage = (): void => {
                   // 接收Worker子线程的结果
                 }
-                w.onerror = () => {
+                w.onerror = (): void => {
                   // 接收Worker子线程的错误信息
                 }
                 // 向Worker子线程发送Set消息
@@ -145,15 +145,17 @@ struct Index {
         return;
       }
     }
+    ```
     
+    ```ts
     // Worker.ts代码
     import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
-    import Handle from './handle.ts'  // 返回句柄
+    import Handle from './handle'  // 返回句柄
     
-    var workerPort : ThreadWorkerGlobalScope = worker.workerPort;
+    let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
     // 无法传输的句柄，所有操作依赖此句柄
-    var handler = new Handle()
+    let handler: Handle = new Handle()
     
     // Worker线程的onmessage逻辑
     workerPort.onmessage = (e : MessageEvents): void => {
