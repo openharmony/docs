@@ -1,13 +1,13 @@
-# @ohos.file.photoAccessHelper (相册管理模块)
+# @ohos.file.photoAccessHelper (Album Management)
 
-该模块提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+The **photoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data an album.
 
-> **说明：**
+> **NOTE**
 >
-> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-## 导入模块
+## Modules to Import
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -17,38 +17,38 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-获取相册管理模块模块的实例，用于访问和修改相册中的媒体文件。
+Obtains a **PhotoAccessHelper** instance for accessing and modifying media files in the album.
 
-**模型约束**： 此接口仅可在Stage模型下使用。
+**Model restriction**: This API can be used only in the stage model.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名  | 类型    | 必填 | 说明                       |
+| Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-app-context.md) | Yes  | Context of the ability instance.|
 
-**返回值：**
+**Return value**
 
-| 类型                            | 说明    |
+| Type                           | Description   |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块模块的实例。 |
+| [PhotoAccessHelper](#photoaccesshelper) | Returns the **PhotoAccessHelper** instance created.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
-//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加
+// The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
@@ -59,28 +59,28 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
 
-获取图片和视频资源，使用callback方式返回结果。
+Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| options  | [FetchOptions](#fetchoptions)        | 是   | 图片和视频检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | 是   | callback返回图片和视频检索结果集。 |
+| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the image and video assets.             |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOptions.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -111,33 +111,33 @@ async function example() {
 
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
 
-获取图片和视频资源，使用Promise方式返回结果。
+Obtains image and video assets. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名  | 类型                | 必填 | 说明             |
+| Name | Type               | Mandatory| Description            |
 | ------- | ------------------- | ---- | ---------------- |
-| options | [FetchOptions](#fetchoptions)   | 是   | 图片和视频检索选项。     |
+| options | [FetchOptions](#fetchoptions)   | Yes  | Options for fetching the image and video assets.    |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the image and video assets obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOptions.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -168,32 +168,32 @@ async function example() {
 
 createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
 
-指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。
+Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| displayName  | string        | 是   | 创建的图片或者视频文件名。              |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | 是   | callback返回创建的图片和视频结果。 |
+| displayName  | string        | Yes  | File name of the image or video to create.             |
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -214,37 +214,37 @@ async function example() {
 
 createAsset(displayName: string): Promise&lt;PhotoAsset&gt;;
 
-指定待创建的图片或者视频的文件名，创建图片或视频资源，使用Promise方式返回结果。
+Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| displayName  | string        | 是   | 创建的图片或者视频文件名。              |
+| displayName  | string        | Yes  | File name of the image or video to create.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise对象，返回创建的图片和视频结果。 |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created image and video asset.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if type displayName or albumUri is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -264,33 +264,33 @@ async function example() {
 
 createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
 
-指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用callback方式返回结果。
+Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| displayName  | string        | 是   | 创建的图片或者视频文件名。              |
-| options  | [PhotoCreateOptions](#photocreateoptions)        | 是   | 图片或视频的创建选项。              |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | 是   | callback返回创建的图片和视频结果。 |
+| displayName  | string        | Yes  | File name of the image or video to create.             |
+| options  | [PhotoCreateOptions](#photocreateoptions)        | Yes  | Options for creating an image or video asset.             |
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type displayName invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -314,38 +314,38 @@ async function example() {
 
 createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;;
 
-指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| displayName  | string        | 是   | 创建的图片或者视频文件名。              |
-| options  |  [PhotoCreateOptions](#photocreateoptions)       | 是   | 图片或视频的创建选项。              |
+| displayName  | string        | Yes  | File name of the image or video to create.             |
+| options  |  [PhotoCreateOptions](#photocreateoptions)       | Yes  | Options for creating an image or video asset.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise对象，返回创建的图片和视频结果。 |
+| Promise&lt;[PhotoAsset](#photoasset)&gt; | Promise used to return the created image and video asset.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)和[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if type displayName is not string.         |
 | 14000001   | if type of displayName is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -368,30 +368,30 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void;
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用callback方式返回结果。
+Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
-| extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
-| callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
+| photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
+| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| options  | [CreateOptions](#createoptions)        | Yes  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type createOption is wrong.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -416,29 +416,29 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void;
 
-指定待创建的文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
+Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
-| extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
+| photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
+| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| callback |  AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the URI of the created image or video.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type createOption is wrong.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -460,35 +460,35 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
-| extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如{title: 'testPhoto'}。              |
+| photoType  | [PhotoType](#phototype)        | Yes  | Type of the file to create, which can be **IMAGE** or **VIDEO**.             |
+| extension  | string        | Yes  | File name extension, for example, **jpg**.             |
+| options  | [CreateOptions](#createoptions)        | No  | Options for creating the image or video asset, for example, **{title: 'testPhoto'}**.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;string&gt; | Promise对象，返回创建的图片和视频的uri。 |
+| Promise&lt;string&gt; | Promise used to return the URI of the created image or video asset.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type createOption is wrong.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -512,37 +512,37 @@ async function example() {
 
 createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
 
-创建相册，使用callback方式返回结果。
+Creates an album. This API uses an asynchronous callback to return the result.
 
-待创建的相册名参数规格为：
-- 相册名字符串长度为1~255。
-- 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
-- 相册名不允许重名。
+The album name must meet the following requirements:
+- The album name is a string of 1 to 255 characters.
+- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name is case-insensitive.
+- Duplicate album names are not allowed.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| name  | string         | 是   | 待创建相册的相册名。              |
-| callback |  AsyncCallback&lt;[Album](#album)&gt; | 是   | callback返回创建的相册实例。 |
+| name  | string         | Yes  | Name of the album to create.             |
+| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback invoked to return the created album instance.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -562,42 +562,42 @@ async function example() {
 
 createAlbum(name: string): Promise&lt;Album&gt;;
 
-创建相册，使用Promise方式返回结果。
+Creates an album. This API uses a promise to return the result.
 
-待创建的相册名参数规格为：
-- 相册名字符串长度为1~255。
-- 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
-- 相册名不允许重名。
+The album name must meet the following requirements:
+- The album name is a string of 1 to 255 characters.
+- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name is case-insensitive.
+- Duplicate album names are not allowed.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| name  | string         | 是   | 待创建相册的相册名。              |
+| name  | string         | Yes  | Name of the album to create.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[Album](#album)&gt; | Promise对象，返回创建的相册实例。 |
+| Promise&lt;[Album](#album)&gt; | Promise used to return the created album instance.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -617,39 +617,39 @@ async function example() {
 
 deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-删除相册，使用callback方式返回结果。
+Deletes albums. This API uses an asynchronous callback to return the result.
 
-删除相册前需先确保相册存在，只能删除用户相册。
+Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| albums  | Array&lt;[Album](#album)&gt;         | 是   | 待删除相册的数组。              |
-| callback |  AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| albums  | Array&lt;[Album](#album)&gt;         | Yes  | Albums to delete.             |
+| callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  // 示例代码为删除相册名为newAlbumName的相册。
+  // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -674,45 +674,45 @@ async function example() {
 
 deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
 
-删除相册，使用Promise方式返回结果。
+Deletes albums. This API uses a promise to return the result.
 
-删除相册前需先确保相册存在，只能删除用户相册。
+Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| albums  |  Array&lt;[Album](#album)&gt;          | 是   | 待删除相册的数组。              |
+| albums  |  Array&lt;[Album](#album)&gt;          | Yes  | Albums to delete.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 async function example() {
-  // 示例代码为删除相册名为newAlbumName的相册。
+  // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -735,38 +735,38 @@ async function example() {
 
 getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
 
-根据检索选项和相册类型获取相册，使用callback方式返回结果。
+Obtains albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
-获取相册前需先保证相册存在。
+Before the operation, ensure that the albums to obtain exist.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](#albumsubtype)         | 是   | 相册子类型。              |
-| options  | [FetchOptions](#fetchoptions)         | 是   |  检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
+| options  | [FetchOptions](#fetchoptions)         | Yes  |  Options for fetching the albums.             |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOption.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  // 示例代码中为获取相册名为newAlbumName的相册。
+  // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -794,35 +794,35 @@ async function example() {
 
 getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
 
-根据相册类型获取相册，使用callback方式返回结果。
+Obtains albums by type. This API uses an asynchronous callback to return the result.
 
-获取相册前需先保证相册存在。
+Before the operation, ensure that the albums to obtain exist.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](#albumsubtype)         | 是   | 相册子类型。              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOption.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
-  // 示例代码中为获取统相册VIDEO，默认已预置。
+  // Obtain the system album VIDEO, which is preset by default.
   console.info('getAlbumsDemo');
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO, async (err, fetchResult) => {
     if (err) {
@@ -844,44 +844,44 @@ async function example() {
 
 getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
-根据检索选项和相册类型获取相册，使用Promise方式返回结果。
+Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
-获取相册前需先保证相册存在。
+Before the operation, ensure that the albums to obtain exist.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                     | 必填 | 说明                      |
+| Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](#albumsubtype)         | 是   | 相册子类型。              |
-| options  | [FetchOptions](#fetchoptions)         | 否   |  检索选项，不填时默认根据相册类型检索。              |
+| type  | [AlbumType](#albumtype)         | Yes  | Type of the album to obtain.             |
+| subtype  | [AlbumSubtype](#albumsubtype)         | Yes  | Subtype of the album.             |
+| options  | [FetchOptions](#fetchoptions)         | No  |  Options for fetching the albums. If this parameter is not specified, the albums are obtained based on the album type by default.             |
 
-**返回值：**
+**Return value**
 
-| 类型                        | 说明           |
+| Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the result.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOption.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 async function example() {
-  // 示例代码中为获取相册名为newAlbumName的相册。
+  // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -907,31 +907,31 @@ async function example() {
 
 deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-删除媒体文件，删除的文件进入到回收站，使用callback方式返回结果。
+Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the trash.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -967,36 +967,36 @@ async function example() {
 
 deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+Deletes media files. This API uses a promise to return the result. The deleted files are moved to the trash.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| Promise对象，返回void。 |
+| Promise&lt;void&gt;| Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1027,29 +1027,29 @@ async function example() {
 
 registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-注册对指定uri的监听，使用callback方式返回异步结果。
+Registers listening for the specified URI. This API uses a callback to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名    | 类型                                        | 必填 | 说明                                                         |
+| Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri       | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri)的值。 |
-| forChildUris | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为photoAsset时，forChildUris为true、false没有区别，uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。 |
-| callback  | Callback&lt;[ChangeData](#changedata)&gt; | 是   | 返回要监听的[ChangeData](#changedata)。注：uri可以注册多个不同的callback监听，[unRegisterChange](#unregisterchange)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
+| uri       | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](#defaultchangeuri).|
+| forChildUris | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no message can be received.|
+| callback  | Callback&lt;[ChangeData](#changedata)&gt; | Yes  | Callback invoked to return the [ChangeData](#changedata). <br>**NOTE**<br>Multiple callback listeners can be registered for a URI. You can use [unRegisterChange](#unregisterchange) to unregister all listeners for the URI or a specified callback listener.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1074,9 +1074,9 @@ async function example() {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
     //file had changed, do something
   }
-  // 注册onCallback1监听
+  // Register onCallback1.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
+  // Register onCallback2.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
   photoAsset.setFavorite(true, (err) => {
@@ -1093,28 +1093,28 @@ async function example() {
 
 unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
-取消指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
+Unregisters listening for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use this API to unregister the listening of the specified callbacks or all callbacks.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri)的值。 |
-| callback | Callback&lt;[ChangeData](#changedata)&gt; | 否   | 取消[registerChange](#registerchange)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
+| uri      | string                                      | Yes  | URI of the photo asset, URI of the album, or [DefaultChangeUri](#defaultchangeuri).|
+| callback | Callback&lt;[ChangeData](#changedata)&gt; | No  | Callback to unregister. If this parameter is not specified, all the callbacks for listening for the URI will be canceled. <br>**NOTE**: The specified callback unregistered will not be invoked when the data changes.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1137,11 +1137,11 @@ async function example() {
   let onCallback2 = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback2 on');
   }
-  // 注册onCallback1监听
+  // Register onCallback1.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
-  // 注册onCallback2监听
+  // Register onCallback2.
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
-  // 关闭onCallback1监听，onCallback2 继续监听
+  // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
   photoAsset.setFavorite(true, (err) => {
     if (err == undefined) {
@@ -1157,28 +1157,28 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-创建一个弹出框来删除照片，删除的文件进入到回收站，使用callback方式返回结果。
+Creates a dialog box for deleting media files. This API uses an asynchronous callback to return the result. The deleted media files are moved to the trash.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，最大删除数量300。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1214,33 +1214,33 @@ async function example() {
 
 createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
 
-创建一个弹出框来删除照片，删除的文件进入到回收站，使用Promise方式返回结果。
+Creates a dialog box for deleting media files. This API uses a promise to return the result. The deleted media files are moved to the trash.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组，最大删除数量300。 |
+| uriList | Array&lt;string&gt; | Yes  | URIs of the media files to delete. A maximum of 300 media files can be deleted.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;void&gt;| Promise对象，返回void。 |
+| Promise&lt;void&gt;| Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1271,37 +1271,37 @@ async function example() {
 
 getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
 
-获取相册中图片或视频的位置，使用callback方式返回结果。
+Obtains the index of an image or video in an album. This API uses an asynchronous callback to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| photoUri | string | 是   | 所查询的图库资源的uri。 |
-| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+| AsyncCallback&lt;number&gt;| Promise used to return the index obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1345,37 +1345,37 @@ async function example() {
 
 getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
 
-获取相册中图片或视频的位置，使用Promise方式返回结果。
+Obtains the index of an image or video in an album. This API uses a promise to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| photoUri | string | 是   | 所查询的图库资源的uri。 |
-| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
+| albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;number&gt;| 返回相册中资源的索引。 |
+| Promise&lt;number&gt;| Promise used to return the index obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1417,26 +1417,26 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放PhotoAccessHelper实例。
-当后续不需要使用PhotoAccessHelper实例中的方法时调用。
+Releases the **PhotoAccessHelper** instance. This API uses an asynchronous callback to return the result.
+Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明                 |
+| Name  | Type                     | Mandatory| Description                |
 | -------- | ------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调表示成功还是失败。 |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042    | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1455,26 +1455,26 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-释放PhotoAccessHelper实例。
-当后续不需要使用PhotoAccessHelper 实例中的方法时调用。
+Releases the **PhotoAccessHelper** instance. This API uses a promise to return the result.
+Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                | 说明                              |
+| Type               | Description                             |
 | ------------------- | --------------------------------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042    | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1490,47 +1490,47 @@ async function example() {
 
 ## PhotoAsset
 
-提供封装文件属性的方法。
+Provides APIs for encapsulating file asset attributes.
 
-### 属性
+### Attributes
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
+| Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg）。         |
-| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型                                               |
-| displayName               | string                   | 是   | 否   | 显示文件名，包含后缀名。                                 |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.        |
+| photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
+| displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
 ### get
 
 get(member: string): MemberType;
 
-获取PhotoAsset成员参数。
+Obtains a **PhotoAsset** member parameter.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                        | 必填   | 说明    |
+| Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称，在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | Yes   | Name of the member parameter to obtain. Except **uri**, **photoType**, and **displayName**, you need to pass in [PhotoKeys](#photokeys) in **fetchColumns** in **get()**. For example, to obtain the title attribute, set **fetchColumns: ['title']**.|
 
-**返回值：**
+**Return value**
 
-| 类型                | 说明                              |
+| Type               | Description                             |
 | ------------------- | --------------------------------- |
-| [MemberType](#membertype) | 获取PhotoAsset成员参数的值。 |
+| [MemberType](#membertype) | Returns the **PhotoAsset** member parameter obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1558,26 +1558,26 @@ async function example() {
 
 set(member: string, value: string): void;
 
-设置PhotoAsset成员参数。
+Sets a **PhotoAsset** member parameter.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                        | 必填   | 说明    |
+| Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：[PhotoKeys](#photokeys).TITLE。 |
-| value | string | 是    | 设置成员参数名称，只能修改[PhotoKeys](#photokeys).TITLE的值。 |
+| member | string | Yes   | Name of the member parameter to set. For example, **[PhotoKeys](#photokeys).TITLE**.|
+| value | string | Yes   | Member parameter to set. Only the value of **[PhotoKeys](#photokeys).TITLE** can be modified.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1604,27 +1604,27 @@ async function example() {
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void
 
-修改文件的元数据，使用callback方式返回异步结果。
+Commits the modification on the file metadata to the database. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                        | 必填   | 说明    |
+| Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;void&gt; | 是    | callback返回void。 |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1657,27 +1657,27 @@ async function example() {
 
 commitModify(): Promise&lt;void&gt;
 
-修改文件的元数据，使用promise方式返回异步结果。
+Commits the modification on the file metadata to the database. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明         |
+| Type                 | Description        |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1709,33 +1709,33 @@ async function example() {
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
-打开当前文件，使用callback方式返回异步结果。
+Opens this file asset. This API uses an asynchronous callback to return the result.
 
-**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
+**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO or ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                          | 必填   | 说明                                  |
+| Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
-| callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
+| mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1757,38 +1757,38 @@ async function example() {
 
 open(mode: string): Promise&lt;number&gt;
 
-打开当前文件，使用promise方式返回异步结果。
+Opens this file asset. This API uses a promise to return the result.
 
-**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
+**NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO or ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名  | 类型     | 必填   | 说明                                  |
+| Name | Type    | Mandatory  | Description                                 |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
+| mode | string | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
 
-**返回值：**
+**Return value**
 
-| 类型                    | 说明            |
+| Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise对象，返回文件描述符。 |
+| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1813,29 +1813,29 @@ async function example() {
 
 getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
-以只读方式打开当前文件，使用callback方式返回异步结果。
+Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-**注意**：读操作完成后需要调用close进行释放。
+**NOTE**<br>After the read operation is complete, call **close** to close the file.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                          | 必填   | 说明                                  |
+| Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1857,29 +1857,29 @@ async function example() {
 
 getReadOnlyFd(): Promise&lt;number&gt;
 
-以只读方式打开当前文件，使用promise方式返回异步结果。
+Opens this file in read-only mode. This API uses a promise to return the result.
 
-**注意**：读操作完成后需要调用close进行释放。
+**NOTE**<br>After the read operation is complete, call **close** to close the file.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                    | 说明            |
+| Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise对象，返回文件描述符。 |
+| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 async function example() {
@@ -1904,26 +1904,26 @@ async function example() {
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-关闭当前文件，使用callback方式返回异步结果。
+Closes a file. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                        | 必填   | 说明    |
+| Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | 是    | 文件描述符。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | callback返回void。 |
+| fd       | number                    | Yes   | File descriptor of the file to close.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -1957,31 +1957,31 @@ async function example() {
 
 close(fd: number): Promise&lt;void&gt;
 
-关闭当前文件，使用promise方式返回异步结果。
+Closes a file. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名  | 类型     | 必填   | 说明    |
+| Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | 是    | 文件描述符。 |
+| fd   | number | Yes   | File descriptor of the file to close.|
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明         |
+| Type                 | Description        |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2010,27 +2010,27 @@ async function example() {
 
 getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-获取文件的缩略图，使用callback方式返回异步结果。
+Obtains the thumbnail of this file. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                                  | 必填   | 说明               |
+| Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2059,28 +2059,28 @@ async function example() {
 
 getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
+Obtains the file thumbnail of the given size. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名      | 类型                                  | 必填   | 说明               |
+| Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](js-apis-image.md#size) | 是    | 缩略图尺寸。            |
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| size     | [image.Size](js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2111,33 +2111,33 @@ async function example() {
 
 getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
-获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
+Obtains the file thumbnail of the given size. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名  | 类型             | 必填   | 说明    |
+| Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](js-apis-image.md#size) | 否    | 缩略图尺寸。 |
+| size | [image.Size](js-apis-image.md#size) | No   | Size of the thumbnail.|
 
-**返回值：**
+**Return value**
 
-| 类型                            | 说明                    |
+| Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2167,31 +2167,31 @@ async function example() {
 
 setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-将文件设置为收藏文件，使用callback方式返回异步结果。
+Favorites or unfavorites this file. This API uses an asynchronous callback to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名        | 类型                        | 必填   | 说明                                 |
+| Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| favoriteState | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
-| callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
+| favoriteState | boolean                   | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2219,36 +2219,36 @@ async function example() {
 
 setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
-将文件设置为收藏文件，使用promise方式返回异步结果。
+Favorites or unfavorites this file asset. This API uses a promise to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名        | 类型      | 必填   | 说明                                 |
+| Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
+| favoriteState | boolean | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明         |
+| Type                 | Description        |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2275,33 +2275,33 @@ async function example() {
 
 setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-将文件设置为隐私文件，使用callback方式返回异步结果。
+Sets this file to hidden state. This API uses an asynchronous callback to return the result.
 
-隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+Private files are stored in the private album. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名        | 类型                        | 必填   | 说明                                 |
+| Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| hiddenState | boolean                   | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
-| callback   | AsyncCallback&lt;void&gt; | 是    | callback返回void。                              |
+| hiddenState | boolean                   | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2329,45 +2329,45 @@ async function example() {
 
 setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
-将文件设置为隐私文件，使用promise方式返回异步结果。
+Sets this file asset to hidden state. This API uses a promise to return the result.
 
-隐私文件存在隐私相册中，用户通过隐私相册去获取隐私文件后可以通过设置hiddenState为false来从隐私相册中移除。
+Private files are stored in the private album. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名        | 类型      | 必填   | 说明                                 |
+| Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| hiddenState | boolean | 是    | 是否设置为隐藏文件，true:将文件资产放入隐藏相册;false:从隐藏相册中恢复。 |
+| hiddenState | boolean | Yes   | Whether to set a file to hidden state. The value **true** means to hide the file; the value **false** means the opposite.|
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明         |
+| Type                 | Description        |
 | ------------------- | ---------- |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.         |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 async function example() {
-  // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
+  // Restore a file from a hidden album. Before the operation, ensure that the file exists in the hidden album.
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2390,65 +2390,65 @@ async function example() {
 
 getExif(): Promise&lt;string&gt;
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | 返回Exif标签组成的json格式的字符串。 |
+| Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
 
-**支持Exif标签列表**：
+**Supported EXIF tags**
 
-Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
-| 标签key值                                    | 标签说明              |
+| Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| MakeNote | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2477,65 +2477,65 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与PhotoKeys.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | 是   | 返回Exif字段组成的json格式的字符串。 |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
 
-**支持Exif标签列表**：
+**Supported EXIF tags**
 
-Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
-| 标签key值                                    | 标签说明              |
+| Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
-| BitsPerSample | 每个像素比特数 |
-| Orientation | 图像方向 |
-| ImageLength | 图像长度 |
-| ImageWidth | 图像宽度 |
-| GPSLatitude | GPS纬度 |
-| GPSLongitude | GPS经度 |
-| GPSLatitudeRef | 经度引用，例如W或E |
-| GPSLongitudeRef | 纬度引用，例如N或S |
-| DateTimeOriginal | 拍摄时间 |
-| ExposureTime | 曝光时间 |
-| SceneType | 场景类型 |
-| ISOSpeedRatings | ISO感光度分值 |
-| FNumber | 光圈F值 |
-| DateTime | 修改时间 |
-| GPSTimeStamp | GPS时间戳 |
-| GPSDateStamp | GPS日期戳 |
-| ImageDescription | 图像描述 |
-| Make | 制造商 |
-| MakeNote | 制造商 |
-| Model | 型号 |
-| PhotoMode | 拍摄模式 |
-| SensitivityType | 感光类型 |
-| StandardOutputSensitivity | 标准输出感光度 |
-| RecommendedExposureIndex | 推荐曝光指数 |
-| ApertureValue | 光圈 |
-| MeteringMode | 测光模式 |
-| LightSource | 光源 |
-| Flash | 闪光灯 |
-| FocalLength | 镜头焦距 |
-| UserComment | 用户注释 |
-| PixelXDimension | 有效图像宽度 |
-| PixelYDimension | 有效图像高度 |
-| WhiteBalance | 白平衡 |
-| FocalLengthIn35mmFilm | 35mm等效焦距 |
-| ExposureBiasValue | 曝光补偿 |
+| BitsPerSample | Number of bits per pixel.|
+| Orientation | Image orientation.|
+| ImageLength | Image length.|
+| ImageWidth | Image width.|
+| GPSLatitude | GPS latitude of the image.|
+| GPSLongitude | GPS longitude of the image.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
+| DateTimeOriginal | Shooting time.|
+| ExposureTime | Exposure time.|
+| SceneType | Shooting scene type.|
+| ISOSpeedRatings | ISO sensitivity or speed.|
+| FNumber | f-number.|
+| DateTime | Date and time when the image was last modified.|
+| GPSTimeStamp | GPS timestamp.|
+| GPSDateStamp | GPS date stamp.|
+| ImageDescription | Image description.|
+| Make | Camera vendor.|
+| MakeNote | Camera vendor.|
+| Model | Model.|
+| PhotoMode | Photo mode.|
+| SensitivityType | Sensitivity type.|
+| StandardOutputSensitivity | Standard output sensitivity.|
+| RecommendedExposureIndex | Recommended exposure index.|
+| ApertureValue | Aperture value.|
+| MeteringMode | Metering mode.|
+| LightSource | Light source.|
+| Flash | Flash status.|
+| FocalLength | Focal length.|
+| UserComment | User comment.|
+| PixelXDimension | Pixel X dimension.|
+| PixelYDimension | Pixel Y dimension.|
+| WhiteBalance | White balance.|
+| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
+| ExposureBiasValue | Exposure compensation.|
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2572,29 +2572,29 @@ async function example() {
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
-修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+Sets user comment information of an image or video. This API uses a promise to return the result.
 
-**注意**：此接口只可修改图片或者视频的备注信息。
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2621,24 +2621,24 @@ async function example() {
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
-修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+Sets user comment information of an image or video. This API uses an asynchronous callback to return the result.
 
-**注意**：此接口只可修改图片或者视频的备注信息。
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2669,31 +2669,31 @@ async function example() {
 
 ## FetchResult
 
-文件检索结果集。
+Provides APIs to manage the file retrieval result.
 
 ### getCount
 
 getCount(): number
 
-获取文件检索结果中的文件总数。
+Obtains the total number of files in the result set.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型     | 说明       |
+| Type    | Description      |
 | ------ | -------- |
-| number | 检索到的文件总数。 |
+| number | Returns the total number of files obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2715,25 +2715,25 @@ async function example() {
 
 isAfterLast(): boolean
 
-检查结果集是否指向最后一行。
+Checks whether the cursor is in the last row of the result set.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型      | 说明                                 |
+| Type     | Description                                |
 | ------- | ---------------------------------- |
-| boolean | 当读到最后一条记录后，后续没有记录返回true，否则返回false。 |
+| boolean | Returns **true** if the cursor is in the last row of the result set; returns **false** otherwise.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2760,19 +2760,19 @@ async function example() {
 
 close(): void
 
-释放FetchFileResult实例并使其失效。无法调用其他方法。
+Releases this **FetchFileResult** instance to invalidate it. After this instance is released, the APIs in this instance cannot be invoked.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2798,25 +2798,25 @@ async function example() {
 
 getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 
-获取文件检索结果中的第一个文件资产。此方法使用callback形式返回结果。
+Obtains the first file asset in the result set. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                                          | 必填 | 说明                                        |
+| Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;T&gt; | 是   | 异步获取结果集中的第一个完成后的回调。 |
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the first file asset obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2843,25 +2843,25 @@ async function example() {
 
 getFirstObject(): Promise&lt;T&gt;
 
-获取文件检索结果中的第一个文件资产。此方法使用promise方式来异步返回。
+Obtains the first file asset in the result set. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明                       |
+| Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;T&gt; | Promise对象，返回结果集中第一个对象。 |
+| Promise&lt;T&gt; | Promise used to return the first object in the result set.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2883,25 +2883,25 @@ async function example() {
 
  getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
-获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
+Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名    | 类型                                          | 必填 | 说明                                      |
+| Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
+| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2931,25 +2931,25 @@ async function example() {
 
  getNextObject(): Promise&lt;T&gt;
 
-获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
+Obtains the next file asset in the result set. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise对象，返回结果集中下一个对象。 |
+| Promise&lt;T&gt; | Promise used to return the next object in the result set.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -2974,25 +2974,25 @@ async function example() {
 
 getLastObject(callback: AsyncCallback&lt;T&gt;): void
 
-获取文件检索结果中的最后一个文件资产。此方法使用callback回调来返回。
+Obtains the last file asset in the result set. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                                          | 必填 | 说明                        |
+| Name  | Type                                         | Mandatory| Description                       |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中最后一个的回调。 |
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the last file asset obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3019,25 +3019,25 @@ async function example() {
 
 getLastObject(): Promise&lt;T&gt;
 
-获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回。
+Obtains the last file asset in the result set. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise对象，返回结果集中最后一个对象。 |
+| Promise&lt;T&gt; | Promise used to return the last object in the result set.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042   | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3059,26 +3059,26 @@ async function example() {
 
 getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
-获取文件检索结果中具有指定索引的文件资产。此方法使用callback来返回。
+Obtains a file asset with the specified index in the result set. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名       | 类型                                       | 必填   | 说明                 |
+| Name      | Type                                      | Mandatory  | Description                |
 | -------- | ---------------------------------------- | ---- | ------------------ |
-| index    | number                                   | 是    | 要获取的文件的索引，从0开始。     |
-| callback | AsyncCallback&lt;T&gt; | 是    | 异步返回指定索引的文件资产的回调。 |
+| index    | number                                   | Yes   | Index of the file asset to obtain. The value starts from **0**.    |
+| callback | AsyncCallback&lt;T&gt; | Yes   | Callback invoked to return the file asset obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if type index is not number.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3105,31 +3105,31 @@ async function example() {
 
 getObjectByPosition(index: number): Promise&lt;T&gt;
 
-获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
+Obtains a file asset with the specified index in the result set. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名    | 类型     | 必填   | 说明             |
+| Name   | Type    | Mandatory  | Description            |
 | ----- | ------ | ---- | -------------- |
-| index | number | 是    | 要获取的文件的索引，从0开始。 |
+| index | number | Yes   | Index of the file asset to obtain. The value starts from **0**.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;T&gt; | Promise对象，返回结果集中指定索引的一个对象。 |
+| Promise&lt;T&gt; | Promise used to return the file asset obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type index is not number.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3151,25 +3151,25 @@ async function example() {
 
 getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 
-获取文件检索结果中的所有文件资产。此方法使用callback形式返回结果。
+Obtains all the file assets in the result set. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                                          | 必填 | 说明                                        |
+| Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | 是   | 异步获取结果集中的所有文件资产完成后的回调。 |
+| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes  | Callback invoked to return an array of all file assets in the result set.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042    | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3196,25 +3196,25 @@ async function example() {
 
 getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
-获取文件检索结果中的所有文件资产。此方法使用promise方式来异步返回。
+Obtains all the file assets in the result set. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明                       |
+| Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| Promise&lt;Array&lt;T&gt;&gt; | Promise对象，返回结果集中所有文件资产数组。 |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise used to return an array of all file assets in the result set.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 13900042    | Unknown error.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3234,47 +3234,47 @@ async function example() {
 
 ## Album
 
-实体相册
+Provides APIs to manage albums.
 
-### 属性
+### Attributes
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称           | 类型    | 可读   | 可写  | 说明   |
+| Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | 是    | 否    | 相册类型。    |
-| albumSubtype | [AlbumSubtype]( #albumsubtype) | 是    | 否   | 相册子类型。    |
-| albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
-| albumUri | string | 是    | 否    | 相册Uri。   |
-| count | number | 是    | 否    |  相册中文件数量。 |
-| coverUri | string | 是    | 否    | 封面文件Uri。 |
+| albumType | [AlbumType]( #albumtype) | Yes   | No   | Type of the album.   |
+| albumSubtype | [AlbumSubtype]( #albumsubtype) | Yes   | No  | Subtype of the album.   |
+| albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
+| albumUri | string | Yes   | No   | URI of the album.  |
+| count | number | Yes   | No   |  Number of files in the album.|
+| coverUri | string | Yes   | No   | URI of the cover file of the album.|
 
 ### getAssets
 
 getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
 
-获取相册中的文件。该方法使用callback形式来返回文件。
+Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | 是   | 检索选项。 |
-| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | 是   | callback返回图片和视频数据结果集。 |
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the albums.|
+| callback | AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Yes  | Callback invoked to return the image and video assets obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOptions.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3306,33 +3306,33 @@ async function example() {
 
 getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
 
-获取相册中的文件。该方法使用Promise来返回文件。
+Obtains image and video assets. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](#fetchoptions) | 是   | 检索选项。 |
+| options | [FetchOptions](#fetchoptions) | Yes  | Options for fetching the album files.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the image and video assets obtained.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if type options is not FetchOptions.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3364,27 +3364,27 @@ async function example() {
 
 commitModify(callback: AsyncCallback&lt;void&gt;): void;
 
-更新相册属性修改到数据库中。该方法使用callback形式来返回结果。
+Commits the modification on the album attributes to the database. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if value to modify is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3413,27 +3413,27 @@ async function example() {
 
 commitModify(): Promise&lt;void&gt;;
 
-更新相册属性修改到数据库中。该方法使用Promise来返回结果。
+Commits the modification on the album attributes to the database. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明           |
+| Type                 | Description          |
 | ------------------- | ------------ |
-| Promise&lt;void&gt; | Promise对象，返回void。 |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if value to modify is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3461,28 +3461,28 @@ async function example() {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image and video assets to add.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3516,33 +3516,33 @@ async function example() {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-往相册中添加图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image and video assets to add.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3575,28 +3575,28 @@ async function example() {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用callback形式来返回结果。
+Removes image and video assets from an album. The album and file resources must exist. This API uses an asynchronous callback to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 相册中待移除的图片或视频数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image and video assets to remove.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3630,33 +3630,33 @@ async function example() {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-从相册中移除图片或者视频，需要先预置相册和文件资源。该方法使用Promise来返回结果。
+Removes image and video assets from an album. The album and file resources must exist. This API uses a promise to return the result.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 相册中待移除的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image and video assets to remove.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3689,31 +3689,31 @@ async function example() {
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 回收站中待恢复图片或者视频数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image or video assets to recover.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   |  if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3747,36 +3747,36 @@ async function example() {
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-从回收站中恢复图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 回收站中待恢复图片或者视频数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image or video assets to recover.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   |  if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3809,33 +3809,33 @@ async function example() {
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
-从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用callback形式来返回结果。
+Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
-**注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
+**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 回收站中待彻底删除图片或者视频数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image or video assets to delete.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3869,38 +3869,38 @@ async function example() {
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
 
-从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
-**注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
+**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 回收站中待彻底删除图片或者视频数组。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Array of the image or video assets to delete.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   | if PhotoAssets is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3933,33 +3933,33 @@ async function example() {
 
 setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
-设置相册封面，该方法使用callback形式来返回结果。
+Sets the album cover. This API uses an asynchronous callback to return the result.
 
-**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 待设置为相册封面文件的uri。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -3993,38 +3993,38 @@ async function example() {
 
 setCoverUri(uri: string): Promise&lt;void&gt;;
 
-设置相册封面，该方法使用Promise来返回结果。
+Sets the album cover. This API uses a promise to return the result.
 
-**注意**：此接口只可修改用户相册封面，不允许修改系统相册封面。
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**参数：**
+**Parameters**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| uri | string | 是   | 待设置为相册封面文件的uri。 |
+| uri | string | Yes  | URI of the file to be set as the album cover.|
 
-**返回值：**
+**Return value**
 
-| 类型                                    | 说明              |
+| Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;void&gt; | Promise对象，返回void。 |
+|Promise&lt;void&gt; | Promise that returns no value.|
 
-**错误码：**
+**Error codes**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
-| 错误码ID | 错误信息 |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
 | 401   | if parameter is invalid.         |
 
-**示例：**
+**Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -4056,184 +4056,184 @@ async function example() {
 
 ## MemberType
 
-成员类型。
+Enumerates the member types.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明  |
+| Name |  Type|  Readable |  Writable |  Description |
 | ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | 是 | 是 | number类型。 |
-| string |  string | 是 | 是 | string类型。|
-| boolean |  boolean | 是 | 是 | boolean类型。 |
+| number |  number | Yes| Yes| The member is a number.|
+| string |  string | Yes| Yes| The member is a string.|
+| boolean |  boolean | Yes| Yes| The member is a Boolean value.|
 
 ## PhotoType
 
-枚举，媒体文件类型。
+Enumerates media file types.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
+| Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| IMAGE |  1 |  图片。 |
-| VIDEO |  2 |  视频。 |
+| IMAGE |  1 |  Image.|
+| VIDEO |  2 |  Video.|
 
 ## PhotoSubtype
 
-枚举，不同[PhotoAsset](#photoasset)的类型。
+Enumerates the [PhotoAsset](#photoasset) types.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
+| Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| DEFAULT |  0 |  默认照片类型。 |
-| SCREENSHOT |  1 |  截屏录屏文件类型。 |
+| DEFAULT |  0 |  Default (photo) type.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file.|
 
 ## PositionType
 
-枚举，文件位置，表示文件在本地或云端。
+Enumerates the file locations.
 
-**系统接口**：此接口为系统接口。
+**System API**: This is a system API.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
+| Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| LOCAL |  1 << 0 |  文件只存在于本端设备。 |
-| CLOUD |  1 << 1 |  文件只存在于云端。 |
+| LOCAL |  1 << 0 |  Stored only on a local device.|
+| CLOUD |  1 << 1 |  Stored only on the cloud.|
 
 ## AlbumType
 
-枚举，相册类型，表示是用户相册还是系统预置相册。
+Enumerates the album types.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
+| Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| USER |  0 |  用户相册。 |
-| SYSTEM |  1024 |  系统预置相册。 |
+| USER |  0 |  User album.|
+| SYSTEM |  1024 |  System album.|
 
 ## AlbumSubtype
 
-枚举，相册子类型，表示具体的相册类型。
+Enumerate the album subtypes.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
+| Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| USER_GENERIC |  1 |  用户相册。 |
-| FAVORITE |  1025 |  收藏夹。 |
-| VIDEO |  1026 |  视频相册。 |
-| HIDDEN |  1027 |  隐藏相册。**系统接口**：此接口为系统接口。 |
-| TRASH |  1028 |  回收站。**系统接口**：此接口为系统接口。 |
-| SCREENSHOT |  1029 |  截屏和录屏相册。**系统接口**：此接口为系统接口。 |
-| CAMERA |  1030 |  相机拍摄的照片和视频相册。**系统接口**：此接口为系统接口。 |
-| ANY |  2147483647 |  任意相册。 |
+| USER_GENERIC |  1 |  User album.|
+| FAVORITE |  1025 |  Favorites.|
+| VIDEO |  1026 |  Video album.|
+| HIDDEN |  1027 |  Hidden album. **System API**: This is a system API.|
+| TRASH |  1028 |  Trash. **System API**: This is a system API.|
+| SCREENSHOT |  1029 |  Album for screenshots and screen recording files. **System API**: This is a system API.|
+| CAMERA |  1030 |  Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| ANY |  2147483647 |  Any album.|
 
 ## PhotoKeys
 
-枚举，图片和视频文件关键信息。
+Defines the key information about an image or video file.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称          | 值              | 说明                                                       |
+| Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 文件uri。                                                   |
-| PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
-| DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
-| SIZE          | 'size'                | 文件大小。                                                   |
-| DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间距1970年1月1日的秒数值）。             |
-| DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间距1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
-| DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
-| WIDTH         | 'width'               | 图片宽度（单位：像素）。                                    |
-| HEIGHT        | 'height'              | 图片高度（单位：像素）。                                      |
-| DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间距1970年1月1日的秒数值）。                |
-| ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
-| FAVORITE      | 'is_favorite'            | 收藏。                                                    |
-| TITLE         | 'title'               | 文件标题。                                                   |
-| POSITION  | 'position'            | 文件位置类型。**系统接口**：此接口为系统接口。                               |
-| DATE_TRASHED  | 'date_trashed'  | 删除日期（删除文件时间距1970年1月1日的秒数值）。**系统接口**：此接口为系统接口。                 |
-| HIDDEN  | 'hidden'            | 文件的隐藏状态。**系统接口**：此接口为系统接口。                               |
-| CAMERA_SHOT_KEY  | 'camera_shot_key'  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。            |
-| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | 用户注释信息。**系统接口**：此接口为系统接口。           |
+| URI           | 'uri'                 | URI of the file.                                                  |
+| PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
+| DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
+| SIZE          | 'size'                | File size.                                                  |
+| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DURATION      | 'duration'            | Duration, in ms.                                   |
+| WIDTH         | 'width'               | Image width, in pixels.                                   |
+| HEIGHT        | 'height'              | Image height, in pixels.                                     |
+| DATE_TAKEN    | 'date_taken'          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.               |
+| ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
+| FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
+| TITLE         | 'title'               | Title in the file.                                                  |
+| POSITION  | 'position'            | File location type. **System API**: This is a system API.                              |
+| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970. **System API**: This is a system API.                |
+| HIDDEN  | 'hidden'            | Whether the file is hidden. **System API**: This is a system API.                              |
+| CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. **System API**: This is a system API.          |
 
 ## AlbumKeys
 
-枚举，相册关键信息。
+Enumerates the key album attributes.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称          | 值              | 说明                                                       |
+| Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 相册uri。                                                   |
-| ALBUM_NAME    | 'album_name'          | 相册名字。                                                   |
+| URI           | 'uri'                 | URI of the album.                                                  |
+| ALBUM_NAME    | 'album_name'          | Name of the album.                                                  |
 
 ## PhotoCreateOptions
 
-图片或视频的创建选项。
+Defines the options for creating an image or video asset.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                | 必填 | 说明                                              |
+| Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。**系统接口**：此接口为系统接口。  |
-| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。**系统接口**：此接口为系统接口。   |
+| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. **System API**: This is a system API. |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br/>**System API**: This is a system API. |
 
 ## CreateOptions
 
-图片或视频的创建选项。
+Defines the options for creating an image or video asset.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                | 必填 | 说明                                              |
+| Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title           | string | 否  | 图片或者视频的标题。  |
+| title           | string | No | Title of the image or video. |
 
 ## FetchOptions
 
-检索条件。
+Defines the options for fetching media files.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Column names used for retrieval. If this parameter is left empty, the media files are fetched by **uri**, **name**, and **photoType** by default. The specific field names are subject to the definition of the search object. Example:<br>fetchColumns: ['uri', 'title']|
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## ChangeData
 
-监听器回调函数的值。
+Defines the return value of the listener callback.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| Name   | Type                       | Readable| Writable| Description                                                        |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype)的所有uri，可以是PhotoAsset或Album。 |
-| extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。                                    |
+| type    | [NotifyType](#notifytype) | Yes  | No  | Notification type.                                      |
+| uris    | Array&lt;string&gt;         | Yes  | No  | All URIs with the same [NotifyType](#notifytype), which can be **PhotoAsset** or **Album**.|
+| extraUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album.                                   |
 
 ## NotifyType
 
-枚举，通知事件的类型。
+Enumerates the notification event types.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                      | 值   | 说明                             |
+| Name                     | Value  | Description                            |
 | ------------------------- | ---- | -------------------------------- |
-| NOTIFY_ADD                | 0    | 添加文件集或相册通知的类型。     |
-| NOTIFY_UPDATE             | 1    | 文件集或相册的更新通知类型。     |
-| NOTIFY_REMOVE             | 2    | 删除文件集或相册的通知类型。     |
-| NOTIFY_ALBUM_ADD_ASSET    | 3    | 在相册中添加的文件集的通知类型。 |
-| NOTIFY_ALBUM_REMOVE_ASSET | 4    | 在相册中删除的文件集的通知类型。 |
+| NOTIFY_ADD                | 0    | A file asset or album is added.    |
+| NOTIFY_UPDATE             | 1    | A file asset or album is updated.    |
+| NOTIFY_REMOVE             | 2    | A file asset or album is removed.    |
+| NOTIFY_ALBUM_ADD_ASSET    | 3    | A file asset is added to the album.|
+| NOTIFY_ALBUM_REMOVE_ASSET | 4    | A file asset is removed from the album.|
 
 ## DefaultChangeUri
 
-枚举，DefaultChangeUri子类型。
+Enumerates the **DefaultChangeUri** subtypes.
 
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称              | 值                      | 说明                                                         |
+| Name             | Value                     | Description                                                        |
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
-| DEFAULT_PHOTO_URI | 'file://media/Photo'      | 默认PhotoAsset的Uri，与forSubUri{true}一起使用，将接收所有PhotoAsset的更改通知。 |
-| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | 默认相册的Uri，与forSubUri{true}一起使用，将接收所有相册的更改通知。 |
+| DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
+| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
