@@ -1049,15 +1049,15 @@ getSupportedOutputCapability(device:CameraDevice, mode: CameraMode): CameraOutpu
 **示例：**
 
 ```ts
-function getSupportedOutputCapability(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CameraOutputCapability {
+function getSupportedOutputCapability(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CameraOutputCapability | undefined {
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras == undefined || cameras.length <= 0) {
-    return;
+    return undefined;
   }
   let cameraDevice: camera.CameraDevice = cameras[0];
   let cameraModes: Array<camera.CameraMode> = modeManager.getSupportedModes(cameraDevice);
   if (cameraModes === undefined || cameraModes.length <= 0) {
-    return;
+    return undefined;
   }
   let mode: camera.CameraMode = cameraModes[0];
   let cameraOutputCapability: camera.CameraOutputCapability = modeManager.getSupportedOutputCapability(cameraDevice, mode);
@@ -3945,7 +3945,7 @@ async function preview(context: common.Context, cameraInfo: camera.CameraDevice,
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(previewSurfaceId);
+  previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 
