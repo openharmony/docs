@@ -550,7 +550,7 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath): Promise\<void>;
 
@@ -599,7 +599,7 @@ try {
   console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
-## AccessibilityExtensionContext.injectGesture
+## AccessibilityExtensionContext.injectGesture(deprecated)
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
@@ -645,6 +645,46 @@ try {
   console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
 }
 ```
+## AccessibilityExtensionContext.injectGestureSync
+
+injectGestureSync(gesturePath: GesturePath): void
+
+注入手势。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                 |
+| ----------- | ------------------------------------------------------------ | ---- | -------------------- |
+| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | 是   | 表示手势的路径信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息                                            |
+| -------- | --------------------------------------------------- |
+| 9300003  | Do not have accessibility right for this operation. |
+
+**示例：**
+
+```ts
+import GesturePath from '@ohos.accessibility.GesturePath';
+import GesturePoint from '@ohos.accessibility.GesturePoint';
+
+let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+try {
+  for (let i = 0; i < 10; i++) {
+    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+    gesturePath.points.push(gesturePoint);
+  }
+  axContext.injectGestureSync(gesturePath);
+} catch (exception) {
+  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+}
+```
+
 ## AccessibilityElement<sup>9+</sup>
 
 无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
