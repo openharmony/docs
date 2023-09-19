@@ -40,7 +40,7 @@ For details about how to use attributes, see [Setting Attributes](../../ui/arkts
 | Name                            | Type                                               | Description                                                        |
 | -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
 | alt                              | string \| [Resource](ts-types.md#resource)         | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | Image scale mode.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | interpolation                    | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images or **PixelMap** objects. |
 | renderMode                       | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
@@ -66,7 +66,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Description                                                |
 | ------ | ---------------------------------------------------- |
 | None   | No image interpolation.                                    |
-| High   | High quality interpolation. This mode produces the highest possible quality scaled images, but may require more image rendering time.|
+| High   | High quality interpolation. This mode produces scaled images of the highest possible quality, but may require more image rendering time.|
 | Medium | Medium quality interpolation.                                        |
 | Low    | Low quality interpolation.                                        |
 

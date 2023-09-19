@@ -513,30 +513,32 @@ When the size of the container in the flex layout is not large enough, the follo
 - **flexBasis**: base size of the child component in the container along the main axis. It sets the space occupied by the child component. If this attribute is not set, the space occupied by the child component is the value of width/height.
 
 
-  ```ts
-  Flex() {
-    Text('flexBasis("auto")')
-      .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is loose.
-      .height(100)
-      .backgroundColor(0xF5DEB3)
-    Text('flexBasis("auto")'+' width("40%")')
-      .width('40%')
-      .flexBasis('auto') // When width is set and flexBasis is set to auto, the value of width is used.
-      .height(100)
-      .backgroundColor(0xD2B48C)
-
-    Text('flexBasis(100)') // When width is not set and flexBasis is set to 100, the width is 100 vp.
-      .flexBasis(100)  
-      .height(100)
-      .backgroundColor(0xF5DEB3)
-
-    Text('flexBasis(100)')
-      .flexBasis(100)
-      .width(200) // When width is set to 200 and flexBasis 100, the width is 100 vp, which means that the settings of flexBasis take precedence.
-      .height(100)
-      .backgroundColor(0xD2B48C)
-  }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
-  ```
+    ```ts
+    Flex() {
+      Text('flexBasis("auto")')
+        .flexBasis('auto') // When width is not set and flexBasis is set to auto, the content is loose.
+        .height(100)
+        .backgroundColor(0xF5DEB3)
+      Text('flexBasis("auto")' + ' width("40%")')
+        .width('40%')
+        .flexBasis('auto') // When width is set and flexBasis is set to auto, the value of width is used.
+        .height(100)
+        .backgroundColor(0xD2B48C)
+    
+      Text('flexBasis(100)') // When width is not set and flexBasis is set to 100, the width is 100 vp.
+        .fontSize(15)
+        .flexBasis(100)
+        .height(100)
+        .backgroundColor(0xF5DEB3)
+    
+      Text('flexBasis(100)')
+        .fontSize(15)
+        .flexBasis(100)
+        .width(200) // When both width and flexBasis are set, flexBasis take precedence, and the width is 100 vp.
+        .height(100)
+        .backgroundColor(0xD2B48C)
+    }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
+    ```
 
   ![en-us_image_0000001562940505](figures/en-us_image_0000001562940505.png)
 
@@ -546,7 +548,7 @@ When the size of the container in the flex layout is not large enough, the follo
   ```ts
   Flex() {
     Text('flexGrow(1)')
-      .flexGrow(2) 
+      .flexGrow(1) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
@@ -573,26 +575,27 @@ When the size of the container in the flex layout is not large enough, the follo
 - **flexShrink**: shrink factor of the child component when the size of all child components is larger than the flex container.
 
 
-  ```ts
-  Flex({ direction: FlexDirection.Row }) {
-    Text('flexShrink(3)')
-      .flexShrink(3)
-      .width(200)
-      .height(100)
-      .backgroundColor(0xF5DEB3)
+    ```ts
+    Flex({ direction: FlexDirection.Row }) {
+      Text('flexShrink(3)')
+        .fontSize(15)
+        .flexShrink(3)
+        .width(200)
+        .height(100)
+        .backgroundColor(0xF5DEB3)
     
-    Text('no flexShrink')
-      .width(200)
-      .height(100)
-      .backgroundColor(0xD2B48C)
-
-    Text('flexShrink(2)')
-      .flexShrink(2)
-      .width(200)
-      .height(100)
-      .backgroundColor(0xF5DEB3)  
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
-  ```
+      Text('no flexShrink')
+        .width(200)
+        .height(100)
+        .backgroundColor(0xD2B48C)
+    
+      Text('flexShrink(2)')
+        .flexShrink(2)
+        .width(200)
+        .height(100)
+        .backgroundColor(0xF5DEB3)
+    }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
+    ```
 
   ![en-us_image_0000001562820813](figures/en-us_image_0000001562820813.png)
 

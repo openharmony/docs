@@ -46,7 +46,7 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 
 The main axis direction of a list refers to the direction in which the child component columns are laid out and in which the list scrolls. An axis perpendicular to the main axis is referred to as a cross axis, and the direction of the cross axis is perpendicular to a direction of the main axis.
 
-As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the horizontal direction.
+As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the vertical direction.
 
   **Figure 4** Main axis and cross axis of the list 
 
@@ -299,7 +299,7 @@ List() {
 })
 ```
 
-This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 8.
+This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 9.
 
 >**NOTE**
 >
@@ -615,7 +615,7 @@ struct MessageList {
 
 ## Adding a Mark to a List Item
 
-A mark is an intuitive, unintrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
+A mark is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
 
   **Figure 16** Adding a mark to a list item 
 
@@ -652,8 +652,6 @@ The following describes the implementation of the pull-and-refresh feature:
 2. Listen for the finger movement event, and record and calculate the difference between the value of the current position and the initial value. If the difference is greater than 0, the finger moves downward. Set the maximum value for the movement.
 
 3. Listen for the finger lift event. If the movement reaches the maximum value, trigger data loading and display the refresh view. After the loading is complete, hide the view.
-
- You can also use the third-party component [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh) to implement this feature.
 
 
 ## Editing a List
