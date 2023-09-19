@@ -2808,7 +2808,7 @@
 
 ## ohos.permission.AGENT_REQUIRE_FORM
 
-允许代理请求卡片。
+允许应用代理请求卡片。
 
 **权限级别**：system_basic
 
