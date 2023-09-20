@@ -488,9 +488,11 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback<void>): void;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
 
 该接口仅供DLP（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -547,9 +549,11 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise<void>;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
 
 该接口仅供DLP管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
