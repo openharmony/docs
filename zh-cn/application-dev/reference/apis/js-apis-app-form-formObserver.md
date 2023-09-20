@@ -500,6 +500,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
 **系统能力**：SystemCapability.Ability.Form
@@ -558,6 +560,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
 **系统能力**：SystemCapability.Ability.Form
@@ -614,6 +618,8 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 
 根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
 **系统能力**：SystemCapability.Ability.Form
@@ -666,6 +672,8 @@ try {
 getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
 
