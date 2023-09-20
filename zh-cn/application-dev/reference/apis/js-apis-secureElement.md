@@ -66,7 +66,7 @@ try {
         if (state == secureElement.ServiceState.DISCONNECTED) {
             console.log("Service state is Disconnected");
         } else {
-            console.log.("Service state is Connected");
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
