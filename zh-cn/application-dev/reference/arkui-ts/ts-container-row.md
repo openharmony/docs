@@ -27,11 +27,16 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 ## 属性
 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。<br/>FlexAlign.Start <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
