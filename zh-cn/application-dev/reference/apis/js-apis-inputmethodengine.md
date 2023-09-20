@@ -1819,6 +1819,47 @@ try {
 }
 ```
 
+### getForwardSync<sup>10+</sup>
+
+getForwardSync(length:number): string
+
+获取光标前固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回光标前固定长度的文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | input method controller error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  let text: string = inputClient.getForwardSync(length);
+  console.log(`Succeeded in getting forward, text: ${text}`);
+} catch (err) {
+  console.error(`Failed to getForwardSync: ${JSON.stringify(err)}`);
+}
+```
+
 ### getBackward<sup>9+</sup>
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
@@ -1901,6 +1942,47 @@ try {
   });
 } catch (err) {
   console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+}
+```
+
+### getBackwardSync<sup>10+</sup>
+
+getBackwardSync(length:number): string
+
+获取光标后固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| string | 返回光标后固定长度的文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | input method controller error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  let text: string = inputClient.getBackwardSync(length);
+  console.log(`Succeeded in getting backward, text: ${text}`);
+} catch (err) {
+  console.error(`Failed to getBackwardSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1997,6 +2079,41 @@ try {
 }
 ```
 
+### deleteForwardSync<sup>10+</sup>
+
+deleteForwardSync(length:number): void
+
+删除光标前固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  inputClient.deleteForwardSync(length);
+  console.log('Succeeded in deleting forward.');
+} catch (err) {
+  console.error('deleteForwardSync err: ' + JSON.stringify(err));
+}
+```
+
 ### deleteBackward<sup>9+</sup>
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -2086,6 +2203,41 @@ inputClient.deleteBackward(length).then((result: boolean) => {
 });
 ```
 
+### deleteBackwardSync<sup>10+</sup>
+
+deleteBackwardSync(length:number): void
+
+删除光标后固定长度的文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+let length = 1;
+try {
+  inputClient.deleteBackwardSync(length);
+  console.log('Succeeded in deleting backward.');
+} catch (err) {
+  console.error('deleteBackwardSync err: ' + JSON.stringify(err));
+}
+```
+
 ### insertText<sup>9+</sup>
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
@@ -2173,6 +2325,40 @@ try {
 }
 ```
 
+### insertTextSync<sup>10+</sup>
+
+insertTextSync(text: string): void
+
+插入文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| text   | string | 是   | 文本内容。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800002 | input method engine error. |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.insertTextSync('test');
+  console.log('Succeeded in inserting text.');
+} catch (err) {
+  console.error(`Failed to insertTextSync: ${JSON.stringify(err)}`);
+}
+```
+
 ### getEditorAttribute<sup>9+</sup>
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
@@ -2239,6 +2425,39 @@ inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Editor
 }).catch((err: BusinessError) => {
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
+```
+
+### getEditorAttributeSync<sup>10+</sup>
+
+getEditorAttributeSync(): EditorAttribute
+
+获取编辑框属性值。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                | 说明           |
+| ----------------------------------- | -------------- |
+| [EditorAttribute](#editorattribute) | 编辑框属性对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
+  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+} catch (err) {
+  console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
+}
 ```
 
 ### moveCursor<sup>9+</sup>
@@ -2319,6 +2538,39 @@ try {
   });
 } catch (err) {
   console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+}
+```
+
+### moveCursorSync<sup>10+</sup>
+
+moveCursorSync(direction: number): void
+
+移动光标。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| direction | number | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.moveCursorSync(inputMethodEngine.Direction.CURSOR_UP);
+  console.log('Succeeded in moving cursor.');
+} catch (err) {
+  console.error(`Failed to moveCursorSync: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2407,6 +2659,41 @@ try {
 }
 ```
 
+### selectByRangeSync<sup>10+</sup>
+
+selectByRangeSync(range: Range): void
+
+根据索引范围选中文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明             |
+| ------ | ----------------- | ---- | ---------------- |
+| range  | [Range](#range10) | 是   | 选中文本的范围。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.selectByRangeSync(range);
+  console.log('Succeeded in selecting by range.');
+} catch (err) {
+  console.error(`Failed to selectByRangeSync: ${JSON.stringify(err)}`);
+}
+```
+
 ### selectByMovement<sup>10+</sup>
 
 selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
@@ -2492,6 +2779,41 @@ try {
 }
 ```
 
+### selectByMovementSync<sup>10+</sup>
+
+selectByMovementSync(movement: Movement): void
+
+根据光标移动方向选中文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                   |
+| -------- | ----------------------- | ---- | ---------------------- |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                   |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**示例：**
+
+```ts
+try {
+  let movement: inputMethodEngine.Movement = { direction: 1 };  
+  inputClient.selectByMovementSync(movement);
+  console.log('Succeeded in selecting by movement.');
+} catch (err) {
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+}
+```
+
 ### getTextIndexAtCursor<sup>10+</sup>
 
 getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
@@ -2558,6 +2880,40 @@ inputClient.getTextIndexAtCursor().then((index: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
 });
+```
+
+### getTextIndexAtCursorSync<sup>10+</sup>
+
+getTextIndexAtCursorSync(): number
+
+获取光标所在处的文本索引。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 返回光标所在处的文本索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```ts
+try{
+  let index: number = inputClient.getTextIndexAtCursorSync();
+  console.log(`Succeeded in getTextIndexAtCursorSync, index: ${index}`);
+} catch (err) {
+  console.error(`Failed to getTextIndexAtCursorSync: ${JSON.stringify(err)}`);
+}
 ```
 
 ### sendExtendAction<sup>10+</sup>
