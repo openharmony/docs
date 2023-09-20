@@ -27,6 +27,8 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 ## 属性
 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
@@ -36,6 +38,9 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 >
 >  Row布局时若子组件不设置flexShrink则默认不会压缩子组件，即所有子组件主轴大小累加可超过容器主轴。
 
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
