@@ -375,9 +375,8 @@ struct MyComponent {
 配置成功后需要在需要跳转的页面中引入命名路由的页面：
 
 ```ts
-// entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import * as ns from 'library/src/main/ets/Index.ets' // 引入共享包library中的命名路由页面
+const moudel = import('./Index')  // 引入共享包中的命名路由页面
 import { BusinessError } from '@ohos.base';
 @Entry
 @Component
