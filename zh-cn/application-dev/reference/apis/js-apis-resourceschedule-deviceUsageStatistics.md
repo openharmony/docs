@@ -116,6 +116,47 @@ usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
+## usageStatistics.isIdleStateSync<sup>10+<sup>
+
+isIdleStateSync(bundleName: string): boolean
+
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+
+**返回值**：
+
+| 类型                     | 说明                                       |
+| ---------------------- | ---------------------------------------- |
+| boolean | 如果指定的bundleName有效，返回true则表示空闲状态，false则非空闲。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                     |
+| ---------- | ----------------------------     |
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
+
+**示例**：
+```ts
+let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+```
+
 ## usageStatistics.queryAppGroup
 
 queryAppGroup(): Promise&lt;number&gt;
@@ -196,6 +237,86 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
     console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
   }
 });
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(): number;
+
+查询当前应用的优先级分组。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| number | 返回当前应用优先级分组结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync();
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(bundleName: string): number
+
+查询指定bundleName应用的优先级分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| number | 返回指定bundleName应用优先级分组结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
 ```
 
 ## usageStatistics.queryBundleStatsInfos
