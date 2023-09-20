@@ -182,6 +182,7 @@
     - [共享元素转场](ts-transition-animation-shared-elements.md)
     - [组件内隐式共享元素转场](ts-transition-animation-geometrytransition.md)
   - [路径动画](ts-motion-path-animation.md)
+  - [粒子动画](ts-particle-animation.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗](ts-methods-alert-dialog-box.md)
