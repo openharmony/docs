@@ -4251,7 +4251,7 @@ aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
 
 prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
-启动播放某个媒体资源。结果通过callback异步回调方式返回。
+准备播放媒体资源，即进行播放资源的加载和缓冲。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4308,7 +4308,7 @@ aVCastController.prepare(playItem, (err: BusinessError) => {
 
 prepare(item: AVQueueItem): Promise\<void>
 
-启动播放某个媒体资源。结果通过Promise异步回调方式返回。
+准备播放媒体资源，即进行播放资源的加载和缓冲。结果通过Promise异步回调方式返回。
 
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
