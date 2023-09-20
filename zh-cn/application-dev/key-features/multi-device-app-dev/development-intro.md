@@ -24,7 +24,7 @@
 
 对于厂商自定义设备，需要开发者自行从厂商处获取该设备的要求能力集并导入到IDE中。
 
-在工程目录右键后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
+在IDE中点击File->New->Import...后选择“Import Product Compatibility ID”即可选择及导入设备要求能力集，导入后的设备要求能力集会被写入工程的syscap.json文件中。
 
 ![20230920-103626](figures/20230920-103626.gif)
 ### 多设备应用开发
