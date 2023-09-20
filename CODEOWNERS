@@ -1,5 +1,5 @@
 /*
-
+ 
 - Copyright (c) 2021-2022 Huawei Device Co., Ltd. 
 - Licensed under the Apache License, Version 2.0 (the "License");
 - you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ zh-cn/application-dev/reference/apis/js-apis-inner-application-windowExtensionCo
 zh-cn/application-dev/reference/apis/js-apis-appmanager.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
-zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208
@@ -329,7 +329,7 @@ zh-cn/application-dev/reference/apis/js-apis-processrunninginformation.md @littl
 zh-cn/application-dev/reference/apis/js-apis-prompt.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-queue.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-radio.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @jayleehw @RayShih @li-weifeng2 @currydavids
+zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-request.md @hanruofei @murphy1984 @ningningW @hu-zhiqiong
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @niulihua @tomatodevboy
@@ -408,8 +408,8 @@ zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqia
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-workScheduler.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @chenmingJay @ningningW @nan-xiansen @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-WorkSchedulerExtensionAbility.md @chenmingJay @ningningW @very0228  @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @flyingwolf@blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
@@ -476,12 +476,12 @@ zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zhang-hai-feng @ze
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @RayShih @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-promptAction.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceStandby.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @chenmingJay @ningningW @nan-xiansen @iceice1001
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceStandby.md @mayunteng_1 @liuhaonan2 @ningningW @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @chenmingJay @ningningW @nan-xiansen @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceStandby.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md @chenmingJay @ningningW @very0228 @iceice1001
+zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @chenmingJay @ningningW @very0228 @iceice1001
+
 zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-capability.md taiyipei  taiyipei BlackStone
 zh-cn/application-dev/reference/apis/js-apis-system-parameterV9.md @mupceet @zengyawen @handyohos @nan-xiansen
