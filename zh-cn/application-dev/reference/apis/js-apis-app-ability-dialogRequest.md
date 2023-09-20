@@ -200,6 +200,8 @@ getRequestCallback(want: Want): RequestCallback
 
 表示模态弹框的属性。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型   | 必填 | 说明                        |
@@ -212,6 +214,8 @@ getRequestCallback(want: Want): RequestCallback
 ## RequestInfo
 
 表示发起方请求信息，作为窗口绑定模态弹框的入参。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -326,6 +330,8 @@ getRequestCallback(want: Want): RequestCallback
 
 ## 属性
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -337,11 +343,15 @@ getRequestCallback(want: Want): RequestCallback
 
 用于设置模态弹框请求结果的callback接口。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 ### RequestCallback.setRequestResult
 
 setRequestResult(result: RequestResult): void;
 
 设置请求结果
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
