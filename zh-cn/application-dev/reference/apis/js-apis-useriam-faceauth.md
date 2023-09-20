@@ -26,6 +26,8 @@ constructor()
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
 
+**系统接口：** 此接口为系统接口。
+
 **返回值：**
 
 | 类型                   | 说明                 |
@@ -47,6 +49,8 @@ setSurfaceId(surfaceId: string): void;
 该接口仅用于在录入人脸时，设置人脸预览界面 [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID，需要配合[人脸录入接口](./js-apis-osAccount.md#addcredential8)来使用。
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 

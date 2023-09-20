@@ -180,7 +180,6 @@ Grid() {
 @Component
 struct OfficeService {
   @State services: Array<string> = ['会议', '投票', '签到', '打印']
-  ...
 
   build() {
     Column() {
@@ -189,13 +188,11 @@ struct OfficeService {
           GridItem() {
             Text(service)
           }
-        }, ((service:string):string => service))
+        }, (service:string):string => service)
       }
       .rowsTemplate(('1fr 1fr') as string)
       .columnsTemplate(('1fr 1fr') as string)
-      ...
     }
-    ...
   }
 }
 ```
@@ -246,7 +243,7 @@ struct Shopping {
           GridItem() {
           }
           .width('25%')
-        }, ((service:string):string => service))
+        }, (service:string):string => service)
       }
       .rowsTemplate('1fr 1fr') // 只设置rowsTemplate属性，当内容超出Grid区域时，可水平滚动。
       .rowsGap(15)

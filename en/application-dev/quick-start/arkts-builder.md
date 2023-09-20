@@ -21,14 +21,14 @@ Syntax:
 
 
 ```ts
-@Builder MyBuilderFunction({ ... })
+@Builder MyBuilderFunction() { ... }
 ```
 
 Usage:
 
 
 ```ts
-this.MyBuilderFunction({ ... })
+this.MyBuilderFunction() { ... }
 ```
 
 - Defining one or more custom builder (\@Builder decorated) functions inside a custom component is allowed. Such a custom builder function can be considered as a private, special type of member functions of that component.
@@ -44,7 +44,7 @@ Syntax:
 
 
 ```ts
-@Builder function MyGlobalBuilderFunction({ ... })
+@Builder function MyGlobalBuilderFunction() { ... }
 ```
 
 Usage:
@@ -66,7 +66,7 @@ There are two types of parameter passing for custom builder functions: [by-value
 
 - The parameter type must be the same as the declared parameter type. The **undefined** or **null** constants as well as expressions evaluating to these values are not allowed.
 
-- All parameters are immutable inside the@Builder decorated function.
+- All parameters are immutable inside the @Builder decorated function.
 
 - The \@Builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build** function.
 
@@ -82,7 +82,7 @@ class ABuilderParam {
   paramB1: string = ''
 }
 
-ABuilder($$ : ABuilderParam);
+@Builder function ABuilder($$ : ABuilderParam) {...}
 ```
 
 

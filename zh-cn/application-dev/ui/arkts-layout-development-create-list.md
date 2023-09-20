@@ -258,7 +258,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, ((item:Contact):string => item.key))
+      }, (item:Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -355,7 +355,6 @@ List() {
 ```ts
 @Component
 struct ContactsList {
-  ...
   
   @Builder itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
@@ -370,15 +369,11 @@ struct ContactsList {
     List() {
       ListItemGroup({ header: this.itemHead('A') }) {
         // 循环渲染分组A的ListItem
-        ...
       }
-      ...
 
       ListItemGroup({ header: this.itemHead('B') }) {
         // 循环渲染分组B的ListItem
-        ...
       }
-      ...
     }
   }
 }
@@ -436,7 +431,7 @@ List() {
         ForEach(item.contacts, () => {
           ListItem() {
           }
-        }, ((item: cgtmpf): string => item.key))
+        }, (item: cgtmpf) => item.key.toString())
       }
     }
   })
@@ -460,11 +455,44 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
+import util from '@ohos.util';
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class Contact {
+  key: string = util.generateRandomUUID(true);
+  name: string;
+  icon: Resource;
+
+  constructor(name: string, icon: Resource) {
+    this.name = name;
+    this.icon = icon;
+  }
+}
+export let contactsGroups: object[] = [
+  {
+    title: 'A',
+    contacts: [
+      new Contact('艾佳', $r('app.media.iconA')),
+      new Contact('安安', $r('app.media.iconB')),
+      new Contact('Angela', $r('app.media.iconC')),
+    ],
+  } as cgtmpf,
+  {
+    title: 'B',
+    contacts: [
+      new Contact('白叶', $r('app.media.iconD')),
+      new Contact('伯明', $r('app.media.iconE')),
+    ],
+  } as cgtmpf,
+]
+@Entry
 @Component
 struct ContactsList {
   // 定义分组联系人数据集合contactsGroups数组
-  ...
- 
+
   @Builder itemHead(text: string) {
     // 列表分组的头部组件，对应联系人分组A、B等位置的组件
     Text(text)
@@ -484,7 +512,7 @@ struct ContactsList {
             ForEach(item.contacts, () => {
               ListItem() {
               }
-            }, ((item:cgtmpf):string => item.key))
+            }, (item:cgtmpf) => item.key.toString())
           }
         }
       })
@@ -552,31 +580,25 @@ Stack(sttmo) {
 
 
 ```ts
-...
 const alphabets = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
   'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 @Entry
 @Component
 struct ContactsList {
   @State selectedIndex: number = 0;
   private listScroller: Scroller = new Scroller();
-  ...
 
   build() {
     Stack({ alignContent: Alignment.End }) {
-      List({ scroller: this.listScroller }) {
-        ...
-      }
+      List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
+          this.selectedIndex = firstIndex
         // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
       })
-      ...
 
       // 字母表索引组件
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
-      ...
     }
   }
 }
@@ -629,11 +651,9 @@ struct MessageList {
     .onClick(() => {
       this.messages.splice(index, 1);
     })
-    ...
   }
 
   build() {
-    ...
       List() {
         ForEach(this.messages, (item:MessageList, index:number|undefined) => {
           if(index){
@@ -641,9 +661,8 @@ struct MessageList {
             }
             .swipeAction(swipertmp.get(index)) // 设置侧滑属性.
           }
-        }, ((item:MessageList):string => item.id.toString()))
+        }, (item:MessageList) => item.id.toString())
       }
-    ...
   }
 }
 ```
@@ -727,13 +746,13 @@ Badge({
 
    ```ts
    @State toDoData: ToDo[] = [];
-  export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
+   export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    ```
 
    最后，构建列表布局和列表项：
 
    ```ts
-  export class ToDo {
+    export class ToDo {
     key: string = util.generateRandomUUID(true);
     name: string;
     toDoData:ToDo[] = [];
@@ -741,13 +760,13 @@ Badge({
     constructor(name: string) {
       this.name = name;
     }
-  }
-  let todo:ToDo = new ToDo()
+    }
+    let todo:ToDo = new ToDo()
    List({ space: 10 }) {
      ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
        }
-     }, ((toDoItem:ToDo):string => toDoItem.key))
+     }, (toDoItem:ToDo) => toDoItem.key.toString())
    }
    ```
 
@@ -806,7 +825,7 @@ Badge({
       })
     )
   )
-   ```
+  ```
 
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
@@ -843,9 +862,8 @@ Badge({
           }
         }
       })
-      ...
   }
-   ```
+  ```
 
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 
@@ -879,7 +897,6 @@ Badge({
       todolist.toDoData = leftData;
       todolist.isEditMode = false;
     })
-    ...
   ```
 
 

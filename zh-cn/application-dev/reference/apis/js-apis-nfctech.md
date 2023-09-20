@@ -40,7 +40,7 @@ getSak(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
-let sak = nfcA.getSak();
+let sak : number = nfcA.getSak();
 console.log("nfcA sak: " + sak);
 ```
 
@@ -64,7 +64,7 @@ getAtqa(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
-let atqa = nfcA.getAtqa();
+let atqa : number[] = nfcA.getAtqa();
 console.log("nfcA atqa: " + atqa);
 ```
 
@@ -96,7 +96,7 @@ getRespAppData(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
-let respAppData = nfcB.getRespAppData();
+let respAppData : number[] = nfcB.getRespAppData();
 console.log("nfcB respAppData: " + respAppData);
 ```
 
@@ -120,7 +120,7 @@ getRespProtocol(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
-let respProtocol = nfcB.getRespProtocol();
+let respProtocol : number[] = nfcB.getRespProtocol();
 console.log("nfcB respProtocol: " + respProtocol);
 ```
 
@@ -152,7 +152,7 @@ getSystemCode(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
-let systemCode = nfcF.getSystemCode();
+let systemCode : number[] = nfcF.getSystemCode();
 console.log("nfcF systemCode: " + systemCode);
 ```
 
@@ -176,7 +176,7 @@ getPmm(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
-let pmm = nfcF.getPmm();
+let pmm : number[] = nfcF.getPmm();
 console.log("nfcF pmm: " + pmm);
 ```
 
@@ -208,7 +208,7 @@ getResponseFlags(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
-let responseFlags = nfcV.getResponseFlags();
+let responseFlags : number = nfcV.getResponseFlags();
 console.log("nfcV responseFlags: " + responseFlags);
 ```
 
@@ -232,7 +232,7 @@ getDsfId(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
-let dsfId = nfcV.getDsfId();
+let dsfId : number = nfcV.getDsfId();
 console.log("nfcV dsfId: " + dsfId);
 ```
 
@@ -264,7 +264,7 @@ getHistoricalBytes(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
-let historicalBytes = isoDep.getHistoricalBytes();
+let historicalBytes : number[] = isoDep.getHistoricalBytes();
 console.log("isoDep historicalBytes: " + historicalBytes);
 ```
 
@@ -288,7 +288,7 @@ getHiLayerResponse(): number[]
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
-let hiLayerResponse = isoDep.getHiLayerResponse();
+let hiLayerResponse : number[] = isoDep.getHiLayerResponse();
 console.log("isoDep hiLayerResponse: " + hiLayerResponse);
 ```
 
@@ -320,6 +320,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BussinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 
@@ -332,15 +333,15 @@ if (!isoDep.isTagConnected()) {
 }
 
 try {
-    isoDep.isExtendedApduSupported().then((response) => {
+    isoDep.isExtendedApduSupported().then((response: boolean) => {
         console.log("isoDep isExtendedApduSupported Promise response: " + response);
-    }).catch((err)=> {
-        console.log("isoDep isExtendedApduSupported Promise err: " + err);
+    }).catch((err: BusinessError) => {
+        console.log("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("isoDep isExtendedApduSupported Promise busiError: " + busiError);
+    console.log("isoDep isExtendedApduSupported Promise Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
-
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -371,6 +372,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 
@@ -383,15 +385,16 @@ if (!isoDep.isTagConnected()) {
 }
 
 try {
-    isoDep.isExtendedApduSupported((err, response)=> {
+    isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
         if (err) {
-            console.log("isoDep isExtendedApduSupported AsyncCallback err: " + err);
+            console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("isoDep isExtendedApduSupported AsyncCallback response: " + response);
         }
     });
-} catch (busiError) {
-    console.log("isoDep isExtendedApduSupported AsyncCallback busiError: " + busiError);
+} catch (busiErr) {
+    console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${(busiError as Business).code}, " +
+        "message: ${(busiError as Business).message}");
 }
 ```
 
@@ -417,10 +420,10 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 import tag from '@ohos.nfc.tag';
 
 // Obtains ndefMessage from tag.ndef.createNdefMessage or ndefTag.getNdefMessage.
-// var ndefMessage = tag.ndef.createNdefMessage(...);
-// var ndefMessage = ndefTag.getNdefMessage();
+// let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(...);
+// let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
 
-let ndefRecords = ndefMessage.getNdefRecords();
+let ndefRecords : tag.NdefRecord[] = ndefMessage.getNdefRecords();
 console.log("ndef ndefRecords number: " + ndefRecords.length);
 ```
 
@@ -452,7 +455,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let ndefTagType = ndefTag.getNdefTagType();
+let ndefTagType : tag.NfcForumType = ndefTag.getNdefTagType();
 console.log("ndef ndefTagType: " + ndefTagType);
 ```
 
@@ -468,14 +471,14 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefMessage](#ndefmessage9)  | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
+| [tag.NdefMessage](#ndefmessage9)  | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。|
 
 **示例：**
 ```js
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let ndefMessage = ndefTag.getNdefMessage();
+let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
 console.log("ndef ndefMessage: " + ndefMessage);
 ```
 
@@ -499,7 +502,7 @@ isNdefWritable(): boolean;
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let isWritable = ndefTag.isNdefWritable();
+let isWritable : boolean = ndefTag.isNdefWritable();
 console.log("ndef isNdefWritable: " + isWritable);
 ```
 
@@ -517,7 +520,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<[NdefMessage](#ndefmessage9)> | 以Promise形式返回从NDEF标签中读取到的Message数据对象。|
+| Promise\<[tag.NdefMessage](#ndefmessage9)> | 以Promise形式返回从NDEF标签中读取到的Message数据对象。|
 
 **错误码：**
 
@@ -531,6 +534,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -543,13 +547,14 @@ if (!ndefTag.isTagConnected()) {
 }
 
 try {
-    ndefTag.readNdef().then((ndefmessage) => {
+    ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
         console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
-    }).catch((err)=> {
-        console.log("ndef readNdef Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef readNdef Promise catched busiError: " + busiError);
+    console.log("ndef readNdef Promise catched busiError Code: ${(busiError as BusinessError).code}, " +
+        "message: ${(busiError as BusinessError).message}");
 }
 ```
 
@@ -581,6 +586,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -593,15 +599,16 @@ if (!ndefTag.isTagConnected()) {
 }
 
 try {
-    ndefTag.readNdef((err, ndefmessage)=> {
+    ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
         if (err) {
-            console.log("ndef readNdef AsyncCallback err: " + err);
+            console.log("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
-            console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
+          console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
         }
     });
 } catch (busiError) {
-    console.log("ndef readNdef AsyncCallback catched busiError: " + busiError);
+    console.log("ndef readNdef AsyncCallback catched Code: ${(busiError : BusinessError).code}," +
+      " message: ${(busiError : BusinessError).message}");
 }
 ```
 
@@ -633,10 +640,12 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
-let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+let ndefMessage : tag.NdefMessage =
+    tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
 // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
 // connect the tag at first if not connected.
@@ -650,11 +659,12 @@ if (!ndefTag.isTagConnected()) {
 try {
     ndefTag.writeNdef(ndefMessage).then(() => {
         console.log("ndef writeNdef Promise success.");
-    }).catch((err)=> {
-        console.log("ndef writeNdef err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef writeNdef Promise catch busiError: " + busiError);
+    console.log("ndef writeNdef Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -687,10 +697,12 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
-let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+let ndefMessage : tag.NdefMessage = 
+    tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
 // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
 // connect the tag at first if not connected.
@@ -702,15 +714,16 @@ if (!ndefTag.isTagConnected()) {
 }
 
 try {
-    ndefTag.writeNdef(ndefMessage, (err)=> {
+    ndefTag.writeNdef(ndefMessage, (err : BusinessError)=> {
         if (err) {
-            console.log("ndef writeNdef AsyncCallback err: " + err);
+            console.log("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndef writeNdef AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndef writeNdef AsyncCallback catch busiError: " + busiError);
+    console.log("ndef writeNdef AsyncCallback catch busiError Code: ${(busiError as Businsess).code}," +
+        " message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -744,7 +757,7 @@ canSetReadOnly(): boolean
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
-let canSetReadOnly = ndefTag.canSetReadOnly();
+let canSetReadOnly : boolean = ndefTag.canSetReadOnly();
 console.log("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 
@@ -770,6 +783,7 @@ setReadOnly(): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -784,11 +798,12 @@ if (!ndefTag.isTagConnected()) {
 try {
     ndefTag.setReadOnly().then(() => {
         console.log("ndef setReadOnly Promise success.");
-    }).catch((err)=> {
-        console.log("ndef setReadOnly Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef setReadOnly Promise catch busiError: " + busiError);
+    console.log("ndef setReadOnly Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -820,6 +835,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -832,15 +848,16 @@ if (!ndefTag.isTagConnected()) {
 }
 
 try {
-    ndefTag.setReadOnly((err)=> {
+    ndefTag.setReadOnly((err : BusinessError)=> {
         if (err) {
-            console.log("ndef setReadOnly AsyncCallback err: " + err);
+            console.log("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndef setReadOnly AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndef setReadOnly AsyncCallback catch busiError: " + busiError);
+    console.log("ndef setReadOnly AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -868,14 +885,16 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
 try {
-    let ndefTypeString = ndefTag.getNdefTagTypeString(tag.NFC_FORUM_TYPE_1);
+    let ndefTypeString : tag.NfcForumType = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.log("ndef ndefTypeString: " + ndefTypeString);
 } catch (busiError) {
-    console.log("ndef getNdefTagTypeString catch busiError: " + busiError);
+    console.log("ndef getNdefTagTypeString catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -917,6 +936,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -933,11 +953,12 @@ try {
     let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
     mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
         console.log("mifareClassic authenticateSector Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic authenticateSector Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic authenticateSector Promise catch busiError: " + busiError);
+    console.log("mifareClassic authenticateSector Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -971,6 +992,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 **示例：**
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -985,15 +1007,16 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let sectorIndex = 1; // change it to be correct index.
     let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
-    mifareClassic.authenticateSector(sectorIndex, key, true, (err)=> {
+    mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic authenticateSector AsyncCallback err: " + err);
+            console.log("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic authenticateSector AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic authenticateSector AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic authenticateSector AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1031,6 +1054,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1044,13 +1068,14 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    mifareClassic.readSingleBlock(blockIndex).then((data) => {
+    mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
         console.log("mifareClassic readSingleBlock Promise data: " + data);
-    }).catch((err)=> {
-        console.log("mifareClassic readSingleBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic readSingleBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic readSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1083,6 +1108,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1096,7 +1122,7 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    mifareClassic.readSingleBlock(blockIndex, (err, data)=> {
+    mifareClassic.readSingleBlock(blockIndex, (err : BusinessError, data : number[])=> {
         if (err) {
             console.log("mifareClassic readSingleBlock AsyncCallback err: " + err);
         } else {
@@ -1104,7 +1130,8 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic readSingleBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic readSingleBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1137,6 +1164,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1154,11 +1182,12 @@ try {
         0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
     mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
         console.log("mifareClassic writeSingleBlock Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic writeSingleBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic writeSingleBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic writeSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1192,6 +1221,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1207,15 +1237,16 @@ try {
     let blockIndex = 1; // change it to be correct index.
     let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
         0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
-    mifareClassic.writeSingleBlock(blockIndex, rawData, (err)=> {
+    mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic writeSingleBlock AsyncCallback err: " + err);
+            console.log("mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic writeSingleBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic writeSingleBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1248,6 +1279,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1264,11 +1296,12 @@ try {
     let value = 0x20; // change it to be correct data.
     mifareClassic.incrementBlock(blockIndex, value).then(() => {
         console.log("mifareClassic incrementBlock Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic incrementBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic incrementBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic incrementBlock Promise catch Code: ${(busiError as Businsess).code}, " +
+       "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1302,6 +1335,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1316,15 +1350,16 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // change it to be correct index.
     let value = 0x20; // change it to be correct data.
-    mifareClassic.incrementBlock(blockIndex, value, (err)=> {
+    mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic incrementBlock AsyncCallback err: " + err);
+            console.log("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic incrementBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic incrementBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic incrementBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1357,6 +1392,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1373,11 +1409,12 @@ try {
     let value = 0x20; // change it to be correct data.
     mifareClassic.decrementBlock(blockIndex, value).then(() => {
         console.log("mifareClassic decrementBlock Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic decrementBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic decrementBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic decrementBlock Promise catch busiError: Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1411,6 +1448,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1425,15 +1463,16 @@ if (!mifareClassic.isTagConnected()) {
 try {
     let blockIndex = 1; // change it to be correct index.
     let value = 0x20; // change it to be correct data.
-    mifareClassic.decrementBlock(blockIndex, value, (err)=> {
+    mifareClassic.decrementBlock(blockIndex, value, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic decrementBlock AsyncCallback err: " + err);
+            console.log("mifareClassic decrementBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic decrementBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic decrementBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic decrementBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+      "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1465,6 +1504,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1480,11 +1520,12 @@ try {
     let blockIndex = 1; // change it to be correct index.
     mifareClassic.transferToBlock(blockIndex).then(() => {
         console.log("mifareClassic transferToBlock Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic transferToBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic transferToBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic transferToBlock Promise catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1517,6 +1558,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1530,15 +1572,16 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    mifareClassic.transferToBlock(blockIndex, (err)=> {
+    mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic transferToBlock AsyncCallback err: " + err);
+            console.log("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic transferToBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic transferToBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic transferToBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1570,6 +1613,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1585,11 +1629,12 @@ try {
     let blockIndex = 1; // change it to be correct index.
     mifareClassic.restoreFromBlock(blockIndex).then(() => {
         console.log("mifareClassic restoreFromBlock Promise success.");
-    }).catch((err)=> {
-        console.log("mifareClassic restoreFromBlock Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic restoreFromBlock Promise catch busiError: " + busiError);
+    console.log("mifareClassic restoreFromBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1622,6 +1667,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1635,15 +1681,16 @@ if (!mifareClassic.isTagConnected()) {
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    mifareClassic.restoreFromBlock(blockIndex, (err)=> {
+    mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic restoreFromBlock AsyncCallback err: " + err);
+            console.log("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic restoreFromBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic restoreFromBlock AsyncCallback catch busiError: " + busiError);
+    console.log("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1665,9 +1712,10 @@ getSectorCount(): number
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
-let sectorCount = mifareClassic.getSectorCount();
+let sectorCount : number = mifareClassic.getSectorCount();
 console.log("mifareClassic sectorCount: " + sectorCount);
 ```
 
@@ -1695,15 +1743,17 @@ getBlockCountInSector(sectorIndex: number): number
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
 try {
     let sectorIndex = 1; // change it to be correct index.
-    let blockCnt = mifareClassic.getBlockCountInSector(sectorIndex);
+    let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.log("mifareClassic blockCnt: " + blockCnt);
 } catch (busiError) {
-    console.log("mifareClassic getBlockCountInSector catch busiError: " + busiError);
+    console.log("mifareClassic getBlockCountInSector catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1727,7 +1777,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
-let getType = mifareClassic.getType();
+let getType : tag.MifareClassicType = mifareClassic.getType();
 console.log("mifareClassic getType: " + getType);
 ```
 
@@ -1749,9 +1799,10 @@ getTagSize(): number
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
-let tagSize = mifareClassic.getTagSize();
+let tagSize : number = mifareClassic.getTagSize();
 console.log("mifareClassic tagSize: " + tagSize);
 ```
 
@@ -1773,9 +1824,10 @@ isEmulatedTag(): boolean
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
-let isEmulatedTag = mifareClassic.isEmulatedTag();
+let isEmulatedTag : boolean = mifareClassic.isEmulatedTag();
 console.log("mifareClassic isEmulatedTag: " + isEmulatedTag);
 ```
 
@@ -1803,15 +1855,17 @@ getBlockIndex(sectorIndex: number): number
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
 try {
     let sectorIndex = 1; // change it to be correct index.
-    let blockIndex = mifareClassic.getBlockIndex(sectorIndex);
+    let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.log("mifareClassic blockIndex: " + blockIndex);
 } catch (busiError) {
-    console.log("mifareClassic getBlockIndex catch busiError: " + busiError);
+    console.log("mifareClassic getBlockIndex catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1839,15 +1893,17 @@ getSectorIndex(blockIndex: number): number
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
 try {
     let blockIndex = 1; // change it to be correct index.
-    let sectorIndex = mifareClassic.getSectorIndex(blockIndex);
+    let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.log("mifareClassic sectorIndex: " + sectorIndex);
 } catch (busiError) {
-    console.log("mifareClassic getSectorIndex catch busiError: " + busiError);
+    console.log("mifareClassic getSectorIndex catch busiError Code: ${(busiError as Businsess).code}, " +
+       "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1894,6 +1950,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 ```js
 
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -1907,13 +1964,14 @@ if (!mifareUltralight.isTagConnected()) {
 
 try {
     let pageIndex = 1; // change it to be correct index.
-    mifareUltralight.readMultiplePages(pageIndex).then((data) => {
+    mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
         console.log("mifareUltralight readMultiplePages Promise data = " + data);
-    }).catch((err)=> {
-        console.log("mifareUltralight readMultiplePages Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareUltralight readMultiplePages Promise catch busiError: " + busiError);
+    console.log("mifareUltralight readMultiplePages Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -1946,6 +2004,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -1959,15 +2018,16 @@ if (!mifareUltralight.isTagConnected()) {
 
 try {
     let pageIndex = 1; // change it to be correct index.
-    mifareUltralight.readMultiplePages(pageIndex, (err, data)=> {
+    mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
         if (err) {
-            console.log("mifareUltralight readMultiplePages AsyncCallback err: " + err);
+          console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
-            console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
+          console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
         }
     });
 } catch (busiError) {
-    console.log("mifareUltralight readMultiplePages AsyncCallback catch busiError: " + busiError);
+    console.log("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2000,6 +2060,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2016,11 +2077,12 @@ try {
     let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
     mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
         console.log("mifareUltralight writeSinglePage Promise success.");
-    }).catch((err)=> {
-        console.log("mifareUltralight writeSinglePage Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareUltralight writeSinglePage Promise catch busiError: " + busiError);
+    console.log("mifareUltralight writeSinglePage Promise catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2054,6 +2116,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2068,15 +2131,16 @@ if (!mifareUltralight.isTagConnected()) {
 try {
     let pageIndex = 1; // change it to be correct index.
     let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
-    mifareUltralight.writeSinglePage(pageIndex, rawData, (err)=> {
+    mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareUltralight writeSinglePage AsyncCallback err: " + err);
+            console.log("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareUltralight writeSinglePage AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareUltralight writeSinglePage AsyncCallback catch busiError: " + busiError);
+    console.log("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2100,7 +2164,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
-let getType = mifareClassic.getType();
+let getType : tag.MifareUltralightType = mifareClassic.getType();
 console.log("mifareUltralight getType: " + getType);
 ```
 
@@ -2126,7 +2190,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
+| message | [tag.NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **错误码：**
 
@@ -2140,6 +2204,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2158,11 +2223,12 @@ try {
 
     ndefFormatable.format(ndefMessage).then(() => {
         console.log("ndefFormatable format Promise success.");
-    }).catch((err)=> {
-        console.log("ndefFormatable format Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndefFormatable format Promise catch busiError: " + busiError);
+    console.log("ndefFormatable format Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2200,6 +2266,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2216,15 +2283,16 @@ try {
     let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
     // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-    ndefFormatable.format(ndefMessage, (err)=> {
+    ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
         if (err) {
-            console.log("ndefFormatable format AsyncCallback err: " + err);
+            console.log("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndefFormatable format AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndefFormatable format AsyncCallback catch busiError: " + busiError);
+    console.log("ndefFormatable format AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2256,6 +2324,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2274,11 +2343,12 @@ try {
 
     ndefFormatable.formatReadOnly(ndefMessage).then(() => {
         console.log("ndefFormatable formatReadOnly Promise success.");
-    }).catch((err)=> {
-        console.log("ndefFormatable formatReadOnly Promise err: " + err);
+    }).catch((err : BusinessError)=> {
+        console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndefFormatable formatReadOnly Promise catch busiError: " + busiError);
+    console.log("ndefFormatable formatReadOnly Promise catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```
 
@@ -2316,6 +2386,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 ```js
 import tag from '@ohos.nfc.tag';
+import {BusinessError} from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2332,14 +2403,15 @@ try {
     let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
     // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-    ndefFormatable.formatReadOnly(ndefMessage, (err)=> {
+    ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
         if (err) {
-            console.log("ndefFormatable formatReadOnly AsyncCallback err: " + err);
+            console.log("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndefFormatable formatReadOnly AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndefFormatable formatReadOnly AsyncCallback catch busiError: " + busiError);
+    console.log("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+        "message: ${(busiError as Businsess).message}");
 }
 ```

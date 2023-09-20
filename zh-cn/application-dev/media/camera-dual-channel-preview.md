@@ -122,7 +122,7 @@
      captureSession.addInput(cameraInput);
    
      // 把 预览流1 加入到会话
-     captureSession.addOutput(previewOutput)
+     captureSession.addOutput(previewOutput);
    
      // 把 预览流2 加入到会话
      captureSession.addOutput(previewOutput2);
@@ -152,13 +152,11 @@
            if (err || imgComponent === undefined) {
              return;
            }
-           let buffer: ArrayBuffer;
            if (imgComponent.byteBuffer as ArrayBuffer) {
-             buffer = imgComponent.byteBuffer;
+             // do something...
            } else {
              return;
            }
-           // do something...;
          })
        })
      })

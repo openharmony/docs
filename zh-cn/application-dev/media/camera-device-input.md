@@ -32,17 +32,18 @@
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length <= 0) {
+     if (cameraArray != undefined && cameraArray.length > 0) {
+       for (let index = 0; index < cameraArray.length; index++) {
+         console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
+         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
+         console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
+         console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
+       }
+       return cameraArray;
+     } else {
        console.error("cameraManager.getSupportedCameras error");
        return [];
      }
-     for (let index = 0; index < cameraArray.length; index++) {
-       console.info('cameraId : ' + cameraArray[index].cameraId);  // 获取相机ID
-       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // 获取相机位置
-       console.info('cameraType : ' + cameraArray[index].cameraType);  // 获取相机类型
-       console.info('connectionType : ' + cameraArray[index].connectionType);  // 获取相机连接类型
-     }
-     return cameraArray;
    }
    ```
 

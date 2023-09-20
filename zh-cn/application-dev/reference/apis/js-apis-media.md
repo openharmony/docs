@@ -258,6 +258,102 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 });
 ```
 
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, callback: AsyncCallback\<SoundPool>): void
+
+创建音频池实例，使用callback方式异步获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | 是   | soundPool实例的最大播放的流数 |
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息 |
+| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md#SoundPool)> | 是   | 回调函数。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**示例：**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+```
+
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+创建音频池实例，使用Promise方式异步获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | 是   | soundPool实例的最大播放的流数 |
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('create SoundPool success');
+  } else {
+    console.error('create SoundPool fail');
+  }
+}).catch((error) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
+```
+
 ## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
 
 [媒体错误码](../errorcodes/errorcode-media.md)类型枚举
@@ -2465,10 +2561,17 @@ off(type: 'error'): void
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
+| 错误码ID | 错误信息                                            |
+| -------- | ------------------------------------------------   |
+| 201      | Permission denied. Return by callback.             |
+| 401      | The parameter check failed. Return by callback.    |
+| 801      | Capability not supported. Return by callback.      |
+| 5400101  | No memory. Return by callback.                     |
+| 5400102  | Operation not allowed. Return by callback.         |
+| 5400103  | IO error. Return by callback.                      |
+| 5400104  | Time out. Return by callback.                      |
+| 5400105  | Service died. Return by callback.                  |
+| 5400106  | Unsupport format. Return by callback.              |
 
 **示例：**
 

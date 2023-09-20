@@ -49,7 +49,7 @@ import { BusinessError } from '@ohos.base';
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu: Array<number> = [0x08, 0x91];
-sms.createMessage(pdu, specification, (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+sms.createMessage(pdu, specification, (err: BusinessError, data: sms.ShortMessage) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -97,8 +97,7 @@ import { BusinessError } from '@ohos.base';
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number，例如[0x08, 0x91, ...]
 const pdu: Array<number> = [0x08, 0x91];
-let promise = sms.createMessage(pdu, specification);
-promise.then((data: sms.RemoteAbilityInfo[]) => {
+sms.createMessage(pdu, specification).then((data: sms.ShortMessage) => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
@@ -142,22 +141,23 @@ sendMessage\(options: SendMessageOptions\): void
 
 ```ts
 import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendMessage(options);
 ```
@@ -196,22 +196,23 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -257,22 +258,23 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 ```ts
 import sms from '@ohos.telephony.sms';
+import { AsyncCallback } from '@ohos.base';
 import { BusinessError } from '@ohos.base';
 
-let sendCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
-let deliveryCallback = (err: BusinessError, data: sms.RemoteAbilityInfo[]) => {
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
     console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
 let options: sms.SendMessageOptions = {
-    slotId = 0;
-    content = '短信内容';
-    destinationHost = '+861xxxxxxxxxx';
-    serviceCenter = '+861xxxxxxxxxx';
-    destinationPort = 1000;
-    sendCallback = sendCallback;
-    deliveryCallback = deliveryCallback;
+    slotId: 0,
+    content: '短信内容',
+    destinationHost: '+861xxxxxxxxxx',
+    serviceCenter: '+861xxxxxxxxxx',
+    destinationPort: 1000,
+    sendCallback: sendCallback,
+    deliveryCallback: deliveryCallback
 };
 let promise = sms.sendShortMessage(options);
 promise.then(() => {
@@ -335,7 +337,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -346,13 +348,13 @@ let mmsPars: sms.MmsParams = {
 };
 
 // 调用发送接口
-mms.sendMms(context, mmsPars, async(err: BusinessError) =>{
+sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-    console.log(`sendMms fail, err : ${toString(err)}`);
+    console.log(`sendMms fail, err : ${String(err)}`);
     return;
   }
   console.log(`sendMms Success`);
-}
+})
 ```
 
 Stage模型示例：
@@ -380,13 +382,13 @@ let mmsPars = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-    mms.sendMms(this.context, mmsPars, async(err) =>{
+    sms.sendMms(this.context, mmsPars, async(err) =>{
         if (err) {
-            console.log(`sendMms fail, err : ${toString(err)}`);
+            console.log(`sendMms fail, err : ${String(err)}`);
             return;
         }
         console.log(`sendMms Success`);
-        }
+        })
     }
 }
 ```
@@ -447,7 +449,7 @@ const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -555,7 +557,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -673,7 +675,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars: sms.MmsParams = {
+let mmsPars: sms.MmsParam = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -1195,7 +1197,7 @@ import { BusinessError } from '@ohos.base';
 
 let content: string = "long message";
 let promise = sms.splitMessage(content);
-promise.then((data: string) => {
+promise.then((data: string[]) => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
@@ -2143,7 +2145,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation, (err: BusinessError, data: number) => {
+sms.encodeMms(mmsInformation, (err: BusinessError, data: number[]) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2199,7 +2201,7 @@ let mmsInformation: sms.MmsInformation = {
     messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
-sms.encodeMms(mmsInformation).then((data: number) => {
+sms.encodeMms(mmsInformation).then((data: number[]) => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);

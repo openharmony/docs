@@ -174,17 +174,19 @@
    
    let store: relationalStore.RdbStore | undefined = undefined;
 
+   let context = getContext(this);
+
    const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db',
      securityLevel: relationalStore.SecurityLevel.S1
    };
-   relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, rdbStore) => {
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
      store = rdbStore;
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', , (err) => {
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
      })
      console.info('Succeeded in getting RdbStore.');
    })
@@ -240,8 +242,7 @@
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
    if(store != undefined) {
-     let promise: void = (store as relationalStore.RdbStore).delete(predicates);
-     promise.then((rows: number) => {
+     (store as relationalStore.RdbStore).delete(predicates).then((rows: number) => {
        console.info(`Delete rows: ${rows}`);
      }).catch((err: BusinessError) => {
        console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);

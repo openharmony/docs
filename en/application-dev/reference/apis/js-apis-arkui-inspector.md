@@ -10,7 +10,7 @@ The **Inspector** module provides APIs for registering the component layout and 
 
 ## Modules to Import
 
-```js
+```ts
 import inspector from '@ohos.arkui.inspector'
 ```
 
@@ -36,8 +36,8 @@ Creates an observer for the specified component.
 
 **Example**
 
-```js
-let listener = inspector.createComponentObserver('COMPONENT_ID'); // Creates an observer for a component whose ID is COMPONENT_ID.
+```ts
+let listener:inspector = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events of the component whose ID is COMPONENT_ID.
 ```
 
 ## ComponentObserver
@@ -126,22 +126,20 @@ Unregisters the listener for completion of component drawing.
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
-      let FuncLayout = this.onLayoutComplete.bind(this) // bind current js instance
-      let FuncDraw = this.onDrawComplete.bind(this) // bind current js instance
+      let onLayoutComplete:()=>void=():void=>{
+          // do something here
+      }
+      let onDrawComplete:()=>void=():void=>{
+          // do something here
+      }
+      let FuncLayout = onLayoutComplete // bind current js instance
+      let FuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
-    }
-
-    onLayoutComplete() {
-      // do something here
-    }
-
-    onDrawComplete() {
-      // do something here
     }
   }
   ```

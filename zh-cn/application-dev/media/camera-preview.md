@@ -26,7 +26,7 @@
    struct XComponentPage {
      // 创建XComponentController
      mXComponentController: XComponentController = new XComponentController;
-     surfaceId: string;
+     surfaceId: string = '';
 
      build() {
        Flex() {
@@ -42,7 +42,7 @@
              // 预览流与录像输出流的分辨率的宽高比要保持一致
              this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
              // 获取Surface ID
-             this.surfaceId: string = this.mXComponentController.getXComponentSurfaceId();
+             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
            })
            .width('1920px')
            .height('1080px')

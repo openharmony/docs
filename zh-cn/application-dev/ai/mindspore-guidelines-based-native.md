@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-开发者可使用MindSpore Lite提供的Native API来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
+开发者可使用[MindSpore Lite提供的Native API](../reference/native-apis/_mind_spore.md)来部署AI算法，并提供高层接口供UI层调用，进行AI模型推理。典型场景如：AI套件SDK开发。
 
 ## 基本概念
 
@@ -60,6 +60,14 @@ void *ReadModelFile(NativeResourceManager *nativeResourceManager, const std::str
 (2). 创建上下文，设置线程数、设备类型等参数，并加载模型。
 
 ```c++
+void DestroyModelBuffer(void **buffer) {
+    if (buffer == nullptr) {
+        return;
+    }
+    free(*buffer);
+    *buffer = nullptr;
+}
+
 OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
     // 创建上下文
     auto context = OH_AI_ContextCreate();

@@ -59,9 +59,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // Light theme.
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // Vertical direction.
@@ -117,9 +118,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // Simplified Chinese.
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // Light theme.
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // Vertical direction.
@@ -131,7 +134,7 @@ const config = {
 try {
     abilityManager.updateConfiguration(config).then(() => {
         console.log('updateConfiguration success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -209,11 +212,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
         console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -300,13 +304,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
         console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -376,10 +381,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ${JSON.stringify(data)}');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
 });
 ```
@@ -413,6 +419,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1, (err, wantParam) => { 
         if (err) {
@@ -422,7 +430,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 
 ```
@@ -461,13 +471,138 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1).then((wantParam) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback<void>): void;
+
+Used by the Data Loss Prevention (DLP) management application to notify a sandbox application of the data saving result. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
+| requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
+| callback  | AsyncCallback<void>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// AbilityResult information returned to the initiator of the save-as behavior.
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err) => {
+    if (err && err.code != 0) {
+      console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`notifySaveAsResult success`);
+    }
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise<void>;
+
+Used by the DLP management application to notify a sandbox application of the data saving result. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
+| requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise<void>| Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// AbilityResult information returned to the initiator of the save-as behavior.
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+  }).then(() => {
+    console.log(`notifySaveAsResult success`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 ```

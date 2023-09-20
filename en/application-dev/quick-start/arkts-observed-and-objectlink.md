@@ -346,7 +346,7 @@ struct ViewB {
         (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item: ClassA) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // Initialize the @ObjectLink decorated variable using the array item in the @State decorated array, which is an instance of ClassA decorated by @Observed.
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })

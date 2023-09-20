@@ -37,7 +37,7 @@ Enables listening for global touch (touchscreen) events.
 
 ```js
 try {
-  inputMonitor.on('touch', (touchEvent) => {
+  inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
@@ -97,7 +97,7 @@ Disables listening for global touch (touchscreen) events.
 
 ```js
 // Disable listening for a single callback.
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -112,7 +112,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-function callback(touchEvent) {
+let callback = (touchEvent: touchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -160,8 +160,8 @@ try {
 ```
 
 ```js
-// Disable listening for all callbacks.
-function callback(mouseEvent) {
+// Cancel listening for all callbacks.
+let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
@@ -260,7 +260,7 @@ Disables listening for global touchpad pinch events.
 
 ```js
 // Disable listening for a single callback.
-function callback(pinchEvent) {
+let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
 };
@@ -275,7 +275,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-function callback(pinchEvent) {
+let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
 };
@@ -339,7 +339,7 @@ Disables listening for three-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
-function callback(threeFingersSwipe) {
+let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
 };
@@ -354,7 +354,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-function callback(threeFingersSwipe) {
+let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
 };
@@ -418,7 +418,7 @@ Disables listening for four-finger swipe events.
 
 ```js
 // Disable listening for a single callback.
-function callback(fourFingersSwipe) {
+let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
 };
@@ -433,7 +433,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-function callback(fourFingersSwipe) {
+let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
 };

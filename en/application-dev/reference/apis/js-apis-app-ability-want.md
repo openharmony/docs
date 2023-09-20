@@ -35,12 +35,14 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  let want = {
-    'deviceId': '', // An empty deviceId indicates the local device.
-    'bundleName': 'com.example.myapplication',
-    'abilityName': 'FuncAbility',
-    'moduleName': 'entry' // moduleName is optional.
+  let want: Want = {
+    deviceId: '', // An empty deviceId indicates the local device.
+    bundleName: 'com.example.myapplication',
+    abilityName: 'FuncAbility',
+    moduleName: 'entry', // moduleName is optional.
   };
   
   context.startAbility(want, (err) => {
@@ -54,8 +56,10 @@ import Want from '@ohos.app.ability.Want';
     * String
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -70,8 +74,10 @@ import Want from '@ohos.app.ability.Want';
     * Number
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -87,8 +93,10 @@ import Want from '@ohos.app.ability.Want';
     * Boolean
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -103,8 +111,10 @@ import Want from '@ohos.app.ability.Want';
     * Object
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -124,8 +134,10 @@ import Want from '@ohos.app.ability.Want';
     * Array
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -142,23 +154,27 @@ import Want from '@ohos.app.ability.Want';
         ```
     * FD
         ```ts
-        import fs from '@ohos.file.fs';
-        
+        import fs from '@ohos.file.fs';        
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         
-        let fd;
+        let fd: number = 0;
         try {
           fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
         } catch(err) {
-          console.error(`Failed to openSync. Code: ${err.code}, message: ${err.message}`);
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`Failed to openSync. Code: ${code}, message: ${message}`);
         }
-        let want = {
-          'deviceId': '', // An empty deviceId indicates the local device.
-          'bundleName': 'com.example.myapplication',
-          'abilityName': 'FuncAbility',
-          'moduleName': 'entry', // moduleName is optional.
-          'parameters': {
+        let want: Want = {
+          deviceId: '', // An empty deviceId indicates the local device.
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          moduleName: 'entry', // moduleName is optional.
+          parameters: {
             'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd} is a fixed usage, indicating that the data is a file descriptor.
           }
         };
@@ -172,8 +188,10 @@ import Want from '@ohos.app.ability.Want';
     ```ts
         // (1) UIAbility1 starts a ServiceExtensionAbility.
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
@@ -184,8 +202,11 @@ import Want from '@ohos.app.ability.Want';
     ```ts
 
         // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
-        let context ; // ServiceExtensionContext
-        let want = {
+        import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
+        let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
+        let want: Want = {
           bundleName: 'com.example.myapplication2',
           abilityName: 'MainAbility',
           parameters: {

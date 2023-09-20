@@ -52,6 +52,20 @@ The following three examples describe how to use the viewport:
 - Zoom in or zoom out a graph through the shape viewport.
 
   ```ts
+  class tmp{
+    x:number = 0
+    y:number = 0
+    width:number = 75
+    height:number = 75
+  }
+  let viep:tmp = new tmp()
+  class tmp1{
+    x:number = 0
+    y:number = 0
+    width:number = 300
+    height:number = 300
+  }
+  let viep1:tmp1 = new tmp1()
   // Draw a circle whose width and height are both 150.
   Text ('Original Size Circle')
   Circle({width: 75, height: 75}).fill('#E87361')
@@ -65,7 +79,7 @@ The following three examples describe how to use the viewport:
         Rect().width('100%').height('100%').fill('#0097D4')
         Circle({width: 75, height: 75}).fill('#E87361')
       }
-      .viewPort({x: 0, y: 0, width: 75, height: 75})
+      .viewPort(viep)
       .width(150)
       .height(150)
       .backgroundColor('#F5DC62')
@@ -78,7 +92,7 @@ The following three examples describe how to use the viewport:
         Rect().width('100%').height('100%').fill('#BDDB69')
         Circle({width: 75, height: 75}).fill('#E87361')
       }
-      .viewPort({x: 0, y: 0, width: 300, height: 300})
+      .viewPort(viep1)
       .width(150)
       .height(150)
       .backgroundColor('#F5DC62')
@@ -91,17 +105,31 @@ The following three examples describe how to use the viewport:
 - Create a shape component whose width and height are both 300, with a yellow background and a viewport whose width and height are both 300. Fill the viewport with a blue rectangle and draw a circle with a radius of 75 in the viewport.
 
   ```ts
+  class tmp{
+    x:number = 0
+    y:number = 0
+    width:number = 300
+    height:number = 300
+  }
+  let viep:tmp = new tmp()
+  class tmp1{
+    x:number = -150
+    y:number = -150
+    width:number = 300
+    height:number = 300
+  }
+  let viep1:tmp1 = new tmp1()
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort({ x: 0, y: 0, width: 300, height: 300 })
+    .viewPort(viep)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
   ```
 
-  ![viewport-2](figures/viewport-2.jpg)
+  ![viewport (2) ](figures/viewport (2) .jpg)
 
 - Create a shape component whose width and height are both 300, with a yellow background and a viewport whose width and height are both 300. Fill the viewport with a blue rectangle, draw a circle with a radius of 75 in the viewport, and move the viewport 150 to the right and below respectively.
 
@@ -110,14 +138,14 @@ The following three examples describe how to use the viewport:
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort({ x: -150, y: -150, width: 300, height: 300 })
+    .viewPort(viep1)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
 
   ```
 
-  ![viewport-3](figures/viewport-3.jpg)
+  ![viewport (3) ](figures/viewport (3) .jpg)
 
 
 ## Setting Styles

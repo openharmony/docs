@@ -11,11 +11,12 @@
 2. 获取图片信息。
      
    ```
+   import {BusinessError} from '@ohos.base'
    // 获取图片大小
-   pixelMap.getImageInfo().then( info => {
+   pixelMap.getImageInfo().then( (info : image.ImageInfo) => {
      console.info('info.width = ' + info.size.width);
      console.info('info.height = ' + info.size.height);
-   }).catch((err) => {
+   }).catch((err : BusinessError) => {
      console.error("Failed to obtain the image pixel map information.And the error is: " + err);
    });
    ```

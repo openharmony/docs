@@ -125,7 +125,7 @@ A one-way and two-way data synchronization relationship can be set up from an \@
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
+     @Link @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -139,7 +139,7 @@ A one-way and two-way data synchronization relationship can be set up from an \@
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -175,7 +175,7 @@ A one-way and two-way data synchronization relationship can be set up from an \@
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
+     @Link @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -189,7 +189,7 @@ A one-way and two-way data synchronization relationship can be set up from an \@
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -277,7 +277,7 @@ The following example uses the \@Provide-\@Consume pattern to pass changes from 
 ```ts
 @Component
 struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
+  @Consume @Watch("testNumChange") testNum: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`LinkLinkChild: testNum value ${this.testNum}`);
@@ -290,7 +290,7 @@ struct LinkLinkChild {
 
 @Component
 struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number;
+  @Prop @Watch("testNumChange") testNumGrand: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -609,7 +609,7 @@ In the nesting scenario, use the \@Observed decorator as follows:
 
   ```ts
   @Observed class ObservedArray<T> extends Array<T> {
-      constructor(args: any[]) {
+      constructor(args: T[]) {
           super(...args);
       }
       /* otherwise empty */
@@ -621,7 +621,7 @@ In the nesting scenario, use the \@Observed decorator as follows:
 
   ```ts
   class Outer {
-    innerArrayProp : ObservedArray<string>;
+    innerArrayProp : ObservedArray<string> = [];
     ...
   }
   ```
@@ -686,10 +686,10 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => { return item.id.toString(); }
       )
 
       Divider().height(10)
@@ -738,7 +738,7 @@ In **ViewA**, replace \@ObjectLink with \@Prop.
 @Component
 struct ViewA {
 
-  @Prop a: ClassA;
+  @Prop a: ClassA = new ClassA(0);
   label : string = "ViewA1";
 
   build() {
@@ -875,9 +875,9 @@ Note that **phones** is a nested property. To observe its change, you need to ex
 ```ts
 @Observed
 export class ObservedArray<T> extends Array<T> {
-  constructor(args?: any[]) {
+  constructor(args: T[]) {
     console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (Array.isArray(args)) {
+    if (args instanceof Array) {
       super(...args);
     } else {
       super(args)
@@ -903,7 +903,7 @@ The update process is as follows:
    
        @ObjectLink me : Person;
        @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = undefined;
+       @State selectedPerson: Person = new Person("", "", 0, "", []);
    
        aboutToAppear() {
            this.selectedPerson = this.me;
@@ -916,13 +916,12 @@ The update process is as follows:
    
                Divider().height(8)
    
-               ForEach(this.contacts,
-                   contact => {
-                       PersonView({person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson})
-                   },
-                   contact => contact.id_
-               )
-   
+              ForEach(this.contacts, (contact: Person) => {
+                PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+              },
+                (contact: Person): string => { return contact.id_; }
+              )
+
                Divider().height(8)
    
                Text("Edit:")
@@ -971,7 +970,7 @@ The update process is as follows:
        build() {
            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
              Text(this.person.name)
-             if (this.phones.length) {
+             if (this.phones.length > 0) {
                Text(this.phones[0])
              }
            }
@@ -1005,12 +1004,12 @@ The update process is as follows:
          @Link selectedPerson: Person;
      
          /* Make changes on the local copy until you click Save Changes. */
-         @Prop name: string;
-         @Prop address : Address;
-         @Prop phones : ObservedArray<string>;
+         @Prop name: string = "";
+         @Prop address : Address = new Address("", 0, "");
+         @Prop phones : ObservedArray<string> = [];
      
          selectedPersonIndex() : number {
-             return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
+             return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
          }
      
          build() {
@@ -1031,24 +1030,24 @@ The update process is as follows:
      
                  TextInput({text: this.address.zip.toString()})
                      .onChange((value) => {
-                         const result = parseInt(value);
-                         this.address.zip= isNaN(result) ? 0 : result;
+                         const result = Number.parseInt(value);
+                         this.address.zip= Number.isNaN(result) ? 0 : result;
                      })
      
-                 if(this.phones.length>0) {
-                     ForEach(this.phones,
-                             (phone, index) => {
-                                 TextInput({text: phone})
-                                     .width(150)
-                                     .onChange((value) => {
-                                         console.log(`${index}. ${value} value has changed`)
-                                         this.phones[index] = value;
-                                     })
-                             },
-                             (phone, index) => `${index}-${phone}`
-                     ) 
+                 if (this.phones.length > 0) {
+                   ForEach(this.phones,
+                     (phone: ResourceStr, index?:number) => {
+                       TextInput({ text: phone })
+                         .width(150)
+                         .onChange((value) => {
+                           console.log(`${index}. ${value} value has changed`)
+                           this.phones[index!] = value;
+                         })
+                     },
+                     (phone: ResourceStr, index?:number) => `${index}-${phone}`
+                   )
                  }
-     
+
                  Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
                      Text("Save Changes")
                          .onClick(() => {
@@ -1103,25 +1102,25 @@ The update process is as follows:
 
  // ViewModel classes
  let nextId = 0;
- 
+
  @Observed
  export class ObservedArray<T> extends Array<T> {
-   constructor(args?: any[]) {
+   constructor(args: T[]) {
      console.log(`ObservedArray: ${JSON.stringify(args)} `)
-     if (Array.isArray(args)) {
+     if (args instanceof Array) {
        super(...args);
      } else {
        super(args)
      }
    }
  }
- 
+
  @Observed
  export class Address {
    street: string;
    zip: number;
    city: string;
- 
+
    constructor(street: string,
                zip: number,
                city: string) {
@@ -1130,14 +1129,14 @@ The update process is as follows:
      this.city = city;
    }
  }
- 
+
  @Observed
  export class Person {
    id_: string;
    name: string;
    address: Address;
    phones: ObservedArray<string>;
- 
+
    constructor(name: string,
                street: string,
                zip: number,
@@ -1154,13 +1153,13 @@ The update process is as follows:
  export class AddressBook {
    me: Person;
    contacts: ObservedArray<Person>;
- 
+
    constructor(me: Person, contacts: Person[]) {
      this.me = me;
      this.contacts = new ObservedArray<Person>(contacts);
    }
  }
- 
+
  // Render the name of the Person object and the first phone number in the @Observed array <string>.
  // To update the phone number, @ObjectLink person and @ObjectLink phones are required.
  // this.person.phones cannot be used. Otherwise, changes to items inside the array will not be observed.
@@ -1170,7 +1169,7 @@ The update process is as follows:
    @ObjectLink person: Person;
    @ObjectLink phones: ObservedArray<string>;
    @Link selectedPerson: Person;
- 
+
    build() {
      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
        Text(this.person.name)
@@ -1185,26 +1184,26 @@ The update process is as follows:
      })
    }
  }
- 
+
  // Render the information about the contact (person).
  // The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
  // Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
  @Component
  struct PersonEditView {
    @Consume addrBook: AddressBook;
- 
+
    /* Reference pointing to selectedPerson in the parent component. */
    @Link selectedPerson: Person;
- 
+
    /* Make changes on the local copy until you click Save Changes. */
-   @Prop name: string;
-   @Prop address: Address;
-   @Prop phones: ObservedArray<string>;
- 
+   @Prop name: string = "";
+   @Prop address: Address = new Address("", 0, "");
+   @Prop phones: ObservedArray<string> = [];
+
    selectedPersonIndex(): number {
-     return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
+     return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
    }
- 
+
    build() {
      Column() {
        TextInput({ text: this.name })
@@ -1215,32 +1214,32 @@ The update process is as follows:
          .onChange((value) => {
            this.address.street = value;
          })
- 
+
        TextInput({ text: this.address.city })
          .onChange((value) => {
            this.address.city = value;
          })
- 
+
        TextInput({ text: this.address.zip.toString() })
          .onChange((value) => {
-           const result = parseInt(value);
-           this.address.zip = isNaN(result) ? 0 : result;
+           const result = Number.parseInt(value);
+           this.address.zip = Number.isNaN(result) ? 0 : result;
          })
- 
+
        if (this.phones.length > 0) {
          ForEach(this.phones,
-           (phone, index) => {
+           (phone: ResourceStr, index?:number) => {
              TextInput({ text: phone })
                .width(150)
                .onChange((value) => {
                  console.log(`${index}. ${value} value has changed`)
-                 this.phones[index] = value;
+                 this.phones[index!] = value;
                })
            },
-           (phone, index) => `${index}-${phone}`
+           (phone: ResourceStr, index?:number) => `${index}-${phone}`
          )
        }
- 
+
        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
          Text("Save Changes")
            .onClick(() => {
@@ -1259,49 +1258,48 @@ The update process is as follows:
              .onClick(() => {
                let index = this.selectedPersonIndex();
                console.log(`delete contact at index ${index}`);
- 
+
                // Delete the current contact.
                this.addrBook.contacts.splice(index, 1);
- 
+
                // Delete the current selectedPerson. The selected contact is then changed to the contact immediately before the deleted contact.
                index = (index < this.addrBook.contacts.length) ? index : index - 1;
- 
+
                // If all contracts are deleted, the **me** object is selected.
                this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
              })
          }
        }
- 
+
      }
    }
  }
- 
+
  @Component
  struct AddressBookView {
    @ObjectLink me: Person;
    @ObjectLink contacts: ObservedArray<Person>;
-   @State selectedPerson: Person = undefined;
- 
+   @State selectedPerson: Person = new Person("", "", 0, "", []);
+
    aboutToAppear() {
      this.selectedPerson = this.me;
    }
- 
+
    build() {
      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
        Text("Me:")
        PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
- 
+
        Divider().height(8)
- 
-       ForEach(this.contacts,
-         contact => {
-           PersonView({ person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson })
-         },
-         contact => contact.id_
+
+       ForEach(this.contacts, (contact: Person) => {
+         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+       },
+         (contact: Person): string => { return contact.id_; }
        )
- 
+
        Divider().height(8)
- 
+
        Text("Edit:")
        PersonEditView({
          selectedPerson: this.$selectedPerson,
@@ -1313,7 +1311,7 @@ The update process is as follows:
      .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
    }
  }
- 
+
  @Entry
  @Component
  struct PageEntry {
@@ -1324,7 +1322,7 @@ The update process is as follows:
        new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
        new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
      ]);
- 
+
    build() {
      Column() {
        AddressBookView({ me: this.addrBook.me, contacts: this.addrBook.contacts, selectedPerson: this.addrBook.me })

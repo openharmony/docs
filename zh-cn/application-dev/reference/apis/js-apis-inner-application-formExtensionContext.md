@@ -184,7 +184,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 
 let commRemote: rpc.IRemoteObject | null = null;
 export default class MyFormExtensionAbility extends FormExtensionAbility {
@@ -250,7 +249,6 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
@@ -317,7 +315,6 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例

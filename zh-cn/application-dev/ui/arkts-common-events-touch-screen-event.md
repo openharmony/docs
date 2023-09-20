@@ -88,7 +88,7 @@ import image from '@ohos.multimedia.image';
 @Component
 struct Index {
   @State visible: Visibility = Visibility.Visible
-  private pixelMapReader:object|undefined = undefined
+  private pixelMapReader:image.PixelMap|undefined = undefined
 
   aboutToAppear() {
     console.info('begin to create pixmap has info message: ')
@@ -106,15 +106,15 @@ struct Index {
       width:number = 96
     }
     let hwo:hw = new hw()
-    let opts:Record<string,number|boolean|hw> = {
+    let ops:image.InitializationOptions|void = {
       'alphaType': 0,
       'editable': true,
       'pixelFormat': 4,
       'scaleMode': 1,
       'size': hwo
     }
-    const promise:image = image.createPixelMap(color, opts);
-    promise.then((data:object|undefined) => {
+    const promise: Promise<image.PixelMap> = image.createPixelMap(color, ops);
+    promise.then((data:image.PixelMap|undefined) => {
       console.info('create pixmap has info message: ' + JSON.stringify(data))
       if(data){
         this.pixelMapReader = data;
@@ -151,7 +151,7 @@ struct Index {
         .textAlign(TextAlign.Center)
         .backgroundColor(Color.Pink)
         .visibility(this.visible)
-        .onDragStart(() => {                    //启动跨窗口拖拽
+        .onDragStart((event: DragEvent|undefined, extraParams: string|undefined):CustomBuilder | DragItemInfo => {
           console.info('Text onDrag start')
           return { pixelMap: this.pixelMapReader, extraInfo: 'custom extra info.' }
         })
@@ -207,7 +207,7 @@ struct Index {
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
           }
-        }, ((item:string):string => item))
+        }, (item:string):string => item)
 
         ListItem() {
           Text('Across Window Drag This')

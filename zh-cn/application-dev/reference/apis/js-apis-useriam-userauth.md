@@ -46,7 +46,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
-| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。                       |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。仅在单指纹、单人脸场景下支持。 |
 | windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型，默认值为WindowModeType.DIALOG_BOX。<br>**系统接口**: 此接口为系统接口。 |
 
 ## UserAuthResult<sup>10+</sup>
@@ -92,7 +92,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -149,7 +148,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -203,7 +201,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -260,7 +257,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -304,7 +300,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
@@ -363,7 +358,6 @@ const authParam : userAuth.AuthParam = {
 };
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
-  navigationButtonText: '返回',
 };
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);

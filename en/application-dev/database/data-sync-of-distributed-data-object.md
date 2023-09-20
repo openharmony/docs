@@ -14,15 +14,13 @@ The distributed data object (**distributedDataObject**) module implements global
 
 - Distributed in-memory database
   
-
-The distributed in-memory database caches data in the memory so that applications can quickly access data without persisting data. If the database is closed, the data is not retained.
-
-- Distributed data object
+  The distributed in-memory database caches data in the memory so that applications can quickly access data without persisting data. If the database is closed, the data is not retained.
   
+- Distributed data object
 
-A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
+  A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading and writing a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
 
-The distributed data object has the following states in its lifecycle:
+  The distributed data object has the following states in its lifecycle:
 
   - **Uninitialized**: The distributed data object is not instantiated or is destroyed.
   - **Local**: A data table is created, but the data cannot be synchronized.
@@ -74,7 +72,6 @@ After the synchronization relationship is established, each session has a copy o
 - Listening for status changes, such as the addition and removal of other devices.
 
 
-
 ### Minimum Synchronization Unit
 
 Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed attribute needs to be synchronized.
@@ -121,14 +118,18 @@ You need to persist distributed data objects in the following scenarios:
 
 Most of the APIs for cross-device synchronization of distributed data objects are executed asynchronously in callback or promise mode. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
 
+> **NOTE**
+>
+> The APIs of the **distributedDataObject** module can be used only in JS development.
+
 | API| Description|
 | -------- | -------- |
 | create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
 | genSessionId(): string | Generates a session ID for distributed data objects.|
 | setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data synchronization. Automatic synchronization is performed for devices with the same session ID on a trusted network.|
 | setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions.|
-| on(type: 'change', callback: Callback&lt;{ sessionId: string, fields: Array&lt;string&gt; }&gt;): void | Subscribes to data changes of this distributed data object.|
-| on(type: 'status', callback: Callback&lt;{ sessionId: string, networkId: string, status: 'online' \| 'offline' }&gt;): void | Subscribes to status changes of this distributed data object.|
+| on(type: 'change', callback: Callback&lt;{ sessionId: string, fields: Array&lt;string&gt; }&gt;): void | Subscribes to data changes of the distributed data object.|
+| on(type: 'status', callback: Callback&lt;{ sessionId: string, networkId: string, status: 'online' \| 'offline' }&gt;): void | Subscribes to status changes of the distributed data object.|
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
 
@@ -156,26 +157,17 @@ The following example demonstrates how to implement synchronization of distribut
    // Import the module.
    import distributedDataObject from '@ohos.data.distributedDataObject';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
-
-   interface sourceObject{
-     name: string,
-     age: number,
-     isVis: boolean
-     parent: { [key: string]: string },
-     list: { [key: string]: string }[]
-   }
+   
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       let source: sourceObject = {
+     onWindowStageCreate(windowStage) {
+       // Create a distributed data object, which has properties of the string, number, boolean, and object types.
+       let localObject = distributedDataObject.create(this.context, {
          name: 'jack',
          age: 18,
          isVis: false,
          parent: { mother: 'jack mom', father: 'jack Dad' },
          list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-       }
-       let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, source);
+       });
      }
    }
    ```
@@ -189,43 +181,34 @@ The following example demonstrates how to implement synchronization of distribut
    import featureAbility from '@ohos.ability.featureAbility';
    // Obtain the context.
    let context = featureAbility.getContext();
-   interface sourceObject{
-     name: string,
-     age: number,
-     isVis: boolean
-     parent: { [key: string]: string },
-     list: { [key: string]: string }[]
-   }
-   let source: sourceObject = {
+   // Create a distributed data object, which has properties of the string, number, boolean, and object types.
+   let localObject = distributedDataObject.create(context, {
      name: 'jack',
      age: 18,
      isVis: false,
      parent: { mother: 'jack mom', father: 'jack Dad' },
      list: [{ mother: 'jack mom' }, { father: 'jack Dad' }]
-   }
-   // Create a distributed data object, which has properties of the string, number, boolean, and object types.
-   let localObject: distributedDataObject.DataObject = distributedDataObject.create(context, source);
+   });
    ```
 
 4. Set the same session ID for the distributed data objects for data synchronization. The data objects in the synchronization network include the local and remote objects.
    
    ```js
    // Set a session ID, for example, 123456, for device 1.
-   let sessionId: string = '123456';
+   let sessionId = '123456';
    
    localObject.setSessionId(sessionId);
    
    // Set the same session ID for device 2.
    
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
-   let remoteSource: sourceObject = {
+   let remoteObject = distributedDataObject.create(this.context, {
      name: undefined,
      age: undefined, // undefined indicates that the data comes from the peer end.
      isVis: true,
      parent: undefined,
      list: undefined
-   }
-   let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
+   });
    // After learning that the device goes online, the remote object synchronizes data. That is, name is changed to jack and age to 18.
    remoteObject.setSessionId(sessionId);
    ```
@@ -233,19 +216,14 @@ The following example demonstrates how to implement synchronization of distribut
 5. Observe data changes of a distributed data object. You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be invoked to return a data change event.
    
    ```js
-   interface ChangeCallback {
-     sessionId: string,
-     fields: Array<string> 
-   }
-   
-   localObject.on("change", (changeData:ChangeCallback) => {
-     console.info("change" + changeData.sessionId);
-     if (changeData.fields != null && changeData.fields != undefined) {
-       for (let index: number = 0; index < changeData.fields.length; index++) {
-         console.info(`The element ${localObject[changeData.fields[index]]} changed.`);
-       }
+   localObject.on("change", ({sessionId, fields}) => {
+     console.info("change" + sessionId);
+     if (fields != null && fields != undefined) {
+       fields.forEach(element => {
+         console.info("changed !" + element + " " + localObject[element]);
+       });
      }
-   });
+   })
    ```
 
 6. Modify properties of the distributed data object. The object properties support basic data types (number, Boolean, and string) and complex data types (array and nested basic types).
@@ -280,12 +258,12 @@ The following example demonstrates how to implement synchronization of distribut
    
    ```js
    // Unregister this.changeCallback.
-   localObject.off('change',(changeData: ChangeCallback) => {
-     console.info("change" + changeData.sessionId);
-     if (changeData.fields != null && changeData.fields != undefined) {
-       for (let index: number = 0; index < changeData.fields.length; index++) {
-         console.info("changed !" + changeData.fields[index] + " " + g_object[changeData.fields[index]]);
-       }
+   localObject.off('change', ({sessionId, fields}) => {
+     console.info("change" + sessionId);
+     if (fields != null && fields != undefined) {
+       fields.forEach(element => {
+         console.info("changed !" + element + " " + localObject[element]);
+       });
      }
    });
    // Unregister all data change callbacks. 
@@ -295,14 +273,7 @@ The following example demonstrates how to implement synchronization of distribut
 9. Subscribe to status changes of a distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
    
    ```js
-   interface onStatusCallback {
-     sessionId: string,
-     networkId: string,
-     status: 'online' | 'offline'
-   }
-   
-   localObject.on('status', (statusCallback: onStatusCallback) => {
-     console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " +  statusCallback.networkId);
+   localObject.on('status', ({sessionId, networkId, status}) => {
      // Service processing.
    });
    ```
@@ -311,16 +282,16 @@ The following example demonstrates how to implement synchronization of distribut
     
     ```js
     // Save the data object if the device on the network needs to retrieve the object data after the application exits.
-    localObject.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
+    localObject.save('local').then((result) => {
       console.info(`Succeeded in saving. SessionId:${result.sessionId},version:${result.version},deviceId:${result.deviceId}`);
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error(`Failed to save. Code:${err.code},message:${err.message}`);
     });
       
     // Revoke the data saved.
-    localObject.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
+    localObject.revokeSave().then((result) => {
       console.info(`Succeeded in revokeSaving. Session:${result.sessionId}`);
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error(`Failed to revokeSave. Code:${err.code},message:${err.message}`);
     });
     ```
@@ -328,14 +299,8 @@ The following example demonstrates how to implement synchronization of distribut
 11. Unsubscribe from the status changes of a distributed data object. You can specify the callback to unregister. If you do not specify the callback, this API unregisters all status change callbacks of this distributed data object.
     
     ```js
-    interface offStatusCallback {
-      sessionId: string,
-      deviceId: string,
-      status: 'online' | 'offline'
-    }
     // Unregister this.statusCallback.
-    localObject.off('status', (statusCallback: offStatusCallback) => {
-      console.info("status changed " + statusCallback.sessionId + " " + statusCallback.status + " " + statusCallback.deviceId);
+    localObject.off('status', ({sessionId, deviceId, status}) => {
       // Service processing.
     });
     // Unregister all status change callbacks.
@@ -346,6 +311,6 @@ The following example demonstrates how to implement synchronization of distribut
     
     ```js
     localObject.setSessionId(() => {
-      console.info('leave all session.');
+        console.info('leave all session.');
     });
     ```

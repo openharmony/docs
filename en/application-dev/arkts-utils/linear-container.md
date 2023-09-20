@@ -198,56 +198,63 @@ You are advised to use **Stack** in LOFI scenarios.
 Refer to the code snippet below to add, access, and modify elements in **ArrayList**, **Vector**, **Deque**, **Stack**, and **List**.  
 
 
-```js
+```ts
 // ArrayList
 import ArrayList from '@ohos.util.ArrayList'; // Import the ArrayList module.
 
-let arrayList = new ArrayList();
-arrayList.add('a');
-arrayList.add(1); // Add an element.
-console.info(`result: ${arrayList[0]}`); // Access an element.
-arrayList[0] = 'one'; // Modify an element.
-console.info(`result: ${arrayList[0]}`);
+let arrayList1: ArrayList<string> = new ArrayList();
+arrayList1.add('a');
+let arrayList2: ArrayList<number> = new ArrayList();
+arrayList2.add(1); // Add an element.
+console.info(`result: ${arrayList2[0]}`); // Access an element.
+arrayList1[0] = 'one'; // Modify an element.
+console.info(`result: ${arrayList1[0]}`);
 
 // Vector
 import Vector from '@ohos.util.Vector'; // Import the Vector module.
 
-let vector = new Vector();
-vector.add('a');
+let vector1: Vector<string> = new Vector();
+vector1.add('a');
+let vector2: Vector<Array<number>> = new Vector();
 let b1 = [1, 2, 3];
-vector.add(b1);
-vector.add(false); // Add an element.
-console.info(`result: ${vector[0]}`); // Access an element.
-console.info(`result: ${vector.getFirstElement()}`); // Access an element.
+vector2.add(b1);
+let vector3: Vector<boolean> = new Vector();
+vector3.add(false); // Add an element.
+console.info(`result: ${vector1[0]}`); // Access an element.
+console.info(`result: ${vector2.getFirstElement()}`); // Access an element.
 
 // Deque
 import Deque from '@ohos.util.Deque'; // Import the Deque module.
 
-let deque = new Deque;
-deque.insertFront('a');
-deque.insertFront(1); // Add an element.
-console.info(`result: ${deque[0]}`); // Access an element.
-deque[0] = 'one'; // Modify an element.
-console.info(`result: ${deque[0]}`);
+let deque1: Deque<string> = new Deque;
+deque1.insertFront('a');
+let deque2: Deque<number> = new Deque;
+deque2.insertFront(1); // Add an element.
+console.info(`result: ${deque1[0]}`); // Access an element.
+deque1[0] = 'one'; // Modify an element.
+console.info(`result: ${deque2[0]}`);
 
 // Stack
 import Stack from '@ohos.util.Stack'; // Import the Stack module.
 
-let stack = new Stack();
-stack.push('a');
-stack.push(1); // Add an element.
-console.info(`result: ${stack[0]}`); // Access an element.
-stack.pop(); // Remove an element.
-console.info(`result: ${stack.length}`);
+let stack1: Stack<string> = new Stack();
+stack1.push('a');
+let stack2: Stack<number> = new Stack();
+stack2.push(1); // Add an element.
+console.info(`result: ${stack1[0]}`); // Access an element.
+stack2.pop(); // Remove an element.
+console.info(`result: ${stack2.length}`);
 
 // List
 import List from '@ohos.util.List'; // Import the List module.
 
-let list = new List;
-list.add('a');
-list.add(1);
+let list1: List<string> = new List;
+list1.add('a');
+let list2: List<number> = new List;
+list2.add(1);
+let list3: List<Array<number>> = new List;
 let b2 = [1, 2, 3];
-list.add(b2); // Add an element.
-console.info(`result: ${list[0]}`); // Access an element.
-console.info(`result: ${list.get(0)}`); // Access an element.
+list3.add(b2); // Add an element.
+console.info(`result: ${list1[0]}`); // Access an element.
+console.info(`result: ${list3.get(0)}`); // Access an element.
 ```

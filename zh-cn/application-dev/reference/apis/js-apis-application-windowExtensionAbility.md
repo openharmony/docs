@@ -101,7 +101,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 import window from '@ohos.window';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
-  onWindowReady(window) {
+  onWindowReady(window: window.Window) {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
       window.getProperties().then((pro: window.WindowProperties) => {
         console.log('WindowExtension pro: ${JSON.stringify(pro)}');

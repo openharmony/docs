@@ -56,7 +56,7 @@ sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeAccelerometer
 
@@ -106,7 +106,7 @@ sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeCompass
 
@@ -154,7 +154,7 @@ sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeProximity
 
@@ -202,7 +202,7 @@ sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeLight
 
@@ -252,7 +252,7 @@ sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeStepCounter
 
@@ -303,7 +303,7 @@ sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
 ## sensor.unsubscribeBarometer
@@ -355,7 +355,7 @@ sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
 ## sensor.unsubscribeHeartRate
@@ -406,7 +406,7 @@ sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeOnBodyState
 
@@ -490,7 +490,7 @@ sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
@@ -545,7 +545,7 @@ sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **说明：**
-> 建议在页面销毁时，即onDestory回调中，取消数据订阅，避免不必要的性能开销。
+> 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>
 

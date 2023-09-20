@@ -24,9 +24,9 @@
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // 使能刷新功能
+        "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
-        "updateDuration": 2, // 设置卡片定时刷新的更新周期（单位为30分钟，取值为自然数）
+        "updateDuration": 2,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
       }
@@ -55,8 +55,8 @@
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // 使能刷新功能
-        "scheduledUpdateTime": "10:30", // 设置卡片的定点刷新的时刻
+        "updateEnabled": true,
+        "scheduledUpdateTime": "10:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]

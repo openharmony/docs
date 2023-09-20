@@ -60,7 +60,7 @@ This example is used to clarify the processing steps of custom component updates
 ```ts
 @Component
 struct TotalView {
-  @Prop @Watch('onCountUpdated') count: number;
+  @Prop @Watch('onCountUpdated') count: number = 0;
   @State total: number = 0;
   // @Watch cb
   onCountUpdated(propName: string): void {
@@ -136,10 +136,10 @@ struct BasketViewer {
   build() {
     Column() {
       ForEach(this.shopBasket,
-        (item) => {
+        (item:PurchaseItem) => {
           Text(`Price: ${item.price.toFixed(2)} €`)
         },
-        item => item.id.toString()
+        (item:PurchaseItem) => item.id.toString()
       )
       Text(`Total: ${this.totalPurchase.toFixed(2)} €`)
     }

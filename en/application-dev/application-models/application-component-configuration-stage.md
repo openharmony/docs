@@ -90,7 +90,7 @@ The application icon and label are used in **Settings**. For example, they are d
 
   **Figure 2** Application details page
   
-![Application details page](figures/application_details.jpg)
+  ![Application details page](figures/application_details.jpg)
   
 - **Configuring application version declaration**
   
@@ -98,7 +98,7 @@ The application icon and label are used in **Settings**. For example, they are d
   
 - **Configuring device types supported by the module**
 
-  To configure the device types supported by the module, set the **deviceTypes** field in the [module.json5 file](../quick-start/module-configuration-file.md). If a certain device type is added to **deviceTypes**, the module can run on that device.
+  To configure the device types supported by the module, set the [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) field in the [module.json5 file](../quick-start/module-configuration-file.md). If a certain device type is added to **deviceTypes**, the module can run on that device.
 
 - **Configuring the module permission**
 

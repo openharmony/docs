@@ -41,7 +41,7 @@ import window from '@ohos.window';
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_DIALOG<sup>10+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 
 ## Configuration<sup>9+</sup>
@@ -1954,7 +1954,7 @@ import { BusinessError } from '@ohos.base';
 
 windowClass.destroyWindow((err) => {
   const errCode: number = err.code;
-  if (errCodee) {
+  if (errCode) {
     console.error('Failed to destroy the window. Cause:' + JSON.stringify(err));
     return;
   }
@@ -4290,7 +4290,7 @@ try {
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4335,7 +4335,7 @@ try {
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4382,7 +4382,7 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏录屏是否忽略当前窗口。
+截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5324,7 +5324,7 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 try {
-    windowClass.resetAspectRatio((err： BusinessError) => {
+    windowClass.resetAspectRatio((err: BusinessError) => {
         const errCode: number = err.code;
         if (errCode) {
             console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
@@ -5872,6 +5872,151 @@ export default class EntryAbility extends UIAbility {
     }
 };
 ```
+
+### hideNonSystemFloatingWindows<sup>11+</sup>
+
+hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+
+非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明       |
+| ----------- | ------------------------- | ---- | ---------- |
+| shouldHide  | boolean                   | 是   | 指示是否隐藏非系统级的悬浮窗口，true表示隐藏，false表示不隐藏。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+
+    // 获取应用主窗口。
+    let mainWindow = null;
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+      let shouldHide = true;
+      // 调用带callback参数的hideNonSystemFloatingWindows接口
+      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+        if (err.code) {
+          console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in hiding the non-system floating windows.');
+      });
+    })
+  }
+}
+```
+
+### hideNonSystemFloatingWindows<sup>11+</sup>
+
+hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
+
+设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+
+非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明       |
+| ----------- | ------------------------- | ---- | ---------- |
+| shouldHide  | boolean                   | 是   | 指示是否隐藏非系统级的悬浮窗口，true表示隐藏，false表示不隐藏。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+
+    // 获取应用主窗口。
+    let mainWindow = null;
+    windowStage.getMainWindow((err, data) => {
+      if (err.code) {
+        console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      mainWindow = data;
+      console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+      let shouldHide = true;
+      // 调用hideNonSystemFloatingWindows接口，获取promise对象
+      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+      promise.then(()=> {
+        console.info('Succeeded in hiding the non-system floating windows.');
+      }).catch((err)=>{
+        console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
+      });
+    })
+  }
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -7455,7 +7600,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃。
+> 
+> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -7494,7 +7641,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 从 API version 7开始支持，从API version 9开始废弃。
+> 
+> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -7532,7 +7681,7 @@ promise.then(() => {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 > **说明：**
 >
@@ -7567,7 +7716,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
+设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。此接口可用于禁止截屏/录屏的场景。
 
 > **说明：**
 >

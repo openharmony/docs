@@ -27,9 +27,9 @@ The following object types are supported: basic types except Symbol, Date, Strin
 Transferable objects are serialized through address transfer. It transfers the ownership of an object of the ArrayBuffer type, rather than the content in it. After the ownership is transferred, the object becomes unavailable in the sender and can be used only in the receiver.
 
 
-```js
+```ts
 // Define a transferable object.
-let buffer = new ArrayBuffer(100);
+let buffer: ArrayBuffer = new ArrayBuffer(100);
 ```
 
 
@@ -42,9 +42,9 @@ An object of the SharedArrayBuffer type can be transferred between multiple thre
 If multiple operations are simultaneously performed to modify data stored in an object of the SharedArrayBuffer type, you must use atomics to ensure data synchronization. Atomics ensure that the current operation is complete before the next operation starts.
 
 
-```js
+```ts
 // Define a shared object, which uses atomics to ensure data synchronization.
-let sharedBuffer = new SharedArrayBuffer(1024);
+let sharedBuffer: SharedArrayBuffer = new SharedArrayBuffer(1024);
 ```
 
 ### Native Binding Objects

@@ -504,7 +504,7 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
 
 off(type: 'audioInterrupt'): void
 
-取消订阅标记事件。
+取消订阅音频中断事件。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 

@@ -71,7 +71,7 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 选择日期时触发该事件。<br />**说明：**<br />从API version 8 开始支持，从 API version 10 开始废弃，建议使用onDateChange(callback: (value: Date) => void)。 |
-| onDateChange(callback: (value: Date) => void)<sup>10+</sup>  | 选择日期时触发该事件。                                       |
+| onDateChange(callback: (value: Date) => void)<sup>10+</sup>  | 选择日期时触发该事件。<br/>Date：返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。|
 
 ## DatePickerResult对象说明
 

@@ -46,20 +46,16 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 ```ts
 let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
-try{
-  deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<ExemptedAppInfo>) => {
-    if (err) {
-      console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
-    } else {
-      console.log('DEVICE_STANDBY getExemptedApps callback success.');
-      for (let i = 0; i < res.length; i++) {
-        console.log('DEVICE_STANDBY getExemptedApps callback result ' + JSON.stringify(res[i]));
-      }
+deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<ExemptedAppInfo>) => {
+  if (err) {
+    console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('DEVICE_STANDBY getExemptedApps callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('DEVICE_STANDBY getExemptedApps callback result ' + JSON.stringify(res[i]));
     }
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
+  }
+});
 ```
 
 ## deviceStandby.getExemptedApps
@@ -102,18 +98,14 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 ```ts
 let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
-try{
-  deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<ExemptedAppInfo>) => {
-    console.log('DEVICE_STANDBY getExemptedApps promise success.');
-    for (let i = 0; i < res.length; i++) {
-      console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
-    }
-  }).catch( (err: BusinessError) => {
-    console.log('DEVICE_STANDBY getExemptedApps promise failed. code is: ' + err.code + ',message is: ' + err.message);
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
+deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<ExemptedAppInfo>) => {
+  console.log('DEVICE_STANDBY getExemptedApps promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
+  }
+}).catch( (err: BusinessError) => {
+  console.log('DEVICE_STANDBY getExemptedApps promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## deviceStandby.requestExemptionResource
@@ -156,29 +148,7 @@ let resRequest: deviceStandby.ResourceRequest = {
   duration:10,
   reason:"apply",
 };
-// 异步方法promise方式
-try{
-  deviceStandby.requestExemptionResource(resRequest).then( () => {
-    console.log('DEVICE_STANDBY requestExemptionResource promise succeeded.');
-  }).catch( (err: BusinessError) => {
-    console.log('DEVICE_STANDBY requestExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
-
-// 异步方法callback方式
-try{
-  deviceStandby.requestExemptionResource(resRequest, (err: BusinessError) => {
-    if (err) {
-      console.log('DEVICE_STANDBY requestExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-    } else {
-      console.log('DEVICE_STANDBY requestExemptionResource callback succeeded.');
-    }
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
+deviceStandby.requestExemptionResource(resRequest);
 ```
 
 ## deviceStandby.releaseExemptionResource
@@ -221,29 +191,7 @@ let resRequest: deviceStandby.ResourceRequest = {
   duration:10,
   reason:"unapply",
 };
-// 异步方法promise方式
-try{
-  deviceStandby.releaseExemptionResource(resRequest).then( () => {
-    console.log('DEVICE_STANDBY releaseExemptionResource promise succeeded.');
-  }).catch( (err: BusinessError) => {
-    console.log('DEVICE_STANDBY releaseExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
-
-// 异步方法callback方式
-try{
-  deviceStandby.releaseExemptionResource(resRequest, (err: BusinessError) => {
-    if (err) {
-      console.log('DEVICE_STANDBY releaseExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-    } else {
-      console.log('DEVICE_STANDBY releaseExemptionResource callback succeeded.');
-    }
-  });
-} catch (error) {
-  console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + (error as BusinessError).code + ',message is: ' + (error as BusinessError).message);
-}
+deviceStandby.releaseExemptionResource(resRequest);
 ```
 
 ## ResourceType

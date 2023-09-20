@@ -11,29 +11,33 @@ A UIAbility accesses a ServiceAbility in the same way as it accesses a ServiceEx
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.info("EntryAbility onCreate");
     }
     onDestroy() {
         console.info("EntryAbility onDestroy")
     }
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         console.info("EntryAbility onWindowStageCreate")
-        let want = {
+        let want: Want = {
             bundleName: "com.ohos.fa",
             abilityName: "ServiceAbility",
         };
 
-        let options = {
-            onConnect:function (elementName, proxy) {
+        let options: common.ConnectOptions = {
+            onConnect: (elementName, proxy) => {
                 console.info("onConnect called.");
             },
-            onDisconnect:function (elementName) {
+            onDisconnect: (elementName) => {
                 console.info("onDisconnect called.");
             },
-            onFailed:function (code) {
+            onFailed: (code) => {
                 console.info("onFailed code is: " + code);
             }
         };
@@ -58,29 +62,31 @@ The following uses the ServiceExtensionAbility component as an example to descri
 
 
 ```ts
-import Extension from '@ohos.app.ability.ServiceExtensionAbility'
+import Extension from '@ohos.app.ability.ServiceExtensionAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
 export default class ServiceExtension extends Extension {
-    onCreate(want) {
+    onCreate(want: Want) {
         console.info("ServiceExtension onCreate")
     }
     onDestroy() {
         console.info("ServiceExtension onDestroy")
     }
-    onRequest(want, startId) {
+    onRequest(want: Want, startId: number) {
         console.info("ServiceExtension onRequest")
-        let wantFA = {
+        let wantFA: Want = {
             bundleName: "com.ohos.fa",
             abilityName: "ServiceAbility",
         };
-        let options = {
-            onConnect:function (elementName, proxy) {
+        let options: common.ConnectOptions = {
+            onConnect: (elementName, proxy) => {
                 console.info("onConnect called.");
             },
-            onDisconnect:function (elementName) {
+            onDisconnect: (elementName) => {
                 console.info("onDisconnect called.");
             },
-            onFailed:function (code) {
+            onFailed: (code) => {
                 console.info("onFailed code is: " + code);
             }
         };

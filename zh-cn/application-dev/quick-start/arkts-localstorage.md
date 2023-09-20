@@ -18,7 +18,7 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 - 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过GetShared接口，获取在UIAbility里创建的GetShared，实现跨页面、UIAbility内共享。
 
-- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限；
+- 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
 - 被\@Component装饰的组件最多可以访问一个LocalStorage实例和[AppStorage](arkts-appstorage.md)，未被\@Entry装饰的组件不可被独立分配LocalStorage实例，只能接受父组件通过\@Entry传递来的LocalStorage实例。一个LocalStorage实例在组件树上可以被分配给多个组件。
 
@@ -272,7 +272,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ### \@LocalStorageLink和LocalStorage双向同步的简单场景
 
-下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景
+下面的示例展示了\@LocalStorageLink装饰的数据和LocalStorage双向同步的场景：
 
 
 ```ts
@@ -314,7 +314,7 @@ struct CompA {
 
 2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新；
 
-3. Text组件“playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}”没有同步刷新，原因是因为storage.get&lt;number&gt;('countStorage')返回的是常规变量，常规变量的更新并不会引起Text组件的重新渲染。
+3. Text组件“playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}”没有同步刷新，因为storage.get&lt;number&gt;('countStorage')返回的是常规变量，常规变量的更新并不会引起Text组件的重新渲染。
 
 Child自定义组件中的变化：
 

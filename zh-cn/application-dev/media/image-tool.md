@@ -38,7 +38,8 @@ EXIF信息的读取与编辑相关API的详细介绍请参见[API参考](../refe
    
    // 编辑EXIF信息
    imageSource.modifyImageProperty('ImageWidth', '120').then(() => {
-     const width : string = imageSource.getImageProperty("ImageWidth");
-     console.info('The new imageWidth is ' + width);
+     imageSource.getImageProperty("ImageWidth").then((width : string) => {
+        console.info('The new imageWidth is ' + width);
+     })
    })
    ```

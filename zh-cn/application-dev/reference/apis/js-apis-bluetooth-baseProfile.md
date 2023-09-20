@@ -83,7 +83,7 @@ try {
         console.info('setConnectionStrategy, err: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -135,7 +135,7 @@ try {
         console.error('setConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -179,7 +179,7 @@ try {
         console.info('getConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -230,7 +230,7 @@ try {
         console.error('getConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -270,7 +270,7 @@ try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let retArray = a2dpSrc.getConnectedDevices();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -316,7 +316,7 @@ try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let ret = a2dpSrc.getConnectionState('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -342,14 +342,14 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data: baseProfile.StateChangeParam) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -375,14 +375,13 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#St
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data: baseProfile.StateChangeParam) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
-    let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
     a2dpSrc.off('connectionStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```

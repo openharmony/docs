@@ -44,7 +44,7 @@
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
      }
-     let photoOutput: camera.PhotoOutput | undefined;
+     let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
      } catch (error) {
@@ -56,9 +56,9 @@
    ```
 
 4. 参数配置。
-   
+
    配置相机的参数可以调整拍照的一些功能，包括闪光灯、变焦、焦距等。
- 
+
    ```ts
    function configuringSession(captureSession: camera.CaptureSession): void {
      // 判断设备是否支持闪光灯
@@ -126,11 +126,11 @@
        let err = error as BusinessError;
        console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
      }
-}
+   }
    ```
 
 5. 触发拍照。
-   
+
    通过photoOutput类的capture()方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
  
    ```ts

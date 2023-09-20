@@ -47,23 +47,23 @@ In the initiator UIAbility, use implicit Want to start the browser application.
 
 ```ts
 import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-function implicitStartAbility() {
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantInfo = {
-    // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-    // bundleName: 'com.example.myapplication',
-    'action': 'ohos.want.action.viewData',
-    // entities can be omitted.
-    'entities': ['entity.system.browsable'],
-    'uri': 'https://www.test.com:8080/query/student'
-  }
-  context.startAbility(wantInfo).then(() => {
-    ...
-  }).catch((err) => {
-    ...
-  })
+let context = getContext(this) as common.UIAbilityContext;
+let wantInfo: Want = {
+  // Uncomment the line below if you want to implicitly query data only in the specific bundle.
+  // bundleName: 'com.example.myapplication',
+  'action': 'ohos.want.action.viewData',
+  // entities can be omitted.
+  'entities': ['entity.system.browsable'],
+  'uri': 'https://www.test.com:8080/query/student'
 }
+context.startAbility(wantInfo).then(() => {
+  // ...
+}).catch((err: BusinessError) => {
+  // ...
+})
 ```
 
 The matching process is as follows:

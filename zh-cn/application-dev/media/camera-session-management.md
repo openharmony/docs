@@ -82,7 +82,7 @@
      }
    
      try {
-       await captureSession.start()
+       await captureSession.start();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to start. error: ${JSON.stringify(err)}`);

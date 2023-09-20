@@ -73,13 +73,15 @@ buffer数组。
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节。                             |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
+| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
+| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
 > **说明：**
 >
-> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 1. 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 2. 对于在1~16字节长度范围内的iv，加解密算法库不作额外限制，但其结果取决于底层openssl是否支持。
+> 3. 用户不需要使用aad参数或aad长度为0时，可以指定aad的data属性为空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
 
 ## CcmParamsSpec
 
@@ -874,7 +876,7 @@ keyGenPromise.then( keyPair => {
 
 ### convertKey
 
-convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\>): void
+convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCallback\<KeyPair\>): void
 
 异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。详情请看下方**密钥转换说明**。
 
@@ -884,8 +886,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\
 
 | 参数名     | 类型       | 必填 | 说明                           |
 | -------- | ----------- | ---- | ------------------------------ |
-| pubKey   | [DataBlob](#datablob)     | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。        |
-| priKey   | [DataBlob](#datablob)     | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。        |
+| pubKey   | [DataBlob](#datablob) \| null<sup>10+</sup>    | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。        |
+| priKey   | [DataBlob](#datablob) \| null<sup>10+</sup>   | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。        |
 | callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
@@ -917,7 +919,7 @@ asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
 
 ### convertKey
 
-convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
+convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 异步获取指定数据生成非对称密钥，通过Promise获取结果。详情请看下方**密钥转换说明**。
 
@@ -927,8 +929,8 @@ convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
 
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | DataBlob | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。 |
-| priKey | DataBlob | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。 |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 
 **返回值：**
 
@@ -1332,7 +1334,7 @@ try {
 
 ### init
 
-init(opMode: CryptoMode, key: Key, params: ParamsSpec, callback: AsyncCallback\<void>): void
+init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
 初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1344,7 +1346,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec, callback: AsyncCallback\<
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode   | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key      | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
-| params   | [ParamsSpec](#paramsspec) | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+| params   | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
@@ -1376,7 +1378,7 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 ### init
 
-init(opMode: CryptoMode, key: Key, params: ParamsSpec): Promise\<void>
+init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 初始化加解密的cipher对象，通过Promise获取结果。<br/>必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1388,7 +1390,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec): Promise\<void>
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key    | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec) | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。 |
+| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
 
 **返回值：**
 
@@ -1545,9 +1547,7 @@ cipher.update(plainText)
   }, (error: BusinessError) => {
     console.info(`Update cipher failed.`);
   })
-}
 
-function a28() {
 let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
 let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
 // The init() and update() processes are omitted here.
@@ -1565,7 +1565,7 @@ cipher.doFinal(data, (err, output) => {
 
 ### doFinal
 
-doFinal(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
+doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 （1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
 
@@ -1587,7 +1587,7 @@ doFinal(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 | 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。       |
+| data     | [DataBlob](#datablob) \| null<sup>10+</sup>                 | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。API 10之前只支持DataBlob， API 10之后增加支持null。       |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当最终加/解密数据成功，err为undefined，data为剩余数据的加/解密结果DataBlob；否则为错误对象。 |
 
 **错误码：**
@@ -1621,7 +1621,7 @@ cipher.doFinal(data, (err, output) => {
 
 ### doFinal
 
-doFinal(data: DataBlob): Promise\<DataBlob>
+doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 （1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过Promise获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
 
@@ -1643,7 +1643,7 @@ doFinal(data: DataBlob): Promise\<DataBlob>
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data: Uint8Array(空) }。 |
+| data | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data: Uint8Array(空) }。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 
 **返回值：**
 
@@ -1854,7 +1854,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
 
-当使用update分段传入原文时，sign接口支持传null，业务方可在循环中调用update接口，循环结束后调用sign进行签名。
+当使用update分段传入原文时，sign接口API 10之前只支持传入DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
 ### 属性
 
@@ -1984,7 +1984,7 @@ update(data: DataBlob): Promise\<void>
 
 ### sign
 
-sign(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
+sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 对数据进行签名，通过注册回调函数获取签名结果。
 
@@ -1994,7 +1994,7 @@ sign(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| data     | [DataBlob](#datablob)              | 是   | 传入的消息。 |
+| data     | [DataBlob](#datablob) \| null<sup>10+</sup>              | 是   | 传入的消息。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 | callback | AsyncCallback\<[DataBlob](#datablob) > | 是   | 回调函数。  |
 
 **错误码：**
@@ -2008,7 +2008,7 @@ sign(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 ### sign
 
-sign(data: DataBlob): Promise\<DataBlob>
+sign(data: DataBlob | null): Promise\<DataBlob>
 
 对数据进行签名，通过promise方式返回签名结果。
 
@@ -2018,7 +2018,7 @@ sign(data: DataBlob): Promise\<DataBlob>
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| data   | [DataBlob](#datablob)  | 是   | 传入的消息。 |
+| data   | [DataBlob](#datablob) \| null<sup>10+</sup>  | 是   | 传入的消息。 |
 
 **返回值：**
 
@@ -2222,7 +2222,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 当被签名的消息较短时，可在init初始化后，（无需update）直接调用verify接口传入被签名的消息和签名(signatureData)进行验签。
 
-当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
+当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
 ### 属性
 
@@ -2352,7 +2352,7 @@ update(data: DataBlob): Promise\<void>
 
 ### verify
 
-verify(data: DataBlob, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
+verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
 
 对数据进行验签，返回验签结果，callback方式。
 
@@ -2362,7 +2362,7 @@ verify(data: DataBlob, signatureData: DataBlob, callback: AsyncCallback\<boolean
 
 | 参数名        | 类型                 | 必填 | 说明       |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | [DataBlob](#datablob)              | 是   | 传入的消息。 |
+| data          | [DataBlob](#datablob) \| null<sup>10+</sup>             | 是   | 传入的消息。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 | signatureData | [DataBlob](#datablob)              | 是   | 签名数据。  |
 | callback      | AsyncCallback\<boolean> | 是   | 回调函数。  |
 
@@ -2377,7 +2377,7 @@ verify(data: DataBlob, signatureData: DataBlob, callback: AsyncCallback\<boolean
 
 ### verify
 
-verify(data: DataBlob, signatureData: DataBlob): Promise\<boolean>
+verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 对数据进行验签，返回验签结果，promise方式。
 
@@ -2387,7 +2387,7 @@ verify(data: DataBlob, signatureData: DataBlob): Promise\<boolean>
 
 | 参数名        | 类型     | 必填 | 说明       |
 | ------------- | -------- | ---- | ---------- |
-| data          | [DataBlob](#datablob)  | 是   | 传入的消息。 |
+| data          | [DataBlob](#datablob) \| null<sup>10+</sup>  | 是   | 传入的消息。API 10之前只支持DataBlob， API 10之后增加支持null。 |
 | signatureData | [DataBlob](#datablob)  | 是   | 签名数据。  |
 
 **返回值：**

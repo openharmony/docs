@@ -44,7 +44,7 @@ enableBluetooth(): void
 try {
     bluetoothManager.enableBluetooth();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -77,7 +77,7 @@ disableBluetooth(): void
 try {
     bluetoothManager.disableBluetooth();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ", errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -116,7 +116,7 @@ getLocalName(): string
 try {
     let localName: string = bluetoothManager.getLocalName();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -155,7 +155,7 @@ getState(): BluetoothState
 try {
     let state: bluetoothManager.BluetoothState = bluetoothManager.getState();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -195,7 +195,7 @@ getBtConnectionState(): ProfileConnectionState
 try {
     let connectionState: bluetoothManager.ProfileConnectionState = bluetoothManager.getBtConnectionState();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -235,7 +235,7 @@ setLocalName(name: string): void
 try {
     bluetoothManager.setLocalName('device_name');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -276,7 +276,7 @@ try {
     // 实际的地址可由扫描流程获取
     bluetoothManager.pairDevice("XX:XX:XX:XX:XX:XX");
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -323,7 +323,7 @@ getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 try {
     let result: bluetoothManager.ProfileConnectionState = bluetoothManager.getProfileConnectionState(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -365,7 +365,7 @@ cancelPairedDevice(deviceId: string): void
 try {
     bluetoothManager.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -411,7 +411,7 @@ getRemoteDeviceName(deviceId: string): string
 try {
     let remoteDeviceName: string = bluetoothManager.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -457,7 +457,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 try {
     let remoteDeviceClass: bluetoothManager.DeviceClass  = bluetoothManager.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -497,7 +497,7 @@ getPairedDevices(): Array&lt;string&gt;
 try {
     let devices: Array<string> = bluetoothManager.getPairedDevices();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -539,7 +539,7 @@ try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     bluetoothManager.setBluetoothScanMode(bluetoothManager.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -579,7 +579,7 @@ getBluetoothScanMode(): ScanMode
 try {
     let scanMode: bluetoothManager.ScanMode = bluetoothManager.getBluetoothScanMode();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -618,7 +618,7 @@ try {
     bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
     bluetoothManager.startBluetoothDiscovery();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -652,7 +652,7 @@ stopBluetoothDiscovery(): void
 try {
     bluetoothManager.stopBluetoothDiscovery();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -698,7 +698,7 @@ function onReceivePinRequiredEvent(data: bluetoothManager.PinRequiredParam) { //
 try {
     bluetoothManager.on("pinRequired", onReceivePinRequiredEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -740,7 +740,7 @@ function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集�
 try {
     bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -783,7 +783,7 @@ try {
     bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
     bluetoothManager.off('bluetoothDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -825,7 +825,7 @@ function onReceiveEvent(data: bluetoothManager.PinRequiredParam) { // data为配
 try {
     bluetoothManager.on('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -868,7 +868,7 @@ try {
     bluetoothManager.on('pinRequired', onReceiveEvent);
     bluetoothManager.off('pinRequired', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -910,7 +910,7 @@ function onReceiveEvent(data: bluetoothManager.BondStateParam) { // data为回�
 try {
     bluetoothManager.on('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -953,7 +953,7 @@ try {
     bluetoothManager.on('bondStateChange', onReceiveEvent);
     bluetoothManager.off('bondStateChange', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -995,7 +995,7 @@ function onReceiveEvent(data: bluetoothManager.BluetoothState) {
 try {
     bluetoothManager.on('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1038,7 +1038,7 @@ try {
     bluetoothManager.on('stateChange', onReceiveEvent);
     bluetoothManager.off('stateChange', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1091,7 +1091,7 @@ let sppOption: bluetoothManager.SppOption = {uuid: '00001810-0000-1000-8000-0080
 try {
     bluetoothManager.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1148,7 +1148,7 @@ function acceptClientSocket(code: BusinessError, number: number) {
 try {
     bluetoothManager.sppAccept(serverNumber, acceptClientSocket);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1202,7 +1202,7 @@ let sppOption: bluetoothManager.SppOption = {uuid: '00001810-0000-1000-8000-0080
 try {
     bluetoothManager.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1247,7 +1247,7 @@ function serverSocket(code: BusinessError, number: number) {
 try {
     bluetoothManager.sppCloseServerSocket(serverNumber);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1294,7 +1294,7 @@ function clientSocket(code: BusinessError, number: number) {
 try {
     bluetoothManager.sppCloseClientSocket(clientNumber);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1344,7 +1344,7 @@ data[0] = 123;
 try {
     bluetoothManager.sppWrite(clientNumber, arrayBuffer);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1396,7 +1396,7 @@ function dataRead(dataBuffer: ArrayBuffer) {
 try {
     bluetoothManager.on('sppRead', clientNumber, dataRead);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1435,7 +1435,7 @@ function clientSocket(code: BusinessError, number: number) {
 try {
     bluetoothManager.off('sppRead', clientNumber);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1465,7 +1465,7 @@ getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGate
 try {
     let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1525,7 +1525,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 try {
     let device: bluetoothManager.GattClientDevice = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1565,7 +1565,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 try {
     let result: Array<string>  = bluetoothManager.BLE.getConnectedBLEDevices();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1620,7 +1620,7 @@ try {
     }
     bluetoothManager.BLE.startBLEScan([scanfilter], scanoptions);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1654,7 +1654,7 @@ stopBLEScan(): void
 try {
     bluetoothManager.BLE.stopBLEScan();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1696,7 +1696,7 @@ function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
 try {
     bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1739,7 +1739,7 @@ try {
     bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
     bluetoothManager.BLE.off('BLEDeviceFind', onReceiveEvent);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1786,7 +1786,7 @@ try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let retArray: Array<string> = a2dpSrc.getConnectionDevices();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1833,7 +1833,7 @@ try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let ret: bluetoothManager.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1883,7 +1883,7 @@ try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -1925,7 +1925,7 @@ try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2038,7 +2038,7 @@ try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let state: bluetoothManager.PlayingState  = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2088,7 +2088,7 @@ try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2130,7 +2130,7 @@ try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2240,7 +2240,7 @@ try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2284,7 +2284,7 @@ try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2395,7 +2395,7 @@ try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2498,7 +2498,7 @@ try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2529,7 +2529,7 @@ try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2618,7 +2618,7 @@ ble.startAdvertising();
     };
     gattServer.startAdvertising(setting, advData ,advResponse);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2653,7 +2653,7 @@ let server = bluetoothManager.BLE.createGattServer();
 try {
     server.stopAdvertising();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2714,11 +2714,11 @@ characteristics[0] = characteristic;
 // 创建gattService
 let gattService: bluetoothManager.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetoothManager.BLE.createGattServer();
+let gattServer  = bluetoothManager.BLE.createGattServer();
 try {
     gattServer.addService(gattService);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2760,7 +2760,7 @@ let server = bluetoothManager.BLE.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2795,7 +2795,7 @@ let server = bluetoothManager.BLE.createGattServer();
 try {
     server.close();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2851,7 +2851,7 @@ let server = bluetoothManager.BLE.createGattServer();
 try {
     server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2904,7 +2904,7 @@ let gattServer = bluetoothManager.BLE.createGattServer();
 try {
     gattServer.sendResponse(serverResponse);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -2939,14 +2939,14 @@ function ReadCharacteristicReq(characteristicReadRequest: bluetoothManager.Chara
     let deviceId: string = characteristicReadRequest.deviceId;
     let transId: number = characteristicReadRequest.transId;
     let offset: number = characteristicReadRequest.offset;
-    let characteristicUuid: string: = characteristicReadRequest.characteristicUuid;
+    let characteristicUuid: string = characteristicReadRequest.characteristicUuid;
 
     let serverResponse: bluetoothManager.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
     }
 }
 
@@ -3023,7 +3023,7 @@ function WriteCharacteristicReq(characteristicWriteRequest: bluetoothManager.Cha
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 
@@ -3097,7 +3097,7 @@ function ReadDescriptorReq(descriptorReadRequest: bluetoothManager.DescriptorRea
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 
@@ -3174,12 +3174,12 @@ function WriteDescriptorReq(descriptorWriteRequest: bluetoothManager.DescriptorW
     try {
         gattServer.sendResponse(serverResponse);
     } catch (err) {
-        console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
 }
 
 let gattServer = bluetoothManager.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
@@ -3310,7 +3310,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3345,7 +3345,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3380,7 +3380,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3436,7 +3436,7 @@ try {
     device.connect();
     device.getServices(getServices);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3480,7 +3480,7 @@ try {
         console.info("getServices successfully:" + JSON.stringify(result));
     });
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3547,7 +3547,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readCharacteristicValue(characteristic, readCcc);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3610,7 +3610,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readCharacteristicValue(characteristic);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3670,7 +3670,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readDescriptorValue(descriptor, readDesc);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3726,7 +3726,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.readDescriptorValue(descriptor);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3782,7 +3782,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeCharacteristicValue(characteristic);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3833,7 +3833,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeDescriptorValue(descriptor);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3873,7 +3873,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -3930,7 +3930,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setNotifyCharacteristicChanged(characteristic, false);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 
 ```
@@ -3968,7 +3968,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.on('BLECharacteristicChange', CharacteristicChange);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4000,7 +4000,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4036,7 +4036,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.on('BLEConnectionStateChange', ConnectStateChanged);
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4068,7 +4068,7 @@ try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4113,7 +4113,7 @@ try {
         console.info('device name' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4157,7 +4157,7 @@ try {
         console.info('device name' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4196,12 +4196,12 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
     gattClient.connect();
-    let rssi = gattClient.getRssiValue((err, data)=> {
+    let rssi = gattClient.getRssiValue((err: BusinessError, data: number)=> {
         console.info('rssi err ' + JSON.stringify(err));
         console.info('rssi value' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -4239,11 +4239,11 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-    let rssi = gattClient.getRssiValue().then((data) => {
+    let rssi = gattClient.getRssiValue().then((data: number) => {
         console.info('rssi' + JSON.stringify(data));
     })
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 

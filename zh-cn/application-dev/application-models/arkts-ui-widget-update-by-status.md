@@ -157,12 +157,14 @@
         let stateB = await storeDB.get('B' + formId, 'false');
         // A状态选中则更新textA
         if (stateA === 'true') {
-          let formInfo = formBindingData.createFormBindingData({'textA': 'AAA'});
+          let param: Record<string, string> = { 'textA': 'AAA' };
+          let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
           await formProvider.updateForm(formId, formInfo);
         }
         // B状态选中则更新textB
         if (stateB === 'true') {
-          let formInfo = formBindingData.createFormBindingData({'textB': 'BBB'});
+          let param: Record<string, string> = { 'textB': 'BBB' };
+          let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
           await formProvider.updateForm(formId, formInfo);
         }
         console.info(`Update form success stateA:${stateA} stateB:${stateB}.`);

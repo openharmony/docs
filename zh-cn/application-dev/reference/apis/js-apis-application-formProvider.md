@@ -136,7 +136,6 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
   ```ts
   import Base from '@ohos.base';
   import formBindingData from '@ohos.application.formBindingData';
-  import Base from '@ohos.base'
 
   let formId: string = '12400633174999288';
   let param: Record<string, string> = {

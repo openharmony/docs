@@ -116,14 +116,6 @@ Obtains the list of system languages. For details about languages, see [Instanti
 | ------------------- | ------------ |
 | Array&lt;string&gt; | List of the IDs of system languages.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -231,14 +223,6 @@ Obtains the system language. For details about languages, see [Instantiating the
 | ------ | ------- |
 | string | System language ID.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -302,14 +286,6 @@ Obtains the system region. For details about system regions, see [Instantiating 
 | Type    | Description     |
 | ------ | ------- |
 | string | System region ID.|
-
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -375,14 +351,6 @@ Obtains the system locale. For details about system locales, see [Instantiating 
 | ------ | ------- |
 | string | System locale ID.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -446,14 +414,6 @@ Checks whether the 24-hour clock is used.
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | The value **true** indicates that the 24-hour clock is used, and the value **false** indicates the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -602,14 +562,6 @@ Obtains the list of preferred languages.
 | ------------------- | --------- |
 | Array&lt;string&gt; | List of preferred languages.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -636,14 +588,6 @@ Obtains the first language in the preferred language list.
 | ------ | -------------- |
 | string | First language in the preferred language list.|
 
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
-
 **Example**
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -669,14 +613,6 @@ Obtains the preferred language of an application.
 | Type    | Description      |
 | ------ | -------- |
 | string | Preferred language of the application.|
-
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -741,14 +677,6 @@ Checks whether use of local digits is enabled.
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
-
-| ID | Error Message                  |
-| ------ | ---------------------- |
-| 890001 | param value not valid |
 
 **Example**
   ```ts
@@ -1818,6 +1746,14 @@ Creates an array of **TimeZone** objects corresponding to the specified longitud
 | Type      | Description         |
 | -------- | ----------- |
 | Array&lt;[TimeZone](#timezone)&gt; | Array of **TimeZone** objects.|
+
+**Error codes**
+
+For details about the error codes, see [I18N Error Codes](../errorcodes/errorcode-i18n.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 890001 | param value not valid |
 
 **Example**
   ```ts

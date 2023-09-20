@@ -12,7 +12,7 @@ The **wifiManager** module provides APIs for Wi-Fi management of enterprise devi
 
 ## Modules to Import
 
-```js
+```ts
 import wifiManager from '@ohos.enterprise.wifiManager';
 ```
 
@@ -46,8 +46,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -96,15 +97,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 wifiManager.isWifiActive(wantTemp).then((result) => {
   console.info(`Succeeded in query is wifi active or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -140,8 +143,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -196,12 +200,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
+let profile: wifiManager.WifiProfile = {
   'ssid': 'name',
   'preSharedKey': 'passwd',
   'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
@@ -209,7 +215,7 @@ let profile : wifiManager.WifiProfile = {
 
 wifiManager.setWifiProfile(wantTemp, profile).then(() => {
   console.info('Succeeded in setting wifi profile');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
 });
 ```

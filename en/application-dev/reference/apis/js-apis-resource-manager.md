@@ -219,10 +219,8 @@ Enumerates the device types.
 
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Phone.  |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
 | DEVICE_TYPE_CAR      | 0x02 | Head unit.  |
-| DEVICE_TYPE_PC       | 0x03 | PC.  |
 | DEVICE_TYPE_TV       | 0x04 | TV.  |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
 
@@ -4755,7 +4753,7 @@ Obtains the device capability. This API uses a promise to return the result.
 
 release()
 
-Releases a created **resourceManager** object.
+Releases a **ResourceManager** object. This API is not supported currently.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

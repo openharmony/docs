@@ -143,17 +143,17 @@ import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-export let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
-  onPortrait(mediaQueryResult:mediaquery) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -165,9 +165,8 @@ struct MediaQueryExample {
 
   aboutToAppear() {
     // 绑定当前应用实例
-    portraitFunc = this.onPortrait(this);
     // 绑定回调函数
-    this.listener.on('change', portraitFunc);
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
   }
 
   // 改变设备横竖屏状态函数
@@ -204,16 +203,15 @@ FA模型下的示例：
 import mediaquery from '@ohos.mediaquery';
 import featureAbility from '@ohos.ability.featureAbility';
 
-let portraitFunc:mediaquery.MediaQueryResult|void|null = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
 
-  onPortrait(mediaQueryResult:mediaquery) { // 当满足媒体查询条件时，触发回调
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // 当满足媒体查询条件时，触发回调
     if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
@@ -224,8 +222,8 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait(this); // 绑定当前应用实例
-    this.listener.on('change', portraitFunc); //绑定回调函数
+    // 绑定当前应用实例
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); //绑定回调函数
   }
 
   build() {
@@ -233,12 +231,12 @@ struct MediaQueryExample {
       Text(this.text).fontSize(50).fontColor(this.color)
       Text('Landscape').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(0); //调用该接口手动改变设备横竖屏状态
         })
       Text('Portrait').fontSize(50).fontColor(this.color).backgroundColor(Color.Orange)
         .onClick(() => {
-          let context:featureAbility = featureAbility.getContext();
+          let context = featureAbility.getContext();
           context.setDisplayOrientation(1); //调用该接口手动改变设备横竖屏状态
         })
     }

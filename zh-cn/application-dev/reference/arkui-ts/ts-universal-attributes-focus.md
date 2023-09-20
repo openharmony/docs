@@ -123,6 +123,7 @@ struct FocusableExample {
             .onChange((value: string) => {
               this.inputValue = value
             })
+            .width(156)
             .defaultFocus(true)             // 该TextInput组件为页面的初始默认焦点
           Button('Group3')
             .width(165)

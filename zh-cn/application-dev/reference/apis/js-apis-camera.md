@@ -419,8 +419,8 @@ createCameraInput(camera: CameraDevice): CameraInput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput {
-  let cameraInput: camera.CameraInput;
+function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraDevice);
   } catch (error) {
@@ -468,10 +468,10 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput {
+function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
   let position: camera.CameraPosition = cameraDevice.cameraPosition;
   let type: camera.CameraType = cameraDevice.cameraType;
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(position, type);
   } catch (error) {
@@ -517,9 +517,9 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput {
+function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.previewProfiles[0];
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
   } catch (error) {
@@ -565,9 +565,9 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput {
+function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
   } catch (error) {
@@ -613,9 +613,9 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput {
+function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
   let profile: camera.VideoProfile = cameraOutputCapability.videoProfiles[0];
-  let videoOutput: camera.VideoOutput;
+  let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
   } catch (error) {
@@ -662,7 +662,7 @@ import { BusinessError } from '@ohos.base';
 
 function createMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): void {
   let metadataObjectTypes: Array<camera.MetadataObjectType> = cameraOutputCapability.supportedMetadataObjectTypes;
-  let metadataOutput: camera.MetadataOutput;
+  let metadataOutput: camera.MetadataOutput | undefined = undefined;
   try {
     metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
   } catch (error) {
@@ -700,8 +700,8 @@ createCaptureSession(): CaptureSession
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession {
-  let captureSession: camera.CaptureSession;
+function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
@@ -1049,15 +1049,15 @@ getSupportedOutputCapability(device:CameraDevice, mode: CameraMode): CameraOutpu
 **示例：**
 
 ```ts
-function getSupportedOutputCapability(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CameraOutputCapability {
+function getSupportedOutputCapability(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CameraOutputCapability | undefined {
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras == undefined || cameras.length <= 0) {
-    return;
+    return undefined;
   }
   let cameraDevice: camera.CameraDevice = cameras[0];
   let cameraModes: Array<camera.CameraMode> = modeManager.getSupportedModes(cameraDevice);
   if (cameraModes === undefined || cameraModes.length <= 0) {
-    return;
+    return undefined;
   }
   let mode: camera.CameraMode = cameraModes[0];
   let cameraOutputCapability: camera.CameraOutputCapability = modeManager.getSupportedOutputCapability(cameraDevice, mode);
@@ -1091,7 +1091,7 @@ createCaptureSession(mode: CameraMode): CaptureSession
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCaptureSession(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CaptureSession {
+function createCaptureSession(cameraManager: camera.CameraManager, modeManager: camera.ModeManager): camera.CaptureSession | undefined {
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameras == undefined || cameras.length <= 0) {
     return;
@@ -1102,7 +1102,7 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
     return;
   }
   let mode: camera.CameraMode = cameraModes[0];
-  let captureSession: camera.CaptureSession
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = modeManager.createCaptureSession(mode);
   } catch (error) {
@@ -2197,8 +2197,8 @@ getFlashMode(): FlashMode
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode {
-  let flashMode: camera.FlashMode;
+function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode | undefined {
+  let flashMode: camera.FlashMode | undefined = undefined;
   try {
     flashMode = captureSession.getFlashMode();
   } catch (error) {
@@ -2283,8 +2283,8 @@ getExposureMode(): ExposureMode
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getExposureMode(captureSession: camera.CaptureSession): camera.ExposureMode {
-  let exposureMode: camera.ExposureMode;
+function getExposureMode(captureSession: camera.CaptureSession): camera.ExposureMode | undefined {
+  let exposureMode: camera.ExposureMode | undefined = undefined;
   try {
     exposureMode = captureSession.getExposureMode();
   } catch (error) {
@@ -2367,8 +2367,8 @@ getMeteringPoint(): Point
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getMeteringPoint(captureSession: camera.CaptureSession): camera.Point {
-  let exposurePoint: camera.Point;
+function getMeteringPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
+  let exposurePoint: camera.Point | undefined = undefined;
   try {
     exposurePoint = captureSession.getMeteringPoint();
   } catch (error) {
@@ -2498,13 +2498,15 @@ setExposureBias(exposureBias: number): void
 import { BusinessError } from '@ohos.base';
 
 function setExposureBias(captureSession: camera.CaptureSession, biasRangeArray: Array<number>): void {
-  let exposureBias = biasRangeArray[0];
-  try {
-    captureSession.setExposureBias(exposureBias);
-  } catch (error) {
-    // 失败返回错误码error.code并处理
-    let err = error as BusinessError;
-    console.error(`The setExposureBias call failed. error code: ${err.code}`);
+  if (biasRangeArray && biasRangeArray.length > 0) {
+    let exposureBias = biasRangeArray[0];
+    try {
+      captureSession.setExposureBias(exposureBias);
+    } catch (error) {
+      // 失败返回错误码error.code并处理
+      let err = error as BusinessError;
+      console.error(`The setExposureBias call failed. error code: ${err.code}`);
+    }
   }
 }
 ```
@@ -2669,8 +2671,8 @@ getFocusMode(): FocusMode
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFocusMode(captureSession: camera.CaptureSession): camera.FocusMode {
-  let afMode: camera.FocusMode;
+function getFocusMode(captureSession: camera.CaptureSession): camera.FocusMode | undefined {
+  let afMode: camera.FocusMode | undefined = undefined;
   try {
     afMode = captureSession.getFocusMode();
   } catch (error) {
@@ -2719,9 +2721,9 @@ setFocusPoint(point: Point): void
 import { BusinessError } from '@ohos.base';
 
 function setFocusPoint(captureSession: camera.CaptureSession): void {
-  const Point1: camera.Point = {x: 1, y: 1};
+  const focusPoint: camera.Point = {x: 1, y: 1};
   try {
-    captureSession.setFocusPoint(Point1);
+    captureSession.setFocusPoint(focusPoint);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -2757,8 +2759,8 @@ getFocusPoint(): Point
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getFocusPoint(captureSession: camera.CaptureSession): camera.Point {
-  let point: camera.Point;
+function getFocusPoint(captureSession: camera.CaptureSession): camera.Point | undefined {
+  let point: camera.Point | undefined = undefined;
   try {
     point = captureSession.getFocusPoint();
   } catch (error) {
@@ -3013,8 +3015,8 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession): camera.VideoStabilizationMode {
-  let vsMode: camera.VideoStabilizationMode;
+function getActiveVideoStabilizationMode(captureSession: camera.CaptureSession): camera.VideoStabilizationMode | undefined {
+  let vsMode: camera.VideoStabilizationMode | undefined = undefined;
   try {
     vsMode = captureSession.getActiveVideoStabilizationMode();
   } catch (error) {
@@ -3950,7 +3952,7 @@ async function preview(context: common.Context, cameraInfo: camera.CameraDevice,
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(previewSurfaceId);
+  previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 

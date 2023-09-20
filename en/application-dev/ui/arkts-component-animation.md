@@ -64,18 +64,21 @@ import curves from '@ohos.curves';
 import window from '@ohos.window';
 import display from '@ohos.display';
 import mediaquery from '@ohos.mediaquery';
-
+export class GlobalContext {
+  static mainWin: window.Window|undefined = undefined;
+  static mainWindowSize:window.Size|undefined = undefined;
+}
 /**
  * Encapsulates the WindowManager class.
  */
 export class WindowManager {
-  private static instance: WindowManager = null;
-  private displayInfo: display.Display = null;
+  private static instance: WindowManager|null = null;
+  private displayInfo: display.Display|null = null;
   private orientationListener = mediaquery.matchMediaSync('(orientation: landscape)');
-  private portraitFunc = null;
+  private portraitFunc: Function | null = null;
 
   constructor() {
-    this.portraitFunc = this.onPortrait.bind(this);
+    this.portraitFunc = (mediaQueryResult: mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) };
     this.orientationListener.on('change', this.portraitFunc)
     this.loadDisplayInfo()
   }
@@ -88,30 +91,30 @@ export class WindowManager {
     if (win == null) {
       return
     }
-    globalThis.mainWin = win;
+    GlobalContext.mainWin = win;
     win.on("windowSizeChange", (data: window.Size) => {
-      if (globalThis.mainWindowSize == undefined || globalThis.mainWindowSize == null) {
-        globalThis.mainWindowSize = data;
+      if (GlobalContext.mainWindowSize == undefined || GlobalContext.mainWindowSize == null) {
+        GlobalContext.mainWindowSize = data;
       } else {
-        if (globalThis.mainWindowSize.width == data.width && globalThis.mainWindowSize.height == data.height) {
+        if (GlobalContext.mainWindowSize.width == data.width && GlobalContext.mainWindowSize.height == data.height) {
           return
         }
-        globalThis.mainWindowSize = data;
+        GlobalContext.mainWindowSize = data;
       }
 
       let winWidth = this.getMainWindowWidth();
       AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
       AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
-      globalThis.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
+      GlobalContext.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
   }
 
   static getInstance(): WindowManager {
-    if (this.instance == null) {
-      this.instance = new WindowManager();
+    if (WindowManager.instance == null) {
+      WindowManager.instance = new WindowManager();
     }
-    return this.instance
+    return WindowManager.instance
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
@@ -127,8 +130,8 @@ export class WindowManager {
    * @param ori Indicates the orientation.
    */
   changeOrientation(ori: window.Orientation) {
-    if (globalThis.mainWin != null) {
-      globalThis.mainWin.setPreferredOrientation(ori)
+    if (GlobalContext.mainWin != null) {
+      GlobalContext.mainWin.setPreferredOrientation(ori)
     }
   }
 
@@ -142,14 +145,14 @@ export class WindowManager {
    * Obtains the width of the main window, in vp.
    */
   getMainWindowWidth(): number {
-    return globalThis.mainWindowSize != null ? px2vp(globalThis.mainWindowSize.width) : 0
+    return GlobalContext.mainWindowSize != null ? px2vp(GlobalContext.mainWindowSize.width) : 0
   }
 
   /**
    * Obtains the height of the main window, in vp.
    */
   getMainWindowHeight(): number {
-    return globalThis.mainWindowSize != null ? px2vp(globalThis.mainWindowSize.height) : 0
+    return GlobalContext.mainWindowSize != null ? px2vp(GlobalContext.mainWindowSize.height) : 0
   }
 
   /**
@@ -173,8 +176,8 @@ export class WindowManager {
     if (this.orientationListener) {
       this.orientationListener.off('change', this.portraitFunc)
     }
-    if (globalThis.mainWin != null) {
-      globalThis.mainWin.off('windowSizeChange')
+    if (GlobalContext.mainWin != null) {
+      GlobalContext.mainWin.off('windowSizeChange')
     }
     WindowManager.instance = null;
   }
@@ -224,7 +227,6 @@ export const taskDataArr: Array<TaskData> =
 export struct TaskSwitchMainPage {
   displayWidth: number = WindowManager.getInstance().getDisplayWidth();
   scroller: Scroller = new Scroller();
-  bgImage: Resource = $r('app.media.share');
   cardSpace: number = 0; // Widget spacing
   cardWidth: number = this.displayWidth / 2 - this.cardSpace / 2; // Widget width
   cardHeight: number = 400; // Widget height
@@ -233,7 +235,7 @@ export struct TaskSwitchMainPage {
   @State taskViewOffsetX: number = 0;
   @State cardOffset: number = this.displayWidth / 4;
   lastCardOffset: number = this.cardOffset;
-  startTime: number
+  startTime: number|undefined=undefined
 
   // Initial position of each widget
   aboutToAppear() {
@@ -259,28 +261,30 @@ export struct TaskSwitchMainPage {
       // <Scroll> component
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
-          ForEach(taskDataArr, (item, index) => {
-            Column()
-              .width(this.cardWidth)
-              .height(this.cardHeight)
-              .backgroundColor(item.bgColor)
-              .borderStyle(BorderStyle.Solid)
-              .borderWidth(1)
-              .borderColor(0xAFEEEE)
-              .borderRadius(15)
-                // Calculate the affine attributes of child components.
-              .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
-                {
-                  x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
-                  y: 1.1 - Math.abs(0.5 - this.getProgress(index))
-                } :
-                { x: 1, y: 1 })
-              .animation({ curve: Curve.Smooth })
-                // Apply a pan animation.
-              .translate({ x: this.cardOffset })
-              .animation({ curve: curves.springMotion() })
-              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-          }, item => item)
+          ForEach(taskDataArr, (item:TaskData, index:number|undefined) => {
+            if(index){
+              Column()
+                .width(this.cardWidth)
+                .height(this.cardHeight)
+                .backgroundColor(item.bgColor)
+                .borderStyle(BorderStyle.Solid)
+                .borderWidth(1)
+                .borderColor(0xAFEEEE)
+                .borderRadius(15)
+                  // Calculate the affine attributes of child components.
+                .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
+                  {
+                    x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
+                    y: 1.1 - Math.abs(0.5 - this.getProgress(index))
+                  } :
+                  { x: 1, y: 1 })
+                .animation({ curve: Curve.Smooth })
+                  // Apply a pan animation.
+                .translate({ x: this.cardOffset })
+                .animation({ curve: curves.springMotion() })
+                .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
+            }
+          }, ((item:string):string => item))
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
         .height('100%')
@@ -288,41 +292,49 @@ export struct TaskSwitchMainPage {
       .gesture(
       GestureGroup(GestureMode.Parallel,
       PanGesture({ direction: PanDirection.Horizontal, distance: 5 })
-        .onActionStart((event: GestureEvent) => {
-          this.startTime = event.timestamp;
+        .onActionStart((event: GestureEvent|undefined) => {
+          if(event){
+            this.startTime = event.timestamp;
+          }
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.cardOffset = this.lastCardOffset + event.offsetX;
+        .onActionUpdate((event: GestureEvent|undefined) => {
+          if(event){
+            this.cardOffset = this.lastCardOffset + event.offsetX;
+          }
         })
-        .onActionEnd((event: GestureEvent) => {
-          let time = event.timestamp - this.startTime;
-          let speed = event.offsetX / (time / 1000000000);
-          let moveX = Math.pow(speed, 2) / 7000 * (speed > 0 ? 1 : -1);
+        .onActionEnd((event: GestureEvent|undefined) => {
+          if(event){
+            if(this.startTime){
+              let time = event.timestamp - this.startTime;
+            }
+            let speed = event.offsetX / (time / 1000000000);
+            let moveX = Math.pow(speed, 2) / 7000 * (speed > 0 ? 1 : -1);
 
-          this.cardOffset += moveX;
-          // When panning left to a position beyond the rightmost position
-          let cardOffsetMax = -(taskDataArr.length - 1) * (this.displayWidth / 2);
-          if (this.cardOffset < cardOffsetMax) {
-            this.cardOffset = cardOffsetMax;
-          }
-          // When panning right to a position beyond the rightmost position
-          if (this.cardOffset > this.displayWidth / 4) {
-            this.cardOffset = this.displayWidth / 4;
-          }
+            this.cardOffset += moveX;
+            // When panning left to a position beyond the rightmost position
+            let cardOffsetMax = -(taskDataArr.length - 1) * (this.displayWidth / 2);
+            if (this.cardOffset < cardOffsetMax) {
+              this.cardOffset = cardOffsetMax;
+            }
+            // When panning right to a position beyond the rightmost position
+            if (this.cardOffset > this.displayWidth / 4) {
+              this.cardOffset = this.displayWidth / 4;
+            }
 
-          // Processing when the pan distance is less than the minimum distance
-          let remainMargin = this.cardOffset % (this.displayWidth / 2);
-          if (remainMargin < 0) {
-            remainMargin = this.cardOffset % (this.displayWidth / 2) + this.displayWidth / 2;
-          }
-          if (remainMargin <= this.displayWidth / 4) {
-            this.cardOffset += this.displayWidth / 4 - remainMargin;
-          } else {
-            this.cardOffset -= this.displayWidth / 4 - (this.displayWidth / 2 - remainMargin);
-          }
+            // Processing when the pan distance is less than the minimum distance
+            let remainMargin = this.cardOffset % (this.displayWidth / 2);
+            if (remainMargin < 0) {
+              remainMargin = this.cardOffset % (this.displayWidth / 2) + this.displayWidth / 2;
+            }
+            if (remainMargin <= this.displayWidth / 4) {
+              this.cardOffset += this.displayWidth / 4 - remainMargin;
+            } else {
+              this.cardOffset -= this.displayWidth / 4 - (this.displayWidth / 2 - remainMargin);
+            }
 
-          // Record the pan offset.
-          this.lastCardOffset = this.cardOffset;
+            // Record the pan offset.
+            this.lastCardOffset = this.cardOffset;
+          }
         })
       ), GestureMask.IgnoreInternal)
       .scrollable(ScrollDirection.Horizontal)

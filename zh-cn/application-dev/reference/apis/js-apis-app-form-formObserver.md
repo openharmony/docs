@@ -37,7 +37,7 @@ import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 
 formObserver.on('formAdd', (data: formInfo.RunningFormInfo) => {
-  console.log('a new form added, data: ${JSON.stringify(data)');
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -69,7 +69,7 @@ import formInfo from '@ohos.app.form.formInfo';
 let bundleName: string = 'ohos.samples.FormApplication';
 
 formObserver.on('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
-  console.log('a new form added, data: ${JSON.stringify(data)');
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -100,7 +100,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.off('formAdd', bundleName, (data: formInfo.RunningFormInfo) => {
-  console.log('a new form added, data: ${JSON.stringify(data)');
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
 });
 
 ```
@@ -133,7 +133,7 @@ import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 
 formObserver.on('formRemove', (data: formInfo.RunningFormInfo) => {
-  console.log('form deleted, data: ${JSON.stringify(data)');
+  console.log(`form deleted, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -164,7 +164,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.on('formRemove', bundleName, (data: formInfo.RunningFormInfo) => {
-  console.log('form deleted, data: ${JSON.stringify(data)');
+  console.log(`form deleted, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -194,7 +194,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.off('formRemove', bundleName, (data: formInfo.RunningFormInfo) => {
-  console.log('a new form added, data: ${JSON.stringify(data)');
+  console.log(`a new form added, data: ${JSON.stringify(data)}`);
 });
 ```
 > **说明：**
@@ -228,7 +228,7 @@ import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 
 formObserver.on('notifyVisible', (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
 });
 
 ```
@@ -262,7 +262,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.on('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -293,7 +293,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.off('notifyVisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change visibility, data: ${JSON.stringify(data)');
+  console.log(`form change visibility, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -328,7 +328,7 @@ import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 
 formObserver.on('notifyInvisible', (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -361,7 +361,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.on('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -391,7 +391,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 formObserver.off('notifyInvisible', bundleName, (data: formInfo.RunningFormInfo[]) => {
-  console.log('form change invisibility, data: ${JSON.stringify(data)');
+  console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -438,7 +438,7 @@ try {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfos, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
     }
   }, 'com.example.ohos.formjsdemo');
 } catch(error) {
@@ -485,7 +485,7 @@ import Base from '@ohos.base';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
-    console.log('formObserver getRunningFormInfos, data: ${JSON.stringify(data)}');
+    console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
   }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -599,7 +599,7 @@ try {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfosByFilter, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
@@ -702,7 +702,7 @@ try {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}');
+      console.log(`formObserver getRunningFormInfoById, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {

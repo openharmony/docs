@@ -32,7 +32,7 @@ Injects a key event. Currently, this API applies only to the **/KEYCODE_BACK** k
 
 ```js
 try {
-  let backKeyDown = {
+  let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
@@ -40,7 +40,7 @@ try {
   }
   inputEventClient.injectEvent({ KeyEvent: backKeyDown });
 
-  let backKeyUp = {
+  let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,

@@ -14,7 +14,7 @@
 
 - [TonePlayer](using-toneplayer-for-playback.md)：拨号和回铃音播放ArkTS/JS API，只能在固定的类型范围内选择播放内容，无需输入媒体资源或音频数据，适用于拨号盘按键和通话回铃音的特定场景。该功能当前仅对系统应用开放。
 
-- 在音频播放中，应用时常需要用到一些急促简短的音效，如相机快门音效、按键音效、游戏射击音效等，当前只能使用AVPlayer播放音频文件替代实现，在OpenHarmony后续版本将会推出相关接口来支持该场景。
+- [SoundPool](using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
 
 ## 开发音频播放应用须知
 

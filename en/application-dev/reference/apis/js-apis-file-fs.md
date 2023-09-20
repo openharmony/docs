@@ -8,8 +8,8 @@ The **fs** module provides APIs for file operations, including basic file manage
 
 ## Modules to Import
 
-```js
-import fs from '@ohos.file.fs';
+```ts
+import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
 ```
 
 ## Guidelines
@@ -18,27 +18,28 @@ Before using the APIs provided by this module to perform operations on a file or
 
 **Stage Model**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 FA Model
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -68,12 +69,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.stat(filePath).then((stat) => {
-      console.info("get file info succeed, the size of file is " + stat.size);
-  }).catch((err) => {
-      console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+  fs.stat(filePath).then((stat: fs.Stat) => {
+    console.info("get file info succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -98,8 +100,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  fs.stat(pathDir, (err, stat) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -134,7 +137,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let stat = fs.statSync(pathDir);
   console.info("get file info succeed, the size of file is " + stat.size);
   ```
@@ -165,13 +168,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath).then((res) => {
+  fs.access(filePath).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -197,9 +201,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath, (err, res) => {
+  fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
       console.info("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -236,15 +241,17 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   try {
-      let res = fs.accessSync(filePath);
-      if (res) {
-        console.info("file exists");
-      }
-  } catch(err) {
-      console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    let res = fs.accessSync(filePath);
+    if (res) {
+      console.info("file exists");
+    }
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -275,13 +282,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
-      console.info("File closed");
-  }).catch((err) => {
-      console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File closed");
+  }).catch((err: BusinessError) => {
+    console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -306,10 +314,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.close(file, (err) => {
+  fs.close(file, (err: BusinessError) => {
     if (err) {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -339,7 +348,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.closeSync(file);
@@ -373,13 +382,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath).then(() => {
-      console.info("copy file succeed");
-  }).catch((err) => {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("copy file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -406,10 +416,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
-  fs.copyFile(srcPath, dstPath, (err) => {
+  fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -441,7 +452,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
@@ -475,21 +486,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
-  }).catch((err) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+  }).catch((err: BusinessError) => {
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -516,15 +521,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -560,9 +565,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   // convert fd to file
-  let fd = 0;  // fd comes from other modules
+  let fd: number = 0;  // fd comes from other modules
   let file = fs.dup(fd);
   console.info("The name of the file is " + file.name);
   fs.closeSync(file);
@@ -595,12 +600,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
-      console.info("Directory created");
-  }).catch((err) => {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Directory created");
+  }).catch((err: BusinessError) => {
+    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -625,9 +631,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fs.mkdir(dirPath, (err) => {
+  fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -656,7 +663,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
@@ -688,12 +695,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file) => {
-      console.info("file fd: " + file.fd);
-  }).catch((err) => {
-      console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
+    console.info("file fd: " + file.fd);
+  }).catch((err: BusinessError) => {
+    console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -719,9 +727,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -757,7 +766,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   console.info("file fd: " + file.fd);
@@ -792,16 +801,19 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-  let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf).then((readLen) => {
-      console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+  let arrayBuffer = new ArrayBuffer(4096);
+  fs.read(file.fd, arrayBuffer).then((readLen: number) => {
+    console.info("Read file data successfully");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -828,16 +840,19 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-  let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf, (err, readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
       fs.closeSync(file);
     }
   });
@@ -871,11 +886,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let buf = new ArrayBuffer(4096);
-  let num = fs.readSync(file.fd, buf);
+  fs.readSync(file.fd, buf);
   fs.closeSync(file);
   ```
 
@@ -905,12 +920,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
-      console.info("Directory deleted");
-  }).catch((err) => {
-      console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Directory deleted");
+  }).catch((err: BusinessError) => {
+    console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -935,9 +951,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fs.rmdir(dirPath, (err) => {
+  fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -966,7 +983,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
@@ -997,12 +1014,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath).then(() => {
-      console.info("File deleted");
-  }).catch((err) => {
-      console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("File deleted");
+  }).catch((err: BusinessError) => {
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
   });
   ```
 
@@ -1027,9 +1045,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.unlink(filePath, (err) => {
+  fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
       console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1058,7 +1077,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fs.unlinkSync(filePath);
   ```
@@ -1092,13 +1111,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world").then((writeLen) => {
+  let str: string = "hello, world";
+  fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1126,10 +1147,12 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world", (err, writeLen) => {
+  let str: string = "hello, world";
+  fs.write(file.fd, str, (err: BusinessError, writeLen: number) => {
     if (err) {
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1167,10 +1190,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let writeLen = fs.writeSync(file.fd, "hello, world");
+  let str: string = "hello, world";
+  let writeLen = fs.writeSync(file.fd, str);
   console.info("write data to file succeed and size is:" + writeLen);
   fs.closeSync(file);
   ```
@@ -1202,13 +1226,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let len = 5;
+  let len: number = 5;
   fs.truncate(filePath, len).then(() => {
-      console.info("File truncated");
-  }).catch((err) => {
-      console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File truncated");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1234,10 +1259,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let len = 5;
-  fs.truncate(filePath, len, (err) => {
+  let len: number = 5;
+  fs.truncate(filePath, len, (err: BusinessError) => {
     if (err) {
       console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1267,9 +1293,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let len = 5;
+  let len: number = 5;
   fs.truncateSync(filePath, len);
   ```
 
@@ -1300,12 +1326,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath).then((str) => {
-      console.info("readText succeed:" + str);
-  }).catch((err) => {
-      console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+  fs.readText(filePath).then((str: string) => {
+    console.info("readText succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1331,9 +1358,19 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, (err, str) => {
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let stat = fs.statSync(filePath);
+  let option = new Option();
+  option.offset = 1;
+  option.length = stat.size;
+  fs.readText(filePath, option, (err: BusinessError, str: string) => {
     if (err) {
       console.info("read text failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1369,9 +1406,18 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let str = fs.readTextSync(filePath, {offset: 1, length: 3});
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let stat = fs.statSync(filePath);
+  let option = new Option();
+  option.offset = 1;
+  option.length = stat.size;
+  let str = fs.readTextSync(filePath, option);
   console.info("readText succeed:" + str);
   ```
 
@@ -1401,12 +1447,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath).then((stat) => {
-      console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch((err) => {
-      console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
+  fs.lstat(filePath).then((stat: fs.Stat) => {
+    console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1431,9 +1478,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath, (err, stat) => {
+  fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
       if (err) {
         console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
       } else {
@@ -1468,9 +1516,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let stat = fs.lstatSync(filePath);
+  fs.lstatSync(filePath);
   ```
 
 ## fs.rename
@@ -1500,13 +1548,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
-      console.info("File renamed");
-  }).catch((err) => {
-      console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File renamed");
+  }).catch((err: BusinessError) => {
+    console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1532,10 +1581,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
-  fs.rename(srcFile, dstFile, (err) => {
+  fs.rename(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1565,7 +1615,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
@@ -1597,14 +1647,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
-      console.info("Data flushed");
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Data flushed");
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1629,10 +1680,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fsync(file.fd, (err) => {
+  fs.fsync(file.fd, (err: BusinessError) => {
     if (err) {
       console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1663,7 +1715,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsyncSync(file.fd);
@@ -1696,13 +1748,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then((err) => {
+  fs.fdatasync(file.fd).then((err: BusinessError) => {
     console.info("Data flushed");
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1728,10 +1781,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync (file.fd, (err) => {
+  fs.fdatasync (file.fd, (err: BusinessError) => {
     if (err) {
       console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1761,7 +1815,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   let stat = fs.fdatasyncSync(file.fd);
@@ -1795,13 +1849,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
-      console.info("Symbolic link created");
-  }).catch((err) => {
-      console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Symbolic link created");
+  }).catch((err: BusinessError) => {
+    console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1827,10 +1882,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
-  fs.symlink(srcFile, dstFile, (err) => {
+  fs.symlink(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1860,7 +1916,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlinkSync(srcFile, dstFile);
@@ -1904,24 +1960,25 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["*abc", "efg*"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  fs.listFile(pathDir, options).then((filenames) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
-  }).catch((err) => {
-      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError) => {
+    console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1958,18 +2015,19 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["*abc", "efg*"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  fs.listFile(pathDir, options, (err, filenames) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2020,18 +2078,18 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["*abc", "efg*"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  let filenames = fs.listFileSync(pathDir, options);
+  ```ts
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
@@ -2066,21 +2124,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1).then(() => {
-      console.info("move directory succeed");
-  }).catch((err) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+    console.info("move directory succeed");
+  }).catch((err: BusinessError) => {
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2107,15 +2159,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -2153,13 +2205,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
-      console.info("move file succeed");
-  }).catch((err) => {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("move file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2186,10 +2239,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
-  fs.moveFile(srcPath, destPath, 0, (err) => {
+  fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2220,7 +2274,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFileSync(srcPath, destPath, 0);
@@ -2253,11 +2307,12 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  fs.mkdtemp(pathDir + "/XXXXXX").then((pathDir) => {
-      console.info("mkdtemp succeed:" + pathDir);
-  }).catch((err) => {
-      console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
+    console.info("mkdtemp succeed:" + dir);
+  }).catch((err: BusinessError) => {
+    console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2282,8 +2337,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
-  fs.mkdtemp(pathDir + "/XXXXXX", (err, res) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
       console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2318,7 +2374,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
   ```  
 
@@ -2349,15 +2405,16 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file).then((randomAccessFile) => {
-      console.info("randomAccessFile fd: " + randomAccessFile.fd);
-      randomAccessFile.close();
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
+    console.info("randomAccessFile fd: " + randomAccessFile.fd);
+    randomAccessFile.close();
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2383,17 +2440,18 @@ Creates a **RandomAccessFile** instance based on the specified file path or file
 For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, (err, randomAccessFile) => {
-      if (err) {
-          console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-          console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
-          randomAccessFile.close();
-          fs.closeSync(file);
-      }
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+    if (err) {
+      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+      fs.closeSync(file);
+    }
   });
   ```
 
@@ -2425,7 +2483,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
@@ -2460,12 +2518,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream) => {
-      console.info("Stream created");
-  }).catch((err) => {
-      console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
+  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
+    console.info("Stream created");
+  }).catch((err: BusinessError) => {
+    console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2492,9 +2551,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", (err, stream) => {
+  fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2530,7 +2590,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
   ```
@@ -2563,14 +2623,15 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then((stream) => {
-      console.info("Stream opened");
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
+    console.info("Stream opened");
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2596,10 +2657,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", (err, stream) => {
+  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2636,7 +2698,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let ss = fs.fdopenStreamSync(file.fd, "r+");
@@ -2648,8 +2710,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
 
 Creates a **Watcher** object to observe file or directory changes.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2673,10 +2733,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: fs.WatchEventListener) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -2695,8 +2755,6 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 Called when an observed event occurs.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2708,8 +2766,6 @@ Called when an observed event occurs.
 ## WatchEvent<sup>10+</sup>
 
 Defines the event to observe.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2758,7 +2814,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isBLockDevice = fs.statSync(filePath).isBlockDevice();
   ```
@@ -2783,7 +2839,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fs.statSync(filePath).isCharacterDevice();
   ```
@@ -2808,7 +2864,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/test";
   let isDirectory = fs.statSync(dirPath).isDirectory(); 
   ```
@@ -2833,7 +2889,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFIFO = fs.statSync(filePath).isFIFO(); 
   ```
@@ -2858,7 +2914,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFile = fs.statSync(filePath).isFile();
   ```
@@ -2883,7 +2939,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isSocket = fs.statSync(filePath).isSocket(); 
   ```
@@ -2908,7 +2964,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test";
   let isSymbolicLink = fs.statSync(filePath).isSymbolicLink(); 
   ```
@@ -2937,13 +2993,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.close().then(() => {
-      console.info("File stream closed");
-  }).catch((err) => {
-      console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File stream closed");
+  }).catch((err: BusinessError) => {
+    console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2967,10 +3024,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.close((err) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  ss.close((err: BusinessError) => {
     if (err) {
       console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2993,9 +3051,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -3019,13 +3077,14 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.flush().then(() => {
-      console.info("Stream flushed");
-  }).catch((err) => {
-      console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Stream flushed");
+  }).catch((err: BusinessError) => {
+    console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3049,10 +3108,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.flush((err) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  ss.flush((err: BusinessError) => {
     if (err) {
       console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3075,9 +3135,9 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -3108,13 +3168,22 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{ offset: 5, length: 5, encoding: 'utf-8' }).then((number) => {
-      console.info("write succeed and size is:" + number);
-  }).catch((err) => {
-      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+  let ss = fs.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.write("hello, world", option).then((number: number) => {
+    console.info("write succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3140,10 +3209,19 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world", { offset: 5, length: 5, encoding :'utf-8'}, (err, bytesWritten) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
       console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3181,10 +3259,18 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 5, length: 5, encoding :'utf-8'});
+  let ss = fs.createStreamSync(filePath,"r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let num = ss.writeSync("hello, world", option);
   ```
 
 ### read
@@ -3214,15 +3300,25 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let buf = new ArrayBuffer(4096);
-  ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.read(arrayBuffer, option).then((readLen: number) => {
     console.info("Read data successfully");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
-  }).catch((err) => {
-      console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.log(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3248,16 +3344,26 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let buf = new ArrayBuffer(4096)
-  ss.read(buf, {offset: 5, length: 5}, (err, readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
     if (err) {
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.log(`The content of file: ${buf.toString()}`);
     }
   });
   ```
@@ -3289,10 +3395,17 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 5, length: 5});
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let num = ss.readSync(new ArrayBuffer(4096), option);
   ```
 
 ## File
@@ -3335,12 +3448,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
     console.log("lock file successful");
-  }).catch((err) => {
-      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError) => {
+    console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3365,9 +3479,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  file.lock(true, (err) => {
+  file.lock(true, (err: BusinessError) => {
     if (err) {
       console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3396,7 +3511,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
@@ -3416,7 +3531,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
@@ -3451,7 +3566,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   randomAccessFile.setFilePointer(1);
@@ -3473,7 +3588,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   randomAccessFile.close();
@@ -3506,17 +3621,27 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
-  let bufferLength = 4096;
-  randomaccessfile.write(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((bytesWritten) => {
-      console.info("randomAccessFile bytesWritten: " + bytesWritten);
-      randomaccessfile.close();
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
+    console.info("randomAccessFile bytesWritten: " + bytesWritten);
+    randomaccessfile.close();
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -3543,21 +3668,30 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
-  let bufferLength = 4096;
-  randomAccessFile.write(new ArrayBuffer(bufferLength), { offset: 1 }, function(err, bytesWritten) {
-      if (err) {
-          console.info("write failed with error message: " + err.message + ", error code: " + err.code);
-      } else {
-          if (bytesWritten) {
-              console.info("write succeed and size is:" + bytesWritten);
-              randomAccessFile.close();
-              fs.closeSync(file);
-          }
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = bufferLength;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
+    if (err) {
+      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      if (bytesWritten) {
+        console.info("write succeed and size is:" + bytesWritten);
+        randomAccessFile.close();
+        fs.closeSync(file);
       }
+    }
   });
   ```
 
@@ -3588,10 +3722,18 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let randomaccessfile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  let bytesWritten = randomaccessfile.writeSync("hello, world", {offset: 5, length: 5, encoding :'utf-8'});
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let bytesWritten = randomaccessfile.writeSync("hello, world", option);
   randomaccessfile.close();
   fs.closeSync(file);
   ```
@@ -3623,17 +3765,25 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
-  let bufferLength = 4096;
-  randomaccessfile.read(new ArrayBuffer(bufferLength), { offset: 1, length: 5 }).then((readLength) => {
-      console.info("randomAccessFile readLength: " + readLength);
-      randomaccessfile.close();
-      fs.closeSync(file);
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = bufferLength;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
+    console.info("randomAccessFile readLength: " + readLength);
+    randomaccessfile.close();
+    fs.closeSync(file);
   }).catch((err) => {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3659,12 +3809,21 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
-  let length = 20;
-  randomaccessfile.read(new ArrayBuffer(length), { offset: 1, length: 5 }, function (err, readLength) {
+  let length: number = 20;
+  class Option {
+    offset: number = 0;
+    length: number = length;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(length);
+  randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
     if (err) {
       console.info("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3704,12 +3863,13 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomaccessfile = fs.createRandomAccessFileSync(file);
-  let length = 4096;
-  let readLength = randomaccessfile.readSync(new ArrayBuffer(length));
+  let length: number = 4096;
+  let arrayBuffer = new ArrayBuffer(length);
+  let readLength = randomaccessfile.readSync(arrayBuffer);
   randomaccessfile.close();
   fs.closeSync(file);
   ```
@@ -3725,8 +3885,6 @@ start(): void
 
 Starts listening.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Error codes**
@@ -3735,7 +3893,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let watcher = fs.createWatcher(filePath, 0xfff, () => {});
   watcher.start();
@@ -3748,8 +3906,6 @@ stop(): void
 
 Stops listening.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Error codes**
@@ -3758,7 +3914,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let watcher = fs.createWatcher(filePath, 0xfff, () => {});
   watcher.start();

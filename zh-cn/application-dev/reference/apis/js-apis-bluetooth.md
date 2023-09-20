@@ -89,7 +89,7 @@ getLocalName(): string
 **示例：**
 
 ```js
-let localName string = bluetooth.getLocalName();
+let localName : string = bluetooth.getLocalName();
 ```
 
 
@@ -1872,7 +1872,7 @@ server端添加服务。
 
 ```js
 // 创建descriptors
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
@@ -1989,7 +1989,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 ```js
 // 创建descriptors
-let descriptors : Array<bluetooth.Descriptor> = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
@@ -2362,7 +2362,7 @@ function WriteDescriptorReq(DescriptorWriteReq : bluetooth.DescriptorWriteReq) {
 }
 
 let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
@@ -2625,7 +2625,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 // Promise 模式
 let device : bluetooth.GattClientDevice= bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
-device.getServices().then(result : Array<bluetooth.GattService> => {
+device.getServices().then((result : Array<bluetooth.GattService>) => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -3095,9 +3095,9 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-function ConnectStateChanged(state : bluetooth.BLEConnectStateChanged) {
+function ConnectStateChanged(state : bluetooth.BLEConnectChangedState) {
   console.log('bluetooth connect state changed');
-  let connectState = state.state;
+  let connectState : bluetooth.ProfileConnectionState = state.state;
 }
 let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLEConnectionStateChange', ConnectStateChanged);

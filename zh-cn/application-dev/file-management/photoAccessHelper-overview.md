@@ -49,7 +49,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 // 此处获取的photoAccessHelper实例为全局对象，后续文档中使用到的地方默认为使用此处获取的对象，如未添加此段代码报未定义的错误请自行添加。
 const context = getContext(this);
-let photoAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
 ## 申请相册管理模块功能相关权限
