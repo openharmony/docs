@@ -27,24 +27,24 @@ A context menu – a vertical list of items – can be bound to a component and 
 
 ## MenuOptions<sup>10+</sup>
 
-| Name         | Type                                      | Mandatory  | Description                                      |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title       | string                                   | No   | Menu title.<br>**NOTE**<br>This parameter is available only when **content** is set to Array<[MenuItem](#menuitem)>.|
-| offset      | [Position](ts-types.md#position8)        | No   | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.              |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>If **placement** is set to **undefined** or **null** or is not set, the default value [BottomLeft](ts-appendix-enums.md#placement8) is used, and the position is relative to the parent component.|
-| onAppear    | () =&gt; void                  | No   | Callback triggered when the menu is displayed.                             |
-| onDisappear | () =&gt; void                  | No   | Callback triggered when the menu is hidden.                             |
+| Name       | Type                                        | Mandatory| Description                                                        |
+| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| title       | string                                       | No  | Menu title.<br>**NOTE**<br>This parameter is available only when **content** is set to Array<[MenuItem](#menuitem)>.|
+| offset      | [Position](ts-types.md#position8)            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.<br>**NOTE**<br>When the menu is displayed relative to the parent component area, the width or height of the area is automatically counted into the offset based on the **placement** attribute of the menu.<br>When the menu is displayed above the parent component (that is, **placement** is set to **Placement.TopLeft**, **Placement.Top**, or **Placement.TopRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates upward movement.<br>When the menu is displayed below the parent component (that is, **placement** is set to **Placement.BottomLeft**, **Placement.Bottom**, or **Placement.BottomRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the left of the parent component (that is, **placement** is set to **Placement.LeftTop**, **Placement.Left**, or **Placement.LeftBottom**), a positive value of **x** indicates leftward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the right of the parent component (that is, **placement** is set to **Placement.RightTop**, **Placement.RightTop**, or **Placement.RightBottom**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>If the display position of the menu is adjusted (different from the main direction of the initial **placement** value), the offset value is invalid.|
+| placement   | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>If **placement** is set to **undefined** or **null** or is not set, the default value [BottomLeft](ts-appendix-enums.md#placement8) is used, and the position is relative to the parent component.|
+| onAppear    | () =&gt; void                      | No  | Callback triggered when the menu is displayed.                                      |
+| onDisappear | () =&gt; void                      | No  | Callback triggered when the menu is hidden.                                      |
 
 ## ContextMenuOptions<sup>10+</sup>
 
-| Name         | Type                                      | Mandatory  | Description                                      |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| offset      | [Position](ts-types.md#position8)        | No   | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.              |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all, and the context menu is displayed where the mouse is clicked.|
-| enableArrow | boolean                                  | No   | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>An arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted.|
-| arrowOffset | [Length](ts-types.md#length)             | No   | Offset of the arrow relative to the context menu. When the arrow is placed in a horizontal position with the context menu: The value indicates the distance from the arrow to the leftmost; the arrow is centered by default. When the arrow is placed in a vertical position with the context menu: The value indicates the distance from the arrow to the top; the arrow is centered by default. The offset settings take effect only when the value is valid, can be converted to a number greater than 0, and does not cause the arrow to extend beyond the safe area of the context menu. The value of **placement** determines whether the offset is horizontal or vertical.|
-| onAppear    | () =&gt; void                  | No   | Callback triggered when the menu is displayed.                             |
-| onDisappear | () =&gt; void                  | No   | Callback triggered when the menu is hidden.                             |
+| Name       | Type                                        | Mandatory| Description                                                        |
+| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| offset      | [Position](ts-types.md#position8)            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.<br>**NOTE**<br>When the menu is displayed relative to the parent component area, the width or height of the area is automatically counted into the offset based on the **placement** attribute of the menu.<br>When the menu is displayed above the parent component (that is, **placement** is set to **Placement.TopLeft**, **Placement.Top**, or **Placement.TopRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates upward movement.<br>When the menu is displayed below the parent component (that is, **placement** is set to **Placement.BottomLeft**, **Placement.Bottom**, or **Placement.BottomRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the left of the parent component (that is, **placement** is set to **Placement.LeftTop**, **Placement.Left**, or **Placement.LeftBottom**), a positive value of **x** indicates leftward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the right of the parent component (that is, **placement** is set to **Placement.RightTop**, **Placement.RightTop**, or **Placement.RightBottom**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>If the display position of the menu is adjusted (different from the main direction of the initial **placement** value), the offset value is invalid.|
+| placement   | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all, and the context menu is displayed where the mouse is clicked.|
+| enableArrow | boolean                                      | No  | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>An arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted.|
+| arrowOffset | [Length](ts-types.md#length)                 | No  | Offset of the arrow relative to the context menu. When the arrow is placed in a horizontal position with the context menu: The value indicates the distance from the arrow to the leftmost; the arrow is centered by default. When the arrow is placed in a vertical position with the context menu: The value indicates the distance from the arrow to the top; the arrow is centered by default. The offset settings take effect only when the value is valid, can be converted to a number greater than 0, and does not cause the arrow to extend beyond the safe area of the context menu. The value of **placement** determines whether the offset is horizontal or vertical.|
+| onAppear    | () =&gt; void                      | No  | Callback triggered when the menu is displayed.                                      |
+| onDisappear | () =&gt; void                      | No  | Callback triggered when the menu is hidden.                                      |
 
 ## Example
 
@@ -95,18 +95,18 @@ struct MenuExample {
 
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      ForEach(this.listData, (item, index) => {
+      ForEach(this.listData, (item:number, index) => {
         Column() {
           Row() {
             Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
-            Text(`Menu${index + 1}`).fontSize(20)
+            Text(`Menu${index as number + 1}`).fontSize(20)
           }
           .width('100%')
           .height(30)
           .justifyContent(FlexAlign.Center)
           .align(Alignment.Center)
           .onClick(() => {
-            console.info(`Menu${index + 1} Clicked!`)
+            console.info(`Menu${index as number + 1} Clicked!`)
           })
 
           if (index != this.listData.length - 1) {

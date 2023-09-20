@@ -70,10 +70,10 @@ struct FillStyleExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#0000ff'
           offContext.fillRect(20, 20, 150, 100)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -101,10 +101,10 @@ struct FillStyleExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = 0x0000FF
           offContext.fillRect(20, 20, 150, 100)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -135,10 +135,10 @@ struct LineWidthExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.lineWidth = 5
           offContext.strokeRect(25, 25, 85, 105)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -169,11 +169,11 @@ struct StrokeStyleExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.lineWidth = 10
           offContext.strokeStyle = '#0000ff'
           offContext.strokeRect(25, 25, 155, 105)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -201,11 +201,11 @@ struct StrokeStyleExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.lineWidth = 10
           offContext.strokeStyle = 0x0000ff
           offContext.strokeRect(25, 25, 155, 105)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -236,14 +236,14 @@ struct LineCapExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.lineWidth = 8
           offContext.beginPath()
           offContext.lineCap = 'round'
           offContext.moveTo(30, 50)
           offContext.lineTo(220, 50)
           offContext.stroke()
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -274,7 +274,7 @@ struct LineJoinExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.beginPath()
           offContext.lineWidth = 8
           offContext.lineJoin = 'miter'
@@ -282,7 +282,7 @@ struct LineJoinExample {
           offContext.lineTo(120, 60)
           offContext.lineTo(30, 110)
           offContext.stroke()
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -313,7 +313,7 @@ struct MiterLimit {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.lineWidth = 8
           offContext.lineJoin = 'miter'
           offContext.miterLimit = 3
@@ -321,7 +321,7 @@ struct MiterLimit {
           offContext.lineTo(60, 35)
           offContext.lineTo(30, 37)
           offContext.stroke()
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -352,10 +352,10 @@ struct Fonts {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.font = '30px sans-serif'
           offContext.fillText("Hello World", 20, 60)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -386,7 +386,7 @@ struct CanvasExample {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-        var offContext = this.offCanvas.getContext("2d", this.settings)
+        let offContext = this.offCanvas.getContext("2d", this.settings)
         offContext.strokeStyle = '#0000ff'
         offContext.moveTo(140, 10)
         offContext.lineTo(140, 160)
@@ -404,7 +404,7 @@ struct CanvasExample {
         offContext.fillText('textAlign=center',140, 120)
         offContext.textAlign = 'right'
         offContext.fillText('textAlign=right',140, 140)
-        var image = this.offCanvas.transferToImageBitmap()
+        let image = this.offCanvas.transferToImageBitmap()
         this.context.transferFromImageBitmap(image)
       })
     }
@@ -435,7 +435,7 @@ struct TextBaseline {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.strokeStyle = '#0000ff'
           offContext.moveTo(0, 120)
           offContext.lineTo(400, 120)
@@ -453,7 +453,7 @@ struct TextBaseline {
           offContext.fillText('Alphabetic', 195, 120)
           offContext.textBaseline = 'hanging'
           offContext.fillText('Hanging', 295, 120)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -484,13 +484,13 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = 'rgb(0,0,255)'
           offContext.fillRect(0, 0, 50, 50)
           offContext.globalAlpha = 0.4
           offContext.fillStyle = 'rgb(0,0,255)'
           offContext.fillRect(50, 50, 50, 50)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -521,12 +521,12 @@ struct LineDashOffset {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.arc(100, 75, 50, 0, 6.28)
           offContext.setLineDash([10,20])
           offContext.lineDashOffset = 10.0
           offContext.stroke()
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -571,7 +571,7 @@ struct GlobalCompositeOperation {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = 'rgb(255,0,0)'
           offContext.fillRect(20, 20, 50, 50)
           offContext.globalCompositeOperation = 'source-over'
@@ -582,7 +582,7 @@ struct GlobalCompositeOperation {
           offContext.globalCompositeOperation = 'destination-over'
           offContext.fillStyle = 'rgb(0,0,255)'
           offContext.fillRect(150, 50, 50, 50)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -613,12 +613,12 @@ struct ShadowBlur {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
           offContext.shadowColor = 'rgb(0,0,0)'
           offContext.fillStyle = 'rgb(255,0,0)'
           offContext.fillRect(20, 20, 100, 80)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -649,12 +649,12 @@ struct ShadowColor {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
           offContext.shadowColor = 'rgb(0,0,255)'
           offContext.fillStyle = 'rgb(255,0,0)'
           offContext.fillRect(30, 30, 100, 100)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -685,13 +685,13 @@ struct ShadowOffsetX {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 10
           offContext.shadowOffsetX = 20
           offContext.shadowColor = 'rgb(0,0,0)'
           offContext.fillStyle = 'rgb(255,0,0)'
           offContext.fillRect(20, 20, 100, 80)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -722,13 +722,13 @@ struct ShadowOffsetY {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 10
           offContext.shadowOffsetY = 20
           offContext.shadowColor = 'rgb(0,0,0)'
           offContext.fillStyle = 'rgb(255,0,0)'
           offContext.fillRect(30, 30, 100, 100)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -760,10 +760,10 @@ struct ImageSmoothingEnabled {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.imageSmoothingEnabled = false
           offContext.drawImage(this.img,0,0,400,200)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
       })
     }
@@ -814,9 +814,9 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillRect(30,30,100,100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
          })
         }
@@ -864,9 +864,9 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.strokeRect(30, 30, 200, 150)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -914,11 +914,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = 'rgb(0,0,255)'
             offContext.fillRect(20,20,200,200)
             offContext.clearRect(30,30,150,100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -966,10 +966,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '30px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -1017,10 +1017,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '55px sans-serif'
             offContext.strokeText("Hello World!", 20, 60)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -1089,11 +1089,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
             offContext.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -1138,14 +1138,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.moveTo(25, 25)
             offContext.lineTo(25, 105)
             offContext.lineTo(75, 105)
             offContext.lineTo(75, 25)
             offContext.strokeStyle = 'rgb(0,0,255)'
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1184,14 +1184,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.lineWidth = 6
             offContext.strokeStyle = '#0000ff'
             offContext.moveTo(15, 80)
             offContext.lineTo(280, 160)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1237,12 +1237,12 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(10, 10)
             offContext.lineTo(280, 160)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1288,12 +1288,12 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(10, 10)
             offContext.lineTo(280, 160)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1332,14 +1332,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-              var offContext = this.offCanvas.getContext("2d", this.settings)
+              let offContext = this.offCanvas.getContext("2d", this.settings)
               offContext.beginPath()
               offContext.moveTo(30, 30)
               offContext.lineTo(110, 30)
               offContext.lineTo(70, 90)
               offContext.closePath()
               offContext.stroke()
-              var image = this.offCanvas.transferToImageBitmap()
+              let image = this.offCanvas.transferToImageBitmap()
               this.context.transferFromImageBitmap(image)
           })
       }
@@ -1392,11 +1392,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var pattern = offContext.createPattern(this.img, 'repeat')
-            offContext.fillStyle = pattern
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let pattern = offContext.createPattern(this.img, 'repeat')
+            offContext.fillStyle = pattern as CanvasPattern
             offContext.fillRect(0, 0, 200, 200)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1446,12 +1446,12 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(10, 10)
             offContext.bezierCurveTo(20, 100, 200, 100, 200, 20)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1499,12 +1499,12 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(20, 20)
             offContext.quadraticCurveTo(100, 100, 200, 20)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -1554,11 +1554,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.arc(100, 75, 50, 0, 6.28)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1607,11 +1607,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.moveTo(100, 20)
             offContext.arcTo(150, 20, 150, 70, 50)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1662,11 +1662,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1714,10 +1714,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.rect(20, 20, 100, 100) // Create a 100*100 rectangle at (20, 20)
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1760,11 +1760,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#ffffff'
             offContext.rect(20, 20, 100, 100) // Create a 100*100 rectangle at (20, 20)
             offContext.fill()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1809,7 +1809,7 @@ struct Fill {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           let region = new Path2D()
           region.moveTo(30, 90)
           region.lineTo(110, 20)
@@ -1821,7 +1821,7 @@ struct Fill {
           // Fill path
           offContext.fillStyle = '#00ff00'
           offContext.fill(region, "evenodd")
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -1867,13 +1867,13 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.rect(0, 0, 100, 200)
             offContext.stroke()
             offContext.clip()
             offContext.fillStyle = "rgb(255,0,0)"
             offContext.fillRect(0, 0, 200, 200)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1917,7 +1917,7 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             let region = new Path2D()
             region.moveTo(30, 90)
             region.lineTo(110, 20)
@@ -1929,7 +1929,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             offContext.clip(region,"evenodd")
             offContext.fillStyle = "rgb(0,255,0)"
             offContext.fillRect(0, 0, 600, 600)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -1975,7 +1975,7 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             let offctx = offContext
             let img = this.img
 
@@ -2008,7 +2008,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             offctx.filter = 'blur(5px)';
             offctx.drawImage(img, 0, 300, 100, 100);
 
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2055,7 +2055,7 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             let offctx = offContext
             offctx.font = '48px serif';
             offctx.textAlign = 'start'
@@ -2064,7 +2064,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             offctx.direction = "rtl";
             offctx.fillText("Hi rtl!", 200, 100);
 
-            var image = offctx.transferToImageBitmap()
+            let image = offctx.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2110,10 +2110,10 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.rotate(45 * Math.PI / 180)
             offContext.fillRect(70, 20, 50, 50)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2159,12 +2159,12 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.lineWidth = 3
             offContext.strokeRect(30, 30, 50, 50)
             offContext.scale(2, 2) // Scale to 200%
             offContext.strokeRect(30, 30, 50, 50)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2221,7 +2221,7 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = 'rgb(0,0,0)'
             offContext.fillRect(0, 0, 100, 100)
             offContext.transform(1, 0.5, -0.5, 1, 10, 10)
@@ -2230,7 +2230,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             offContext.transform(1, 0.5, -0.5, 1, 10, 10)
             offContext.fillStyle = 'rgb(0,0,255)'
             offContext.fillRect(0, 0, 100, 100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2280,13 +2280,13 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = 'rgb(255,0,0)'
             offContext.fillRect(0, 0, 100, 100)
             offContext.setTransform(1,0.5, -0.5, 1, 10, 10)
             offContext.fillStyle = 'rgb(0,0,255)'
             offContext.fillRect(0, 0, 100, 100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2311,7 +2311,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Type                                      | Mandatory  | Default Value | Description   |
 | --------- | ---------------------------------------- | ---- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No   | null | Matrix object. |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No   | null | Transformation matrix.|
 
 ### getTransform
 
@@ -2351,7 +2351,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             this.offcontext1.fillRect(50, 50, 50, 50);
             this.offcontext1.setTransform(1.2, Math.PI/8, Math.PI/6, 0.5, 30, -25);
             this.offcontext1.fillRect(50, 50, 50, 50);
-            var image = this.offcontext1.transferToImageBitmap();
+            let image = this.offcontext1.transferToImageBitmap();
             this.context1.transferFromImageBitmap(image);
           })
         Text('context2');
@@ -2367,7 +2367,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             ", translateX = " + storedTransform.translateX + ", translateY = " + storedTransform.translateY + "]")
             this.offcontext2.setTransform(storedTransform);
             this.offcontext2.fillRect(50,50,50,50);
-            var image = this.offcontext2.transferToImageBitmap();
+            let image = this.offcontext2.transferToImageBitmap();
             this.context2.transferFromImageBitmap(image);
           })
       }
@@ -2378,7 +2378,7 @@ Since API version 9, this API is supported in ArkTS widgets.
   ```
 
   ![en-us_image_0000001219982726.png](figures/en-us_image_0000001219982726.png)
-
+  
 ### translate
 
 translate(x: number, y: number): void
@@ -2412,11 +2412,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillRect(10, 10, 50, 50)
             offContext.translate(70, 70)
             offContext.fillRect(10, 10, 50, 50)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2474,9 +2474,9 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() => {
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.drawImage( this.img,0,0,400,200)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -2609,11 +2609,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.drawImage(this.img,0,0,130,130)
-            var imagedata = offContext.getImageData(50,50,130,130)
+            let imagedata = offContext.getImageData(50,50,130,130)
             offContext.putImageData(imagedata,150,150)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2665,16 +2665,16 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var imageData = offContext.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let imageData = offContext.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
               imageData.data[i + 3] = 255
             }
             offContext.putImageData(imageData, 10, 10)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2717,11 +2717,11 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.arc(100, 75, 50, 0, 6.28)
             offContext.setLineDash([10,20])
             offContext.stroke()
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
       }
@@ -2766,7 +2766,7 @@ Since API version 9, this API is supported in ArkTS widgets.
             .fontWeight(FontWeight.Bold)
             .onClick(()=>{
               console.error('before getlinedash clicked')
-              var offContext = this.offCanvas.getContext("2d", this.settings)
+              let offContext = this.offCanvas.getContext("2d", this.settings)
               let res = offContext.getLineDash()
               console.error(JSON.stringify(res))
             })
@@ -2775,12 +2775,12 @@ Since API version 9, this API is supported in ArkTS widgets.
             .height('100%')
             .backgroundColor('#ffff00')
             .onReady(() => {
-              var offContext = this.offCanvas.getContext("2d", this.settings)
+              let offContext = this.offCanvas.getContext("2d", this.settings)
               offContext.arc(100, 75, 50, 0, 6.28)
               offContext.setLineDash([10,20])
               offContext.stroke()
               let res = offContext.getLineDash()
-              var image = this.offCanvas.transferToImageBitmap()
+              let image = this.offCanvas.transferToImageBitmap()
               this.context.transferFromImageBitmap(image)
             })
         }
@@ -2833,8 +2833,8 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var dataURL = offContext.toDataURL()
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let dataURL = offContext.toDataURL()
           })
       }
       .width('100%')
@@ -2876,13 +2876,13 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             let offctx = offContext
             offctx.imageSmoothingEnabled = true
             offctx.imageSmoothingQuality = 'high'
             offctx.drawImage(this.img, 0, 0, 400, 200)
 
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2925,16 +2925,16 @@ Creates an **ImageBitmap** object on the most recently rendered image of the **O
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var imageData = offContext.createImageData(100, 100)
-            for (var i = 0; i < imageData.data.length; i += 4) {
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let imageData = offContext.createImageData(100, 100)
+            for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
               imageData.data[i + 2] = 255
               imageData.data[i + 3] = 255
             }
             offContext.putImageData(imageData, 10, 10)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -2971,13 +2971,13 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.save() // save the default state
             offContext.fillStyle = "#00ff00"
             offContext.fillRect(20, 20, 100, 100)
             offContext.restore() // restore to the default state
             offContext.fillRect(150, 75, 100, 100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -3015,13 +3015,13 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.save() // save the default state
             offContext.fillStyle = "#00ff00"
             offContext.fillRect(20, 20, 100, 100)
             offContext.restore() // restore to the default state
             offContext.fillRect(150, 75, 100, 100)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -3068,14 +3068,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var grad = offContext.createLinearGradient(50,0, 300,100)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let grad = offContext.createLinearGradient(50,0, 300,100)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             offContext.fillStyle = grad
             offContext.fillRect(0, 0, 400, 400)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -3125,14 +3125,14 @@ Since API version 9, this API is supported in ArkTS widgets.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
-            var grad = offContext.createRadialGradient(200,200,50, 200,200,200)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            let grad = offContext.createRadialGradient(200,200,50, 200,200,200)
             grad.addColorStop(0.0, '#ff0000')
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             offContext.fillStyle = grad
             offContext.fillRect(0, 0, 440, 440)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
       }
@@ -3176,14 +3176,14 @@ struct OffscreenCanvasConicGradientPage {
         .height('100%')
         .backgroundColor('#ffffff')
         .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
-          var grad = offContext.createConicGradient(0, 50, 80)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
+          let grad = offContext.createConicGradient(0, 50, 80)
           grad.addColorStop(0.0, '#ff0000')
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')
           offContext.fillStyle = grad
           offContext.fillRect(0, 30, 100, 100)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
