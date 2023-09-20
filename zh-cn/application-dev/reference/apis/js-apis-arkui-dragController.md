@@ -66,15 +66,17 @@ struct DragControllerPage {
                 extraParams: ''
               }
               class tmp{
-                event:DragResult|undefined = undefined
+                event:DragEvent|undefined = undefined
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(this.DraggingBuilder(), dragInfo, (err, eve) => {
-                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                // ...
-                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                // ...
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
                 }
               })
             }
@@ -151,11 +153,11 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              componentSnapshot.createFromBuilder(this.PixmapBuilder()).then((pix: image.PixelMap) => {
+              componentSnapshot.createFromBuilder((dragControllerPage:DragControllerPage)=>{this.PixmapBuilder()}).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
-                  builder: this.DraggingBuilder(),
+                  builder: ()=>{this.DraggingBuilder()},
                   extraInfo: "DragItemInfoTest"
                 }
 
