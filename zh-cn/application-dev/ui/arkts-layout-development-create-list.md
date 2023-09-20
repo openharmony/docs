@@ -592,7 +592,6 @@ struct ContactsList {
     Stack({ alignContent: Alignment.End }) {
       List({ scroller: this.listScroller }) {}
       .onScrollIndex((firstIndex: number) => {
-          this.selectedIndex = firstIndex
         // 根据列表滚动到的索引值，重新计算对应联系人索引栏的位置this.selectedIndex
       })
 
@@ -623,17 +622,6 @@ ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swip
 
 
 ```ts
-class swtmp{
-  temp:Record<string,object> = {}
-  itemEnd:Function|undefined = undefined
-  get(index:number){
-    if(this.itemEnd){
-      this.temp = {'end':this.itemEnd(this, index)}
-    }
-    return this.temp
-  }
-}
-let swipertmp:swtmp = new swtmp()
 @Entry
 @Component
 struct MessageList {
@@ -659,7 +647,7 @@ struct MessageList {
           if(index){
             ListItem() {
             }
-            .swipeAction(swipertmp.get(index)) // 设置侧滑属性.
+            .swipeAction({ end: ()=>{this.itemEnd(index)} }) // 设置侧滑属性.
           }
         }, (item:MessageList) => item.id.toString())
       }
@@ -751,8 +739,8 @@ Badge({
 
    最后，构建列表布局和列表项：
 
-   ```ts
-    export class ToDo {
+  ```ts
+  export class ToDo {
     key: string = util.generateRandomUUID(true);
     name: string;
     toDoData:ToDo[] = [];
@@ -760,15 +748,15 @@ Badge({
     constructor(name: string) {
       this.name = name;
     }
-    }
-    let todo:ToDo = new ToDo()
-   List({ space: 10 }) {
-     ForEach(todo.toDoData, (toDoItem:ToDo) => {
-       ListItem() {
-       }
-     }, (toDoItem:ToDo) => toDoItem.key.toString())
-   }
-   ```
+  }
+  let todo:ToDo = new ToDo()
+  List({ space: 10 }) {
+    ForEach(todo.toDoData, (toDoItem:ToDo) => {
+      ListItem() {
+      }
+    }, (toDoItem:ToDo) => toDoItem.key.toString())
+  }
+  ```
 
 2. 提供新增列表项入口，即给新增按钮添加点击事件。
 
