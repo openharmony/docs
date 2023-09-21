@@ -608,20 +608,6 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 | value             | object                                                       | 是   | 数据项值。取值范围随业务变动。                               |
 | callback          | AsyncCallback\<boolean>                                      | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
 
-**示例**：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-//此处数据项值的类型为string
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-    console.log('Callback return whether value is set.');
-});
-```
 
 ## settings.setValue<sup>(deprecated)</sup>
 
@@ -653,20 +639,6 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 | ----------------- | -------------------------------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示操作成功，否则返回false。 |
 
-**示例**：
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
-let helper = featureAbility.acquireDataAbilityHelper(uri);
-//@ts-ignore
-//此处数据项值的类型为string
-settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-    console.log('Callback return whether value is set.');
-});
-```
 
 ## setting.getValue<sup>(deprecated)</sup>
 
