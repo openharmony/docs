@@ -2535,7 +2535,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                      |
+| 5400103  | I/O error. Return by callback.                     |
 | 5400104  | Time out. Return by callback.                      |
 | 5400105  | Service died. Return by callback.                  |
 | 5400106  | Unsupport format. Return by callback.              |
@@ -2570,7 +2570,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 | -------- | ------------------------------------------------   |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                      |
+| 5400103  | I/O error. Return by callback.                     |
 | 5400104  | Time out. Return by callback.                      |
 | 5400105  | Service died. Return by callback.                  |
 | 5400106  | Unsupport format. Return by callback.              |
