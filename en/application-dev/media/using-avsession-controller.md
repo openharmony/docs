@@ -48,6 +48,13 @@ For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 | getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | Obtains the name of the playlist.|
 | skipToQueueItem(itemId: number, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sends the ID of an item in the playlist to the session for processing. The session can play the song.|
 | getExtras(callback: AsyncCallback&lt;{[key: string]: Object}&gt;): void<sup>10+<sup> | Obtains the custom media packet set by the provider.|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API.|
+| getAVPlaybackStateSync(): AVPlaybackState<sup>10+<sup> | Obtains the information related to the playback state. This API is a synchronous API.|
+| getAVMetadataSync(): AVMetadata<sup>10+<sup> | Obtains the session metadata. This API is a synchronous API.|
+| getAVQueueTitleSync(): string<sup>10+<sup> | Obtains the name of the playlist. This API is a synchronous API.|
+| getAVQueueItemsSync(): Array&lt;AVQueueItem&gt;<sup>10+<sup> | Obtains the information related to the items in the playlist. This API is a synchronous API.|
+| isActiveSync(): boolean<sup>10+<sup> | Checks whether the session is activated. This API is a synchronous API.|
+| getValidCommandsSync(): Array&lt;AVControlCommandType&gt;<sup>10+<sup> | Obtains valid commands supported by the session. This API is a synchronous API.|
 
 ## How to Develop
 
@@ -191,13 +198,11 @@ To enable a system application to access the AVSession service as a controller, 
    });
 
    // Subscribe to metadata changes.
-   let metaFilter = ['assetId', 'title', 'description'];
-   controller.on('metadataChange', metaFilter, (metadata: AVSessionManager.AVMetadata) => {
+   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
      console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
    // Subscribe to playback state changes.
-   let playbackFilter = ['state', 'speed', 'loopMode'];
-   controller.on('playbackStateChange', playbackFilter, (playbackState: AVSessionManager.AVPlaybackState) => {
+   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
      console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
    // Subscribe to supported command changes.

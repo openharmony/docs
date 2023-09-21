@@ -42,12 +42,15 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // Create a camera input stream.
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createCameraInput errorCode = ' + err.code);
+  }
+  if (cameraInput === undefined) {
+    return;
   }
 
   // Listen for camera input errors.
@@ -78,14 +81,16 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the PreviewOutput instance. error code: ${err.code}`);
   }
-
+  if (previewOutput === undefined) {
+    return;
+  }
   // Listen for preview output errors.
   previewOutput.on('error', (error: BusinessError) => {
     console.info(`Preview output error code: ${error.code}`);
@@ -96,22 +101,27 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   // Obtain the surface ID for displaying photos.
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // Create a photo output stream.
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to createPhotoOutput errorCode = ' + err.code);
   }
+  if (photoOutput === undefined) {
+    return;
+  }
   // Create a session.
-  let captureSession: camera.CaptureSession;
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to create the CaptureSession instance. errorCode = ' + err.code);
   }
-
+  if (captureSession === undefined) {
+    return;
+  }
   // Listen for session errors.
   captureSession.on('error', (error: BusinessError) => {
     console.info(`Capture session error code: ${error.code}`);
@@ -157,7 +167,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
     console.info('Promise returned to indicate the session start success.');
   });
   // Check whether the camera has flash.
-  let flashStatus: boolean;
+  let flashStatus: boolean = false;
   try {
     flashStatus = captureSession.hasFlash();
   } catch (error) {
@@ -168,7 +178,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
 
   if (flashStatus) {
     // Check whether the auto flash mode is supported.
-    let flashModeStatus: boolean;
+    let flashModeStatus: boolean = false;
     try {
       let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
       flashModeStatus = status;
@@ -188,7 +198,7 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // Check whether the continuous auto focus is supported.
-  let focusModeStatus: boolean;
+  let focusModeStatus: boolean = false;
   try {
     let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
     focusModeStatus = status;
@@ -208,14 +218,16 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   }
 
   // Obtain the zoom ratio range supported by the camera.
-  let zoomRatioRange: Array<number>;
+  let zoomRatioRange: Array<number> = [];
   try {
     zoomRatioRange = captureSession.getZoomRatioRange();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the zoom ratio range. errorCode = ' + err.code);
   }
-
+  if (zoomRatioRange.length <= 0) {
+    return;
+  }
   // Set a zoom ratio.
   try {
     captureSession.setZoomRatio(zoomRatioRange[0]);
@@ -251,6 +263,6 @@ async function cameraShootingCase(context: featureAbility.Context, surfaceId: st
   captureSession.release();
 
   // Set the session to null.
-  captureSession = null;
+  captureSession = undefined;
 }
 ```

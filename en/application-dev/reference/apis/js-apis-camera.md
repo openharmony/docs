@@ -45,8 +45,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
-function getCameraManager(context: featureAbility.Context): camera.CameraManager {
-  let cameraManager: camera.CameraManager;
+function getCameraManager(context: featureAbility.Context): camera.CameraManager | undefined {
+  let cameraManager: camera.CameraManager | undefined = undefined;
   try {
     cameraManager = camera.getCameraManager(context);
   } catch (error) {
@@ -95,8 +95,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
-function getModeManager(context: featureAbility.Context): camera.ModeManager {
-  let modeManager: camera.ModeManager;
+function getModeManager(context: featureAbility.Context): camera.ModeManager | undefined {
+  let modeManager: camera.ModeManager | undefined = undefined;
   try {
     modeManager = camera.getModeManager(context);
   } catch (error) {
@@ -269,7 +269,7 @@ Obtains supported cameras. This API returns the result synchronously.
 import { BusinessError } from '@ohos.base';
 
 function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
-  let cameras: Array<camera.CameraDevice>;
+  let cameras: Array<camera.CameraDevice> = [];
   try {
     cameras = cameraManager.getSupportedCameras();
   } catch (error) {
@@ -468,10 +468,10 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput {
+function createCameraInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): camera.CameraInput | undefined {
   let position: camera.CameraPosition = cameraDevice.cameraPosition;
   let type: camera.CameraType = cameraDevice.cameraType;
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(position, type);
   } catch (error) {
@@ -517,9 +517,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput {
+function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.previewProfiles[0];
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(profile, surfaceId);
   } catch (error) {
@@ -565,9 +565,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput {
+function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.PhotoOutput | undefined {
   let profile: camera.Profile = cameraOutputCapability.photoProfiles[0];
-  let photoOutput: camera.PhotoOutput;
+  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(profile, surfaceId);
   } catch (error) {
@@ -613,9 +613,9 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput {
+function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
   let profile: camera.VideoProfile = cameraOutputCapability.videoProfiles[0];
-  let videoOutput: camera.VideoOutput;
+  let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
   } catch (error) {
@@ -700,8 +700,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession {
-  let captureSession: camera.CaptureSession;
+function createCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
@@ -864,8 +864,12 @@ import featureAbility from '@ohos.ability.featureAbility';
 function isPreLaunchSupported(context: featureAbility.Context): boolean {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  let isSupported: boolean = cameraManager.isPrelaunchSupported(cameras[0]);
-  console.log(`PreLaunch supported states: ${isSupported}`);
+  let isSupported: boolean = false;
+  if (cameras && cameras.length >= 1) {
+    isSupported = cameraManager.isPrelaunchSupported(cameras[0]);
+    console.log(`PreLaunch supported states: ${isSupported}`);
+    return isSupported;
+  }
   return isSupported;
 }
 ```
@@ -904,12 +908,15 @@ import { BusinessError } from '@ohos.base';
 function setPrelaunchConfig(context: featureAbility.Context): void {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  if(cameraManager.isPrelaunchSupported(cameras[0])) {
-    try {
-      cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
-    } catch (error) {
-      let err = error as BusinessError;
-      console.error(`setPrelaunchConfig error. Code: ${err.code}, message: ${err.message}`);
+  if (cameras && cameras.length >= 1) {
+    let cameraDevice: camera.CameraDevice = cameras[0];
+    if(cameraManager.isPrelaunchSupported(cameraDevice)) {
+      try {
+        cameraManager.setPrelaunchConfig({cameraDevice: cameraDevice});
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`setPrelaunchConfig error. Code: ${err.code}, message: ${err.message}`);
+      }
     }
   }
 }
@@ -2237,7 +2244,7 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function isExposureModeSupported(captureSession: camera.CaptureSession): boolean {
-  let isSupported: boolean;
+  let isSupported: boolean = false;
   try {
     isSupported = captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED);
   } catch (error) {
@@ -2448,7 +2455,7 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function getExposureBiasRange(captureSession: camera.CaptureSession): Array<number> {
-  let biasRangeArray: Array<number>;
+  let biasRangeArray: Array<number> = [];
   try {
     biasRangeArray = captureSession.getExposureBiasRange();
   } catch (error) {
@@ -2529,7 +2536,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function getExposureValue(captureSession: camera.CaptureSession): number {
-  let exposureValue: number;
+  const invalid_value: number = -1;
+  let exposureValue: number = invalid_value;
   try {
     exposureValue = captureSession.getExposureValue();
   } catch (error) {
@@ -2788,7 +2796,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function getFocalLength(captureSession: camera.CaptureSession): number {
-  let focalLength: number;
+  const invalid_value: number = -1;
+  let focalLength: number = invalid_value;
   try {
     focalLength = captureSession.getFocalLength();
   } catch (error) {
@@ -2828,7 +2837,7 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function getZoomRatioRange(captureSession: camera.CaptureSession): Array<number> {
-  let zoomRatioRange: Array<number>;
+  let zoomRatioRange: Array<number> = [];
   try {
     zoomRatioRange = captureSession.getZoomRatioRange();
   } catch (error) {
@@ -2916,7 +2925,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 function getZoomRatio(captureSession: camera.CaptureSession): number {
-  let zoomRatio: number;
+  const invalid_value: number = -1;
+  let zoomRatio: number = invalid_value;
   try {
     zoomRatio = captureSession.getZoomRatio();
   } catch (error) {
@@ -3084,8 +3094,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getSupportedFilters(captureSession: camera.CaptureSession): Array<camera.FilterType> {
-  let filterTypes: Array<camera.FilterType> = captureSession.getSupportedFilters();
+function getSupportedFilters(portraitSession: camera.PortraitSession): Array<camera.FilterType> {
+  let filterTypes: Array<camera.FilterType> = portraitSession.getSupportedFilters();
   return filterTypes;
 }
 ```
@@ -3117,11 +3127,11 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function setFilter(captureSession: camera.CaptureSession, filterTypes: Array<camera.FilterType>): void {
+function setFilter(portraitSession: camera.PortraitSession, filterTypes: Array<camera.FilterType>): void {
   if (filterTypes === undefined || filterTypes.length <= 0) {
     return;
   }
-  captureSession.setFilter(filterTypes[0]);
+  portraitSession.setFilter(filterTypes[0]);
 }
 ```
 
@@ -3152,8 +3162,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getFilter(captureSession: camera.CaptureSession): number {
-  let filterType: number = captureSession.getFilter();
+function getFilter(portraitSession: camera.PortraitSession): number {
+  let filterType: number = portraitSession.getFilter();
   return filterType;
 }
 ```
@@ -3184,8 +3194,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getSupportedBeautyTypes(captureSession: camera.CaptureSession): Array<camera.BeautyType> {
-  let beautyTypes: Array<camera.BeautyType> = captureSession.getSupportedBeautyTypes();
+function getSupportedBeautyTypes(portraitSession: camera.PortraitSession): Array<camera.BeautyType> {
+  let beautyTypes: Array<camera.BeautyType> = portraitSession.getSupportedBeautyTypes();
   return beautyTypes;
 }
 ```
@@ -3229,12 +3239,12 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getSupportedBeautyRange(captureSession: camera.CaptureSession): Array<number> {
-  let beautyTypes: Array<camera.BeautyType> = captureSession.getSupportedBeautyTypes();
+function getSupportedBeautyRange(portraitSession: camera.PortraitSession): Array<number> {
+  let beautyTypes: Array<camera.BeautyType> = portraitSession.getSupportedBeautyTypes();
   if (beautyTypes === undefined || beautyTypes.length <= 0) {
-    return null;
+    return [];
   }
-  let beautyLevels: Array<number> = captureSession.getSupportedBeautyRange(beautyTypes[0]);
+  let beautyLevels: Array<number> = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   return beautyLevels;
 }
 ```
@@ -3267,16 +3277,16 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function setBeauty(captureSession: camera.CaptureSession): void {
-  let beautyTypes: Array<camera.BeautyType> = captureSession.getSupportedBeautyTypes();
+function setBeauty(portraitSession: camera.PortraitSession): void {
+  let beautyTypes: Array<camera.BeautyType> = portraitSession.getSupportedBeautyTypes();
   if (beautyTypes === undefined || beautyTypes.length <= 0) {
-    return null;
+    return;
   }
-  let beautyLevels: Array<number> = captureSession.getSupportedBeautyRange(beautyTypes[0]);
+  let beautyLevels: Array<number> = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   if (beautyLevels === undefined || beautyLevels.length <= 0) {
-    return null;
+    return;
   }
-  captureSession.setBeauty(beautyTypes[0], beautyLevels[0]);
+  portraitSession.setBeauty(beautyTypes[0], beautyLevels[0]);
 }
 ```
 
@@ -3312,17 +3322,18 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-function getBeauty(captureSession: camera.CaptureSession): number {
-  let beautyTypes = captureSession.getSupportedBeautyTypes();
+function getBeauty(portraitSession: camera.PortraitSession): number {
+  const invalid_value: number = -1;
+  let beautyTypes = portraitSession.getSupportedBeautyTypes();
   if (beautyTypes === undefined || beautyTypes.length <= 0) {
-    return null;
+    return invalid_value;
   }
-  let beautyLevels: Array<number> = captureSession.getSupportedBeautyRange(BeautyTypes[0]);
+  let beautyLevels: Array<number> = portraitSession.getSupportedBeautyRange(beautyTypes[0]);
   if (beautyLevels === undefined || beautyLevels.length <= 0) {
-    return null;
+    return invalid_value;
   }
-  captureSession.setBeauty(beautyTypes[0], beautyLevels[0]);
-  let beautyLevel: number = captureSession.getBeauty(beautyTypes[0]);
+  portraitSession.setBeauty(beautyTypes[0], beautyLevels[0]);
+  let beautyLevel: number = portraitSession.getBeauty(beautyTypes[0]);
   return beautyLevel;
 }
 ```
@@ -3458,8 +3469,8 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 
 ```ts
 function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): Array<camera.PortraitEffect> {
-  let portraitEffect: Array<camera.PortraitEffect> = portraitSession.getSupportedPortraitEffects();
-  return portraitEffect;
+  let portraitEffects: Array<camera.PortraitEffect> = portraitSession.getSupportedPortraitEffects();
+  return portraitEffects;
 }
 ```
 ### setPortraitEffect
@@ -3925,19 +3936,19 @@ For details about the error codes, see [Camera Error Codes](../errorcodes/errorc
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+async function preview(context: common.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
-  const previewOutput: camera.PreviewOutput = await cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  const session: camera.CaptureSession  = await cameraManager.createCaptureSession();
+  const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
+  const session: camera.CaptureSession  = cameraManager.createCaptureSession();
   session.beginConfig();
   session.addInput(cameraInput);
   session.addOutput(previewOutput);
   session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(surfaceId);
+  await previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 

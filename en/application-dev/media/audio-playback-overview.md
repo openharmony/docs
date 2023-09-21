@@ -14,7 +14,7 @@ OpenHarmony provides multiple classes for you to develop audio playback applicat
 
 - [TonePlayer](using-toneplayer-for-playback.md): provides ArkTS and JS APIs to implement the playback of dialing tones and ringback tones. It can be used to play the content selected from a fixed type range, without requiring the input of media assets or audio data. This class is applicable to specific scenarios where dialing tones and ringback tones are played. It is available only to system applications.
 
-- Applications often need to use short sound effects, such as camera shutter sound effect, key press sound effect, and game shooting sound effect. Currently, only the **AVPlayer** class can implement audio file playback. More APIs will be provided to support this scenario in later versions.
+- [SoundPool](using-soundpool-for-playback.md): provides ArkTS and JS APIs to implement short sound playback in low latency mode. It can be used to play short sound effects, such as camera shutter sound effect, key press sound effect, and game shooting sound effect.
 
 ## Precautions for Developing Audio Playback Applications
 

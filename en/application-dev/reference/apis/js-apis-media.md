@@ -2562,7 +2562,7 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                                             |
+| ID| Error Message                                           |
 | -------- | ------------------------------------------------   |
 | 201      | Permission denied. Return by callback.             |
 | 401      | The parameter check failed. Return by callback.    |
@@ -5080,5 +5080,3 @@ Enumerates the audio output formats.
 | AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.         |
 | AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
 | AAC_ADTS | 6    | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
-
- <!--no_check--> 
