@@ -18,7 +18,7 @@ Applications can call the APIs to:
 
 ## Modules to Import
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 ```
 
@@ -45,11 +45,15 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
     let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
   } catch(err) {
-    console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -79,11 +83,14 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
-    console.error("release device manager errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("release device manager errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -143,11 +150,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceInfoList = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<deviceManager.eviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
-    console.error("getAvailableDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -177,9 +188,12 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
   try {
-    dmInstance.getAvailableDeviceList((err, data) => {
+    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
@@ -187,7 +201,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       console.log('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getAvailableDeviceList errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -217,10 +232,13 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
-  dmInstance.getAvailableDeviceList().then((data) => {
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
   ```
@@ -251,12 +269,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceNetworkId = dmInstance.getLocalDeviceNetworkId();
+    let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
-    console.error("getLocalDeviceNetworkId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -286,12 +307,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceName = dmInstance.getLocalDeviceName();
+    let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
-    console.error("getLocalDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -321,12 +345,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceType = dmInstance.getLocalDeviceType();
+    let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
-    console.error("getLocalDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -356,12 +383,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId = dmInstance.getLocalDeviceId();
+    let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
-    console.error("getLocalDeviceId errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -397,14 +427,17 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = "xxxxxxx"
-    var deviceName = dmInstance.getDeviceName(networkId);
+    let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
-    console.error("getDeviceName errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -440,14 +473,17 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     // Network ID of the device, which can be obtained from the trusted device list.
     let networkId = "xxxxxxx"
-    var deviceType = dmInstance.getDeviceType(networkId);
+    let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
-    console.error("getDeviceType errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -479,20 +515,36 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
-  var discoverParam = {
-    'discoverTargetType': 1
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  interface DiscoverParam {
+    discoverTargetType: number
+  }
+
+  interface FilterOptions {
+    availableStatus: number,
+    discoverDistance: number,
+    authenticationStatus: number,
+    authorizationType: number
+  }
+
+  let discoverParam: DiscoverParam = {
+    discoverTargetType: 1
   };
-  var filterOptions = {
-    'availableStatus': 1,
-    'discoverDistance': 50,
-    'authenticationStatus': 0,
-    'authorizationType': 0
+
+  let filterOptions: FilterOptions = {
+    availableStatus: 1,
+    discoverDistance: 50,
+    authenticationStatus: 0,
+    authorizationType: 0
   };
+
   try {
     dmInstance.startDiscovering(discoverParam, filterOptions); // When devices are discovered, discoverSuccess is called to notify the application.
   } catch (err) {
-    console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("startDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -517,11 +569,14 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.stopDiscovering();
   } catch (err) {
-    console.error("stopDiscovering errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("stopDiscovering errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -554,18 +609,32 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceId: string = ""
+  }
+
+  interface BindParam {
+    bindType: number, // Authentication type. The value 1 means PIN authentication.
+    targetPkgName: string,
+    appName: string,
+    appOperation: string,
+    customDescription: string
+  }
+
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
-  var deviceId ="XXXXXXXX";
-  let bindParam = {
-          'authType': 1, // Authentication type. The value 1 means PIN authentication without the account.
-          'targetPkgName': 'xxxx',
-          'appName': 'xxxx',
-          'appOperation': 'xxxx',
-          'customDescription': 'xxxx'
+  let deviceId = "XXXXXXXX";
+  let bindParam: BindParam = {
+    'authType': 1, // Authentication type. The value 1 means PIN authentication.
+    targetPkgName: 'xxxx',
+    appName: 'xxxx',
+    appOperation: 'xxxx',
+    customDescription: 'xxxx'
   }
   try {
-    dmInstance.bindTarget(deviceId, bindParam, (err, data) => {
+    dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
           console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
           return;
@@ -573,7 +642,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       console.info("bindTarget result:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -603,12 +673,15 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
-    var deviceId ="XXXXXXXX";
+    let deviceId = "XXXXXXXX";
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
-    console.error("unbindTarget errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("unbindTarget errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -633,7 +706,9 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
  try {
     /*
       action = 0 - Grant the permission.
@@ -646,7 +721,8 @@ Replies to the user's UI operation. This API can be used only by the PIN HAP of 
     let operation = 0;
     dmInstance.replyUiAction(operation, "extra")
     } catch (err) {
-      console.error("replyUiAction errCode:" + err.code + ",errMessage:" + err.message);
+      let e: BusinessError = err as BusinessError;
+      console.error("replyUiAction errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -671,16 +747,27 @@ Subscribes to the UI operation reply result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    param: string = ""
+  }
+
+  interface TmpStr {
+    verifyFailed: boolean
+  }
+
   try {
-    dmInstance.on('replyResult', (data) => {
+    dmInstance.on('replyResult', (data: Data) => {
     console.log("replyResult executed, dialog closed" + JSON.stringify(data))
-    var tmpStr = JSON.parse(data.param)
-    var isShow = tmpStr.verifyFailed
+    let tmpStr: TmpStr = JSON.parse(data.param)
+    let isShow = tmpStr.verifyFailed
     console.log("replyResult executed, dialog closed" + isShow)
   });
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -705,11 +792,14 @@ Unsubscribes from the UI operation reply result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off('replyResult');
   } catch (err) {
-    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -732,13 +822,27 @@ Subscribes to changes in the device state.
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.on('deviceStateChange', (data) => {
+    dmInstance.on('deviceStateChange', (data: Data) => {
       console.info("deviceStateChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -761,13 +865,27 @@ Unsubscribes from changes in the device state.
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    action: deviceManager.DeviceStateChange = 0
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('deviceStatusChange', (data) => {
+    dmInstance.off('deviceStatusChange', (data: Data) => {
       console.info('deviceStatusChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStatusChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -790,13 +908,26 @@ Subscribes to device discovery events.
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+  
   try {
-    dmInstance.on('discoverSuccess', (data) => {
+    dmInstance.on('discoverSuccess', (data: Data) => {
       console.info("discoverSuccess:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -819,13 +950,26 @@ Unsubscribes from device discovery events.
 
 **Example**
 
-  ```js
+  ```ts
+  import deviceManager from '@ohos.distributedDeviceManager'
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    device: deviceManager.DeviceBasicInfo = {
+      deviceId: "",
+      deviceName: "",
+      deviceType: "",
+      networkId: "",
+    }
+  }
+
   try {
-    dmInstance.off('discoverSuccess', (data) => {
+    dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverSuccess errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -848,13 +992,20 @@ Subscribes to device name changes.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.on('deviceNameChange', (data) => {
+    dmInstance.on('deviceNameChange', (data: Data) => {
         console.info("deviceNameChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -877,13 +1028,20 @@ Unsubscribes from device name changes.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    deviceName: string = ""
+  }
+
   try {
-    dmInstance.off('deviceNameChange', (data) => {
+    dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -906,13 +1064,20 @@ Subscribes to device discovery failures.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.on('discoverFailure', (data) => {
+    dmInstance.on('discoverFailure', (data: Data) => {
         console.info("discoverFailure on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -935,13 +1100,20 @@ Unsubscribes from device discovery failures.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
+  class Data {
+    reason: number = 0
+  }
+
   try {
-    dmInstance.off('discoverFailure', (data) => {
+    dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFailure errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -964,13 +1136,16 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.on("serviceDie", () => {
       console.info("serviceDie on");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -993,13 +1168,15 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base'
+
   try {
     dmInstance.off("serviceDie", () => {
       console.info("serviceDie off");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
+    let e: BusinessError = err as BusinessError;
+    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
-
