@@ -566,6 +566,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几种：
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
 | 错误码ID | 错误信息              | 说明                                                         |
 | -------- | --------------------- | ------------------------------------------------------------ |
 | 201      | No Permission:        | 无权限执行此操作，[AVPlayerState](#avplayerstate9)会进入error状态。 |
