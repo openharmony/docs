@@ -21,15 +21,65 @@ The **PermissionRequestResult** module defines the result of a permission reques
 The permission request result is obtained through an **atManager** instance.
 
 **Example**
+
+The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to enable the use of **globalThis**. You need to perform the following operations:
+
+a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
+  ```typescript
+    import {GlobalThis} from '../utils/globalThis'; // Set it based on the path of globalThis.ets.
+  ```
+b. Add the following to **onCreate**:
+  ```typescript
+    GlobalThis.getInstance().setContext('context', this.context);
+  ```
+
+> **NOTE**
+>
+> An alert will be generated when a **.ets** file is imported to a TS file. To prevent the alert, you need to change the file name extension of **EntryAbility.ts** to **EntryAbility.ets** and modify the file name extension in **module.json5**.
+
+The sample code of **globalThis.ets** is as follows:
+```typescript
+import common from '@ohos.app.ability.common';
+
+// Construct a singleton object.
+export class GlobalThis {
+  private constructor() {}
+  private static instance: GlobalThis;
+  private _uiContexts = new Map<string, common.UIAbilityContext>();
+
+  public static getInstance(): GlobalThis {
+    if (!GlobalThis.instance) {
+      GlobalThis.instance = new GlobalThis();
+    }
+    return GlobalThis.instance;
+  }
+
+  getContext(key: string): common.UIAbilityContext | undefined {
+    return this._uiContexts.get(key);
+  }
+
+  setContext(key: string, value: common.UIAbilityContext): void {
+    this._uiContexts.set(key, value);
+  }
+
+  // Set other content in the same way.
+}
+```
+
 ```ts
+import { BusinessError } from '@ohos.base';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
+import { GlobalThis } from '../utils/globalThis';
+
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-  atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"]).then((data) => {
+  let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
+  atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);
       console.info("data authResults:" + data.authResults);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.info("data:" + JSON.stringify(err));
   })
 } catch(err) {
