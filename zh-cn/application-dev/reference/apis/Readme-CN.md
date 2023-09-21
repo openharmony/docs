@@ -261,6 +261,7 @@
 
 - 安全
   - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
