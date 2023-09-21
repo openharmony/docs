@@ -20,7 +20,8 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 Figure 1 shows the working principles of the widget framework.
 
-  **Figure 1** Widget framework working principles in the FA model 
+**Figure 1** Widget framework working principles in the FA model
+
 ![form-extension](figures/form-extension.png)
 
 The widget host consists of the following modules:
@@ -49,7 +50,8 @@ The widget provider consists of the following modules:
 
 - Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
 
 
@@ -188,9 +190,10 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
    }
 
    export default obj;
-  ```
+   ```
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > FormAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
 ### Configuring the Widget Configuration File
@@ -388,7 +391,8 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 ![widget-development-fa](figures/widget-development-fa.png)
 
-> **NOTE**<br>
+> **NOTE**
+>
 > In the FA model, only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
 
 - HML: uses web-like paradigm components to describe the widget page information.
