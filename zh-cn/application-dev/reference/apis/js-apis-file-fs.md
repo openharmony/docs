@@ -2011,7 +2011,7 @@ listFile(path: string, options?: {
   option.filter.displayName = ["*abc", "efg*"];
   option.filter.fileSizeOver = 1024;
   option.filter.lastModifiedAfter = new Date(0).getTime();
-  fs.listFile(pathDir, options).then((filenames: Array<string>) => {
+  fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
@@ -3713,7 +3713,8 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   let option = new Option();
   option.offset = 1;
   option.length = 5;
-  randomaccessfile.write(new ArrayBuffer(bufferLength), option).then((bytesWritten: number) => {
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
     randomaccessfile.close();
     fs.closeSync(file);
