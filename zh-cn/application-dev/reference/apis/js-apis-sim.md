@@ -10,7 +10,6 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 ## 导入模块
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
 
