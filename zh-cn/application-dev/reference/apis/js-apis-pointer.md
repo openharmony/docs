@@ -75,6 +75,31 @@ try {
 }
 ```
 
+## pointer.setPointerVisibleSync<sup>10+</sup>
+
+setPointerVisibleSync(visible: boolean): void
+
+使用同步方式设置鼠标指针显示或者隐藏。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名      | 类型      | 必填   | 说明                                       |
+| ------- | ------- | ---- | ---------------------------------------- |
+| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setPointerVisibleSync(false)
+  console.log(`Set pointer visible success`)
+} catch (error) {
+  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
 ## pointer.isPointerVisible<sup>9+</sup>
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
@@ -128,6 +153,31 @@ try {
   });
 } catch (error) {
   console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.isPointerVisibleSync<sup>10+</sup>
+
+isPointerVisibleSync(): boolean
+
+使用同步方式获取鼠标指针显示或者隐藏。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**返回值**：
+
+| 参数                     | 说明                  |
+| ---------------------- | ------------------- |
+| boolean | 返回鼠标指针显示或隐藏状态。 |
+
+**示例**：
+
+```js
+try {
+  let visible: boolean = pointer.isPointerVisibleSync()
+  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`)
+} catch (error) {
+  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -779,6 +829,37 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
     console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
+```
+
+## pointer.getPointerStyleSync<sup>10+</sup>
+
+getPointerStyleSync(windowId: number): PointerStyle
+
+使用同步方式获取鼠标样式类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明     |
+| -------- | ------ | ---- | -------- |
+| windowId | number | 是   | 窗口id。 |
+
+**返回值**：
+
+| 参数                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
+| [PointerStyle](#pointerstyle9) | 返回鼠标样式类型。 |
+
+**示例**：
+
+```js
+try {
+  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1)
+  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`)
+} catch (error) {
+  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
 ```
 
 ## pointer.setPointerStyle<sup>9+</sup>
