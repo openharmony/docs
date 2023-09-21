@@ -117,7 +117,7 @@ GridItem() {
 
 When neither the number nor proportion is set for rows and columns in a grid layout, you can use the **layoutDirection** attribute to set the main axis direction and thereby specify the arrangement mode of child components. In addition, you can use the **minCount** and **maxCount** attributes to restrict the number of grid cells along the main axis.
 
-**Figure 6** Main axis direction 
+**Figure 6** Main axis direction
 
 ![en-us_image_0000001562700469](figures/en-us_image_0000001562700469.png)
 
@@ -183,7 +183,6 @@ For multiple **\<GridItem>** components with similar content structures, you are
 @Component
 struct OfficeService {
   @State services: Array<string> = ['Conference', 'Vote','Sign-in', 'Print']
-  ...
 
   build() {
     Column() {
@@ -192,13 +191,11 @@ struct OfficeService {
           GridItem() {
             Text(service)
           }
-        }, ((service:string):string => service))
+        }, (service:string):string => service)
       }
       .rowsTemplate(('1fr 1fr') as string)
       .columnsTemplate(('1fr 1fr') as string)
-      ...
     }
-    ...
   }
 }
 ```
@@ -249,7 +246,7 @@ struct Shopping {
           GridItem() {
           }
           .width('25%')
-        }, ((service:string):string => service))
+        }, (service:string):string => service)
       }
       .rowsTemplate('1fr 1fr') // Set only the rowsTemplate attribute. When the content exceeds the display area of the grid, the grid can be scrolled horizontally.
       .rowsGap(15)
