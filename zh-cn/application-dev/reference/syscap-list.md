@@ -1422,7 +1422,7 @@ AAID管理服务
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
 | 是       | 是   | 是   | 是   | 是   | 是   | 是            | 是      |
 
-## SystemCapability.ADVERTISING.OAID
+## SystemCapability.Advertising.OAID
 
 OAID管理服务
 
