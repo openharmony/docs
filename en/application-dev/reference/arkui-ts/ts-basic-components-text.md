@@ -35,15 +35,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md) and [
 | maxLines                | number | Maximum number of lines in the text.<br>Default value: **Infinity**<br>**NOTE**<br/>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | lineHeight              | string \| number \| [Resource](ts-types.md#resource)  | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | decoration              | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
-| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/>If this attribute is set to a percentage, the default value is used. |
+| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/>If this attribute is set to a percentage, the default value is used.|
 | letterSpacing           | number \| string | Letter spacing.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/>If this attribute is set to a percentage, the default value is used.<br> If this attribute is set to a negative value, the letters will overlap each other.|
 | minFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Minimum font size.<br>For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                              |
 | maxFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Maximum font size.<br>For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
 | textCase                | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.<br>**NOTE**<br/>When this attribute is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, a long press on the text will display a context menu that offers the copy and select-all options. |
-| draggable  | boolean | Drag effect of the selected text.<br>This attribute cannot be used with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>It must be used together with **copyOption**. When it is set to **true** and **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, the selected text can be dragged and copied to the text box.<br>Default value: **false**<br>**NOTE**<br/>This API is supported since API version 9. |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.<br>**NOTE**<br/>When this attribute is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, a long press on the text will display a context menu that offers the copy and select-all options.|
+| draggable  | boolean | Drag effect of the selected text.<br>This attribute cannot be used with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>It must be used together with **copyOption**. When it is set to **true** and **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, the selected text can be dragged and copied to the text box.<br>Default value: **false**<br>**NOTE**<br/>This API is supported since API version 9.|
 | textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) | Text shadow.|
-| heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**<br>**NOTE**<br/>When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the **maxLines** attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between `minFontSize` and `maxFontSize` to allow for more content to be shown.<br>When this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.<br>When this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the layout still exceeds the layout constraints after the font size is reduced to **minFontSize**, the lines that exceed the layout constraints are deleted. |
+| heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | How the adaptive height is determined for the text.<br>Default value: **TextHeightAdaptivePolicy.MAX_LINES_FIRST**<br>**NOTE**<br/>When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the **maxLines** attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between `minFontSize` and `maxFontSize` to allow for more content to be shown.<br>When this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.<br>When this attribute is set to **TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST**, the layout constraints take precedence for adjusting the text height. If the resultant layout is beyond the layout constraints, the text will shrink to a font size between **minFontSize** and **maxFontSize** to respect the layout constraints. If the layout still exceeds the layout constraints after the font size is reduced to **minFontSize**, the lines that exceed the layout constraints are deleted.|
 | textIndent<sup>10+</sup> | number \| string | Indentation of the first line.<br>Default value: **0**|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
 
@@ -61,7 +61,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ### Example 1
-Examples of using **textAlign**, **textOverflow**, **maxLines**, and **lineHeight**
+
 ```ts
 // xxx.ets
 @Entry
@@ -144,7 +144,7 @@ struct TextExample1 {
 ![textExp1](figures/textExp1.png)
 
 ### Example 2
-Example of using **decoration**, **baselineOffset**, **letterSpacing**, and **textCase**:
+
 ```ts
 @Entry
 @Component
@@ -262,6 +262,7 @@ struct TextExample {
   build() {
     Column({ space: 8 }) {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      // Set the text shadow.
       Text('textShadow')
         .width('80%')
         .height(55)
@@ -271,6 +272,7 @@ struct TextExample {
         .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
         .borderWidth(1)
       Divider()
+      // Set how the adaptive height is determined for the text.
       Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the height adaptive policy set')
         .width('80%')
@@ -301,6 +303,7 @@ struct TextExample {
         .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
       Divider()
       Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      // Set the text to continuously scroll when text overflow occurs.
       Text('This is the text with the text overflow set marquee')
         .width(300)
         .borderWidth(1)

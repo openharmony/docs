@@ -11,6 +11,7 @@
     - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
     - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)
+    - [Using SoundPool for Audio Playback](using-soundpool-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
     - [Audio Effect Management](audio-effect-management.md)
@@ -62,6 +63,8 @@
   - Best Practices
     - [Camera Photographing Sample](camera-shooting-case.md)
     - [Camera Recording Sample](camera-recording-case.md)
+    - [Taking Photos in Portrait Mode](camera-mode.md)
+    - [Dual-Channel Preview](camera-dual-channel-preview.md)
     - [Using Performance Improvement Features (for System Applications Only)](camera-performance-improvement.md)
 - Image
   - [Image Overview](image-overview.md)

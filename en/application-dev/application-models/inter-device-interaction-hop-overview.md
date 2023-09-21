@@ -20,12 +20,15 @@ In OpenHarmony, distributed operations across devices are called continuation (a
 
 - **Multi-device collaboration**
 
-  Multi-device collaboration provides users with more efficient and immersive experience than with a single device. A typical multi-device collaboration scenario is as follows: You open the same note on devices A and B. On device A, you select images from the local Gallery, insert them to the note, and edit them. On device B, you edit the text. Another typical scenario is as follows: You are chatting with a customer on device A, and the customer asks for a file, which is stored on device B. You can use the chat software to open the file application on device B, select the required file, and send it back to device A. Then, you use the chat software to send it to the customer. From the perspective of application development, multi-device collaboration enables different UIAbility or ServiceExtensionAbility components to run simultaneously or alternately on multiple devices to provide a complete service, or enables the same UIAbility and ServiceExtensionAbility component to run simultaneously on multiple devices to provide a complete service.
+  Multi-device collaboration provides users with more efficient and immersive experience than with a single device. Multi-device collaboration is used in the following typical scenarios:
+  
+  - Scenario 1: You open the same note on devices A and B. On device A, you select images from the local Gallery, insert them to the note, and edit them. On device B, you edit the text.
+  - Scenario 2: : You are chatting with a customer on device A, and the customer asks for a file, which is stored on device B. You can use the chat software to open the file application on device B, select the required file, and send it back to device A. Then, you use the chat software to send it to the customer. From the perspective of application development, multi-device collaboration enables different UIAbility or ServiceExtensionAbility components to run simultaneously or alternately on multiple devices to provide a complete service, or enables the same UIAbility and ServiceExtensionAbility component to run simultaneously on multiple devices to provide a complete service.
 
 
 ## Continuation Architecture
 
-OpenHarmony provides a set of APIs for you to implement continuation in your applications. The continuation architecture has the following advantages:
+OpenHarmony provides APIs for you to implement continuation in your applications. The continuation architecture has the following advantages:
 
 - Capabilities such as remote service invocation to facilitate service design
 
@@ -39,9 +42,9 @@ The following figure shows the continuation architecture.
 
  ![hop-structure](figures/hop-structure.png)  
 
-- Cross-device migration mission management: The initiator accepts a migration request from the user, provides a migration entry, and displays the migration result. (This capability is unavailable yet.)
+- Cross-device migration mission management: The initiator accepts a migration request from the user, provides a migration entry, and displays the migration result.
 
-- Multi-device collaboration mission management: The initiator accepts an application registration request and provides management capabilities such as starting or stopping collaboration and status display. (This capability is unavailable yet.)
+- Multi-device collaboration mission management: The initiator accepts an application registration request and provides management capabilities such as starting or stopping collaboration and status display.
 
 - Distributed component management: provides capabilities such as remote service startup, remote service connection, and remote migration, and provides applications with cross-device migration or multi-device collaboration based on a combination of these capabilities.
 

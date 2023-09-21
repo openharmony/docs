@@ -1289,8 +1289,8 @@ writeParcelable(val: Parcelable): void
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor( num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -1346,8 +1346,8 @@ readParcelable(dataIn: Parcelable): void
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -2595,7 +2595,7 @@ readException(): void
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -2680,8 +2680,8 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
   import { BusinessError } from '@ohos.base';
 
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -2740,8 +2740,8 @@ readParcelableArray(parcelableArray: Parcelable[]): void
   import { BusinessError } from '@ohos.base';
 
    class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -4285,8 +4285,8 @@ writeSequenceable(val: Sequenceable): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -4332,8 +4332,8 @@ readSequenceable(dataIn: Sequenceable): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5105,7 +5105,7 @@ readException(): void
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -5180,8 +5180,8 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5224,8 +5224,8 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5706,8 +5706,8 @@ marshalling(dataOut: MessageSequence): boolean
 
   ```ts
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5756,8 +5756,8 @@ unmarshalling(dataIn: MessageSequence): boolean
 
   ```ts
   class MyParcelable implements rpc.Parcelable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5812,8 +5812,8 @@ marshalling(dataOut: MessageParcel): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5862,8 +5862,8 @@ unmarshalling(dataIn: MessageParcel): boolean
 
   ```ts
   class MySequenceable implements rpc.Sequenceable {
-      num: number;
-      str: string;
+      num: number = 0;
+      str: string = '';
       constructor(num: number, str: string) {
           this.num = num;
           this.str = str;
@@ -5928,7 +5928,7 @@ asObject(): IRemoteObject
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6368,7 +6368,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6446,7 +6446,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6532,7 +6532,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6612,7 +6612,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6696,7 +6696,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6783,7 +6783,7 @@ getLocalInterface(interface: string): IRemoteBroker
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6852,7 +6852,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6917,7 +6917,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -6992,7 +6992,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -7062,7 +7062,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -7138,7 +7138,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -7209,7 +7209,7 @@ getDescriptor(): string
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -7271,7 +7271,7 @@ getInterfaceDescriptor(): string
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-  let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");
@@ -7326,7 +7326,7 @@ isObjectDead(): boolean
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
 
-    let proxy: rpc.IRemoteobject | undefined = undefined;
+  let proxy: rpc.IRemoteObject | undefined = undefined;
   let connect: common.ConnectOptions = {
       onConnect: (elementName, remoteProxy) => {
           console.log("RpcClient: js onConnect called.");

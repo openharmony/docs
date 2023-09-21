@@ -19,7 +19,7 @@ const STORE_CONFIG: rdb.StoreConfig = { name: 'book.db'}
 const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
 let rdbStore: rdb.RdbStore | undefined = undefined
 
-export default class DataAbility {
+class DataAbility {
   onInitialized(want: Want) {
     console.info('DataAbility onInitialized, abilityInfo:' + want.bundleName)
     let context: common.BaseContext = {stageMode: featureAbility.getContext().stageMode}
@@ -74,4 +74,6 @@ export default class DataAbility {
     }
   }
 }
+
+export default new DataAbility()
 ```

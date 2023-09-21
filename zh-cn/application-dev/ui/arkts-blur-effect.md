@@ -51,7 +51,7 @@ struct BlurEffectsExample {
 ```ts
 @Entry
 @Component
-struct Index {
+struct Index1 {
   @State radius: number = 0;
   @State text: string = '';
   @State y: string = '手指不在屏幕上';
@@ -76,14 +76,16 @@ struct Index {
         .objectFit(ImageFit.Cover)
     }.height('100%')
     .width("100%")
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Move) {
-        this.y = parseInt(event.touches[0].y.toString()).toString();
-        this.radius = parseInt(this.y) / 10; // 根据跟手过程中的滑动距离修改模糊半径，配合模糊接口，形成跟手模糊效果
-      }
-      if (event.type === TouchType.Up) {
-        this.radius = 0;
-        this.y = '手指离开屏幕';
+    .onTouch((event?: TouchEvent) => {
+      if(event){
+        if (event.type === TouchType.Move) {
+          this.y = Number(event.touches[0].y.toString()).toString();
+          this.radius = Number(this.y) / 10; // 根据跟手过程中的滑动距离修改模糊半径，配合模糊接口，形成跟手模糊效果
+        }
+        if (event.type === TouchType.Up) {
+          this.radius = 0;
+          this.y = '手指离开屏幕';
+        }
       }
       this.text = "按住屏幕上下滑动\n" + "当前手指所在y轴位置 ： " + this.y +
       "\n" + "当前图片模糊程度为 : " + this.radius;

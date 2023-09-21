@@ -11,7 +11,13 @@ Assume that there is a running animation for an animatable attribute. If the end
 
 ```ts
 import curves from '@ohos.curves'
-
+class SetSlt{
+  scaleToggle:boolean = true
+  set():void{
+    this.scaleToggle = !this.scaleToggle;
+  }
+}
+let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 // Step 1: Declare the related state variable.
 @state scaleToggle: boolean = true;
 
@@ -22,12 +28,11 @@ Column() {
     .scale(this.scaleToggle ? 1 : 0.5)
     // Step 3: Change the state variable value through the click event, which then changes the attribute value.
     .onclick(() => {
-      this.scaleToggle = !this.scaleToggle;
+      let sets = new SetSlt()
+      sets.set()
     })
     // Step 4: Enable the implicit animation. When the end value of the animation changes, the system automatically adds the smoothing animation.
-    .animation({
-      curve: curves.springMotion()
-    })
+    .animation(CurAn)
 }
 ...
 ```
@@ -37,7 +42,13 @@ A complete example is as follows: By clicking **click**, you change the **scale*
 
 ```ts
 import curves from '@ohos.curves';
-
+class SetSlt{
+  scaleToggle:boolean = true
+  set():void{
+    this.scaleToggle = !this.scaleToggle;
+  }
+}
+let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 @Entry
 @Component
 struct AnimationToAnimationDemo {
@@ -60,7 +71,8 @@ struct AnimationToAnimationDemo {
       Button('Click')
         .margin({ top: 200 })
         .onClick(() => {
-          this.isAnimation = !this.isAnimation;
+          let sets = new SetSlt()
+          sets.set()
         })
     }
     .width('100%')
@@ -85,7 +97,14 @@ In cases where smoothing between gestures and animations is required, for exampl
 
 ```ts
 import curves from '@ohos.curves'
-
+class SetOffset{
+  offsetX:number = 0;
+  offsetY:number = 0;
+  set(x:number,y:number):void{
+    this.offsetX = x;
+    this.offsetY = y;
+  }
+}
 // Step 1: Declare related state variables.
 @state offsetX: number = 0;
 @State offsetY: number = 0;
@@ -97,13 +116,15 @@ Column()
   .translate({ x: this.offsetX, y: this.offsetY})
   .gesture(
     PanGesture({})
-      .onActionUpdate((event: GestureEvent) => {
+      .onActionUpdate((event?: GestureEvent) => {
         // Step 3: Change the state variable value for the time when the user places or moves their finger (or fingers) on the screen and use reponsiveSpringMotion for movement toward the new value.
         animateTo({
           curve: curves.responsiveSpringMotion()
         }, () => {
-          this.offsetX = event.offsetX;
-          this.offsetY = event.offsetY;
+          if(event){
+            let setxy = new SetOffset();
+            setxy.set(event.offsetX,event.offsetY)
+          }
         })
       })
       .onActionEnd(() => {
@@ -111,8 +132,8 @@ Column()
         animateTo({
           curve: curves.SpringMotion()
         }, () => {
-          this.offsetX = targetOffsetX;
-          this.offsetY = targetOffsetY;
+          let setxy = new SetOffset();
+          setxy.set(targetOffsetX,targetOffsetY)
         })
       })
   )
@@ -124,7 +145,20 @@ Below is the complete sample code and effect.
 
 ```ts
 import curves from '@ohos.curves';
-
+class SetOffset{
+  offsetX:number = 0;
+  offsetY:number = 0;
+  positionX:number = 100;
+  positionY:number = 100;
+  set(x:number,y:number):void{
+    this.offsetX = x;
+    this.offsetY = y;
+  }
+  setJ(x:number,y:number,diameter:number = 50):void{
+    this.positionX = x - diameter / 2;
+    this.positionY = y - diameter / 2;
+  }
+}
 @Entry
 @Component
 struct SpringMotionDemo {
@@ -138,22 +172,24 @@ struct SpringMotionDemo {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
           .position({ x: this.positionX, y: this.positionY })
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Move) {
-              // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
-              animateTo({ curve: curves.responsiveSpringMotion() }, () => {
-                // Subtract the radius so that the center of the ball moves to where the finger is placed.
-                this.positionX = event.touches[0].screenX - this.diameter / 2;
-                this.positionY = event.touches[0].screenY - this.diameter / 2;
-                console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
-              })
-            } else if (event.type === TouchType.Up) {
-              // After the user lifts their finger off the screen, use the springMotion curve.
-              animateTo({ curve: curves.springMotion() }, () => {
-                this.positionX = 100;
-                this.positionY = 100;
-                console.info(`touchUp, animateTo x:100, y:100`);
-              })
+          .onTouch((event?: TouchEvent) => {
+            if(event){
+              if (event.type === TouchType.Move) {
+                // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
+                animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+                  // Subtract the radius so that the center of the ball moves to where the finger is placed.
+                  let setxy = new SetOffset();
+                  setxy.setJ(event.touches[0].screenX,event.touches[0].screenY,this.diameter)
+                  console.info(`move, animateTo x:${setxy.positionX}, y:${setxy.positionY}`);
+                })
+              } else if (event.type === TouchType.Up) {
+                // After the user lifts their finger off the screen, use the springMotion curve.
+                animateTo({ curve: curves.springMotion() }, () => {
+                  let setxy = new SetOffset();
+                  setxy.set(100,100)
+                  console.info(`touchUp, animateTo x:100, y:100`);
+                })
+              }
             }
           })
       }

@@ -168,6 +168,11 @@
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 高级组件
   - [@ohos.multimedia.avcastpicker (投播组件)](ohos-multimedia-avcastpicker.md)
+- 安全控件
+  - [安全控件通用属性](ts-securitycomponent-attributes.md)
+  - [LocationButton](ts-security-components-locationbutton.md)
+  - [PasteButton](ts-security-components-pastebutton.md)
+  - [SaveButton](ts-security-components-savebutton.md)
 - 动画
   - [属性动画](ts-animatorproperty.md)
   - [显式动画](ts-explicit-animation.md)
@@ -177,6 +182,7 @@
     - [共享元素转场](ts-transition-animation-shared-elements.md)
     - [组件内隐式共享元素转场](ts-transition-animation-geometrytransition.md)
   - [路径动画](ts-motion-path-animation.md)
+  - [粒子动画](ts-particle-animation.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗](ts-methods-alert-dialog-box.md)

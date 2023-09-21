@@ -16,6 +16,10 @@
 详细的API说明请参考[AVRecorder API参考](../reference/apis/js-apis-media.md#avrecorder9)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
+
+   > **说明：**
+   >
+   > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
      
    ```ts
    import media from '@ohos.multimedia.media';
@@ -102,7 +106,7 @@ import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
 
 export class AudioRecorderDemo {
-  private avRecorder: media.AVRecorder;
+  private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率
     audioChannels: 2, // 音频声道数
@@ -118,54 +122,60 @@ export class AudioRecorderDemo {
 
   // 注册audioRecorder回调函数
   setAudioRecorderCallback() {
-    // 状态机变化回调函数
-    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.log(`AudioRecorder current state is ${state}`);
-    })
-    // 错误上报回调函数
-    this.avRecorder.on('error', (err: BusinessError) => {
-      console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
-    })
+    if (this.avRecorder != undefined) {
+      // 状态机变化回调函数
+      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+        console.log(`AudioRecorder current state is ${state}`);
+      })
+      // 错误上报回调函数
+      this.avRecorder.on('error', (err: BusinessError) => {
+        console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
+      })
+    }
   }
 
   // 开始录制对应的流程
   async startRecordingProcess() {
-    // 1.创建录制实例
-    this.avRecorder = await media.createAVRecorder();
-    this.setAudioRecorderCallback();
-    // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
-    // 3.配置录制参数完成准备工作
-    await this.avRecorder.prepare(this.avConfig);
-    // 4.开始录制
-    await this.avRecorder.start();
+    if (this.avRecorder != undefined) {
+      // 1.创建录制实例
+      this.avRecorder = await media.createAVRecorder();
+      this.setAudioRecorderCallback();
+      // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档
+      // 3.配置录制参数完成准备工作
+      await this.avRecorder.prepare(this.avConfig);
+      // 4.开始录制
+      await this.avRecorder.start();
+    }
   }
 
   // 暂停录制对应的流程
   async pauseRecordingProcess() {
-    if (this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // 仅在started状态下调用pause为合理状态切换
       await this.avRecorder.pause();
     }
   }
 
   // 恢复录制对应的流程
   async resumeRecordingProcess() {
-    if (this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换
+    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // 仅在paused状态下调用resume为合理状态切换
       await this.avRecorder.resume();
     }
   }
 
   // 停止录制对应的流程
   async stopRecordingProcess() {
-    // 1. 停止录制
-    if (this.avRecorder.state === 'started'
-    || this.avRecorder.state === 'paused') { // 仅在started或者paused状态下调用stop为合理状态切换
-      await this.avRecorder.stop();
+    if (this.avRecorder != undefined) {
+      // 1. 停止录制
+      if (this.avRecorder.state === 'started'
+        || this.avRecorder.state === 'paused') { // 仅在started或者paused状态下调用stop为合理状态切换
+        await this.avRecorder.stop();
+      }
+      // 2.重置
+      await this.avRecorder.reset();
+      // 3.释放录制实例
+      await this.avRecorder.release();
+      // 4.关闭录制文件fd
     }
-    // 2.重置
-    await this.avRecorder.reset();
-    // 3.释放录制实例
-    await this.avRecorder.release();
-    // 4.关闭录制文件fd
   }
 
   // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例

@@ -22,6 +22,7 @@
 
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 3. 调用[`removeStickyCommonEvent()`](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
@@ -31,7 +32,7 @@
    > 移除的粘性公共事件，必须是本应用之前已发布的粘性公共事件，发布粘性公共事件参考[公共事件发布](common-event-publish.md)章节。
 
    ```ts
-   commonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event粘性公共事件名
+   commonEventManager.removeStickyCommonEvent("sticky_event", (err: Base.BusinessError) => { // sticky_event粘性公共事件名
      if (err) {
        console.error(`Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;

@@ -39,7 +39,7 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 ```ts
 try {
-    deviceAttest.getAttestStatus((error, value) => {
+    deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
         console.info("error code:" + error.code + " message:" + error.message);
     } else {
@@ -52,7 +52,9 @@ try {
     }
     })
 } catch (error) {
-    console.info("error code:" + error.code + " message:" + error.message);
+    let code: number = (error as base.BusinessError).code;
+    let message: string = (error as base.BusinessError).message;
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 
@@ -80,18 +82,20 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 ```ts
 try {
-    deviceAttest.getAttestStatus().then((value) => {
+    deviceAttest.getAttestStatus().then((value: deviceAttest.AttestResultInfo) => {
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
     console.info("versionIdResult:" + value.softwareResultDetail[0],
         " patchlevelResult:" + value.softwareResultDetail[1],
         " roothashResult:" + value.softwareResultDetail[2],
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
-    }).catch((error) => {
-    console.info("error code:" + error.code + " message:" + error.message);
+    }).catch((error: base.BusinessError) => {
+        console.info("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
-    console.info("error code:" + error.code + " message:" + error.message);
+    let code: number = (error as base.BusinessError).code;
+    let message: string = (error as base.BusinessError).message;
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 
@@ -119,7 +123,7 @@ getAttestStatusSync() : AttestResultInfo
 
 ```ts
 try {
-    let value = deviceAttest.getAttestStatusSync();
+    let value: deviceAttest.AttestResultInfo = deviceAttest.getAttestStatusSync();
     console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
     console.info("versionIdResult:" + value.softwareResultDetail[0],
     " patchlevelResult:" + value.softwareResultDetail[1],
@@ -127,7 +131,9 @@ try {
     " PCIDResult:" + value.softwareResultDetail[3],
     " reserver:" + value.softwareResultDetail[4]);
 } catch (error) {
-    console.info("error code:" + error.code + " message:" + error.message);
+    let code: number = (error as base.BusinessError).code;
+    let message: string = (error as base.BusinessError).message;
+    console.info("error code:" + code + " message:" + message);
 }
 ```
 

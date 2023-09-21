@@ -37,7 +37,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 
 | Transfer/Access         | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An \@State decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
+| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An @State decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
 | Subnode initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                                  |
 
@@ -296,5 +296,14 @@ From this example, we learn the initialization process of an \@State decorated v
 2. Apply the named parameter value, if one is provided.
 
    ```ts
-   MyComponent({ count: 1, increaseBy: 2 })
+   class C1 {
+      public count:number;
+      public increaseBy:number;
+      constructor(count: number, increaseBy:number) {
+      this.count = count;
+      this.increaseBy = increaseBy;
+     }
+   }
+   let obj = new C1(1, 2)
+   MyComponent(obj)
    ```

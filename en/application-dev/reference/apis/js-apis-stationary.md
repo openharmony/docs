@@ -10,7 +10,7 @@ The **stationary** module provides APIs to report the device status, including a
 
 ## Modules to Import
 
-```js
+```ts
 import stationary from '@ohos.stationary'
 ```
 
@@ -79,8 +79,8 @@ Subscribes to the device status.
 
 **Example**
 
-```js
-var reportLatencyNs = 100;
+```ts
+let reportLatencyNs = 100;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })
@@ -103,7 +103,7 @@ Obtains the device status.
 
 **Example**
 
-```js
+```ts
 stationary.once('still', (data) => {
     console.log("data="+ JSON.stringify(data));
 })
@@ -123,10 +123,10 @@ Unsubscribes from the device status.
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | Yes  | Device status type.             |
 | event  | [ActivityEvent](#activityevent)  | Yes  | Event type.             |
-| callback | Callback:\<[ActivityResponse](#activityresponse)>  | No  | Callback used to receive reported data, If the callback parameter is not passed or the type passed is undefined, all callbacks associated with the specified event in the process will be unregistered. |
+| callback | Callback: \<[ActivityResponse](#activityresponse)> | No  | Callback used to receive reported data. If no value or **undefined** is passed, all callbacks associated with the specified event in the process will be unregistered. |
 
 **Example**
 
-```js
+```ts
 stationary.off('still', stationary.ActivityEvent.ENTER);
 ```

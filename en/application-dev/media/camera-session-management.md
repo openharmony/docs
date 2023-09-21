@@ -14,73 +14,112 @@ You can implement the following functions in the session:
 After the session configuration is complete, the application must commit the configuration and start the session before using the camera functionalities.
 
 ## How to Develop
-
-1. Call **createCaptureSession()** in the **CameraManager** class to create a session.
-   
+1. Import the modules.
+     
    ```ts
-   let captureSession;
-   try {
+   import camera from '@ohos.multimedia.camera';
+   import { BusinessError } from '@ohos.base';
+   import featureAbility from '@ohos.ability.featureAbility';
+   ```
+
+2. Call **createCaptureSession()** in the **CameraManager** class to create a session.
+     
+   ```ts
+   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+     let captureSession: camera.CaptureSession | undefined = undefined;
+     try {
        captureSession = cameraManager.createCaptureSession();
-   } catch (error) {
-       console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+     }
+     return captureSession;
    }
    ```
 
-2. Call **beginConfig()** in the **CaptureSession** class to start configuration for the session.
-   
+3. Call **beginConfig()** in the **CaptureSession** class to start configuration for the session.
+     
    ```ts
-   try {
+   function beginConfig(captureSession: camera.CaptureSession): void {
+     try {
        captureSession.beginConfig();
-   } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+     }
    }
    ```
 
-3. Configure the session. You can call **addInput()** and **addOutput()** in the **CaptureSession** class  to add the input and output streams to the session, respectively. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photographing and preview mode.
+4. Configure the session. You can call **addInput()** and **addOutput()** in the **CaptureSession** class  to add the input and output streams to the session, respectively. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photographing and preview mode.
 
      After the configuration, call **commitConfig()** and **start()** in the **CaptureSession** class in sequence to commit the configuration and start the session.
      
    ```ts
-   try {
+   async function startSession(captureSession: camera.CaptureSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
+     try {
        captureSession.addInput(cameraInput);
-   } catch (error) {
-       console.error('Failed to addInput. errorCode = ' + error.code);
-   }
-   try {
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to addInput. error: ${JSON.stringify(err)}`);
+     }
+     try {
        captureSession.addOutput(previewOutput);
-   } catch (error) {
-       console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
-   }
-   try {
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+     }
+     try {
        captureSession.addOutput(photoOutput);
-   } catch (error) {
-       console.error('Failed to addOutput(photoOutput). errorCode = ' + error.code);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to add photoOutput. error: ${JSON.stringify(err)}`);
+     }
+     try {
+       await captureSession.commitConfig();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to commitConfig. error: ${JSON.stringify(err)}`);
+     }
+   
+     try {
+       await captureSession.start()
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to start. error: ${JSON.stringify(err)}`);
+     }
    }
-   await captureSession.commitConfig() ;
-   await captureSession.start().then(() => {
-       console.info('Promise returned to indicate the session start success.');
-   })
    ```
 
-4. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photographing to recording.
-   
+5. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photographing to recording.
+     
    ```ts
-   await captureSession.stop();
-   try {
+   async function switchOutput(captureSession: camera.CaptureSession, videoOutput: camera.VideoOutput, photoOutput: camera.PhotoOutput): Promise<void> {
+     try {
+       await captureSession.stop();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to stop. error: ${JSON.stringify(err)}`);
+     }
+   
+     try {
        captureSession.beginConfig();
-   } catch (error) {
-       console.error('Failed to beginConfig. errorCode = ' + error.code);
-   } 
-   // Remove the photo output stream from the session.
-   try {
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+     }
+     // Remove the photo output stream from the session.
+     try {
        captureSession.removeOutput(photoOutput);
-   } catch (error) {
-       console.error('Failed to removeOutput(photoOutput). errorCode = ' + error.code);
-   } 
-   // Add the video output stream to the session.
-   try {
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
+     }
+     // Add the video output stream to the session.
+     try {
        captureSession.addOutput(videoOutput);
-   } catch (error) {
-       console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+     }
    }
    ```

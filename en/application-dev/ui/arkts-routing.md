@@ -35,12 +35,15 @@ Before using the **Router** module, import it first.
 
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
 ```
 
 - Scenario 1: There is a home page (**Home**) and a details page (**Detail**). You want to click an offering on the home page to go to the details page. In addition, the home page needs to be retained in the page stack so that the status can be restored when the page is returned. In this scenario, you can use the **pushUrl()** API and use the **Standard** instance mode (which can also be omitted).
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -63,6 +66,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -85,6 +89,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -103,6 +108,7 @@ import router from '@ohos.router';
 
 
   ```ts
+  import router from '@ohos.router';
   // On the SearchResult page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -122,13 +128,14 @@ If you need to transfer data to the target page during redirection, you can add 
 
 
 ```ts
+import router from '@ohos.router';
 class DataModelInfo {
-  age: number;
+  age: number = 0;
 }
 
 class DataModel {
-  id: number;
-  info: DataModelInfo;
+  id: number = 0;
+  info: DataModelInfo|null = null;
 }
 
 function onJumpClick(): void {
@@ -157,9 +164,10 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 
 ```ts
-const params = router.getParams(); // Obtain the passed parameters.
-const id = params['id']; // Obtain the value of the id attribute.
-const age = params['info'].age; // Obtain the value of the age attribute.
+import router from '@ohos.router';
+const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+const id:Object = params['id']; // Obtain the value of the id attribute.
+const age:Object = params['info'].age; // Obtain the value of the age attribute.
 ```
 
 
@@ -184,6 +192,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back();
   ```
 
@@ -193,6 +202,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home'
   });
@@ -204,10 +214,11 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
+  import router from '@ohos.router';
   router.back({
     url: 'pages/Home',
     params: {
-      info:'From Home Page'
+      info: 'From Home Page'
     }
   });
   ```
@@ -218,9 +229,10 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 
 ```ts
+import router from '@ohos.router';
 onPageShow() {
-  const params = router.getParams(); // Obtain the passed parameters.
-  const info = params['info']; // Obtain the value of the info attribute.
+  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+  const info:Object = params['']; // Obtain the value of the info attribute.
 }
 ```
 
@@ -257,6 +269,9 @@ To enable the confirmation dialog box for page return, call the [router.showAler
 
 
 ```ts
+import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
+
 // Define a click event processing function for the back button.
 function onBackClick(): void {
   // Invoke the router.showAlertBeforeBackPage() API to set the information about the confirmation dialog box.
@@ -265,7 +280,9 @@ function onBackClick(): void {
       message: 'Payment not completed yet. Are you sure you want to return?' // Set the content of the confirmation dialog box.
     });
   } catch (err) {
-    console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
+    let message = (err as BusinessError).message
+    let code = (err as BusinessError).code
+    console.error(`Invoke showAlertBeforeBackPage failed, code is ${code}, message is ${message}`);
   }
 
   // Invoke the router.back() API to return to the previous page.
@@ -276,7 +293,7 @@ function onBackClick(): void {
 The **router.showAlertBeforeBackPage()** API receives an object as a parameter. The object contains the following attributes:
 
 **message**: content of the dialog box. The value is of the string type.
-If the API is successfully called, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
+If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
 When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
 
@@ -295,6 +312,9 @@ In the event callback, call the [promptAction.showDialog()](../reference/apis/js
 
 
 ```ts
+import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
+
 function onBackClick() {
   // Display a custom confirmation dialog box.
   promptAction.showDialog({
@@ -309,7 +329,7 @@ function onBackClick() {
         color: '#0099FF'
       }
     ]
-  }).then((result) => {
+  }).then((result:promptAction.ShowDialogSuccessResponse) => {
     if (result.index === 0) {
       // The user selects Cancel.
       console.info('User canceled the operation.');
@@ -319,7 +339,7 @@ function onBackClick() {
       // Invoke the router.back() API to return to the previous page.
       router.back();
     }
-  }).catch((err) => {
+  }).catch((err:Error) => {
     console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
   })
 }
@@ -342,6 +362,7 @@ In the target page in the [shared package](../quick-start/shared-guide.md), name
 
 ```ts
 // library/src/main/ets/pages/Index.ets
+// library is the custom name of the new shared package.
 @Entry({ routeName : 'myPage' })
 @Component
 struct MyComponent {
@@ -353,8 +374,8 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 // entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
-
+import * from 'library/src/main/ets/Index.ets' // Import the named route page from the shared package library.
+import { BusinessError } from '@ohos.base';
 @Entry
 @Component
 struct Index {
@@ -377,7 +398,9 @@ struct Index {
               }
             })
           } catch (err) {
-            console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+            let message = (err as BusinessError).message
+            let code = (err as BusinessError).code
+            console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
           }
         })
     }

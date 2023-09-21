@@ -45,7 +45,7 @@ struct AnimatablePropertyExample {
 
 
 ```ts
-declare type Point = [x: number, y: number];
+declare type Point = number[];
 
 // 定义可动画属性接口的参数类型，实现AnimtableArithmetic<T>接口中加法、减法、乘法和判断相等函数
 class PointClass extends Array<number> {
@@ -54,7 +54,7 @@ class PointClass extends Array<number> {
   }
 
   add(rhs: PointClass): PointClass {
-    let result = new Array<number>() as Point;
+    let result: Point = new Array<number>() as Point;
     for (let i = 0; i < 2; i++) {
       result.push(rhs[i] + this[i])
     }
@@ -62,7 +62,7 @@ class PointClass extends Array<number> {
   }
 
   subtract(rhs: PointClass): PointClass {
-    let result = new Array<number>() as Point;
+    let result: Point = new Array<number>() as Point;
     for (let i = 0; i < 2; i++) {
       result.push(this[i] - rhs[i]);
     }
@@ -70,7 +70,7 @@ class PointClass extends Array<number> {
   }
 
   multiply(scale: number): PointClass {
-    let result = new Array<number>() as Point;
+    let result: Point = new Array<number>() as Point;
     for (let i = 0; i < 2; i++) {
       result.push(this[i] * scale)
     }
@@ -84,7 +84,7 @@ class PointVector extends Array<PointClass> implements AnimatableArithmetic<Arra
   constructor(initialValue: Array<Point>) {
     super();
     if (initialValue.length) {
-      initialValue.forEach(p => this.push(new PointClass(p)))
+      initialValue.forEach((p:Point) => this.push(new PointClass(p)))
     }
   }
 
@@ -128,7 +128,7 @@ class PointVector extends Array<PointClass> implements AnimatableArithmetic<Arra
   }
 }
 
-function randomInt(min, max) {
+function randomInt(min:number, max:number) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 

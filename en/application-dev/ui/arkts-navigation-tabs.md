@@ -143,7 +143,6 @@ Tabs({ barPosition: BarPosition.Start }) {
 ## Restricting the Scrolling of the Navigation Bar
 
   By default, the navigation bar is scrollable. On some pages that require multi-level classification of content, for example, when both bottom navigation and top navigation are used, the scroll effect of the bottom navigation bar may conflict with that of the top navigation bar. In this case, the scrolling of the bottom navigation bar needs to be restricted to improve user experience.
-
   **Figure 6** Restricting the scrolling of the bottom navigation bar 
 
 ![restricted-navigation](figures/restricted-navigation.gif)
@@ -284,7 +283,17 @@ To switch to a specified tab page, use **TabsController**, which is the controll
 
 
 ```ts
-private tabsController : TabsController = new TabsController()
+class Tmp{
+  currentIndex:number = 0;
+  tabsController : TabsController = new TabsController()
+  foo(val:number){
+    this.currentIndex = val;
+  }
+  tabfoo(){
+    this.tabsController.changeIndex(this.currentIndex);
+  }
+}
+private tabsController : object = new TabsController()
 @State currentIndex:number = 0;
 
 @Builder TabBuilder(title: string, targetIndex: number) {
@@ -294,8 +303,9 @@ private tabsController : TabsController = new TabsController()
   }
   ...
   .onClick(() => {
-    this.currentIndex = targetIndex;
-    this.tabsController.changeIndex(this.currentIndex);
+    let Cur:Tmp = new Tmp()
+    Cur.foo(targetIndex)
+    Cur.tabfoo()
   })
 }
 ```
@@ -343,6 +353,12 @@ To manually switch between the tabs, use the **onChange** API provided by the **
 
 
 ```ts
+class Tmp{
+  currentIndex:number = 0;
+  foo(val:number){
+    this.currentIndex = val;
+  }
+}
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
@@ -360,8 +376,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
     ...
   }
   .tabBar (this.TabBuilder ('Me', 3))
-}.onChange((index) => {
-  this.currentIndex = index
+}.onChange((index:number) => {
+  let Cur:Tmp = new Tmp()
+  Cur.foo(index)
 })
 ```
 

@@ -1,4 +1,4 @@
-# Video Playback
+# Video Playback (Video)
 
 
 The **\<Video>** component is used to play a video and control its playback. It is usually used in video players and video list pages within applications. A video automatically plays once fully loaded. When the user clicks the video area, the video is paused and the playback progress bar is displayed. The user can drag the progress bar to the desired position. For details, see [Video](../reference/arkui-ts/ts-media-components-video.md).
@@ -34,7 +34,7 @@ The **\<Video>** component supports both local and online videos.
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController;
+     private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
      private innerResource: Resource = $rawfile('videoTest.mp4');
      build(){
@@ -55,7 +55,7 @@ The **\<Video>** component supports both local and online videos.
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController;
+     private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
      private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
@@ -77,7 +77,7 @@ To load a video in the application sandbox, use a string with the **file:///data
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController;
+  private controller: VideoController | undefined;
   private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
@@ -100,7 +100,7 @@ To load online videos, you must apply for the **ohos.permission.INTERNET** permi
 ```ts
 @Component
 export struct VideoPlayer{
-   private controller:VideoController;
+   private controller:VideoController | undefined;
    private previewUris: Resource = $r ('app.media.preview');
    private videosrc: string= 'https://www.example.com/example.mp4' // Replace the URL with that of the actual video to load.
    build(){
@@ -124,7 +124,7 @@ Use the [attributes](../reference/arkui-ts/ts-media-components-video.md#attribut
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController;
+  private controller: VideoController | undefined;
 
   build() {
     Column() {
@@ -150,7 +150,7 @@ export struct VideoPlayer {
 @Entry
 @Component
 struct VideoPlayer{
-  private controller:VideoController;
+  private controller:VideoController | undefined;
   private previewUris: Resource = $r ('app.media.preview');
   private innerResource: Resource = $rawfile('videoTest.mp4');
   build(){
@@ -213,7 +213,7 @@ The video controller is used to control video playback. For details, see [VideoC
   ```ts
   @Entry
   @Component
-  struct VideoGuide {
+  struct VideoGuide1 {
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
@@ -235,10 +235,14 @@ The video controller is used to control video playback. For details, see [VideoC
             controller: this.controller
           }).controls(false).autoPlay(true)
           .onPrepared((event)=>{
-            this.durationTime = event.duration
+            if(event){
+              this.durationTime = event.duration
+            }
           })
           .onUpdate((event)=>{
-            this.currentTime =event.time
+            if(event){
+              this.currentTime =event.time
+            }
           })
           Row() {
             Text(JSON.stringify(this.currentTime) + 's')

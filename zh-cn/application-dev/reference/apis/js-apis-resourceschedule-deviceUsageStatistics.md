@@ -61,19 +61,15 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
-  ```js
-    try{
-        usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-            }
-        });
-    } catch(error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+  }
+});
+```
 
 ## usageStatistics.isIdleState
 
@@ -113,17 +109,13 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.isIdleState("com.ohos.camera").then( res => {
-            console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
+  console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 ## usageStatistics.isIdleStateSync<sup>10+<sup>
 
 isIdleStateSync(bundleName: string): boolean
@@ -161,13 +153,9 @@ isIdleStateSync(bundleName: string): boolean
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
-  ```js
-    try{
-        var isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
-    } catch(error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+```
 
 ## usageStatistics.queryAppGroup
 
@@ -201,16 +189,12 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **示例**：
 
-```javascript
-    try{
-        usageStatistics.queryAppGroup().then( res => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+usageStatistics.queryAppGroup().then((res: number) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## usageStatistics.queryAppGroup
@@ -245,18 +229,14 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **示例**：
 
-```javascript
-    try{
-        usageStatistics.queryAppGroup((err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
+});
 ```
 
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
@@ -291,12 +271,8 @@ queryAppGroupSync(): number;
 
 **示例**：
 
-```javascript
-    try{
-        var priorityGroup = usageStatistics.queryAppGroupSync();
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync();
 ```
 
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
@@ -339,12 +315,8 @@ queryAppGroupSync(bundleName: string): number
 
 **示例**：
 
-```javascript
-    try{
-        var priorityGroup = usageStatistics.queryAppGroupSync("com.ohos.camera");
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
 ```
 
 ## usageStatistics.queryBundleStatsInfos
@@ -382,25 +354,16 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
-                let i = 1;
-                for(let key in res){
-                    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback number : ' + i);
-                    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res[key]));
-                    i++;
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
+  }
+});
+```
 
 ## usageStatistics.queryBundleStatsInfos
 
@@ -442,23 +405,14 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleStatsInfos(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
-            let i = 1;
-            for(let key in res){
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise number : ' + i);
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res[key]));
-                i++;
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatistics.BundleStatsMap) => {
+  console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
+  console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryBundleStatsInfoByInterval
 
@@ -496,23 +450,19 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
+```ts
+usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
     }
-  ```
+  }
+});
+```
 
 ## usageStatistics.queryBundleStatsInfoByInterval
 
@@ -555,21 +505,17 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: Array<usageStatistics.BundleStatsInfo>) => {
+  console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryBundleEvents
 
@@ -606,23 +552,19 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleEvents(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE queryBundleEvents callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE queryBundleEvents callback result ' + JSON.stringify(res[i]));
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
+```ts
+usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryBundleEvents callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryBundleEvents callback result ' + JSON.stringify(res[i]));
     }
-  ```
+  }
+});
+```
 
 ## usageStatistics.queryBundleEvents
 
@@ -664,21 +606,17 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryBundleEvents(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
+  console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryCurrentBundleEvents
 
@@ -713,23 +651,19 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
+```ts
+usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
+  if (err) {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
     }
-  ```
+  }
+});
+```
 
 ## usageStatistics.queryCurrentBundleEvents
 
@@ -769,21 +703,17 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
+  console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryModuleUsageRecords
 
@@ -818,22 +748,18 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **示例**：
 
-  ```js
-    // 无maxNum参数调用方式
-    try{
-        usageStatistics.queryModuleUsageRecords().then( res => {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+// 无maxNum参数调用方式
+usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapModuleInfo>) => {
+  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryModuleUsageRecords
 
@@ -868,23 +794,19 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryModuleUsageRecords((err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
-            for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
-            }
-        }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
+```ts
+usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
     }
-  ```
+  }
+});
+```
 
 ## usageStatistics.queryModuleUsageRecords
 
@@ -925,21 +847,17 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryModuleUsageRecords(1000).then( res => {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.HapModuleInfo>) => {
+  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryModuleUsageRecords
 
@@ -975,23 +893,19 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryModuleUsageRecords(1000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
+```ts
+usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
     }
-  ```
+  }
+});
+```
 
 ## usageStatistics.queryAppGroup
 
@@ -1035,16 +949,12 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 ```javascript
 //有bundleName的promise
-    let bundleName = "com.ohos.camera";
-    try{
-        usageStatistics.queryAppGroup(bundleName).then( res => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName).then((res: number) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## usageStatistics.queryAppGroup
@@ -1082,19 +992,15 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例**：
 
-```javascript
-    let bundleName = "com.ohos.camera";
-    try{
-        usageStatistics.queryAppGroup(bundleName, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
+});
 ```
 
 ## usageStatistics.setAppGroup
@@ -1137,19 +1043,15 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **示例**：
 
-```javascript
-    let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+```ts
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
-    try{
-        usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
-            console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## usageStatistics.setAppGroup
@@ -1187,21 +1089,17 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **示例**：
 
-```javascript
-    let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+```ts
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
-    try{
-        usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
+  }
+});
 ```
 
 ## usageStatistics.registerAppGroupCallBack
@@ -1242,24 +1140,20 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **示例**：
 
-```javascript
-    let onBundleGroupChanged = (res) =>{
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
-    };
-    try{
-        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
+};
+usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## usageStatistics.registerAppGroupCallBack
@@ -1296,27 +1190,22 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **示例**：
 
-```javascript
-    // @ts-nocheck
-    let onBundleGroupChanged = (err, res) =>{
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
-    };
-    try{
-        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, err => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
+  console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
+  console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
+};
+usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err: BusinessError) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
+  }
+});
 ```
 
 ## usageStatistics.unregisterAppGroupCallBack
@@ -1351,16 +1240,12 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **示例**：
 
-```javascript
-    try{
-        usageStatistics.unregisterAppGroupCallBack().then( () => {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+usageStatistics.unregisterAppGroupCallBack().then( () => {
+  console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
 ```
 
 ## usageStatistics.unregisterAppGroupCallBack
@@ -1395,18 +1280,14 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例**：
 
-```javascript
-    try{
-        usageStatistics.unregisterAppGroupCallBack(err => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+```ts
+usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
+  }
+});
 ```
 
 ## usageStatistics.queryDeviceEventStats
@@ -1449,18 +1330,14 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryDeviceEventStats(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-            console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryDeviceEventStats
 
@@ -1497,20 +1374,16 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryDeviceEventStats(0, 20000000000000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
 
 ## usageStatistics.queryNotificationEventStats
 
@@ -1552,18 +1425,14 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryNotificationEventStats(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
 
 ## usageStatistics.queryNotificationEventStats
 
@@ -1600,20 +1469,16 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **示例**：
 
-  ```js
-    try{
-        usageStatistics.queryNotificationEventStats(0, 20000000000000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-  ```
+```ts
+usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
 
 ## HapModuleInfo
 FA的使用信息的属性集合。

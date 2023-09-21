@@ -33,9 +33,9 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 | 参数名     | 类型                   | 必填 | 说明                               |
 | -------- | ---------------------- | ---- | ---------------------------------- |
-| uri      | string                 | 是   | 指示待打开文件的uri。           |
-| mode     | string                 | 是   | 指示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。            |
-| callback | AsyncCallback\<number> | 是   | 指示文件打开的回调方法，返回文件描述符。 |
+| uri      | string                 | 是   | 表示待打开文件的uri。           |
+| mode     | string                 | 是   | 表示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。            |
+| callback | AsyncCallback\<number> | 是   | 表示文件打开的回调方法，返回文件描述符。 |
 
 **示例：**
 
@@ -68,8 +68,8 @@ openFile(uri: string, mode: string): Promise\<number>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示待打开文件的uri。 |
-| mode | string | 是   | 指示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。  |
+| uri  | string | 是   | 表示待打开文件的uri。 |
+| mode | string | 是   | 表示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。  |
 
 **返回值：**
 
@@ -104,9 +104,9 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | 是   | 指示监听操作类型，'dataChange'表示数据变化操作。               |
-| uri      | string               | 是   | 指示待监听数据变化的uri。 |
-| callback | AsyncCallback\<void> | 是   | 指示数据变化时的回调方法。   |
+| type     | string               | 是   | 表示监听操作类型，'dataChange'表示数据变化操作。               |
+| uri      | string               | 是   | 表示待监听数据变化的uri。 |
+| callback | AsyncCallback\<void> | 是   | 表示数据变化时的回调方法。   |
 
 **示例：**
 
@@ -139,9 +139,9 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | 是   | 指示监听操作类型，'dataChange'表示数据变化操作。               |
-| uri      | string               | 是   | 指示待取消监听数据变化的uri。 |
-| callback | AsyncCallback\<void> | 否   | 指示已注册的数据变化回调方法。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
+| type     | string               | 是   | 表示监听操作类型，'dataChange'表示数据变化操作。               |
+| uri      | string               | 是   | 表示待取消监听数据变化的uri。 |
+| callback | AsyncCallback\<void> | 否   | 表示已注册的数据变化回调方法。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
 
 **示例：**
 
@@ -178,8 +178,8 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 | 参数名     | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
-| uri      | string                 | 是   | 指示待获取数据的uri。                      |
-| callback | AsyncCallback\<string> | 是   | 指示获取媒体资源类型的回调方法，返回与uri指向数据匹配的媒体资源类型。 |
+| uri      | string                 | 是   | 表示待获取数据的uri。                      |
+| callback | AsyncCallback\<string> | 是   | 表示获取媒体资源类型的回调方法，返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
@@ -211,7 +211,7 @@ getType(uri: string): Promise\<string>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示待获取数据的uri。 |
+| uri  | string | 是   | 表示待获取数据的uri。 |
 
 **返回值：**
 
@@ -245,9 +245,9 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 | 参数名           | 类型                           | 必填 | 说明                               |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
-| uri            | string                         | 是   | 指示待获取文件的uri。           |
-| mimeTypeFilter | string                         | 是   | 指示待获取文件的媒体资源类型。       |
-| callback       | AsyncCallback\<Array\<string>> | 是   | 指示获取媒体资源类型的回调方法，返回匹配的媒体资源类型数组。 |
+| uri            | string                         | 是   | 表示待获取文件的uri。           |
+| mimeTypeFilter | string                         | 是   | 表示待获取文件的媒体资源类型。       |
+| callback       | AsyncCallback\<Array\<string>> | 是   | 表示获取媒体资源类型的回调方法，返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
@@ -279,8 +279,8 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 | 参数名           | 类型   | 必填 | 说明                         |
 | -------------- | ------ | ---- | ---------------------------- |
-| uri            | string | 是   | 指示待获取文件的uri。     |
-| mimeTypeFilter | string | 是   | 指示待获取文件的媒体资源类型。 |
+| uri            | string | 是   | 表示待获取文件的uri。     |
+| mimeTypeFilter | string | 是   | 表示待获取文件的媒体资源类型。 |
 
 **返回值：**
 
@@ -314,8 +314,8 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                 | 是   | 指示要规范化的uri对象。                                      |
-| callback | AsyncCallback\<string> | 是   | 指示uri规范化的回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| uri      | string                 | 是   | 表示要规范化的uri对象。                                      |
+| callback | AsyncCallback\<string> | 是   | 表示uri规范化的回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 
@@ -347,7 +347,7 @@ normalizeUri(uri: string): Promise\<string>
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | 是   | 指示要规范化的uri对象。 |
+| uri  | string | 是   | 表示要规范化的uri对象。 |
 
 **返回值：**
 
@@ -381,8 +381,8 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | 是   | 指示要反规范化的uri对象。                             |
-| callback | AsyncCallback\<string> | 是   | 指示反规范化uri的回调方法。如果反规范化成功，则返回反规范化uri对象。 |
+| uri      | string                 | 是   | 表示要反规范化的uri对象。                             |
+| callback | AsyncCallback\<string> | 是   | 表示反规范化uri的回调方法。如果反规范化成功，则返回反规范化uri对象。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | 是   | 指示要规范化的uri对象。 |
+| uri  | string | 是   | 表示要规范化的uri对象。 |
 
 **返回值：**
 
@@ -448,7 +448,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | 是   | 指示数据变化的uri。 |
+| uri      | string               | 是   | 表示数据变化的uri。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。               |
 
 **示例：**
@@ -481,7 +481,7 @@ notifyChange(uri: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | 是   | 指示数据变化的uri。 |
+| uri  | string | 是   | 表示数据变化的uri。 |
 
 **返回值：**
 
@@ -515,9 +515,9 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 | 参数名         | 类型                   | 必填 | 说明                                                   |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
-| uri          | string                 | 是   | 指示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket       | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
-| callback     | AsyncCallback\<number> | 是   | 指示数据插入的回调方法，返回插入数据记录的索引。                     |
+| uri          | string                 | 是   | 表示要插入数据的uri。                               |
+| valuesBucket | rdb.ValuesBucket       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| callback     | AsyncCallback\<number> | 是   | 表示数据插入的回调方法，返回插入数据记录的索引。                     |
 
 **示例：**
 
@@ -556,8 +556,8 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 | 参数名         | 类型             | 必填 | 说明                                                   |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
-| uri          | string           | 是   | 指示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket | 是   | 指示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| uri          | string           | 是   | 表示要插入数据的uri。                               |
+| valuesBucket | rdb.ValuesBucket | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
 
@@ -598,9 +598,9 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 | 参数名         | 类型                    | 必填 | 说明                             |
 | ------------ | ----------------------- | ---- | -------------------------------- |
-| uri          | string                  | 是   | 指示要插入数据的uri。         |
-| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 指示要插入的数据记录数组。           |
-| callback     | AsyncCallback\<number>  | 是   | 指示批量数据插入的回调方法。返回插入的数据记录数。 |
+| uri          | string                  | 是   | 表示要插入数据的uri。         |
+| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 表示要插入的数据记录数组。           |
+| callback     | AsyncCallback\<number>  | 是   | 表示批量数据插入的回调方法。返回插入的数据记录数。 |
 
 **示例：**
 
@@ -636,8 +636,8 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 | 参数名         | 类型                    | 必填 | 说明                     |
 | ------------ | ----------------------- | ---- | ------------------------ |
-| uri          | string                  | 是   | 指示要插入数据的uri。 |
-| valuesBucket | Array<rdb.ValuesBucket> | 是   | 指示要插入的数据记录数组。   |
+| uri          | string                  | 是   | 表示要插入数据的uri。 |
+| valuesBucket | Array<rdb.ValuesBucket> | 是   | 表示要插入的数据记录数组。   |
 
 **返回值：**
 
@@ -675,9 +675,9 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要删除数据的uri。                         |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 指示数据删除的回调方法。返回已删除的数据记录数。               |
+| uri          | string                            | 是   | 表示要删除数据的uri。                         |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback     | AsyncCallback\<number>            | 是   | 表示数据删除的回调方法。返回已删除的数据记录数。               |
 
 **示例：**
 
@@ -711,8 +711,8 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要删除数据的uri。                         |
-| predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| uri          | string                            | 是   | 表示要删除数据的uri。                         |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -736,6 +736,40 @@ DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
 });
 ```
 
+## DataAbilityHelper.delete
+
+delete(uri: string, callback: AsyncCallback\<number>): void
+
+predicates筛选条件为空，自定义数据库删除数据记录的处理逻辑（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名         | 类型                              | 必填 | 说明                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 表示要删除数据的uri。                         |
+| callback     | AsyncCallback\<number>            | 是   | 表示数据删除的回调方法。返回已删除的数据记录数。               |
+
+**示例：**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('delete fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('delete success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## DataAbilityHelper.update
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
@@ -748,10 +782,10 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
-| predicates   | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 指示数据更新的回调方法，返回更新的数据记录数。                 |
+| uri          | string                            | 是   | 表示要更新数据的uri。                         |
+| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| predicates   | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback     | AsyncCallback\<number>            | 是   | 表示数据更新的回调方法，返回更新的数据记录数。                 |
 
 **示例：**
 
@@ -792,9 +826,9 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
-| uri          | string                            | 是   | 指示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 指示要更新的数据。                               |
-| predicates   | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| uri          | string                            | 是   | 表示要更新数据的uri。                         |
+| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| predicates   | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -825,6 +859,48 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 });
 ```
 
+## DataAbilityHelper.update
+
+update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+
+predicates筛选条件为空，自定义更新数据库的处理逻辑（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名         | 类型                              | 必填 | 说明                                             |
+| ------------ | --------------------------------- | ---- | ------------------------------------------------ |
+| uri          | string                            | 是   | 表示要更新数据的uri。                         |
+| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| callback     | AsyncCallback\<number>            | 是   | 表示数据更新的回调方法，返回更新的数据记录数。                 |
+
+**示例：**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+import rdb from '@ohos.data.rdb';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+const va: rdb.ValuesBucket = {
+    'name': 'roe1',
+    'age': 21,
+    'salary': 20.5,
+    'blobType': 'u8',
+};
+DAHelper.update('dataability:///com.example.DataAbility', va, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('update fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('update success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## DataAbilityHelper.query
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
@@ -837,10 +913,10 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | 是   | 指示要查询数据的uri。                         |
-| columns    | Array\<string>                | 是   | 指示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 指示数据查询的回调方法，返回查询结果。                         |
+| uri        | string                            | 是   | 表示要查询数据的uri。                         |
+| columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
 
@@ -863,7 +939,111 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 });
 ```
 
+## DataAbilityHelper.query
 
+query(uri: string, callback: AsyncCallback\<ResultSet>): void
+
+predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | 是   | 表示要查询数据的uri。                         |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+
+**示例：**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
+## DataAbilityHelper.query
+
+query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
+
+predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | 是   | 表示要查询数据的uri。                         |
+| columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+
+**示例：**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+let cars = new Array('value1', 'value2', 'value3', 'value4');
+DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
+
+## DataAbilityHelper.query
+
+query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
+
+predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                             |
+| ---------- | --------------------------------- | ---- | ------------------------------------------------ |
+| uri        | string                            | 是   | 表示要查询数据的uri。                         |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+
+**示例：**
+
+```ts
+import ability from '@ohos.ability.ability';
+import featureAbility from '@ohos.ability.featureAbility';
+import ohos_data_ability from '@ohos.data.dataAbility';
+
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
+);
+let da = new ohos_data_ability.DataAbilityPredicates();
+DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
+    if (error && error.code !== 0) {
+        console.error('query fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('query success, data: ${JSON.stringify(data)}');
+    }
+});
+```
 
 ## DataAbilityHelper.query
 
@@ -877,9 +1057,9 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                            | 是   | 指示要查询数据的uri。                         |
-| columns    | Array\<string>               | 否   | 指示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 否   | 指示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| uri        | string                            | 是   | 表示要查询数据的uri。                         |
+| columns    | Array\<string>               | 否   | 表示要查询的列。如果此参数为空，则查询所有列。   |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
 
@@ -916,11 +1096,11 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
-| method    | string                  | 是   | 指示被调用的方法名。   |
-| arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 指示扩展的键值对参数。       |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
+| uri        | string                 | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
+| method    | string                  | 是   | 表示被调用的方法名。   |
+| arg      | string                   | 是   | 表示需传入的参数。      |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 表示数据操作的回调方法，返回操作结果。     |
 
 **示例：**
 
@@ -953,10 +1133,10 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
-| method    | string                  | 是   | 指示被调用的方法名。   |
-| arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 指示扩展的键值对参数。       |
+| uri        | string                 | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
+| method    | string                  | 是   | 表示被调用的方法名。   |
+| arg      | string                   | 是   | 表示需传入的参数。      |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
 
 **返回值：**
 
@@ -994,9 +1174,9 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 
 | 参数名        | 类型                          | 必填 | 说明                                             |
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
-| uri       | string                           | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 指示数据操作数组，其中可以包含对数据库的多个不同操作。   |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 指示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
+| uri       | string                           | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 表示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
 
 **示例：**
 
@@ -1030,8 +1210,8 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 | 参数名          | 类型                            | 必填 | 说明                                             |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
-| uri           | string                         | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
-| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 指示数据操作数组，其中可以包含对数据库的多个不同操作。   |
+| uri           | string                         | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
+| operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
 
 **返回值：**
 

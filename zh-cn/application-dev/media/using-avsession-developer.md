@@ -29,6 +29,7 @@
 | setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置媒体播放列表名称。 |
 | dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置会话内自定义事件。 |
 | setExtras(extras: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置键值对形式的自定义媒体数据包。|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | 使用同步方法获取当前输出设备信息。 |
 
 ## 开发步骤
 
@@ -41,7 +42,7 @@
 
    // 开始创建并激活媒体会话
    // 创建session
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function createSession() {
    let type: AVSessionManager.AVSessionType = 'audio';
    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
@@ -60,7 +61,7 @@
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setSessionInfo() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
@@ -140,7 +141,7 @@
    import AVSessionManager from '@ohos.multimedia.avsession';
    import wantAgent from '@ohos.app.ability.wantAgent';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function getWantAgent() {
      let type: AVSessionManager.AVSessionType = 'audio';
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
@@ -172,7 +173,7 @@
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function dispatchSessionEvent() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -196,7 +197,7 @@
    import AVSessionManager from '@ohos.multimedia.avsession';
    import { BusinessError } from '@ohos.base';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setExtras() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -224,7 +225,7 @@
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setListenerForMesFromController() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -291,7 +292,7 @@
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function setListenerForMesFromController() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -322,7 +323,7 @@
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function createControllerFromSession() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -351,7 +352,7 @@
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function unregisterSessionListener() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';
@@ -375,7 +376,7 @@
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession';
 
-   let context: Context = this.context;
+   let context: Context = getContext(this);
    async function destroySession() {
      // 假设已经创建了一个session，如何创建session可以参考之前的案例
      let type: AVSessionManager.AVSessionType = 'audio';

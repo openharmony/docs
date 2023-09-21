@@ -43,3 +43,20 @@ struct ListItemExample {
   }
 }
 ```
+## cl.arkui.2 组件同时设置Margin和Position属性效果变更
+
+组件同时设置margin和position属性由只有position生效变更为margin和position同时生效。
+
+**变更影响**
+
+组件同时设置margin和position属性的时候，位置会多产生一段margin的位移。
+
+**关键接口/组件变更**
+
+margin和position属性API接口文档：
+- [margin属性](../../../application-dev/reference/arkui-ts/ts-universal-attributes-size.md#属性)
+- [position属性](../../../application-dev/reference/arkui-ts/ts-universal-attributes-location.md#属性)
+
+**适配指导**
+
+当组件同时设置margin和position，或者部分（例如checkbox等）带有默认margin的组件设置了position时，建议调整margin大小使位置结果正常。

@@ -36,7 +36,7 @@ struct NavigationDemo {
         // Define the <Navigation> component, setting the display mode and title.
         Navigation() {
           // An <Input> component is defined here.
-          TextInput({ placeholder: 'search...' })
+          TextInput({ placeholder: 'Search...' })
             .width('90%')
             .height(40)
             .backgroundColor('#ededed')
@@ -44,7 +44,7 @@ struct NavigationDemo {
 
           // Define the level-1 navigation view through <List>.
           List({ space: 12, initialIndex: 0 }) {
-            ForEach(this.listArray, (item) => {
+            ForEach(this.listArray, (item:number) => {
               ListItem() {
                 // Define the navigation transition through <NavRouter> and define the navigation destination through <NavDestination>. Parameters are transferred between views through state variables or regular variables between components.
                 // <NavRouter> must contain two child components. The first child component is the level-1 navigation view, and the second child component must be <NavDestination>, which specifies the navigation destination.
@@ -108,7 +108,7 @@ struct NavigationDemo {
                 }
               }
               .width('100%')
-            }, item => item)
+            }, ((item:string):string => item))
           }
           .listDirection(Axis.Vertical)
           .edgeEffect(EdgeEffect.Spring)

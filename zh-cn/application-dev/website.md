@@ -727,6 +727,20 @@
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+  - 性能
+    - ArkTS高性能编程
+      - [高性能编程规范](performance/high-performance-programming.md)
+      - [高效并发编程](performance/efficient-concurrent-programming.md)
+    - 减少卡顿丢帧
+      - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [合理进行状态管理](performance/proper_state_management.md)
+      - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [减少视图嵌套层次](performance/reduce-view-nesting-levels.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -739,7 +753,6 @@
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
     - [LLDB调试器使用指导](tools/lldb-tool.md)
-    - [suap工具](tools/suap-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
@@ -972,9 +985,6 @@
       - [@ohos.screen (屏幕)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
-      - webgl
-        - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
-        - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
     - 媒体
       - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
@@ -1140,7 +1150,6 @@
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(待停用)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
@@ -1229,6 +1238,7 @@
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)

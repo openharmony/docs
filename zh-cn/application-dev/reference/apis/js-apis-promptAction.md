@@ -14,8 +14,8 @@
 
 ## 导入模块
 
-```js
-import promptAction from '@ohos.promptAction'
+```ts
+import promptAction from '@ohos.promptAction';
 ```
 
 ## promptAction.showToast
@@ -42,14 +42,18 @@ showToast(options: ShowToastOptions): void
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 
 ```
@@ -98,7 +102,9 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -117,11 +123,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -152,7 +160,9 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -175,7 +185,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -231,7 +243,9 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -253,7 +267,9 @@ try {
     console.info('showActionMenu success callback, click button: ' + data.index);
   })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -289,7 +305,9 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -307,11 +325,13 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 

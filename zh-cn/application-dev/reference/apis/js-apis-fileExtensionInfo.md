@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ```
 

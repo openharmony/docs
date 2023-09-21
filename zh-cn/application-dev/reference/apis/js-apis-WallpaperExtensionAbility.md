@@ -12,7 +12,7 @@ WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调�
 
 ## 导入模块
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 ```
 
@@ -32,11 +32,12 @@ onCreate(want: object): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onCreate(want) {
+    onCreate(want: Want): void {
         console.log('onCreate, want:' + want.abilityName);
     }
 }
@@ -58,11 +59,12 @@ onWallpaperChange(wallpaperType: number): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import wallpaper from '@ohos.wallpaper';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onWallpaperChange(wallpaperType) {
+    onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
         console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
     }
 }
@@ -78,11 +80,11 @@ onDestroy(): void
 
 **示例：**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onDestroy() {
+    onDestroy(): void {
         console.log('onDestroy');
     }
 }

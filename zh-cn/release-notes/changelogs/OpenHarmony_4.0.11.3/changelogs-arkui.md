@@ -59,3 +59,17 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.4 springCurve速度方向规格变更
+
+**变更影响**
+
+在API version 9，[springCurve](../../../application-dev/reference/apis/js-apis-curve.md#curvesspringcurve9)的[interpolate](../../../application-dev/reference/apis/js-apis-curve.md#interpolate9)方法在计算时，springCurve的初速度>0为逆着终点方向，初速度<0为顺着终点方向。<br/>
+从API version 10起，springCurve的interpolate方法在计算时，springCurve的初速度>0为顺着终点方向，初速度<0为逆着终点方向。会导致初速度不为0时springCurve的interpolate方法和API version 10之前的计算结果不一致。
+
+## cl.arkui.5 springCurve实际曲线时间估算阈值规格变更
+
+**变更影响**
+
+在API version 9，[springCurve](../../../application-dev/reference/apis/js-apis-curve.md#curvesspringcurve9)的[interpolate](../../../application-dev/reference/apis/js-apis-curve.md#interpolate9)方法对springCurve实际曲线时长的最长估算时间为1秒，当物理曲线时长超过1秒时，按1秒估算，导致超过1秒的springCurve的动画时间归一化不正确，插值结果在t=1时会跳变。<br/>
+从API version 10起，springCurve的interpolate方法对springCurve的最长估算时间为1000秒，对于绝大多数正常springCurve曲线均能正确估算动画时长。会导致物理曲线本身时长超过1秒的springCurve的interpolate方法和API version 10之前的计算结果不一致。

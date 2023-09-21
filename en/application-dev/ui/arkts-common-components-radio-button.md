@@ -68,7 +68,8 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the ringing mode.
-              promptAction.showToast({ message: 'Ringing mode.' })
+              let st:Record<string,string> = {'message': 'Ringing mode.'}
+              promptAction.showToast(st)
             }
           })
         Text('Ringing')
@@ -80,7 +81,8 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the vibration mode.
-              promptAction.showToast({ message: 'Vibration mode.' })
+              let st:Record<string,string> = {'message': 'Vibration mode.'}
+              promptAction.showToast(st)
             }
           })
         Text('Vibration')
@@ -92,7 +94,8 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // Switch to the silent mode.
-              promptAction.showToast({ message: 'Silent mode.' })
+              let st:Record<string,string> = {'message': 'Silent mode.'}
+              promptAction.showToast(st)
             }
           })
         Text('Silent')

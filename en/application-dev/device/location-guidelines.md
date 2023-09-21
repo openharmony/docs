@@ -36,12 +36,6 @@ Your application can use the location function only after the user has granted t
 
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
 
-### Samples
-
-The following sample is provided to help you better understand how to develop location services:
-
-- [`Location`: Location (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Location)
-
 
 ## Applying for Location Permissions
 
@@ -103,7 +97,7 @@ The following table lists the APIs used to obtain the device location informatio
 
 ### How to Develop
 
-1. Before using basic location capabilities, check whether your application has been granted the permission to access device location information. If not, your application first needs to apply for the required permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
+1. Before using system basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application first needs to apply for the required permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
 2. Import the **geoLocationManager** module by which you can implement all APIs related to the basic location capabilities.
    
@@ -149,7 +143,7 @@ The following table lists the APIs used to obtain the device location informatio
    Sample code for initializing **requestInfo** for navigation:
 
    ```ts
-   let requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **Method 2:**
@@ -179,14 +173,14 @@ The following table lists the APIs used to obtain the device location informatio
    Sample code for initializing **requestInfo** for the location accuracy priority policy:
 
    ```ts
-   let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. Instantiate the **Callback** object for the system to report location results.
      Your application needs to implement the callback defined by the system. When the system successfully obtains the real-time location of a device, it will report the location result to your application through the callback interface. Your application can implement the callback interface in such a way to complete your own service logic.
      
    ```ts
-   let locationChange = (location) => {
+   let locationChange = (location:geoLocationManager.Location):void => {
        console.log('locationChanger: data: ' + JSON.stringify(location));
    };
    ```
@@ -209,10 +203,11 @@ The following table lists the APIs used to obtain the device location informatio
 
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
+   import BusinessError from "@ohos.base";
    try {
        let location = geoLocationManager.getLastLocation();
    } catch (err) {
-       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
    }
    ```
 
@@ -245,7 +240,7 @@ The following table lists the APIs used for mutual conversion between coordinate
 
 ### How to Develop
 
-> **NOTE**
+> **NOTE**<br>
 > The **GeoConvert** instance needs to access backend services to obtain information. Therefore, before performing the following steps, ensure that your device is connected to the network.
 
 1. Import the **geoLocationManager** module by which you can implement all APIs related to the geocoding and reverse geocoding conversion capabilities.
@@ -259,10 +254,11 @@ The following table lists the APIs used for mutual conversion between coordinate
      
       ```ts
       import geoLocationManager from '@ohos.geoLocationManager';
+      import BusinessError from "@ohos.base";
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -270,7 +266,7 @@ The following table lists the APIs used for mutual conversion between coordinate
    - Call **getAddressesFromLocation** to convert coordinates into geographical location information.
      
       ```ts
-      let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+      let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
       try {
           geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
               if (err) {
@@ -280,7 +276,7 @@ The following table lists the APIs used for mutual conversion between coordinate
               }
           });
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -288,7 +284,7 @@ The following table lists the APIs used for mutual conversion between coordinate
    - Call **getAddressesFromLocationName** to convert geographic descriptions into coordinates.
      
       ```ts
-      let geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
+      let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
       try {
           geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
               if (err) {
@@ -298,7 +294,7 @@ The following table lists the APIs used for mutual conversion between coordinate
               }
           });
       } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
       }
       ```
 
@@ -332,11 +328,12 @@ The following table lists the APIs used for geofencing. For details, see [Geoloc
 
 1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
-2. Import the [geoLocationManager](../reference/apis/js-apis-geoLocationManager.md) and [wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md) modules.
+2. Import the [geoLocationManager](../reference/apis/js-apis-geoLocationManager.md), [wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md), and [BusinessError](../reference/apis/js-apis-base.md) modules.
    
    ```ts
    import geoLocationManager from '@ohos.geoLocationManager';
-   import wantAgent from '@ohos.app.ability.wantAgent';
+   import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+   import BusinessError from "@ohos.base";
    ```
 
 3. Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object.
@@ -344,10 +341,10 @@ The following table lists the APIs used for geofencing. For details, see [Geoloc
    Scenario 1: Create a **WantAgentInfo** object for starting an ability. 
 
    ```ts
-   let wantAgentObj = null; // Save the created WantAgent object for completing the trigger operations at a later time.
+   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
    
    // Set the operation type through operationType of the WantAgentInfo object.
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
            {
                deviceId: '',
@@ -368,10 +365,10 @@ The following table lists the APIs used for geofencing. For details, see [Geoloc
    Scenario 2: Create a **WantAgentInfo** object for publishing [common events](../application-models/common-event-overview.md).
 
    ```ts
-   let wantAgentObj = null; // Save the created WantAgent object for completing the trigger operations at a later time.
+   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
    
    // Set the operation type through operationType of the WantAgentInfo object.
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
            {
                action: "event_name", // Set the event name.
@@ -397,13 +394,15 @@ After obtaining the **WantAgent** object, call the geofencing API to add a geofe
        }
        console.info('getWantAgent success');
        wantAgentObj = data;
-       let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {
-           console.error("errCode:" + err.code + ",errMessage:" + err.message);
+           console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
        }
    });
    ```
 
 5. Have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+
+

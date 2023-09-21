@@ -22,7 +22,7 @@ Before using **DriverExtensionContext**, you need to obtain it through a **Drive
 ```ts
   import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
 
-  let context;
+  let context : DriverExtensionContext;
   class EntryAbility extends DriverExtensionAbility {
     onInit() {
       context = this.context; // Obtain DriverExtensionContext.

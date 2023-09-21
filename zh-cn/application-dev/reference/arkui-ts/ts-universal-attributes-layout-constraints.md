@@ -29,7 +29,7 @@ struct AspectRatioExample {
     Column({ space: 20 }) {
       Text('using container: row').fontSize(14).fontColor(0xCCCCCC).width('100%')
       Row({ space: 10 }) {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:string) => {
           // 组件宽度 = 组件高度*1.5 = 90
           Text(item)
             .backgroundColor(0xbbb2cb)
@@ -42,7 +42,7 @@ struct AspectRatioExample {
             .fontSize(20)
             .aspectRatio(1.5)
             .width(60)
-        }, item => item)
+        }, (item:string) => item)
       }
       .size({ width: "100%", height: 100 })
       .backgroundColor(0xd2cab3)
@@ -51,7 +51,7 @@ struct AspectRatioExample {
       // grid子元素width/height=3/2
       Text('using container: grid').fontSize(14).fontColor(0xCCCCCC).width('100%')
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:string) => {
           GridItem() {
             Text(item)
               .backgroundColor(0xbbb2cb)
@@ -59,7 +59,7 @@ struct AspectRatioExample {
               .width('100%')
               .aspectRatio(1.5)
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
@@ -117,7 +117,7 @@ struct DisplayPriorityExample {
         })
       // 通过变量设置Flex父容器宽度
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:ChildInfo) => {
           // 使用displayPriority给子组件绑定显示优先级
           Text(item.text)
             .width(120)
@@ -126,14 +126,13 @@ struct DisplayPriorityExample {
             .textAlign(TextAlign.Center)
             .backgroundColor(0xbbb2cb)
             .displayPriority(item.priority)
-        }, item => item.text)
+        }, (item:ChildInfo) => item.text)
       }
       .width(this.container[this.currentIndex].size)
       .backgroundColor(0xd2cab3)
     }.width("100%").margin({ top: 50 })
   }
 }
-
 ```
 
 横屏显示

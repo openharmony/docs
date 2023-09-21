@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import storageStatistics from "@ohos.file.storageStatistics";
 ```
 
@@ -51,12 +51,13 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then(function(number){
-      console.info("getTotalSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+    console.info("getTotalSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -94,11 +95,12 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, function(error, number){
-      // do something
-      console.info("getTotalSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // do something
+    console.info("getTotalSizeOfVolume successfully:" + number);
   });
   ```
 
@@ -141,14 +143,14 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then(function(number){
-      console.info("getFreeSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+    console.info("getFreeSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
   });
-  
   ```
 
 ## storageStatistics.getFreeSizeOfVolume
@@ -185,11 +187,12 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, function(error, number){
-      // do something
-      console.info("getFreeSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // do something
+    console.info("getFreeSizeOfVolume successfully: " + number);
   });
   ```
 
@@ -232,12 +235,13 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 **示例：**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName).then(function(BundleStats){
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
-  }).catch(function(err){
-      console.info("getBundleStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getBundleStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -275,11 +279,12 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 **示例：**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName, function(error, BundleStats){
-      // do something
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.Bundlestats) => {
+    // do something
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   });
   ```
 
@@ -309,11 +314,12 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 **示例：**
 
-  ```js
-  storageStatistics.getCurrentBundleStats().then(function(BundleStats){
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(BundleStats));
-  }).catch(function(err){
-      console.info("getCurrentBundleStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -343,10 +349,11 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 **示例：**
 
-  ```js
-  storageStatistics.getCurrentBundleStats(function(error, bundleStats){
-      // do something
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+    // do something
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
   });
   ```
 
@@ -392,11 +399,12 @@ getTotalSize(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  storageStatistics.getTotalSize().then(function(number){
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
-  }).catch(function(err){
-      console.info("getTotalSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize().then((number: number) => {
+    console.info("getTotalSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSize failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -432,10 +440,11 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  storageStatistics.getTotalSize(function(error, number){
-      // do something
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
   ```
 
@@ -465,12 +474,14 @@ getTotalSizeSync(): number
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   try {
     let number = storageStatistics.getTotalSizeSync();
-    console.info("getTotalSizeSync successfully:"+ JSON.stringify(number));
-  } catch (err) {
-    console.info("getTotalSizeSync failed with error:"+ err);
+    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getTotalSizeSync failed with error:" + JSON.stringify(err));
   }
   ```
 
@@ -506,11 +517,12 @@ getFreeSize(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  storageStatistics.getFreeSize().then(function(number){
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
-  }).catch(function(err){
-      console.info("getFreeSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize().then((number: number) => {
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -546,10 +558,11 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  storageStatistics.getFreeSize(function(error, number){
-      // do something
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
   });
   ```
 
@@ -579,12 +592,14 @@ getFreeSizeSync(): number
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   try {
     let number = storageStatistics.getFreeSizeSync();
-    console.info("getFreeSizeSync successfully:"+ JSON.stringify(number));
-  } catch (err) {
-    console.info("getFreeSizeSync failed with error:"+ err);
+    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getFreeSizeSync failed with error:" + JSON.stringify(err));
   }
   ```
 
@@ -620,11 +635,12 @@ getSystemSize(): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
-  storageStatistics.getSystemSize().then(function(number){
-      console.info("getSystemSize successfully:"+ number);
-  }).catch(function(err){
-      console.info("getSystemSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize().then((number: number) => {
+    console.info("getSystemSize successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getSystemSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -660,10 +676,11 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  ```js
-  storageStatistics.getSystemSize(function(error, number){
-      // do something
-      console.info("getSystemSize successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getSystemSize successfully:" + number);
   });
   ```
 
@@ -699,11 +716,12 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 
 **示例：**
 
-  ```js
-  storageStatistics.getUserStorageStats().then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -739,10 +757,11 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 
 **示例：**
 
-  ```js
-  storageStatistics.getUserStorageStats(function(error, StorageStats){
-      // do something
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // do something
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 
@@ -785,12 +804,13 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 **示例：**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -828,11 +848,12 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **示例：**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
-      // do something
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // do something
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 

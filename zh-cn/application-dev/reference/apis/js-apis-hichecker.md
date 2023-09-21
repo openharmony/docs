@@ -9,7 +9,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
 ## 导入模块
 
-```js
+```ts
 import hichecker from '@ohos.hichecker';
 ```
 
@@ -43,7 +43,9 @@ addCheckRule(rule: bigint): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     // 添加一条规则
     hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
@@ -51,7 +53,7 @@ try {
     // hichecker.addCheckRule(
     //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -71,7 +73,9 @@ removeCheckRule(rule: bigint): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base'
+
 try {
     // 删除一条规则
     hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
@@ -79,7 +83,7 @@ try {
     // hichecker.removeCheckRule(
     //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -105,7 +109,9 @@ containsCheckRule(rule: bigint): boolean
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base'
+
 try {
     // 添加一条规则
     hichecker.addCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
@@ -114,7 +120,7 @@ try {
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -138,7 +144,7 @@ addRule(rule: bigint): void
 
 **示例：**
 
-```js
+```ts
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -167,7 +173,7 @@ removeRule(rule: bigint): void
 
 **示例：**
 
-```js
+```ts
 // 删除一条规则
 hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
@@ -192,7 +198,7 @@ getRule(): bigint
 
 **示例：**
 
-```js
+```ts
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
@@ -226,7 +232,7 @@ contains(rule: bigint): boolean
 
 **示例：**
 
-```js
+```ts
 // 添加一条规则
 hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 

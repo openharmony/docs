@@ -38,19 +38,21 @@ Describes an ability monitor.
 
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     moduleName: "moduleName",
     onAbilityCreate: onAbilityCreateCallback
-};
+}
 
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+abilityDelegator.addAbilityMonitor(monitor, (error : BusinessError) => {
     if (error) {
         console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
     }

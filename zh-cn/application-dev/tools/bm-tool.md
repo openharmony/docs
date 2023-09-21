@@ -338,10 +338,9 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 **解决措施**
 
-该问题是由于签名工具与设备运行的镜像版本不匹配导致，需要开发者手动更新设备的镜像，可参考如下步骤进行更新。
-1. 获取[OpenHarmony 最新镜像文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)，下载对应开发板的镜像文件。
-2. 将下载的镜像文件烧录到开发板中，关于各开发板的烧录，可以使用DevEco Device Tool工具进行烧录，具体请参考[DevEco Device Tool使用指南](../../device-dev/quick-start/quickstart-ide-env-win.md)。
-3. 重新运行应用/服务。
+该问题是由于安装未签名的HAP导致，需要开发者对开发的HAP进行签名之后再安装。
+1. 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+1. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
 
 ### 安装HAP时提示“code:9568347 error: install parse native so failed”错误
 **问题现象**

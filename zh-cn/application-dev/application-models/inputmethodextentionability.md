@@ -10,7 +10,7 @@
 
 ## 实现一个输入法应用
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestory()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
 - **onCreate**
   服务被首次创建时触发该回调，开发者可以在此进行一些初始化的操作，例如注册公共事件监听等。
@@ -61,13 +61,13 @@
    
    export default class InputDemoService extends InputMethodExtensionAbility {
    
-     onCreate(want: Want) {
-       keyboardController.onCreate(this.context);  // 初始化窗口并注册对输入法框架的事件监听
+     onCreate(want: Want): void {
+       keyboardController.onCreate(this.context); // 初始化窗口并注册对输入法框架的事件监听
      }
    
-     onDestroy() {
+     onDestroy(): void {
        console.log("onDestroy.");
-       this.keyboardController.onDestroy();  // 销毁窗口并去注册事件监听
+       keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
      }
    }
    ```
@@ -78,7 +78,7 @@
    import common from '@ohos.app.ability.common';
    import display from '@ohos.display';
    import inputMethodEngine from '@ohos.inputMethodEngine';
-   import InputMethodExtensionContext from '@ohos.inputMethodExtensionContext';
+   import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
@@ -95,13 +95,13 @@
      public onCreate(context: InputMethodExtensionContext): void
      {
        this.mContext = context;
-       this.initWindow();				// 初始化窗口
-       this.registerListener();		// 注册对输入法框架的事件监听
+       this.initWindow(); // 初始化窗口
+       this.registerListener(); // 注册对输入法框架的事件监听
      }
    
-     public onDestroy(): void			// 应用生命周期销毁
+     public onDestroy(): void // 应用生命周期销毁
      {
-       this.unRegisterListener();		// 去注册事件监听
+       this.unRegisterListener(); // 去注册事件监听
        if(this.panel) { // 销毁窗口
          this.panel.hide();
          inputMethodAbility.destroyPanel(this.panel);
@@ -123,7 +123,7 @@
        }
      }
    
-     private initWindow(): void		// 初始化窗口
+     private initWindow(): void // 初始化窗口
      {
        if(this.mContext === undefined) {
          return;
@@ -150,18 +150,18 @@
    
      private registerListener(): void
      {
-       this.registerInputListener();	// 注册对输入法框架服务的监听
+       this.registerInputListener(); // 注册对输入法框架服务的监听
        ...
        // 注册隐藏键盘事件监听等
      }
    
-     private registerInputListener(): void {		// 注册对输入法框架服务的开启及停止事件监听
+     private registerInputListener(): void { // 注册对输入法框架服务的开启及停止事件监听
        inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
-         this.textInputClient = textInputClient;		// 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
-         this.boardController = kbController;
+         this.textInputClient = textInputClient; // 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
+         this.keyboardController = kbController;
        })
        inputMethodAbility.on('inputStop', () => {
-         this.onDestroy();	// 销毁KeyboardController
+         this.onDestroy(); // 销毁KeyboardController
        });
      }
    
@@ -232,7 +232,7 @@
    
    @Component
    struct keyItem {
-     private keyValue: sourceListType
+     private keyValue: sourceListType = numberSourceListData[0];
      @State keyBgc: string = "#fff"
      @State keyFontColor: string = "#000"
    
@@ -283,9 +283,9 @@
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-           ForEach(this.numberList, (item: sourceListType) => {  // 数字键盘第一行
+           ForEach(this.numberList, (item: sourceListType) => { // 数字键盘第一行
              keyItem({ keyValue: item })
-           }, (item: sourceListType): sourceListType => item.content);
+           }, (item: sourceListType) => item.content);
          }
          .padding({ top: "2%" })
          .width("96%")

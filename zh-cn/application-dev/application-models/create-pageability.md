@@ -4,29 +4,31 @@
 开发者需要重写app.js/app.ets中的生命周期回调函数，开发者通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
 
 ```ts
-export default class EntryAbility {
+class EntryAbility {
   onCreate() {
     console.info('Application onCreate')
-  };
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  };
+  }
   onShow() {
     console.info('Application onShow')
-  };
+  }
   onHide() {
     console.info('Application onHide')
-  };
+  }
   onActive() {
     console.info('Application onActive')
-  };
+  }
   onInactive() {
     console.info('Application onInactive')
-  };
+  }
   onNewWant() {
     console.info('Application onNewWant')
-  };
+  }
 }
+
+export default new EntryAbility()
 ```
 
 

@@ -19,7 +19,7 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 
 | Name| Description|
 | -------- | -------- |
-| [native_buffer.h](native__buffer_8h.md) | Declares the functions for obtaining and using **NativeBuffer**.<br>File to include: &lt;native_buffer/native_buffer.h&gt; |
+| [native_buffer.h](native__buffer_8h.md) | Declares the functions for obtaining and using **NativeBuffer**.<br>**File to include**: &lt;native_buffer/native_buffer.h&gt;<br>**Library**: libnative_buffer.so|
 
 
 ### Structs
@@ -35,6 +35,12 @@ The **OH_NativeBuffer** module provides the capabilities of **NativeBuffer**. Us
 | -------- | -------- |
 | [OH_NativeBuffer](#oh_nativebuffer) | Provides the declaration of an **OH_NativeBuffer** struct.|
 
+### Enums
+
+| Name| Description|
+| -------- | -------- |
+| [OH_NativeBuffer_Usage](#oh_nativebuffer_usage) { NATIVEBUFFER_USAGE_CPU_READ = (1ULL &lt;&lt; 0), NATIVEBUFFER_USAGE_CPU_WRITE = (1ULL &lt;&lt; 1), NATIVEBUFFER_USAGE_MEM_DMA = (1ULL &lt;&lt; 3) } | Enumerates the **OH_NativeBuffer** usages.|
+| [OH_NativeBuffer_Format](#oh_nativebuffer_format) {<br>NATIVEBUFFER_PIXEL_FMT_RGB_565 = 3, NATIVEBUFFER_PIXEL_FMT_RGBA_5658, NATIVEBUFFER_PIXEL_FMT_RGBX_4444, NATIVEBUFFER_PIXEL_FMT_RGBA_4444,<br>NATIVEBUFFER_PIXEL_FMT_RGB_444, NATIVEBUFFER_PIXEL_FMT_RGBX_5551, NATIVEBUFFER_PIXEL_FMT_RGBA_5551, NATIVEBUFFER_PIXEL_FMT_RGB_555,<br>NATIVEBUFFER_PIXEL_FMT_RGBX_8888, NATIVEBUFFER_PIXEL_FMT_RGBA_8888, NATIVEBUFFER_PIXEL_FMT_RGB_888, NATIVEBUFFER_PIXEL_FMT_BGR_565,<br>NATIVEBUFFER_PIXEL_FMT_BGRX_4444, NATIVEBUFFER_PIXEL_FMT_BGRA_4444, NATIVEBUFFER_PIXEL_FMT_BGRX_5551, NATIVEBUFFER_PIXEL_FMT_BGRA_5551,<br>NATIVEBUFFER_PIXEL_FMT_BGRX_8888, NATIVEBUFFER_PIXEL_FMT_BGRA_8888, NATIVEBUFFER_PIXEL_FMT_BUTT = 0X7FFFFFFF<br>} | Enumerates the **OH_NativeBuffer** formats.|
 
 ### Functions
 
@@ -62,6 +68,70 @@ typedef struct OH_NativeBuffer OH_NativeBuffer
 **Description**
 
 Provides the declaration of an **OH_NativeBuffer** struct.
+
+## Enum Description
+
+
+### OH_NativeBuffer_Format
+
+```
+enum OH_NativeBuffer_Format
+```
+
+**Description**
+
+Enumerates the **OH_NativeBuffer** formats.
+
+\@SysCap SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+| Value| Description|
+| -------- | -------- |
+| NATIVEBUFFER_PIXEL_FMT_RGB_565 | RGB565.|
+| NATIVEBUFFER_PIXEL_FMT_RGBA_5658 | RGBA5658.|
+| NATIVEBUFFER_PIXEL_FMT_RGBX_4444 | RGBX4444.|
+| NATIVEBUFFER_PIXEL_FMT_RGBA_4444 | RGBA4444.|
+| NATIVEBUFFER_PIXEL_FMT_RGB_444 | RGB444.|
+| NATIVEBUFFER_PIXEL_FMT_RGBX_5551 | RGBX5551.|
+| NATIVEBUFFER_PIXEL_FMT_RGBA_5551 | RGBA5551.|
+| NATIVEBUFFER_PIXEL_FMT_RGB_555 | RGB555.|
+| NATIVEBUFFER_PIXEL_FMT_RGBX_8888 | RGBX8888.|
+| NATIVEBUFFER_PIXEL_FMT_RGBA_8888 | RGBA8888.|
+| NATIVEBUFFER_PIXEL_FMT_RGB_888 | RGB888.|
+| NATIVEBUFFER_PIXEL_FMT_BGR_565 | BGR565.|
+| NATIVEBUFFER_PIXEL_FMT_BGRX_4444 | BGRX4444.|
+| NATIVEBUFFER_PIXEL_FMT_BGRA_4444 | BGRA4444.|
+| NATIVEBUFFER_PIXEL_FMT_BGRX_5551 | BGRX5551.|
+| NATIVEBUFFER_PIXEL_FMT_BGRA_5551 | BGRA5551.|
+| NATIVEBUFFER_PIXEL_FMT_BGRX_8888 | BGRX8888.|
+| NATIVEBUFFER_PIXEL_FMT_BGRA_8888 | BGRA8888.|
+| NATIVEBUFFER_PIXEL_FMT_BUTT | Invalid format.|
+
+**Since**
+
+10
+
+
+### OH_NativeBuffer_Usage
+
+```
+enum OH_NativeBuffer_Usage
+```
+
+**Description**
+
+Enumerates the **OH_NativeBuffer** usages.
+
+\@SysCap SystemCapability.Graphic.Graphic2D.NativeBuffer
+
+| Value| Description|
+| -------- | -------- |
+| NATIVEBUFFER_USAGE_CPU_READ | Read by the CPU.|
+| NATIVEBUFFER_USAGE_CPU_WRITE | Write by the CPU.|
+| NATIVEBUFFER_USAGE_MEM_DMA | Direct memory access to the buffer.|
+
+**Since**
+
+10
 
 
 ## Function Description

@@ -120,7 +120,11 @@ scan(): void
 
 启动WLAN扫描。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.SET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.SET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -990,7 +994,11 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 获取候选网络配置。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1762,7 +1770,11 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.GET_WIFI_CONFIG
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.GET_WIFI_CONFIG
+
+API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1835,7 +1847,7 @@ updateNetwork(config: WifiDeviceConfig): number
 			securityType : 3
 		}
 		let ret = wifiManager.updateNetwork(config);
-		console.error("ret:" + ret);		
+		console.info("ret:" + ret);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -2032,7 +2044,7 @@ get5GChannelList(): Array&lt;number&gt;
 
 getDisconnectedReason(): DisconnectedReason
 
-获取最近一次断连原因
+获取最近一次断连原因。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2327,7 +2339,11 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
@@ -2463,7 +2479,11 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 获取P2P当前组信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION  和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2487,7 +2507,11 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 获取P2P当前组信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2528,7 +2552,11 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 获取P2P对端设备列表信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2552,7 +2580,11 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 获取P2P对端设备列表信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2788,7 +2820,11 @@ p2pConnect(config: WifiP2PConfig): void
 
 执行P2P连接。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2925,7 +2961,11 @@ startDiscoverDevices(): void
 
 开始发现设备。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -3024,7 +3064,11 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -3087,7 +3131,11 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -3431,7 +3479,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
-注册WIFI流更改事件。
+注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3458,7 +3506,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
 off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 
-取消注册WIFI流更改事件。
+取消注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3922,7 +3970,11 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
 注册P2P设备状态改变事件。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -3947,7 +3999,11 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。
 
-**需要权限：** ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：无
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -3987,7 +4043,11 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 注册P2P对端设备状态改变事件。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -4012,7 +4072,11 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 取消注册P2P对端设备状态改变事件。
 
-**需要权限：** ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限：**
+
+API 9：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+API 10起：无
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 

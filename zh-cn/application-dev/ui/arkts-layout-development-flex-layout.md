@@ -159,13 +159,14 @@
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Start }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -175,13 +176,14 @@
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.Center }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -191,13 +193,14 @@
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.End }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -207,13 +210,14 @@
 
 
   ```ts
+  let PTopBottom1:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom1)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -223,13 +227,14 @@
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -239,13 +244,14 @@
 
 
   ```ts
+  let PTopBottom:Record<string,number> = { 'top': 10, 'bottom': 10 }
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
     Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
   }
   .width('90%')
-  .padding({ top: 10, bottom: 10 })
+  .padding(PTopBottom)
   .backgroundColor(0xAFEEEE)
   ```
 
@@ -266,12 +272,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Auto }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -282,12 +289,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Start }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -298,12 +306,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Center }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -314,12 +323,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.End }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -330,12 +340,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -346,12 +357,13 @@
 
 
   ```ts
+  let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Baseline }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
     Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
   }
-  .size({ width: '90%', height: 80 })
+  .size(SWh)
   .padding(10)
   .backgroundColor(0xAFEEEE)
   ```
@@ -543,32 +555,32 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 - flexGrow：设置父容器的剩余空间分配给此属性所在组件的比例。用于“瓜分”父组件的剩余空间。
 
 
-  ```ts
+    ```ts
   Flex() {
-    Text('flexGrow(1)')
-      .flexGrow(1) 
+    Text('flexGrow(2)')
+      .flexGrow(2) 
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
     
-    Text('flexGrow(2)')
-      .flexGrow(2)
+    Text('flexGrow(3)')
+      .flexGrow(3)
       .width(100)
       .height(100)
       .backgroundColor(0xD2B48C)
-
+  
     Text('no flexGrow')
       .width(100) 
       .height(100)
       .backgroundColor(0xF5DEB3)
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
-  ```
+    ```
 
-  ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
+    ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
 
-  父容器宽度400vp，三个子组件原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
+   父容器宽度400vp，三个子组件原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
 
-  第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp2/5=140vp，第二个元素为100vp+100vp3/5=160vp。
+    第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp2/5=140vp，第二个元素为100vp+100vp3/5=160vp。
 
 - flexShrink: 当父容器空间不足时，子组件的压缩比例。
 

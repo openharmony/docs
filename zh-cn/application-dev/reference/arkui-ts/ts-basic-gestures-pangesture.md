@@ -91,16 +91,18 @@ struct PanGestureExample {
       .padding(20)
       .border({ width: 3 })
       .margin(50)
-      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
       // 左右拖动触发该手势事件
       .gesture(
       PanGesture(this.panOption)
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.offsetX = this.positionX + event.offsetX
-          this.offsetY = this.positionY + event.offsetY
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.offsetX = this.positionX + event.offsetX
+            this.offsetY = this.positionY + event.offsetY
+          }
         })
         .onActionEnd(() => {
           this.positionX = this.offsetX

@@ -30,11 +30,19 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   });
 
   // 获取相机列表
-  let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  let cameraArray: Array<camera.CameraDevice> = [];
+  try {
+    cameraArray = cameraManager.getSupportedCameras();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getSupportedCameras call failed. error code: ${err.code}`);
+  }
+
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error")
+    console.error("cameraManager.getSupportedCameras error");
     return;
   }
+
   // 获取相机设备支持的输出流能力
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
   if (!cameraOutputCap) {
@@ -85,57 +93,62 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
     location: { latitude: 30, longitude: 130 }
   };
 
-  let avRecorder: media.AVRecorder;
-  media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-    if (recorder != null) {
-      avRecorder = recorder;
-      console.log('createAVRecorder success');
-    } else {
-      console.log(`createAVRecorder fail, error:${error}`);
-    }
-  });
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`createAVRecorder call failed. error code: ${err.code}`);
+  }
 
-  avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-    if (err == null) {
-      console.log('prepare success');
-    } else {
-      console.log(`prepare failed. error: ${JSON.stringify(err)}`);
-    }
-  })
+  if (avRecorder === undefined) {
+    return;
+  }
 
-  let videoSurfaceId: string = null; // 该surfaceID用于传递给相机接口创造videoOutput
-  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
-    if (err == null) {
-      console.log('getInputSurface success');
-      videoSurfaceId = surfaceId;
-    } else {
-      console.log(`getInputSurface failed. error: ${JSON.stringify(err)}`);
-    }
-  });
+  try {
+    await avRecorder.prepare(aVRecorderConfig);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`prepare call failed. error code: ${err.code}`);
+  }
 
+  let videoSurfaceId: string | undefined = undefined; // 该surfaceID用于传递给相机接口创造videoOutput
+  try {
+    videoSurfaceId = await avRecorder.getInputSurface();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getInputSurface call failed. error code: ${err.code}`);
+  }
+  if (videoSurfaceId === undefined) {
+    return;
+  }
   // 创建VideoOutput对象
-  let videoOutput: camera.VideoOutput;
+  let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
   }
-
+  if (videoOutput === undefined) {
+    return;
+  }
   // 监听视频输出错误信息
   videoOutput.on('error', (error: BusinessError) => {
     console.log(`Preview output error code: ${error.code}`);
   });
 
   //创建会话
-  let captureSession: camera.CaptureSession;
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
   }
-
+  if (captureSession === undefined) {
+    return;
+  }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
     console.log(`Capture session error code: ${error.code}`);
@@ -150,14 +163,16 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   // 创建相机输入流
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to createCameraInput. error: ${JSON.stringify(err)}`);
   }
-
+  if (cameraInput === undefined) {
+    return;
+  }
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
@@ -181,7 +196,7 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   // 创建预览输出流,其中参数 surfaceId 参考下面 XComponent 组件，预览流为XComponent组件提供的surface
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
@@ -189,6 +204,9 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
     console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
   }
 
+  if (previewOutput === undefined) {
+    return;
+  }
   // 向会话中添加预览输入流
   try {
     captureSession.addOutput(previewOutput);
@@ -271,6 +289,6 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   captureSession.release();
 
   // 会话置空
-  captureSession = null;
+  captureSession = undefined;
 }
 ```

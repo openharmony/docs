@@ -8,8 +8,7 @@ For example, device A and device B are installed with the same application. Afte
 
 1. Connect the devices to form a Super Device.
    
-Connect the devices to a LAN, and complete authentication of the devices. The devices must have the same account number.
-   
+   Connect the devices to a LAN, and complete authentication of the devices. The devices must have the same account number.
 2. Implement cross-device access to the files of the same application.
 
    Place the files in the **distributedfiles/** directory of the application sandbox to implement access from difference devices.
@@ -18,11 +17,13 @@ Connect the devices to a LAN, and complete authentication of the devices. The de
 
    ```ts
    import fs from '@ohos.file.fs';
-   
-   let context =...; // Obtain the UIAbilityContext information of device A.
-   let pathDir = context.distributedFilesDir;
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+
+   let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
+   let pathDir: string = context.distributedFilesDir;
    // Obtain the file path of the distributed directory.
-   let filePath = pathDir + '/test.txt';
+   let filePath: string = pathDir + '/test.txt';
    
    try {
      // Create a file in the distributed directory.
@@ -32,7 +33,8 @@ Connect the devices to a LAN, and complete authentication of the devices. The de
      fs.writeSync(file.fd, 'content');
      // Close the file.
      fs.closeSync(file.fd);
-   } catch (err) {
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -41,24 +43,33 @@ Connect the devices to a LAN, and complete authentication of the devices. The de
 
    ```ts
    import fs from '@ohos.file.fs';
+   import common from '@ohos.app.ability.common';
+   import buffer from '@ohos.buffer';
+   import { BusinessError } from '@ohos.base';
    
-   let context =...; // Obtain the UIAbilityContext information of device B.
-   let pathDir = context.distributedFilesDir;
+   let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
+   let pathDir: string = context.distributedFilesDir;
    // Obtain the file path of the distributed directory.
-   let filePath = pathDir + '/test.txt';
+   let filePath: string = pathDir + '/test.txt';
    
    try {
      // Open the file in the distributed directory.
      let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
      // Set the buffer for receiving the read data.
-     let buffer = new ArrayBuffer(4096);
+     let arrayBuffer = new ArrayBuffer(4096);
      // Read the file. The return value is the number of read bytes.
-     let num = fs.readSync(file.fd, buffer, {
-       offset: 0
-     });
+     class Option {
+        public offset: number = 0;
+        public length: number;
+     }
+     let option = new Option();
+     option.length = arrayBuffer.byteLength;
+     let num = fs.readSync(file.fd, arrayBuffer, option);
      // Print the read data.
-     console.info('read result: ' + String.fromCharCode.apply(null, new Uint8Array(buffer.slice(0, num))));
-   } catch (err) {
+     let buf = buffer.from(arrayBuffer, 0, num);
+     console.info('read result: ' + buf.toString());
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
    }
    ```

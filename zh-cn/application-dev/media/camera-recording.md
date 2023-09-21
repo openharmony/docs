@@ -16,19 +16,19 @@
 2. 创建Surface。
    
    系统提供的media接口可以创建一个录像AVRecorder实例，通过该实例的getInputSurface方法获取SurfaceId，与录像输出流做关联，处理录像输出流输出的数据。
- 
+
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string> {  // aVRecorderConfig可参考下一章节
-     let avRecorder: media.AVRecorder;
-     media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-       if (recorder != null) {
-         avRecorder = recorder;
-         console.info('createAVRecorder success');
-       } else {
-         console.info(`createAVRecorder fail, error:${error}`);
-       }
-     });
-   
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节
+     let avRecorder: media.AVRecorder | undefined = undefined;
+     try {
+       avRecorder = await media.createAVRecorder();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`createAVRecorder call failed. error code: ${err.code}`);
+     }
+     if (avRecorder === undefined) {
+       return undefined;
+     }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
          console.log('prepare success');
@@ -42,15 +42,17 @@
    ```
 
 3. 创建录像输出流。
-     
-    通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput方法创建录像输出流。
-     
+
+   通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput方法创建录像输出流。
+
+   **注**：预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+
    ```ts
-   function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): camera.VideoOutput {
+   async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
      if (!videoProfilesArray) {
        console.error("createOutput videoProfilesArray == null || undefined");
-       return null;
+       return undefined;
      }
      // AVRecorderProfile
      let aVRecorderProfile: media.AVRecorderProfile = {
@@ -60,28 +62,29 @@
        videoFrameWidth : 640,  // 视频分辨率的宽
        videoFrameHeight : 480, // 视频分辨率的高
        videoFrameRate : 30 // 视频帧率
-     }
-     // 创建视频录制的参数
+     };
+     // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
        rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
-     }
+     };
      // 创建avRecorder
-     let avRecorder: media.AVRecorder;
-     media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-       if (recorder != null) {
-         avRecorder = recorder;
-         console.info('createAVRecorder success');
-       } else {
-         console.info(`createAVRecorder fail, error:${error}`);
-       }
-     });
+     let avRecorder: media.AVRecorder | undefined = undefined;
+     try {
+       avRecorder = await media.createAVRecorder();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`createAVRecorder call failed. error code: ${err.code}`);
+     }
+     if (avRecorder === undefined) {
+       return undefined;
+     }
      // 设置视频录制的参数
      avRecorder.prepare(aVRecorderConfig);
      // 创建VideoOutput对象
-     let videoOutput: camera.VideoOutput;
+     let videoOutput: camera.VideoOutput | undefined = undefined;
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
      } catch (error) {

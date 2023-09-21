@@ -115,12 +115,14 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct ToggleExample {
+  @State BOnSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is on.'}
+  @State BOffSt:promptAction.ShowToastOptions = {'message': 'Bluetooth is off.'}
   build() {
     Column() {
       Row() {
         Text("Bluetooth Mode")
-        .height(50)
-        .fontSize(16)
+          .height(50)
+          .fontSize(16)
       }
       Row() {
         Text("Bluetooth")
@@ -133,9 +135,9 @@ struct ToggleExample {
           .margin({left: 200, right: 10})
           .onChange((isOn: boolean) => {
             if(isOn) {
-              promptAction.showToast({ message: 'Bluetooth is on.' })
+              promptAction.showToast(this.BOnSt)
             } else {
-              promptAction.showToast({ message: 'Bluetooth is off.' })
+              promptAction.showToast(this.BOffSt)
             }
           })
       }

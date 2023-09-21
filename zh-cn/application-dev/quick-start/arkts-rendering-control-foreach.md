@@ -36,21 +36,21 @@ ForEach(
 
 - itemGenerator函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设itemGenerator和keyGenerator函数是否执行及其执行顺序。例如，以下示例可能无法正确运行：
 
-  ```ts
-let obj: Object
-ForEach(anArray.map((item1: Object, index1: number): Object => {
-    obj.i = index1 + 1
-    obj.data = item1
-    return obj;
-  }),
-(item: string) => Text(`${item.i}. item.data.label`),
-(item: string): string => {
-    return item.data.id.toString()
-})
-  ```
+    ```ts
+    let obj: Object
+    ForEach(anArray.map((item1: Object, index1: number): Object => {
+        obj.i = index1 + 1
+        obj.data = item1
+        return obj;
+      }),
+    (item: string) => Text(`${item.i}. item.data.label`),
+    (item: string): string => {
+        return item.data.id.toString()
+    })
+    ```
 
 
-## 开发者的建议
+## 开发建议
 
 - 建议开发者不要假设项构造函数的执行顺序。执行顺序可能不能是数组中项的排列顺序。
 

@@ -22,7 +22,7 @@ import common from '@ohos.app.ability.common';
 ```ts
   import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
 
-  let context;
+  let context : DriverExtensionContext;
   class EntryAbility extends DriverExtensionAbility {
     onInit() {
       context = this.context; // 获取DriverExtensionContext

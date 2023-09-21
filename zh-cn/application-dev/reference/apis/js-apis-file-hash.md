@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import Hash from '@ohos.file.hash';
 ```
 
@@ -18,27 +18,28 @@ import Hash from '@ohos.file.hash';
 
 **Stage模型**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 **FA模型**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
@@ -74,11 +75,11 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256").then((str) => {
+  Hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -110,9 +111,9 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256", (err, str) => {
+  Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
       console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {

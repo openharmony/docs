@@ -1,4 +1,4 @@
-# OHOS::Media::OhosImageComponent
+# OhosImageComponent
 
 
 ## 概述
@@ -34,7 +34,7 @@
 ### byteBuffer
 
 ```
-uint8_t* OHOS::Media::OhosImageComponent::byteBuffer
+uint8_t* OhosImageComponent::byteBuffer
 ```
 
 **描述：**
@@ -45,7 +45,7 @@ uint8_t* OHOS::Media::OhosImageComponent::byteBuffer
 ### componentType
 
 ```
-int32_t OHOS::Media::OhosImageComponent::componentType
+int32_t OhosImageComponent::componentType
 ```
 
 **描述：**
@@ -56,7 +56,7 @@ int32_t OHOS::Media::OhosImageComponent::componentType
 ### pixelStride
 
 ```
-int32_t OHOS::Media::OhosImageComponent::pixelStride
+int32_t OhosImageComponent::pixelStride
 ```
 
 **描述：**
@@ -67,7 +67,7 @@ int32_t OHOS::Media::OhosImageComponent::pixelStride
 ### rowStride
 
 ```
-int32_t OHOS::Media::OhosImageComponent::rowStride
+int32_t OhosImageComponent::rowStride
 ```
 
 **描述：**
@@ -78,7 +78,7 @@ int32_t OHOS::Media::OhosImageComponent::rowStride
 ### size
 
 ```
-size_t OHOS::Media::OhosImageComponent::size
+size_t OhosImageComponent::size
 ```
 
 **描述：**

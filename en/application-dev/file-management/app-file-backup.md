@@ -32,17 +32,26 @@ The capability file of an application contains the device type, device version, 
 
 Use **backup.getLocalCapabilities()** to obtain capability files.
 
- ```js
+ ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
-  async function getLocalCapabilities() {
+  import { BusinessError } from '@ohos.base';
+
+  // Obtain the application file path.
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
+
+  async function getLocalCapabilities(): Promise<void> {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
-      let fpath = await globalThis.context.filesDir + '/localCapabilities.json';
+      let fpath = filesDir + '/localCapabilities.json';
       fs.copyFileSync(fileData.fd, fpath);
       fs.closeSync(fileData.fd);
-    } catch (err) {
-      console.error('getLocalCapabilities failed with err: ' + err);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
     }
   }
  ```
@@ -88,17 +97,24 @@ You can save the file to a local directory as required.
 **Example**
 
  ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  // Obtain the sandbox path.
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
   // Create a SessionBackup instance for data backup.
-  let g_session;
-  function createSessionBackup() {
-    let sessionBackup = new backup.SessionBackup({
-      onFileReady: async (err, file) => {
+  let g_session: backup.SessionBackup;
+  function createSessionBackup(): backup.SessionBackup {
+    let generalCallbacks: backup.GeneralCallbacks = {
+      onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + err);
+          console.info('onFileReady err: ' + JSON.stringify(err));
         }
         try {
-          let bundlePath = await globalThis.context.filesDir + '/' + file.bundleName;
+          let bundlePath = filesDir + '/' + file.bundleName;
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
@@ -109,23 +125,23 @@ You can save the file to a local directory as required.
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.info('onBundleBegin err: ' + err);
+          console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.info('onBundleEnd err: ' + err);
+          console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleEnd bundleName: ' + bundleName);
         }
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.info('onAllBundlesEnd err: ' + err);
+          console.info('onAllBundlesEnd err: ' + JSON.stringify(err));
         } else {
           console.info('onAllBundlesEnd');
         }
@@ -133,16 +149,16 @@ You can save the file to a local directory as required.
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
-    });
+    }
+    let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
   }
-  
-  async function sessionBackup ()
-  {
+
+  async function sessionBackup (): Promise<void> {
     g_session = createSessionBackup();
     // Select the application to be backed up based on the capability file obtained by backup.getLocalCapabilities().
     // You can also back up data based on the application bundle name.
-    const backupApps = [
+    const backupApps: string[] = [
       "com.example.hiworld",
     ]
     await g_session.appendBundles(backupApps);
@@ -161,24 +177,26 @@ When all the data of the application is ready, the service starts to restore the
 **Example**
 
  ```ts
+  import backup from '@ohos.file.backup';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
   // Create a SessionRestore instance for data restoration.
-  let g_session;
-  async function publishFile(file)
-  {
-    await g_session.publishFile({
+  let g_session: backup.SessionRestore;
+  async function publishFile(file: backup.File): Promise<void> {
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
-      onFileReady: (err, file) => {
+  function createSessionRestore(): backup.SessionRestore {
+    let generalCallbacks: backup.GeneralCallbacks = {
+      onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + err);
+          console.info('onFileReady err: ' + JSON.stringify(err));
         }
         // Set bundlePath based on the actual situation.
-        let bundlePath;
+        let bundlePath: string = '';
         if (!fs.accessSync(bundlePath)) {
           console.info('onFileReady bundlePath err : ' + bundlePath);
         }
@@ -188,52 +206,51 @@ When all the data of the application is ready, the service starts to restore the
         publishFile(file);
         console.info('onFileReady success');
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + err);
+          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + err);
+          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleEnd success');
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + err);
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onAllBundlesEnd success');
       },
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
-  
-  async function restore ()
-  {
+
+  async function restore01 (): Promise<void> {
     g_session = createSessionRestore();
-    const backupApps = [
+    const restoreApps: string[] = [
       "com.example.hiworld",
     ]
     // You can obtain the capability file based on actual situation. The following is an example only.
     // You can also construct capability files as required.
     let fileData = await backup.getLocalCapabilities();
-    await g_session.appendBundles(fileData.fd, backupApps);
+    await g_session.appendBundles(fileData.fd, restoreApps);
     console.info('appendBundles success');
     // After the applications to be restored are added, call getFileHandle() to obtain the handles of the application files to be restored based on the application name.
     // The number of application data files to be restored varies depending on the number of backup files. The following is only an example.
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```
@@ -249,23 +266,30 @@ If the application has not been installed, you can install the application and t
 **Example**
 
  ```ts
+  import backup from '@ohos.file.backup';
+  import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  // Obtain the sandbox path.
+  let context = getContext(this) as common.UIAbilityContext;
+  let filesDir = context.filesDir;
   // Create a SessionRestore instance for data restoration.
-  let g_session;
-  async function publishFile(file)
-  {
-    await g_session.publishFile({
+  let g_session: backup.SessionRestore;
+  async function publishFile(file: backup.File): Promise<void> {
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
-      onFileReady: (err, file) => {
-      if (err) {
-        console.info('onFileReady err: ' + err);
-      }
-        let bundlePath;
+  function createSessionRestore(): backup.SessionRestore {
+    let generalCallbacks: backup.GeneralCallbacks = {
+      onFileReady: (err: BusinessError, file: backup.File) => {
+        if (err) {
+          console.info('onFileReady err: ' + JSON.stringify(err));
+        }
+        let bundlePath: string = '';
         if( file.uri == "/data/storage/el2/restore/bundle.hap" )
         {
           // Set the path of the application installation package based on actual situation.
@@ -281,61 +305,57 @@ If the application has not been installed, you can install the application and t
         publishFile(file);
         console.info('onFileReady success');
       },
-      onBundleBegin: (err, bundleName) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + err);
+          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err, bundleName) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + err);
+          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleEnd success');
       },
-      onAllBundlesEnd: (err) => {
+      onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + err);
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
         }
         console.info('onAllBundlesEnd success');
       },
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
-  
-  async function restore ()
-  {
+
+  async function restore02 (): Promise<void> {
     g_session = createSessionRestore();
-    const backupApps = [
+    const restoreApps: string[] = [
       "com.example.hiworld",
     ]
-    let fpath = await globalThis.context.filesDir + '/localCapabilities.json';
-    let file = fs.openSync(fpath, fileIO.OpenMode.CREATE | fileIO.OpenMode.READ_WRITE);
+    let fpath = filesDir + '/localCapabilities.json';
+    let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let content = "{\"bundleInfos\" :[{\"allToBackup\" : false,\"extensionName\" : \"\"," +
     "\"name\" : \"cn.openharmony.inputmethodchoosedialog\",\"needToInstall\" : true,\"spaceOccupied\" : 0," +
     "\"versionCode\" : 1000000,\"versionName\" : \"1.0.0\"}],\"deviceType\" : \"default\",\"systemFullName\"   : \"OpenHarmony-4.0.6.2(Canary1)\"}";
     fs.writeSync(file.fd, content);
     fs.fsyncSync(file.fd);
-    await g_session.appendBundles(file.fd, backupApps);
+    await g_session.appendBundles(file.fd, restoreApps);
     console.info('appendBundles success');
-  
+
     // Obtain the file handle of the application to be installed.
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "/data/storage/el2/restore/bundle.hap"
-    });
-  
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "manage.json";
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```

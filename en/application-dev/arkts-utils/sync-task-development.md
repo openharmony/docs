@@ -25,21 +25,20 @@ Simulate a singleton class that contains synchronous calls.
 ```ts
 // handle.ts code
 export default class Handle {
-  static getInstance() {
+  static getInstance(): void {
     // Return a singleton object.
   }
 
-  static syncGet() {
+  static syncGet(): void {
     // Synchronous getter.
-    return;
   }
 
-  static syncSet(num: number) {
+  static syncSet(num: number): void {
     // Synchronous setter.
-    return;
   }
 }
 ```
+
 
 Use **TaskPool** to call the related synchronous methods.
 
@@ -51,22 +50,18 @@ import Handle from './Handle'; // Return a static handle.
 
 // Step 1: Define a concurrency function that internally calls the synchronous methods.
 @Concurrent
-function func(num: number) {
+function func(num: number): boolean {
   // Call the synchronous wait implemented in a static class object.
   Handle.syncSet(num);
-  // Alternatively, call the synchronous wait implemented in a singleton object.
-  Handle.getInstance().syncGet();
   return true;
 }
 
 // Step 2: Create and execute a task.
-async function asyncGet() {
+async function asyncGet(): Promise<void> {
   // Create a task and pass in the function func.
-  let task = new taskpool.Task(func, 1);
-  // Execute the task and obtain the result res.
-  let res = await taskpool.execute(task);
-  // Perform operations on the synchronous result.
-  console.info(String(res));
+  let task: taskpool.Task = new taskpool.Task(func, 1);
+  // Execute the task and perform operations on the result after the synchronization logic is executed.
+  console.info(String(await taskpool.execute(task)));
 }
 
 @Entry
@@ -98,76 +93,79 @@ struct Index {
 Use **Worker** when you want to schedule a series of synchronous tasks using the same handle or depending on the same class object.
 
 1. Create a **Worker** object in the main thread and receive messages from the worker thread.
-   
-   ```js
-   import worker from '@ohos.worker';
-   
-   @Entry
-   @Component
-   struct Index {
-     @State message: string = 'Hello World';
-   
-     build() {
-       Row() {
-         Column() {
-           Text(this.message)
-             .fontSize(50)
-             .fontWeight(FontWeight.Bold)
-             .onClick(() => {
-               let w = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-               w.onmessage = function (d) {
-                 // Receive the result of the worker thread.
-               }
-               w.onerror = function (d) {
-                 // Receive error information of the worker thread.
-               }
-               // Send a Set message to the worker thread.
-               w.postMessage({'type': 0, 'data': 'data'})
-               // Send a Get message to the worker thread.
-               w.postMessage({'type': 1})
-               // Destroy the worker thread.
-               w.terminate()
-             })
-         }
-         .width('100%')
-       }
-       .height('100%')
-     }
-   }
-   ```
+
+    ```ts
+    import worker from '@ohos.worker';
+    
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+    
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .onClick(() => {
+                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+                w.onmessage = (): void => {
+                  // Receive the result of the worker thread.
+                }
+                w.onerror = (): void => {
+                  // Receive error information of the worker thread.
+                }
+                // Send a Set message to the worker thread.
+                w.postMessage({'type': 0, 'data': 'data'})
+                // Send a Get message to the worker thread.
+                w.postMessage({'type': 1})
+                // Destroy the worker thread.
+                w.terminate()
+              })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
 
 2. Bind the **Worker** object in the worker thread and process the synchronous task logic.
-   
-   ```js
-   // handle.ts code
-   export default class Handle {
-     syncGet() {
-       return;
+
+    ```ts
+    // handle.ts code
+    export default class Handle {
+      syncGet() {
+        return;
+      }
+    
+      syncSet(num: number) {
+        return;
+      }
+    }
+    ```
+    
+    ```ts
+    // Worker.ts code
+    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
+    import Handle from './handle'  // Return a handle.
+    
+    let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
+    
+    // Handle that cannot be transferred. All operations depend on this handle.
+    let handler: Handle = new Handle()
+    
+    // onmessage() logic of the worker thread.
+    workerPort.onmessage = (e : MessageEvents): void => {
+     switch (e.data.type as number) {
+      case 0:
+       handler.syncSet(e.data.data);
+       workerPort.postMessage('success set');
+      case 1:
+       handler.syncGet();
+       workerPort.postMessage('success get');
      }
-   
-     syncSet(num: number) {
-       return;
-     }
-   }
-   
-   // Worker.ts code
-   import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
-   import Handle from './handle.ts' // Return a handle.
-   
-   var workerPort : ThreadWorkerGlobalScope = worker.workerPort;
-   
-   // Handle that cannot be transferred. All operations depend on this handle.
-   var handler = new Handle()
-   
-   // onmessage() logic of the worker thread.
-   workerPort.onmessage = function(e : MessageEvents) {
-     switch (e.data.type) {
-       case 0:
-         handler.syncSet(e.data.data);
-         workerPort.postMessage('success set');
-       case 1:
-         handler.syncGet();
-         workerPort.postMessage('success get');
-     }
-   }
-   ```
+    }
+    ```

@@ -17,7 +17,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | CustomDialog                             | Yes   | Constructor of the custom dialog box content.                             |
+| builder                       | CustomDialog                             | Yes   | Builder of the custom dialog box content.                             |
 | cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay exits.                            |
 | autoCancel                    | boolean                                  | No   | Whether to allow users to click the overlay to exit.<br>Default value: **true**                |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
@@ -29,7 +29,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.|
 | closeAniamtion<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.                   |
 | showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
-| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.                                          |
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.<br>**NOTE**<br>If the content builder also has the background color set, the background color set here will be overridden by the background color of the content builder.|
 | cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md) attribute.|
 
 ## CustomDialogController
@@ -37,7 +37,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 ### Objects to Import
 
 ```ts
-dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
+let dialogController : CustomDialogController = new CustomDialogController(...)
 ```
 > **NOTE**
 >
@@ -65,10 +65,10 @@ Closes the custom dialog box. If the dialog box is closed, this API does not tak
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
-  controller: CustomDialogController
+  controller?: CustomDialogController
   // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self at the end.
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
 
   build() {
     Column() {
@@ -81,14 +81,18 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close()
-            this.cancel()
+            if (this.controller != undefined) {
+              this.controller.close()
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            this.inputValue = this.textValue
-            this.controller.close()
-            this.confirm()
+            if (this.controller != undefined) {
+              this.inputValue = this.textValue
+              this.controller.close()
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }.borderRadius(10)
@@ -101,7 +105,7 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,
@@ -110,7 +114,7 @@ struct CustomDialogUser {
     }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: DialogAlignment.Default,
+    alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
     customStyle: false,
@@ -118,10 +122,9 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
+  // Set dialogController to null when the custom component is about to be destructed.
   aboutToDisappear() {
-    delete this.dialogController, // Delete the dialogController instance.
-    this.dialogController = undefined //Set dialogController to undefined.
+    this.dialogController = null // Set dialogController to null.
   }
 
   onCancel() {
@@ -140,7 +143,7 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          if (this.dialogController != undefined) {
+          if (this.dialogController != null) {
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
