@@ -19,8 +19,8 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and use **getReceivingSurfaceId()** of the instance to obtain the surface ID, which is associated with the photo output stream to process the data output by the stream.
  
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string> {
-     let photoSurfaceId: string;
+   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
+     let photoSurfaceId: string | undefined = undefined;
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
      if (receiver !== undefined) {
@@ -39,12 +39,12 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    Obtain the photo output streams supported by the current device from **photoProfiles** in **CameraOutputCapability**, and then call **createPhotoOutput()** to pass in a supported output stream and the surface ID obtained in step 1 to create a photo output stream.
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, photoSurfaceId: string): camera.PhotoOutput {
+   function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, photoSurfaceId: string): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
      if (!photoProfilesArray) {
        console.error("createOutput photoProfilesArray == null || undefined");
      }
-     let photoOutput: camera.PhotoOutput;
+     let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0], photoSurfaceId);
      } catch (error) {
@@ -56,13 +56,13 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 4. Set camera parameters.
-   
+
    You can set camera parameters to adjust photographing functions, including the flash, zoom ratio, and focal length.
- 
+
    ```ts
    function configuringSession(captureSession: camera.CaptureSession): void {
      // Check whether the camera has flash.
-     let flashStatus: boolean;
+     let flashStatus: boolean = false;
      try {
        flashStatus = captureSession.hasFlash();
      } catch (error) {
@@ -72,7 +72,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      console.info(`Promise returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
        // Check whether the auto flash mode is supported.
-       let flashModeStatus: boolean;
+       let flashModeStatus: boolean = false;
        try {
          let status: boolean = captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
          flashModeStatus = status;
@@ -91,7 +91,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        }
      }
      // Check whether the continuous auto focus is supported.
-     let focusModeStatus: boolean;
+     let focusModeStatus: boolean = false;
      try {
        let status: boolean = captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        focusModeStatus = status;
@@ -109,12 +109,15 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        }
      }
      // Obtain the zoom ratio range supported by the camera.
-     let zoomRatioRange: Array<number>;
+     let zoomRatioRange: Array<number> = [];
      try {
        zoomRatioRange = captureSession.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to get the zoom ratio range. error: ${JSON.stringify(err)}`);
+     }
+     if (zoomRatioRange.length <= 0 ) {
+       return;
      }
      // Set a zoom ratio.
      try {
@@ -127,7 +130,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 5. Trigger photographing.
-   
+
    Call **capture()** in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photographing, and the second parameter is a callback function.
  
    ```ts

@@ -10,7 +10,7 @@
     - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)
     - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
-    - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)
+    - [Using SoundPool for Audio Playback](using-soundpool-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
     - [Audio Effect Management](audio-effect-management.md)

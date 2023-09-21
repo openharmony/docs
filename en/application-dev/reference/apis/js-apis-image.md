@@ -67,6 +67,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -219,8 +220,12 @@ image.createPixelMap(color, opts, (err : BusinessError, pixelmap : image.PixelMa
             offset: 0,
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
-        pixelmap.readPixels(area, () => {
-            console.info('readPixels success');
+        pixelmap.readPixels(area, (err : BusinessError) => {
+            if (err != undefined) {
+		   console.info('Failed to read pixelmap from the specified area.');
+	    } else {
+		   console.info('Succeeded to read pixelmap from the specified area.');
+	    }
         })
     }
 })
@@ -306,10 +311,10 @@ for (let i = 0; i < bufferArr.length; i++) {
 }
 pixelmap.writePixels(area, (error : BusinessError) => {
     if (error != undefined) {
-		console.info('Failed to write pixelmap into the specified area.');
-	} else {
-		console.info('Succeeded to write pixelmap into the specified area.');
-	}
+        console.info('Failed to write pixelmap into the specified area.');
+    } else {
+        console.info('Succeeded to write pixelmap into the specified area.');
+    }
 })
 ```
 
@@ -374,7 +379,7 @@ for (let i = 0; i < bufferArr.length; i++) {
     bufferArr[i] = i + 1;
 }
 pixelmap.writeBufferToPixels(color, (err : BusinessError) => {
-    if (err) {
+    if (err != undefined) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
     } else {
@@ -752,7 +757,7 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 import {BusinessError} from '@ohos.base'
 let angle = 90.0;
 pixelmap.rotate(angle, (err : BusinessError) => {
-  if (err) {
+    if (err != undefined) {
         console.error("Failed to set rotation.");
         return;
     } else {
@@ -785,7 +790,7 @@ Rotates this image based on the input angle. This API uses a promise to return t
 
 ```ts
 async function Demo() {
-	await pixelmap.rotate(90.0);
+    await pixelmap.rotate(90.0);
 }
 ```
 
@@ -809,7 +814,7 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 
 ```ts
 async function Demo() {
-	await pixelmap.flip(false, true);
+    await pixelmap.flip(false, true);
 }
 ```
 
@@ -838,7 +843,7 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 ```ts
 async function Demo() {
-	await pixelmap.flip(false, true);
+    await pixelmap.flip(false, true);
 }
 ```
 
@@ -861,7 +866,7 @@ Crops this image based on the input size. This API uses an asynchronous callback
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -889,7 +894,7 @@ Crops this image based on the input size. This API uses a promise to return the 
 
 ```ts
 async function Demo() {
-	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+    await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } } as image.Region);
 }
 ```
 
@@ -988,21 +993,26 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import image from '@ohos.multimedia.image'
 import rpc from '@ohos.rpc'
-class MySequence {
+class MySequence implements rpc.Parcelable {
     pixel_map;
     constructor(pixelmap : image.PixelMap) {
         this.pixel_map = pixelmap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
+        console.log('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-        let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
-        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
-            this.pixel_map = pixelMap;
+      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+          this.pixel_map = pixelMap;
+          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          })
         })
-        return true;
+      });
+      return true;
     }
 }
 async function Demo() {
@@ -1013,17 +1023,25 @@ async function Demo() {
    }
    let opts : image.InitializationOptions = {
       editable: true,
-      pixelFormat: 2,
+      pixelFormat: 4,
       size: { height: 4, width: 6 },
-      alphaType: 1
+      alphaType: 3
    }
-   let pixelMap;
+   let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-   let parcelable : MySequence = new MySequence(pixelMap);
-   let data : rpc.MessageSequence = rpc.MessageSequence.create();
-   data.writeParcelable(parcelable : rpc.Parcelable);
+   if (pixelMap != undefined) {
+     // Implement serialization.
+     let parcelable : MySequence = new MySequence(pixelMap);
+     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     data.writeParcelable(parcelable);
+
+
+     // Deserialize to obtain data through the RPC.
+     let ret : MySequence = new MySequence(pixelMap);
+     data.readParcelable(ret);
+   }
 }
 ```
 
@@ -1062,21 +1080,26 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 ```ts
 import image from '@ohos.multimedia.image'
 import rpc from '@ohos.rpc'
-class MySequence {
+class MySequence implements rpc.Parcelable {
     pixel_map;
     constructor(pixelmap : image.PixelMap) {
         this.pixel_map = pixelmap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
         this.pixel_map.marshalling(messageSequence);
+        console.log('marshalling');
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-        let pixelParcel : image.PixelMap = await image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}});
-        await pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
-            this.pixel_map = pixelMap;
+      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+          this.pixel_map = pixelMap;
+          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+            console.log("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
+          })
         })
-        return true;
+      });
+      return true;
     }
 }
 async function Demo() {
@@ -1087,17 +1110,25 @@ async function Demo() {
    }
    let opts : image.InitializationOptions = {
       editable: true,
-      pixelFormat: 2,
+      pixelFormat: 4,
       size: { height: 4, width: 6 },
-      alphaType: 1
+      alphaType: 3
    }
-   let pixelMap;
+   let pixelMap : image.PixelMap | undefined = undefined;
    await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
       pixelMap = pixelmap;
    })
-   let ret : MySequence = new MySequence(pixelMap);
-   let data : rpc.MessageSequence = rpc.MessageSequence.create();
-   await data.readParcelable(ret : rpc.Parcelable);
+   if (pixelMap != undefined) {
+     // Implement serialization.
+     let parcelable : MySequence = new MySequence(pixelMap);
+     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     data.writeParcelable(parcelable);
+
+
+     // Deserialize to obtain data through the RPC.
+     let ret : MySequence = new MySequence(pixelMap);
+     data.readParcelable(ret);
+   }
 }
 ```
 
@@ -1143,8 +1174,13 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 **Example**
 
 ```ts
-pixelmap.release(() => {
-    console.log('Succeeded in releasing pixelmap object.');
+import {BusinessError} from '@ohos.base'
+pixelmap.release((err : BusinessError) => {
+    if (err != undefined) {
+        console.log('Failed to release pixelmap object.');
+    } else {
+        console.log('Succeeded in releasing pixelmap object.');
+    }
 })
 ```
 
@@ -1181,7 +1217,7 @@ const imageSourceApi : image.ImageSource = image.createImageSource(path);
 // FA model
 import featureAbility from '@ohos.ability.featureAbility';
 
-const context : Context = featureAbility.getContext();
+const context : _Context = featureAbility.getContext();
 const path : string = context.getCacheDir() + "/test.jpg";
 const imageSourceApi : image.ImageSource = image.createImageSource(path);
 ```
@@ -1429,7 +1465,8 @@ Obtains information about this image. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-imageSourceApi.getImageInfo((imageInfo : image.ImageInfo) => { 
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
     console.log('Succeeded in obtaining the image information.');
 })
 ```
@@ -1579,8 +1616,9 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 ```ts
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    const w : string = imageSourceApi.getImageProperty("ImageWidth");
-    console.info('w', w);
+    imageSourceApi.getImageProperty("ImageWidth").then( (w : string) => {
+        console.info('w', w);
+    })
 })
 ```
 
@@ -1603,7 +1641,14 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 **Example**
 
 ```ts
-imageSourceApi.modifyImageProperty("ImageWidth", "120",() => {})
+import {BusinessError} from '@ohos.base'
+imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
+    if (err != undefined) {
+        console.info('modifyImageProperty Failed');
+    } else {
+        console.info('modifyImageProperty Succeeded');
+    }
+})
 ```
 
 ### updateData<sup>9+</sup>
@@ -1632,8 +1677,9 @@ Updates incremental data. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then(data => {
+imageSourceApi.updateData(array, false, 0, 10).then((data : Object) => {
     console.info('Succeeded in updating data.');
 })
 ```
@@ -1660,8 +1706,9 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const array : ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10,(error,data )=> {
+imageSourceApi.updateData(array, false, 0, 10,(error : BusinessError, data : Object)=> {
     if(data !== undefined){
         console.info('Succeeded in updating data.');     
     }
@@ -1740,6 +1787,7 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 let decodingOptions : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1749,7 +1797,7 @@ let decodingOptions : image.DecodingOptions = {
     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
     index: 0
 };
-imageSourceApi.createPixelMap(decodingOptions, (pixelmap : image.PixelMap) => { 
+imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelmap : image.PixelMap) => { 
     console.log('Succeeded in creating pixelmap object.');
 })
 ```
@@ -1797,7 +1845,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist : Array<image.PixelMap> = imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist : Array<image.PixelMap> = await imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1864,6 +1912,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 let decodeOpts : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1872,7 +1921,7 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, (pixelmaplist : Array<image.PixelMap>) => { 
+imageSourceApi.createPixelMapList(decodeOpts, (err : BusinessError, pixelmaplist : Array<image.PixelMap>) => { 
     console.log('Succeeded in creating pixelmaplist object.');
 })
 ```
@@ -1908,7 +1957,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-imageSourceApi.getDelayTimeList( (delayTimes : Array<number>) => {
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getDelayTimeList((err : BusinessError, delayTimes : Array<number>) => {
     console.log('Succeeded in getting delay time.');
 });
 ```
@@ -1944,7 +1994,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let delayTimes : Array<number> = imageSourceApi.getDelayTimeList();
+let delayTimes : Array<number> = await imageSourceApi.getDelayTimeList();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -1978,7 +2028,8 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-imageSourceApi.getFrameCount( (frameCount : number) => {
+import {BusinessError} from '@ohos.base'
+imageSourceApi.getFrameCount((err : BusinessError, frameCount : number) => {
     console.log('Succeeded in getting frame count.');
 });
 ```
@@ -2014,7 +2065,7 @@ For details about the error codes, see [Image Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let frameCount : number = imageSourceApi.getFrameCount();
+let frameCount : number = await imageSourceApi.getFrameCount();
 ```
 
 ### release
@@ -2034,8 +2085,13 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-imageSourceApi.release(() => { 
-    console.log('release succeeded.');
+import {BusinessError} from '@ohos.base'
+imageSourceApi.release((err : BusinessError) => { 
+    if (err != undefined) {
+        console.log('Failed to release the image source instance.');
+    } else {
+        console.log('Succeeded in releasing the image source instance.');
+    }
 })
 ```
 
@@ -2115,9 +2171,10 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, data : ArrayBuffer => {})
+imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {})
 ```
 
 ### packing
@@ -2174,12 +2231,13 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
+import {BusinessError} from '@ohos.base'
 const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
 let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelmap, packOpts, (data : ArrayBuffer) => { 
+    imagePackerApi.packing(pixelmap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
         console.log('Succeeded in packing the image.');
     })
 })
@@ -2241,8 +2299,13 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-imagePackerApi.release(()=>{ 
-    console.log('Succeeded in releasing image packaging.');
+import {BusinessError} from '@ohos.base'
+imagePackerApi.release((err : BusinessError)=>{ 
+    if (err != undefined) {
+        console.log('Failed to release image packaging.'); 
+    } else {
+        console.log('Succeeded in releasing image packaging.');
+    }
 })
 ```
 
@@ -2510,7 +2573,8 @@ Releases this **ImageReceiver** instance. This API uses an asynchronous callback
 **Example**
 
 ```ts
-receiver.release(() => {})
+import {BusinessError} from '@ohos.base'
+receiver.release((err : BusinessError) => {})
 ```
 
 ### release<sup>9+</sup>
@@ -2698,7 +2762,7 @@ Places the drawn image in the dirty queue. This API uses a promise to return the
 import {BusinessError} from '@ohos.base'
 creator.dequeueImage().then((img : image.Image) => {
     // Draw the image.
-    img.getComponent(4).then(component : image.Component => {
+    img.getComponent(4).then((component : image.Component) => {
         let bufferArr : Uint8Array = new Uint8Array(component.byteBuffer);
         for (let i = 0; i < bufferArr.length; i += 4) {
             bufferArr[i] = 0; //B
@@ -2880,8 +2944,13 @@ The corresponding resources must be released before another image arrives.
 **Example**
 
 ```ts
-img.release(() =>{ 
-    console.log('release succeeded.');
+import {BusinessError} from '@ohos.base'
+img.release((err : BusinessError) =>{ 
+    if (err != undefined) {
+        console.log('Failed to release the image source instance.');
+    } else {
+        console.log('Succeeded in releasing the image source instance.');
+    }
 }) 
 ```
 
@@ -3053,7 +3122,7 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Only the JPG and WebP formats are supported.|
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, only JPG, WebP, and PNG are supported.|
 | quality | number | Yes  | Yes  | Quality of the output image in JPEG encoding. The value ranges from 1 to 100.|
 | bufferSize<sup>9+</sup> | number | Yes  | Yes  | Buffer size, which is used to set the image size. The default value is 10 MB.|
 
