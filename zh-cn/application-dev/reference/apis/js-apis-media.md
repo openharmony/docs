@@ -2534,10 +2534,14 @@ on(type: 'error', callback: ErrorCallback): void
 
 以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)。
 
-| 错误码ID | 错误信息                          |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
+| 错误码ID | 错误信息                                            |
+| -------- | ------------------------------------------------   |
+| 5400101  | No memory. Return by callback.                     |
+| 5400102  | Operation not allowed. Return by callback.         |
+| 5400103  | I/O error. Return by callback.                     |
+| 5400104  | Time out. Return by callback.                      |
+| 5400105  | Service died. Return by callback.                  |
+| 5400106  | Unsupport format. Return by callback.              |
 
 **示例：**
 
@@ -2567,12 +2571,9 @@ off(type: 'error'): void
 
 | 错误码ID | 错误信息                                            |
 | -------- | ------------------------------------------------   |
-| 201      | Permission denied. Return by callback.             |
-| 401      | The parameter check failed. Return by callback.    |
-| 801      | Capability not supported. Return by callback.      |
 | 5400101  | No memory. Return by callback.                     |
 | 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | IO error. Return by callback.                      |
+| 5400103  | I/O error. Return by callback.                     |
 | 5400104  | Time out. Return by callback.                      |
 | 5400105  | Service died. Return by callback.                  |
 | 5400106  | Unsupport format. Return by callback.              |
