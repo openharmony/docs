@@ -37,7 +37,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 ### Objects to Import
 
 ```ts
-dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
+let dialogController : CustomDialogController = new CustomDialogController(...)
 ```
 > **NOTE**
 >
@@ -65,10 +65,10 @@ Closes the custom dialog box. If the dialog box is closed, this API does not tak
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
-  controller: CustomDialogController
+  controller?: CustomDialogController
   // You can pass in multiple other controllers in the CustomDialog to open one or more other CustomDialogs in the CustomDialog. In this case, you must place the controller pointing to the self at the end.
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
 
   build() {
     Column() {
@@ -81,14 +81,18 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close()
-            this.cancel()
+            if (this.controller != undefined) {
+              this.controller.close()
+              this.cancel()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
-            this.inputValue = this.textValue
-            this.controller.close()
-            this.confirm()
+            if (this.controller != undefined) {
+              this.inputValue = this.textValue
+              this.controller.close()
+              this.confirm()
+            }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }.borderRadius(10)
@@ -101,7 +105,7 @@ struct CustomDialogExample {
 struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,
@@ -118,10 +122,9 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
+  // Set dialogController to null when the custom component is about to be destructed.
   aboutToDisappear() {
-    delete this.dialogController, // Delete the dialogController instance.
-    this.dialogController = undefined //Set dialogController to undefined.
+    this.dialogController = null // Set dialogController to null.
   }
 
   onCancel() {
@@ -140,7 +143,7 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          if (this.dialogController != undefined) {
+          if (this.dialogController != null) {
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
