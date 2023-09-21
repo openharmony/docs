@@ -194,9 +194,9 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 **参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                           |
-| -------- | ------------------------------- | ---- | ---------------------------------------------- | ------------ |
+| -------- | ------------------------------- | ---- | ---------------------------------------------- |
 | uid      | number                          | 是   | app 唯一标识符                                 |
-| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略                                 | netuidpolicy |
+| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略                                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -336,13 +336,13 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **错误码：**
 
 | 错误码 ID | 错误信息                                     |
-| --------- | -------------------------------------------- | --- |
+| --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
 | 2100002   | Operation failed. Cannot connect to service. |
-| 2100003   | System internal error.                       |     |
+| 2100003   | System internal error.                       |
 
 **示例：**
 
