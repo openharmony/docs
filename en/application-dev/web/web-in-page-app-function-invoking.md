@@ -16,7 +16,7 @@ The following example registers the **test()** function with the frontend page. 
   // xxx.ets
   import web_webview from '@ohos.web.webview';
 
-  class testObj {
+  class testClass {
     constructor() {
     }
 
@@ -30,7 +30,7 @@ The following example registers the **test()** function with the frontend page. 
   struct WebComponent {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
     // Declare the object to be registered.
-    @State testObjtest: testObj = new testObj();
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -38,7 +38,7 @@ The following example registers the **test()** function with the frontend page. 
         Web({ src: $rawfile('index.html'), controller: this.webviewController})
           // Inject the object to the web client.
           .javaScriptProxy({
-            object: this.testObjtest,
+            object: this.testObj,
             name: "testObjName",
             methodList: ["test"],
             controller: this.webviewController
@@ -56,7 +56,7 @@ The following example registers the **test()** function with the frontend page. 
   import web_webview from '@ohos.web.webview';
   import business_error from '@ohos.base';
 
-  class testObj {
+  class testClass {
     constructor() {
     }
   
@@ -73,7 +73,7 @@ The following example registers the **test()** function with the frontend page. 
   @Component
   struct Index {
     webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-    @State testObjtest: testObj = new testObj();
+    @State testObj: testClass = new testClass();
 
     build() {
       Column() {
@@ -89,7 +89,7 @@ The following example registers the **test()** function with the frontend page. 
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
