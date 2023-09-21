@@ -74,6 +74,7 @@
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
+      - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
