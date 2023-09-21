@@ -21,7 +21,7 @@ Set up the Windows and Ubuntu development environments that meet the [Windows Re
 
 ## Ubuntu Requirements
 
-- OS: Ubuntu 18.04 or later. The recommended memory is 16 GB or higher.
+- OS: Ubuntu 18.04 or later, X86_64 architecture, and 16 GB or more of RAM (recommended)
 
 - User name: cannot contain Chinese characters
 
