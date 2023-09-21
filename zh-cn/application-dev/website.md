@@ -728,6 +728,7 @@
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
   - 性能
+    - [性能优化概览](performance/performance-overview.md)
     - ArkTS高性能编程
       - [高性能编程规范](performance/high-performance-programming.md)
       - [高效并发编程](performance/efficient-concurrent-programming.md)
