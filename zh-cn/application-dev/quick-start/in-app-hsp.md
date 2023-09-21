@@ -174,7 +174,7 @@ struct Index {
                 console.log("getStringValue is " + value);
               })
               .catch((err: BusinessError) => {
-                console.log("getStringValue promise error is " + error);
+                console.log("getStringValue promise error is " + err);
               });
           })
           .width("50%")
