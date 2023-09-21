@@ -329,6 +329,47 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 
 ```
 
+## CommonEventManager.createSubscriberSync
+
+createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
+
+createSubscriber的同步接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**参数：**
+
+| 参数名          | 类型                                                  | 必填 | 说明           |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
+
+**返回值：**
+| 类型                                                      | 说明             |
+| --------------------------------------------------------- | ---------------- |
+| [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let subscriber: CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
+//订阅者信息
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
+};
+
+//创建订阅者
+try {
+    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
+
 ## CommonEventManager.subscribe
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
@@ -583,6 +624,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -627,6 +670,8 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
