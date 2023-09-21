@@ -353,11 +353,11 @@ createSubscriber的同步接口。
 ```ts
 import Base from '@ohos.base';
 
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-let subscribeInfo = {
-	events: ["event"]
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
 };
 
 //创建订阅者
@@ -624,6 +624,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
@@ -668,6 +670,8 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
