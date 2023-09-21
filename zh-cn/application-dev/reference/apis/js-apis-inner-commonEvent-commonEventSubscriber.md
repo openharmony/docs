@@ -722,7 +722,7 @@ clearAbortCommonEvent的同步接口
 **示例：**
 
 ```ts
-subscriber.clearAbortCommonEventSync()；
+subscriber.clearAbortCommonEventSync();
 ```
 
 ## getAbortCommonEvent
