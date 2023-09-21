@@ -10,7 +10,7 @@ The **configPolicy** module provides APIs for obtaining the custom configuration
 
 ## Modules to Import
 
-```js
+```ts
 import configPolicy from '@ohos.configPolicy';
 ```
 
@@ -31,8 +31,10 @@ For example, if the **config.xml** file is stored in **/system/etc/config.xml** 
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the path of the configuration file.|
 
 **Example**
-  ```js
-  configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getOneCfgFile('etc/config.xml', (error: BusinessError, value: string) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -63,10 +65,12 @@ Obtains the path of a configuration file with the specified name and highest pri
 | Promise&lt;string&gt; | Promise used to return the path of the configuration file.|
 
 **Example**
-  ```js
-  configPolicy.getOneCfgFile('etc/config.xml').then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getOneCfgFile('etc/config.xml').then((value: string) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getOneCfgFile promise " + error);
   });
   ```
@@ -89,8 +93,10 @@ For example, if the **config.xml** file is stored in **/system/etc/config.xml** 
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the file list.|
 
 **Example**
-  ```js
-  configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -121,10 +127,12 @@ Obtains a list of configuration files with the specified name, sorted in ascendi
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
 
 **Example**
-  ```js
-  configPolicy.getCfgFiles('etc/config.xml').then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgFiles('etc/config.xml').then((value: Array<string>) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getCfgFiles promise " + error);
   });
   ```
@@ -145,8 +153,10 @@ Obtains the list of configuration level directories. This API uses an asynchrono
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the configuration level directory list.|
 
 **Example**
-  ```js
-  configPolicy.getCfgDirList((error, value) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
       if (error == null) {
           console.log("value is " + value);
       } else {
@@ -171,10 +181,12 @@ Obtains the list of configuration level directories. This API uses a promise to 
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|
 
 **Example**
-  ```js
-  configPolicy.getCfgDirList().then(value => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  configPolicy.getCfgDirList().then((value: Array<string>) => {
       console.log("value is " + value);
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
       console.log("getCfgDirList promise " + error);
   });
   ```
