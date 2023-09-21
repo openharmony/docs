@@ -153,7 +153,7 @@ import Want from '@ohos.app.ability.Want';
         });
         ```
     * FD
-        ```ts
+      ```ts
         import fs from '@ohos.file.fs';        
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -182,10 +182,10 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-        ```
+      ```
     - Usage of **parameters**: The following uses **ability.params.backToOtherMissionStack** as an example. When a ServiceExtensionAbility starts a UIAbility, redirection back across mission stacks is supported.
 
-    ```ts
+      ```ts
         // (1) UIAbility1 starts a ServiceExtensionAbility.
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -199,8 +199,8 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    ```ts
-
+    
+      ```ts
         // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -217,6 +217,8 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-    ```
+      ```
 
-    Note: In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility 2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility 2.
+    > **NOTE**
+    >
+    > In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility 2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility 2.
