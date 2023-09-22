@@ -138,7 +138,7 @@ typedef struct OH_AudioCapturerStruct OH_AudioCapturer
 
   
 ```
-typedef struct OH_AudioCapturer_Callbacks_StructOH_AudioCapturer_Callbacks
+typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 ```
 
 **描述：**
@@ -176,7 +176,7 @@ typedef struct OH_AudioRendererStruct OH_AudioRenderer
 
   
 ```
-typedef struct OH_AudioRenderer_Callbacks_StructOH_AudioRenderer_Callbacks
+typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 ```
 
 **描述：**
