@@ -191,6 +191,7 @@ The table below uses promise as an example to describe the APIs used for develop
      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
      import Want from '@ohos.app.ability.Want';
      import rpc from '@ohos.rpc';
+     import { BusinessError } from '@ohos.base';
    
      const MSG_SEND_METHOD: string = 'CallSendMsg'
    

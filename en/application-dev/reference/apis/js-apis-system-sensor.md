@@ -56,7 +56,7 @@ sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeAccelerometer
 
@@ -106,7 +106,7 @@ sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeCompass
 
@@ -154,7 +154,7 @@ sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeProximity
 
@@ -202,7 +202,7 @@ sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeLight
 
@@ -252,7 +252,7 @@ sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeStepCounter
 
@@ -303,7 +303,7 @@ sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
 ## sensor.unsubscribeBarometer
@@ -355,7 +355,7 @@ sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
 ## sensor.unsubscribeHeartRate
@@ -406,7 +406,7 @@ sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeOnBodyState
 
@@ -490,7 +490,7 @@ sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
@@ -545,7 +545,7 @@ sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>
 
