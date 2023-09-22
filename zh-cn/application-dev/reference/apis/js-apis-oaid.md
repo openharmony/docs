@@ -35,7 +35,7 @@ getOAID():Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[广告标识服务错误码参考](../errorcodes/errorcode-oaid.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
@@ -84,7 +84,7 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 **错误码：**
 
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[广告标识服务错误码参考](../errorcodes/errorcode-oaid.md)。
 
 
 | 错误码ID | 错误信息 | 
@@ -130,7 +130,7 @@ resetOAID(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[广告标识服务错误码参考](../errorcodes/errorcode-oaid.md)。
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
