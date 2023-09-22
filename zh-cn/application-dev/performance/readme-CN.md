@@ -1,6 +1,6 @@
 # 应用性能最佳实践
 
-- [应用性能最佳实践概述](performance-best-parctices-overview.md)
+- [应用性能最佳实践概述](performance-overview.md)
 
 - [提升应用冷启动速度](improve-application-cold-start-speed.md)
 
