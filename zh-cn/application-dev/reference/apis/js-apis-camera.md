@@ -3938,7 +3938,7 @@ addDeferredSurface(surfaceId: string): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function preview(context: common.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
