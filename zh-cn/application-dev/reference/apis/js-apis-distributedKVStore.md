@@ -2332,6 +2332,8 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 将值写入SingleKVStore数据库，使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
@@ -2388,6 +2390,8 @@ try {
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 将valuesbucket类型的值写入SingleKVStore数据库，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -2560,6 +2564,8 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 从数据库中删除符合predicates条件的键值对，使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
@@ -2618,6 +2624,8 @@ try {
 delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 从数据库中删除符合predicates条件的键值对，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -3545,6 +3553,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
@@ -3600,6 +3610,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6230,6 +6242,8 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用callback异步回调。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6285,6 +6299,8 @@ try {
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 获取与本设备指定Predicate对象匹配的KVStoreResultSet对象，使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
@@ -6347,6 +6363,8 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Provider
@@ -6407,6 +6425,8 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统接口：** 此接口为系统接口。
 
