@@ -1,18 +1,18 @@
 # @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
 
-The **WallpaperExtensionAbility** module provides APIs for developing wallpaper extension abilities and managing the lifecycle of these extension abilities.
+The **WallpaperExtensionAbility** module provides lifecycle callbacks for wallpaper extension abilities and APIs for listening for wallpaper changes.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the FA model.
+> The APIs of this module can be used only in the stage model.
 >
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 ```
 
@@ -32,11 +32,12 @@ Called to initialize a wallpaper extension ability when it is launched.
 
 **Example**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onCreate(want) {
+    onCreate(want: Want): void {
         console.log('onCreate, want:' + want.abilityName);
     }
 }
@@ -58,11 +59,12 @@ Called when the wallpaper changes.
 
 **Example**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import wallpaper from '@ohos.wallpaper';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onWallpaperChange(wallpaperType) {
+    onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
         console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
     }
 }
@@ -78,11 +80,11 @@ Called when this wallpaper extension ability is destroyed to clear resources.
 
 **Example**
 
-```js
+```ts
 import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 
 class WallpaperExt extends WallpaperExtensionAbility {
-    onDestroy() {
+    onDestroy(): void {
         console.log('onDestroy');
     }
 }
