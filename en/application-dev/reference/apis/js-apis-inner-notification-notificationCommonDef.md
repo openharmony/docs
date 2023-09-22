@@ -13,4 +13,4 @@ Provides the bundle information of an application.
 | Name  | Type  | Mandatory| Description  |
 | ------ | ------ | ------ |  ------ |
 | bundle | string | Yes| Bundle information of the application.|
-| uid    | number | No| User ID.|
+| uid    | number | No| User ID. The default value is 0.|
