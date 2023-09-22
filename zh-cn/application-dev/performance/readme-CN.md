@@ -13,3 +13,6 @@
 - [分析应用耗时](application-performance-analysis.md)
 
 - [高性能编码规范](high-performance-programming.md)
+
+- [多线程能力场景化](openharmony_multi_thread_capability.md)
+
