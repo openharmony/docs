@@ -21,11 +21,11 @@ getOAID():Promise&lt;string&gt;
 
 获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限：**ohos.permission.APP_TRACKING_CONSENT
+**需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
-**系统能力：**SystemCapability.Advertising.OAID
+**系统能力：** SystemCapability.Advertising.OAID
 
 **返回值：**
 
@@ -67,11 +67,11 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 获取开放匿名设备标识符（Open Anonymous Device Identifier, OAID）。
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限：**ohos.permission.APP_TRACKING_CONSENT
+**需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
-**系统能力：**SystemCapability.Advertising.OAID
+**系统能力：** SystemCapability.Advertising.OAID
 
 **参数：**
 
@@ -122,11 +122,11 @@ resetOAID(): void
 
 **系统接口：** 此接口为系统接口。
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**需要权限：**ohos.permission.APP_TRACKING_CONSENT
+**需要权限：** ohos.permission.APP_TRACKING_CONSENT
 
-**系统能力：**SystemCapability.Advertising.OAID
+**系统能力：** SystemCapability.Advertising.OAID
 
 **错误码：**
 
