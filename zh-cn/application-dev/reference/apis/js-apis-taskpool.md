@@ -320,7 +320,7 @@ taskpoolExecute();
 
 ```ts
 // b.ets
-export var c = 2000;
+export let c = 2000;
 ```
 ```ts
 // 引用import变量
@@ -381,8 +381,8 @@ function strSort(inPutArr) {
 export async function func1() {
     console.log("taskpoolTest start");
     let strArray = ['c test string', 'b test string', 'a test string'];
-    var task = new taskpool.Task(strSort, strArray);
-    var result = await taskpool.execute(task);
+    let task = new taskpool.Task(strSort, strArray);
+    let result = await taskpool.execute(task);
     console.log("func1 result:" + result);
 }
 
