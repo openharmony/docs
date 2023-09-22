@@ -198,6 +198,33 @@ try {
 }
 ```
 
+## pointer.setPointerSpeedSync<sup>10+</sup>
+
+setPointerSpeedSync(speed: number): void
+
+使用同步方式设置鼠标移动速度。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+
+**示例**：
+
+```js
+try {
+  let speed = pointer.setPointerSpeedSync(5);
+  console.log(`Set pointer speed success`);
+} catch (error) {
+  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## pointer.getPointerSpeed<sup>9+</sup>
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
@@ -253,6 +280,33 @@ try {
   pointer.getPointerSpeed().then(speed => {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
+} catch (error) {
+  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSpeedSync<sup>10+</sup>
+
+getPointerSpeedSync(): number
+
+使用同步方式获取当前鼠标移动速度。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| number | 返回鼠标移动速度。 |
+
+**示例**：
+
+```js
+try {
+  let speed = pointer.getPointerSpeedSync();
+  console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
 } catch (error) {
   console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -807,6 +861,45 @@ window.getLastWindow(this.context, (error, win) => {
   }
 });
 ```
+
+## pointer.setPointerStyleSync<sup>10+</sup>
+
+setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
+
+使用同步方式设置鼠标样式类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名                  | 类型                             | 必填   | 说明               |
+| ------------------- | ------------------------------ | ---- | ---------------- |
+| windowId            | number                         | 是    | 窗口id。       |
+| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+
+**示例**：
+```js
+import window from '@ohos.window';
+
+window.getLastWindow(getContext(), (error, win) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  let windowId = win.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
+    console.log(`Set pointer style success`);
+  } catch (error) {
+    console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
+});
+```
+
 ## PointerStyle<sup>9+</sup>
 
 鼠标样式类型。
