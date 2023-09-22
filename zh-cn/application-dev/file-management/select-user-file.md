@@ -4,7 +4,7 @@
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下接口：
 
-- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。当前PhotoViewPicker对接的选择资源来自于图库，保存位置为系统文件管理器的特定目录，因此使用save接口保存的图片或视频无法在图库中展示。如需在图库中展示，请使用安全控件的[保存控件](../reference/arkui-ts/ts-security-components-savebutton.md)。
+- [PhotoViewPicker](../reference/apis/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。优选使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis/js-apis-photoAccessHelper.md)来选择文件。当前PhotoViewPicker对接的选择资源来自于图库，保存位置为系统文件管理器的特定目录，因此使用save接口保存的图片或视频无法在图库中展示。如需在图库中展示，请使用安全控件的[保存控件](../reference/arkui-ts/ts-security-components-savebutton.md)。
 
 - [DocumentViewPicker](../reference/apis/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker, 负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 
