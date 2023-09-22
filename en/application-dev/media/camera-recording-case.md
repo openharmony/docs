@@ -39,7 +39,7 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error")
+    console.error("cameraManager.getSupportedCameras error");
     return;
   }
 

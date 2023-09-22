@@ -33,17 +33,18 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length <= 0) {
+     if (cameraArray != undefined && cameraArray.length > 0) {
+       for (let index = 0; index < cameraArray.length; index++) {
+         console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
+         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
+         console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
+         console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
+       }
+       return cameraArray;
+     } else {
        console.error("cameraManager.getSupportedCameras error");
        return [];
      }
-     for (let index = 0; index < cameraArray.length; index++) {
-       console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
-       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
-       console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
-       console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
-     }
-     return cameraArray;
    }
    ```
 

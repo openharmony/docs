@@ -19,7 +19,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
-     let avRecorder: media.AVRecorder | undefined;
+     let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
      } catch (error) {
@@ -62,14 +62,14 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        videoFrameWidth: 640, // Video frame width.
        videoFrameHeight: 480, // Video frame height.
        videoFrameRate: 30 // Video frame rate.
-     }
+     };
      // Define video recording parameters. The ratio of the resolution width (videoFrameWidth) to the resolution height (videoFrameHeight) of the video output stream must be the same as that of the preview stream.
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
        rotation: 90 // 90° is the default vertical display angle. You can use other values based on project requirements.
-     }
+     };
      // Create an AVRecorder instance.
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
