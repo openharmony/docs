@@ -13,3 +13,5 @@
 - [分析应用耗时](application-performance-analysis.md)
 
 - [高性能编码规范](high-performance-programming.md)
+
+- [Swiper高性能开发指导](swiper_optimization.md)
