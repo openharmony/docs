@@ -14,9 +14,9 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| getOAID():Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
-| resetOAID():&nbsp;void | 重置OAID，此接口为系统接口。 |
+| [getOAID()](../../reference/apis/js-apis-oaid.md#identifergetoaid):Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
+| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis/js-apis-oaid.md#identifergetoaid-1):&nbsp;void | 获取OAID，通过Callback回调返回值。 |
+| [resetOAID()](../../reference/apis/js-apis-oaid.md#identiferresetoaid):&nbsp;void | 重置OAID，此接口为系统接口。 |
 
 
 ### 开发步骤
