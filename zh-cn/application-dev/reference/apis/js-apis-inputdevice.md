@@ -137,6 +137,38 @@ try {
 }
 ```
 
+## inputDevice.getDeviceInfoSync<sup>10+</sup>
+
+getDeviceInfoSync(deviceId: number): InputDeviceData
+
+获取指定输入设备的信息。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| deviceId | number | 是   | 输入设备id。 |
+
+**返回值**：
+
+| 参数                                               | 说明                            |
+| -------------------------------------------------- | ------------------------------- |
+| [InputDeviceData](#inputdevicedata) | 返回输入设备信息。 |
+
+**示例**：
+
+```js
+// 获取输入设备id为1的设备信息。
+try {
+  let deviceData: InputDeviceData = inputDevice.getDeviceInfoSync(1)
+  console.log(`Device info: ${JSON.stringify(deviceData)}`)
+} catch (error) {
+  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
 ## inputDevice.on<sup>9+</sup>
 
 on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
@@ -395,6 +427,39 @@ try {
 }
 ```
 
+## inputDevice.supportKeysSync<sup>10+</sup>
+
+supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&gt;
+
+获取输入设备是否支持指定的键码值。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型                 | 必填 | 说明                                                   |
+| -------- | -------------------- | ---- | ------------------------------------------------------ |
+| deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
+| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+
+**返回值**：
+
+| 参数                                | 说明                            |
+| ----------------------------------- | ------------------------------- |
+| Array&lt;boolean&gt; | 返回查询结果。true表示支持，false表示不支持。 |
+
+**示例**：
+
+```js
+// 查询id为1的输入设备对于17、22和2055按键的支持情况。
+try {
+  let supportResult: Array<boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
+  console.log(`Query result: ${JSON.stringify(supportResult)}`)
+} catch (error) {
+  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
 getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
@@ -457,6 +522,38 @@ try {
   });
 } catch (error) {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardTypeSync<sup>10+</sup>
+
+getKeyboardTypeSync(deviceId: number): KeyboardType
+
+获取输入设备的键盘类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+
+**返回值**：
+
+| 参数                                          | 说明                            |
+| --------------------------------------------- | ------------------------------- |
+| [KeyboardType](#keyboardtype9) | 返回查询结果。 |
+
+**示例**：
+
+```js
+// 示例查询设备id为1的设备键盘类型。
+try {
+  let type: number = inputDevice.getKeyboardTypeSync(1)
+  console.log(`Keyboard type: ${JSON.stringify(type)}`)
+} catch (error) {
+  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
