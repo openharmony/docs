@@ -2,7 +2,7 @@
 
 ## Overview
 
-OpenHarmony provides native distributed AI capabilities. The AI subsystem consists of the following components:
+Built on the native AI framework provided by OpenHarmony, the AI subsystem consists of the following components:
 - MindSpore Lite: an AI inference framework that provides unified APIs for AI inference.
 - Neural Network Runtime (NNRt): an intermediate bridge that connects the inference framework and AI hardware.
 
@@ -11,7 +11,7 @@ OpenHarmony provides native distributed AI capabilities. The AI subsystem consis
 MindSpore Lite is a built-in AI inference framework of OpenHarmony. It provides AI model inference capabilities for different hardware devices and end-to-end AI model inference solutions for developers to empower intelligent applications in all scenarios. Currently, MindSpore Lite has been widely used in applications such as image classification, target recognition, facial recognition, and character recognition.
 
 **Figure 1** Development process for MindSpore Lite model inference
-![MindSpore workflow](figures/mindspore_workflow.png)
+![mindspore workflow](figures/mindspore_workflow.png)
 
 The MindSpore Lite development process consists of two phases:
 

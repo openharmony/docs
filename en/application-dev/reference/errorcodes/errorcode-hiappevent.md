@@ -22,7 +22,9 @@ The application event logging function is disabled.
 
 Invoke the **configure** API to enable the application event logging function.
 
-   ```js
+   ```ts
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+
    hiAppEvent.configure({
        disable: false
    });

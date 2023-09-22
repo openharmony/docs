@@ -1,9 +1,11 @@
-# @ohos.multimodalInput.inputEventClient (Key Event Injection)
+# @ohos.multimodalInput.inputEventClient (Key Injection)
 
-The **inputEventClient** module implements injection of key events.
+The Key Injection module implements injection of key events.
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs provided by this module are system APIs.
 
 
@@ -33,7 +35,7 @@ Injects a key event. Currently, key injection is supported only for the **Back**
 
 ```js
 try {
-  let backKeyDown = {
+  let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
@@ -41,7 +43,7 @@ try {
   }
   inputEventClient.injectEvent({ KeyEvent: backKeyDown });
 
-  let backKeyUp = {
+  let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,
