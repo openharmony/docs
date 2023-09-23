@@ -66,7 +66,7 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 **图4**  场景预览图
 
-<img src="figures/video-preview.jpg" style="zoom:60%">
+![场景预览图](figures/video-preview.jpg)
 
 使用步骤如下：
 
@@ -74,8 +74,8 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 ```typescript
 let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', {
-        name: 'FriendsMoments Worker'
-      });
+  name: 'FriendsMoments Worker'
+});
 ```
 
 2. 宿主线程给Worker线程发送任务消息。宿主线程通过postMessage方法来发送消息给Worker线程，启动下载解压任务，示例代码如下：
@@ -88,33 +88,20 @@ workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: th
 
  ```typescript
  let workerPort = worker.workerPort;
- 
+ // 接收宿主线程的postMessage请求
  workerPort.onmessage = (e: MessageEvents): void => {
-   Logger.info('workerPort onmessage start');
-   // worker线程向主线程发送信息
+   // 下载视频文件
    let context: common.UIAbilityContext = e.data.context;
-   // 获取设备本地路径
    let filesDir: string = context.filesDir;
-   // 获取当前时间戳
    let time: number = new Date().getTime();
-   // 初始化压缩文件的文件路径
    let inFilePath: string = `${filesDir}/${time.toString()}.zip`;
-   // 初始化媒体下载路径
    let mediaDataUrl: string = e.data.mediaData;
-   // 截取主要片段
    let urlPart: string = mediaDataUrl.split('.')[1];
-   // 以'/'分割
    let length: number = urlPart.split('/').length;
-   // 获取文件名称
    let fileName: string = urlPart.split('/')[length-1];
-   Logger.info(`fileName:${JSON.stringify(fileName)}`);
-   // 解压的配置参数
    let options: zlib.Options = {
      level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
    };
-   // 对图片、视频的路径进行处理
-   Logger.info(`workerPort media filePath ${inFilePath}`);
-   // 执行下载操作
    request.downloadFile(context, {
      url: mediaDataUrl,
      filePath: inFilePath
@@ -126,18 +113,20 @@ workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: th
        // 下载完成之后执行解压操作
        zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
          if (errData !== null) {
-           Logger.info(`errData is errCode:${errData.code}  message:${errData.message}`);
+           ...
+           // 异常处理
          }
          let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
          workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
        })
-       Logger.info('complete end');
      });
      downloadTask.on('fail', () => {
-       Logger.info(`download fail`);
+       ...
+       // 异常处理
      });
    }).catch((err) => {
-     Logger.info(`Invoke downloadTask failed, code is ${err.code}, message is ${err.message}`);
+     ...
+     // 异常处理
    });
  };
  ```
@@ -201,7 +190,7 @@ TaskPool的适用场景主要分为如下三类：
 
 **图6**  朋友圈场景预览图  
 
-<img src="figures/friendmoment-preview.jpg" style="zoom:50%">
+![朋友圈场景预览图](figures/friendmoment-preview.jpg)
 
 使用步骤如下：
 
@@ -231,7 +220,10 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
         connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
       })
     if (typeof (webData.result) === 'string') {
-      // 此部分源码省略，主要为数据解析和耗时操作处理
+      // 解析json字符串
+      let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
+      let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
+      // 下方源码省略，主要为数据解析和耗时操作处理
       ...
       return friendMomentBuckets;
     } else {
