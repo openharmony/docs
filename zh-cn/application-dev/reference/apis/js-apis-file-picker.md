@@ -4,7 +4,7 @@
 >
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。
+选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker或FilePicker。
 
 ## 导入模块
 
@@ -14,7 +14,7 @@ import picker from '@ohos.file.picker';
 
 ## PhotoViewPicker
 
-图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](js-apis-photoAccessHelper.md)。在使用前，需要先创建PhotoViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
