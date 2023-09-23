@@ -22,11 +22,11 @@
 
 在基于消息传递的并发模型中，并发线程的内存相互隔离，需要通过通信通道相互发送消息来进行交互。典型的基于消息传递的并发模型一般有两种：CSP和Actor。
 
-CSP（Communicating Sequential Processes）中的计算单元并不能直接互相发送信息。需要通过Channel作为媒介进行消息传递：发送方需要将消息发送到Channel，而接收方需要从Channel读取消息。与CSP不同，在Actor模型中，每个Actor可以看做一个独立的计算单元，并且相互之间内存隔离，每个Actor中存在信箱（Mail Box），Actor之间可以直接进行消息传递，如下图所示：
+CSP（Communicating Sequential Processes）中的计算单元并不能直接互相发送信息。需要通过Channel作为媒介进行消息传递：发送方需要将消息发送到Channel，而接收方需要从Channel读取消息。与CSP不同，在Actor模型中，每个Actor可以看做一个独立的计算单元，并且相互之间内存隔离，每个Actor中存在信箱（Mail Box），Actor之间可以直接进行消息传递，如下图所示：  
 
-![actor消息传递图](figures/actor-message-post.png)
+**图1**  Actor消息传递示意图  
 
-图  actor消息传递示意图
+![Actor消息传递图](figures/actor-message-post.png)
 
 CSP与Actor之间的主要区别：
 
@@ -40,17 +40,17 @@ CSP与Actor之间的主要区别：
 
 ### 基本概念和运作原理
 
-OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。Worker拥有独立的运行环境，每个Worker线程和主线程一样拥有自己的内存空间、消息队列(MessageQueue)、事件轮询机制(EventLoop)、调用栈(CallStack)等。线程之间通过Message进行交互，如下图所示：
+OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。Worker拥有独立的运行环境，每个Worker线程和主线程一样拥有自己的内存空间、消息队列(MessageQueue)、事件轮询机制(EventLoop)、调用栈(CallStack)等。线程之间通过Message进行交互，如下图所示：  
+
+**图2**  线程交互示意图
 
 ![线程交互图](figures/worker-thread-message.png)
 
-图  线程交互示意图
+在多核的情况下（下图中的CPU 1和CPU 2同时工作），多个Worker线程（下图中的worker thread1和worker thread2）可以同时执行，因此Worker线程做到了真正的并发，如下图所示：  
 
-在多核的情况下（下图中的CPU 1和CPU 2同时工作），多个Worker线程（下图中的worker thread1和worker thread2）可以同时执行，因此Worker线程做到了真正的并发，如下图所示：
+**图3**  Worker线程并发示意图  
 
 ![Worker线程并发图](figures/worker-thread-concurrent.jpg)
-
-图  Worker线程并发示意图
 
 ### 使用场景和开发示例
 
@@ -62,11 +62,11 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 以视频解压的场景为例，当视频过大时，可能会出现解压时长超过3分钟耗时的情况，因此我们选用该场景来说明如何使用Worker。
 
-场景预览图如下所示：
+场景预览图如下所示：  
 
-![场景预览图](figures/video-preview.jpg)
+**图4**  场景预览图
 
-图  场景预览图
+<img src="figures/video-preview.jpg" style="zoom:60%">
 
 使用步骤如下：
 
@@ -165,9 +165,9 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 相比使用Worker实现多线程并发，TaskPool更加易于使用，创建开销也少于Worker，并且Worker线程有个数限制，需要开发者自己掌握，TaskPool的基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md/)。TaskPool作用是为应用程序提供一个多线程的运行环境。TaskPool在Worker之上实现了调度器和Worker线程池，TaskPool根据任务的优先级，将其放入不同的优先级队列，调度器会依据自己实现的调度算法（优先级，防饥饿），从优先级队列中取出任务，放入TaskPool中的Worker线程池，执行相关任务，流程图如下所示：
 
-![TaskPool流程图](figures/taskpool-process.jpg)
+**图5**  TaskPool流程示意图
 
-图  TaskPool流程示意图
+![TaskPool流程图](figures/taskpool-process.jpg)
 
 TaskPool有如下的特点：
 
@@ -197,11 +197,11 @@ TaskPool的适用场景主要分为如下三类：
 
 - 大量或者调度点较分散的任务。
 
-下面将以使用朋友圈加载网络数据并且进行解析和数据处理的场景为例，来演示如何使用TaskPool进行大量或调度点较分散的任务开发和处理。场景的预览图如下所示：
+下面将以使用朋友圈加载网络数据并且进行解析和数据处理的场景为例，来演示如何使用TaskPool进行大量或调度点较分散的任务开发和处理。场景的预览图如下所示：  
 
-![朋友圈场景预览图](figures/friendmoment-preview.jpg)
+**图6**  朋友圈场景预览图  
 
-图  朋友圈场景预览图
+<img src="figures/friendmoment-preview.jpg" style="zoom:50%">
 
 使用步骤如下：
 
@@ -222,7 +222,6 @@ let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl); // jsonUrl为�
 // 获取网络数据
 @Concurrent
 async function getWebData(url: string): Promise<Array<FriendMoment>> {
-  Logger.info('getWebData onMessage start');
   try {
     let webData: http.HttpResponse = await http.createHttp().request(
       url,
@@ -232,29 +231,16 @@ async function getWebData(url: string): Promise<Array<FriendMoment>> {
         connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
       })
     if (typeof (webData.result) === 'string') {
-      // 解析json字符串
-      let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
-      let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
-      // 映射json数据为FriendMoment对象
-      for (let i = 0; i < jsonObj.length; i++) {
-        let contactTemp = new ChatContact(jsonObj[i].user.userId, jsonObj[i].user.userName,
-          jsonObj[i].user.userImage);
-        let chatModelTemp = new FriendMoment(jsonObj[i].id, contactTemp, jsonObj[i].text, '',
-          jsonObj[i].imageList, jsonObj[i].media, jsonObj[i].mediaPreview);
-        friendMomentBuckets.push(chatModelTemp);
-      }
-      // 设置count计数，用来延长方法执行时间，方便后续监视性能
-      let taskCount: number = 0;
-      for (let i = 0;i < 10000; i++) {
-        taskCount++;
-      }
-      Logger.info('getFriendMomentObj onMessage end');
+      // 此部分源码省略，主要为数据解析和耗时操作处理
+      ...
       return friendMomentBuckets;
     } else {
-      Logger.info("getWebData makeLocalData get JSON error");
+      // 异常处理
+      ...
     }
   } catch (err) {
-    Logger.error(`get result failed, code is ${err.code}, message is ${err.message}`);
+    // 异常处理
+    ...
   }
 }
 ```
