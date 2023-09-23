@@ -17,6 +17,8 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 组成RootInfo中的deviceType字段，表明此设备的类型。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 | 名称 | 值 | 说明 |
@@ -33,6 +35,8 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 组成RootInfo中的deviceFlags字段，通过与运算判断是否具备某种能力。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 ### 属性
@@ -45,6 +49,8 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 ## fileExtensionInfo.DocumentFlag
 
 组成FileInfo中的mode字段，通过与运算判断是否具备某种能力。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
