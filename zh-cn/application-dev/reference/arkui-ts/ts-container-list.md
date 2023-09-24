@@ -353,14 +353,19 @@ struct ListExample {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, { length: 20 }).map((item, i) => i)
+  private arr: number[] = []
   private scrollerForList: Scroller = new Scroller()
 
+  aboutToAppear() {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i)
+    }
+  }
   build() {
     Column() {
       Row() {
         List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -369,7 +374,7 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, item => item)
+          }, (item: number) => JSON.stringify(item))
         }
         .chainAnimationOptions({
           minSpace: 50,
