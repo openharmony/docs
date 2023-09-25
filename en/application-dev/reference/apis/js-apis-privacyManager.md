@@ -9,7 +9,7 @@ The **privacyManager** module provides APIs for privacy management, such as mana
 
 ## Modules to Import
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
 ```
 
@@ -46,7 +46,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -54,14 +54,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -96,7 +97,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -104,12 +105,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err, data) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -157,10 +159,11 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -173,7 +176,7 @@ let request = {
 try {
     privacyManager.getPermissionUsedRecord(request).then((data) => {
         console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -212,10 +215,11 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: privacyManager.PermissionUsedRequest = {
     'tokenId': 1,
     'isRemote': false,
     'deviceId': 'device',
@@ -226,7 +230,7 @@ let request = {
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecord(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
         if (err) {
             console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -267,7 +271,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 bytes, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -276,14 +280,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('startUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -315,7 +320,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
@@ -324,12 +329,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -370,7 +376,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -379,14 +385,15 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
     privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('stopUsingPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -418,7 +425,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
@@ -427,12 +434,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
+```ts
 import privacyManager from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let tokenID = 0; // You can use getApplicationInfo to obtain the access token ID.
+let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -468,7 +476,7 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is longer than 256 bytes. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -476,12 +484,13 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 **Example**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
-    privacyManager.on('activeStateChange', permissionList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data: privacyManager.ActiveChangeResponse) => {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
@@ -513,17 +522,17 @@ For details about the error codes, see [Ability Access Control Error Codes](../e
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The interface is not used together with 'on'.|
+| 12100001 | The parameter is invalid. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100004 | The API is not used together with "on". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
-```js
-import privacyManager from '@ohos.privacyManager';
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
 
-let permissionList = [];
+let permissionList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionList);
 }catch(err) {

@@ -4,11 +4,10 @@ The **DataShareExtensionAbility** module provides data share services based on t
 
 >**NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs and can be used only in the stage model.
 >
-> The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -21,9 +20,9 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|DataShareExtensionAbility context, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md).|
+| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare ExtensionAbility.|
 
 ## onCreate
 
