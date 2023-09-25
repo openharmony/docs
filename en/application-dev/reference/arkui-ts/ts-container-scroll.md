@@ -149,9 +149,9 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 
 | Name               | Type| Mandatory| Description                                                    |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
-| value                 | number   | Yes  | Index of the item to be scrolled to in the list.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the list items, the value is abnormal, and no scrolling will be performed.                    |
+| value                 | number   | Yes  | Index of the item to be scrolled to in the container.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the items in the container, the value is deemed abnormal, and no scrolling will be performed.                    |
 | smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
-| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the list.<br>Default value: **ScrollAlign.START**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Currently, only the **\<List>** and **\<Grid>** components support this parameter.|
 
 ### scrollBy<sup>9+</sup>
 
@@ -228,7 +228,7 @@ struct ScrollExample {
     Stack({ alignContent: Alignment.TopStart }) {
       Scroll(this.scroller) {
         Column() {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             Text(item.toString())
               .width('90%')
               .height(150)
@@ -237,12 +237,12 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+          }, (item: string) => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical)  // The scrollbar scrolls in the vertical direction.
-      .scrollBar(BarState.On)  // The scrollbar is always displayed.
-      .scrollBarColor(Color.Gray)  // Color of the scrollbar.
+      .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+      .scrollBar(BarState.On) // The scrollbar is always displayed.
+      .scrollBarColor(Color.Gray) // The scrollbar color is gray.
       .scrollBarWidth(10) // The scrollbar width is 10.
       .friction(0.6)
       .edgeEffect(EdgeEffect.None)
@@ -265,14 +265,16 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // Click to scroll down by 100.0 vp.
-          this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 })
+          const yOffset: number = this.scroller.currentOffset().yOffset;
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100 })
         })
         .margin({ top: 60, left: 20 })
       Button('scroll 100')
         .height('5%')
         .onClick(() => {// Click to scroll down by 100.0 vp. An animation is applied to the scrolling.
           let curve = Curves.interpolatingSpring(100, 1, 228, 30) // Create a step curve.
-          this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100, animation: { duration: 1000, curve: curve }})
+          const yOffset: number = this.scroller.currentOffset().yOffset;
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
         })
         .margin({ top: 110, left: 20 })
       Button('back top')
@@ -309,20 +311,27 @@ struct NestedScroll {
       Scroll(this.scrollerForScroll) {
         Column() {
           Text("Scroll Area")
-            .width("100%").height("40%").backgroundColor(0X330000FF)
-            .fontSize(16).textAlign(TextAlign.Center)
+            .width("100%")
+            .height("40%")
+            .backgroundColor(0X330000FF)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
             .onClick(() => {
               this.scrollerForList.scrollToIndex(5)
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text("ListItem" + item)
-                  .width("100%").height("100%").borderRadius(15)
-                  .fontSize(16).textAlign(TextAlign.Center).backgroundColor(Color.White)
+                  .width("100%")
+                  .height("100%")
+                  .borderRadius(15)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(Color.White)
               }.width("100%").height(100)
-            }, item => item)
+            }, (item: string) => item)
           }
           .width("100%")
           .height("50%")
@@ -344,8 +353,11 @@ struct NestedScroll {
           })
 
           Text("Scroll Area")
-            .width("100%").height("40%").backgroundColor(0X330000FF)
-            .fontSize(16).textAlign(TextAlign.Center)
+            .width("100%")
+            .height("40%")
+            .backgroundColor(0X330000FF)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
         }
       }
       .width("100%").height("100%")
@@ -364,12 +376,14 @@ struct StickyNestedScroll {
   @State message: string = 'Hello World'
   @State arr: number[] = []
 
-  @Styles listCard() {
+  @Styles
+  listCard() {
     .backgroundColor(Color.White)
     .height(72)
     .width("100%")
     .borderRadius(12)
   }
+
   build() {
     Scroll() {
       Column() {
@@ -378,22 +392,23 @@ struct StickyNestedScroll {
           .height("40%")
           .backgroundColor('#0080DC')
           .textAlign(TextAlign.Center)
-        Tabs({barPosition:BarPosition.Start}) {
+        Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
-            List({space:10}) {
-              ForEach(this.arr, (item) => {
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
                 ListItem() {
                   Text("item" + item)
                     .fontSize(16)
                 }.listCard()
-              }, item => item)
+              }, (item: string) => item)
             }.width("100%")
             .edgeEffect(EdgeEffect.Spring)
             .nestedScroll({
-              scrollForward:NestedScrollMode.PARENT_FIRST,
-              scrollBackward:NestedScrollMode.SELF_FIRST
+              scrollForward: NestedScrollMode.PARENT_FIRST,
+              scrollBackward: NestedScrollMode.SELF_FIRST
             })
           }.tabBar("Tab1")
+
           TabContent() {
           }.tabBar("Tab2")
         }
@@ -408,6 +423,7 @@ struct StickyNestedScroll {
     .width('100%')
     .height('100%')
   }
+
   aboutToAppear() {
     for (let i = 0; i < 30; i++) {
       this.arr.push(i)

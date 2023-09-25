@@ -24,7 +24,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md)                            | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>- Strings with the **file:///data/storage** prefix are supported, which are used to read resources in the application sandbox. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
+| src                 | string \| [Resource](ts-types.md)                            | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>- Strings with the **file:///data/storage** prefix are supported, which are used to read resources in the application sandbox. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS.|
 | currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
 | previewUri          | string \|PixelMap \| [Resource](ts-types.md)  | No  | Path of the preview image.                                |
 | controller          | [VideoController](#videocontroller)                          | No  | Video controller.                                            |
@@ -76,7 +76,7 @@ Defines a **VideoController** object to control one or more videos.
 ### Objects to Import
 
 ```ts
-controller: VideoController = new VideoController()
+let controller: VideoController = new VideoController()
 ```
 
 
@@ -173,7 +173,9 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width('100%').height(600)
+      })
+        .width('100%')
+        .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -188,19 +190,27 @@ struct VideoCreateComponent {
         .onError(() => {
           console.info('onError')
         })
-        .onPrepared((e) => {
-          console.info('onPrepared is ' + e.duration)
+        .onPrepared((e?: DurationObject) => {
+          if (e != undefined) {
+            console.info('onPrepared is ' + e.duration)
+          }
         })
-        .onSeeking((e) => {
-          console.info('onSeeking is ' + e.time)
+        .onSeeking((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onSeeking is ' + e.time)
+          }
         })
-        .onSeeked((e) => {
-          console.info('onSeeked is ' + e.time)
+        .onSeeked((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onSeeked is ' + e.time)
+          }
         })
-        .onUpdate((e) => {
-          console.info('onUpdate is ' + e.time)
+        .onUpdate((e?: TimeObject) => {
+          if (e != undefined) {
+            console.info('onUpdate is ' + e.time)
+          }
         })
-      
+
       Row() {
         Button('src').onClick(() => {
           this.videoSrc = $rawfile('video2.mp4') // Switch the video source.
@@ -241,5 +251,13 @@ struct VideoCreateComponent {
       }
     }
   }
+}
+
+interface DurationObject {
+  duration: number;
+}
+
+interface TimeObject {
+  time: number;
 }
 ```
