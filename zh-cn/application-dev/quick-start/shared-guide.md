@@ -14,4 +14,4 @@ HSP旨在解决多个`HAP`引用相同的`HAR`，导致的`APP`包大小膨胀�
 - `HSP`及其使用方都必须使用`esmodule`编译模式。
 - `HSP`不支持在配置文件中声明`abilities`、`extensionAbilities`标签。
 
-`HSP`按照使用场景可以分为[应用内HSP](in-app-hsp.md)和[应用间HSP](cross-app-hsp.md)。它们在配置文件和使用方式等方面有所区别。
+`HSP`按照使用场景可以分为[应用内HSP](in-app-hsp.md)和应用间HSP，应用间HSP暂不支持。
