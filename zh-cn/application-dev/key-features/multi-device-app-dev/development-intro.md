@@ -42,9 +42,9 @@
 
   ```typescript
   if (canIUse("SystemCapability.Communication.NFC.Core")) {
-  	   console.log("该设备支持SystemCapability.Communication.NFC.Core");
+     console.log("该设备支持SystemCapability.Communication.NFC.Core");
   } else {
-      console.log("该设备不支持SystemCapability.Communication.NFC.Core");
+     console.log("该设备不支持SystemCapability.Communication.NFC.Core");
   }
   ```
 
@@ -53,7 +53,7 @@
 
   ```typescript
   import controller from '@ohos.nfc.controller';
-     try {
+  try {
       controller.enableNfc();
       console.log("controller enableNfc success");
   } catch (busiError) {
