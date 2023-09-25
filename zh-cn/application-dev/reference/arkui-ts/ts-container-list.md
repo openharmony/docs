@@ -377,8 +377,8 @@ struct ListExample {
           }, (item: number) => JSON.stringify(item))
         }
         .chainAnimationOptions({
-          minSpace: 50,
-          maxSpace: 100,
+          minSpace: 20,
+          maxSpace: 60,
           edgeEffect: ChainEdgeEffect.STRETCH
         })
         .chainAnimation(true)
