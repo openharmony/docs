@@ -5765,7 +5765,7 @@ openSession(): Promise&lt;Uint8Array&gt;;
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
   try {
-    userIDM.openSession().then((challengechallenge: Uint8Array) => {
+    userIDM.openSession().then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
         console.info('openSession error = ' + JSON.stringify(err));
@@ -6036,7 +6036,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 **示例：**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
-  let credentialId: Uint8Array = new Uint8Array([0]);
+  let credentialId: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]);
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delCred(credentialId, token, {
