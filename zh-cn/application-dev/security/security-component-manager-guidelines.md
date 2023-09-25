@@ -94,6 +94,7 @@ SaveButton({ icon:SaveIconStyle.FULL_FILLED， text:SaveDescription.DOWNLOAD })
 3. 注册onCLick回调，回调中调用特权接口，以位置控件为例，获取定位信息。
    ```
    import geoLocationManager from '@ohos.geoLocationManager';
+   import BusinessError from "@ohos.base";
    @Entry
    @Component
    struct locationButton {
