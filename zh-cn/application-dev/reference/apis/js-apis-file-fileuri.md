@@ -135,6 +135,6 @@ getUriFromPath(path: string): string
 **示例：**
 
   ```ts
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test";
   let uri = fileuri.getUriFromPath(filePath);
   ```
