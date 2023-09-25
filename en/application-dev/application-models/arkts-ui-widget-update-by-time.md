@@ -25,9 +25,9 @@ The widget framework provides the following modes of updating widgets periodical
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // Enable the periodic update feature.
+        "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
-        "updateDuration": 2, // Set the update interval. The value is a natural number, in the unit of 30 minutes.
+        "updateDuration": 2,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
       }
@@ -56,8 +56,8 @@ The widget framework provides the following modes of updating widgets periodical
         },
         "colorMode": "auto",
         "isDefault": true,
-        "updateEnabled": true, // Enable the periodic update feature.
-        "scheduledUpdateTime": "10:30", // Set the scheduled time to update the widget.
+        "updateEnabled": true,
+        "scheduledUpdateTime": "10:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": ["2*2"]
@@ -70,11 +70,12 @@ The widget framework provides the following modes of updating widgets periodical
 
   ```ts
   import formProvider from '@ohos.app.form.formProvider';
+  import Base from '@ohos.base';
 
-  let formId = '123456789'; // Use the actual widget ID in real-world scenarios.
+  let formId: string = '123456789'; // Use the actual widget ID in real-world scenarios.
   try {
     // Configure the widget to update in 5 minutes.
-    formProvider.setFormNextRefreshTime(formId, 5, (err, data) => {
+    formProvider.setFormNextRefreshTime(formId, 5, (err: Base.BusinessError) => {
       if (err) {
         console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -83,7 +84,7 @@ The widget framework provides the following modes of updating widgets periodical
       }
     });
   } catch (err) {
-    console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
   }
   ```
 

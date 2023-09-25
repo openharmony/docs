@@ -8,7 +8,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 
 ## Modules to Import
 
-```js
+```ts
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
@@ -45,23 +45,25 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // subscribe callback
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe success");
-    }
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
-let info = {
-    bundleNames: ["bundleName1","bundleName2"]
+let info: notificationSubscribe.NotificationSubscribeInfo = {
+  bundleNames: ["bundleName1","bundleName2"]
 };
 notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
@@ -98,19 +100,21 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
@@ -134,7 +138,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information.  |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
 **Error codes**
 
@@ -149,15 +153,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function onConsumeCallback(data) {
-    console.info("Consume callback: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 notificationSubscribe.subscribe(subscriber).then(() => {
-	console.info("subscribe success");
+  console.info("subscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error("subscribe fail: " + JSON.stringify(err));
 });
 ```
 
@@ -194,19 +202,21 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function unsubscribeCallback(err) {
-    if (err) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let unsubscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribe success");
+  }
 }
-function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+let onDisconnectCallback = () => {
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -241,15 +251,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+```ts
+import Base from '@ohos.base';
+
+let onDisconnectCallback = () => {
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 notificationSubscribe.unsubscribe(subscriber).then(() => {
-	console.info("unsubscribe success");
+  console.info("unsubscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error("unsubscribe fail: " + JSON.stringify(err));
 });
 ```
 
@@ -288,22 +302,25 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: NotificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: notificationSubscribe.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -343,17 +360,22 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let bundle: NotificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: notificationSubscribe.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
-	console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 
@@ -390,17 +412,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-let hashCode = 'hashCode';
+```ts
+import Base from '@ohos.base';
 
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+let hashCode: string = 'hashCode';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -436,11 +460,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-let hashCode = 'hashCode';
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+```ts
+import Base from '@ohos.base';
+
+let hashCode: string = 'hashCode';
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 ## NotificationSubscribe.remove<sup>10+<sup>
@@ -475,17 +503,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-let hashCodes = ['hashCode1', 'hashCode2'];
+```ts
+import Base from '@ohos.base';
 
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+let hashCodes: string[] = ['hashCode1', 'hashCode2'];
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
@@ -520,11 +550,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-let hashCodes = ['hashCode1','hashCode2'];
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+```ts
+import Base from '@ohos.base';
+
+let hashCodes: string[] = ['hashCode1','hashCode2'];
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason).then(() => {
-    console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 
@@ -560,16 +594,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: notificationSubscribe.BundleOption = {
+  bundle: "bundleName1",
 };
 notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
@@ -604,8 +640,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function removeAllCallback(err) {
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
     if (err) {
         console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -632,7 +670,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application.|
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
 
 **Error codes**
 
@@ -647,10 +685,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // If no application is specified, notifications of all applications are deleted.
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error("removeAll fail: " + JSON.stringify(err));
 });
 ```
 
@@ -686,16 +728,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -731,16 +775,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -754,7 +800,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | --- | -------- |
 | id    | number | Yes | Notification ID.  |
-| label | string | No | Notification label.|
+| label | string | No | Notification label. This parameter is left empty by default.|
 
 ## RemoveReason
 
