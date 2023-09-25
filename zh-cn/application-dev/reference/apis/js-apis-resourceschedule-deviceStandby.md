@@ -46,7 +46,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 ```ts
 let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
-deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<ExemptedAppInfo>) => {
+deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<deviceStandby.ExemptedAppInfo>) => {
   if (err) {
     console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
   } else {
@@ -98,7 +98,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 ```ts
 let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
-deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<ExemptedAppInfo>) => {
+deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.ExemptedAppInfo>) => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
   for (let i = 0; i < res.length; i++) {
     console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
