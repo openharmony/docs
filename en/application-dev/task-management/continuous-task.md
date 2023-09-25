@@ -16,17 +16,17 @@ After an application requests a continuous task, the system verifies whether the
 The table below lists the types of continuous tasks, which are used in various scenarios. You can select a task type suitable for your case based on the description.
 
 **Table 1** Continuous task types
-| Name| Description| Example Scenario|
-| -------- | -------- | -------- |
-| DATA_TRANSFER | Data transfer| The browser downloads a large file in the background.|
-| AUDIO_PLAYBACK | Audio playback| A music application plays music in the background.|
-| AUDIO_RECORDING | Audio recording| A recorder records audio in the background.|
-| LOCATION | Positioning and navigation| A navigation application provides navigation in the background.|
-| BLUETOOTH_INTERACTION | Bluetooth-related task| Transfer a file through Bluetooth.|
-| MULTI_DEVICE_CONNECTION | Multi-device connection| Carry out distributed service connection.|
-| WIFI_INTERACTION | WLAN-related task (for system applications only)| Transfer a file over Wi-Fi.|
-| VOIP | Voice and video calls (for system applications only)| Use a system chat application to make an audio call in the background.|
-| TASK_KEEPING | Computing task (for specific devices only)| Run antivirus software.|
+| Name| Description| Item| Example Scenario|
+| -------- | -------- | -------- | -------- |
+| DATA_TRANSFER | Data transfer| dataTransfer | The browser downloads a large file in the background.|
+| AUDIO_PLAYBACK | Audio playback| audioPlayback | A music application plays music in the background.|
+| AUDIO_RECORDING | Audio recording| audioRecording | A recorder records audio in the background.|
+| LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
+| BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Carry out distributed service connection.|
+| WIFI_INTERACTION | WLAN-related task (for system applications only)| wifiInteraction  | Transfer a file over WLAN.|
+| VOIP | Voice and video calls (for system applications only)| voip  | Use a system chat application to make an audio call in the background.|
+| TASK_KEEPING | Computing task (for specific devices only)| taskKeeping  | Run antivirus software.|
 
 
 - When an application requests a continuous task of the DATA_TRANSFER type, the system increases the priority of the application process to reduce the probability of terminating the process. However, it still suspends the process. To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis/js-apis-request.md) so that the system functions as the agent.
