@@ -2,7 +2,7 @@
 
 The responsive grid layout provides rules for layout design and resolves issues of dynamic layout across devices with different sizes, thereby ensuring layout consistency across layouts on different devices.
 
-The **\<GridRow>** component is used in a grid layout, together with its child component **[\<GridCol>](ts-container-gridcol.md)**.
+The **\<GridRow>** component is used in a grid layout, together with its child component [\<GridCol>](ts-container-gridcol.md).
 
 >  **NOTE**
 >
