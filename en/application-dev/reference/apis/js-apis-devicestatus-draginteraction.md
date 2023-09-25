@@ -1,4 +1,4 @@
-# @ohos. deviceStatus.dragInteraction (Drag)
+# @ohos.deviceStatus.dragInteraction (Drag Interaction)
 
  The **dragInteraction** module provides the APIs to enable and disable listening for dragging status changes.
 
@@ -10,11 +10,33 @@
 
 ## Modules to Import
 
-```js
+```ts
 import dragInteraction from '@ohos.deviceStatus.dragInteraction'
 ```
 
-## dragInteraction.on
+##  DragState
+
+Enumerates dragging states.
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Drag
+
+| Name                      | Value                            | Description                             |
+| --------                     |  -----------------               |  -----------------               |
+| MSG_DRAG_STATE_START |  1   | Dragging starts.|
+| MSG_DRAG_STATE_STOP |  2  |  Dragging is ended. |
+| MSG_DRAG_STATE_CANCEL |  3  |  Dragging is canceled. |
+
+**Example**
+
+```ts
+enum DragState {
+    MSG_DRAG_STATE_START = 1,
+    MSG_DRAG_STATE_STOP = 2,
+    MSG_DRAG_STATE_CANCEL = 3
+}
+```
+
+## dragInteraction.on('drag')
 
 on(type: 'drag', callback: Callback&lt;DragState&gt;): void;
 
@@ -31,9 +53,9 @@ Enables listening for dragging status changes.
 
 **Example**
 
-```js
+```ts
 try {
-  dragInteraction.on('drag', (data) => {
+  dragInteraction.on('drag', (data : DragState) => {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
   });
 } catch (error) {
@@ -41,7 +63,7 @@ try {
 }
 ```
 
-## dragInteraction.off
+## dragInteraction.off('drag')
 
 off(type: 'drag', callback?: Callback&lt;DragState&gt;): void;
 
@@ -58,41 +80,29 @@ Disables listening for dragging status changes.
 
 **Example**
 
-```js
+```ts
 // Unregister a single callback.
-function callback(event) {
+function single_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  dragInteraction.on('drag', callback);
-  dragInteraction.off("drag", callback);
+  dragInteraction.on('drag', single_callback);
+  dragInteraction.off("drag", single_callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
 // Unregister all callbacks.
-function callback(event) {
+function all_callback(event : DragState) {
   console.log(`Drag interaction event: ${JSON.stringify(event)}`);
   return false;
 }
 try {
-  dragInteraction.on('drag', callback);
+  dragInteraction.on('drag', all_callback);
   dragInteraction.off("drag");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
-##  DragState
-
-Enumerates dragging states.
-
-**System capability**: SystemCapability.Msdp.DeviceStatus.Drag
-
-| Name                      | Value                            | Description                             |
-| --------                     |  -----------------               |  -----------------               |
-| MSG_DRAG_STATE_START |  1   | Dragging starts.|
-| MSG_DRAG_STATE_STOP |  2  |  Dragging is ended. |
-| MSG_DRAG_STATE_CANCEL |  3  |  Dragging is canceled. |

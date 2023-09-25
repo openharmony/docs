@@ -43,7 +43,7 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 
 ## How to Develop
 
-### Making a Call by Using the **dialCall** API (for System Applications Only)
+### Making a Call by Using the dialCall API (Only for System Applications)
 
 1. Declare the required permission: **ohos.permission.PLACE_CALL**.
 This permission is of the **system\_basic** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/accesstoken-overview.md#basic-principles-for-permission-management) are met. Then, declare the corresponding permission by following instructions in [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
@@ -51,28 +51,32 @@ This permission is of the **system\_basic** level. Before applying for the permi
 3. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
    If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
 4. Invoke the **dialCall** API to make a call.
-5. (Optional) Register the observer for call status changes.
-   ```js
+5. (Optional) Register the observer for call service status changes.
+   ```ts
     // Import the required modules.
     import call from '@ohos.telephony.call'
     import observer from '@ohos.telephony.observer'
+    import { BusinessError } from '@ohos.base';
 
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
-    if (!isSupport) {
-        console.log("not support voice capability, return.");
-        return;
-    }
-    // If the device supports the voice call function, call the following API to make a call.
-    call.dialCall("13xxxx", (err, data) => {
-        this.output = this.output + `dial call: ${JSON.stringify(data)}\n`
-        console.log(`callback: dial call err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
-    })
+    if (isSupport) {
+        // If the device supports the voice call function, call the following API to make a call.
+        call.dialCall("13xxxx", (err: BusinessError) => {
+            console.log(`callback: dial call err->${JSON.stringify(err)}`)
+        })
 
-    // (Optional) Register the observer for call service status changes.
-    observer.on("callStateChange", {slotId: 0}, (data) => {
-        console.log("call state change, data is:" + JSON.stringify(data));
-    });
+        // (Optional) Register the observer for call service status changes.
+        class SlotId {slotId: number = 0}
+        class CallStateCallback {
+            state: call.CallState = call.CallState.CALL_STATE_UNKNOWN;
+            number: string = ""
+        }
+        let slotId: SlotId = {slotId: 0}
+        observer.on("callStateChange", slotId, (data: CallStateCallback) => {
+            console.log("call state change, data is:" + JSON.stringify(data));
+        });
+    }
    ```
 
 ### Making a Call by Using the makeCall API
@@ -81,30 +85,35 @@ This permission is of the **system\_basic** level. Before applying for the permi
 2. Invoke the **hasVoiceCapability** API to check whether the device supports the voice call function.
    If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
 3. Invoke the **makeCall** API to start the system call application and make a call.
-4. (Optional) Register the observer for call status changes.
+4. (Optional) Register the observer for call service status changes.
 
-   ```js
+   ```ts
     // Import the required modules.
     import call from '@ohos.telephony.call'
     import observer from '@ohos.telephony.observer' 
+    import { BusinessError } from '@ohos.base';
    
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
-    if (!isSupport) {
-        console.log("not support voice capability, return.");
-        return;
-    }
-    // If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
-    call.makeCall("13xxxx", (err)=> {
-        if (!err) {
-            console.log("make call success.");
-        } else {
-            console.log("make call fail, err is:" + JSON.stringify(err));
+    if (isSupport) {
+        // If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
+        call.makeCall("13xxxx", (err: BusinessError) => {
+            if (!err) {
+                console.log("make call success.");
+            } else {
+                console.log("make call fail, err is:" + JSON.stringify(err));
+            }
+        });
+        // (Optional) Register the observer for call service status changes.
+        class SlotId {slotId: number = 0}
+        class CallStateCallback {
+            state: call.CallState = call.CallState.CALL_STATE_UNKNOWN;
+            number: string = ""
         }
-    });
-
-    // (Optional) Register the observer for call service status changes.
-    observer.on("callStateChange", {slotId: 0}, (data) => {
-        console.log("call state change, data is:" + JSON.stringify(data));
-    });
+        let slotId: SlotId = {slotId: 0}
+        observer.on("callStateChange", slotId, (data: CallStateCallback) => {
+            console.log("call state change, data is:" + JSON.stringify(data));
+        });
+    }
    ```
+
