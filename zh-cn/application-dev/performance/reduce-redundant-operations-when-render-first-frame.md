@@ -4,15 +4,15 @@
 
 ## 应用冷启动与加载绘制首页
 
-**应用冷启动即当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用。**
+应用冷启动即当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用。
 
 OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进程创建&初始化、Application&Ability初始化、Ability生命周期、**加载绘制首页**。
 
-![](figures\ColdStart.png)
+![](figures/ColdStart.png)
 
 **加载绘制首页**不仅是应用冷启动的四个阶段之一，还是首帧绘制最重要的阶段。而它可以分为三个阶段：加载页面、测量和布局、渲染。本文从这三个阶段入手，分成下面三个场景进行案例优化。
 
-![](figures\Render-FirstFrame.png)
+![](figures/Render-FirstFrame.png)
 
 ## 减少加载页面时间
 
@@ -24,7 +24,7 @@ OpenHarmony的应用冷启动过程大致可分成以下四个阶段：应用进
 
 **案例：每一个列表元素都被初始化和加载，为了突出效果，方便观察，设定数组中的元素有10000个，使其在加载页面阶段创建列表内元素耗时大大增加。**
 
-```
+```ts
 @Entry
 @Component
 struct AllLoad {
@@ -45,7 +45,7 @@ struct AllLoad {
 
 **优化：LazyForEach替换ForEach，避免一次性初始化和加载所有元素。**
 
-```
+```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = []
 
@@ -57,6 +57,7 @@ class BasicDataSource implements IDataSource {
     return undefined
   }
 
+  // 注册数据改变的监听器
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       console.info('add listener')
@@ -64,6 +65,7 @@ class BasicDataSource implements IDataSource {
     }
   }
 
+  // 注销数据改变的监听器
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -72,30 +74,35 @@ class BasicDataSource implements IDataSource {
     }
   }
 
+  // 通知组件重新加载所有数据
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded()
     })
   }
 
+  // 通知组件index的位置有数据添加
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index)
     })
   }
 
+  // 通知组件index的位置有数据有变化
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index)
     })
   }
 
+  // 通知组件删除index位置的数据并刷新LazyForEach的展示内容
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index)
     })
   }
 
+  // 通知组件数据有移动
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to)
@@ -148,11 +155,11 @@ struct SmartLoad {
 
 #### 减少自定义组件生命周期时间
 
-LoadPage阶段需要等待自定义组件生命周期aboutToAppear的高耗时任务完成， 导致LoadPage时间大量增加，阻塞主线程后续的布局渲染，所以自定义组件生命周期的耗时任务应当转为异步任务，优先绘制页面，避免启动时阻塞在startWindowIcon页面。
+LoadPage阶段需要等待自定义组件生命周期aboutToAppear的高耗时任务完成， 导致LoadPage时间大量增加，阻塞主线程后续的布局渲染，所以自定义组件生命周期的耗时任务应当转为Worker线程任务，优先绘制页面，避免启动时阻塞在startWindowIcon页面。
 
 **案例：自定义组件生命周期存在高耗时任务，阻塞主线程布局渲染。**
 
-```
+```ts
 @Entry
 @Component
 struct TaskSync {
@@ -183,9 +190,9 @@ struct TaskSync {
 }
 ```
 
-**优化：自定义组件生命周期的耗时任务转为异步Worker任务，优先绘制页面，再将异步Worker子线程结果发送到主线程并更新到页面。**
+**优化：自定义组件生命周期的耗时任务转为Worker线程任务，优先绘制页面，再将Worker子线程结果发送到主线程并更新到页面。**
 
-```
+```ts
 // TaskAsync.ets
 import worker from '@ohos.worker';
 
@@ -204,7 +211,7 @@ struct TaskAsync {
       this.workerInstance.terminate()
     }
     this.text = 'hello world';
-    // 执行异步任务
+    // 执行Worker线程任务
     this.computeTaskAsync();
   }
 
@@ -223,7 +230,7 @@ struct TaskAsync {
 }
 ```
 
-```
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 
@@ -255,7 +262,7 @@ parentPort.onmessage = function(message) {
 
 **案例：使用Image组件同步加载高分辨率图片，阻塞UI线程，增加了页面布局总时间。**
 
-```
+```ts
 @Entry
 @Component
 struct SyncLoadImage {
@@ -283,7 +290,7 @@ struct SyncLoadImage {
 
 **优化：使用Image组件默认的异步加载方式加载图片，不阻塞UI线程，降低页面布局时间。**
 
-```
+```ts
 @Entry
 @Component
 struct AsyncLoadImage {
@@ -316,7 +323,7 @@ struct AsyncLoadImage {
 
 **案例：通过Grid网格容器一次性加载1000个网格，并且额外使用3层Flex容器模拟不合理的深嵌套场景使布局时间增加。**
 
-```
+```ts
 @Entry
 @Component
 struct Depth1 {
@@ -355,7 +362,7 @@ struct Depth1 {
 
 **优化：通过Grid网格容器一次性加载1000个网格，去除额外的不合理的布局容器，降低布局时间。**
 
-```
+```ts
 @Entry
 @Component
 struct Depth2 {
@@ -394,11 +401,11 @@ struct Depth2 {
 
 #### 条件渲染
 
-通过条件渲染替代显隐控制，在First Frame - Render Phase时间内的RenderFrame时间明显降低，即首帧绘制时的渲染时间明显降低，提升性能表现。另外，即使组件处于隐藏状态，在页面刷新时仍存在重新创建过程，因此当对性能有严格要求时建议使用条件渲染代替。
+通过条件渲染替代显隐控制，首帧绘制时的渲染时间明显降低，从而提升性能表现。另外，即使组件处于隐藏状态，在页面刷新时仍存在重新创建过程，因此当对性能有严格要求时建议使用条件渲染代替。
 
 **案例：通过visibility属性控制当前组件显示或隐藏。**
 
-```
+```ts
 @Entry
 @Component
 struct VisibilityExample {
@@ -424,7 +431,7 @@ struct VisibilityExample {
 
 **优化：通过条件渲染替代显隐控制。**
 
-```
+```ts
 @Entry
 @Component
 struct IsVisibleExample {
@@ -451,7 +458,3 @@ struct IsVisibleExample {
   }
 }
 ```
-
-
-
- 
