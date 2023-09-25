@@ -2851,3 +2851,36 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+## ohos.permission.INSTANTSHARE_SWITCH_CONTROL
+
+允许系统服务或系统应用操作分享开关状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+## ohos.permission.ACCESS_INSTANTSHARE_SERVICE
+
+允许系统服务或系统应用访问分享服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+## ohos.permission.ACCESS_INSTANTSHARE_PRIVATE_ABILITY
+
+允许系统服务或系统应用访问分享应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
