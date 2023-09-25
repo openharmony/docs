@@ -19,7 +19,7 @@ When **loop** is set to **true**, the user can switch to the previous or next pa
 
 ```ts
 ...
-private swiperController: SwiperController = new SwiperController()
+export let swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -156,6 +156,7 @@ Swiper(this.swiperController) {
   Example of customizing the style of the navigation dots indicator, with the diameter of 30 vp, left margin of 0, and color of red:
 
 ```ts
+let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')
@@ -178,11 +179,7 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle({
-  size: 30,
-  left: 0,
-  color: Color.Red
-})
+.indicatorStyle(swco)
 ```
 
 ![ind](figures/ind.PNG)
