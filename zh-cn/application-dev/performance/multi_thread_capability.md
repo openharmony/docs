@@ -22,7 +22,7 @@
 
 在基于消息传递的并发模型中，并发线程的内存相互隔离，需要通过通信通道相互发送消息来进行交互。典型的基于消息传递的并发模型一般有两种：CSP和Actor。
 
-CSP（Communicating Sequential Processes）中的计算单元并不能直接互相发送信息。需要通过Channel作为媒介进行消息传递：发送方需要将消息发送到Channel，而接收方需要从Channel读取消息。与CSP不同，在Actor模型中，每个Actor可以看做一个独立的计算单元，并且相互之间内存隔离，每个Actor中存在信箱（Mail Box），Actor之间可以直接进行消息传递，如下图所示：  
+CSP（Communicating Sequential Processes，通信顺序进程）中的计算单元并不能直接互相发送信息。需要通过通道（Channel）作为媒介进行消息传递：发送方需要将消息发送到Channel，而接收方需要从Channel读取消息。与CSP不同，在Actor模型中，每个Actor可以看做一个独立的计算单元，并且相互之间内存隔离，每个Actor中存在信箱（Mail Box），Actor之间可以直接进行消息传递，如下图所示：  
 
 **图1**  Actor消息传递示意图  
 
@@ -32,7 +32,7 @@ CSP与Actor之间的主要区别：
 
 - Actor需要明确指定消息接收方，而CSP中处理单元不用关心这些，只需要把消息发送给Channel，而接收方只需要从Channel读取消息。
 
-- 由于在默认情况下Channel是没有缓存的，因此对Channel的Send动作是同步阻塞的，直到另外一个持有该Channel引用的执行块取出消息，而Actor模型中信箱本质是队列，因此消息的发送和接收可以是异步的。
+- 由于在默认情况下Channel是没有缓存的，因此对Channel的发送（Send）动作是同步阻塞的，直到另外一个持有该Channel引用的执行块取出消息，而Actor模型中信箱本质是队列，因此消息的发送和接收可以是异步的。
 
 典型的基于消息传递的并发模型的程序语言有：Dart、JS和ArkTS。OpenHarmony中Worker和TaskPool都是基于Actor并发模型实现的并发能力。
 
@@ -40,7 +40,7 @@ CSP与Actor之间的主要区别：
 
 ### 基本概念和运作原理
 
-OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。Worker拥有独立的运行环境，每个Worker线程和主线程一样拥有自己的内存空间、消息队列(MessageQueue)、事件轮询机制(EventLoop)、调用栈(CallStack)等。线程之间通过Message进行交互，如下图所示：  
+OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。Worker拥有独立的运行环境，每个Worker线程和主线程一样拥有自己的内存空间、消息队列（MessageQueue）、事件轮询机制（EventLoop）、调用栈（CallStack）等。线程之间通过消息（Massage）进行交互，如下图所示：  
 
 **图2**  线程交互示意图
 
@@ -50,7 +50,7 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 **图3**  Worker线程并发示意图  
 
-![Worker线程并发图](figures/worker-thread-concurrent.jpg)
+![Worker线程并发图](figures/worker-thread-concurrent.png)
 
 ### 使用场景和开发示例
 
@@ -60,7 +60,7 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 - 有关联的一系列同步任务，例如数据库增、删、改、查等，要保证同一个句柄，需要使用Worker。
 
-以视频解压的场景为例，当视频过大时，可能会出现解压时长超过3分钟耗时的情况，因此我们选用该场景来说明如何使用Worker。
+以视频解压的场景为例，点击右上角下载按钮，该示例会执行网络下载并监听，下载完成后自动执行解压操作。当视频过大时，可能会出现解压时长超过3分钟耗时的情况，因此我们选用该场景来说明如何使用Worker。
 
 场景预览图如下所示：  
 
@@ -70,93 +70,103 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 使用步骤如下：
 
-1. 宿主线程创建一个Worker线程。通过new worker.ThreadWorker()创建Worker实例，示例代码如下：
+1. 宿主线程创建一个Worker线程。通过`new worker.ThreadWorker()`创建Worker实例，示例代码如下：
 
 ```typescript
-let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', {
-  name: 'FriendsMoments Worker'
-});
+  // 引入worker模块
+  import worker, { MessageEvents } from '@ohos.worker';
+  import type common from '@ohos.app.ability.common';
+        
+  let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', { 
+    name: 'FriendsMoments Worker'
+  });
 ```
 
-2. 宿主线程给Worker线程发送任务消息。宿主线程通过postMessage方法来发送消息给Worker线程，启动下载解压任务，示例代码如下：
+2. 宿主线程给Worker线程发送任务消息。宿主线程通过postMessage方法来发送消息给Worker线程，启动下载解压任务，示例代码如下：   
 
 ```typescript
-workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
+  // 请求网络数据
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
+  workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
 ```
 
 3. Worker线程监听宿主线程发送的消息。Worker线程在onmessage中接收到宿主线程的postMessage请求，执行下载解压任务，示例代码如下：
 
- ```typescript
- let workerPort = worker.workerPort;
- // 接收宿主线程的postMessage请求
- workerPort.onmessage = (e: MessageEvents): void => {
-   // 下载视频文件
-   let context: common.UIAbilityContext = e.data.context;
-   let filesDir: string = context.filesDir;
-   let time: number = new Date().getTime();
-   let inFilePath: string = `${filesDir}/${time.toString()}.zip`;
-   let mediaDataUrl: string = e.data.mediaData;
-   let urlPart: string = mediaDataUrl.split('.')[1];
-   let length: number = urlPart.split('/').length;
-   let fileName: string = urlPart.split('/')[length-1];
-   let options: zlib.Options = {
-     level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
-   };
-   request.downloadFile(context, {
-     url: mediaDataUrl,
-     filePath: inFilePath
-   }).then((downloadTask) => {
-     downloadTask.on('progress', (receivedSize: number, totalSize: number) => {
-       Logger.info(`receivedSize:${receivedSize},totalSize:${totalSize}`);
-     });
-     downloadTask.on('complete', () => {
-       // 下载完成之后执行解压操作
-       zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
-         if (errData !== null) {
-           ...
-           // 异常处理
-         }
-         let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
-         workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
-       })
-     });
-     downloadTask.on('fail', () => {
-       ...
-       // 异常处理
-     });
-   }).catch((err) => {
-     ...
-     // 异常处理
-   });
- };
- ```
+```typescript
+  // 引入worker模块
+  import worker, { MessageEvents } from '@ohos.worker';
+        
+  let workerPort = worker.workerPort;
+  // 接收宿主线程的postMessage请求
+  workerPort.onmessage = (e: MessageEvents): void => {
+    // 下载视频文件
+    let context: common.UIAbilityContext = e.data.context;
+    let filesDir: string = context.filesDir;
+    let time: number = new Date().getTime();
+    let inFilePath: string = `${filesDir}/${time.toString()}.zip`;
+    let mediaDataUrl: string = e.data.mediaData;
+    let urlPart: string = mediaDataUrl.split('.')[1];
+    let length: number = urlPart.split('/').length;
+    let fileName: string = urlPart.split('/')[length-1];
+    let options: zlib.Options = {
+      level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+    };
+    request.downloadFile(context, {
+      url: mediaDataUrl,
+      filePath: inFilePath
+    }).then((downloadTask) => {
+      downloadTask.on('progress', (receivedSize: number, totalSize: number) => {
+        Logger.info(`receivedSize:${receivedSize},totalSize:${totalSize}`);
+      });
+      downloadTask.on('complete', () => {
+        // 下载完成之后执行解压操作
+        zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
+          if (errData !== null) {
+            ...
+            // 异常处理
+          }
+          let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
+          workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
+        })
+      });
+      downloadTask.on('fail', () => {
+        ...
+        // 异常处理
+      });
+    }).catch((err) => {
+      ...
+      // 异常处理
+    });
+  };
+```
 
 4. 宿主线程监听Worker线程发送的信息。宿主线程通过onmessage接收到Worker线程发送的消息，并执行下载的结果通知。
 
 5. 释放Worker资源。在业务完成或者页面销毁时，调用workerPort.close()接口主动释放Worker资源，示例代码如下所示：
 
 ```typescript
-workerInstance.onmessage = (e: MessageEvents): void => {
-  if (e.data) {
-    this.downComplete = e.data['isComplete'];
-    this.filePath = e.data['filePath'];
-    workerInstance.terminate();
-    setTimeout(() => {
-      this.downloadStatus = false;
-    }, LOADING_DURATION_OPEN);
-  }
-};
+  workerInstance.onmessage = (e: MessageEvents): void => {
+    if (e.data) {
+      this.downComplete = e.data['isComplete'];
+      this.filePath = e.data['filePath'];
+      workerInstance.terminate();
+      setTimeout(() => {
+        this.downloadStatus = false;
+      }, LOADING_DURATION_OPEN);
+    }
+  };
 ```
 
 ## TaskPool
 
 ### 基本概念和运作原理
 
-相比使用Worker实现多线程并发，TaskPool更加易于使用，创建开销也少于Worker，并且Worker线程有个数限制，需要开发者自己掌握，TaskPool的基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md/)。TaskPool作用是为应用程序提供一个多线程的运行环境。TaskPool在Worker之上实现了调度器和Worker线程池，TaskPool根据任务的优先级，将其放入不同的优先级队列，调度器会依据自己实现的调度算法（优先级，防饥饿），从优先级队列中取出任务，放入TaskPool中的Worker线程池，执行相关任务，流程图如下所示：
+相比使用Worker实现多线程并发，TaskPool更加易于使用，创建开销也少于Worker，并且Worker线程有个数限制，需要开发者自己掌握，TaskPool的基本概念可参见[TaskPool和Worker的对比](../arkts-utils/taskpool-vs-worker.md)。TaskPool作用是为应用程序提供一个多线程的运行环境。TaskPool在Worker之上实现了调度器和Worker线程池，TaskPool根据任务的优先级，将其放入不同的优先级队列，调度器会依据自己实现的调度算法（优先级，防饥饿），从优先级队列中取出任务，放入TaskPool中的Worker线程池，执行相关任务，流程图如下所示：
 
 **图5**  TaskPool流程示意图
 
-![TaskPool流程图](figures/taskpool-process.jpg)
+![TaskPool流程图](figures/taskpool-process.png)
 
 TaskPool有如下的特点：
 
@@ -170,7 +180,7 @@ TaskPool有如下的特点：
 
 - 可以使用TaskPool API创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。
 
-- 根据任务负载动态调节Task Worker Thread工作数量，以使任务按照预期时间完成任务。
+- 根据任务负载动态调节TaskPool工作线程的数量，以使任务按照预期时间完成任务。
 
 - 可以设置任务的优先级。
 
@@ -186,7 +196,7 @@ TaskPool的适用场景主要分为如下三类：
 
 - 大量或者调度点较分散的任务。
 
-下面将以使用朋友圈加载网络数据并且进行解析和数据处理的场景为例，来演示如何使用TaskPool进行大量或调度点较分散的任务开发和处理。场景的预览图如下所示：  
+因为朋友圈场景存在不同好友同时上传视频图片，在频繁滑动时将多次触发下载任务，所以下面将以使用朋友圈加载网络数据并且进行解析和数据处理的场景为例，来演示如何使用TaskPool进行大量或调度点较分散的任务开发和处理。场景的预览图如下所示：  
 
 **图6**  朋友圈场景预览图  
 
@@ -197,62 +207,62 @@ TaskPool的适用场景主要分为如下三类：
 1. 首先import引入TaskPool模块，TaskPool的API介绍可参见[@ohos.taskpool（启动TaskPool）](../reference/apis/js-apis-taskpool.md)。
 
 ```typescript
-import taskpool from '@ohos.taskpool';
+  import taskpool from '@ohos.taskpool';
 ```
 
 2. new一个task对象，其中传入被调用的方法和参数。
 
 ```typescript
-... 
-// 创建task任务项，传入1.被调用的方法 2.方法所需参数 
-let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl); // jsonUrl为朋友圈模拟数据
-...
+  ... 
+  // 创建task任务项，参数1.任务执行需要传入函数 参数2.任务执行传入函数的参数 （本示例中此参数为被调用的网络地址字符串）
+  let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
+  ...
 
-// 获取网络数据
-@Concurrent
-async function getWebData(url: string): Promise<Array<FriendMoment>> {
-  try {
-    let webData: http.HttpResponse = await http.createHttp().request(
-      url,
-      { header: {
-        'Content-Type': 'application/json'
-      },
-        connectTimeout: FriendMomentJsonUrl.CONNECT_TIME, readTimeout: FriendMomentJsonUrl.READ_TIME
-      })
-    if (typeof (webData.result) === 'string') {
-      // 解析json字符串
-      let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
-      let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
-      // 下方源码省略，主要为数据解析和耗时操作处理
-      ...
-      return friendMomentBuckets;
-    } else {
+  // 获取网络数据
+  @Concurrent
+  async function getWebData(url: string): Promise<Array<FriendMoment>> {
+    try {
+      let webData: http.HttpResponse = await http.createHttp().request(
+        url,
+        { header: {
+          'Content-Type': 'application/json'
+        },
+          connectTimeout: 60000, readTimeout: 60000
+        })
+      if (typeof (webData.result) === 'string') {
+        // 解析json字符串
+        let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
+        let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
+        // 下方源码省略，主要为数据解析和耗时操作处理
+        ...
+        return friendMomentBuckets;
+      } else {
+        // 异常处理
+        ...
+      }
+    } catch (err) {
       // 异常处理
       ...
     }
-  } catch (err) {
-    // 异常处理
-    ...
   }
-}
 ```
 3. 之后使用taskpool.execute执行TaskPool任务，将待执行的函数放入TaskPool内部任务队列等待执行。execute需要两个参数：创建的任务对象、等待执行的任务组的优先级，默认值是Priority.MEDIUM。在TaskPool中执行完数据下载、解析和处理后，再返回给主线程中。
 
 ```typescript
-let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
+  let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
 ```
 
 4. 将新获取的momentData通过AppStorage.setOrCreate传入页面组件中。
 
 ```typescript
-// 获取页面组件中的momentData对象，其中是组件所需的username、image、video等数据
-let momentData = AppStorage.get<FriendMomentsData>('momentData');
-// 循环遍历对象并依次传入momentData
-for (let i = 0; i < friendMomentArray.length; i++) {
-  momentData.pushData(friendMomentArray[i]);
-}
-// 将更新的momentData返回给页面组件
-AppStorage.setOrCreate('momentData', momentData);
+  // 获取页面组件中的momentData对象，其中是组件所需的username、image、video等数据
+  let momentData = AppStorage.get<FriendMomentsData>('momentData');
+  // 循环遍历对象并依次传入momentData
+  for (let i = 0; i < friendMomentArray.length; i++) {
+    momentData.pushData(friendMomentArray[i]);
+  }
+  // 将更新的momentData返回给页面组件
+  AppStorage.setOrCreate('momentData', momentData);
 ```
 
 ## 其他场景示例和方案思考
@@ -311,7 +321,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 }
 ```
 
-但是结果是失败的，接下来我们尝试第二种方法，根据数据重新初始化一个MyMath对象，然后执行compute方法，示例代码如下：
+强制转换后执行方法失败，不会打印此日志。因为序列化传输普通对象时，仅支持传递属性，不支持传递其原型及方法。接下来我们尝试第二种方法，根据数据重新初始化一个MyMath对象，然后执行compute方法，示例代码如下：
 
 ```typescript
 const workerPort = worker.workerPort;
@@ -377,5 +387,5 @@ workerPort.onmessage = (e: MessageEvents): void => {
 大家可以根据实际场景选择第二种或者第三种方案。
 
 ## 相关实例
-
-[聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+针对多线程并发，有以下相关实例可供参考：  
+* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
