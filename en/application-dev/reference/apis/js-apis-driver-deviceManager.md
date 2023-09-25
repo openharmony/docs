@@ -8,8 +8,9 @@ The **deviceManager** module provides APIs for managing peripheral devices, incl
 
 ## Modules to Import
 
-```js
+```ts
 import deviceManager from "@ohos.driver.deviceManager";
+import { BusinessError } from '@ohos.base';
 ```
 
 ## deviceManager.queryDevices
@@ -17,6 +18,8 @@ import deviceManager from "@ohos.driver.deviceManager";
 queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 Queries the list of peripheral devices. If the device has no peripheral device connected, an empty list is returned.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -43,8 +46,8 @@ Queries the list of peripheral devices. If the device has no peripheral device c
 
 ```js
 try {
-  let devices = deviceManager.queryDevices(deviceManager.BusType.USB);
-  for (let item of devices) {
+  let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+  for (let item : Device of devices : Array<Device>) {
     console.info('Device id is ${item.deviceId}')
   }
 } catch (error) {
@@ -60,6 +63,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -83,7 +88,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 ```js
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-  deviceManager.bindDevice(12345678, (error, data) => {
+  deviceManager.bindDevice(12345678, (error : BusinessError, data : MessageSequence) => {
     console.error('Device is disconnected');
   }, (error, data) => {
     if (error) {
@@ -105,6 +110,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses a promise to return the result.
 
 You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -137,7 +144,7 @@ try {
     console.error('Device is disconnected');
   }).then(data => {
     console.info('bindDevice success');
-  }, error => {
+  }, (error : BusinessError) => {
     console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
   });
 } catch (error) {
@@ -150,6 +157,8 @@ try {
 unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Unbinds a peripheral device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 **System capability**: SystemCapability.Driver.ExternalDevice
 
@@ -189,6 +198,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 
 Unbinds a peripheral device. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
 **System capability**: SystemCapability.Driver.ExternalDevice
 
 **Parameters**
@@ -217,7 +228,7 @@ try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
   deviceManager.unbindDevice(12345678).then(data => {
     console.info('unbindDevice success');
-  }, error => {
+  }, (error : BusinessError) => {
     console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
   });
 } catch (error) {
