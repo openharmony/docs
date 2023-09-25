@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 ```
 
@@ -36,7 +36,7 @@ constructor()
 
 **示例：**
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
 let faceAuthManager = new userIAM_faceAuth.FaceAuthManager();
@@ -72,7 +72,7 @@ setSurfaceId(surfaceId: string): void;
 
 **示例：**
 
-```js
+```ts
 import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
 // 该surfaceId应该从XComponent控件获取，此处仅用作示例。
