@@ -147,14 +147,14 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
     ```typescript
     workerInstance.onmessage = (e: MessageEvents): void => {
-    if (e.data) {
-      this.downComplete = e.data['isComplete'];
-      this.filePath = e.data['filePath'];
-      workerInstance.terminate();
-      setTimeout(() => {
-        this.downloadStatus = false;
-      }, LOADING_DURATION_OPEN);
-    }
+      if (e.data) {
+        this.downComplete = e.data['isComplete'];
+        this.filePath = e.data['filePath'];
+        workerInstance.terminate();
+        setTimeout(() => {
+          this.downloadStatus = false;
+        }, LOADING_DURATION_OPEN);
+      }
     };
     ```
 
@@ -259,7 +259,7 @@ TaskPool的适用场景主要分为如下三类：
     let momentData = AppStorage.get<FriendMomentsData>('momentData');
     // 循环遍历对象并依次传入momentData
     for (let i = 0; i < friendMomentArray.length; i++) {
-    momentData.pushData(friendMomentArray[i]);
+      momentData.pushData(friendMomentArray[i]);
     }
     // 将更新的momentData返回给页面组件
     AppStorage.setOrCreate('momentData', momentData);
