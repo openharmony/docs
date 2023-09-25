@@ -72,34 +72,34 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
 
 1. 宿主线程创建一个Worker线程。通过`new worker.ThreadWorker()`创建Worker实例，示例代码如下：
 
-```typescript
-  // 引入worker模块
-  import worker, { MessageEvents } from '@ohos.worker';
-  import type common from '@ohos.app.ability.common';
-        
-  let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', { 
-    name: 'FriendsMoments Worker'
-  });
-```
+    ```typescript
+    // 引入worker模块
+    import worker, { MessageEvents } from '@ohos.worker';
+    import type common from '@ohos.app.ability.common';
+            
+    let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/pages/workers/worker.ts', { 
+      name: 'FriendsMoments Worker'
+    });
+    ```
 
 2. 宿主线程给Worker线程发送任务消息。宿主线程通过postMessage方法来发送消息给Worker线程，启动下载解压任务，示例代码如下：   
 
-```typescript
-  // 请求网络数据
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-  // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
-  workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
-```
+    ```typescript
+    // 请求网络数据
+    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
+    workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
+    ```
 
 3. Worker线程监听宿主线程发送的消息。Worker线程在onmessage中接收到宿主线程的postMessage请求，执行下载解压任务，示例代码如下：
 
-```typescript
-  // 引入worker模块
-  import worker, { MessageEvents } from '@ohos.worker';
+    ```typescript
+    // 引入worker模块
+    import worker, { MessageEvents } from '@ohos.worker';
         
-  let workerPort = worker.workerPort;
-  // 接收宿主线程的postMessage请求
-  workerPort.onmessage = (e: MessageEvents): void => {
+    let workerPort = worker.workerPort;
+    // 接收宿主线程的postMessage请求
+    workerPort.onmessage = (e: MessageEvents): void => {
     // 下载视频文件
     let context: common.UIAbilityContext = e.data.context;
     let filesDir: string = context.filesDir;
@@ -138,15 +138,15 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
       ...
       // 异常处理
     });
-  };
-```
+    };
+    ```
 
 4. 宿主线程监听Worker线程发送的信息。宿主线程通过onmessage接收到Worker线程发送的消息，并执行下载的结果通知。
 
 5. 释放Worker资源。在业务完成或者页面销毁时，调用workerPort.close()接口主动释放Worker资源，示例代码如下所示：
 
-```typescript
-  workerInstance.onmessage = (e: MessageEvents): void => {
+    ```typescript
+    workerInstance.onmessage = (e: MessageEvents): void => {
     if (e.data) {
       this.downComplete = e.data['isComplete'];
       this.filePath = e.data['filePath'];
@@ -155,8 +155,8 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
         this.downloadStatus = false;
       }, LOADING_DURATION_OPEN);
     }
-  };
-```
+    };
+    ```
 
 ## TaskPool
 
@@ -206,64 +206,64 @@ TaskPool的适用场景主要分为如下三类：
 
 1. 首先import引入TaskPool模块，TaskPool的API介绍可参见[@ohos.taskpool（启动TaskPool）](../reference/apis/js-apis-taskpool.md)。
 
-```typescript
-  import taskpool from '@ohos.taskpool';
-```
+    ```typescript
+    import taskpool from '@ohos.taskpool';
+    ```
 
 2. new一个task对象，其中传入被调用的方法和参数。
 
-```typescript
-  ... 
-  // 创建task任务项，参数1.任务执行需要传入函数 参数2.任务执行传入函数的参数 （本示例中此参数为被调用的网络地址字符串）
-  let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-  ...
-
-  // 获取网络数据
-  @Concurrent
-  async function getWebData(url: string): Promise<Array<FriendMoment>> {
-    try {
-      let webData: http.HttpResponse = await http.createHttp().request(
-        url,
-        { header: {
-          'Content-Type': 'application/json'
-        },
-          connectTimeout: 60000, readTimeout: 60000
-        })
-      if (typeof (webData.result) === 'string') {
-        // 解析json字符串
-        let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
-        let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
-        // 下方源码省略，主要为数据解析和耗时操作处理
-        ...
-        return friendMomentBuckets;
-      } else {
+    ```typescript
+    ... 
+    // 创建task任务项，参数1.任务执行需要传入函数 参数2.任务执行传入函数的参数 （本示例中此参数为被调用的网络地址字符串）
+    let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
+    ...
+    
+    // 获取网络数据
+    @Concurrent
+    async function getWebData(url: string): Promise<Array<FriendMoment>> {
+      try {
+        let webData: http.HttpResponse = await http.createHttp().request(
+          url,
+          { header: {
+              'Content-Type': 'application/json'
+          },
+            connectTimeout: 60000, readTimeout: 60000
+          })
+        if (typeof (webData.result) === 'string') {
+          // 解析json字符串
+          let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
+          let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
+          // 下方源码省略，主要为数据解析和耗时操作处理
+          ...
+          return friendMomentBuckets;
+        } else {
+          // 异常处理
+          ...
+        }
+      } catch (err) {
         // 异常处理
         ...
       }
-    } catch (err) {
-      // 异常处理
-      ...
     }
-  }
-```
+    ```
 3. 之后使用taskpool.execute执行TaskPool任务，将待执行的函数放入TaskPool内部任务队列等待执行。execute需要两个参数：创建的任务对象、等待执行的任务组的优先级，默认值是Priority.MEDIUM。在TaskPool中执行完数据下载、解析和处理后，再返回给主线程中。
 
-```typescript
-  let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
-```
+    ```typescript
+    let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
+    ```
 
 4. 将新获取的momentData通过AppStorage.setOrCreate传入页面组件中。
 
-```typescript
-  // 获取页面组件中的momentData对象，其中是组件所需的username、image、video等数据
-  let momentData = AppStorage.get<FriendMomentsData>('momentData');
-  // 循环遍历对象并依次传入momentData
-  for (let i = 0; i < friendMomentArray.length; i++) {
+    ```typescript
+    // 获取页面组件中的momentData对象，其中是组件所需的username、image、video等数据
+    let momentData = AppStorage.get<FriendMomentsData>('momentData');
+    // 循环遍历对象并依次传入momentData
+    for (let i = 0; i < friendMomentArray.length; i++) {
     momentData.pushData(friendMomentArray[i]);
-  }
-  // 将更新的momentData返回给页面组件
-  AppStorage.setOrCreate('momentData', momentData);
-```
+    }
+    // 将更新的momentData返回给页面组件
+    AppStorage.setOrCreate('momentData', momentData);
+    ```
 
 ## 其他场景示例和方案思考
 
