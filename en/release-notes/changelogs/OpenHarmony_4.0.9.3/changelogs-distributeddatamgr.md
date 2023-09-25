@@ -1,6 +1,6 @@
 # Distributed Data Subsystem Changelog
 
-## Change of the cl.data.cloudData Enum Name from Action to clearAction
+## cl.distributeddatamgr.1 Change of the API Name from Action to clearAction in the cloudData Module
 
 **Change Impact**
 
@@ -26,7 +26,11 @@ After change:
   }
  ```
 
-## Change of the cl.data.cloudData API Name from clean to clear
+**Adaptation Guide**
+
+From OpenHarmony4.0.9.3, use **clearAction()** to specify the action taken to clear the cloud data locally.
+
+## cl.distributeddatamgr.2 Change of the API Name from clean to clear in the cloudData Module
 
 **Change Impact**
 
@@ -56,7 +60,11 @@ After change:
     static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise<void>;
  ```
 
-## Change of the Statistic Value from success to successful in cl.data.relationalStore
+**Adaptation Guide**
+
+From OpenHarmony4.0.9.3, use **clear()** to clear the cloud data locally.
+
+## cl.distributeddatamgr.3 Change of "success" to "successful" in Statistic of the relationalStore Module
 
 **Change Impact**
 
@@ -88,7 +96,11 @@ After change:
   }
  ```
 
-## Change of the Type of the setDistributedTables() Input Parameter type from number to DistributedType in cl.data.relationalStore
+**Adaptation Guide**
+
+From OpenHarmony4.0.9.3, use **Statistic.successful** to indicate the number of rows that are successfully synchronized between the device and cloud.
+
+## cl.distributeddatamgr.4 Change of the Parameter type in setDistributedTables() from the number Type to DistributedType in the relationalStore Module
 
 **Change Impact**
 
@@ -109,3 +121,6 @@ After change:
 setDistributedTables(tables: Array<string>, type: DistributedType, config: DistributedConfig, callback: AsyncCallback<void>): void;
 setDistributedTables(tables: Array<string>, type?: DistributedType, config?: DistributedConfig): Promise<void>;
  ```
+**Adaptation Guide**
+
+From OpenHarmony4.0.9.3, the type of the input parameter **type** of **setDistributedTables()** is changed from **number** to **DistributedType**.
