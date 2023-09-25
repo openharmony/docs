@@ -143,7 +143,7 @@
    import { BusinessError } from '@ohos.base';
    
    async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
-     let atManager = abilityAccessCtrl.createAtManager();
+     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
      // 获取应用程序的accessTokenID
@@ -191,7 +191,7 @@
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
 
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
@@ -199,11 +199,11 @@
     // ...
     onWindowStageCreate(windowStage: window.WindowStage) {
       // Main window is created, set main page for this ability
-      let context = this.context;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let context: Context = this.context;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
 
-      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
         let grantStatus: Array<number> = data.authResults;
         let length: number = grantStatus.length;
         for (let i = 0; i < length; i++) {
@@ -225,8 +225,7 @@
 
    在UI中向用户申请授权。
    ```typescript
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import common from '@ohos.app.ability.common';
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
 
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
@@ -235,10 +234,10 @@
    @Component
    struct Index {
     reqPermissionsFromUser(permissions: Array<Permissions>): void {
-      let context = getContext(this) as common.UIAbilityContext;
-      let atManager = abilityAccessCtrl.createAtManager();
+      let context: Context = getContext(this) as Context;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-      atManager.requestPermissionsFromUser(context, permissions).then((data) => {
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
         let grantStatus: Array<number> = data.authResults;
         let length: number = grantStatus.length;
         for (let i = 0; i < length; i++) {
@@ -283,13 +282,13 @@
 
    **globalThis.ets示例代码如下：**
    ```ts
-   import common from '@ohos.app.ability.common';
+   import { Context } from '@ohos.abilityAccessCtrl';
 
    // 构造单例对象
    export class GlobalThis {
      private constructor() {}
      private static instance: GlobalThis;
-     private _uiContexts = new Map<string, common.UIAbilityContext>();
+     private _uiContexts = new Map<string, Context>();
 
      public static getInstance(): GlobalThis {
        if (!GlobalThis.instance) {
@@ -298,11 +297,11 @@
        return GlobalThis.instance;
      }
 
-     getContext(key: string): common.UIAbilityContext | undefined {
+     getContext(key: string): Context | undefined {
        return this._uiContexts.get(key);
      }
 
-     setContext(key: string, value: common.UIAbilityContext): void {
+     setContext(key: string, value: Context): void {
        this._uiContexts.set(key, value);
      }
 
@@ -311,24 +310,25 @@
    ```
 
    ```ts
+   import { Context } from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
    import Want from '@ohos.app.ability.Want';
    import { GlobalThis } from '../utils/globalThis';
    import common from '@ohos.app.ability.common';
 
    function openPermissionsInSystemSettings(): void {
-     let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-     let wantInfo: Want = {
-       action: 'action.settings.app.info',
-       parameters: {
-         settingsParamBundleName: 'com.example.myapplication' // 打开指定应用的详情页面
-       }
-     }
-     context.startAbility(wantInfo).then(() => {
-       // ...
-     }).catch((err: BusinessError) => {
-       // ...
-     })
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    let wantInfo: Want = {
+      action: 'action.settings.app.info',
+      parameters: {
+        settingsParamBundleName: 'com.example.myapplication' // 打开指定应用的详情页面
+      }
+    }
+    context.startAbility(wantInfo).then(() => {
+      // ...
+    }).catch((err: BusinessError) => {
+      // ...
+    })
    }
    ```
 
