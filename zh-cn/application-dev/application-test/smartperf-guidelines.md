@@ -83,3 +83,22 @@ SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 报告存放路径：/data/local/tmp/data.csv
 ```
 
+**data.csv数据名描述**
+
+| 被测数据项    | 含义             |备注|
+| :-----| :--------------------- |:-----|
+| cpuFrequ     | CPU的频率        |单位HZ|
+| cpuLoad      | CPU的负载占比     |单位%|
+| currentNow   | 电流             |单位毫安|  
+| fps          | 屏幕刷新帧率      |帧/秒|
+| fpsJitters   | 每一帧绘制间隔    |单位ns|
+| gpuFrequ     | GPU的频率         |单位HZ|
+| gpuLoad      | GPU的负载占比     |单位%|
+| shell_front  | 前壳温度          
+| shell_frame  | 边框温度          
+| shell_back   | 后壳温度
+| soc_thermal  | SOC温度
+| system_h     | 系统温度
+| timeStamp    |当前时间戳         |对应采集时间|
+| voltageNow   |当前读到的电流值    |单位mA|
+```
