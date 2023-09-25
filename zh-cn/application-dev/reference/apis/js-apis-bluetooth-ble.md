@@ -12,6 +12,7 @@ ble模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import ble from '@ohos.bluetooth.ble';
+import { BusinessError } from '@ohos.base';
 ```
 
 
