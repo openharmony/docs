@@ -145,7 +145,7 @@
         - 应用组件跨设备交互（流转）
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
           - [跨端迁移](application-models/hop-cross-device-migration.md)
-          - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
+          - [多端协同](application-models/hop-multi-device-collaboration.md)
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 了解进程模型
         - [进程模型概述](application-models/process-model-stage.md)
@@ -402,6 +402,7 @@
         - [单次I/O任务开发指导](arkts-utils/single-io-development.md)
       - 使用多线程并发能力进行开发
         - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
         - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
         - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
         - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
@@ -511,7 +512,8 @@
       - 相机最佳实践
         - [拍照实现方案](media/camera-shooting-case.md)
         - [录像实现方案](media/camera-recording-case.md)
-        - [人像模式拍照实现方案](media/camera-mode.md)
+        - [使用人像模式拍照](media/camera-mode.md)
+        - [双路预览](media/camera-dual-channel-preview.md)
         - [性能提升方案（仅对系统应用开放）](media/camera-performance-improvement.md)
     - 图片
       - [图片开发概述](media/image-overview.md)
@@ -529,6 +531,9 @@
       - [访问控制权限校验指导](security/permission-verify-guidelines.md)
       - [应用权限列表](security/permission-list.md)
       - [应用权限组列表](security/permission-group-list.md)
+    - 安全控件
+      - [安全控件开发概述](security/security-component-manager-overview.md)
+      - [安全控件开发指导](security/security-component-manager-guidelines.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
       - [用户认证开发指导](security/userauth-guidelines.md)
@@ -710,6 +715,7 @@
     - 图形图像
       - [XComponent开发指导](napi/xcomponent-guidelines.md)
       - [Drawing开发指导](napi/drawing-guidelines.md)
+      - [图形显示与绘制实例](napi/drawing-sample.md)
       - [NativeBuffer开发指导](napi/native-buffer-guidelines.md)
       - [NativeImage开发指导](napi/native-image-guidelines.md)
       - [NativeVsync开发指导](napi/native-vsync-guidelines.md)
@@ -738,7 +744,7 @@
     - [cem工具](tools/cem-tool.md)
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
-    - [LLDB调试器使用指导](tools/lldb-tool.md)
+    - [LLDB工具](tools/lldb-tool.md)
     - [suap工具](tools/suap-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
@@ -1021,6 +1027,7 @@
       - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
     - 文件管理
+      - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](reference/apis/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
       - [@ohos.file.cloudSync (端云同步能力)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (端云同步管理)](reference/apis/js-apis-file-cloudsyncmanager.md)
@@ -1032,9 +1039,11 @@
       - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
       - [@ohos.file.photoAccessHelper (相册管理模块)](reference/apis/js-apis-photoAccessHelper.md)
       - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
+      - [@ohos.file.recent (最近访问列表)](reference/apis/js-apis-file-recent.md)
       - [@ohos.file.securityLabel (数据标签)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (文件系统空间统计)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
+      - [@ohos.file.trash (回收站)](reference/apis/js-apis-file-trash.md)
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
@@ -1062,16 +1071,16 @@
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
-      - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis/js-apis-bluetooth-a2dp.md)
-      - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](reference/apis/js-apis-bluetooth-access.md)
-      - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](reference/apis/js-apis-bluetooth-baseProfile.md)
-      - [@ohos.bluetooth.ble(蓝牙ble模块)(推荐)](reference/apis/js-apis-bluetooth-ble.md)
-      - [@ohos.bluetooth.connection(蓝牙connection模块)(推荐)](reference/apis/js-apis-bluetooth-connection.md)
-      - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)](reference/apis/js-apis-bluetooth-constant.md)
-      - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)](reference/apis/js-apis-bluetooth-hfp.md)
-      - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](reference/apis/js-apis-bluetooth-hid.md)
-      - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](reference/apis/js-apis-bluetooth-pan.md)
-      - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis/js-apis-bluetooth-socket.md)
+      - [@ohos.bluetooth.a2dp (蓝牙a2dp模块)(推荐)](reference/apis/js-apis-bluetooth-a2dp.md)
+      - [@ohos.bluetooth.access (蓝牙access模块)(推荐)](reference/apis/js-apis-bluetooth-access.md)
+      - [@ohos.bluetooth.baseProfile (蓝牙baseProfile模块)(推荐)](reference/apis/js-apis-bluetooth-baseProfile.md)
+      - [@ohos.bluetooth.ble (蓝牙ble模块)(推荐)](reference/apis/js-apis-bluetooth-ble.md)
+      - [@ohos.bluetooth.connection (蓝牙connection模块)(推荐)](reference/apis/js-apis-bluetooth-connection.md)
+      - [@ohos.bluetooth.constant (蓝牙constant模块)(推荐)](reference/apis/js-apis-bluetooth-constant.md)
+      - [@ohos.bluetooth.hfp (蓝牙hfp模块)(推荐)](reference/apis/js-apis-bluetooth-hfp.md)
+      - [@ohos.bluetooth.hid (蓝牙hid模块)(推荐)](reference/apis/js-apis-bluetooth-hid.md)
+      - [@ohos.bluetooth.pan (蓝牙pan模块)(推荐)](reference/apis/js-apis-bluetooth-pan.md)
+      - [@ohos.bluetooth.socket (蓝牙socket模块)(推荐)](reference/apis/js-apis-bluetooth-socket.md)
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -1109,6 +1118,7 @@
       - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis/js-apis-inputmethod-subtype.md)
       - [@ohos.logLibrary (维测日志获取)](reference/apis/js-apis-loglibrary.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
+      - [@ohos.print (打印)](reference/apis/js-apis-print.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemDateTime (系统时间、时区)](reference/apis/js-apis-system-date-time.md)
       - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
@@ -1125,6 +1135,7 @@
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
       - [@ohos.batteryStatistics (耗电统计)](reference/apis/js-apis-batteryStatistics.md)
       - [@ohos.brightness (屏幕亮度)](reference/apis/js-apis-brightness.md)
+      - [@ohos.calendarManager (日程管理能力)](reference/apis/js-apis-calendarManager.md)
       - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
@@ -1309,7 +1320,7 @@
         - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
         - [前景色设置](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
         - [组件内容模糊](reference/arkui-ts/ts-universal-attributes-foreground-blur-style.md)
-        - [点击回弹](reference/arkui-ts/ts-universal-attributes-click-effect.md)
+        - [点击回弹效果](reference/arkui-ts/ts-universal-attributes-click-effect.md)
         - [无障碍属性](reference/arkui-ts/ts-universal-attributes-accessibility.md)
         - 触摸交互控制
           - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
@@ -1321,6 +1332,8 @@
         - [文本通用](reference/arkui-ts/ts-universal-attributes-text-style.md)
         - [拖拽控制](reference/arkui-ts/ts-universal-attributes-drag-drop.md)
         - [安全区域](reference/arkui-ts/ts-universal-attributes-expand-safe-area.md)
+        - [特效绘制合并](reference/arkui-ts/ts-universal-attributes-use-effect.md)
+        - [组件内容填充方式](reference/arkui-ts/ts-universal-attributes-renderfit.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -1385,6 +1398,7 @@
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
       - [Counter](reference/arkui-ts/ts-container-counter.md)
+      - [EffectComponent](reference/arkui-ts/ts-container-effectcomponent.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
       - [FormLink](reference/arkui-ts/ts-container-formlink.md)
@@ -1434,6 +1448,11 @@
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.multimedia.avcastpicker (投播组件)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
+    - 安全控件
+      - [安全控件通用属性](reference/arkui-ts/ts-securitycomponent-attributes.md)
+      - [LocationButton](reference/arkui-ts/ts-security-components-locationbutton.md)
+      - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
+      - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -1443,6 +1462,7 @@
         - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
         - [组件内隐式共享元素转场](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
       - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
+      - [粒子动画](reference/arkui-ts/ts-particle-animation.md)
     - 全局UI方法
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -1459,7 +1479,7 @@
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型定义](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - 已停止维护的接口
       - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1660,6 +1680,7 @@
       - [弹窗错误码](reference/errorcodes/errorcode-promptAction.md)
       - [页面路由错误码](reference/errorcodes/errorcode-router.md)
       - [用户界面外观服务错误码](reference/errorcodes/errorcode-uiappearance.md)
+      - [拖拽事件错误码](reference/errorcodes/errorcode-drag-event.md)
     - 图形图像
       - [色彩管理错误码](reference/errorcodes/errorcode-colorspace-manager.md)
       - [屏幕错误码](reference/errorcodes/errorcode-display.md)
