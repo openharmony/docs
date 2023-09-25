@@ -8,7 +8,9 @@ This module provides the following common functions:
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -20,8 +22,6 @@ import cloudData from '@ohos.data.cloudData';
 
 Enumerates the actions to take to clear the downloaded cloud data locally.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
 
 | Name     | Description                        |
@@ -31,15 +31,13 @@ Enumerates the actions to take to clear the downloaded cloud data locally.
 
 ## Config
 
-Provides methods for configuring device-cloud synergy, including enabling and disabling cloud synchronization, clearing data, and notifying data changes.
+Provides APIs for implementing device-cloud synergy, including enabling and disabling device-cloud synchronization, clearing data, and notifying data changes.
 
 ### enableCloud
 
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):void
 
 Enables device-cloud synergy. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -76,8 +74,6 @@ try {
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
 
 Enables device-cloud synergy. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -118,8 +114,6 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 Disables device-cloud synergy. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
@@ -153,8 +147,6 @@ try {
 static disableCloud(accountId: string): Promise&lt;void&gt;
 
 Disables device-cloud synergy. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -193,8 +185,6 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 Changes the device-cloud synergy switch for an application. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
@@ -231,8 +221,6 @@ try {
 static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean): Promise&lt;void&gt;
 
 Changes the device-cloud synergy switch for an application. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -274,8 +262,6 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 Notifies the data changes in the cloud. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Server
@@ -311,8 +297,6 @@ try {
 static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
 
 Notifies the data changes in the cloud. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
@@ -353,8 +337,6 @@ static clear(accountId: string, appActions: {[bundleName: string]: ClearAction},
 
 Clears the cloud data locally. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Config
@@ -393,8 +375,6 @@ try {
 static clear(accountId: string, appActions: {[bundleName: string]: ClearAction}): Promise&lt;void&gt;
 
 Clears the cloud data locally. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.CLOUDDATA_CONFIG
 
