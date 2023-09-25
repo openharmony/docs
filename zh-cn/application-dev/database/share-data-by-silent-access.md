@@ -11,7 +11,7 @@
 
 数据管理服务仅支持数据库的基本访问或数据托管，如果有业务处理，需要将业务处理封装成接口，给数据访问方调用。
 
-如果业务过于复杂，无法放到数据访问方，建议通过DataShareExtensionAbility拉起数据提供方实现功能。
+如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)拉起数据提供方实现功能。
 
 
 ## 运作机制
