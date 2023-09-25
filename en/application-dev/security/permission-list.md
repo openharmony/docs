@@ -2793,3 +2793,61 @@ Allows an application to obtain the certificate chain that attests the key valid
 **Enable via ACL**: TRUE
 
 **Start version**: 11
+
+## ohos.permission.WAKEUP_VOICE
+
+Allows an application to access the AI Voice wakeup component.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.AGENT_REQUIRE_FORM
+
+Allows the application agent to request widgets.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.WAKEUP_VISION
+
+Allows an application to access the AI Voice vision component.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+## ohos.permission.ENABLE_DISTRIBUTED_HARDWARE
+
+Allows a system ability to enable distributed hardware resources.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+**Start version**: 11
+## ohos.permission.ACCESS_DISTRIBUTED_HARDWARE
+
+Allows a system ability or system application to access distributed hardware resources.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
