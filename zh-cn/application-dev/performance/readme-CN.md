@@ -14,6 +14,8 @@
 
 - [高性能编码规范](high-performance-programming.md)
 
+- [多线程能力场景化](multi_thread_capability.md)
+
 - [高效并发编程](efficient-concurrent-programming.md)
 
 - [正确使用LazyForEach优化](lazyforeach_optimization.md)
