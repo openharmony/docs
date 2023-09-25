@@ -90,19 +90,19 @@ struct Index {
 
     ```ts
     import worker  from '@ohos.worker';
-    
+
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-    
+
     // 接收Worker子线程的结果
     workerInstance.onmessage = (() => {
      console.info('MyWorker.ts onmessage');
      // 在Worker线程中进行耗时操作
     })
-    
+
     workerInstance.onerror = (() => {
      // 接收Worker子线程的错误信息
     })
-    
+
     // 向Worker子线程发送训练消息
     workerInstance.postMessage({ 'type': 0 });
     // 向Worker子线程发送预测消息
@@ -169,14 +169,14 @@ struct Index {
     ```
 
     方式一：在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收息。
-    
+
     ```ts
     // 销毁Worker线程
     workerInstance.terminate();
     ```
-    
+
     方式二：在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
-    
+
     ```ts
     // 销毁线程
     workerPort.close();
