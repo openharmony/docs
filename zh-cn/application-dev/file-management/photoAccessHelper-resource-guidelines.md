@@ -167,7 +167,7 @@ async function example() {
 
 ## 创建媒体资源
 
-通过接口[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset)创建媒体资源。
+通过接口[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-3)创建媒体资源。
 
 **前提条件：**
 
@@ -199,6 +199,61 @@ async function example() {
     console.info('createAsset successfully, file displayName: ' + fileAsset.displayName);
   } catch (err) {
     console.error('createAsset failed, message = ', err);
+  }
+}
+```
+
+## 使用安全控件创建媒体资源
+
+下面以使用安全控件创建一张图片资源为例。使用安全控件创建媒体资源无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，详情请参考[安全控件的保存控件](../reference/arkui-ts/ts-security-components-savebutton.md)。
+
+**开发步骤：**
+
+1. 设置安全控件按钮属性。
+2. 创建安全控件按钮。
+3. 调用[createAsset](../reference/apis/js-apis-photoAccessHelper.md#createasset-5)接口创建图片资源
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import fs from '@ohos.file.fs';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State saveButtonOptions: SaveButtonOptions = {
+    icon: SaveIconStyle.FULL_FILLED,
+    text: SaveDescription.SAVE_IMAGE,
+    buttonType: ButtonType.Capsule
+  } // 设置安全控件按钮属性
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
+          .onClick(async (event, result: SaveButtonOnClickResult) => {
+             if (result == SaveButtonOnClickResult.SUCCESS) {
+               try {
+                 let context = getContext();
+                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+                 let uri = await phAccessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg'); // 创建媒体文件
+                 console.info('createAsset successfully, uri: ' + uri);
+                 let file = await fs.open(uri, fs.OpenMode.READ_WRITE);
+                 await fs.close(file);
+               } catch (err) {
+                 console.error('createAsset failed, message = ', err);
+               }
+             } else {
+               console.error('SaveButtonOnClickResult createAsset failed');
+             }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

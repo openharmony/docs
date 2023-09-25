@@ -19,3 +19,5 @@
 - [正确使用LazyForEach优化](lazyforeach_optimization.md)
 
 - [合理进行状态管理](proper_state_management.md)
+
+- [Swiper高性能开发指导](swiper_optimization.md)
