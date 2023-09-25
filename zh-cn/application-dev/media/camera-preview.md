@@ -51,7 +51,7 @@
    }
    ```
 
-3. 通过CameraOutputCapability类中的previewProfiles()方法获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过createPreviewOutput()方法创建预览输出流，其中，createPreviewOutput()方法中的两个参数分别是previewProfilesArray数组中的第一项和步骤一中获取的surfaceId。
+3. 通过CameraOutputCapability类中的previewProfiles()方法获取当前设备支持的预览能力，返回previewProfilesArray数组 。通过createPreviewOutput()方法创建预览输出流，其中，createPreviewOutput()方法中的两个参数分别是previewProfilesArray数组中的第一项和步骤二中获取的surfaceId。
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {

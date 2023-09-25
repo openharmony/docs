@@ -823,10 +823,12 @@ TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用callback方法作为异步方法。
 
 > **说明：**
-> bind方法失败会由系统随机分配端口号。
+> bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
+> TCP客户端可先调用该接口(tcp.bind)显式绑定IP地址和端口号，再调用tcp.connect完成与服务端的连接；也可直接调用tcp.connect由系统自动绑定IP地址和端口号，完成与服务端的连接。
+> bind的IP为'localhost'或'127.0.0.1'时，只允许本地回环接口的连接，即服务端和客户端运行在同一台机器上。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -869,10 +871,12 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用Promise方法作为异步方法。
 
 > **说明：**
-> bind方法失败会由系统随机分配端口号。
+> bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
+> TCP客户端可先调用该接口(tcp.bind)显式绑定IP地址和端口号，再调用tcp.connect完成与服务端的连接；也可直接调用tcp.connect由系统自动绑定IP地址和端口号，完成与服务端的连接。
+> bind的IP为'localhost'或'127.0.0.1'时，只允许本地回环接口的连接，即服务端和客户端运行在同一台机器上。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -921,7 +925,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 连接到指定的IP地址和端口。使用callback方法作为异步方法。
 
 > **说明：**
-> bind方法调用成功后，才可调用此方法。
+> 在没有执行tcp.bind的情况下，也可以直接调用该接口完成与TCP服务端的连接
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -969,6 +973,9 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 connect(options: TCPConnectOptions): Promise\<void\>
 
 连接到指定的IP地址和端口。使用promise方法作为异步方法。
+
+> **说明：**
+> 在没有执行tcp.bind的情况下，也可以直接调用该接口完成与TCP服务端的连接。
 
 **需要权限**：ohos.permission.INTERNET
 

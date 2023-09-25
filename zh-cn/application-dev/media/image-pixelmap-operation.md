@@ -16,6 +16,7 @@
 2. 从PixelMap位图对象中获取信息。
      
    ```ts
+   import image from '@ohos.multimedia.image';
    // 获取图像像素的总字节数
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // 获取图像像素每行字节数

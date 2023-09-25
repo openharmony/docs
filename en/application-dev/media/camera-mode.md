@@ -69,7 +69,7 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   }
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.info(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // Open the camera.
   await cameraInput.open();
@@ -106,7 +106,7 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // Listen for preview output errors.
   previewOutput.on('error', (error: BusinessError) => {
     console.info(`Preview output error code: ${error.code}`);
-  })
+  });
   // Create an ImageReceiver instance and set photographing parameters. Wherein, the resolution must be one of the photographing resolutions supported by the current device, which are obtained from photoProfilesArray.
   let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
   // Obtain the surface ID for displaying photos.

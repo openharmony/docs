@@ -200,7 +200,7 @@ zh-cn/application-dev/reference/apis/js-apis-arraylist.md @gongjunsong @ge-yafan
 zh-cn/application-dev/reference/apis/js-apis-audio.md @liuyuehua1 @zengyawen @magekkkk @currydavids
 zh-cn/application-dev/reference/apis/js-apis-backgroundTaskManager.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md  @zengyawen  @alien0208
-zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-brightness.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-bundle-AbilityInfo.md @shuaytao @huipeizi @wangzhen107 @inter515
@@ -221,11 +221,11 @@ zh-cn/application-dev/reference/apis/js-apis-Bundle.md @shuaytao @huipeizi @wang
 zh-cn/application-dev/reference/apis/js-apis-bytrace.md @stone2050 @zengyawen @stesen @elsen-liu
 zh-cn/application-dev/reference/apis/js-apis-call.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-camera.md @liuyuehua1 @zengyawen @nongwa @currydavids
-zh-cn/application-dev/reference/apis/js-apis-cardEmulation.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-cardEmulation.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-commonEvent.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-configuration.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-configurationconstant.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-contact.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-Context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-continuation-continuationExtraParams.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
@@ -311,8 +311,8 @@ zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease @niulihu
 zh-cn/application-dev/reference/apis/js-apis-missionManager.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-mouseevent.md @yuanxinying @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-net-connection.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-nfcController.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-nfcController.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-notification.md @jayleehw @huipeizi @li-weifeng2 @currydavids
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-osAccount.md @nianCode @zengyawen @JiDong-CS @murphy1984
@@ -333,7 +333,7 @@ zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @chenmingJay @ning
 zh-cn/application-dev/reference/apis/js-apis-request.md @hanruofei @murphy1984 @ningningW @hu-zhiqiong
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @Buda-Liu @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease @niulihua @tomatodevboy
-zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @RayShih @zhaopeng_gitee @vagrant_world
+zh-cn/application-dev/reference/apis/js-apis-rpc.md @xuepianpian @zhang_yixin13 @zhaopeng_gitee @vagrant_world
 zh-cn/application-dev/reference/apis/js-apis-runninglock.md  @zengyawen  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-screen.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
@@ -401,8 +401,8 @@ zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @littlejerry1 @huipeiz
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @zhangqiang183  @ge-yafang @wind_zj @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-webSocket.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-wifi.md @cheng_guohong @RayShih @cheng_guohong @quanli125
-zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-wifi.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
@@ -474,7 +474,7 @@ zh-cn/application-dev/reference/apis/js-apis-launcherBundleManager.md @shuaytao 
 zh-cn/application-dev/reference/apis/js-apis-matrix4.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-net-ethernet.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zhang-hai-feng @zengyawen @jyh926 @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-nfctech.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-promptAction.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @chenmingJay @ningningW @very0228 @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceStandby.md @chenmingJay @ningningW @very0228 @iceice1001
@@ -485,7 +485,7 @@ zh-cn/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md @
 zh-cn/application-dev/reference/apis/js-apis-stationary.md @mayunteng_1 @ningningW @cococoler @alien0208
 zh-cn/application-dev/reference/apis/js-apis-system-capability.md taiyipei  taiyipei BlackStone
 zh-cn/application-dev/reference/apis/js-apis-system-parameterV9.md @mupceet @zengyawen @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-tagSession.md @cheng_guohong @RayShih @cheng_guohong @quanli125
+zh-cn/application-dev/reference/apis/js-apis-tagSession.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-userFileManager.md @panqinxu @zengyawen @bubble_mao @jinhaihw
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-arkui-componentSnapshot.md @HelloCrease @niulihua @tomatodevboy

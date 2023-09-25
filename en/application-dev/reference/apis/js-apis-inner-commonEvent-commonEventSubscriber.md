@@ -85,6 +85,27 @@ subscriber.getCode().then((code:number) => {
 });
 ```
 
+## getCodeSync
+
+getCodeSync(): number
+
+Obtains the code of this common event. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type            | Description                |
+| ---------------- | -------------------- |
+| number | Common event code.|
+
+**Example**
+
+```ts
+let code = subscriber.getCodeSync();
+console.info("getCodeSync " + JSON.stringify(code));
+```
+
 ## setCode
 
 setCode(code: number, callback: AsyncCallback\<void>): void
@@ -144,6 +165,33 @@ subscriber.setCode(1).then(() => {
 });
 ```
 
+## setCodeSync
+
+setCodeSync(code: number): void
+
+Sets the code for this common event. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | Yes  | Common event code.|
+
+
+**Example**
+
+```ts
+
+try {
+    subscriber.setCodeSync(1);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ## getData
 
 getData(callback: AsyncCallback\<string>): void
@@ -194,6 +242,27 @@ subscriber.getData().then((data:string) => {
 }).catch((err:Base.BusinessError) => {
     console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getDataSync
+
+getDataSync(): string
+
+Obtains the data of this common event. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type            | Description              |
+| ---------------- | ------------------ |
+| string | Common event data.|
+
+**Example**
+
+```ts
+let data = subscriber.getDataSync();
+console.info("getDataSync " + JSON.stringify(data));
 ```
 
 ## setData
@@ -253,6 +322,30 @@ subscriber.setData("publish_data_changed").then(() => {
 }).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## setDataSync
+setDataSync(data: string): void
+
+Sets the data for this common event. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | Yes  | Common event data.|
+
+**Example**
+
+```ts
+try {
+    subscriber.setDataSync("publish_data_changed");
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## setCodeAndData
@@ -316,6 +409,32 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 });
 ```
 
+## setCodeAndDataSync
+
+Sets the code and data for this common event. This API returns the result synchronously.
+
+setCodeAndDataSync(code: number, data: string): void
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| code   | number | Yes  | Common event code.|
+| data   | string | Yes  | Common event data.|
+
+**Example**
+
+```ts
+try {
+    subscriber.setCodeAndDataSync(1, "publish_data_changed");
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
 ## isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
@@ -366,6 +485,27 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 }).catch((err:Base.BusinessError) => {
     console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## isOrderedCommonEventSync
+
+isOrderedCommonEventSync(): boolean
+
+Checks whether this common event is an ordered one. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type             | Description                            |
+| ----------------- | -------------------------------- |
+| boolean | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+
+**Example**
+
+```ts
+let isOrdered  = subscriber.isOrderedCommonEventSync();
+console.info("isOrdered " + JSON.stringify(isOrdered));
 ```
 
 ## isStickyCommonEvent
@@ -420,6 +560,27 @@ subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
 });
 ```
 
+## isStickyCommonEventSync
+
+isStickyCommonEventSync(): boolean
+
+Checks whether this common event is a sticky one. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type             | Description                            |
+| ----------------- | -------------------------------- |
+| boolean | Returns **true** if the common event is a sticky one; returns **false** otherwise.|
+
+**Example**
+
+```ts
+let isSticky  = subscriber.isStickyCommonEventSync();
+console.info("isSticky " + JSON.stringify(isSticky));
+```
+
 ## abortCommonEvent
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
@@ -470,6 +631,20 @@ subscriber.abortCommonEvent().then(() => {
 }).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## abortCommonEventSync
+
+abortCommonEventSync(): void
+
+Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Example**
+
+```ts
+subscriber.abortCommonEventSync();
 ```
 
 ## clearAbortCommonEvent
@@ -524,6 +699,20 @@ subscriber.clearAbortCommonEvent().then(() => {
 });
 ```
 
+## clearAbortCommonEventSync
+
+clearAbortCommonEventSync(): void
+
+Clears the aborted state of this common event. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Example**
+
+```ts
+subscriber.clearAbortCommonEventSync();
+```
+
 ## getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
@@ -576,6 +765,27 @@ subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
 });
 ```
 
+## getAbortCommonEventSync
+
+getAbortCommonEventSync(): boolean
+
+Checks whether this common event is in the aborted state. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type             | Description                              |
+| ----------------- | ---------------------------------- |
+| boolean | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+
+**Example**
+
+```ts
+let abortEvent = subscriber.getAbortCommonEventSync();
+console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
+```
+
 ## getSubscribeInfo
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
@@ -626,6 +836,27 @@ subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEvent
 }).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getSubscribeInfoSync
+
+getSubscribeInfoSync(): CommonEventSubscribeInfo
+
+Obtains the subscriber information. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type                                                        | Description                  |
+| ------------------------------------------------------------ | ---------------------- |
+| [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Callback used to return the subscriber information.|
+
+**Example**
+
+```ts
+let subscribeInfo = subscriber.getSubscribeInfoSync();
+console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 ```
 
 ## finishCommonEvent<sup>9+</sup>

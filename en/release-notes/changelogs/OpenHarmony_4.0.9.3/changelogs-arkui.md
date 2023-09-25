@@ -261,3 +261,91 @@ N/A
 **Adaptation Guide**
 
 After the change, the margin percentage reference is fixed at the parent component's width minus its padding, and does not subtract the result of the first margin calculation. As a result, the margin percentage is slightly greater than that before the change. Account for this change when setting the margin percentage.
+
+## cl.arkui.5 Change of SwipeActionItem in the \<ListItem> Component
+
+Changed **Delete** in the parameters of the **SwipeActionItem** API of the **\<ListItem>** component to **Action**, and deleted the **useDefaultDeleteAnimation** API.
+
+**Change Impact**
+
+When developing an application based on OpenHarmony 4.0.9.3 or a later SDK version, you need to use the new APIs.
+
+**Key API/Component Changes**
+
+| API Before Change    |  API After Change    |
+| ------ | ------------------------------ |
+| deleteAreaDistance   | actionAreaDistance |
+| onDelete   |  onAction |
+| onEnterDeleteArea   | onEnterActionArea |
+| onExitDeleteArea   | onExitActionArea |
+| useDefaultDeleteAnimation | Deleted|
+
+**Adaptation Guide**
+
+When developing an application based on OpenHarmony 4.0.9.3 or a later SDK version, use the new APIs of **SwipeActionItem**. When developing an application based on OpenHarmony 4.0.9.2 or an earlier SDK version, use the original APIs of **SwipeActionItem**.
+
+The code snippet is as follows:
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample2 {
+  @State message: string = 'Hello World'
+  @State arr: number[] = [0, 1, 2, 3, 4]
+  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
+  @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
+
+  @Builder itemEnd() {
+    Row() {
+      Button("Delete").margin("4vp")
+      Button("Set").margin("4vp")
+    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+  }
+
+  build() {
+    Column() {
+      List({ space: 10 }) {
+        ForEach(this.arr, (item) => {
+          ListItem() {
+            Text("item" + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+          .transition({ type: TransitionType.Delete, opacity: 0 })
+          .swipeAction({
+            end: {
+              builder: this.itemEnd.bind(this, item),
+              onAction: () => {
+                animateTo({ duration: 1000 }, () => {
+                  let index = this.arr.indexOf(item)
+                  this.arr.splice(index, 1)
+                })
+              },
+              actionAreaDistance: 80,
+              onEnterActionArea: () => {
+                this.enterEndDeleteAreaString = "enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "not exitEndDeleteArea"
+              },
+              onExitActionArea: () => {
+                this.enterEndDeleteAreaString = "not enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "exitEndDeleteArea"
+              }
+            }
+          })
+        }, item => item)
+      }
+      Text(this.enterEndDeleteAreaString).fontSize(20)
+      Text(this.exitEndDeleteAreaString).fontSize(20)
+    }
+    .padding(10)
+    .backgroundColor(0xDCDCDC)
+    .width('100%')
+    .height('100%')
+  }
+}
+```

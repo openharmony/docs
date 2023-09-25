@@ -33,7 +33,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  **NOTE**
 >
 >  - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
->  - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+>  - The **\<TabContent>** component does not support setting of the universal height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
 >  - If the **vertical** attribute is **false**, the width and height descriptions are swapped in the preceding two restrictions.
 >  - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
 
@@ -71,18 +71,19 @@ The following attributes are supported.
 
 | Name        | Type                                                    | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10)| Indicator style of the selected subtab. It is valid only in the horizontal layout.               |
+| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10)| Indicator style of the selected subtab. It is valid only in the horizontal layout.|
 | selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10)   | Display mode of the selected subtab.<br>Default value: **SelectedMode.INDICATOR**|
-| board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab.|
+| board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab. This attribute applies only |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the subtab.|
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the subtab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}**|
 
 ## IndicatorStyle<sup>10+</sup>
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------------------------------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the indicator and board.<br>Default value: **#FF007DFF** |
+| color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the indicator and board.<br>Default value: **#FF007DFF**|
 | height | [Length](ts-types.md#length) | No| Height of the indicator. It cannot be set in percentage.<br>Default value: **2.0**<br>Unit: vp|
-| width | [Length](ts-types.md#length) | No| Width of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>**NOTE**<br>If this parameter is set to **0**, the tab text width will be used instead. |
+| width | [Length](ts-types.md#length) | No| Width of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>**NOTE**<br>If this parameter is set to **0**, the tab text width will be used instead.|
 | borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the indicator. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
 | marginTop | [Length](ts-types.md#length) | No| Spacing between the indicator and text. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
 
@@ -96,7 +97,7 @@ The following attributes are supported.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------------ |
-| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the board. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp |
+| borderRadius | [Length](ts-types.md#length) | No| Rounded corner radius of the board. It cannot be set in percentage.<br>Default value: **8.0**<br>Unit: vp|
 
 ## LabelStyle<sup>10+</sup>
 
@@ -107,7 +108,7 @@ The following attributes are supported.
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**|
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. It cannot be set in percentage. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**|
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text. By default, the **maxLines** settings are prioritized.                             |
-| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text. By default, the font size is 16.0fp, the font type is HarmonyOS Sans, the font style is normal, and the font weight is normal.     |
+| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text.<br>When the tab is a subtab, the default font is in 16.0 fp size, 'HarmonyOS Sans' family, and normal font style and weight.<br>When the tab is a bottom tab, the default font is in 10.0 fp size, 'HarmonyOS Sans' family, normal font style, and medium weight.     |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
@@ -129,7 +130,6 @@ A constructor used to create a **BottomTabBarStyle** instance.
 ### of<sup>10+</sup>
 
 static of(icon: ResourceStr, text: ResourceStr)
-
 Static constructor used to create a **BottomTabBarStyle** instance.
 
 **Parameters**
@@ -138,6 +138,27 @@ Static constructor used to create a **BottomTabBarStyle** instance.
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Image for the tab.|
 | text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text for the tab.|
+
+### Attributes
+
+The following attributes are supported.
+
+| Name        | Type                                                    | Description                                                        |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Padding of the bottom tab. It cannot be set in percentage. When the parameter is of the Dimension type, the value applies to all sides.<br>Default value: **{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}**|
+| verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | Vertical alignment mode of the images and text on the bottom tab.<br>Default value: **VerticalAlign.Center**|
+| layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10) | Layout of the images and text on the bottom tab. For details, see **LayoutMode**.<br>Default value: **LayoutMode.VERTICAL**|
+| symmetricExtensible<sup>10+</sup> |  boolean | Whether the images and text on the bottom tab can be symmetrically extended by the minimum value of the available space on the left and right bottom tabs. This parameter is valid only between bottom tabs in fixed horizontal mode.<br>Default value: **false**|
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font of the subtab.|
+
+## LayoutMode<sup>10+</sup>
+
+| Name        | Description                                      |
+| ----------  | ---------------------------------------- |
+| AUTO        | When the tab width is greater than 104 vp, the tab content is arranged from left to right. Otherwise,the tab content is arranged from top to bottom. This parameter is valid only when the tab bar is in vertical mode or fixed horizontal mode.|
+| VERTICAL    | The tab content is arranged from top to bottom.|
+| HORIZONAL   | The tab content is arranged from left to right.|
+
 
 ## Example
 
@@ -421,10 +442,11 @@ struct TabsAttr {
   private heightFlag: boolean = true;
   private borderFlag: boolean = true;
   private spaceFlag: boolean = true;
+
   build() {
     Column() {
-      Button ("Change Indicator Color").width ('100%').margin ({bottom:'12vp'})
-        .onClick((event: ClickEvent) => {
+      Button ("Change Indicator Color").width ('100%').margin ({ bottom:'12vp' })
+        .onClick((event?: ClickEvent) => {
           // Animation configuration for the width and height attributes of the <Button> component
           if (this.colorFlag) {
             animateTo({
@@ -455,8 +477,8 @@ struct TabsAttr {
           }
           this.colorFlag = !this.colorFlag
         })
-      Button ("Change Indicator Height").width ('100%').margin ({bottom:'12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("Change Indicator Height").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // Animation configuration for the width and height attributes of the <Button> component
           if (this.heightFlag) {
             animateTo({
@@ -487,8 +509,8 @@ struct TabsAttr {
           }
           this.heightFlag = !this.heightFlag
         })
-      Button ("Change Indicator Width").width ('100%').margin ({bottom:'12vp'})
-        .onClick((event: ClickEvent) => {
+      Button("Change Indicator Width").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           // Animation configuration for the width and height attributes of the <Button> component
           if (this.widthFlag) {
             animateTo({
@@ -519,8 +541,8 @@ struct TabsAttr {
           }
           this.widthFlag = !this.widthFlag
         })
-      Button ("Change Indicator Rounded Corner").width ('100%').margin ({bottom:'12vp'})
-        .onClick((event: ClickEvent) => {
+      Button ("Change Indicator Corner Radius").width ('100%').margin ({ bottom:'12vp' })
+        .onClick((event?: ClickEvent) => {
           // Animation configuration for the width and height attributes of the <Button> component
           if (this.borderFlag) {
             animateTo({
@@ -551,8 +573,8 @@ struct TabsAttr {
           }
           this.borderFlag = !this.borderFlag
         })
-      Button ("Change Indicator Spacing").width ('100%').margin ({bottom:'12vp'})
-        .onClick((event: ClickEvent) => {
+      Button ("Change Indicator Spacing").width ('100%').margin ({ bottom:'12vp' })
+        .onClick((event?: ClickEvent) => {
           // Animation configuration for the width and height attributes of the <Button> component
           if (this.spaceFlag) {
             animateTo({
@@ -598,30 +620,38 @@ struct TabsAttr {
           .board({ borderRadius: this.subTabBorderRadius })
           .labelStyle({})
         )
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Yellow).borderRadius('12vp')
         }.tabBar('yellow')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
         }.tabBar('blue')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green).borderRadius('12vp')
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Gray).borderRadius('12vp')
         }.tabBar('gray')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Orange).borderRadius('12vp')
         }.tabBar('orange')
       }
-      .vertical(false).scrollable(true)
+      .vertical(false)
+      .scrollable(true)
       .barMode(BarMode.Scrollable)
-      .barHeight(140).animationDuration(400)
+      .barHeight(140)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
-      .backgroundColor(0xF5F5F5).height(320)
-    }.width('100%').height(250).padding({top: '24vp', left: '24vp', right: '24vp'})
+      .backgroundColor(0xF5F5F5)
+      .height(320)
+    }.width('100%').height(250).padding({ top: '24vp', left: '24vp', right: '24vp' })
   }
 }
 ```
@@ -687,3 +717,153 @@ struct TabsTextOverflow {
 ```
 
 ![tabContent4](figures/tabContent4.png)
+
+### Example 6
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabContentExample6 {
+  private controller: TabsController = new TabsController()
+  @State text: string = "2"
+  @State tabPadding: number = 0;
+  @State symmetricExtensible: boolean = false;
+  @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
+  @State verticalAlign: VerticalAlign = VerticalAlign.Center;
+
+  build() {
+    Column() {
+      Row() {
+        Button("padding+10 " + this.tabPadding)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabPadding += 10
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("padding-10 " + this.tabPadding)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabPadding -= 10
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("Add Text")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.text += 'Add Text'
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button ("Reset Text")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.text = "2"
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("Set SymmetricExtensible to " + this.symmetricExtensible)
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.symmetricExtensible = !this.symmetricExtensible
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("Vertical Layout")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.layoutMode = LayoutMode.VERTICAL;
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button ("horizontal Layout")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.layoutMode = LayoutMode.HORIZONTAL;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("VerticalAlign.Top")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Top;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("VerticalAlign.Center")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Center;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button ("VerticalAlign.Bottom")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.verticalAlign = VerticalAlign.Bottom;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+
+      Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "1"))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), this.text)
+          .padding(this.tabPadding)
+          .verticalAlign(this.verticalAlign)
+          .layoutMode(this.layoutMode)
+          .symmetricExtensible(this.symmetricExtensible))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
+      }
+      .animationDuration(300)
+      .height('60%')
+      .backgroundColor(0xf1f3f5)
+      .barMode(BarMode.Fixed)
+    }
+    .width('100%')
+    .height(500)
+    .margin({ top: 5 })
+    .padding('24vp')
+  }
+}
+```
+
+![tabContent4](figures/tabContent5.gif)

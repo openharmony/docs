@@ -2,7 +2,7 @@
 
 <!--subsystem: ArkUI-->
 
-The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
+The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in the same application, and return to the previous page or a specified page.
 
 > **NOTE**
 >
@@ -1124,7 +1124,7 @@ Describes the named route options.
 
 ### JavaScript-based Web-like Development Paradigm
 
-The following sample code only applies to JavaScript files, not ArkTS files.
+The following sample code applies only to JavaScript files, not ArkTS files.
 ```js
 // Current page
 export default {

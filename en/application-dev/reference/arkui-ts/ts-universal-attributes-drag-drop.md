@@ -6,15 +6,15 @@ The drag and drop control attributes set whether a component can respond to drag
 > 
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-By default, ArkUI components cannot be dragged.
+The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their **draggable** attribute to **true**.
 
-When the **draggable** attribute of the following components is set to **true**, the components can respond to drag events. In this case, you do not need to configure data transmission for the components to drag them. To drag other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
-- The following component supports drop actions by default: **\<Video>**.
+You can also define drag responses by implementing common drag events.
 
-- The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
+To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
 
 
 ## Attributes
@@ -82,7 +82,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT, UTD.UniformDataType.IMAGE])
+          .allowDrop([UTD.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
             this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
@@ -142,4 +142,6 @@ struct ImageExample {
 }
 ```
 
-![dragImage.gif](figures/dragImage.gif)
+![dragImage1.jpeg](figures/dragImage1.jpeg)
+![dragImage2.jpeg](figures/dragImage2.jpeg)
+![dragImage3.jpeg](figures/dragImage3.jpeg)

@@ -35,7 +35,7 @@ Only the following styles are supported.
 
 | Name                               | Type            | Default Value       | Mandatory  | Description                                      |
 | --------------------------------- | -------------- | ---------- | ---- | ---------------------------------------- |
-| margin                            | &lt;length&gt; | 0          | No   | Shorthand attribute to set the margin for all sides in a declaration. The attribute can have one to four values:           |
+| margin                            | &lt;length&gt; | 0          | No   | Shorthand attribute to set the margin for all sides in a declaration. The attribute can have one to four values.           |
 | margin-[left\|top\|right\|bottom] | &lt;length&gt; | 0          | No   | Shorthand attribute of the length type to set left, top, right, and bottom margins attributes. Its unit is px and default value is **0**.|
 | color                             | &lt;color&gt;  | \#08000000 | No   | Color of the divider.                                |
 | stroke-width                      | &lt;length&gt; | 1          | No   | Width of the divider.                                |

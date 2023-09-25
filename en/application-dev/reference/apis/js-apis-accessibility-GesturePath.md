@@ -1,6 +1,6 @@
 # @ohos.accessibility.GesturePath (Gesture Path)
 
- The **GesturePath** module provides APIs for creating gesture path information required for an accessibility application to inject gestures.
+The **GesturePath** module provides APIs for creating gesture path information required for an accessibility application to inject gestures.
 
 > **NOTE**
 >
@@ -42,5 +42,7 @@ Constructor used to create a **GesturePath** object.
 **Example**
 
 ```ts
+import GesturePath from '@ohos.accessibility.GesturePath';
+
 let gesturePath = new GesturePath.GesturePath(20);
 ```
