@@ -21,3 +21,5 @@
 - [合理进行状态管理](proper_state_management.md)
 
 - [Swiper高性能开发指导](swiper_optimization.md)
+
+- [合理使用IPC通信](reasonable-using-ipc.md)
