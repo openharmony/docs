@@ -339,10 +339,9 @@ When you run a signed HAP, the error message "failed to install bundle. error: i
 
 **Solution**
 
-Manually update the device image so that it matches the signing tool. To do so, perform the following steps:
-1. Download the image files of the development board based on the [latest OpenHarmony image files](../../release-notes/Readme.md).
-2. Burn the downloaded image files to the development board. You can use DevEco Device Tool for burning. For details, see [DevEco Device Tool User Guide](../../device-dev/quick-start/quickstart-ide-env-win.md).
-3. Run the application or service again.
+An unsigned HAP is installed. To solve this problem, sign the HAP before installing it.
+1. Use automatic signature. After the device is connected, sign the application again.
+2. To use manual signature, follow the instructions provided in [hapsigner Guide](../security/hapsigntool-guidelines.md).
 
 ### Error Message "code:9568347 error: install parse native so failed" Is Displayed During HAP Installation
 
@@ -442,6 +441,7 @@ The signature file of the application is changed, but the new signature fingerpr
     hdc shell chmod 777 /system/etc/app/install_list_capability.json 
     hdc shell reboot
     ```
+    
 5. Reinstall the application.
 
 ### Error Message "code:9568305 error: dependent module does not exist" Is Displayed During HAP Installation
@@ -514,10 +514,10 @@ The signature does not contain the UDID of the debugging device. To solve this p
 
 * Use automatic signature. After the device is connected, sign the application again.
 * If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [OpenHarmony Application Manual Signature](../security/hapsigntool-guidelines.md).
-   ```
-   // Command for obtaining the UDID
-   hdc shell bm get -u
-   ```
+  ```
+  // Command for obtaining the UDID
+  hdc shell bm get -u
+  ```
 
 ### Error Message "code:9568289 error: install failed due to grant request permissions failed" Is Displayed During HAP Installation
 

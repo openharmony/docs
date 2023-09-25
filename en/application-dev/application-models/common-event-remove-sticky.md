@@ -22,6 +22,7 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
 
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 3. Call the [removeStickyCommonEvent()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10) API to remove the target sticky common event.
@@ -31,7 +32,7 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
    > The sticky common event to be removed must have been released by the application. For details about how to release sticky common events, see [Publishing Common Events](common-event-publish.md).
 
    ```ts
-   commonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event indicates the name of the target sticky common event.
+   commonEventManager.removeStickyCommonEvent("sticky_event", (err: Base.BusinessError) => { // sticky_event indicates the name of the target sticky common event.
      if (err) {
        console.error(`Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;

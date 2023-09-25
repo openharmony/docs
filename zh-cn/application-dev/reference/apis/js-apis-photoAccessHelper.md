@@ -370,6 +370,8 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../file-management/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
@@ -418,6 +420,8 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 指定待创建的文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
 
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../file-management/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
@@ -461,6 +465,8 @@ async function example() {
 createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../file-management/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

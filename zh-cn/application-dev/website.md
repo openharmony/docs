@@ -24,7 +24,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)

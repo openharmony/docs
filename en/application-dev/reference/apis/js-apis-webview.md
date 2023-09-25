@@ -89,13 +89,14 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -106,7 +107,8 @@ struct WebComponent {
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             this.ports[1].postMessageEvent("post message from ets to html5");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -141,13 +143,14 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -169,7 +172,8 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -234,18 +238,20 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 // Example of sending messages between an application and a web page: Use the init_web_messageport channel to receive messages from the web page on the application side through port 0 and receive messages from the application on the web page side through port 1.
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = null;
-  nativePort: web_webview.WebMessagePort = null;
-  @State msg1:string = "";
-  @State msg2:string = "";
+  ports: web_webview.WebMessagePort[] = [];
+  nativePort: web_webview.WebMessagePort | null = null;
+  @State msg1: string = "";
+  @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
@@ -254,74 +260,76 @@ struct WebComponent {
         .onClick(() => {
           // Use the local port to send messages to HTML5.
           try {
-              console.log("In ArkTS side send true start");
-              if (this.nativePort) {
-                  this.message.setString("helloFromEts");
-                  this.nativePort.postMessageEventExt(this.message);
-              }
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setString("helloFromEts");
+              this.nativePort.postMessageEventExt(this.message);
+            }
           }
           catch (error) {
-              console.log("In ArkTS side send message catch error:" + error.code + ", msg:" + error.message);
+            let e: business_error.BusinessError = resError as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
-      .onPageEnd((e)=>{
-        console.log("In ArkTS side message onPageEnd init mesaage channel");
-        // 1. Create a message port.
-        this.ports = this.controller.createWebMessagePorts(true);
-        // 2. Send port 1 to HTML5.
-        this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
-        // 3. Save port 0 to the local host.
-        this.nativePort = this.ports[0];
-        // 4. Set the callback.
-        this.nativePort.onMessageEventExt((result) => {
+        .onPageEnd((e) => {
+          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          // 1. Create a message port.
+          this.ports = this.controller.createWebMessagePorts(true);
+          // 2. Send port 1 to HTML5.
+          this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
+          // 3. Save port 0 to the local host.
+          this.nativePort = this.ports[0];
+          // 4. Set the callback.
+          this.nativePort.onMessageEventExt((result) => {
             console.log("In ArkTS side got message");
             try {
-                var type = result.getType();
-                console.log("In ArkTS side getType:" + type);
-                switch (type) {
-                    case web_webview.WebMessageType.STRING: {
-                        this.msg1 = "result type:" + typeof (result.getString());
-                        this.msg2 = "result getString:" + ((result.getString()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.NUMBER: {
-                        this.msg1 = "result type:" + typeof (result.getNumber());
-                        this.msg2 = "result getNumber:" + ((result.getNumber()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.BOOLEAN: {
-                        this.msg1 = "result type:" + typeof (result.getBoolean());
-                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                        break;
-                    }
-                    case web_webview.WebMessageType.ARRAY_BUFFER: {
-                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                        break;
-                    }
-                    case web_webview.WebMessageType.ARRAY: {
-                        this.msg1 = "result type:" + typeof (result.getArray());
-                        this.msg2 = "result getArray:" + result.getArray();
-                        break;
-                    }
-                    case web_webview.WebMessageType.ERROR: {
-                        this.msg1 = "result type:" + typeof (result.getError());
-                        this.msg2 = "result getError:" + result.getError();
-                        break;
-                    }
-                    default: {
-                        this.msg1 = "default break, type:" + type;
-                        break;
-                    }
+              let type = result.getType();
+              console.log("In ArkTS side getType:" + type);
+              switch (type) {
+                case web_webview.WebMessageType.STRING: {
+                  this.msg1 = "result type:" + typeof (result.getString());
+                  this.msg2 = "result getString:" + ((result.getString()));
+                  break;
                 }
+                case web_webview.WebMessageType.NUMBER: {
+                  this.msg1 = "result type:" + typeof (result.getNumber());
+                  this.msg2 = "result getNumber:" + ((result.getNumber()));
+                  break;
+                }
+                case web_webview.WebMessageType.BOOLEAN: {
+                  this.msg1 = "result type:" + typeof (result.getBoolean());
+                  this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                  break;
+                }
+                case web_webview.WebMessageType.ARRAY_BUFFER: {
+                  this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                  this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                  break;
+                }
+                case web_webview.WebMessageType.ARRAY: {
+                  this.msg1 = "result type:" + typeof (result.getArray());
+                  this.msg2 = "result getArray:" + result.getArray();
+                  break;
+                }
+                case web_webview.WebMessageType.ERROR: {
+                  this.msg1 = "result type:" + typeof (result.getError());
+                  this.msg2 = "result getError:" + result.getError();
+                  break;
+                }
+                default: {
+                  this.msg1 = "default break, type:" + type;
+                  break;
+                }
+              }
             }
             catch (resError) {
-                console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+              let e: business_error.BusinessError = resError as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
-        });
-      })
+          });
+        })
     }
   }
 }
@@ -424,13 +432,14 @@ Closes this message port. To use this API, a message port must first be created 
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -441,7 +450,8 @@ struct WebComponent {
             this.msgPort = this.controller.createWebMessagePorts();
             console.log("createWebMessagePorts size:" + this.msgPort.length)
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Button('close')
@@ -453,8 +463,9 @@ struct WebComponent {
               console.error("msgPort is null, Please initialize first");
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-          }      
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -482,13 +493,15 @@ The following code snippet exemplifies calling this API after the EntryAbility i
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
-        console.log("EntryAbility onCreate done")
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    web_webview.WebviewController.initializeWebEngine()
+    console.log("EntryAbility onCreate done")
+  }
 }
 ```
 
@@ -513,19 +526,23 @@ Sets how the \<Web> component uses HTTPDNS for DNS resolution.
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import business_error from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        console.log("EntryAbility onCreate")
-        try {
-            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
-        } catch(error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-        }
-
-        globalThis.abilityWant = want
-        console.log("EntryAbility onCreate done")
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    try {
+      web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
+    } catch (error) {
+      let e: business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
+
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done")
+  }
 }
 ```
 
@@ -548,17 +565,19 @@ Sets whether to enable web debugging. For details, see [Debugging Frontend Pages
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
 
-  aboutToAppear():void {
+  aboutToAppear(): void {
     try {
       web_webview.WebviewController.setWebDebuggingAccess(true);
-    } catch(error) {
-      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+    } catch (error) {
+      let e: business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
   }
 
@@ -599,7 +618,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -614,7 +634,8 @@ struct WebComponent {
             // The URL to be loaded is of the string type.
             this.controller.loadUrl('www.example.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -625,7 +646,8 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -638,9 +660,10 @@ struct WebComponent {
         .onClick(() => {
           try {
             // The headers parameter is passed.
-            this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
+            this.controller.loadUrl('www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }]);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -654,7 +677,8 @@ There are three methods for loading local resource files:
 1. Using $rawfile
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -669,7 +693,8 @@ struct WebComponent {
             // Load a local resource file through $rawfile.
             this.controller.loadUrl($rawfile('index.html'));
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -681,7 +706,8 @@ struct WebComponent {
 2. Using the resources protocol
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -696,7 +722,8 @@ struct WebComponent {
             // Load local resource files through the resource protocol.
             this.controller.loadUrl("resource://rawfile/index.html");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -754,7 +781,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -772,7 +800,8 @@ struct WebComponent {
               "UTF-8"
             );
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -784,7 +813,8 @@ struct WebComponent {
 Example of loading local resource:
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -799,7 +829,8 @@ struct WebComponent {
           try {
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -834,7 +865,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -849,7 +881,8 @@ struct WebComponent {
             let result = this.controller.accessForward();
             console.log('result:' + result);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -878,7 +911,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -892,7 +926,8 @@ struct WebComponent {
           try {
             this.controller.forward();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -927,7 +962,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -942,7 +978,8 @@ struct WebComponent {
             let result = this.controller.accessBackward();
             console.log('result:' + result);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -971,7 +1008,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -985,7 +1023,8 @@ struct WebComponent {
           try {
             this.controller.backward();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1014,7 +1053,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1028,7 +1068,8 @@ struct WebComponent {
           try {
             this.controller.onActive();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1057,7 +1098,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1071,7 +1113,8 @@ struct WebComponent {
           try {
             this.controller.onInactive();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1099,7 +1142,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1113,7 +1157,8 @@ struct WebComponent {
           try {
             this.controller.refresh();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1154,7 +1199,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1170,7 +1216,8 @@ struct WebComponent {
             let result = this.controller.accessStep(this.steps);
             console.log('result:' + result);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1199,7 +1246,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1213,7 +1261,8 @@ struct WebComponent {
           try {
             this.controller.clearHistory();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1248,7 +1297,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1263,7 +1313,8 @@ struct WebComponent {
             let hitTestType = this.controller.getHitTest();
             console.log("hitTestType: " + hitTestType);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1300,20 +1351,27 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class testObj {
+  constructor() {
+  }
+
+  test(): string {
+    return "ArkUI Web Component";
+  }
+
+  toString(): void {
+    console.log('Web Component toString');
+  }
+}
 
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  testObj = {
-    test: (data) => {
-      return "ArkUI Web Component";
-    },
-    toString: () => {
-      console.log('Web Component toString');
-    }
-  }
+  @State testObjtest: testObj = new testObj();
 
   build() {
     Column() {
@@ -1322,15 +1380,17 @@ struct Index {
           try {
             this.controller.refresh();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1386,7 +1446,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1413,9 +1474,12 @@ struct WebComponent {
                   console.info(`The test() return value is: ${result}`)
                 }
               });
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1473,7 +1537,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1487,15 +1552,18 @@ struct WebComponent {
         .onPageEnd(e => {
           try {
             this.controller.runJavaScript('test()')
-              .then(function (result) {
+              .then((result) => {
                 console.log('result: ' + result);
               })
-              .catch(function (error) {
+              .catch((error: business_error.BusinessError) => {
                 console.error("error: " + error);
               })
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1547,7 +1615,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1573,47 +1642,51 @@ struct WebComponent {
                 }
                 if (result) {
                   try {
-                      var type = result.getType();
-                      switch (type) {
-                          case web_webview.JsMessageType.STRING: {
-                              this.msg1 = "result type:" + typeof (result.getString());
-                              this.msg2 = "result getString:" + ((result.getString()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.NUMBER: {
-                              this.msg1 = "result type:" + typeof (result.getNumber());
-                              this.msg2 = "result getNumber:" + ((result.getNumber()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.BOOLEAN: {
-                              this.msg1 = "result type:" + typeof (result.getBoolean());
-                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY_BUFFER: {
-                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY: {
-                              this.msg1 = "result type:" + typeof (result.getArray());
-                              this.msg2 = "result getArray:" + result.getArray();
-                              break;
-                          }
-                          default: {
-                              this.msg1 = "default break, type:" + type;
-                              break;
-                          }
+                    let type = result.getType();
+                    switch (type) {
+                      case web_webview.JsMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
                       }
+                      case web_webview.JsMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                      }
+                      case web_webview.JsMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                      }
+                      default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                      }
+                    }
                   }
                   catch (resError) {
-                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                    let e: business_error.BusinessError = resError as business_error.BusinessError;
+                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
                   }
                 }
               });
-            console.info('url: ', e.url);
+            if (e) {
+              console.info('url: ', e.url);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
     }
@@ -1669,7 +1742,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1687,49 +1761,50 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
         .onPageEnd(e => {
-            this.controller.runJavaScriptExt('test()')
-              .then((result) => {
-                  try {
-                      var type = result.getType();
-                      switch (type) {
-                          case web_webview.JsMessageType.STRING: {
-                              this.msg1 = "result type:" + typeof (result.getString());
-                              this.msg2 = "result getString:" + ((result.getString()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.NUMBER: {
-                              this.msg1 = "result type:" + typeof (result.getNumber());
-                              this.msg2 = "result getNumber:" + ((result.getNumber()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.BOOLEAN: {
-                              this.msg1 = "result type:" + typeof (result.getBoolean());
-                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY_BUFFER: {
-                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
-                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
-                              break;
-                          }
-                          case web_webview.JsMessageType.ARRAY: {
-                              this.msg1 = "result type:" + typeof (result.getArray());
-                              this.msg2 = "result getArray:" + result.getArray();
-                              break;
-                          }
-                          default: {
-                              this.msg1 = "default break, type:" + type;
-                              break;
-                          }
-                      }
+          this.controller.runJavaScriptExt('test()')
+            .then((result) => {
+              try {
+                let type = result.getType();
+                switch (type) {
+                  case web_webview.JsMessageType.STRING: {
+                    this.msg1 = "result type:" + typeof (result.getString());
+                    this.msg2 = "result getString:" + ((result.getString()));
+                    break;
                   }
-                  catch (resError) {
-                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  case web_webview.JsMessageType.NUMBER: {
+                    this.msg1 = "result type:" + typeof (result.getNumber());
+                    this.msg2 = "result getNumber:" + ((result.getNumber()));
+                    break;
                   }
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+                  case web_webview.JsMessageType.BOOLEAN: {
+                    this.msg1 = "result type:" + typeof (result.getBoolean());
+                    this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                    break;
+                  }
+                  case web_webview.JsMessageType.ARRAY_BUFFER: {
+                    this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                    this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                    break;
+                  }
+                  case web_webview.JsMessageType.ARRAY: {
+                    this.msg1 = "result type:" + typeof (result.getArray());
+                    this.msg2 = "result getArray:" + result.getArray();
+                    break;
+                  }
+                  default: {
+                    this.msg1 = "default break, type:" + type;
+                    break;
+                  }
+                }
+              }
+              catch (resError) {
+                let e: business_error.BusinessError = resError as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              }
+            })
+            .catch((error: business_error.BusinessError) => {
+              console.error("error: " + error);
+            })
         })
     }
   }
@@ -1779,7 +1854,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1794,7 +1870,8 @@ struct WebComponent {
           try {
             this.controller.deleteJavaScriptRegister(this.name);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1830,7 +1907,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1845,7 +1923,8 @@ struct WebComponent {
           try {
             this.controller.zoom(this.factor);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1880,7 +1959,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1895,13 +1975,16 @@ struct WebComponent {
           try {
             this.controller.searchAllAsync(this.searchString);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
         .onSearchResultReceive(ret => {
-          console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-          "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+          if (ret) {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+          }
         })
     }
   }
@@ -1928,7 +2011,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1942,7 +2026,8 @@ struct WebComponent {
           try {
             this.controller.clearMatches();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1977,7 +2062,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -1991,7 +2077,8 @@ struct WebComponent {
           try {
             this.controller.searchNext(true);
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2020,7 +2107,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2034,7 +2122,8 @@ struct WebComponent {
           try {
             this.controller.clearSslCache();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2063,7 +2152,8 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2077,7 +2167,8 @@ struct WebComponent {
           try {
             this.controller.clearClientAuthenticationCache();
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2118,13 +2209,14 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -2134,7 +2226,8 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             console.log("createWebMessagePorts size:" + this.ports.length)
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2172,12 +2265,13 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[];
+  ports: web_webview.WebMessagePort[] = [];
   @State sendFromEts: string = 'Send this message from ets to HTML';
   @State receivedFromHtml: string = 'Display received message send from HTML';
 
@@ -2186,10 +2280,10 @@ struct WebComponent {
       // Display the received HTML content.
       Text(this.receivedFromHtml)
       // Send the content in the text box to an HTML window.
-      TextInput({placeholder: 'Send this message from ets to HTML'})
+      TextInput({ placeholder: 'Send this message from ets to HTML' })
         .onChange((value: string) => {
           this.sendFromEts = value;
-      })
+        })
 
       Button('postMessage')
         .onClick(() => {
@@ -2217,7 +2311,8 @@ struct WebComponent {
             // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
 
@@ -2231,7 +2326,8 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2324,6 +2420,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2337,7 +2434,8 @@ struct WebComponent {
           try {
             this.controller.requestFocus();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2368,6 +2466,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2381,7 +2480,8 @@ struct WebComponent {
           try {
             this.controller.zoomIn();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2412,6 +2512,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2425,7 +2526,8 @@ struct WebComponent {
           try {
             this.controller.zoomOut();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2461,6 +2563,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2476,7 +2579,8 @@ struct WebComponent {
             console.log("hitType: " + hitValue.type);
             console.log("extra: " + hitValue.extra);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2512,6 +2616,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2526,7 +2631,8 @@ struct WebComponent {
             let id = this.controller.getWebId();
             console.log("id: " + id);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2562,12 +2668,13 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-
+  
   build() {
     Column() {
       Button('getUserAgent')
@@ -2576,7 +2683,8 @@ struct WebComponent {
             let userAgent = this.controller.getUserAgent();
             console.log("userAgent: " + userAgent);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2589,6 +2697,7 @@ You can customize the user agent based on the default user agent.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2602,7 +2711,8 @@ struct WebComponent {
         // Customize the user agent on the application side.
         this.ua = this.controller.getUserAgent() + 'xxx';
       } catch(error) {
-        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        let e:business_error.BusinessError = error as business_error.BusinessError;
+        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
       }
     })
   }
@@ -2643,6 +2753,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2657,7 +2768,8 @@ struct WebComponent {
             let title = this.controller.getTitle();
             console.log("title: " + title);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2693,6 +2805,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2707,7 +2820,8 @@ struct WebComponent {
             let pageHeight = this.controller.getPageHeight();
             console.log("pageHeight : " + pageHeight);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2746,6 +2860,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -2767,7 +2882,8 @@ struct WebComponent {
               }
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2811,6 +2927,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -2828,11 +2945,12 @@ struct WebComponent {
                   console.info(`save web archive success: ${filename}`)
                 }
               })
-              .catch(error => {
+              .catch((error:business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(error));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2868,6 +2986,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2882,7 +3001,8 @@ struct WebComponent {
             let url = this.controller.getUrl();
             console.log("url: " + url);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2912,6 +3032,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2925,7 +3046,8 @@ struct WebComponent {
           try {
             this.controller.stop();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2963,6 +3085,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -2977,7 +3100,8 @@ struct WebComponent {
           try {
             this.controller.backOrForward(this.step);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3014,6 +3138,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3027,7 +3152,8 @@ struct WebComponent {
           try {
             this.controller.scrollTo(50, 50);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3087,6 +3213,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3100,7 +3227,8 @@ struct WebComponent {
           try {
             this.controller.scrollBy(50, 50);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3160,6 +3288,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3173,7 +3302,8 @@ struct WebComponent {
           try {
             this.controller.slideScroll(500, 500);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`); 
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3232,6 +3362,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3246,7 +3377,8 @@ struct WebComponent {
             let url = this.controller.getOriginalUrl();
             console.log("original url: " + url);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3282,12 +3414,14 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+import business_error from '@ohos.base';
+
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -3296,7 +3430,8 @@ struct WebComponent {
           try {
             this.pixelmap = this.controller.getFavicon();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3332,6 +3467,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3345,7 +3481,8 @@ struct WebComponent {
           try {
             this.controller.setNetworkAvailable(true);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3381,6 +3518,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3400,7 +3538,8 @@ struct WebComponent {
               console.info("hasImage: " + data);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3436,6 +3575,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3450,11 +3590,12 @@ struct WebComponent {
             this.controller.hasImage().then((data) => {
               console.info('hasImage: ' + data);
             })
-            .catch(function (error) {
+            .catch((error:business_error.BusinessError) => {
               console.error("error: " + error);
             })
           } catch (error) {
-            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3490,6 +3631,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3503,7 +3645,8 @@ struct WebComponent {
           try {
             this.controller.removeCache(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3539,6 +3682,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3552,7 +3696,8 @@ struct WebComponent {
           try {
             this.controller.pageUp(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3588,6 +3733,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3601,7 +3747,8 @@ struct WebComponent {
           try {
             this.controller.pageDown(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3637,6 +3784,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3650,7 +3798,8 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries()
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3688,6 +3837,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 // xxx.ets
 import web_webview from '@ohos.web.webview';
 import fs from '@ohos.file.fs';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3700,15 +3850,17 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            // globalThis.cacheDir is obtained from EntryAbility.ts.
-            let path = globalThis.cacheDir;
-            path += '/WebState';
-            // Synchronously open a file.
-            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-            fs.writeSync(file.fd, state.buffer);
-            fs.closeSync(file.fd);
+            let path:string | undefined = AppStorage.get("cacheDir");
+            if (path) {
+              path += '/WebState';
+              // Synchronously open a file.
+              let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              fs.writeSync(file.fd, state.buffer);
+              fs.closeSync(file.fd);
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3723,11 +3875,13 @@ Obtain the path of the application cache file.
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
-        globalThis.cacheDir = this.context.cacheDir;
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        // Data synchronization between the UIAbility component and the page can be implemented by binding cacheDir to the AppStorage object.
+        AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
     }
 }
 ```
@@ -3761,6 +3915,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 // xxx.ets
 import web_webview from '@ohos.web.webview';
 import fs from '@ohos.file.fs';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3772,25 +3927,27 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            // globalThis.cacheDir is obtained from EntryAbility.ts.
-            let path = globalThis.cacheDir;
-            path += '/WebState';
-            // Synchronously open a file.
-            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
-            let stat = fs.statSync(path);
-            let size = stat.size;
-            let buf = new ArrayBuffer(size);
-            fs.read(file.fd, buf, (err, readLen) => {
-              if (err) {
-                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
-              } else {
-                console.info("read file data succeed");
-                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
-                fs.closeSync(file);
-              }
-            });
+            let path:string | undefined = AppStorage.get("cacheDir");
+            if (path) {
+              path += '/WebState';
+              // Synchronously open a file.
+              let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+              let stat = fs.statSync(path);
+              let size = stat.size;
+              let buf = new ArrayBuffer(size);
+              fs.read(file.fd, buf, (err, readLen) => {
+                if (err) {
+                  console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+                } else {
+                  console.info("read file data succeed");
+                  this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                  fs.closeSync(file);
+                }
+              });
+            }
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3805,11 +3962,13 @@ Obtain the path of the application cache file.
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
-        globalThis.cacheDir = this.context.cacheDir;
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        // Data synchronization between the UIAbility component and the page can be implemented by binding cacheDir to the AppStorage object.
+        AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
     }
 }
 ```
@@ -3833,6 +3992,7 @@ Customizes the URL schemes (also known as protocols). It is recommended that thi
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -3847,7 +4007,8 @@ struct WebComponent {
     try {
       web_webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3])
     } catch(error) {
-      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      let e:business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
     }
   }
 
@@ -3855,7 +4016,9 @@ struct WebComponent {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onInterceptRequest((event) => {
-          console.log('url:' + event.request.getRequestUrl())
+          if (event) {
+            console.log('url:' + event.request.getRequestUrl())
+          }
           return this.responseweb
         })
     }
@@ -3890,16 +4053,18 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import cert from '@ohos.security.cert';
 
-function Uint8ArrayToString(dataArray) {
-  var dataString = ''
-  for (var i = 0; i < dataArray.length; i++) {
+function Uint8ArrayToString(dataArray:Uint8Array) {
+  let dataString = ''
+  for (let i = 0; i < dataArray.length; i++) {
     dataString += String.fromCharCode(dataArray[i])
   }
   return dataString
 }
 
-function ParseX509CertInfo(x509CertArray) {
+function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
@@ -3959,11 +4124,12 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then(x509CertArray => {
+                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -3978,7 +4144,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -3986,7 +4152,8 @@ struct Index {
                   }
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4005,7 +4172,9 @@ struct Index {
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .onPageEnd((e) => {
-            this.outputStr = 'onPageEnd : url = ' + e.url
+            if(e) {
+              this.outputStr = 'onPageEnd : url = ' + e.url
+            }
           })
           .onSslErrorEventReceive((e) => {
             // Ignore SSL certificate errors to test websites whose certificates have expired, for example, https://expired.badssl.com.
@@ -4047,16 +4216,18 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+import cert from '@ohos.security.cert';
 
-function Uint8ArrayToString(dataArray) {
-  var dataString = ''
-  for (var i = 0; i < dataArray.length; i++) {
+function Uint8ArrayToString(dataArray:Uint8Array) {
+  let dataString = ''
+  for (let i = 0; i < dataArray.length; i++) {
     dataString += String.fromCharCode(dataArray[i])
   }
   return dataString
 }
 
-function ParseX509CertInfo(x509CertArray) {
+function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
@@ -4116,11 +4287,12 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then(x509CertArray => {
+                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4135,7 +4307,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -4143,7 +4315,8 @@ struct Index {
                   }
                 })
               } catch (error) {
-                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
               }
             })
             .height(50)
@@ -4162,7 +4335,9 @@ struct Index {
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .onPageEnd((e) => {
-            this.outputStr = 'onPageEnd : url = ' + e.url
+            if (e) {
+              this.outputStr = 'onPageEnd : url = ' + e.url
+            }
           })
           .onSslErrorEventReceive((e) => {
             // Ignore SSL certificate errors to test websites whose certificates have expired, for example, https://expired.badssl.com.
@@ -4252,6 +4427,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4266,7 +4442,8 @@ struct WebComponent {
             // Replace 'https://www.example.com' with a real URL for the API to work.
             this.controller.prefetchPage('https://www.example.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // Replace ''www.example1.com' with a real URL for the API to work.
@@ -4307,14 +4484,16 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
         // Replace 'https://www.example.com' with a real URL for the API to work.
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        globalThis.abilityWant = want
+        AppStorage.setOrCreate("abilityWant", want)
         console.log("EntryAbility onCreate done")
     }
 }
@@ -4347,6 +4526,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4361,7 +4541,8 @@ struct WebComponent {
           try {
             this.controller.setCustomUserAgent(this.userAgent);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4397,6 +4578,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4412,7 +4594,8 @@ struct WebComponent {
             this.userAgent = this.controller.getCustomUserAgent();
             console.log("userAgent: " + this.userAgent);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4462,6 +4645,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4476,7 +4660,8 @@ struct WebComponent {
             let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4514,6 +4699,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4527,7 +4713,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4555,6 +4742,7 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4572,7 +4760,8 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4600,6 +4789,7 @@ Saves the cookies in the memory to the drive. This API uses a promise to return 
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4615,11 +4805,12 @@ struct WebComponent {
               .then(() => {
                 console.log("saveCookieAsyncCallback success!");
               })
-              .catch((error) => {
+              .catch((error:business_error.BusinessError) => {
                 console.error("error: " + error);
               });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4647,6 +4838,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4660,7 +4852,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.putAcceptCookieEnabled(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4726,6 +4919,7 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -4739,7 +4933,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4921,6 +5116,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -4935,7 +5131,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.deleteOrigin(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -4973,6 +5170,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -4996,7 +5194,8 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5034,6 +5233,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5053,11 +5253,12 @@ struct WebComponent {
                   console.log('quota: ' + origins[i].quota);
                 }
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5096,6 +5297,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5116,7 +5318,8 @@ struct WebComponent {
               console.log('quota: ' + quota);
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5160,6 +5363,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5176,11 +5380,12 @@ struct WebComponent {
               .then(quota => {
                 console.log('quota: ' + quota);
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5219,6 +5424,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5239,7 +5445,8 @@ struct WebComponent {
               console.log('usage: ' + usage);
             })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5283,6 +5490,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5299,11 +5507,12 @@ struct WebComponent {
               .then(usage => {
                 console.log('usage: ' + usage);
               })
-              .catch(e => {
+              .catch((e : business_error.BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
 
         })
@@ -5327,6 +5536,7 @@ Deletes all data in the Web SQL Database.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5340,7 +5550,8 @@ struct WebComponent {
           try {
             web_webview.WebStorage.deleteAllData();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5384,6 +5595,7 @@ Retrieves HTTP authentication credentials for a given host and realm. This API r
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5391,7 +5603,7 @@ struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   host: string = "www.spincast.org";
   realm: string = "protected example";
-  username_password: string[];
+  username_password: string[] = [];
 
   build() {
     Column() {
@@ -5401,7 +5613,8 @@ struct WebComponent {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5432,6 +5645,7 @@ Saves HTTP authentication credentials for a given host and realm. This API retur
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5447,7 +5661,8 @@ struct WebComponent {
           try {
             web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5475,6 +5690,7 @@ Checks whether any saved HTTP authentication credentials exist. This API returns
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5488,7 +5704,8 @@ struct WebComponent {
           try {
             let result = web_webview.WebDataBase.existHttpAuthCredentials();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5510,6 +5727,7 @@ Deletes all HTTP authentication credentials saved in the cache. This API returns
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5523,7 +5741,8 @@ struct WebComponent {
           try {
             web_webview.WebDataBase.deleteHttpAuthCredentials();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5571,6 +5790,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5585,7 +5805,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.allowGeolocation(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5621,6 +5842,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5635,7 +5857,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5672,6 +5895,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5692,7 +5916,8 @@ struct WebComponent {
               console.log('getAccessibleGeolocationAsync result: ' + result);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5734,6 +5959,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5749,11 +5975,12 @@ struct WebComponent {
             web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
-              }).catch(error => {
+              }).catch((error : business_error.BusinessError) => {
               console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5781,6 +6008,7 @@ Obtains the geolocation permission status of all origins. This API uses an async
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5801,7 +6029,8 @@ struct WebComponent {
               console.log('getStoredGeolocationAsync origins: ' + origins_str);
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5829,6 +6058,7 @@ Obtains the geolocation permission status of all origins. This API uses a promis
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5844,11 +6074,12 @@ struct WebComponent {
               .then(origins => {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
-              }).catch(error => {
+              }).catch((error : business_error.BusinessError) => {
               console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
             });
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5870,6 +6101,7 @@ Clears the geolocation permission status of all sources.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -5883,7 +6115,8 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.deleteAllGeolocation();
           } catch (error) {
-            console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6433,13 +6666,14 @@ Obtains the page record with the specified index in the history stack.
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+import business_error from '@ohos.base';
 
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State icon: image.PixelMap = undefined;
+  @State icon: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -6451,7 +6685,8 @@ struct WebComponent {
             console.log("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

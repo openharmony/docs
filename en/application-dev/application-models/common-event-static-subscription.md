@@ -19,10 +19,11 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    You can implement service logic in the [**onReceiveEvent()**](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md#staticsubscriberextensionabilityonreceiveevent) callback.
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+   import commonEventManager from '@ohos.commonEventManager';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-     onReceiveEvent(event) {
+     onReceiveEvent(event: commonEventManager.CommonEventData) {
        console.info('onReceiveEvent, event: ' + event.event);
      }
    }
@@ -32,10 +33,9 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 
    After writing the static subscriber code, configure the subscriber in the [module.json5](../quick-start/module-configuration-file.md) file.
 
-   ```ts
+   ```json
    {
      "module": {
-       ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -53,7 +53,6 @@ Subscribing to a common event in static mode is achieved by configuring a declar
            ]
          }
        ]
-       ...
      }
    }
    ```

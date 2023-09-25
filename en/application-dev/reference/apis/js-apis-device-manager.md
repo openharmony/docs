@@ -1290,7 +1290,7 @@ Subscribes to UI status changes.
 
 | Name     | Type                            | Mandatory| Description                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates a UI status change event.|
+| type     | string                                | Yes | Event type. The value **'uiStateChange'** indicates UI status changes. |
 | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status.       |
 
 **Example**
@@ -1333,7 +1333,7 @@ Unsubscribes from UI status changes.
 
 | Name     | Type                             | Mandatory| Description                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates a UI status change event.|
+| type     | string                                | Yes  | Event type. The value **'uiStateChange'** indicates UI status changes. |
 | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback for the UI status change. |
 
 **Example**
@@ -1363,7 +1363,7 @@ Subscribes to device state changes.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes. |
 | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device information and state.     |
 
 **Example**
@@ -1408,8 +1408,8 @@ Unsubscribes from device state changes.
 
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for device state changes. |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.      |
+| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device state change. |
 
 **Example**
 
@@ -1453,8 +1453,8 @@ Subscribes to device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                        |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked when a device is discovered. |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device. |
 
 **Example**
 
@@ -1491,7 +1491,7 @@ Unsubscribes from device discovery events.
 
 | Name      | Type                                    | Mandatory  | Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates discovery of a device. |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback for the device discovery event. |
 
 **Example**
@@ -1536,8 +1536,8 @@ Subscribes to device discovery failures.
 
 | Name      | Type                                    | Mandatory  | Description                            |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.                |
+| type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to report a device discovery failure. |
 
 **Example**
 
@@ -1573,8 +1573,8 @@ Unsubscribes from device discovery failures.
 
 | Name      | Type                                    | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback used for the device discovery failure.|
+| type     | string                                   | Yes   | Event type. The value **'discoverFail'** indicates a failure in discovering devices. |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback for the device discovery failure. |
 
 **Example**
 
@@ -1647,7 +1647,7 @@ Unsubscribes from device information publication success events.
 
 | Name    | Type                                | Mandatory| Description                         |
 | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event reported when device information is published.                |
+| type     | string                                   | Yes  | Event type. The value **'publishSuccess'** indicates an event of the success in publishing device information. |
 | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback for the device information publication success event. |
 
 **Example**
@@ -1683,8 +1683,8 @@ Subscribes to device information publication failures.
 
 | Name    | Type                                             | Mandatory| Description                            |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.|
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used for the publication failure.                |
+| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates an event reported when publishing device information fails. |
+| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to report a publication failure. |
 
 **Example**
 
@@ -1720,8 +1720,8 @@ Unsubscribes from device information publication failures.
 
 | Name    | Type                                             | Mandatory| Description               |
 | -------- | ----------------------------------------------------- | ---- | ----------------- |
-| type     | string                                                | Yes  | Event type. The event **'publishFail'** indicates an event reported when publishing device information fails.    |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback used for the device discovery failure.|
+| type     | string                                                | Yes  | Event type. The value **'publishFail'** indicates a failure in publishing device information. |
+| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback for the device information publication failure. |
 
 **Example**
 
@@ -1789,8 +1789,8 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 | Name      | Type                   | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback for the dead event of the **DeviceManager** service.                |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates a dead event of the **DeviceManager** service. |
+| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback for the dead event of the **DeviceManager** service.                  |
 
 **Example**
 

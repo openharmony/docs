@@ -137,26 +137,28 @@ This API is used only for test purposes.
 
 ```ts
 // xxx.ets
+import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+
 class Utils {
-  static rect_left
-  static rect_top
-  static rect_right
-  static rect_bottom
-  static rect_value
+  static rect_left: number
+  static rect_top: number
+  static rect_right: number
+  static rect_bottom: number
+  static rect_value: Record<string, number>
 
   // Obtain the coordinates of the rectangular area occupied by the component.
-  static getComponentRect(key) {
+  static getComponentRect(key:string):Record<string, number> {
     let strJson = getInspectorByKey(key)
-    let obj = JSON.parse(strJson)
+    let obj:Record<string, string> = JSON.parse(strJson)
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
-    let rectInfo = JSON.parse('[' + obj.$rect + ']')
+    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    this.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
-    return this.rect_value = {
-      "left": this.rect_left, "top": this.rect_top, "right": this.rect_right, "bottom": this.rect_bottom
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    return Utils.rect_value = {
+      "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }
   }
 }
@@ -199,11 +201,15 @@ struct IdExample {
           let rect = Utils.getComponentRect('onTouch') // Obtain the coordinates of the rectangular area occupied by the component whose ID is "onTouch".
           let touchPoint: TouchObject = {
             id: 1,
-            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
-            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             type: TouchType.Down,
-            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
-            screenY: rect.left + (rect.right - rect.left) / 2, // Y coordinate of the component center.
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the component.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate relative to the upper left corner of the component.
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the application window. This API is deprecated since API version 10. Use windowX instead.
+            screenY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the application window. This API is deprecated since API version 10. Use windowY instead.
+            windowX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the application window.
+            windowY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the application window.
+            displayX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the device screen.
+            displayY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the device screen.
           }
           sendTouchEvent(touchPoint) // Send a touch event.
           touchPoint.type = TouchType.Up
@@ -222,10 +228,14 @@ struct IdExample {
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
-            x: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
-            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
-            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
-            screenY: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
+            x: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the component.
+            y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate relative to the upper left corner of the component.
+            screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the application window. This API is deprecated since API version 10. Use windowX instead.
+            screenY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the application window. This API is deprecated since API version 10. Use windowY instead.
+            windowX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the application window.
+            windowY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the application window.
+            displayX: rect.left + (rect.right - rect.left) / 2, // X coordinate relative to the upper left corner of the device screen.
+            displayY: rect.left + (rect.right - rect.left) / 2, // Y coordinate relative to the upper left corner of the device screen.
             timestamp: 1,
             target: {
               area: {
@@ -265,7 +275,8 @@ struct IdExample {
             keySource: 4,
             deviceId: 0,
             metaKey: 0,
-            timestamp: 0
+            timestamp: 0,
+            intentionCode: IntentionCode.INTENTION_DOWN
           }
           sendKeyEvent(keyEvent) // Send a key event.
         }, 2000)

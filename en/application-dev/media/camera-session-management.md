@@ -82,7 +82,7 @@ After the session configuration is complete, the application must commit the con
      }
    
      try {
-       await captureSession.start()
+       await captureSession.start();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to start. error: ${JSON.stringify(err)}`);

@@ -139,7 +139,7 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 import { BusinessError } from '@ohos.base';
 
 let displayClass: Array<display.Display> = [];
-display.getAllDisplays((err: BusinessError, data) => {
+display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
@@ -178,8 +178,8 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 import { BusinessError } from '@ohos.base';
 
 let displayClass: Array<display.Display> =[];
-let promise = display.getAllDisplays();
-promise.then((data) => {
+let promise: Promise<Array<Display>> = display.getAllDisplays();
+promise.then((data: Promise<Array<Display>>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -263,7 +263,7 @@ Subscribes to display changes.
 **Example**
 
 ```ts
-let callback = (data) => {
+let callback: Callback<number> = (data: Callback<number>) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -318,7 +318,7 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 **Example**
 
 ```ts
-let callback = (data) => {
+let callback: Callback<boolean> = (data: Callback<boolean>) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
@@ -379,7 +379,7 @@ Obtains the default display object. This API uses an asynchronous callback to re
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data) => {
+display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
@@ -414,8 +414,8 @@ Obtains the default display object. This API uses a promise to return the result
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-let promise = display.getDefaultDisplay();
-promise.then((data) => {
+let promise: Promise<Display> = display.getDefaultDisplay();
+promise.then((data: Promise<Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
@@ -446,7 +446,7 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 ```ts
 import { BusinessError } from '@ohos.base';
 
-display.getAllDisplay((err: BusinessError, data) => {
+display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
   const errCode: number = err.code;
   if (errCode) {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -479,8 +479,8 @@ Obtains all display objects. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let promise = display.getAllDisplay();
-promise.then((data) => {
+let promise: Promise<Array<Display>> = display.getAllDisplay();
+promise.then((data: Promise<Array<Display>>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -543,7 +543,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data) => {
+  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
@@ -585,8 +585,8 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
 
-  let promise = displayClass.getCutoutInfo();
-  promise.then((data) => {
+  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: Promise<CutoutInfo>) => {
     console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));

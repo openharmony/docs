@@ -122,7 +122,7 @@ The figure below shows the recommended API calling process of the dual-channel p
      captureSession.addInput(cameraInput);
    
      // Add preview stream 1 to the session.
-     captureSession.addOutput(previewOutput)
+     captureSession.addOutput(previewOutput);
    
      // Add preview stream 2 to the session.
      captureSession.addOutput(previewOutput2);
@@ -152,13 +152,11 @@ The figure below shows the recommended API calling process of the dual-channel p
            if (err || imgComponent === undefined) {
              return;
            }
-           let buffer: ArrayBuffer;
            if (imgComponent.byteBuffer as ArrayBuffer) {
-             buffer = imgComponent.byteBuffer;
+             // do something...
            } else {
              return;
            }
-           // do something...;
          })
        })
      })

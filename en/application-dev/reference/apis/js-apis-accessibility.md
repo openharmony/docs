@@ -174,9 +174,11 @@ Enables listening for the enabled status changes of captions configuration. This
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('enableChange', (data) => {
+    captionsManager.on('enableChange', (data: boolean) => {
         console.info('subscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -202,10 +204,12 @@ Enables listening for captions style changes. This API uses an asynchronous call
 **Example**
 
 ```ts
-let captionStyle;
+import accessibility from '@ohos.accessibility';
+
+let captionStyle: accessibility.CaptionsStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.on('styleChange', (data) => {
+    captionsManager.on('styleChange', (data: accessibility.CaptionsStyle) => {
         captionStyle = data;
         console.info('subscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
@@ -232,9 +236,11 @@ Disables listening for the enabled status changes of captions configuration. Thi
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('enableChange', (data) => {
+    captionsManager.off('enableChange', (data: boolean) => {
         console.info('Unsubscribe caption manager enable state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -260,10 +266,12 @@ Disables listening for captions style changes. This API uses an asynchronous cal
 **Example**
 
 ```ts
-let captionStyle;
+import accessibility from '@ohos.accessibility';
+
+let captionStyle: accessibility.CaptionsStyle;
 let captionsManager = accessibility.getCaptionsManager();
 try {
-    captionsManager.off('styleChange', (data) => {
+    captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
         captionStyle = data;
         console.info('Unsubscribe caption manager style state change, result: ' + JSON.stringify(data));
     });
@@ -314,10 +322,12 @@ Implements a constructor.
 **Example**
 
   ```ts
-  let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+  import accessibility from '@ohos.accessibility';
+
+  let eventInfo: accessibility.EventInfo = ({
+    type: 'click',
+    bundleName: 'com.example.MyApplication',
+    triggerAction: 'click'
   });
   ```
 
@@ -398,24 +408,28 @@ Obtains the accessibility application list. This API uses a promise to return th
 **Example**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
-let abilityList: accessibility.AccessibilityInfo[];
+import accessibility from '@ohos.accessibility';
+
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let abilityList: accessibility.AccessibilityAbilityInfo[];
 try {
-    accessibility.getAbilityLists(abilityType, abilityState).then((data) => {
-        for (let item of data) {
-            console.info(item.id);
-            console.info(item.name);
-            console.info(item.description);
-            console.info(item.bundleName);
-            extensionList.push(item);
-        }
-        console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+  accessibility.getAbilityLists(abilityType, abilityState)
+    .then((data: accessibility.AccessibilityAbilityInfo[]) => {
+      for (let item of data) {
+        console.info(item.id);
+        console.info(item.name);
+        console.info(item.description);
+        console.info(item.bundleName);
+        abilityList.push(item);
+      }
+      console.info('get accessibility extension list success');
+    })
+    .catch((err: object) => {
+      console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
-    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+  console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
 }
 ```
 
@@ -443,11 +457,15 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 **Example**
 
 ```ts
-let abilityType = 'spoken';
-let abilityState = 'enable';
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
 let abilityList: accessibility.AccessibilityInfo[];
 try {
-    accessibility.getAbilityLists(abilityType, abilityState, (err, data) => {
+    accessibility.getAbilityLists(abilityType, abilityState, 
+    (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
         if (err) {
             console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
             return;
@@ -460,9 +478,7 @@ try {
             abilityList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
-        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
-    });
+    })
 } catch (exception) {
     console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
 }
@@ -492,11 +508,14 @@ Obtains the accessibility application list. This API uses a promise to return th
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
 let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
-    accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState)
+    .then((data: accessibility.AccessibilityAbilityInfo[]) => {
         for (let item of data) {
             console.info(item.id);
             console.info(item.name);
@@ -505,7 +524,8 @@ try {
             extensionList.push(item);
         }
         console.info('get accessibility extension list success');
-    }).catch((err) => {
+    })
+    .catch((err: object) => {
         console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -532,11 +552,15 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
 let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
 try {
-    accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState, 
+    (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
         if (err) {
             console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
             return;
@@ -572,6 +596,8 @@ Obtains a **CaptionsManager** instance.
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 let captionsManager = accessibility.getCaptionsManager();
 ```
 
@@ -593,8 +619,10 @@ Enables listening for the enabled status changes of the accessibility applicatio
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.on('accessibilityStateChange', (data) => {
+    accessibility.on('accessibilityStateChange', (data: boolean) => {
         console.info('subscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -620,8 +648,10 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.on('touchGuideStateChange', (data) => {
+    accessibility.on('touchGuideStateChange', (data: boolean) => {
         console.info('subscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -647,8 +677,10 @@ Disables listening for the enabled status changes of the accessibility applicati
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.off('accessibilityStateChange', (data) => {
+    accessibility.off('accessibilityStateChange', (data: boolean) => {
         console.info('Unsubscribe accessibility state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -674,8 +706,10 @@ Disables listening for the enabled status changes of the touch guide mode. This 
 **Example**
 
 ```ts
+import accessibility from '@ohos.accessibility';
+
 try {
-    accessibility.off('touchGuideStateChange', (data) => {
+    accessibility.off('touchGuideStateChange', (data: boolean) => {
         console.info('Unsubscribe touch guide state change, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -700,9 +734,11 @@ Checks whether accessibility is enabled. This API uses a promise to return the r
 **Example**
 
 ```ts
-accessibility.isOpenAccessibility().then((data) => {
+import accessibility from '@ohos.accessibility';
+
+accessibility.isOpenAccessibility().then((data: boolean) => {
     console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to  isOpenAccessibility because ' + JSON.stringify(err));
 });
 ```
@@ -724,7 +760,10 @@ Checks whether accessibility is enabled. This API uses an asynchronous callback 
 **Example**
 
 ```ts
-accessibility.isOpenAccessibility((err, data) => {
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to isOpenAccessibility because ' + JSON.stringify(err));
         return;
@@ -750,9 +789,11 @@ Checks whether touch guide mode is enabled. This API uses a promise to return th
 **Example**
 
 ```ts
-accessibility.isOpenTouchGuide().then((data) => {
+import accessibility from '@ohos.accessibility';
+
+accessibility.isOpenTouchGuide().then((data: boolean) => {
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(err));
 });
 ```
@@ -774,7 +815,10 @@ Checks whether touch guide mode is enabled. This API uses an asynchronous callba
 **Example**
 
 ```ts
-accessibility.isOpenTouchGuide((err, data) => {
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to isOpenTouchGuide because ' + JSON.stringify(err));
         return;
@@ -811,14 +855,16 @@ Sends an accessibility event. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-  'type':'click',
-  'bundleName':'com.example.MyApplication',
-  'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 accessibility.sendEvent(eventInfo).then(() => {
     console.info('send event success');
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to sendEvent because ' + JSON.stringify(err));
 });
 ```
@@ -846,12 +892,15 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-  'type':'click',
-  'bundleName':'com.example.MyApplication',
-  'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
-accessibility.sendEvent(eventInfo, (err, data) => {
+accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
     if (err) {
         console.error('failed to sendEvent because ' + JSON.stringify(err));
         return;
@@ -883,15 +932,17 @@ Sends an accessibility event. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 try {
     accessibility.sendAccessibilityEvent(eventInfo).then(() => {
         console.info('send event success');
-    }).catch((err) => {
+    }).catch((err: object) => {
         console.error('failed to send event because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -917,13 +968,16 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-let eventInfo = new accessibility.EventInfo({
-    'type':'click',
-    'bundleName':'com.example.MyApplication',
-    'triggerAction':'click'
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click'
 });
 try {
-    accessibility.sendEvent(eventInfo, (err, data) => {
+    accessibility.sendEvent(eventInfo, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to send event because ' + JSON.stringify(err));
             return;

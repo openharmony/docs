@@ -16,3 +16,4 @@
 
 - [多线程能力场景化](multi_thread_capability.md)
 
+- [Swiper高性能开发指导](swiper_optimization.md)

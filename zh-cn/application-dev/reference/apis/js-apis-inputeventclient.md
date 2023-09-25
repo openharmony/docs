@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputEventClient (按键注入)
+# @ohos.multimodalInput.inputEventClient (设备注入)
 
-按键注入模块，提供按键注入能力。
+设备注入模块，提供设备注入能力。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 injectEvent({KeyEvent: KeyEvent}): void
 
-按键注入，当前仅支持返回键/KEYCODE_BACK（键码值2）注入。
+按键(包括单个按键和组合键)注入。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -49,6 +49,85 @@ try {
   inputEventClient.injectEvent({ KeyEvent: backKeyUp });
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+## inputEventClient.injectMouseEvent<sup>11+</sup>
+
+injectMouseEvent({mouseEvent: MouseEvent}): void;
+
+鼠标/触摸板事件注入。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**参数：**
+
+| 参数名       | 类型                    | 必填   | 说明        |
+| -------- | --------------------- | ---- | --------- |
+| mouseEvent | [MouseEvent](../apis/js-apis-mouseevent.md) | 是    | 鼠标/触摸板事件注入描述信息。 |
+
+**示例：**
+
+```js
+try {
+  let mouseButtonUp = {
+      action: 2,
+      screenX: 200,
+      screenY: 620,
+      button: 0,
+      toolType: 1,
+  }
+  inputEventClient.injectMouseEvent({ mouseEvent: mouseButtonUp });
+
+  let mouseButtonDown = {
+      action: 3,
+      screenX: 200,
+      screenY: 620,
+      button: 0,
+      toolType: 1,
+  };
+  inputEventClient.injectMouseEvent({ mouseEvent: mouseButtonDown });
+} catch (error) {
+  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputEventClient.injectTouchEvent<sup>11+</sup>
+
+injectTouchEvent({touchEvent: TouchEvent}): void;
+
+触摸屏事件注入。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**参数：**
+
+| 参数名       | 类型                    | 必填   | 说明        |
+| -------- | --------------------- | ---- | --------- |
+| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md) | 是    | 触摸屏事件注入描述信息。 |
+
+**示例：**
+
+```js
+try {
+  let touchEventUp = {
+      action: 1,
+      sourceType: 0,
+      screenX: 200,
+      screenY: 620,
+      pressedTime: 0,
+  };
+  inputEventClient.injectTouchEvent({ touchEvent: touchEventUp });
+
+  let touchEventDown = {
+      action: 3,
+      sourceType: 0,
+      screenX: 200,
+      screenY: 620,
+      pressedTime: 0,
+  };
+    inputEventClient.injectTouchEvent({ touchEvent: touchEventDown });
+} catch (error) {
+    console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
