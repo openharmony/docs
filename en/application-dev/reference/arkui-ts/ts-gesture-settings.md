@@ -2,7 +2,7 @@
 
 Bind different types of gesture events to components and set response methods for them.
 
->  **NOTE**
+> **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 

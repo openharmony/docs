@@ -143,16 +143,13 @@ struct Index {
     abilityName: "UIExtensionProvider",
     parameters: { "x": 12345, "y": "data" }
   }
-  sizeObject: SizeObject = {
-    width: "100%", height: "100%"
-  }
 
   build() {
     Row() {
       Column() {
         Text(this.message).fontColor(Color.Red)
         UIExtensionComponent(this.want)
-          .size(this.sizeObject)
+          .size({ width: "100%", height: "100%" })
           .onRemoteReady((proxy: UIExtensionProxy) => {
             this.message = "remote ready"
             this.myProxy = proxy
@@ -182,11 +179,6 @@ struct Index {
   }
 }
 
-interface SizeObject {
-  width: string;
-  height: string;
-}
-
 interface ErrorObject {
   code: number;
   name: string;
@@ -197,8 +189,11 @@ interface ErrorObject {
 ```ts
 // Extension entry point file UIExtensionProvider.ts
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
+  
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`)
   }
@@ -215,15 +210,16 @@ export default class UIExtAbility extends UIExtensionAbility {
     console.log(TAG, `UIExtAbility onDestroy`)
   }
 
-  onSessionCreate(want, session) {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+    let param: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
+    };
+    let storage: LocalStorage = new LocalStorage(param);
     session.loadContent('pages/extension', storage);
   }
 
-  onSessionDestroy(session) {
+  onSessionDestroy(session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionDestroy`)
   }
 }
