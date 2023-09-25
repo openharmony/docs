@@ -33,20 +33,26 @@ Creates a **Calendar** object based on the calendar account information. This AP
 
 **Example**
 
-```js
-let calendar = null;
+```typescript
+import { BusinessError } from '@ohos.base';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.createCalendar(calendarAccount, (err, data) => {
-  if (err) {
-    console.error("Failed to create calendar");
-  } else {
-    console.info("Succeeded in creating calendar");
-    calendar = data;  
-  }
-});
+try {
+  calendarManager.createCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
+    if (err) {
+      console.error(`Failed to create calendar: err->${JSON.stringify(err)}`);
+    } else {
+      console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
+      calendar = data;
+    }
+  });
+} catch (error) {
+  console.error(`Failed to create calendar: err->${JSON.stringify(error)}`);
+}
 ```
 
 ## calendarManager.createCalendar
@@ -73,17 +79,20 @@ Creates a **Calendar** object based on the calendar account information. This AP
 
 **Example**
 
-```js
-let calendar = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
-  type: calendarManager.CalendarType.LOCAL
+  type: calendarManager.CalendarType.LOCAL,
+  displayName : 'MyApplication'
 };
-calendarManager.createCalendar(calendarAccount).then((data) => {
-  console.info("succeeded in creating calendar");
+calendarManager.createCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
+  console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
-}).catch((err) => {
-  console.error("Failed to create calendar");
+}).catch((error : BusinessError) => {
+  console.error(`Failed to create calendar: err->${JSON.stringify(error)}`);
 });
 ```
 
@@ -106,19 +115,21 @@ Deletes a specified **Calendar** object. This API uses an asynchronous callback 
 
 **Example**
 
-```js
+```typescript
+import { BusinessError } from '@ohos.base';
+
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err, data) => {
+calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in getting calendar");
-    calendarManager.deleteCalendar(data, (err) => {
+    calendarManager.deleteCalendar(data, (err: BusinessError) => {
       if (err) {
-        console.error("Failed to delete calendar");
+        console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
       } else {
         console.info("Succeeded in deleting calendar");
       }
@@ -151,20 +162,22 @@ Deletes a specified **Calendar** object. This API uses a promise to return the r
 
 **Example**
 
-```js
+```typescript
+import { BusinessError } from '@ohos.base';
+
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount).then((data) => {
+calendarManager.getCalendar(calendarAccount).then((data: calendarManager.Calendar) => {
   console.info("Succeeded in getting calendar");
   calendarManager.deleteCalendar(data).then(() => {
     console.info("Succeeded in deleting calendar");
-  }).catch((err) => {
-    console.error("Failed to delete calendar");
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete calendar: err->${JSON.stringify(err)}`);
   });
-}).catch((err) => {
-  console.error("Failed to get calendar");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -172,7 +185,7 @@ calendarManager.getCalendar(calendarAccount).then((data) => {
 
 getCalendar(callback: AsyncCallback\<Calendar>): void
 
-Obtains the default **Calendar** object, which is created when the database is initialized. This API uses an asynchronous callback to return the result. You can call this API instead of [createCalendar()](#calendarmanagercreatecalendar) to use the default calendar for a new event.
+Obtains the default **Calendar** object, which is created when the data storage runs for the first time. This API uses an asynchronous callback to return the result. You can call this API instead of [createCalendar()](#calendarmanagercreatecalendar) to use the default calendar for a new event.
 
 **Required permissions**: ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
 
@@ -186,14 +199,16 @@ Obtains the default **Calendar** object, which is created when the database is i
 
 **Example**
 
-```js
-let calendar = null;
-calendarManager.getCalendar((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarManager.getCalendar((err: BusinessError, data:calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting calendar");
-    calendar = data;  
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
+    calendar = data;
   }
 });
 ```
@@ -217,17 +232,19 @@ Obtains a specified **Calendar** object. This API uses an asynchronous callback 
 
 **Example**
 
-```js
-let calendar = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
 const calendarAccount: calendarManager.CalendarAccount = {
   name: 'MyCalendar',
   type: calendarManager.CalendarType.LOCAL
 };
-calendarManager.getCalendar(calendarAccount, (err, data) => {
+calendarManager.getCalendar(calendarAccount, (err: BusinessError, data: calendarManager.Calendar) => {
   if (err) {
-    console.error("Failed to get calendar");
+    console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting calendar");
+    console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
     calendar = data;
   }
 });
@@ -257,13 +274,15 @@ Obtains the default **Calendar** object or a specified **Calendar** object. This
 
 **Example**
 
-```js
-let calendar = null;
-calendarManager.getCalendar().then((data) => {
-  console.info("Succeeded in getting calendar");
+```ts
+import { BusinessError } from '@ohos.base';
+
+let calendar : calendarManager.Calendar | undefined = undefined;
+calendarManager.getCalendar().then((data: calendarManager.Calendar) => {
+  console.info(`Succeeded in getting calendar data->${JSON.stringify(data)}`);
   calendar = data;
-}).catch((err) => {
-  console.error("Failed to get calendar");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get calendar: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -285,12 +304,18 @@ Obtains the created and default **Calendar** objects of the current application.
 
 **Example**
 
-```js
-calendarManager.getAllCalendars((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+calendarManager.getAllCalendars((err: BusinessError, data: calendarManager.Calendar[]) => {
   if (err) {
-    console.error("Failed to get all calendars");
+    console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in getting all calendars");
+    console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
+    data.forEach((calendar) => {
+      const account = calendar.getAccount();
+      console.info(`account->${JSON.stringify(account)}`);
+    })
   }
 });
 ```
@@ -313,11 +338,17 @@ Obtains the created and default **Calendar** objects of the current application.
 
 **Example**
 
-```js
-calendarManager.getAllCalendars().then((data) => {
-  console.info("Succeeded in getting all calendars");
-}).catch((err) => {
-  console.error("Failed to get all calendars");
+```ts
+import { BusinessError } from '@ohos.base';
+
+calendarManager.getAllCalendars().then((data: calendarManager.Calendar[]) => {
+  console.info(`Succeeded in getting all calendars->${JSON.stringify(data)}`);
+  data.forEach((calendar) => {
+    const account = calendar.getAccount();
+    console.info(`account->${JSON.stringify(account)}`);
+  })
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get all calendars: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -350,18 +381,20 @@ Creates an event, with no event ID specified in [Event](#event). This API uses a
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.addEvent(event, (err, data) => {
+calendar.addEvent(event, (err: BusinessError, data: number): void => {
   if (err) {
-    console.error("Failed to add event");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in adding event");
+    console.info(`Succeeded in adding event id:${data}`);
   }
 });
 ```
@@ -388,17 +421,19 @@ Creates an event, with no event ID specified in [Event](#event). This API uses a
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const event: calendarManager.Event = {
   type: calendarManager.EventType.NORMAL,
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.addEvent(event).then((data) => {
-  console.info("Succeeded in adding event");
-}).catch((err) => {
-  console.error("Failed to add event");
+calendar.addEvent(event).then((data: number) => {
+  console.info(`Succeeded in adding event id:${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -419,7 +454,9 @@ Creates a batch of events, with no event ID specified in [Event](#event). This A
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -433,9 +470,9 @@ const events: calendarManager.Event[] = [
     endTime: date.getTime() + 60 * 60 * 1000
   }
 ];
-calendar.addEvents(events, (err) => {
+calendar.addEvents(events, (err: BusinessError) => {
   if (err) {
-    console.error("Failed to add events");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
     console.info("Succeeded in adding events");
   }
@@ -464,7 +501,9 @@ Creates a batch of events, with no event ID specified in [Event](#event). This A
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
 const events: calendarManager.Event[] = [
   {
@@ -480,8 +519,8 @@ const events: calendarManager.Event[] = [
 ];
 calendar.addEvents(events).then(() => {
   console.info("Succeeded in adding events");
-}).catch((err) => {
-  console.error("Failed to add events");
+}).catch((err: BusinessError) => {
+  console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -502,8 +541,10 @@ Deletes an event with the specified ID. This API uses an asynchronous callback t
 
 **Example**
 
-```js
-calendar.deleteEvent(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+calendar.deleteEvent(1, (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete event");
   } else {
@@ -534,10 +575,12 @@ Deletes an event with the specified ID. This API uses a promise to return the re
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvent(1).then(() => {
   console.info("Succeeded in deleting event");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to delete event");
 });
 ```
@@ -559,8 +602,10 @@ Deletes a batch of events with the specified IDs. This API uses an asynchronous 
 
 **Example**
 
-```js
-calendar.deleteEvents([1, 2], (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+calendar.deleteEvents([1, 2], (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete events");
   } else {
@@ -591,10 +636,12 @@ Deletes a batch of events with the specified IDs. This API uses a promise to ret
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 calendar.deleteEvents([1, 2]).then(() => {
   console.info("Succeeded in deleting events");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to delete events");
 });
 ```
@@ -616,20 +663,31 @@ Updates an event. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const date = new Date();
-const event: calendarManager.Event = {
-  id: 1,
+const oriEvent: calendarManager.Event = {
   title: 'update',
   type: calendarManager.EventType.NORMAL,
+  description: 'updateEventTest',
   startTime: date.getTime(),
   endTime: date.getTime() + 60 * 60 * 1000
 };
-calendar.updateEvent(event, (err) => {
+calendar.addEvent(oriEvent, (err: BusinessError, data: number): void => {
   if (err) {
-    console.error("Failed to update event");
+    console.error(`Failed to addEvent: err->${JSON.stringify(err)}`);
   } else {
-    console.info("Succeeded in updating event");
+    console.info(`Succeeded in adding event id:${data}`);
+    oriEvent.id = data; // must set id
+    oriEvent.title = 'newUpdate';
+    calendar.updateEvent(oriEvent, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to updateEvent: err->${JSON.stringify(err)}`);
+      } else {
+        console.info("Succeeded in updating event");
+      }
+    });
   }
 });
 ```
@@ -656,19 +714,24 @@ Updates an event. This API uses a promise to return the result.
 
 **Example**
 
-```js
-const date = new Date();
-const event: calendarManager.Event = {
-  id: 1,
-  title: 'update',
-  type: calendarManager.EventType.NORMAL,
-  startTime: date.getTime(),
-  endTime: date.getTime() + 60 * 60 * 1000
-};
-calendar.updateEvent(event).then(() => {
-  console.info("Succeeded in updating event");
-}).catch((err) => {
-  console.error("Failed to update event");
+```ts
+import { BusinessError } from '@ohos.base';
+
+const filter = calendarManager.EventFilter.filterByTitle('update');
+calendar.getEvents(filter).then((events : calendarManager.Event[]) => {
+  console.info(`Succeeded in getEvents`);
+  if (events.length < 1) {
+    return;
+  }
+  let newEvent = events[0];
+  newEvent.title = 'newUpdate';
+  calendar.updateEvent(newEvent).then(() => {
+    console.info(`Succeeded in updateEvent`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to updateEvent err->${JSON.stringify(err)}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getEvents err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -688,8 +751,10 @@ Obtains all events in a calendar. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-calendar.getEvents((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+calendar.getEvents((err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
   } else {
@@ -716,10 +781,11 @@ Obtains all events in a calendar that match the filter criteria. This API uses a
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-const columns: (keyof calendarManager.Event)[] =  ['title', 'type', 'startTime', 'endTime'];
-calendar.getEvents(filter, columns, (err, data) => {
+calendar.getEvents(filter, ['title', 'type', 'startTime', 'endTime'], (err: BusinessError, data: calendarManager.Event[]) => {
   if (err) {
     console.error("Failed to get events");
   } else {
@@ -751,11 +817,13 @@ Obtains all events in a calendar that match the filter criteria. This API uses a
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in getting events");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to get events");
 });
 ```
@@ -776,7 +844,7 @@ Obtains the calendar configuration information.
 
 **Example**
 
-```js
+```ts
 const config = calendar.getConfig();
 console.info("get config success");
 ```
@@ -798,11 +866,13 @@ Sets the calendar configuration information. This API uses an asynchronous callb
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
-calendar.setConfig(config, (err) => {
+calendar.setConfig(config, (err: BusinessError) => {
   if (err) {
     console.error("Failed to set config");
   } else {
@@ -833,13 +903,15 @@ Sets the calendar configuration information. This API uses a promise to return t
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const config: calendarManager.CalendarConfig = {
   enableReminder: true
 };
 calendar.setConfig(config).then(() => {
   console.info("Succeeded in setting config");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to set config");
 });
 ```
@@ -860,7 +932,7 @@ Obtains the calendar account information.
 
 **Example**
 
-```js
+```ts
 const account = calendar.getAccount();
 console.info("get account success");
 ```
@@ -964,11 +1036,13 @@ Defines an event ID based filter.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterById([1, 2]);
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by id");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by id");
 });
 ```
@@ -996,11 +1070,13 @@ Defines an event time based filter.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTime(1686931200000, 1687017600000);
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by time");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by time");
 });
 ```
@@ -1027,11 +1103,13 @@ Defines an event title based filter.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
-calendar.getEvents(filter).then((data) => {
+calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
   console.info("Succeeded in filtering by title");
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error("Failed to filter by title");
 });
 ```
