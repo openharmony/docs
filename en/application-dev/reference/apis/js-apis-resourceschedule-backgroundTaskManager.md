@@ -246,6 +246,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -330,6 +332,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -400,6 +404,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(error: BusinessError, data: void) {
@@ -460,6 +466,8 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {

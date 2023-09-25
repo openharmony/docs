@@ -1,4 +1,4 @@
-# @ohos.ability.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
 
 The **BackupExtensionAbility** module provides extended backup and restore capabilities for applications.
 
@@ -11,7 +11,7 @@ The **BackupExtensionAbility** module provides extended backup and restore capab
 ## Modules to Import
 
 ```ts
-import BackupExtension from '@ohos.ability.BackupExtensionAbility';
+import BackupExtension from '@ohos.application.BackupExtensionAbility';
 ```
 
 ## BundleVersion
