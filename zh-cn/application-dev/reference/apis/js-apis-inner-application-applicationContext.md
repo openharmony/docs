@@ -3,8 +3,8 @@
 ApplicationContext模块提供开发者应用级别的的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -123,7 +123,7 @@ export default class EntryAbility extends UIAbility {
         console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error) {
-                console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
+                console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');
             } else {
                 console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
             }
@@ -475,4 +475,76 @@ applicationContext.killAllProcesses(error => {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 });
+```
+## ApplicationContext.setColorMode<sup>11</sup>
+
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void;
+
+设置应用的颜色模式。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统） |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+
+export default class MyAbility extends UIAbility {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+  }
+}
+```
+
+## ApplicationContext.setLanguage<sup>11</sup>
+
+setLanguage(language: string): void;
+
+设置应用的语言。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取  |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.setLanguage('zh-cn');
+  }
+}
 ```
