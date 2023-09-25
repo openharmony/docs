@@ -583,8 +583,6 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 Enables or disables static subscription for the current application. This API uses an asynchronous callback to return the result.
 
-**Model restriction**: This API can be used only in the stage model.
-
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -629,8 +627,6 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 Enables or disables static subscription for the current application. This API uses a promise to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
