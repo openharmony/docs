@@ -16,7 +16,7 @@
 import deviceSettings from '@ohos.enterprise.deviceSettings';
 ```
 
-## deviceSettings.setScreenOffTime<sup>11</sup>
+## deviceSettings.setScreenOffTime<sup>11+</sup>
 
 setScreenOffTime(admin: Want, time: number): void
 
