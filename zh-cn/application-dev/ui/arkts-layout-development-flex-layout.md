@@ -13,9 +13,9 @@
 
 ## 基本概念
 
-- 主轴：Flex组件布局方向的轴线，子元素默认沿着主轴排列。主轴开始的位置称为主轴起始端，结束位置称为主轴终点端。
+- 主轴：Flex组件布局方向的轴线，子元素默认沿着主轴排列。主轴开始的位置称为主轴起始点，结束位置称为主轴结束点。
 
-- 交叉轴：垂直于主轴方向的轴线。交叉轴起始的位置称为交叉轴首部，结束位置称为交叉轴尾部。
+- 交叉轴：垂直于主轴方向的轴线。交叉轴开始的位置称为交叉轴起始点，结束位置称为交叉轴结束点。
 
 
 ## 布局方向
@@ -554,15 +554,13 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 - flexGrow：设置父容器的剩余空间分配给此属性所在组件的比例。用于“瓜分”父组件的剩余空间。
 
-
-    ```ts
+  ```ts
   Flex() {
     Text('flexGrow(2)')
-      .flexGrow(2) 
+      .flexGrow(2)
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
-    
     Text('flexGrow(3)')
       .flexGrow(3)
       .width(100)
@@ -570,18 +568,18 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
       .backgroundColor(0xD2B48C)
   
     Text('no flexGrow')
-      .width(100) 
+      .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
-    ```
-
-    ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
-
-   父容器宽度400vp，三个子组件原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
-
-    第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp2/5=140vp，第二个元素为100vp+100vp3/5=160vp。
-
+  ```
+  
+  ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
+  
+  父容器宽度400vp，三个子组件原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
+  
+  第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp * 2/5=140vp，第二个元素为100vp+100vp * 3/5=160vp。
+  
 - flexShrink: 当父容器空间不足时，子组件的压缩比例。
 
 
