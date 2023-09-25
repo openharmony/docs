@@ -100,44 +100,44 @@ OpenHarmony中的Worker是一个独立的线程，基本概念可参见[TaskPool
     let workerPort = worker.workerPort;
     // 接收宿主线程的postMessage请求
     workerPort.onmessage = (e: MessageEvents): void => {
-    // 下载视频文件
-    let context: common.UIAbilityContext = e.data.context;
-    let filesDir: string = context.filesDir;
-    let time: number = new Date().getTime();
-    let inFilePath: string = `${filesDir}/${time.toString()}.zip`;
-    let mediaDataUrl: string = e.data.mediaData;
-    let urlPart: string = mediaDataUrl.split('.')[1];
-    let length: number = urlPart.split('/').length;
-    let fileName: string = urlPart.split('/')[length-1];
-    let options: zlib.Options = {
-      level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
-    };
-    request.downloadFile(context, {
-      url: mediaDataUrl,
-      filePath: inFilePath
-    }).then((downloadTask) => {
-      downloadTask.on('progress', (receivedSize: number, totalSize: number) => {
-        Logger.info(`receivedSize:${receivedSize},totalSize:${totalSize}`);
-      });
-      downloadTask.on('complete', () => {
-        // 下载完成之后执行解压操作
-        zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
-          if (errData !== null) {
-            ...
-            // 异常处理
-          }
-          let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
-          workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
-        })
-      });
-      downloadTask.on('fail', () => {
+      // 下载视频文件
+      let context: common.UIAbilityContext = e.data.context;
+      let filesDir: string = context.filesDir;
+      let time: number = new Date().getTime();
+      let inFilePath: string = `${filesDir}/${time.toString()}.zip`;
+      let mediaDataUrl: string = e.data.mediaData;
+      let urlPart: string = mediaDataUrl.split('.')[1];
+      let length: number = urlPart.split('/').length;
+      let fileName: string = urlPart.split('/')[length-1];
+      let options: zlib.Options = {
+        level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+      };
+      request.downloadFile(context, {
+        url: mediaDataUrl,
+        filePath: inFilePath
+      }).then((downloadTask) => {
+        downloadTask.on('progress', (receivedSize: number, totalSize: number) => {
+          Logger.info(`receivedSize:${receivedSize},totalSize:${totalSize}`);
+        });
+        downloadTask.on('complete', () => {
+          // 下载完成之后执行解压操作
+          zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
+            if (errData !== null) {
+              ...
+              // 异常处理
+            }
+            let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
+            workerPort.postMessage({ 'isComplete': true, 'filePath': videoPath });
+          })
+        });
+        downloadTask.on('fail', () => {
+          ...
+          // 异常处理
+        });
+      }).catch((err) => {
         ...
         // 异常处理
       });
-    }).catch((err) => {
-      ...
-      // 异常处理
-    });
     };
     ```
 
