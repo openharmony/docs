@@ -15,3 +15,5 @@
 - [高性能编码规范](high-performance-programming.md)
 
 - [Swiper高性能开发指导](swiper_optimization.md)
+
+- [合理使用IPC通信](reasonable-using-ipc.md)
