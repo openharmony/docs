@@ -5,7 +5,8 @@ The **\<PluginComponent>** allows the UI provided by an external application to 
 
 >  **NOTE**
 >
-> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs provided by this component are system APIs.
 
 ## Child Components
 
@@ -35,8 +36,8 @@ The [universal attributes](ts-universal-attributes-size.md) are supported, and *
 
 **NOTE**
 
-  The template can be provided in either of the following modes:
-* Use an absolute path. In this case, set **source** to the absolute path of the template and leave **bundleName** blank. This mode is not recommende as it is applicable only to standalone templates that do not need to load resources.
+The template can be provided in either of the following modes:
+* Use an absolute path. In this case, set **source** to the absolute path of the template and leave **bundleName** blank. This mode is not recommended as it is applicable only to standalone templates that do not need to load resources.
 * Use an application package. In this case, set **bundleName** to the application bundle name and **source** to the relative path of the HAP file template. In the multi-HAP scenario, a HAP file is identified based on its relative path and name.
 
   Example: **{source: 'ets/pages/plugin.js&plugin', bundleName:'com.example.provider'}**
@@ -64,15 +65,22 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ```ts
 //PluginUserExample.ets
-import plugin from "./plugin_component.js"
-
+import plugin from "./plugin_component"
+class source2BundleName {
+  source: string = ""
+  bundleName: string = ""
+}
+interface Info{
+  errcode:number,
+  msg:string
+}
 @Entry
 @Component
 struct PluginUserExample {
   @StorageLink("plugincount") plugincount: Object[] = [
-    { source: 'plugincomponent1', bundleName: 'com.example.plugin' },
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' },
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' }]
+    { source: 'plugincomponent1', bundleName: 'com.example.plugin' } as source2BundleName,
+    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName,
+    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName]
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -97,7 +105,7 @@ struct PluginUserExample {
           plugin.Request()
           console.log("Button('Request')")
         })
-      ForEach(this.plugincount, item => {
+      ForEach(this.plugincount, (item: source2BundleName) => {
         PluginComponent({
           template: { source: 'PluginProviderExample', bundleName: 'com.example.plugin' },
           data: { 'countDownStartValue': 'new countDownStartValue' }
@@ -105,8 +113,8 @@ struct PluginUserExample {
           .onComplete(() => {
             console.log("onComplete")
           })
-          .onError(({errcode, msg}) => {
-            console.log("onComplete" + errcode + ":" + msg)
+          .onError((info:Info) => {
+            console.log("onComplete" + info.errcode + ":" + info.msg)
           })
       })
     }
@@ -120,7 +128,7 @@ struct PluginUserExample {
 
 ```ts
 //PluginProviderExample.ets
-import plugin from "./plugin_component.js"
+import plugin from "./plugin_component"
 
 @Entry
 @Component
@@ -162,6 +170,7 @@ struct PluginProviderExample {
 
 #### FA Model
 ```js
+// The sample code applies only to JS source files.
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 
@@ -250,6 +259,7 @@ export default {
 
 #### Stage Model
 ```js
+// The sample code applies only to JS source files.
 //plugin_component.js
 import pluginComponentManager from '@ohos.pluginComponent'
 
