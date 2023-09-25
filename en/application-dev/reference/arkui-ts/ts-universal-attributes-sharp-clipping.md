@@ -127,14 +127,14 @@ struct ProgressMaskExample {
 
       // Update the progress value of the progress mask.
       Button('updateProgress')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           this.value += 10;
           this.progress.updateProgress(this.value);
         }).width(200).height(50).margin(20)
 
       // Update the color of the progress mask.
       Button('updateColor')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           if (this.progressflag1) {
             this.progress.updateColor(0x9fff0000);
           } else {
@@ -145,7 +145,7 @@ struct ProgressMaskExample {
 
       // Restores the progress mask.
       Button('click reset!')
-        .onClick((event: ClickEvent) => {
+        .onClick((event?: ClickEvent) => {
           this.value = 0;
           this.progress.updateProgress(this.value);
         }).width(200).height(50).margin(20)

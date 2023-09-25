@@ -40,7 +40,7 @@ Invoked when a page is hidden. This callback is used in the routing process or s
 
 ## onBackPress
 
-onBackPress?(): void
+onBackPress?(): void | boolean
 
 Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**.
 
@@ -112,9 +112,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | Child component layout information.        |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Size constraint information of the parent component.|
 
-## onRecycle<sup>10+</sup>
+## aboutToReuse<sup>10+</sup>
 
-onRecycle?(params: { [key: string]: unknown }): void
+aboutToReuse?(params: { [key: string]: unknown }): void
 
 Invoked when a custom component previously placed in the cache for future reuse is re-added to the node tree, with the parameters used for constructing the component passed in.
 
@@ -152,10 +152,10 @@ struct Index {
   }
 }
 
-@Recycle
+@Reusable
 @Component
 struct Child {
-  onRecycle(params) {
+  aboutToReuse(params: Object) {
     console.info("Recycle Child")
   }
 
@@ -220,7 +220,7 @@ struct Index {
   build() {
     Column() {
       CustomLayout() {
-        ForEach([1, 2, 3], (index) => {
+        ForEach([1, 2, 3], (index: number) => {
           Text('Sub' + index)
             .fontSize(30)
             .borderWidth(2)
@@ -233,7 +233,11 @@ struct Index {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => {};
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
 
   onLayout(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
     let pos = 0;
