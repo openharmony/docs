@@ -6,7 +6,7 @@
 
 当前所有picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的安全控件的[保存控件](../reference/arkui-ts/ts-security-components-savebutton.md)。
+如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](./photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
 
 
 ## 保存图片或视频类文件
