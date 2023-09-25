@@ -29,6 +29,8 @@ Checks whether this application is undergoing a stability test. This API uses an
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+
   appManager.isRunningInStabilityTest((error, flag) => {
     if (error && error.code !== 0) {
         console.error('isRunningInStabilityTest fail, error: ${JSON.stringify(error)}');
@@ -56,9 +58,12 @@ Checks whether this application is undergoing a stability test. This API uses a 
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   appManager.isRunningInStabilityTest().then((flag) => {
       console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.error('error: ${JSON.stringify(error)}');
   });
   ```
@@ -81,9 +86,12 @@ Checks whether this application is running on a RAM constrained device. This API
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   appManager.isRamConstrainedDevice().then((data) => {
       console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.error('error: ${JSON.stringify(error)}');
   });
   ```
@@ -105,6 +113,8 @@ Checks whether this application is running on a RAM constrained device. This API
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+
   appManager.isRamConstrainedDevice((error, data) => {
       if (error && error.code !== 0) {
           console.error('isRamConstrainedDevice fail, error: ${JSON.stringify(error)}');
@@ -131,9 +141,12 @@ Obtains the memory size of this application. This API uses a promise to return t
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   appManager.getAppMemorySize().then((data) => {
       console.log('The size of app memory is: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.error('error: ${JSON.stringify(error)}');
   });
   ```
@@ -155,6 +168,8 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+
   appManager.getAppMemorySize((error, data) => {
       if (error && error.code !== 0) {
           console.error('getAppMemorySize fail, error: ${JSON.stringify(error)}');
@@ -184,9 +199,12 @@ Obtains information about the running processes. This API uses a promise to retu
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   appManager.getProcessRunningInfos().then((data) => {
       console.log('The process running infos is: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
       console.error('error: ${JSON.stringify(error)}');
   });
   ```
@@ -212,6 +230,8 @@ Obtains information about the running processes. This API uses an asynchronous c
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+
   appManager.getProcessRunningInfos((error, data) => {
       if (error && error.code !== 0) {
           console.error('getProcessRunningInfos fail, error: ${JSON.stringify(error)}');
@@ -242,7 +262,9 @@ Registers an observer to listen for the state changes of all applications.
 **Example**
     
   ```ts
-  let applicationStateObserver = {
+  import appManager from '@ohos.application.appManager';
+
+  const observerCode = appManager.registerApplicationStateObserver({
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
@@ -258,8 +280,7 @@ Registers an observer to listen for the state changes of all applications.
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
-  };
-  const observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
+  });
   console.log('-------- observerCode: ---------', observerCode);
   ```
 
@@ -285,9 +306,12 @@ Deregisters the application state observer. This API uses an asynchronous callba
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   let observerId = 100;
 
-  function unregisterApplicationStateObserverCallback(err) {
+  function unregisterApplicationStateObserverCallback(err: BusinessError) {
     if (err) {
         console.error('------------ unregisterApplicationStateObserverCallback ------------', err);
     }
@@ -322,13 +346,16 @@ Deregisters the application state observer. This API uses a promise to return th
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   let observerId = 100;
 
   appManager.unregisterApplicationStateObserver(observerId)
   .then((data) => {
       console.log('----------- unregisterApplicationStateObserver success ----------', data);
   })
-  .catch((err) => {
+  .catch((err: BusinessError) => {
       console.error('----------- unregisterApplicationStateObserver fail ----------', err);
   });
   ```
@@ -354,14 +381,15 @@ Obtains information about the applications that are running in the foreground. T
 **Example**
     
   ```ts
-  function getForegroundApplicationsCallback(err, data) {
+  import appManager from '@ohos.application.appManager';
+
+  appManager.getForegroundApplications((err, data) => {
     if (err) {
         console.error('--------- getForegroundApplicationsCallback fail ---------', err);
     } else {
         console.log('--------- getForegroundApplicationsCallback success ---------', data);
     }
-  }
-  appManager.getForegroundApplications(getForegroundApplicationsCallback);
+  });
   ```
 
 ## appManager.getForegroundApplications<sup>8+</sup>
@@ -385,11 +413,14 @@ Obtains information about the applications that are running in the foreground. T
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   appManager.getForegroundApplications()
   .then((data) => {
       console.log('--------- getForegroundApplications success -------', data);
   })
-  .catch((err) => {
+  .catch((err: BusinessError) => {
       console.error('--------- getForegroundApplications fail -------', err);
   });
   ```
@@ -420,13 +451,16 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 **Example**
 
 ```ts
+import appManager from '@ohos.application.appManager';
+import { BusinessError } from '@ohos.base';
+
 let bundleName = 'bundleName';
 let accountId = 0;
 appManager.killProcessWithAccount(bundleName, accountId)
    .then((data) => {
        console.log('------------ killProcessWithAccount success ------------', data);
    })
-   .catch((err) => {
+   .catch((err: BusinessError) => {
        console.error('------------ killProcessWithAccount fail ------------', err);
    });
 ```
@@ -459,9 +493,12 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 **Example**
 
 ```ts
+import appManager from '@ohos.application.appManager';
+import { BusinessError } from '@ohos.base';
+
 let bundleName = 'bundleName';
 let accountId = 0;
-function killProcessWithAccountCallback(err, data) {
+function killProcessWithAccountCallback(err: BusinessError, data: void) {
    if (err) {
        console.error('------------- killProcessWithAccountCallback fail, err: --------------', err);
    } else {
@@ -493,8 +530,11 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+import { BusinessError } from '@ohos.base';
+
   let bundleName = 'bundleName';
-  function killProcessesByBundleNameCallback(err, data) {
+  function killProcessesByBundleNameCallback(err: BusinessError, data: void) {
     if (err) {
         console.error('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
     } else {
@@ -531,12 +571,15 @@ Kills a process by bundle name. This API uses a promise to return the result.
 **Example**
 
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   let bundleName = 'com.example.myapplication';
   appManager.killProcessesByBundleName(bundleName)
     .then((data) => {
         console.log('------------ killProcessesByBundleName success ------------', data);
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
         console.error('------------ killProcessesByBundleName fail ------------', err);
     });
   ```
@@ -563,8 +606,11 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   let bundleName = 'bundleName';
-  function clearUpApplicationDataCallback(err, data) {
+  function clearUpApplicationDataCallback(err: BusinessError, data: void) {
     if (err) {
         console.error('------------- clearUpApplicationDataCallback fail, err: --------------', err);
     } else {
@@ -601,12 +647,15 @@ Clears application data by bundle name. This API uses a promise to return the re
 **Example**
     
   ```ts
+  import appManager from '@ohos.application.appManager';
+  import { BusinessError } from '@ohos.base';
+
   let bundleName = 'bundleName';
   appManager.clearUpApplicationData(bundleName)
     .then((data) => {
         console.log('------------ clearUpApplicationData success ------------', data);
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
         console.error('------------ clearUpApplicationData fail ------------', err);
     });
   ```

@@ -1,17 +1,18 @@
 # Page Transition
 
-You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages.
+You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages. For details, see [Page Transition Animation](../../ui/arkts-page-transition-animation.md).
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
 
 
 | Name               | Parameter                                                        | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br>} | No  | Page entrance animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>- **duration**: animation duration.<br>Unit: ms<br>Default value: **1000**<br>- **curve**: animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
-| PageTransitionExit  | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br>} | No  | Page exit animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>- **duration**: animation duration.<br>Unit: ms<br>Default value: **1000**<br>- **curve**: animation curve. The value range of the string type is the same as that of **PageTransitionEnter**.<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
+| PageTransitionEnter | {<br>type?: [RouteType](#routetype),<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br>} | No  | Page entrance animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>- **duration**: animation duration.<br>Unit: ms<br>Default value: **1000**<br>- **curve**: animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
+| PageTransitionExit  | {<br>type?: [RouteType](#routetype),<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br>} | No  | Page exit animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>- **duration**: animation duration.<br>Unit: ms<br>Default value: **1000**<br>- **curve**: animation curve. The value range of the string type is the same as that of **PageTransitionEnter**.<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
 
 ## RouteType
 
@@ -71,13 +72,13 @@ struct PageTransitionExample1 {
   // Customize the transition process.
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale1 = 1
-        this.opacity1 = progress
+        this.opacity1 = progress as number
       }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale1 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale1 = 1 - (progress as number)
         this.opacity1 = 1
       }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
   }
@@ -102,13 +103,13 @@ struct AExample {
   // Customize the transition process.
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale2 = 1
-        this.opacity2 = progress
+        this.opacity2 = progress as number
       }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale2 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale2 = 1 - (progress as number)
         this.opacity2 = 1
       }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
   }

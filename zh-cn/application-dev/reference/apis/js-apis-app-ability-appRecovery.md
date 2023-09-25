@@ -52,6 +52,8 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 使能应用恢复功能，参数按顺序填入。该接口调用后，应用从启动器启动时第一个Ability支持恢复。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -92,6 +94,8 @@ API10时将启动由[setRestartWant](#apprecoverysetrestartwant)指定的Ability
 
 可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 
@@ -101,7 +105,7 @@ API10时将启动由[setRestartWant](#apprecoverysetrestartwant)指定的Ability
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.restartApp();
@@ -121,6 +125,8 @@ saveAppState(): boolean;
 
 保存当前App状态，可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -135,7 +141,7 @@ saveAppState(): boolean;
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState();
@@ -154,6 +160,8 @@ try {
 saveAppState(context?: UIAbilityContext): boolean;
 
 主动保存Ability的状态，这个状态将在下次恢复启动时使用。可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -175,7 +183,7 @@ saveAppState(context?: UIAbilityContext): boolean;
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
         appRecovery.saveAppState(this.context);
@@ -195,6 +203,8 @@ setRestartWant(want: Want): void;
 
 设置下次恢复主动拉起场景下的Ability。该Ability必须为当前包下的UIAbility。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -207,12 +217,14 @@ setRestartWant(want: Want): void;
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
+import Want from '@ohos.app.ability.Want';
+
 Button("启动到恢复Ability")
     .fontSize(40)
     .fontWeight(FontWeight.Bold)
     .onClick(()=> {
         // set restart want
-        let want = {
+        let want: Want = {
             bundleName: "ohos.samples.recovery",
             abilityName: "RecoveryAbility"
         };

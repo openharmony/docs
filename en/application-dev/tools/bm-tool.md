@@ -326,3 +326,243 @@ bm dump-shared -n com.ohos.lib
 # Display information about the shared library on which a specified module of an application depends.
 bm dump-dependencies -n com.ohos.app -m entry
 ```
+
+## FAQs
+
+### Error Message "code:9568320 error: no signature file" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you run a signed HAP, the error message "failed to install bundle. error: install no signature info" or "failed to install bundle. error: no signature file" is displayed.
+
+![Example](figures/en-us_image_0000001389116960.png)
+
+**Solution**
+
+An unsigned HAP is installed. To solve this problem, sign the HAP before installing it.
+1. Use automatic signature. After the device is connected, sign the application again.
+2. To use manual signature, follow the instructions provided in [hapsigner Guide](../security/hapsigntool-guidelines.md).
+
+### Error Message "code:9568347 error: install parse native so failed" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run a C++ application, the error message "error: install parse native so failed" is displayed during the installation of the HAP.
+
+**Solution**
+
+The ABI type configured for the C++ project does not match that supported by the device. To solve this problem, perform the following steps:
+
+1. Connect the device to DevEco Studio.
+2. Open the command line tool and go to the **toolchains\{*Version*}** directory in the OpenHarmony SDK installation directory.
+
+   To check the OpenHarmony SDK installation directory, choose **File** > **Settings** > **SDK**.
+
+3. Run the following command to obtain the list of ABI types supported by the device, which include one or more of the following: default, armeabi-v7a, armeabi, arm64-v8a, x86, and x86_64.
+    ```
+    hdc shell
+    param get const.product.cpu.abilist
+    ```
+4. Depending on the obtained list, modify the **abiFilters** settings in the module-level **build-profile.json5** file. The rules are as follows:
+    * If the list includes only **default**, run the following command to check whether the **lib64** folder exists:
+      ```
+      cd /system/
+      ls
+      ```
+
+      ![Example](figures/en-us_image_0000001609001262.png)
+
+      * If the **lib64** folder exists, add the arm64-v8a type to **abiFilters**.
+      * If the **lib64** folder does not exist, add armeabi, armeabi-v7a, or both types to **abiFilters**.
+    * If the list includes one or more of the following, add at least one of them to **abiFilters**: armeabi-v7a, armeabi, arm64-v8a, x86, and x86_64.
+
+### Error Message "code:9568344 error: install parse profile prop check error" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install parse profile prop check error" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001585361412.png)
+
+**Solution**
+
+The signature file of the application is changed, but the new signature fingerprint is not reconfigured in the **install_list_capability.json** file of the device. To solve this problem, perform the following steps:
+
+1. Obtain the new signature fingerprint.
+
+    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the project-level **build-profile.json5** file.
+
+    b. Open the signature file (with the file name extension .p7b), search for **development-certificate** in the file, copy **-----BEGIN CERTIFICATE-----**, **-----END CERTIFICATE-----**, and the information between them to a new text file, delete the newline characters, and save the file as a new .cer file.
+
+    The format of the new .cer file is shown below. (The file content is an example.)
+
+    ![Example](figures/en-us_image_0000001585521364.png)
+
+    c. Use the keytool (available in the **jbr/bin** folder of the DevEco Studio installation directory) to obtain the SHA-256 value of the certificate fingerprint from the .cer file:
+
+      ```
+      keytool -printcert -file xxx.cer
+      ```
+    d. Remove the colon (:) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
+
+    An example SHA-256 value is shown below.
+
+    ![Example](figures/en-us_image_0000001635921233.png)
+
+    The signature fingerprint obtained by removing the colon is 5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB.
+
+2. Obtain the **install_list_capability.json** file of the device.
+
+    a. Connect the device.
+
+    b. Run the following command to view the **install_list_capability.json** file of the device:
+    ```
+    find /system -name install_list_capability.json
+    ```
+    The **install_list_capability.json** file of the device is stored in the following directory. Find the corresponding configuration file based on the bundle name.
+    ```
+    /system/etc/app/install_list_capability.json
+    ```
+    c. Run the following command to obtain the **install_list_capability.json** file:
+    ```
+    hdc shell mount -o rw,remount /
+    hdc file recv /system/etc/app/install_list_capability.json
+    ```
+
+3. Add the signature fingerprint obtained to **app_signature** in the **install_list_capability.json** file. Note that the signature fingerprint must be configured under the corresponding bundle name.
+
+   ![Example](figures/en-us_image_0000001635641893.png)
+
+4. Push the modified **install_list_capability.json** file to the device and restart the device.
+
+    ```
+    hdc shell mount -o rw,remount / 
+    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json 
+    hdc shell chmod 777 /system/etc/app/install_list_capability.json 
+    hdc shell reboot
+    ```
+    
+5. Reinstall the application.
+
+### Error Message "code:9568305 error: dependent module does not exist" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: dependent module does not exist" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001560338986.png)
+
+**Solution**
+
+The SharedLibrary module on which the application depends is not installed. To solve this problem, perform the following steps:
+
+* Install the dependent SharedLibrary module. On the **Run/Debug Configurations** page of DevEco Studio, select **Keep Application Data** on the **General** tab page, and click **OK** to save the configuration. Then run or debug the application again.
+
+   ![Example](figures/en-us_image_0000001560201786.png)
+
+* On the **Run/Debug Configurations** page of DevEco Studio, click the **Deploy Multi Hap** tab, select **Deploy Multi Hap Packages**, select the dependent module SharedLibrary, and click **OK** to save the configuration. Then run or debug the application again.
+
+   ![Example](figures/en-us_image_0000001610761941.png)
+
+### Error Message "code:9568259 error: install parse profile missing prop" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install parse profile missing prop" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001559130596.png)
+
+**Solution**
+
+Some mandatory fields are missing in the **app.json5** and **module.json5** files.
+
+* Method 1: Check and add mandatory fields by referring to the [app.json5 file](../../application-dev/quick-start/app-configuration-file.md) and [module.json5 file](../../application-dev/quick-start/module-configuration-file.md).
+* Method 2: Determine the missing fields based on the HiLog.
+
+    Run the following command to enable disk flushing:
+    ```
+    hilog -w start
+    ```
+
+    Disk location: /data/log/hilog
+
+    Open the log file and find **profile prop %{public}s is mission**. For example, **profile prop icon is mission** indicates that the **icon** field is missing.
+
+### Error Message "code:9568258 error: install releaseType target not same" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install releaseType target not same" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001609976041.png)
+
+**Solution**
+
+The value of **releaseType** in the SDK used by the existing HAP is different from that used by the new HAP. Uninstall the existing HAP on the device, and then install the new HAP.
+
+### Error Message "code:9568322 error: signature verification failed due to not trusted app source" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: signature verification failed due to not trusted app source" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001585042216.png)
+
+**Solution**
+
+The signature does not contain the UDID of the debugging device. To solve this problem, perform the following steps:
+
+* Use automatic signature. After the device is connected, sign the application again.
+* If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [OpenHarmony Application Manual Signature](../security/hapsigntool-guidelines.md).
+  ```
+  // Command for obtaining the UDID
+  hdc shell bm get -u
+  ```
+
+### Error Message "code:9568289 error: install failed due to grant request permissions failed" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install failed due to grant request permissions failed" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001585201996.png)
+
+**Solution**
+
+The application uses the default Ability Privilege Level (APL), which is normal, and requires the system_basic or system_core permission.
+
+Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+
+### Error Message "code:9568297 error: install failed due to older sdk version in the device" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install failed due to older sdk version in the device" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001635521909.png)
+
+**Solution**
+
+The SDK version used for build and packing does not match the device image version. The possible scenarios are as follows:
+
+* Scenario 1: The device image version is earlier than the SDK version for build and packing. Update the device image version. Run the following command to query the device image version:
+  ```
+  hdc shell param get const.ohos.apiversion
+  ```
+  If the API version provided by the image is 10 and the SDK version used for application build is also 10, the possible cause is that the image version is too early to be compatible with the SDK verification rules of the new version. In this case, update the image version to the latest version.
+
+* Scenario 2: For applications that need to run on OpenHarmony devices, ensure that runtimeOS has been changed to OpenHarmony.
+
+### Error Message "code:9568332 error: install sign info inconsistent" Is Displayed During HAP Installation
+
+**Symptom**
+
+When you start debugging or run an application, the error message "error: install sign info inconsistent" is displayed during the installation of the HAP.
+
+![Example](figures/en-us_image_0000001635761329.png)
+
+**Solution**
+
+The signature of the application installed on the device is different from that of the new application. **Keep Application Data** is selected in **Edit Configurations** (the application is installed without being uninstalled) and the signature is re-signed.
+
+Uninstall the application, or deselect **Keep Application Data**. Then install the new application.

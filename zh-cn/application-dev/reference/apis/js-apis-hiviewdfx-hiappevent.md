@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 ```
 
@@ -44,21 +44,24 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
 hiAppEvent.write({
-    domain: "test_domain",
-    name: "test_event",
-    eventType: hiAppEvent.EventType.FAULT,
-    params: {
-        int_data: 100,
-        str_data: "strValue"
-    }
-}, (err) => {
-    if (err) {
-        console.error(`code: ${err.code}, message: ${err.message}`);
-        return;
-    }
-    console.log(`success to write event`);
+  domain: "test_domain",
+  name: "test_event",
+  eventType: hiAppEvent.EventType.FAULT,
+  params: eventParams,
+}, (err: BusinessError) => {
+  if (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.log(`success to write event`);
 });
 ```
 
@@ -98,19 +101,22 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
 hiAppEvent.write({
-    domain: "test_domain",
-    name: "test_event",
-    eventType: hiAppEvent.EventType.FAULT,
-    params: {
-        int_data: 100,
-        str_data: "strValue"
-    }
+  domain: "test_domain",
+  name: "test_event",
+  eventType: hiAppEvent.EventType.FAULT,
+  params: eventParams,
 }).then(() => {
-    console.log(`success to write event`);
-}).catch((err) => {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+  console.log(`success to write event`);
+}).catch((err: BusinessError) => {
+  console.error(`code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -122,7 +128,7 @@ hiAppEvent.write({
 
 | 名称      | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
+| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
 | name      | string                  | 是   | 事件名称。事件名称支持数字字符、字母字符、下划线字符，需要以字母字符或$字符开头且不能以下划线字符结尾，长度非空且不超过48个字符。 |
 | eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
 | params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，只支持数字字符、字母字符、下划线字符，需要以字母字符或$字符开头且不能以下划线字符结尾，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
@@ -151,16 +157,18 @@ configure(config: [ConfigOption](configoption)): void
 
 **示例：**
 
-```js
+```ts
 // 配置打点开关为关闭状态
-hiAppEvent.configure({
-    disable: true
-});
+let config1: hiAppEvent.ConfigOption = {
+  disable: true,
+};
+hiAppEvent.configure(config1);
 
 // 配置文件目录存储配额为100M
-hiAppEvent.configure({
-    maxStorage: '100M'
-});
+let config2: hiAppEvent.ConfigOption = {
+  maxStorage: '100M',
+};
+hiAppEvent.configure(config2);
 ```
 
 ## ConfigOption
@@ -208,52 +216,53 @@ addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpacka
 
 **示例：**
 
-```js
+```ts
 // 1. 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
 hiAppEvent.addWatcher({
-    name: "watcher1",
-    appEventFilters: [
-        {
-            domain: "test_domain",
-            eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
-        }
-    ],
-    triggerCondition: {
-        row: 10,
-        size: 1000,
-        timeOut: 1
-    },
-    onTrigger: function (curRow, curSize, holder) {
-        if (holder == null) {
-            console.error("holder is null");
-            return;
-        }
-        let eventPkg = null;
-        while ((eventPkg = holder.takeNext()) != null) {
-            console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-            console.info(`eventPkg.row=${eventPkg.row}`);
-            console.info(`eventPkg.size=${eventPkg.size}`);
-            for (const eventInfo of eventPkg.data) {
-                console.info(`eventPkg.data=${eventInfo}`);
-            }
-        }
+  name: "watcher1",
+  appEventFilters: [
+    {
+      domain: "test_domain",
+      eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
     }
+  ],
+  triggerCondition: {
+    row: 10,
+    size: 1000,
+    timeOut: 1
+  },
+  onTrigger: (curRow: number, curSize: number, holder: hiAppEvent.AppEventPackageHolder) => {
+    if (holder == null) {
+      console.error("holder is null");
+      return;
+    }
+    console.info(`curRow=${curRow}, curSize=${curSize}`);
+    let eventPkg: hiAppEvent.AppEventPackage | null = null;
+    while ((eventPkg = holder.takeNext()) != null) {
+      console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+      console.info(`eventPkg.row=${eventPkg.row}`);
+      console.info(`eventPkg.size=${eventPkg.size}`);
+      for (const eventInfo of eventPkg.data) {
+        console.info(`eventPkg.data=${eventInfo}`);
+      }
+    }
+  }
 });
 
 // 2. 如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
 let holder = hiAppEvent.addWatcher({
-    name: "watcher2",
+  name: "watcher2",
 });
 if (holder != null) {
-    let eventPkg = null;
-    while ((eventPkg = holder.takeNext()) != null) {
-        console.info(`eventPkg.packageId=${eventPkg.packageId}`);
-        console.info(`eventPkg.row=${eventPkg.row}`);
-        console.info(`eventPkg.size=${eventPkg.size}`);
-        for (const eventInfo of eventPkg.data) {
-            console.info(`eventPkg.data=${eventInfo}`);
-        }
+  let eventPkg: hiAppEvent.AppEventPackage | null = null;
+  while ((eventPkg = holder.takeNext()) != null) {
+    console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+    console.info(`eventPkg.row=${eventPkg.row}`);
+    console.info(`eventPkg.size=${eventPkg.size}`);
+    for (const eventInfo of eventPkg.data) {
+      console.info(`eventPkg.data=${eventInfo}`);
     }
+  }
 }
 ```
 
@@ -281,10 +290,10 @@ removeWatcher(watcher: [Watcher](#watcher)): void
 
 **示例：**
 
-```js
+```ts
 // 1. 定义一个应用事件观察者
-let watcher = {
-    name: "watcher1",
+let watcher: hiAppEvent.Watcher = {
+  name: "watcher1",
 }
 
 // 2. 添加一个应用事件观察者来订阅事件
@@ -352,9 +361,9 @@ constructor(watcherName: string)
 
 **示例：**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder1 = hiAppEvent.addWatcher({
+    name: "watcher1",
 });
 ```
 
@@ -382,11 +391,11 @@ setSize(size: number): void
 
 **示例：**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder2 = hiAppEvent.addWatcher({
+    name: "watcher2",
 });
-holder.setSize(1000);
+holder2.setSize(1000);
 ```
 
 ### takeNext
@@ -399,11 +408,11 @@ takeNext(): [AppEventPackage](#appeventpackage)
 
 **示例：**
 
-```js
-let holder = hiAppEvent.addWatcher({
-    name: "watcher",
+```ts
+let holder3 = hiAppEvent.addWatcher({
+    name: "watcher3",
 });
-let eventPkg = holder.takeNext();
+let eventPkg = holder3.takeNext();
 ```
 
 ## AppEventPackage
@@ -429,7 +438,7 @@ clearData(): void
 
 **示例：**
 
-```js
+```ts
 hiAppEvent.clearData();
 ```
 

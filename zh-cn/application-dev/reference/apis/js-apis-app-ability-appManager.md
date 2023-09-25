@@ -75,10 +75,11 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.isRunningInStabilityTest().then((flag) => {
     console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -110,10 +111,11 @@ isRamConstrainedDevice(): Promise\<boolean>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.isRamConstrainedDevice().then((data) => {
     console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -180,10 +182,11 @@ getAppMemorySize(): Promise\<number>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError} from '@ohos.base'
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -252,10 +255,11 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getRunningProcessInformation().then((data) => {
     console.log(`The running process information is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -335,12 +339,13 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 const bundleName = "this is a bundleName";
 const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
     console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
@@ -389,15 +394,11 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
 注册全部应用程序的状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -430,8 +431,9 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -452,19 +454,17 @@ try {
     const observerId = appManager.on('applicationState', applicationStateObserver);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序的状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver-bundlenamelist-arraystring10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -498,8 +498,9 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -521,19 +522,17 @@ try {
     const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>)<sup>(deprecated)</sup>
+## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
 
 取消注册应用程序状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -561,11 +560,12 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let observerId = 0;
 
 // 1.注册应用状态监听器
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -587,11 +587,13 @@ try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2.注销应用状态监听器
-function unregisterApplicationStateObserverCallback(err) {
+function unregisterApplicationStateObserverCallback(err: BusinessError) {
     if (err) {
         console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -601,19 +603,17 @@ function unregisterApplicationStateObserverCallback(err) {
 try {
     appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number)<sup>(deprecated)</sup>
+## appManager.off
 
 off(type: 'applicationState', observerId: number): Promise\<void>;
 
 取消注册应用程序状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -646,11 +646,12 @@ off(type: 'applicationState', observerId: number): Promise\<void>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let observerId = 0;
 
 // 1.注册应用状态监听器
-let applicationStateObserver = {
+let applicationStateObserver: appManager.ApplicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
     },
@@ -670,217 +671,23 @@ let applicationStateObserver = {
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
     observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
     
 // 2.注销应用状态监听器
 try {
     appManager.off('applicationState', observerId).then((data) => {
         console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-}
-```
-
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)<sup>10+</sup>
-
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver): number;
-
-注册全部应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口取消注册观测器。|
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-
-let applicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
-}
-```
-
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>10+</sup>
-
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
-
-注册指定应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-| bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口注销观测器。|
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-
-let applicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
-}
-```
-
-## appManager.off(type: 'applicationStateEvent', observerId: number)<sup>10+</sup>
-
-off(type: 'applicationStateEvent', observerId: number): void;
-
-取消注册应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observerId | number | 是 | 表示观测器的编号代码。 |
-| callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-
-let observerId = 0;
-
-// 1.注册应用状态监听器
-let applicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
-}
-
-// 2.注销应用状态监听器
-try {
-    appManager.off('applicationStateEvent', observerId);
-} catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -914,8 +721,9 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
-function getForegroundApplicationsCallback(err, data) {
+function getForegroundApplicationsCallback(err: BusinessError, data: Array<appManager.AppStateData>) {
     if (err) {
         console.error(`getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -925,7 +733,9 @@ function getForegroundApplicationsCallback(err, data) {
 try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -959,10 +769,11 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 appManager.getForegroundApplications().then((data) => {
     console.log(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`getForegroundApplications fail, err: ${JSON.stringify(err)}`);
 });
 ```
@@ -1002,17 +813,20 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 let accountId = 0;
 try {
     appManager.killProcessWithAccount(bundleName, accountId).then(() => {
         console.log('killProcessWithAccount success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1053,10 +867,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 let accountId = 0;
-function killProcessWithAccountCallback(err, data) {
+function killProcessWithAccountCallback(err: BusinessError) {
     if (err) {
         console.error(`killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1097,9 +912,10 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
-function killProcessesByBundleNameCallback(err, data) {
+function killProcessesByBundleNameCallback(err: BusinessError) {
     if (err) {
         console.error(`killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1109,7 +925,9 @@ function killProcessesByBundleNameCallback(err, data) {
 try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1149,16 +967,19 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
         console.log('killProcessesByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1193,9 +1014,10 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
-function clearUpApplicationDataCallback(err, data) {
+function clearUpApplicationDataCallback(err: BusinessError) {
     if (err) {
         console.error(`clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1205,7 +1027,9 @@ function clearUpApplicationDataCallback(err, data) {
 try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1245,16 +1069,19 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'bundleName';
 try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
         console.log('clearUpApplicationData success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`clearUpApplicationData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1287,9 +1114,10 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let pid = 0;
-function getProcessMemoryByPidCallback(err, data) {
+function getProcessMemoryByPidCallback(err: BusinessError, data: number) {
     if (err) {
         console.error(`getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1299,7 +1127,9 @@ function getProcessMemoryByPidCallback(err, data) {
 try {
     appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1337,16 +1167,19 @@ getProcessMemoryByPid(pid: number): Promise\<number>;
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let pid = 0;
 try {
     appManager.getProcessMemoryByPid(pid).then((data) => {
         console.log('getProcessMemoryByPid success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getProcessMemoryByPid fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1379,9 +1212,10 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
-function getRunningProcessInfoByBundleNameCallback(err, data) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: appManager.Array<ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1391,7 +1225,9 @@ function getRunningProcessInfoByBundleNameCallback(err, data) {
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1429,16 +1265,19 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
         console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1472,10 +1311,11 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 let userId = 0;
-function getRunningProcessInfoByBundleNameCallback(err, data) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1485,7 +1325,9 @@ function getRunningProcessInfoByBundleNameCallback(err, data) {
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1524,17 +1366,20 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
 let userId = 0;
 try {
     appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
         console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 
@@ -1564,9 +1409,8 @@ try {
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 3   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 4   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |         当进程在销毁的时候处于的状态。         |
-<!--no_check-->
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |

@@ -74,7 +74,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称        | 参数类型      | 必填 | 描述                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1vp<br/>单位：vp |
+| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线的颜色。<br/>默认值：#000000，3%   |
 | startMargin | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏顶端的距离。<br/>默认值：0 |
 | endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0 |
@@ -112,7 +112,7 @@ struct SideBarContainerExample {
   build() {
     SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-        ForEach(this.arr, (item, index) => {
+        ForEach(this.arr, (item: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
             Text("Index0" + item)
@@ -123,10 +123,11 @@ struct SideBarContainerExample {
           .onClick(() => {
             this.current = item
           })
-        }, item => item)
+        }, (item: string) => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
+
       Column() {
         Text('SideBarContainer content text1').fontSize(25)
         Text('SideBarContainer content text2').fontSize(25)
@@ -143,10 +144,11 @@ struct SideBarContainerExample {
     .sideBarWidth(150)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
+    .minContentWidth(0)
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })
-    .divider({strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp'})
+    .divider({ strokeWidth: '1vp', color: Color.Gray, startMargin: '4vp', endMargin: '4vp' })
   }
 }
 ```

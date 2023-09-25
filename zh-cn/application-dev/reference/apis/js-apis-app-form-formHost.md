@@ -48,11 +48,11 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.deleteForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error) {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   } else {
@@ -60,7 +60,7 @@ try {
   }
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -105,17 +105,17 @@ deleteForm(formId: string): Promise&lt;void&gt;
 **参数：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -154,17 +154,17 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -204,17 +204,17 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, true, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -259,17 +259,17 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -308,17 +308,17 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.requestForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.requestForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -362,17 +362,17 @@ requestForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 
 ```
@@ -412,17 +412,17 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.castToNormalForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.castToNormalForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -466,17 +466,17 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -513,17 +513,17 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyVisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -565,17 +565,17 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -612,17 +612,17 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyInvisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -664,17 +664,17 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -712,17 +712,17 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.enableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -765,17 +765,17 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -814,17 +814,17 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.disableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -868,17 +868,17 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -908,16 +908,16 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  formHost.isSystemReady((error, data) => {
+  formHost.isSystemReady((error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -946,16 +946,16 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -991,18 +991,19 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo((error, data) => {
+  formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getAllFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getAllFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1037,16 +1038,17 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo().then((data) => {
-    console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getAllFormsInfo data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1084,18 +1086,19 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1134,10 +1137,11 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1145,7 +1149,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1189,16 +1193,17 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1235,19 +1240,19 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds, (error, data) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
+      console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1289,17 +1294,17 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds).then((data) => {
-    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds).then((data: number) => {
+    console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1337,9 +1342,11 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1350,15 +1357,15 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want, (error, data) => {
+  formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
+      console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1401,9 +1408,11 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1414,13 +1423,13 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want).then((data) => {
-    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
+    console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1451,12 +1460,11 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.on('formUninstall', callback);
+formHost.on('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## off('formUninstall')
@@ -1486,12 +1494,11 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.off('formUninstall', callback);
+formHost.off('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## notifyFormsVisible
@@ -1529,17 +1536,17 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error) => {
+  formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1583,17 +1590,17 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1632,17 +1639,17 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1686,17 +1693,17 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 ## shareForm
@@ -1734,18 +1741,18 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error) => {
+  formHost.shareForm(formId, deviceId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1789,18 +1796,18 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1838,17 +1845,17 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1889,17 +1896,17 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1908,6 +1915,8 @@ try {
 acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
 
 请求卡片提供方数据。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -1935,19 +1944,19 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormData, data: ${JSON.stringify(data)}');
+      console.log(`formHost acquireFormData, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1956,6 +1965,8 @@ try {
 acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 请求卡片提供方数据。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -1987,16 +1998,16 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId).then((data) => {
     console.log('formHost acquireFormData success' + data);
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```

@@ -37,10 +37,12 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
 3. 打开WindowExtAbility.ts文件，导入WindowExtensionAbility的依赖包，自定义类继承WindowExtensionAbility并实现onWindowReady()、onConnect()和onDisconnect()生命周期回调。
 
    ```ts
-   import Extension from '@ohos.application.WindowExtensionAbility'
+    import Extension from '@ohos.application.WindowExtensionAbility'
+    import Want from '@ohos.app.ability.Want';
+    import window from '@ohos.window';
 
     export default class WindowExtAbility extends Extension {
-        onWindowReady(window) {
+        onWindowReady(window: window.Window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
                     console.info("WindowExtension " + JSON.stringify(pro));
@@ -49,11 +51,11 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
             })
         }
 
-        onConnect(want) {
+        onConnect(want: Want) {
             console.info('JSWindowExtension onConnect ' + want.abilityName);
         }
 
-        onDisconnect(want) {
+        onDisconnect(want: Want) {
             console.info('JSWindowExtension onDisconnect ' + want.abilityName);
         }
     }

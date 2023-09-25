@@ -33,13 +33,16 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-  let want = {
-      'deviceId': '', // deviceId为空表示本设备
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry' // moduleName非必选
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry' // moduleName非必选
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
       console.error('error.code = ${error.code}');
   });
@@ -49,24 +52,25 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
   import fs from '@ohos.file.fs';
-  
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
   // ...
-  let fd;
+  let fd: number = 0;
   try {
       fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
       console.error('openSync fail: ${JSON.stringify(e)}');
   }
-  let want = {
-      'deviceId': '', // deviceId为空表示本设备
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry', // moduleName非必选
-      'parameters': {
+  let want: Want = {
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry', // moduleName非必选
+    parameters: {
           'keyFd':{'type':'FD', 'value':fd}
       }
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
       console.error('error.code = ${error.code}');
   });

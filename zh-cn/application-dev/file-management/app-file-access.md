@@ -46,21 +46,29 @@
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import buffer from '@ohos.buffer';
 
-function createFile() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
-  // 新建并打开文件
+function createFile(): void {
+    // 新建并打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
   console.info("The length of str is: " + writeLen);
   // 从文件读取一段内容
-  let buf = new ArrayBuffer(1024);
-  let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-  console.info("the content of file: " + String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+  let arrayBuffer = new ArrayBuffer(1024);
+  class Option {
+    public offset: number = 0;
+    public length: number = 0;
+  }
+  let option = new Option();
+  option.length = arrayBuffer.byteLength;
+  let readLen = fs.readSync(file.fd, arrayBuffer, option);
+  let buf = buffer.from(arrayBuffer, 0, readLen);
+  console.info("the content of file: " + buf.toString());
   // 关闭文件
   fs.closeSync(file);
 }
@@ -68,18 +76,18 @@ function createFile() {
 
 ### 读取文件内容并写入到另一个文件
 
-  以下示例代码演示了如何从一个文件读写内容到另一个文件。
-  
+以下示例代码演示了如何从一个文件读写内容到另一个文件。
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-function readWriteFile() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+function readWriteFile(): void {
   // 打开文件
   let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -87,11 +95,18 @@ function readWriteFile() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = fs.readSync(srcFile.fd, buf, option);
   while (readLen > 0) {
     readSize += readLen;
     fs.writeSync(destFile.fd, buf);
-    readLen = fs.readSync(srcFile.fd, buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = fs.readSync(srcFile.fd, buf, option);
   }
   // 关闭文件
   fs.closeSync(srcFile);
@@ -106,17 +121,17 @@ function readWriteFile() {
 ### 以流的形式读写文件
 
 以下示例代码演示了如何使用流接口进行文件读写：
-  
+
 ```ts
 // pages/xxx.ets
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
-async function readWriteFileWithStream() {
-  // 获取应用文件路径
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
+async function readWriteFileWithStream(): Promise<void> {
   // 打开文件流
   let inputStream = fs.createStreamSync(filesDir + '/test.txt', 'r+');
   let outputStream = fs.createStreamSync(filesDir + '/destFile.txt', "w+");
@@ -124,11 +139,18 @@ async function readWriteFileWithStream() {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  let readLen = await inputStream.read(buf, { offset: readSize });
+  class Option {
+    public offset: number = 0;
+    public length: number = bufSize;
+  }
+  let option = new Option();
+  option.offset = readSize;
+  let readLen = await inputStream.read(buf, option);
   readSize += readLen;
   while (readLen > 0) {
     await outputStream.write(buf);
-    readLen = await inputStream.read(buf, { offset: readSize });
+    option.offset = readSize;
+    readLen = await inputStream.read(buf, option);
     readSize += readLen;
   }
   // 关闭文件流
@@ -138,7 +160,7 @@ async function readWriteFileWithStream() {
 ```
 
 > **说明：**
-> 
+>
 > 使用流接口时，需注意流的及时关闭。同时流的异步接口应严格遵循异步接口使用规范，避免同步、异步接口混用。流接口不支持并发读写。
 
 ### 查看文件列表
@@ -146,8 +168,7 @@ async function readWriteFileWithStream() {
 以下示例代码演示了如何查看文件列表：
 
 ```ts
-// 查看文件列表
-import fs from '@ohos.file.fs';
+import fs, { Filter } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -155,18 +176,20 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 // 查看文件列表
-let options = {
-  recursion: false,
-  listNum: 0,
-  filter: {
-    suffix: ['.png', '.jpg', '.txt'],          // 匹配文件后缀名为'.png','.jpg','.txt'
-    displayName: ['test%'],                    // 匹配文件全名以'test'开头
-    fileSizeOver: 0,                           // 匹配文件大小大于等于0
-    lastModifiedAfter: new Date(0).getTime(),  // 匹配文件最近修改时间在1970年1月1日之后
-  },
-}
-let files = fs.listFileSync(filesDir, options);
-for (let i = 0; i < files.length; i++) {
-  console.info(`The name of file: ${files[i]}`);
+function getListFile(): void {
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter = {};
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
+  option.filter.displayName = ['test%'];                    // 匹配文件全名以'test'开头
+  option.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
+  option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
+  let files = fs.listFileSync(filesDir, option);
+  for (let i = 0; i < files.length; i++) {
+    console.info(`The name of file: ${files[i]}`);
+  }
 }
 ```

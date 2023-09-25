@@ -363,7 +363,7 @@ let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.keys();
-let temp = iter.next();
+let temp: IteratorResult<string,number> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
@@ -400,7 +400,7 @@ let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.values();
-let temp = iter.next();
+let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
@@ -482,7 +482,7 @@ callbackfn的参数说明：
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
-hashMap.forEach((value: number, key: string) => {
+hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -517,7 +517,7 @@ let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
-let temp = iter.next();
+let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
@@ -555,14 +555,14 @@ hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // 使用方法一：
-for (let item of hashMap) { 
-  console.log("key:" + item[0]);
-  console.log("value:" + item[1]);
+for (let key of keys) {
+  console.log("key:" + key);
+  console.log("value:" + hashMap.get(key));
 }
 
 // 使用方法二：
 let iter = hashMap[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next().value;
 while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);

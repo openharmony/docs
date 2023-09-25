@@ -51,10 +51,12 @@ In the following example, the **Web** component intercepts the web page request 
       Column() {
         Web({ src: $rawfile('example.html'), controller: this.controller })
           .onInterceptRequest((event) => {
-            console.info('url:' + event.request.getRequestUrl());
-            // Intercept the web page request.
-            if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
-              return null;
+            if (event) {
+              console.info('url:' + event.request.getRequestUrl());
+              // Intercept the web page request.
+              if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
+                return this.responseResource;
+              }
             }
             // Construct a custom response.
             this.responseResource.setResponseData(this.webData);

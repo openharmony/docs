@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import bundleManager from '@ohos.enterprise.bundleManager';
 ```
 
@@ -47,12 +47,13 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -95,12 +96,13 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -148,16 +150,18 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding allowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -193,12 +197,13 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -241,12 +246,13 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -294,16 +300,18 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing allowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -338,8 +346,9 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -384,8 +393,9 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -435,15 +445,17 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting allowed install bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -479,12 +491,13 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -527,12 +540,13 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -580,16 +594,18 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -625,12 +641,13 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -673,12 +690,13 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -726,16 +744,18 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -770,8 +790,9 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -816,10 +837,11 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
@@ -867,15 +889,17 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedInstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -911,12 +935,13 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -959,12 +984,13 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1012,16 +1038,18 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed uninstall bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1057,12 +1085,13 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1105,12 +1134,13 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1158,16 +1188,18 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed uninstall bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1202,8 +1234,9 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1248,8 +1281,9 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1299,15 +1333,17 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1343,8 +1379,9 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1389,8 +1426,9 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1435,8 +1473,9 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1482,8 +1521,9 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1534,15 +1574,17 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.info('Succeeded in uninstalling bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1579,12 +1621,13 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
 
 bundleManager.install(wantTemp, hapFilePaths, (err) => {
   if (err) {
@@ -1627,13 +1670,14 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
-let installParam = {
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let installParam: bundleManager.InstallParam = {
   userId: 100,
   installFlag: 1,
 };
@@ -1684,16 +1728,18 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
   console.info('Succeeded in installing bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

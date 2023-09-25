@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 ```
 
@@ -53,22 +53,23 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let myReason = 'test requestSuspendDelay';
-  try {
-    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.info("Request suspension delay will time out.");
-    })
-    let id = delayInfo.requestId;
-    let time = delayInfo.actualDelayTime;
-    console.info("The requestId is: " + id);
-    console.info("The actualDelayTime is: " + time);
-  } catch (error) {
-    console.error(`requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+let myReason = 'test requestSuspendDelay';
+try {
+let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+    console.info("Request suspension delay will time out.");
+})
+let id = delayInfo.requestId;
+let time = delayInfo.actualDelayTime;
+console.info("The requestId is: " + id);
+console.info("The actualDelayTime is: " + time);
+} catch (error) {
+console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
 
 
 ## backgroundTaskManager.getRemainingDelayTime
@@ -102,22 +103,19 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let id = 1;
-  try {
-    backgroundTaskManager.getRemainingDelayTime(id, (error, res) => {
-        if(error) {
-            console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-        } else {
-            console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-        }
-    })
-  } catch (error) {
-    console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+let id = 1;
+backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
+    if(error) {
+        console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+    } else {
+        console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    }
+})
+```
 
 
 ## backgroundTaskManager.getRemainingDelayTime
@@ -155,20 +153,17 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let id = 1;
-  try {
-    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-    }).catch( error => {
-        console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+let id = 1;
+backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+}).catch((error: BusinessError) => {
     console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+})
+```
 
 
 ## backgroundTaskManager.cancelSuspendDelay
@@ -202,12 +197,13 @@ cancelSuspendDelay(requestId: number): void
 
   ```js
   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+  import { BusinessError } from '@ohos.base';
 
   let id = 1;
   try {
     backgroundTaskManager.cancelSuspendDelay(id);
   } catch (error) {
-    console.error(`cancelSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+    console.error(`cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
   ```
 
@@ -249,9 +245,12 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error) {
         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
@@ -260,8 +259,8 @@ function callback(error, data) {
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
@@ -274,16 +273,16 @@ export default class EntryAbility extends UIAbility {
         };
 
         try {
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
                         backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
                 } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
             });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -332,11 +331,14 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
@@ -349,20 +351,20 @@ export default class EntryAbility extends UIAbility {
         };
 
         try {
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
                         backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
                         console.info("Operation startBackgroundRunning succeeded");
-                    }).catch((error) => {
+                    }).catch((error: BusinessError) => {
                         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
                     });
                 } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
             });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -402,8 +404,11 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error) {
         console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
@@ -412,11 +417,11 @@ function callback(error, data) {
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
         } catch (error) {
-            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -461,17 +466,20 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
                 console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((error) => {
+            }).catch((error: BusinessError) => {
                 console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
             });
         } catch (error) {
-            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -510,8 +518,9 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
     isApply: true,
     timeOut: 0,
@@ -523,7 +532,7 @@ try {
     backgroundTaskManager.applyEfficiencyResources(request);
     console.info("applyEfficiencyResources success. ");
 } catch (error) {
-    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    console.error(`applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 
@@ -557,7 +566,7 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
 } catch (error) {
-    console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    console.error(`resetAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 

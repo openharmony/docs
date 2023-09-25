@@ -174,8 +174,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context: featureAbility.Context = featureAbility.getContext();
-let Permission = {pid:1};
-context.verifyPermission('com.context.permission',Permission).then((data) => {
+context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
     console.info('verifyPermission data: ${JSON.stringify(data)}');
 });
 ```

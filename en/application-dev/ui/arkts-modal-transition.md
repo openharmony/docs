@@ -38,15 +38,22 @@ You can bind a full-screen modal to a component through the [bindContentCover](.
 3. Call the modal API to display the modal. Implement an animation by using the animation or shared element transition APIs.
   
    ```ts
+   class PresentTmp{
+     isPresent: boolean = false;
+     set(){
+       this.isPresent = !this.isPresent;
+     }
+   }
    // Define the state variable to control the visibility of the modal.
    @State isPresent: boolean = false;
    
    Button('Click to present model view')
      // Bind the modal to the component. ModalTransition indicates the transition mode of the modal. The value None means no transition animation for the modal.
-     .bindContentCover($$this.isPresent, this.MyBuilder, ModalTransition.None)
+     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.None)
      .onClick(() => {
        // Change the state variable to display the modal.
-       this.isPresent = !this.isPresent;
+       let setPre:PresentTmp = new PresentTmp()
+       setPre.set()
      })
    ```
 
@@ -114,7 +121,7 @@ struct BindContentCoverDemo {
         this.isPresent = !this.isPresent;
       })
       // Bind the modal to the component. ModalTransition indicates the transition mode of the modal. The value None means no transition animation for the modal.
-      .bindContentCover($$this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
+      .bindContentCover(this.isPresent, this.MyBuilder(), ModalTransition.DEFAULT)
       .justifyContent(FlexAlign.Center)
       .backgroundColor(0XF56C6C)
       .width(100)
@@ -147,7 +154,7 @@ Below is the complete sample code and effect.
 struct BindSheetDemo {
 
   // Define the state variable to control the sheet height.
-  @State sheetHeight: number = 300;
+  @State sheetHeight: number|SheetSize|null|undefined = 300;
   // Define the state variable to control the visibility of the drag bar.
   @State showDragBar: boolean = true;
 
@@ -190,15 +197,17 @@ struct BindSheetDemo {
 
   build() {
     Column() {
-      Button("Click to present sheet view")
+      if(this.sheetHeight){
+        Button("Click to present sheet view")
         .onClick(() => {
-          // Change the state variable to display the sheet.
+          // Change the state variable to display the modal.
           this.isPresent = !this.isPresent;
         })
         .fontSize(20)
         .margin(10)
           // Bind the sheet to the component. You can specify the sheet height and whether to display the drag bar.
-        .bindSheet($$this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+        .bindSheet(this.isPresent, this.myBuilder(), { height: this.sheetHeight, dragBar: this.showDragBar })
+      }
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
@@ -216,12 +225,16 @@ You can bind a menu to component through the [bindMenu](../reference/arkui-ts/ts
 
 
 ```ts
+class BMD{
+  value:ResourceStr = ''
+  action:() => void = () => {}
+}
 @Entry
 @Component
 struct BindMenuDemo {
 
   // Step 1: Define a data array to represent menu items.
-  private items = [
+  @State items:BMD[] = [
     {
       value:'Menu item 1',
       action: () => {
@@ -271,16 +284,16 @@ struct BindContextMenuDemo {
   @Builder MyMenu() {
     Row() {
       Column() {
-        ForEach(this.num, (item: number, index: number) => {
+        ForEach(this.num, (item: number, index: number = 0) => {
           Row() {
-            Text(item.toString())
-              .fontSize(20)
-              .fontColor(Color.White)
-          }
-          .backgroundColor(this.colors[index])
-          .width('100%')
-          .aspectRatio(2)
-          .justifyContent(FlexAlign.Center)
+              Text(item.toString())
+                .fontSize(20)
+                .fontColor(Color.White)
+            }
+            .backgroundColor(this.colors[index])
+            .width('100%')
+            .aspectRatio(2)
+            .justifyContent(FlexAlign.Center)
         })
       }
       .width('100%')

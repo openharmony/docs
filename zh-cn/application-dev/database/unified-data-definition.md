@@ -114,11 +114,11 @@ UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录Unifi
      switch (type) {
        case uniformTypeDescriptor.UniformDataType.IMAGE:
          // 转换得到原图片数据记录
-         let image = <unifiedDataChannel.Image>(records[i]);
+         let image = records[i] as unifiedDataChannel.Image;
          break;
        case uniformTypeDescriptor.UniformDataType.PLAIN_TEXT:
          // 转换得到原文本数据记录
-         let plainText = <unifiedDataChannel.PlainText>(records[i]);
+         let plainText = records[i] as unifiedDataChannel.PlainText;
          break;
        default:
          break;

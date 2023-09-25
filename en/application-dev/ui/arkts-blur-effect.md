@@ -51,7 +51,7 @@ struct BlurEffectsExample {
 ```ts
 @Entry
 @Component
-struct Index {
+struct Index1 {
   @State radius: number = 0;
   @State text: string = '';
   @State y: string = 'Finger not on the screen';
@@ -76,14 +76,16 @@ struct Index {
         .objectFit(ImageFit.Cover)
     }.height('100%')
     .width("100%")
-    .onTouch((event: TouchEvent) => {
-      if (event.type === TouchType.Move) {
-        this.y = parseInt(event.touches[0].y.toString()).toString();
-        this.radius = parseInt(this.y) / 10; // Modify the blur radius based on the sliding distance.
-      }
-      if (event.type === TouchType.Up) {
-        this.radius = 0;
-        this.y = 'Finger off the screen';
+    .onTouch((event?: TouchEvent) => {
+      if(event){
+        if (event.type === TouchType.Move) {
+          this.y = Number(event.touches[0].y.toString()).toString();
+          this.radius = Number(this.y) / 10; // Modify the blur radius based on the sliding distance.
+        }
+        if (event.type === TouchType.Up) {
+          this.radius = 0;
+          this.y = 'Finger off the screen';
+        }
       }
       this.text = "Press a finger on the screen and slide up and down\n" + "Current finger position on the y-axis: " + this.y +
       "\n" + "Blur radius:" + this.radius;

@@ -12,12 +12,13 @@
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController();
-    ports: web_webview.WebMessagePort[];
+    ports: web_webview.WebMessagePort[] = [];
     @State sendFromEts: string = 'Send this message from ets to HTML';
     @State receivedFromHtml: string = 'Display received message send from HTML';
 
@@ -57,7 +58,8 @@
               // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
               this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             } catch (error) {
-              console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
 
@@ -71,7 +73,8 @@
                 console.error(`ports is null, Please initialize first`);
               }
             } catch (error) {
-              console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         Web({ src: $rawfile('xxx.html'), controller: this.controller })

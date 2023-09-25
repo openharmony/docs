@@ -2648,6 +2648,8 @@ Allows an application to access the intelligent voice service interfaces.
 
 **Enable via ACL**: TRUE
 
+**Start version**: 10
+
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
 Allows an enterprise MDM bundle to be installed on enterprise devices.
@@ -2743,3 +2745,51 @@ Allows an application to obtain domain account information.
 **Enable via ACL**: TRUE
 
 **Start version**: 10
+
+## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
+
+Allows an application to publish unremovable notifications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+Allows an application to query accessibility elements in batches.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ACTIVATE_THEME_PACKAGE
+
+Allows a system application to set themes, including wallpapers, icons, skins, Always On Display (AOD), and fonts.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11
+
+## ohos.permission.ATTEST_KEY
+
+Allows an application to obtain the certificate chain that attests the key validity.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+**Start version**: 11

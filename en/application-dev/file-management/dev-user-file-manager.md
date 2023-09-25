@@ -8,14 +8,14 @@ For details about the APIs used to develop a file manager application, see [User
 
 ## How to Develop
 
-1. Apply for permissions required.<br>
+1. Apply for permissions required.
+
    Apply for the **ohos.permission.FILE_ACCESS_MANAGER** and **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permissions. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
 
    > **NOTE**
    >
-   > **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
-   >
-   > **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
+   > - **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
+   >- **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
 
 2. Import dependent modules.
 
@@ -26,120 +26,138 @@ For details about the APIs used to develop a file manager application, see [User
 
    The **fileAccess** module provides APIs for basic file operations, and the **fileExtensionInfo** module provides key structs for application development.
 
-3. Query device information.<br>
+3. Query device information.
+
    You can obtain attributes of the devices managed by one or all file management servers in the system. You can also filter devices as required.
 
    In the user file access framework, **RootInfo** indicates the attribute information of a device. For example, obtain **RootInfo** of all devices.
 
    ```ts
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+   import { Filter } from '@ohos.file.fs';
+
+   // Obtain the application context.
+   let context = getContext(this) as common.UIAbilityContext;
+
    // Create a helper object for connecting to all file management servers in the system.
-   let fileAccessHelperAllServer = null;
-   createFileAccessHelper() {
+   let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
+   function createFileAccessHelper(): void {
      try {    // this.context is the context passed from EntryAbility.
-       fileAccessHelperAllServer = fileAccess.createFileAccessHelper(this.context);
+       fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
        }
-     } catch (error) {    
+     } catch (err) {
+         let error: BusinessError = err as BusinessError;
          console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
-   async getRoots() {  
-     let rootIterator = null;  
-     let rootInfos = [];  
-     let isDone = false;  
+   let rootInfos: Array<fileAccess.RootInfo> = [];
+   async function getRoots(): Promise<void>{
+     let rootIterator: fileAccess.RootIterator;
+     let isDone: boolean = false;
      try {
        rootIterator = await fileAccessHelperAllServer.getRoots();
        if (!rootIterator) {
          console.error("getRoots interface returns an undefined object");
-         return;    
-       }    
+         return;
+       }
        while (!isDone) {
          let result = rootIterator.next();
          console.info("next result = " + JSON.stringify(result));
          isDone = result.done;
          if (!isDone)
-           rootinfos.push(result.value);
-       }  
-     } catch (error) {
+           rootInfos.push(result.value);
+       }
+     } catch (err) {
+       let error: BusinessError = err as BusinessError;
        console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
    ```
 
 4. View directories.
+
    In the user file access framework, **FileInfo** indicates basic information about a file (directory). You can use **listfile()** to obtain a **FileIterator** object that traverses all files (directories) of the next level or use **scanfile()** to obtain a **FileIterator** object that meets the specified conditions.
 
    Currently, **listfile()** and **scanfile()** can be called by the **RootInfo** object to traverse the next-level files or filter the entire directory tree. In addition, **listfile()** and **scanfile()** can be called by the **FileInfo** object to traverse the next-level files or filter the specified directories.
-
    ```ts
+   import { BusinessError } from '@ohos.base';
+   import { Filter } from '@ohos.file.fs';
+
    // Start from the root directory.
-   let rootInfo = rootinfos[0];
-   let fileInfos = [];
-   let isDone = false;
-   let filter = {suffix: [".txt", ".jpg", ".xlsx"]};  // Set filter criteria.
-   try {  
-     let fileIterator = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return an iterator object.
-     // let fileIterator = rootInfo.scanFile(filter); // Filter device rootinfos[0] files that meet the specified conditions and return an iteration object.
+   let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
+   let fileInfos: Array<fileAccess.FileInfo> = [];
+   let isDone: boolean = false;
+   let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
+   try {
+     let fileIterator: string = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return an iterator object.
+     // let fileIterator = rootInfo.scanFile(filter);         // Filter device rootinfos[0] files that meet the specified conditions and return an iteration object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
-       return;  
      }
      while (!isDone) {
-       let result = fileIterator.next();
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
          fileInfos.push(result.value);
      }
-   } catch (error) {
+   } catch (err) {
+    let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
-   
+
    // Start from the specified directory.
-   let fileInfoDir = fileInfos[0];                    // fileInfoDir indicates information about a directory.
-   let subFileInfos = [];
-   let isDone = false;
-   let filter = {suffix: [".txt", ".jpg", ".xlsx"]};  // Set filter criteria.
+   let fileInfoDir: Array<fileAccess.FileInfo> = fileInfos[0];  // fileInfoDir indicates the information about a directory.
+   let subFileInfos: Array<fileAccess.FileInfo> = [];
+   let isDone02: boolean = false;
+   let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
    try {
-     let fileIterator = fileInfoDir.listFile();       // Traverse files in the specified directory and return an iterator object.
-     // let fileIterator = rootInfo.scanFile(filter); // Filter the files in the specified directory and return an iterator object.
+     let fileIterator: string = fileInfoDir.listFile();         // Traverse files in the specified directory and return an iterator object.
+     // let fileIterator = rootInfo.scanFile(filter02);         // Filter the files in the specified directory and return an iterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
-       return;
      }
-     while (!isDone) {
-       let result = fileIterator.next();
+     while (!isDone02) {
+       let result: boolean = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
-       isDone = result.done;
-       if (!isDone)
-         subfileInfos.push(result.value);
+       isDone02 = result.done;
+       if (!isDone02)
+         subFileInfos.push(result.value);
      }
-   } catch (error) {
+   } catch (err) {
+    let error: BusinessError = err as BusinessError;
      console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
    }
    ```
 
 5. Perform operations on files or directories.
+
    You can integrate APIs of the user file access framework to implement user behaviors, such as deleting, renaming, creating, and moving a file (directory). The following example shows how to create a file. For details about other APIs, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+
    // The local device is used as an example.
    // Create a file.
    // sourceUri is the URI in fileinfo of the Download directory.
    // You need to use the obtained URI for development.
-   let sourceUri = "file://media/file/6";
-   let displayName = "file1";
-   let fileUri = null;
-   try {
-     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
-     fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-     if (!fileUri) {
-       console.error("createFile return undefined object");
-       return;
-     }
-     console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-   } catch (error) {
-     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-   };
+   async function creatFile(): Promise<void> {
+     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+     let displayName: string = "file1";
+     let fileUri: string = '';
+     try {
+       // Obtain fileAccessHelperAllServer by referring to the sample code of fileAccess.createFileAccessHelper.
+       fileUri = await fileAccessHelperAllServer.createFile(sourceUri, displayName);
+       if (!fileUri) {
+         console.error("createFile return undefined object");
+       }
+       console.info("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+     } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+     };
+   }
    ```

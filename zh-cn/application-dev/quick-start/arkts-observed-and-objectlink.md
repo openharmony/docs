@@ -126,7 +126,7 @@ this.b.a.c = 5
 ```ts
 @Observed
 class DateClass extends Date {
-  constructor(args: any) {
+  constructor(args: number | string) {
     super(args)
   }
 }
@@ -246,7 +246,7 @@ class ClassC extends ClassA {
 ```
 
 
-  以下组件层次结构呈现的是此数据结构
+  以下组件层次结构呈现的是嵌套类对象的数据结构。
 
 ```ts
 @Component
@@ -343,10 +343,10 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的ClassA的实例
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
@@ -379,7 +379,7 @@ struct ViewB {
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..) ：该状态变量的改变触发2次更新：
   1. ForEach：数组项的赋值导致ForEach的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的ViewA组件实例。
-  2. ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })：上述更改改变了数组中第一个元素，所以绑定this.arrA[0]的ViewA将被更新；
+  2. ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })：上述更改改变了数组中第一个元素，所以绑定this.arrA[0]的ViewA将被更新。
 
 - this.arrA.push(new ClassA(0)) ： 将触发2次不同效果的更新：
   1. ForEach：新添加的ClassA对象对于ForEach是未知的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)，ForEach的item builder将执行，创建新的ViewA组件实例。
@@ -419,11 +419,11 @@ struct ItemPage {
         .width(100).height(100)
 
       ForEach(this.itemArr,
-        item => {
+        (item: string | Resource) => {
           Text(item)
             .width(100).height(100)
         },
-        item => item
+        (item: string) => item
       )
     }
   }
@@ -439,14 +439,14 @@ struct IndexPage {
       ItemPage({ itemArr: this.arr[0] })
       ItemPage({ itemArr: this.arr[1] })
       ItemPage({ itemArr: this.arr[2] })
-
       Divider()
 
+
       ForEach(this.arr,
-        itemArr => {
+        (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        itemArr => itemArr[0]
+        (itemArr: string) => itemArr[0]
       )
 
       Divider()
@@ -454,7 +454,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if (this.arr[0][0] !== undefined) {
+          if ((this.arr[0] as Array<String>)[0] !== undefined) {
             // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
             // 因此需要确保推送的字符串是唯一的。
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);

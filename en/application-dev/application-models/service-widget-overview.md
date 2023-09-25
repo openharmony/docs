@@ -1,7 +1,7 @@
 # Service Widget Overview
 
 
-A service widget (also called widget) is a set of UI components that display important information or operations specific to an application. It provides users with direct access to a desired application service, without the need to open the application first. A widget usually appears as a part of the UI of another application (which currently can only be a system application, such as the home screen) and provides basic interactive features such as opening a UI page or sending a message.
+A service widget (also called widget) is a set of UI components that display important information or operations specific to an application. It provides users with direct access to a desired application service, without the need to open the application first. A widget is usually displayed as part of the UI of another application (which can only be a system application, such as the home screen) and provides basic interactive features such as opening a UI page or sending a message.
 
 
 ## Service Widget Architecture
@@ -14,17 +14,17 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 - Widget host: an application that displays the widget content and controls the widget location. An example is the home screen in the preceding figure.
 
-  - Application icon: an application entry icon, clicking which starts the application process. The icon content does not support interactions.
-  - Widget: an interactive UI in various sizes. It may provide buttons to implement different functions, such as the button to [update the widget content](arkts-ui-widget-event-formextensionability.md) or [switch to an application](arkts-ui-widget-event-router.md).
+  - Application icon: an icon for entry to an application, clicking which starts the application process. The icon content does not support interactions.
+  - Widget: an interactive UI in various sizes. It may provide buttons to implement different features, such as the button to [update the widget content](arkts-ui-widget-event-formextensionability.md) or [switch to an application](arkts-ui-widget-event-router.md).
 
-- Card provider: an application that provides service widget content to be displayed. It controls the display content, display logic, and component click events triggered on a service widget.
+- Widget provider: an application that provides widget content to be displayed. It controls the display content, display logic, and component click events triggered on a widget.
 
-  - FormExtensionAbility: widget service logic module, which provides lifecycle callbacks invoked when a widget is created, destroyed, or updated.
-  - Widget page: widget UI module, which contains display and interaction information such as components, layouts, and events.
+  - FormExtensionAbility: a widget service logic module, which provides lifecycle callbacks invoked when a widget is created, destroyed, or updated.
+  - Widget page: a widget UI module, which contains display and interaction information such as components, layouts, and events.
 
-Below is the typical procedure of using the widget:
+Below is the typical procedure of using a widget:
 
-**Figure 2** Typical procedure of using the widget
+**Figure 2** Typical procedure of using a widget
 
 ![WidgetUse](figures/WidgetUse.png)
 
@@ -35,7 +35,7 @@ Below is the typical procedure of using the widget:
 3. Touch the **Add to home** button. The widget is then added to the home screen.
 
 
-## Widget UI Development Mode
+## Widget UI Development Modes
 
 In the stage model, the UI of a widget can be developed in [ArkTS](arkts-ui-widget-working-principles.md) or [JS](js-ui-widget-development.md).
 
@@ -45,7 +45,7 @@ In the stage model, the UI of a widget can be developed in [ArkTS](arkts-ui-widg
 
 ArkTS widgets and JS widgets have different implementation principles and features. The following table lists the differences in capabilities.
 
-| Category| JS widget| ArkTS widget|
+| Category| JS Widget| ArkTS Widget|
 | -------- | -------- | -------- |
 | Development paradigm| Web-like paradigm| Declarative paradigm|
 | Component capability| Supported| Supported|

@@ -55,7 +55,7 @@
       @State message: string = 'Hello World'
       // Incorrect: @State message: ResourceStr = $r('app.string.hello')
       @State resourceStr: Resource = $r('app.string.hello')
-
+    
       build() {
         Row() {
           Column() {
@@ -72,7 +72,7 @@
 
     ![hello](../../../application-dev/quick-start/figures/hello.PNG)
 
-**Change Impacts**
+**Change Impact**
 
 1. If the data type of a state variable decorated by a state decorator is declared as **any**, a build error will occur.
     ```ts
@@ -100,13 +100,13 @@ N/A
 1. Explicitly declare the data type for state variables decorated by state decorators.
 2. If a state variable decorated by a state decorator uses the **Date** object, change it to a regular variable – a variable not decorated by any decorator.
 3. Adapt the **@State**, **@Provide**, **@Link**, and **@Consume** decorated variables based on the following code snippet so that they do not use the **Length(string|number|Resource)**, **ResourceStr(string|Resource)**, and **ResourceColor(string|number|Color|Resource)** types:
-   
     ```ts
     // Incorrect:
     @State message: ResourceStr = $r('app.string.hello')
     // Corrected:
     @State resourceStr: Resource = $r('app.string.hello')
     ```
+
 
 ## cl.arkui.2 Initialization Rules and Restrictions of Custom Components' Member Variables
 
@@ -134,13 +134,13 @@ Comply with the following rules when using constructors to initialize member var
 
 > **NOTE**
 >
-> **Supported (1)**: The dollar sign ($) must be used, for example, **this.$varA**.
+> **Supported (1)**: The dollar sign ($) must be used, for example, **this.$varA**. 
 >
 > **regular**: refers to a regular variable that is not decorated by any decorator.
 
 **@StorageLink**, **@StorageProp**, **@LocalStorageLink**, and **@LocalStorageProp** variables cannot be initialized from the parent component.
 
-**Change Impacts**
+**Change Impact**
 
 1. Variables decorated by **@LocalStorageLink** and **@LocalStorageProp** cannot be initialized from the parent component.
     ```ts
@@ -170,7 +170,7 @@ Comply with the following rules when using constructors to initialize member var
 2. The **@ObjectLink** decorated variable cannot be directly initialized from a decorated variable in the parent component. The source of the parent component must be an array item or object attribute decorated by **@State**, **@Link**, **@Provide**, **@Consume**, or **@ObjectLink**.
     ```ts
     let NextID : number = 0;
-
+    
     @Observed class ClassA {
       public id : number;
       public c: number;
@@ -179,7 +179,7 @@ Comply with the following rules when using constructors to initialize member var
         this.c = c;
       }
     }
-
+    
     @Component
     struct Child {
       @ObjectLink varA : ClassA;
@@ -189,7 +189,7 @@ Comply with the following rules when using constructors to initialize member var
         }
       }
     }
-
+    
     @Component
     struct Parent {
       @Link linkValue: ClassA
@@ -210,18 +210,18 @@ N/A
 **Adaptation Guide**
 1. When building a child component, do not perform the build on the variables decorated by **@LocalStorageLink** and **@LocalStorageProp** in the child component.
 
-   To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
+  To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
 
-2. For details about how to use **@ObjectLink**, see @ObjectLink.
+2. For details about how to use @ObjectLink, see @ObjectLink usage guide.
 
-## cl.LocalStorage.1 Return Type Change of the get API
 
-Changed the return type from **get\<T>(propName: string): T** to **get\<T>(propName: string): T | undefined**.
+## cl.arkui.LocalStorage.1 Return Type Change of the get API
 
 **Change Impact**
 
+Changed the return type from **get\<T>(propName: string): T** to **get<T>(propName: string): T | undefined**.
 
-None
+No adaptation is needed.
 
 ## cl.arkui.LocalStorage.2 Mandatory/Optional Change of the newValue Parameter in setOrCreate
 **Change Impact**

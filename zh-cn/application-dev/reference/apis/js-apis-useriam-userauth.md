@@ -31,11 +31,11 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称           | 类型                               | 必填 | 说明                                                   |
-| -------------- | ---------------------------------- | ---- | ------------------------------------------------------ |
-| challenge      | Uint8Array                         | 是   | 挑战值，用来防重放攻击。最大长度为32字节，可以填null。 |
-| authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。     |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                                         |
+| 名称           | 类型                               | 必填 | 说明                                                         |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| challenge      | Uint8Array                         | 是   | 挑战值，用来防重放攻击。最大长度为32字节，可传Uint8Array([])。 |
+| authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。           |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                                               |
 
 ## WidgetParam<sup>10+</sup>
 
@@ -46,7 +46,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | 名称                 | 类型                                | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | title                | string                              | 是   | 用户认证界面的标题，最大长度为500字符。                      |
-| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。                       |
+| navigationButtonText | string                              | 否   | 导航按键的说明文本，最大长度为60字符。仅在单指纹、单人脸场景下支持。 |
 | windowMode           | [WindowModeType](#windowmodetype10) | 否   | 代表用户认证界面的显示类型，默认值为WindowModeType.DIALOG_BOX。<br>**系统接口**: 此接口为系统接口。 |
 
 ## UserAuthResult<sup>10+</sup>
@@ -85,27 +85,25 @@ onResult(result: UserAuthResult): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
-    userAuthInstance.on('result', {
-        onResult (result) {
-            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
-        }
-    });
-    console.log('auth on success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+    }
+  });
+  console.log('auth on success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -143,27 +141,25 @@ on(type: 'result', callback: IAuthCallback): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
-    userAuthInstance.on('result', {
-        onResult (result) {
-            console.log('userAuthInstance callback result = ' + JSON.stringify(result));
-        }
-    });
-    console.log('auth on success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+    }
+  });
+  console.log('auth on success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -198,27 +194,25 @@ off(type: 'result', callback?: IAuthCallback): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
-	userAuthInstance.off('result', {
-        onResult (result) {
-            console.log('auth off result: ' + JSON.stringify(result));
-        }
-    });
-    console.log('auth off success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  userAuthInstance.off('result', {
+    onResult (result) {
+      console.log('auth off result: ' + JSON.stringify(result));
+    }
+  });
+  console.log('auth off success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -256,23 +250,21 @@ start(): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
-    userAuthInstance.start();
-    console.log('auth start success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  userAuthInstance.start();
+  console.log('auth start success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -301,23 +293,21 @@ cancel(): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
-    userAuthInstance.cancel();
-    console.log('auth cancel success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  userAuthInstance.cancel();
+  console.log('auth cancel success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -361,21 +351,19 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-    authType: [userAuth.UserAuthType.PIN],
-    authTrustLevel: 10000,
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
 };
-const widgetParam = {
-	title: '请输入密码',
-	navigationButtonText: '返回',
-    windowMode: userAuth.WindowModeType.DIALOG_BOX,
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
 };
 try {
-    let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-    console.log('get userAuth instance success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
 } catch (error) {
-    console.log('auth catch error: ' + JSON.stringify(error));
+  console.log('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -426,21 +414,30 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 ```js
 import userAuth from '@ohos.userIAM.userAuth';
 
+interface  EventData {
+  widgetContextId: number;
+  event: string;
+  version: string;
+  payload: PayLoad;
+}
+interface PayLoad {
+  type: Object[];
+}
 try {
-    const eventData = {
-        widgetContextId: 123456,
-        event: 'EVENT_AUTH_TYPE_READY',
-        version: '1',
-        payload: {
-            type: ['pin']
-        },
-    };
-    const jsonEventData = JSON.stringify(eventData);
-    let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
-    userAuth.sendNotice(noticeType, jsonEventData);
-    console.log('sendNotice success');
+  const eventData : EventData = {
+    widgetContextId: 123456,
+    event: 'EVENT_AUTH_TYPE_READY',
+    version: '1',
+    payload: {
+      type: ['pin']
+    } as PayLoad,
+  };
+  const jsonEventData = JSON.stringify(eventData);
+  let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
+  userAuth.sendNotice(noticeType, jsonEventData);
+  console.log('sendNotice success');
 } catch (error) {
-    console.log('sendNotice catch error: ' + JSON.stringify(error));
+  console.log('sendNotice catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -481,16 +478,16 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-    console.log('get userAuthWidgetMgr instance success');
-    userAuthWidgetMgr.on('command', {
-    	sendCommand(cmdData) {
-            console.log('The cmdData is ' + cmdData);
-        }
-     })
-    console.log('subscribe authentication event success');
+  let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+  console.log('get userAuthWidgetMgr instance success');
+  userAuthWidgetMgr.on('command', {
+    sendCommand(cmdData) {
+      console.log('The cmdData is ' + cmdData);
+    }
+  })
+  console.log('subscribe authentication event success');
 } catch (error) {
-    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -527,16 +524,16 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-    console.log('get userAuthWidgetMgr instance success');
-    userAuthWidgetMgr.off('command', {
-    	sendCommand(cmdData) {
-            console.log('The cmdData is ' + cmdData);
-        }
-     })
-    console.log('cancel subscribe authentication event success');
+  let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+  console.log('get userAuthWidgetMgr instance success');
+  userAuthWidgetMgr.off('command', {
+    sendCommand(cmdData) {
+      console.log('The cmdData is ' + cmdData);
+    }
+  })
+  console.log('cancel subscribe authentication event success');
 } catch (error) {
-    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -585,10 +582,10 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 let userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-    console.log('get userAuthWidgetMgr instance success');   
+  let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+  console.log('get userAuthWidgetMgr instance success');
 } catch (error) {
-    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -619,16 +616,16 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 const userAuthWidgetMgrVersion = 1;
 try {
-    let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-    console.log('get userAuthWidgetMgr instance success');
-    userAuthWidgetMgr.on('command', {
-    	sendCommand(cmdData) {
-            console.log('The cmdData is ' + cmdData);
-        }
-     })
-    console.log('subscribe authentication event success');
+  let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
+  console.log('get userAuthWidgetMgr instance success');
+  userAuthWidgetMgr.on('command', {
+    sendCommand(cmdData) {
+      console.log('The cmdData is ' + cmdData);
+    }
+  })
+  console.log('subscribe authentication event success');
 } catch (error) {
-    console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -706,41 +703,41 @@ let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 // 通过callback获取认证结果
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-    });
-    auth.start();
-    console.log("authV9 start success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  auth.on('result', {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+      console.log('authV9 result ' + result.result);
+      console.log('authV9 token ' + result.token);
+      console.log('authV9 remainAttempts ' + result.remainAttempts);
+      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+    }
+  } as userIAM_userAuth.AuthEvent);
+  auth.start();
+  console.log('authV9 start success');
 } catch (error) {
-    console.log("authV9 error = " + error);
-    // do error
+  console.log('authV9 error = ' + error);
+  // do error
 }
 // 通过callback获取认证过程中的提示信息
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    auth.on("tip", {
-        callback : (result : userIAM_userAuth.TipInfo) => {
-            switch (result.tip) {
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                // do something;
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                // do something;
-                default:
-                // do others
-            }
-        }
-    });
-    auth.start();
-    console.log("authV9 start success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  auth.on('tip', {
+    callback : (result : userIAM_userAuth.TipInfo) => {
+      switch (result.tip) {
+        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+          // do something;
+        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+          // do something;
+        default:
+          // do others
+      }
+    }
+  } as userIAM_userAuth.AuthEvent);
+  auth.start();
+  console.log('authV9 start success');
 } catch (error) {
-    console.log("authV9 error = " + error);
-    // do error
+  console.log('authV9 error = ' + error);
+  // do error
 }
 ```
 
@@ -790,34 +787,34 @@ let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    // 订阅认证结果
-    auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-    });
-    // 订阅认证过程中的提示信息
-    auth.on("tip", {
-        callback : (result : userIAM_userAuth.TipInfo) => {
-            switch (result.tip) {
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-                // do something;
-                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
-                // do something;
-                default:
-                // do others
-            }
-        }
-    });
-    auth.start();
-    console.log("authV9 start success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  // 订阅认证结果
+  auth.on('result', {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+      console.log('authV9 result ' + result.result);
+      console.log('authV9 token ' + result.token);
+      console.log('authV9 remainAttempts ' + result.remainAttempts);
+      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+    }
+  });
+  // 订阅认证过程中的提示信息
+  auth.on('tip', {
+    callback : (result : userIAM_userAuth.TipInfo) => {
+      switch (result.tip) {
+        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+          // do something;
+        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+          // do something;
+        default:
+          // do others
+      }
+    }
+  } as userIAM_userAuth.AuthEvent);
+  auth.start();
+  console.log('authV9 start success');
 } catch (error) {
-    console.log("authV9 error = " + error);
-    // do error
+  console.log('authV9 error = ' + error);
+  // do error
 }
 ```
 
@@ -856,34 +853,23 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
-let auth;
 try {
-    auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    console.log("get auth instance success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  // 订阅认证结果
+  auth.on('result', {
+    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+      console.log('authV9 result ' + result.result);
+      console.log('authV9 token ' + result.token);
+      console.log('authV9 remainAttempts ' + result.remainAttempts);
+      console.log('authV9 lockoutDuration ' + result.lockoutDuration);
+    }
+  });
+  // 取消订阅结果
+  auth.off('result');
+  console.info('cancel subscribe authentication event success');
 } catch (error) {
-    console.log("get auth instance failed" + error);
-}
-
-try {
-    // 订阅认证结果
-    auth.on("result", {
-        callback: (result: userIAM_userAuth.AuthResultInfo) => {
-            console.log("authV9 result " + result.result);
-            console.log("authV9 token " + result.token);
-            console.log("authV9 remainAttempts " + result.remainAttempts);
-            console.log("authV9 lockoutDuration " + result.lockoutDuration);
-        }
-    });
-    console.log("subscribe authentication event success");
-} catch (error) {
-    console.log("subscribe authentication event failed " + error);
-}
-// 取消订阅认证结果
-try {
-    auth.off("result");
-    console.info("cancel subscribe authentication event success");
-} catch (error) {
-    console.info("cancel subscribe authentication event failed, error = " + error);
+  console.info('cancel subscribe authentication event failed, error =' + error);
+  // do error
 }
 ```
 
@@ -931,11 +917,11 @@ let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    auth.start();
-    console.info("authV9 start auth success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  auth.start();
+  console.info('authV9 start auth success');
 } catch (error) {
-    console.info("authV9 start auth failed, error = " + error);
+  console.info('authV9 start auth failed, error = ' + error);
 }
 ```
 
@@ -975,11 +961,11 @@ let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    auth.cancel();
-    console.info("cancel auth success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  auth.cancel();
+  console.info('cancel auth success');
 } catch (error) {
-    console.info("cancel auth failed, error = " + error);
+  console.info('cancel auth failed, error = ' + error);
 }
 ```
 
@@ -1001,7 +987,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 | 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
-| challenge      | Uint8Array                               | 是   | 挑战值，最大长度为32字节，可以填null。     |
+| challenge      | Uint8Array                               | 是   | 挑战值，最大长度为32字节，可以传Uint8Array([])。 |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。               |
 
@@ -1032,10 +1018,10 @@ let authType = userIAM_userAuth.UserAuthType.FACE;
 let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
 try {
-    let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-    console.info("get auth instance success");
+  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  console.info('let auth instance success');
 } catch (error) {
-    console.info("get auth instance success failed, error = " + error);
+  console.info('get auth instance success failed, error = ' + error);
 }
 ```
 
@@ -1075,10 +1061,10 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 try {
-    userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-    console.info("current auth trust level is supported");
+  userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+  console.info('current auth trust level is supported');
 } catch (error) {
-    console.info("current auth trust level is not supported, error = " + error);
+  console.info('current auth trust level is not supported, error = ' + error);
 }
 ```
 
@@ -1157,7 +1143,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
 let version = auth.getVersion();
-console.info("auth version = " + version);
+console.info('auth version = ' + version);
 ```
 
 ### getAvailableStatus<sup>(deprecated)</sup>
@@ -1194,9 +1180,9 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 let auth = new userIAM_userAuth.UserAuth();
 let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
 if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
-    console.info("check auth support success");
+  console.info('check auth support success');
 } else {
-    console.error("check auth support fail, code = " + checkCode);
+  console.error('check auth support fail, code = ' + checkCode);
 }
 ```
 
@@ -1217,7 +1203,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 | 参数名         | 类型                                     | 必填 | 说明                     |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
-| challenge      | Uint8Array                               | 是   | 挑战值，可以填null。     |
+| challenge      | Uint8Array                               | 是   | 挑战值，可以传Uint8Array([])。 |
 | authType       | [UserAuthType](#userauthtype8)           | 是   | 认证类型，当前支持FACE。 |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | 是   | 认证信任等级。             |
 | callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | 是   | 回调函数。        |
@@ -1234,20 +1220,21 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
-auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-    onResult: (result, extraInfo) => {
-        try {
-            console.info("auth onResult result = " + result);
-            console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-            if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                // 此处添加认证成功逻辑
-            } else {
-                // 此处添加认证失败逻辑
-            }
-        } catch (e) {
-            console.info("auth onResult error = " + e);
-        }
+let challenge = new Uint8Array([]);
+auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+  onResult: (result, extraInfo) => {
+    try {
+      console.info('auth onResult result = ' + result);
+      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+        // 此处添加认证成功逻辑
+      } else {
+        // 此处添加认证失败逻辑
+      }
+    } catch (e) {
+      console.info('auth onResult error = ' + e);
     }
+  }
 });
 ```
 
@@ -1286,9 +1273,9 @@ let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
 let auth = new userIAM_userAuth.UserAuth();
 let cancelCode = auth.cancelAuth(contextId);
 if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
-    console.info("cancel auth success");
+  console.info('cancel auth success');
 } else {
-    console.error("cancel auth fail");
+  console.error('cancel auth fail');
 }
 ```
 
@@ -1323,20 +1310,21 @@ onResult: (result : number, extraInfo : AuthResult) => void
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
-auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-    onResult: (result, extraInfo) => {
-        try {
-            console.info("auth onResult result = " + result);
-            console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-            if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                // 此处添加认证成功逻辑
-            }  else {
-                // 此处添加认证失败逻辑
-            }
-        } catch (e) {
-            console.info("auth onResult error = " + e);
-        }
+let challenge = new Uint8Array([]);
+auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+  onResult: (result, extraInfo) => {
+    try {
+      console.info('auth onResult result = ' + result);
+      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+        // 此处添加认证成功逻辑
+      }  else {
+        // 此处添加认证失败逻辑
+      }
+    } catch (e) {
+      console.info('auth onResult error = ' + e);
     }
+  }
 });
 ```
 
@@ -1365,16 +1353,30 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 let auth = new userIAM_userAuth.UserAuth();
-auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-    onAcquireInfo: (module, acquire, extraInfo) => {
-        try {
-            console.info("auth onAcquireInfo module = " + module);
-            console.info("auth onAcquireInfo acquire = " + acquire);
-            console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-        } catch (e) {
-            console.info("auth onAcquireInfo error = " + e);
-        }
+let challenge = new Uint8Array([]);
+auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+  onResult: (result, extraInfo) => {
+    try {
+      console.info('auth onResult result = ' + result);
+      console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
+      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+        // 此处添加认证成功逻辑
+      }  else {
+        // 此处添加认证失败逻辑
+      }
+    } catch (e) {
+      console.info('auth onResult error = ' + e);
     }
+  },
+  onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
+    try {
+      console.info('auth onAcquireInfo module = ' + module);
+      console.info('auth onAcquireInfo acquire = ' + acquire);
+      console.info('auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
+    } catch (e) {
+      console.info('auth onAcquireInfo error = ' + e);
+    }
+  }
 });
 ```
 
@@ -1471,12 +1473,12 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 |   值   | 说明                      |
-| ---- | ------ | ------------------------- |
-| ATL1 | 10000  | 认证结果的信任等级级别1。 |
-| ATL2 | 20000  | 认证结果的信任等级级别2。 |
-| ATL3 | 30000  | 认证结果的信任等级级别3。 |
-| ATL4 | 40000  | 认证结果的信任等级级别4。 |
+| 名称 | 值    | 说明                                                         |
+| ---- | ----- | ------------------------------------------------------------ |
+| ATL1 | 10000 | 认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 |
+| ATL2 | 20000 | 认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 |
+| ATL3 | 30000 | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
+| ATL4 | 40000 | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
 
 ## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
@@ -1497,6 +1499,8 @@ getAuthenticator(): Authenticator
 
 **示例：**
   ```js
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+  
   let authenticator = userIAM_userAuth.getAuthenticator();
   ```
 
@@ -1537,13 +1541,15 @@ callback返回值：
 **示例：**
 
 ```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
 let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
-    if (code === userIAM_userAuth.ResultCode.SUCCESS) {
-        console.info("auth success");
-        return;
-    }
-    console.error("auth fail, code = " + code);
+authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
+  if (code === userIAM_userAuth.ResultCode.SUCCESS) {
+    console.info('auth success');
+    return;
+  }
+  console.error('auth fail, code = ' + code);
 });
 ```
 
@@ -1577,12 +1583,16 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 **示例：**
 
 ```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((error)=>{
-    console.error("auth fail, code = " + error);
-});
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+try {
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute('FACE_ONLY', 'S2').then((code)=>{
+    console.info('auth success');
+  })
+} catch (error) {
+  console.error('auth fail, code = ' + error);
+}
 ```
 
 ## AuthenticationResult<sup>(deprecated)</sup>

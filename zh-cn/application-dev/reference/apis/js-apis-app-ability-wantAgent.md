@@ -39,10 +39,14 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -62,7 +66,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -70,7 +74,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -118,9 +122,13 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 **示例：**
 
 ```ts
-let wantAgent;
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -140,7 +148,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -150,7 +158,7 @@ let wantAgentInfo = {
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
     wantAgent = data;
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error('getWantAgent failed! ${err.code} ${err.message}');
 });
 } catch (err) {
@@ -187,10 +195,14 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -210,7 +222,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -218,14 +230,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //getBundleName回调
-    function getBundleNameCallback(err, data) {
+    let getBundleNameCallback = (err: BusinessError, data: string) => {
         if(err) {
             console.error('getBundleName failed! ${err.code} ${err.message}');
         } else {
@@ -279,10 +291,14 @@ getBundleName(agent: WantAgent): Promise\<string\>
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
  //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -302,7 +318,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -310,7 +326,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -319,7 +335,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
             console.info('getBundleName ok! ${JSON.stringify(data)}');
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.error('getBundleName failed! ${err.code} ${err.message}');
         });
     } catch(err){
@@ -362,11 +378,14 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -386,7 +405,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -394,14 +413,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.info('getWantAgent failed ${JSON.stringify(err)}');
     }
     //getUid回调
-    function getUidCallback(err, data) {
+    let getUidCallback = (err: BusinessError, data: number) => {
         if(err) {
             console.error('getUid failed! ${err.code} ${err.message}');
         } else {
@@ -455,10 +474,14 @@ getUid(agent: WantAgent): Promise\<number\>
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -478,7 +501,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -486,7 +509,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -495,7 +518,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
             console.info('getUid ok! ${JSON.stringify(data)}');
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.error('getUid failed! ${err.code} ${err.message}');
         });
     } catch(err){
@@ -540,10 +563,14 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -563,7 +590,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -571,14 +598,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //getWant回调
-    function getWantCallback(err, data) {
+    let getWantCallback = (err: BusinessError, data: Want) => {
         if(err) {
             console.error('getWant failed! ${err.code} ${err.message}');
         } else {
@@ -635,10 +662,14 @@ getWant(agent: WantAgent): Promise\<Want\>
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -658,7 +689,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -666,7 +697,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -675,7 +706,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
             console.info('getUid ok! ${JSON.stringify(data)}');
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.error('getUid failed! ${err.code} ${err.message}');
         });
     } catch(err){
@@ -718,10 +749,14 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -741,7 +776,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -749,14 +784,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //cancel回调
-    function cancelCallback(err, data) {
+    let cancelCallback = (err: BusinessError, data: void) => {
         if(err) {
             console.error('cancel failed! ${err.code} ${err.message}');
         } else {
@@ -810,10 +845,14 @@ cancel(agent: WantAgent): Promise\<void\>
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -833,7 +872,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -841,7 +880,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -850,7 +889,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
             console.info('cancel ok!');
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.error('cancel failed! ${err.code} ${err.message}');
         });
     } catch(err){
@@ -883,14 +922,18 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 // triggerInfo
-let triggerInfo = {
+let triggerInfo: WantAgent.TriggerInfo = {
     code: 0 //自定义义结果码
 };
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -910,7 +953,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -918,14 +961,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //trigger回调
-    function triggerCallback(err, data) {
+    let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
         if(err) {
             console.error('getUid failed! ${err.code} ${err.message}');
         } else {
@@ -966,11 +1009,15 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent1;
-let wantAgent2;
+let wantAgent1: _WantAgent;
+let wantAgent2: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -990,7 +1037,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -998,7 +1045,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
@@ -1006,7 +1053,7 @@ function getWantAgentCallback(err, data) {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //equal回调
-    function equalCallback(err, data) {
+    let equalCallback = (err: BusinessError, data: boolean) => {
         if(err) {
             console.error('equal failed! ${err.code} ${err.message}');
         } else {
@@ -1052,11 +1099,15 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent1;
-let wantAgent2;
+let wantAgent1: _WantAgent;
+let wantAgent2: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -1076,7 +1127,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -1084,7 +1135,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent1 = data;
         wantAgent2 = data;
@@ -1094,7 +1145,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
             console.info('equal ok! ${JSON.stringify(data)}');
-        }).catch((err)=>{
+        }).catch((err: BusinessError)=>{
             console.error('equal failed! ${err.code} ${err.message}');
         })
     } catch(err){
@@ -1136,10 +1187,14 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -1159,7 +1214,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -1167,14 +1222,14 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
         console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
     }
     //getOperationTypeCallback回调
-    function getOperationTypeCallback(err, data) {
+    let getOperationTypeCallback = (err: BusinessError, data: number) => {
         if(err) {
             console.error('getOperationType failed! ${err.code} ${err.message}');
         } else {
@@ -1227,10 +1282,14 @@ getOperationType(agent: WantAgent): Promise\<number>;
 **示例：**
 
 ```ts
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 //wantAgent对象
-let wantAgent;
+let wantAgent: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo = {
+let wantAgentInfo: WantAgent.WantAgentInfo = {
     wants: [
         {
             deviceId: 'deviceId',
@@ -1250,7 +1309,7 @@ let wantAgentInfo = {
                 mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey6: true,
             }
-        }
+        } as Want
     ],
     operationType: WantAgent.OperationType.START_ABILITIES,
     requestCode: 0,
@@ -1258,7 +1317,7 @@ let wantAgentInfo = {
 };
 
 //getWantAgent回调
-function getWantAgentCallback(err, data) {
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err === undefined) {
         wantAgent = data;
     } else {
@@ -1267,7 +1326,7 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
             console.info('getOperationType ok! ${JSON.stringify(data)}');
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
             console.error('getOperationType failed! ${err.code} ${err.message}');
         });
     } catch(err){

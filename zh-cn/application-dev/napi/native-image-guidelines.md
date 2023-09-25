@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，表示图形队列的消费者端。开发者可以通过`NativeImage`接口接收和使用`Buffer`，并将`Buffer`关联输出到OpenGL外部纹理。
+NativeImage是提供**Surface关联OpenGL外部纹理**的模块，表示图形队列的消费者端。开发者可以通过`NativeImage`接口接收和使用`Buffer`，并将`Buffer`关联输出到OpenGL外部纹理。
 针对NativeImage，常见的开发场景如下：
 
 * 通过`NativeImage`提供的Native API接口创建`NativeImage`实例作为消费者端，获取与该实例对应的`NativeWindow`作为生产者端。`NativeWindow`相关接口可用于填充`Buffer`内容并提交，`NativeImage`将`Buffer`内容更新到OpenGL外部纹理上。本模块需要配合NativeWindow、NativeBuffer、EGL、GLES3模块一起使用。
@@ -24,7 +24,7 @@ NativeImage是`OpenHarmony`提供**Surface关联OpenGL外部纹理**的模块，
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeImage`提供的Native API接口，创建`OH_NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
+以下步骤描述了如何使用`NativeImage`提供的Native API接口，创建`OH_NativeImage`实例作为消费者端，将数据内容更新到OpenGL外部纹理上。
 
 **添加动态链接库**
 
@@ -51,8 +51,11 @@ libnative_buffer.so
 
     这里提供一份初始化EGL环境的代码示例
     ```c++
+    #include <iostream>
+    #include <string>
     #include <EGL/egl.h>
     #include <EGL/eglext.h>
+
     using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
     constexpr const char* EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";
     constexpr const char* EGL_KHR_PLATFORM_WAYLAND = "EGL_KHR_platform_wayland";
@@ -167,7 +170,15 @@ libnative_buffer.so
     OHNativeWindow* nativeWindow = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
-4. **将生产的内容写入NativeWindowBuffer**。
+4. **设置NativeWindow的宽高**。
+    ```c++
+    int code = SET_BUFFER_GEOMETRY;
+    int32_t width = 800;
+    int32_t height = 600;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
+    ```
+
+5. **将生产的内容写入NativeWindowBuffer**。
     1. 从NativeWindow中获取NativeWindowBuffer
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
@@ -176,38 +187,46 @@ libnative_buffer.so
     OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
     
     BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
-    int code = SET_BUFFER_GEOMETRY;
-    int32_t width = 0x100;
-    int32_t height = 0x100;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
     ```
-    3. 将生产的内容写入NativeWindowBuffer
+    2. 将生产的内容写入NativeWindowBuffer
     ```c++
+    #include <sys/mman.h>
+    
+    // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
+    void* mappedAddr = mmap(handle->virAddr, handle->size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd, 0);
+    if (mappedAddr == MAP_FAILED) {
+        // mmap failed
+    }
     static uint32_t value = 0x00;
     value++;
-    uint32_t *pixel = static_cast<uint32_t *>(handle->virAddr);
+    uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
     for (uint32_t x = 0; x < width; x++) {
         for (uint32_t y = 0;  y < height; y++) {
             *pixel++ = value;
         }
     }
+    // 内存使用完记得去掉内存映射
+    int result = munmap(mappedAddr, handle->size);
+    if (result == -1) {
+        // munmap failed
+    }
     ```
-    4. 将NativeWindowBuffer提交到NativeWindow
+    3. 将NativeWindowBuffer提交到NativeWindow
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为NativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
     ```
-    5. 用完需要销毁NativeWindow
+    4. 用完需要销毁NativeWindow
     ```c++
     OH_NativeWindow_DestroyNativeWindow(nativeWindow);
     ```
 
-5. **更新内容到OpenGL纹理**。
+6. **更新内容到OpenGL纹理**。
     ```c++
     // 更新内容到OpenGL纹理。
-    int32_t ret = OH_NativeImage_UpdateSurfaceImage(image);
+    ret = OH_NativeImage_UpdateSurfaceImage(image);
     if (ret != 0) {
         std::cout << "OH_NativeImage_UpdateSurfaceImage failed" << std::endl;
     }
@@ -220,7 +239,7 @@ libnative_buffer.so
     }
     ```
 
-6. **解绑OpenGL纹理，绑定到新的外部纹理上**。
+7. **解绑OpenGL纹理，绑定到新的外部纹理上**。
     ```c++
     // 将OH_NativeImage实例从当前OpenGL ES上下文分离
     ret = OH_NativeImage_DetachContext(image);
@@ -233,7 +252,7 @@ libnative_buffer.so
     ret = OH_NativeImage_AttachContext(image, textureId2);
     ```
 
-7. **OH_NativeImage实例使用完需要销毁掉**。
+8. **OH_NativeImage实例使用完需要销毁掉**。
     ```c++
     // 销毁OH_NativeImage实例
     OH_NativeImage_Destroy(&image);

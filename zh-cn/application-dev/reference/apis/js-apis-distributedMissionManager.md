@@ -35,34 +35,35 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 **示例：**
 
   ```ts
-  function NotifyMissionsChanged(deviceId) {
-      console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
+  function NotifyMissionsChanged(deviceId: string): void {
+    console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
-  function NotifySnapshot(deviceId, missionId) {
-      console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
-      console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
+  function NotifySnapshot(deviceId: string, missionId: number): void {
+    console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
+    console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
   }
-  function NotifyNetDisconnect(deviceId, state) {
-      console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
-      console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
-  }
-  var parameter =  {
-      deviceId: ""
-  };
-  var options = {
-      notifyMissionsChanged: NotifyMissionsChanged,
-      notifySnapshot: NotifySnapshot,
-      notifyNetDisconnect: NotifyNetDisconnect
+  function NotifyNetDisconnect(deviceId: string, state: number): void {
+    console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
+    console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
-      distributedMissionManager.registerMissionListener(parameter, options, (error) => {
-          if (error.code != 0) {
-              console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('registerMissionListener finished')
-      })
+    distributedMissionManager.registerMissionListener(
+      { deviceId: "" },
+      {
+        notifyMissionsChanged: NotifyMissionsChanged,
+        notifySnapshot: NotifySnapshot,
+        notifyNetDisconnect: NotifyNetDisconnect
+      },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('registerMissionListener finished')
+      });
   } catch (error) {
-      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+    console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
   }
   ```
 ## distributedMissionManager.registerMissionListener
@@ -91,30 +92,29 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 **示例：**
 
   ```ts
-  function NotifyMissionsChanged(deviceId) {
-      console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
+  function NotifyMissionsChanged(deviceId: string): void {
+    console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
-  function NotifySnapshot(deviceId, missionId) {
-      console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
-      console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
+  function NotifySnapshot(deviceId: string, missionId: number): void {
+    console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
+    console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
   }
-  function NotifyNetDisconnect(deviceId, state) {
-      console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
-      console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
-  }
-  var parameter =  {
-      deviceId: ""
-  };
-  var options = {
-      notifyMissionsChanged: NotifyMissionsChanged,
-      notifySnapshot: NotifySnapshot,
-      notifyNetDisconnect: NotifyNetDisconnect
+  function NotifyNetDisconnect(deviceId: string, state: number): void {
+    console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
+    console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
-      distributedMissionManager.registerMissionListener(parameter, options)
-      .then(data => {
+      distributedMissionManager.registerMissionListener(
+        { deviceId: "" },
+        {
+          notifyMissionsChanged: NotifyMissionsChanged,
+          notifySnapshot: NotifySnapshot,
+          notifyNetDisconnect: NotifyNetDisconnect
+        }).then((data: void) => {
           console.info('registerMissionListener finished, ' + JSON.stringify(data));
-      }).catch(error => {
+      }).catch((error: BusinessError) => {
           console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
@@ -142,16 +142,17 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: ""
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
-          if (error.code != 0) {
-              console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('unRegisterMissionListener finished')
-      })
+    distributedMissionManager.unRegisterMissionListener(
+      { deviceId: "" },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+            console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('unRegisterMissionListener finished')
+    })
   } catch (error) {
       console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
   }
@@ -182,16 +183,14 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: ""
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.unRegisterMissionListener(parameter)
-      .then(data => {
-          console.info('unRegisterMissionListener finished, ' + JSON.stringify(data));
-      }).catch(error => {
-          console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
-      })
+    distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
+      console.info('unRegisterMissionListener finished successfully');
+    }).catch((error: BusinessError) => {
+        console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
+    })
   } catch (error) {
       console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
   }
@@ -217,20 +216,23 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: "",
-      fixConflict: false, 
-      tag: 0
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.startSyncRemoteMissions(parameter, (error) => {
-          if (error.code != 0) {
-              console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('startSyncRemoteMissions finished')
-      })
+    distributedMissionManager.startSyncRemoteMissions(
+      {
+        deviceId: "",
+        fixConflict: false,
+        tag: 0
+      },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('startSyncRemoteMissions finished')}
+    )
   } catch (error) {
-      console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -259,20 +261,22 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: "",
-      fixConflict: false, 
-      tag: 0
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.startSyncRemoteMissions(parameter)
-      .then(data => {
-          console.info('startSyncRemoteMissions finished, ' + JSON.stringify(data));
-      }).catch(error => {
-          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
-      })
+    distributedMissionManager.startSyncRemoteMissions(
+      {
+        deviceId: "",
+        fixConflict: false,
+        tag: 0
+      }
+    ).then(() => {
+        console.info('startSyncRemoteMissions finished successfully');
+      }).catch((error: BusinessError) => {
+      console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+    })
   } catch (error) {
-      console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -296,18 +300,21 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: ""
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.stopSyncRemoteMissions(parameter, (error) => {
-          if (error.code != 0) {
-              console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('stopSyncRemoteMissions finished')
-      })
+    distributedMissionManager.stopSyncRemoteMissions(
+      {
+        deviceId: ""
+      },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('stopSyncRemoteMissions finished')}
+    )
   } catch (error) {
-      console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -336,18 +343,19 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      deviceId: ""
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.stopSyncRemoteMissions(parameter)
-      .then(data => {
-          console.info('stopSyncRemoteMissions finished, ' + JSON.stringify(data));
-      }).catch(error => {
-          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
-      })
+    distributedMissionManager.stopSyncRemoteMissions(
+      {
+        deviceId: ""
+      }).then((data: void) => {
+        console.info('stopSyncRemoteMissions finished successfully');
+      }).catch((error: BusinessError) => {
+      console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+    })
   } catch (error) {
-      console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -385,27 +393,28 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 **示例：**
 
   ```ts
-  var parameter =  {
-      srcDeviceId: "",
-      dstDeviceId: "",
-      missionId: 1,
-      wantParam: {"key": "value"}
-  };
-  function onContinueDone(resultCode) {
-      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
-  };
-  var options = {
-      onContinueDone: onContinueDone
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
+  function onContinueDone(resultCode: number): void {
+    console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
-      distributedMissionManager.continueMission(parameter, options, (error) => {
-          if (error.code != 0) {
-              console.error('continueMission failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('continueMission finished')
-      })
+    distributedMissionManager.continueMission(
+      {
+        srcDeviceId: "",
+        dstDeviceId: "",
+        missionId: 1,
+        wantParam: {"key": "value"}
+      },
+      { onContinueDone: onContinueDone },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('continueMission finished')
+    })
   } catch (error) {
-      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -448,27 +457,26 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 **示例：**
 
   ```ts
-  var parameter =  {
-      srcDeviceId: "",
-      dstDeviceId: "",
-      missionId: 1,
-      wantParam: {"key": "value"}
-  };
-  function onContinueDone(resultCode) {
-      console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
-  };
-  var options = {
-      onContinueDone: onContinueDone
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
+  function onContinueDone(resultCode: number): void {
+    console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
-      distributedMissionManager.continueMission(parameter, options)
-      .then(data => {
-          console.info('continueMission finished, ' + JSON.stringify(data));
-      }).catch(error => {
-          console.error('continueMission failed, cause: ' + JSON.stringify(error));
-      })
+    distributedMissionManager.continueMission(
+      {
+        srcDeviceId: "",
+        dstDeviceId: "",
+        missionId: 1,
+        wantParam: {"key": "value"}
+      },
+      { onContinueDone: onContinueDone }).then(() => {
+        console.info('continueMission finished successfully');
+      }).catch((error: BusinessError) => {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error));
+    })
   } catch (error) {
-      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -505,21 +513,24 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var parameter =  {
-      srcDeviceId: "",
-      dstDeviceId: "",
-      bundleName: "ohos.test.continueapp",
-      wantParam: {"key": "value"}
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.continueMission(parameter, (error) => {
-          if (error.code != 0) {
-              console.error('continueMission failed, cause: ' + JSON.stringify(error))
-          }
-          console.info('continueMission finished')
-      })
+    distributedMissionManager.continueMission(
+      {
+        srcDeviceId: "",
+        dstDeviceId: "",
+        bundleName: "ohos.test.continueapp",
+        wantParam: {"key": "value"}
+      },
+      (error: BusinessError) => {
+        if (error.code != 0) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        }
+        console.info('continueMission finished')
+    })
   } catch (error) {
-      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error))
   }
   ```
 
@@ -561,17 +572,19 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  var parameter =  {
-      srcDeviceId: "",
-      dstDeviceId: "",
-      bundleName: "ohos.test.continueapp",
-      wantParam: {"key": "value"}
-  };
+  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import { BusinessError } from '@ohos.base';
   try {
-      distributedMissionManager.continueMission(parameter)
-      .then(data => {
-          console.info('continueMission finished, ' + JSON.stringify(data));
-      }).catch(error => {
+      distributedMissionManager.continueMission(
+        {
+          srcDeviceId: "",
+          dstDeviceId: "",
+          bundleName: "ohos.test.continueapp",
+          wantParam: {"key": "value"}
+        }
+      ).then(() => {
+          console.info('continueMission finished successfully');
+      }).catch((error: BusinessError) => {
           console.error('continueMission failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
@@ -599,12 +612,13 @@ on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, i
 **示例：**
 
 ```js
+  import distributedMissionManager from '@ohos.distributedMissionManager'
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
       console.info("continueStateChange on:" + JSON.stringify(data));
     });
-  } catch (err) {
-    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  } catch (error) {
+    console.error("continueStateChange err: " + JSON.stringify(error));
   }
   ```
 
@@ -628,12 +642,13 @@ off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState,
 **示例：**
 
 ```js
+  import distributedMissionManager from '@ohos.distributedMissionManager'
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
-      console.info("continueStateChange on:" + JSON.stringify(data));
+      console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("continueStateChange err: " + JSON.stringify(error));
   }
   ```
 

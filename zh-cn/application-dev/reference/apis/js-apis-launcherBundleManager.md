@@ -63,7 +63,9 @@ try {
         }
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -115,7 +117,9 @@ try {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -157,12 +161,15 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
     console.log("data is " + JSON.stringify(data));
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -214,7 +221,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
@@ -263,7 +272,9 @@ try {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -313,7 +324,9 @@ try {
         }
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -361,7 +374,9 @@ try {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -399,11 +414,14 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 ```ts
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
     console.log("data is " + JSON.stringify(data));
 } catch (errData) {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```

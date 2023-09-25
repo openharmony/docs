@@ -17,7 +17,7 @@ This subsystem offers the following audio and video services:
 
 ## Modules to Import
 
-```js
+```ts
 import media from '@ohos.multimedia.media';
 ```
 
@@ -45,10 +45,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createAVPlayer((error, video) => {
+let avPlayer: media.AVPlayer;
+media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
     console.info('createAVPlayer success');
@@ -82,17 +83,18 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createAVPlayer().then((video) => {
+let avPlayer: media.AVPlayer;
+media.createAVPlayer().then((video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
     console.info('createAVPlayer success');
   } else {
     console.error('createAVPlayer fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`AVPlayer catchCallback, error message:${error.message}`);
 });
 ```
@@ -122,10 +124,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avRecorder;
+```ts
+let avRecorder: media.AVRecorder;
 
-media.createAVRecorder((error, recorder) => {
+media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
     console.info('createAVRecorder success');
@@ -160,17 +162,17 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let avRecorder;
+```ts
+let avRecorder: media.AVRecorder;
 
-media.createAVRecorder().then((recorder) => {
+media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
     console.info('createAVRecorder success');
   } else {
     console.error('createAVRecorder fail');
   }
-}).catch((error) => {
+}).catch((error: Error) => {
   console.error(`createAVRecorder catchCallback, error message:${error.message}`);
 });
 ```
@@ -202,10 +204,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let videoRecorder;
+```ts
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder((error, video) => {
+media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
@@ -242,18 +244,114 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let videoRecorder;
+```ts
+let videoRecorder: media.VideoRecorder;
 
-media.createVideoRecorder().then((video) => {
+media.createVideoRecorder().then((video: media.VideoRecorder) => {
   if (video != null) {
     videoRecorder = video;
     console.info('video createVideoRecorder success');
   } else {
     console.error('video createVideoRecorder fail');
   }
-}).catch((error) => {
+}).catch((error: Error) => {
   console.error(`video catchCallback, error message:${error.message}`);
+});
+```
+
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, callback: AsyncCallback\<SoundPool>): void
+
+Creates a **SoundPool** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+| callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md#SoundPool)> | Yes  | Callback used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**Example**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.info(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+  }
+});
+```
+
+## media.createSoundPool<sup>10+</sup>
+
+createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+Creates a **SoundPool** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
+| audioRenderInfo | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+
+**Return value**
+
+| Type                                     | Description                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)> | Promise used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**Example**
+
+```js
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  content : audio.ContentType.CONTENT_TYPE_SPEECH,
+  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+  rendererFlags : 1
+}
+
+media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('create SoundPool success');
+  } else {
+    console.error('create SoundPool fail');
+  }
+}).catch((error) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -366,8 +464,8 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default value of **contentType** is **CONTENT_TYPE_MUSIC**, and the default value of **streamUsage** is **STREAM_USAGE_MEDIA**.<br>It can be set only when the AVPlayer is in the initialized state.|
-| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **contentType** and **streamUsage** of **audioRendererInfo** are changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **content**, **usage**, and **rendererFlags** are **CONTENT_TYPE_MUSIC**, **STREAM_USAGE_MEDIA**, and **0**, respectively.<br>It can be set only when the AVPlayer is in the initialized state.|
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **content** and **usage** of **audioRendererInfo** are changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
@@ -395,8 +493,8 @@ Subscribes to AVPlayer state changes.
 
 **Example**
 
-```js
-avPlayer.on('stateChange', async (state, reason) => {
+```ts
+avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
       console.info('state idle called')
@@ -448,7 +546,7 @@ Unsubscribes from AVPlayer state changes.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('stateChange')
 ```
 
@@ -483,8 +581,8 @@ The AVPlayer provides the following error types<a name = error_info></a>:
 
 **Example**
 
-```js
-avPlayer.on('error', (error) => {
+```ts
+avPlayer.on('error', (error: BusinessError) => {
   console.error('error happened,and error message is :' + error.message)
   console.error('error happened,and error code is :' + error.code)
 })
@@ -506,7 +604,7 @@ Unsubscribes from AVPlayer errors.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('error')
 ```
 
@@ -535,8 +633,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.prepare((err) => {
+```ts
+avPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -570,10 +668,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.prepare().then(() => {
   console.info('prepare success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('prepare filed,error message is :' + err.message)
 })
 ```
@@ -602,8 +700,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.play((err) => {
+```ts
+avPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success');
   } else {
@@ -636,10 +734,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.play().then(() => {
   console.info('play success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('play filed,error message is :' + err.message)
 })
 ```
@@ -668,8 +766,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.pause((err) => {
+```ts
+avPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success');
   } else {
@@ -702,10 +800,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.pause().then(() => {
   console.info('pause success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('pause filed,error message is :' + err.message)
 })
 ```
@@ -734,8 +832,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.stop((err) => {
+```ts
+avPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success');
   } else {
@@ -768,10 +866,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.stop().then(() => {
   console.info('stop success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('stop filed,error message is :' + err.message)
 })
 ```
@@ -800,8 +898,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.reset((err) => {
+```ts
+avPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success');
   } else {
@@ -834,10 +932,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.reset().then(() => {
   console.info('reset success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('reset filed,error message is :' + err.message)
 })
 ```
@@ -866,8 +964,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avPlayer.release((err) => {
+```ts
+avPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('reset success');
   } else {
@@ -900,10 +998,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avPlayer.release().then(() => {
   console.info('release success');
-}, (err) => {
+}, (err: BusinessError) => {
   console.error('release filed,error message is :' + err.message)
 })
 ```
@@ -932,20 +1030,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-
-avPlayer.getTrackDescription((error, arrList) => {
+```ts
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.info('getTrackDescription success');
   } else {
     console.log(`video getTrackDescription fail, error:${error}`);
   }
@@ -976,28 +1064,12 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let arrayDescription;
-
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-avPlayer.getTrackDescription().then((arrList) => {
-  if (arrList != null) {
-    arrayDescription = arrList;
-  } else {
-    console.log('video getTrackDescription fail');
-  }
-}).catch((error) => {
+```ts
+avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+  console.info('getTrackDescription success');
+}).catch((error: BusinessError) => {
   console.info(`video catchCallback, error:${error}`);
 });
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### seek<sup>9+</sup><a name=avplayer_seek></a>
@@ -1018,8 +1090,8 @@ This API is not supported in live mode.
 
 **Example**
 
-```js
-let seekTime = 1000
+```ts
+let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
@@ -1040,7 +1112,7 @@ Subscribes to the event to check whether the seek operation takes effect.
 
 **Example**
 
-```js
+```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
   console.info('seekDone success,and seek time is:' + seekDoneTime)
 })
@@ -1062,7 +1134,7 @@ Unsubscribes from the event that checks whether the seek operation takes effect.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('seekDone')
 ```
 
@@ -1083,7 +1155,7 @@ This API is not supported in live mode.
 
 **Example**
 
-```js
+```ts
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
 ```
 
@@ -1104,7 +1176,7 @@ Subscribes to the event to check whether the playback speed is successfully set.
 
 **Example**
 
-```js
+```ts
 avPlayer.on('speedDone', (speed:number) => {
   console.info('speedDone success,and speed value is:' + speed)
 })
@@ -1126,7 +1198,7 @@ Unsubscribes from the event that checks whether the playback speed is successful
 
 **Example**
 
-```js
+```ts
 avPlayer.off('speedDone')
 ```
 
@@ -1146,8 +1218,8 @@ Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. Th
 
 **Example**
 
-```js
-let bitrate = 96000
+```ts
+let bitrate: number = 96000
 avPlayer.setBitrate(bitrate)
 ```
 
@@ -1168,7 +1240,7 @@ Subscribes to the event to check whether the bit rate is successfully set.
 
 **Example**
 
-```js
+```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
   console.info('bitrateDone success,and bitrate value is:' + bitrate)
 })
@@ -1190,7 +1262,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 
 **Example**
 
-```js
+```ts
 avPlayer.off('bitrateDone')
 ```
 
@@ -1211,7 +1283,7 @@ Subscribes to available bit rates of HLS streams. This event is reported only af
 
 **Example**
 
-```js
+```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
   console.info('availableBitrates success,and availableBitrates length is:' + bitrates.length)
 })
@@ -1233,7 +1305,7 @@ Unsubscribes from available bit rates of HLS streams.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('availableBitrates')
 ```
 
@@ -1253,8 +1325,8 @@ Sets the volume. This API can be called only when the AVPlayer is in the prepare
 
 **Example**
 
-```js
-let volume = 1.0
+```ts
+let volume: number = 1.0
 avPlayer.setVolume(volume)
 ```
 
@@ -1275,8 +1347,8 @@ Subscribes to the event to check whether the volume is successfully set.
 
 **Example**
 
-```js
-avPlayer.on('volumeChange', (vol:number) => {
+```ts
+avPlayer.on('volumeChange', (vol: number) => {
   console.info('volumeChange success,and new volume is :' + vol)
 })
 ```
@@ -1297,7 +1369,7 @@ Unsubscribes from the event that checks whether the volume is successfully set.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('volumeChange')
 ```
 
@@ -1318,7 +1390,7 @@ Subscribes to the event that indicates the end of the stream being played. If **
 
 **Example**
 
-```js
+```ts
 avPlayer.on('endOfStream', () => {
   console.info('endOfStream success')
 })
@@ -1340,7 +1412,7 @@ Unsubscribes from the event that indicates the end of the stream being played.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('endOfStream')
 ```
 
@@ -1362,7 +1434,7 @@ The **'timeUpdate'** event is not supported in live mode.
 
 **Example**
 
-```js
+```ts
 avPlayer.on('timeUpdate', (time:number) => {
   console.info('timeUpdate success,and new time is :' + time)
 })
@@ -1384,7 +1456,7 @@ Unsubscribes from playback position changes.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('timeUpdate')
 ```
 
@@ -1406,8 +1478,8 @@ The **'durationUpdate'** event is not supported in live mode.
 
 **Example**
 
-```js
-avPlayer.on('durationUpdate', (duration) => {
+```ts
+avPlayer.on('durationUpdate', (duration: number) => {
   console.info('durationUpdate success,new duration is :' + duration)
 })
 ```
@@ -1428,7 +1500,7 @@ Unsubscribes from media asset duration changes.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('durationUpdate')
 ```
 
@@ -1449,7 +1521,7 @@ Subscribes to audio and video buffer changes. This subscription is supported onl
 
 **Example**
 
-```js
+```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.info('bufferingUpdate success,and infoType value is:' + infoType + ', value is :' + value)
 })
@@ -1471,7 +1543,7 @@ Unsubscribes from audio and video buffer changes.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('bufferingUpdate')
 ```
 
@@ -1492,7 +1564,7 @@ Subscribes to the event that indicates rendering starts for the first frame. Thi
 
 **Example**
 
-```js
+```ts
 avPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame success')
 })
@@ -1514,7 +1586,7 @@ Unsubscribes from the event that indicates rendering starts for the first frame.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('startRenderFrame')
 ```
 
@@ -1535,7 +1607,7 @@ Subscribes to video size (width and height) changes. This subscription is suppor
 
 **Example**
 
-```js
+```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
   console.info('videoSizeChange success,and width is:' + width + ', height is :' + height)
 })
@@ -1557,7 +1629,7 @@ Unsubscribes from video size changes.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('videoSizeChange')
 ```
 
@@ -1578,7 +1650,7 @@ Subscribes to the audio interruption event. When multiple audio and video assets
 
 **Example**
 
-```js
+```ts
 import audio from '@ohos.multimedia.audio';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
@@ -1602,7 +1674,7 @@ Unsubscribes from the audio interruption event.
 
 **Example**
 
-```js
+```ts
 avPlayer.off('audioInterrupt')
 ```
 
@@ -1690,17 +1762,21 @@ Defines media information in key-value mode.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | Yes  | For details about the key range supported and the object type and range of each key, see [MediaDescriptionKey](#mediadescriptionkey8).|
+
 **Example**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-function printfItemDescription(obj, key) {
-  let property = obj[key];
+function printfItemDescription(obj: media.MediaDescription, key: string) {
+  let property: Object = obj[key];
   console.info('audio key is ' + key); // Specify a key. For details about the keys, see [MediaDescriptionKey].
   console.info('audio value is ' + property); // Obtain the value of the key. The value can be any type. For details about the types, see [MediaDescriptionKey].
 }
-let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrList) => {
+
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
     for (let i = 0; i < arrList.length; i++) {
       printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
@@ -1763,9 +1839,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile = {
+let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1777,7 +1853,7 @@ let AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig = {
+let AVRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
@@ -1786,7 +1862,7 @@ let AVRecorderConfig = {
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig, (err) => {
+avRecorder.prepare(AVRecorderConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -1834,9 +1910,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile = {
+let AVRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -1848,21 +1924,20 @@ let AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig = {
+let AVRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : AVRecorderProfile,
-  url : 'fd://',  // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
+  url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
 
 avRecorder.prepare(AVRecorderConfig).then(() => {
   console.info('prepare success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
-
 ```
 
 ### getInputSurface<sup>9+</sup><a name=avrecorder_getinputsurface></a>
@@ -1895,10 +1970,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
+```ts
+let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-avRecorder.getInputSurface((err, surfaceId) => {
+avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -1939,13 +2014,13 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
+```ts
+let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-avRecorder.getInputSurface().then((surfaceId) => {
+avRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -1978,8 +2053,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.start((err) => {
+```ts
+avRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start AVRecorder success');
   } else {
@@ -2016,10 +2091,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('start AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2052,8 +2127,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.pause((err) => {
+```ts
+avRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause AVRecorder success');
   } else {
@@ -2090,10 +2165,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('pause AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2126,8 +2201,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.resume((err) => {
+```ts
+avRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume AVRecorder success');
   } else {
@@ -2164,10 +2239,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('resume AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2202,8 +2277,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.stop((err) => {
+```ts
+avRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop AVRecorder success');
   } else {
@@ -2242,10 +2317,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('stop AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2277,8 +2352,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.reset((err) => {
+```ts
+avRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset AVRecorder success');
   } else {
@@ -2314,10 +2389,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('reset AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2348,8 +2423,8 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-avRecorder.release((err) => {
+```ts
+avRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release AVRecorder success');
   } else {
@@ -2384,10 +2459,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('release AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2409,8 +2484,8 @@ Subscribes to AVRecorder state changes. An application can subscribe to only one
 
 **Example**
 
-```js
-avRecorder.on('stateChange', async (state, reason) => {
+```ts
+avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.StateChangeReason) => {
   console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
 });
 ```
@@ -2431,7 +2506,7 @@ Unsubscribes from AVRecorder state changes.
 
 **Example**
 
-```js
+```ts
 avRecorder.off('stateChange');
 ```
 
@@ -2456,15 +2531,19 @@ An application can subscribe to only one AVRecorder error event. When the applic
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                         |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
+| ID       | Error Message                                      |
+| -------- | ------------------------------------------------   |
+| 5400101  | No memory. Return by callback.                     |
+| 5400102  | Operation not allowed. Return by callback.         |
+| 5400103  | I/O error. Return by callback.                     |
+| 5400104  | Time out. Return by callback.                      |
+| 5400105  | Service died. Return by callback.                  |
+| 5400106  | Unsupport format. Return by callback.              |
 
 **Example**
 
-```js
-avRecorder.on('error', (err) => {
+```ts
+avRecorder.on('error', (err: BusinessError) => {
   console.error('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
 ```
@@ -2487,14 +2566,18 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message                         |
-| -------- | --------------------------------- |
-| 5400103  | IO error. Return by callback.     |
-| 5400105  | Service died. Return by callback. |
+| ID       | Error Message                                      |
+| -------- | ------------------------------------------------   |
+| 5400101  | No memory. Return by callback.                     |
+| 5400102  | Operation not allowed. Return by callback.         |
+| 5400103  | I/O error. Return by callback.                     |
+| 5400104  | Time out. Return by callback.                      |
+| 5400105  | Service died. Return by callback.                  |
+| 5400106  | Unsupport format. Return by callback.              |
 
 **Example**
 
-```js
+```ts
 avRecorder.off('error');
 ```
 
@@ -2539,16 +2622,16 @@ Describes the audio and video recording profile.
 
 | Name            | Type                                        | Mandatory| Description                                                        |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.                        |
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.                        |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. The value range is [8000 - 384000].|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. The value range is [1 - 2].       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Only **AUDIO_AAC** is supported.     |
-| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.                            |
+| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].|
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
-| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording.                        |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. You need to query the encoding capabilities (including the encoding format and resolution) supported by the device.|
-| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording.                            |
-| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording.                            |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording.                              |
+| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000]. |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Only **VIDEO_MPEG4** is supported.   |
+| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1920].        |
+| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].        |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].            |
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -2644,9 +2727,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2659,7 +2742,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2669,7 +2752,7 @@ let videoConfig = {
 }
 
 // asyncallback
-videoRecorder.prepare(videoConfig, (err) => {
+videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -2715,9 +2798,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // Configure the parameters based on those supported by the hardware device.
-let videoProfile = {
+let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : 'audio/mp4a-latm',
@@ -2730,7 +2813,7 @@ let videoProfile = {
   videoFrameRate : 30
 }
 
-let videoConfig = {
+let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : 1,
   videoSourceType : 0,
   profile : videoProfile,
@@ -2742,7 +2825,7 @@ let videoConfig = {
 // promise
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
@@ -2779,10 +2862,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-let surfaceID = null;                                               // Surface ID passed to the external system.
-videoRecorder.getInputSurface((err, surfaceId) => {
+let surfaceID: string;                                               // Surface ID passed to the external system.
+videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
@@ -2824,13 +2907,13 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
-let surfaceID = null;                                               // Surface ID passed to the external system.
-videoRecorder.getInputSurface().then((surfaceId) => {
+let surfaceID: string;                                               // Surface ID passed to the external system.
+videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -2865,9 +2948,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.start((err) => {
+videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
   } else {
@@ -2906,11 +2989,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('start videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2945,9 +3028,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.pause((err) => {
+videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
   } else {
@@ -2986,11 +3069,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('pause videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3023,9 +3106,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.resume((err) => {
+videoRecorder.resume((err: Error) => {
   if (err == null) {
     console.info('resume videorecorder success');
   } else {
@@ -3062,11 +3145,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('resume videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3101,9 +3184,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.stop((err) => {
+videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
   } else {
@@ -3142,11 +3225,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('stop videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3177,9 +3260,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.release((err) => {
+videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
   } else {
@@ -3214,11 +3297,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('release videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3252,9 +3335,9 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // asyncallback
-videoRecorder.reset((err) => {
+videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
   } else {
@@ -3292,11 +3375,11 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
-}).catch((err) => {
+}).catch((err: Error) => {
   console.error('reset videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3327,10 +3410,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 // This event is reported when an error occurs during the retrieval of videoRecordState.
-videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
-  console.error(`audio error called, error: ${error}`); 
+videoRecorder.on('error', (error: Error) => {                                  // Set the 'error' event callback.
+  console.error(`audio error called, error: ${error}`);
 })
 ```
 
@@ -3355,7 +3438,7 @@ Enumerates the video recording states. You can obtain the state through the **st
 
 Describes the video recording parameters.
 
-The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording recording, use **[AVRecorder](#avrecorder9)** or **[AudioRecorder](#audiorecorderdeprecated)**.) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use **[AVRecorder](#avrecorder9)** or **[AudioRecorder](#audiorecorderdeprecated)**.) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3411,8 +3494,8 @@ Creates an **AudioPlayer** instance in synchronous mode.
 
 **Example**
 
-```js
-let audioPlayer = media.createAudioPlayer();
+```ts
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
 ## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
@@ -3435,10 +3518,11 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 **Example**
 
-```js
-let videoPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createVideoPlayer((error, video) => {
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
     console.info('video createVideoPlayer success');
@@ -3468,17 +3552,18 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 
 **Example**
 
-```js
-let videoPlayer;
+```ts
+import { BusinessError } from '@ohos.base';
 
-media.createVideoPlayer().then((video) => {
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer().then((video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
     console.info('video createVideoPlayer success');
   } else {
     console.error('video createVideoPlayer fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -3504,8 +3589,8 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Example**
 
-```js
-let audioRecorder = media.createAudioRecorder();
+```ts
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
 ## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
@@ -3563,7 +3648,7 @@ Starts to play an audio asset. This API can be called only after the [dataLoad](
 
 **Example**
 
-```js
+```ts
 audioPlayer.on('play', () => {    // Set the 'play' event callback.
   console.log('audio play success');
 });
@@ -3580,7 +3665,7 @@ Pauses audio playback.
 
 **Example**
 
-```js
+```ts
 audioPlayer.on('pause', () => {    // Set the 'pause' event callback.
   console.log('audio pause success');
 });
@@ -3597,7 +3682,7 @@ Stops audio playback.
 
 **Example**
 
-```js
+```ts
 audioPlayer.on('stop', () => {    // Set the 'stop' event callback.
   console.log('audio stop success');
 });
@@ -3614,7 +3699,7 @@ Resets the audio asset to be played.
 
 **Example**
 
-```js
+```ts
 audioPlayer.on('reset', () => {    // Set the 'reset' event callback.
   console.log('audio reset success');
 });
@@ -3637,8 +3722,8 @@ Seeks to the specified playback position.
 
 **Example**
 
-```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
+```ts
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    // Set the 'timeUpdate' event callback.
   if (seekDoneTime == null) {
     console.info('audio seek fail');
     return;
@@ -3664,7 +3749,7 @@ Sets the volume.
 
 **Example**
 
-```js
+```ts
 audioPlayer.on('volumeChange', () => {    // Set the 'volumeChange' event callback.
   console.log('audio volumeChange success');
 });
@@ -3681,7 +3766,7 @@ Releases the audio playback resources.
 
 **Example**
 
-```js
+```ts
 audioPlayer.release();
 audioPlayer = undefined;
 ```
@@ -3702,20 +3787,10 @@ Obtains the audio track information. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-
-audioPlayer.getTrackDescription((error, arrList) => {
+```ts
+audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.log('audio getTrackDescription success');
   } else {
     console.log(`audio getTrackDescription fail, error:${error}`);
   }
@@ -3738,28 +3813,12 @@ Obtains the audio track information. This API uses a promise to return the resul
 
 **Example**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('audio key is ' + item);
-    console.info('audio value is ' + property);
-  }
-}
-let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrList) => {
-  if (arrList != null) {
-    arrayDescription = arrList;
-  } else {
-    console.log('audio getTrackDescription fail');
-  }
-}).catch((error) => {
+```ts
+audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+  console.log('audio getTrackDescription success');
+}).catch((error: BusinessError) => {
   console.info(`audio catchCallback, error:${error}`);
 });
-
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### on('bufferingUpdate')<sup>8+</sup>
@@ -3779,8 +3838,8 @@ Subscribes to the audio buffering update event. This API works only under online
 
 **Example**
 
-```js
-audioPlayer.on('bufferingUpdate', (infoType, value) => {
+```ts
+audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.log('audio bufferingInfo type: ' + infoType);
   console.log('audio bufferingInfo value: ' + value);
 });
@@ -3803,10 +3862,11 @@ Subscribes to the audio playback events.
 
 **Example**
 
-```js
+```ts
 import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-let audioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
+let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
 audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
   console.info('audio set source success');
   audioPlayer.play();                       // Start the playback and trigger the 'play' event callback.
@@ -3824,7 +3884,7 @@ audioPlayer.on('reset', () => {               // Set the 'reset' event callback.
   audioPlayer.release();                    // Release the AudioPlayer instance.
   audioPlayer = undefined;
 });
-audioPlayer.on('timeUpdate', (seekDoneTime) => {  // Set the 'timeUpdate' event callback.
+audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  // Set the 'timeUpdate' event callback.
   if (seekDoneTime == null) {
     console.info('audio seek fail');
     return;
@@ -3840,7 +3900,7 @@ audioPlayer.on('finish', () => {               // Set the 'finish' event callbac
   console.info('audio play finish');
   audioPlayer.stop();                        // Stop the playback and trigger the 'stop' event callback.
 });
-audioPlayer.on('error', (error) => {           // Set the 'error' event callback.
+audioPlayer.on('error', (error: BusinessError) => {           // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 });
 
@@ -3852,9 +3912,9 @@ fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('open fd success fd is' + fdPath);
   audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
-}, (err) => {
+}, (err: BusinessError) => {
   console.info('open fd failed err is' + err);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.info('open fd failed err is' + err);
 });
 ```
@@ -3876,8 +3936,8 @@ Subscribes to the **'timeUpdate'** event. This event is reported every second wh
 
 **Example**
 
-```js
-audioPlayer.on('timeUpdate', (newTime) => {    // Set the 'timeUpdate' event callback.
+```ts
+audioPlayer.on('timeUpdate', (newTime: number) => {    // Set the 'timeUpdate' event callback.
   if (newTime == null) {
     console.info('audio timeUpadate fail');
     return;
@@ -3904,8 +3964,8 @@ Subscribes to audio playback error events. After an error event is reported, you
 
 **Example**
 
-```js
-audioPlayer.on('error', (error) => {      // Set the 'error' event callback.
+```ts
+audioPlayer.on('error', (error: BusinessError) => {      // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'error' event.
@@ -3960,7 +4020,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
-**SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -3973,9 +4033,9 @@ Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-let surfaceId = null;
-videoPlayer.setDisplaySurface(surfaceId, (err) => {
+```ts
+let surfaceId: string = '';
+videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
   if (err == null) {
     console.info('setDisplaySurface success!');
   } else {
@@ -3990,7 +4050,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 Sets **SurfaceId**. This API uses a promise to return the result.
 
-**SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4008,11 +4068,11 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let surfaceId = null;
+```ts
+let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
   console.info('setDisplaySurface success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4033,8 +4093,8 @@ Prepares for video playback. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
-videoPlayer.prepare((err) => {
+```ts
+videoPlayer.prepare((err: BusinessError) => {
   if (err == null) {
     console.info('prepare success!');
   } else {
@@ -4059,10 +4119,10 @@ Prepares for video playback. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 videoPlayer.prepare().then(() => {
   console.info('prepare success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4083,8 +4143,8 @@ Starts to play video assets. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
-videoPlayer.play((err) => {
+```ts
+videoPlayer.play((err: BusinessError) => {
   if (err == null) {
     console.info('play success!');
   } else {
@@ -4109,10 +4169,10 @@ Starts to play video assets. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 videoPlayer.play().then(() => {
   console.info('play success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4133,8 +4193,8 @@ Pauses video playback. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```js
-videoPlayer.pause((err) => {
+```ts
+videoPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success!');
   } else {
@@ -4159,10 +4219,10 @@ Pauses video playback. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 videoPlayer.pause().then(() => {
   console.info('pause success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4183,8 +4243,8 @@ Stops video playback. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
-videoPlayer.stop((err) => {
+```ts
+videoPlayer.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop success!');
   } else {
@@ -4209,10 +4269,10 @@ Stops video playback. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 videoPlayer.stop().then(() => {
   console.info('stop success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4233,8 +4293,8 @@ Resets the video asset to be played. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-videoPlayer.reset((err) => {
+```ts
+videoPlayer.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset success!');
   } else {
@@ -4259,10 +4319,10 @@ Resets the video asset to be played. This API uses a promise to return the resul
 
 **Example**
 
-```js
+```ts
 videoPlayer.reset().then(() => {
   console.info('reset success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4284,9 +4344,9 @@ Seeks to the specified playback position. The previous key frame at the specifie
 
 **Example**
 
-```js
-let seekTime = 5000;
-videoPlayer.seek(seekTime, (err, result) => {
+```ts
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('seek success!');
   } else {
@@ -4313,10 +4373,10 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 
 **Example**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-let seekTime = 5000;
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err, result) => {
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('seek success!');
   } else {
@@ -4348,18 +4408,18 @@ Seeks to the specified playback position. If **mode** is not specified, the prev
 
 **Example**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
-let seekTime = 5000;
-videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime indicates the position after the seek operation is complete.
+let seekTime: number = 5000;
+videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime indicates the position after the seek operation is complete.
   console.info('seek success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
   console.info('seek success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4381,9 +4441,9 @@ Sets the volume. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-let vol = 0.5;
-videoPlayer.setVolume(vol, (err, result) => {
+```ts
+let vol: number = 0.5;
+videoPlayer.setVolume(vol, (err: BusinessError) => {
   if (err == null) {
     console.info('setVolume success!');
   } else {
@@ -4414,11 +4474,11 @@ Sets the volume. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let vol = 0.5;
+```ts
+let vol: number = 0.5;
 videoPlayer.setVolume(vol).then(() => {
   console.info('setVolume success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4439,8 +4499,8 @@ Releases the video playback resources. This API uses an asynchronous callback to
 
 **Example**
 
-```js
-videoPlayer.release((err) => {
+```ts
+videoPlayer.release((err: BusinessError) => {
   if (err == null) {
     console.info('release success!');
   } else {
@@ -4465,10 +4525,10 @@ Releases the video playback resources. This API uses a promise to return the res
 
 **Example**
 
-```js
+```ts
 videoPlayer.release().then(() => {
   console.info('release success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4489,20 +4549,10 @@ Obtains the video track information. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('video key is ' + item);
-    console.info('video value is ' + property);
-  }
-}
-
-videoPlayer.getTrackDescription((error, arrList) => {
+```ts
+videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    for (let i = 0; i < arrList.length; i++) {
-      printfDescription(arrList[i]);
-    }
+    console.info('video getTrackDescription success');
   } else {
     console.log(`video getTrackDescription fail, error:${error}`);
   }
@@ -4525,28 +4575,16 @@ Obtains the video track information. This API uses a promise to return the resul
 
 **Example**
 
-```js
-function printfDescription(obj) {
-  for (let item in obj) {
-    let property = obj[item];
-    console.info('video key is ' + item);
-    console.info('video value is ' + property);
-  }
-}
-
-let arrayDescription;
-videoPlayer.getTrackDescription().then((arrList) => {
+```ts
+videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    arrayDescription = arrList;
+    console.info('video getTrackDescription success');
   } else {
     console.log('video getTrackDescription fail');
   }
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.info(`video catchCallback, error:${error}`);
 });
-for (let i = 0; i < arrayDescription.length; i++) {
-  printfDescription(arrayDescription[i]);
-}
 ```
 
 ### setSpeed<sup>8+</sup>
@@ -4566,11 +4604,11 @@ Sets the video playback speed. This API uses an asynchronous callback to return 
 
 **Example**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
-videoPlayer.setSpeed(speed, (err, result) => {
+videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('setSpeed success!');
   } else {
@@ -4601,13 +4639,13 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
 import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
-videoPlayer.setSpeed(speed).then(() => {
+videoPlayer.setSpeed(speed).then((result: number) => {
   console.info('setSpeed success');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
 ```
@@ -4629,7 +4667,7 @@ Subscribes to the video playback completion event.
 
 **Example**
 
-```js
+```ts
 videoPlayer.on('playbackCompleted', () => {
   console.info('playbackCompleted success!');
 });
@@ -4652,8 +4690,8 @@ Subscribes to the video buffering update event. Only network playback supports t
 
 **Example**
 
-```js
-videoPlayer.on('bufferingUpdate', (infoType, value) => {
+```ts
+videoPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.log('video bufferingInfo type: ' + infoType);
   console.log('video bufferingInfo value: ' + value);
 });
@@ -4676,7 +4714,7 @@ Subscribes to the frame rendering start event.
 
 **Example**
 
-```js
+```ts
 videoPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame success!');
 });
@@ -4699,8 +4737,8 @@ Subscribes to the video width and height change event.
 
 **Example**
 
-```js
-videoPlayer.on('videoSizeChanged', (width, height) => {
+```ts
+videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
   console.log('video width is: ' + width);
   console.log('video height is: ' + height);
 });
@@ -4723,8 +4761,8 @@ Subscribes to video playback error events. After an error event is reported, you
 
 **Example**
 
-```js
-videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
+```ts
+videoPlayer.on('error', (error: BusinessError) => {      // Set the 'error' event callback.
   console.error(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  // Set an incorrect URL to trigger the 'error' event.
@@ -4775,8 +4813,8 @@ Prepares for recording.
 
 **Example**
 
-```js
-let audioRecorderConfig = {
+```ts
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4802,7 +4840,7 @@ Starts audio recording. This API can be called only after the [prepare](#audiore
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('start', () => {    // Set the 'start' event callback.
   console.log('audio recorder start success');
 });
@@ -4819,7 +4857,7 @@ Pauses audio recording. This API can be called only after the [start](#audioreco
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('pause', () => {    // Set the 'pause' event callback.
   console.log('audio recorder pause success');
 });
@@ -4836,7 +4874,7 @@ Resumes audio recording. This API can be called only after the [pause](#audiorec
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('resume', () => { // Set the 'resume' event callback.
   console.log('audio recorder resume success');
 });
@@ -4853,7 +4891,7 @@ Stops audio recording.
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('stop', () => {    // Set the 'stop' event callback.
   console.log('audio recorder stop success');
 });
@@ -4870,7 +4908,7 @@ Releases the audio recording resources.
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('release', () => {    // Set the 'release' event callback.
   console.log('audio recorder release success');
 });
@@ -4890,7 +4928,7 @@ Before resetting audio recording, you must call [stop()](#audiorecorder_stop) to
 
 **Example**
 
-```js
+```ts
 audioRecorder.on('reset', () => {    // Set the 'reset' event callback.
   console.log('audio recorder reset success');
 });
@@ -4914,9 +4952,9 @@ Subscribes to the audio recording events.
 
 **Example**
 
-```js
-let audioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
-let audioRecorderConfig = {
+```ts
+let audioRecorder: media.AudioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4925,7 +4963,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                            // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                             // Set the 'error' event callback.
+audioRecorder.on('error', (error: BusinessError) => {                                             // Set the 'error' event callback.
   console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // Set the 'prepare' event callback.
@@ -4950,7 +4988,7 @@ audioRecorder.on('release', () => {                                             
 audioRecorder.on('reset', () => {                                                 // Set the 'reset' event callback.
   console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the 'prepare' event callback.
+audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the 'prepare' event callback.     
 ```
 
 ### on('error')
@@ -4970,8 +5008,8 @@ Subscribes to audio recording error events. After an error event is reported, yo
 
 **Example**
 
-```js
-let audioRecorderConfig = {
+```ts
+let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
   audioEncodeBitRate : 22050,
   audioSampleRate : 22050,
@@ -4980,7 +5018,7 @@ let audioRecorderConfig = {
   uri : 'fd://xx',                                                     // The file must be created by the caller and granted with proper permissions.
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
+audioRecorder.on('error', (error: Error) => {                                  // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 });
 audioRecorder.prepare(audioRecorderConfig);                            // Do no set any parameter in prepare and trigger the 'error' event callback.

@@ -4,7 +4,8 @@ The **photoAccessHelper** module provides APIs for user album management, includ
 
 > **NOTE**
 >
-> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).<br>
+> Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
+>
 > By default, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used when **photoAccessHelper** APIs are used. If the code for obtaining the **PhotoAccessHelper** instance is not added, an error indicating that **photoAccessHelper** is not defined is reported.
 
 To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
@@ -35,13 +36,17 @@ Example: Create a user album.
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-try {
-  let albumName = 'albumName';
-  let album = await phAccessHelper.createAlbum(albumName);
-  console.info('createAlbum successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
-} catch (err) {
-  console.error('createAlbum failed with err: ' + err);
+async function example() {
+  try {
+    let albumName = 'albumName';
+    let album: photoAccessHelper.Album = await phAccessHelper.createAlbum(albumName);
+    console.info('createAlbum successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
+  } catch (err) {
+    console.error('createAlbum failed with err: ' + err);
+  }
 }
 ```
 
@@ -65,22 +70,26 @@ Example: Obtain the user album named **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys  = photoAccessHelper.AlbumKey.ALBUM_NAME;
-predicates.equalTo(albumName, 'albumName');
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  predicates.equalTo(albumName, 'albumName');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  fetchResult.close();
-} catch (err) {
-  console.error('getAlbums failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    fetchResult.close();
+  } catch (err) {
+    console.error('getAlbums failed with err: ' + err);
+  }
 }
 ```
 
@@ -110,24 +119,28 @@ Example: Rename an album named **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
-predicates.equalTo(albumName, 'albumName');
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  predicates.equalTo(albumName, 'albumName');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  album.albumName = 'newAlbumName';
-  await album.commitModify();
-  fetchResult.close();
-} catch (err) {
-  console.error('commitModify failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    album.albumName = 'newAlbumName';
+    await album.commitModify();
+    fetchResult.close();
+  } catch (err) {
+    console.error('commitModify failed with err: ' + err);
+  }
 }
 ```
 
@@ -155,33 +168,37 @@ Example: Add an image to the album **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper..AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
-albumPredicates.equalTo(albumName, 'albumName');
-let albumFetchOptions: dataSharePredicates.FetchOptions = {
-  fetchColumns: [],
-  predicates: albumPredicates
-};
+async function example() {
+  let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  albumPredicates.equalTo(albumName, 'albumName');
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: albumPredicates
+  };
 
-let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: photoPredicates
-};
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
 
-try {
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(photoFetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-  console.info('getAssets successfully, albumName: ' + fileAsset.displayName);
-  await album.addAssets([fileAsset]);
-  albumFetchResult.close();
-  photoFetchResult.close();
-} catch (err) {
-  console.error('addAssets failed with err: ' + err);
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(photoFetchOptions);
+    let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
+    console.info('getAssets successfully, albumName: ' + fileAsset.displayName);
+    await album.addAssets([fileAsset]);
+    albumFetchResult.close();
+    photoFetchResult.close();
+  } catch (err) {
+    console.error('addAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -208,32 +225,36 @@ Example: Obtain an image in the user album **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
-albumPredicates.equalTo(albumName, 'albumName');
-let albumFetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: albumPredicates
-};
+async function example() {
+  let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  albumPredicates.equalTo(albumName, 'albumName');
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: albumPredicates
+  };
 
-let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: photoPredicates
-};
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
 
-try {
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(photoFetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-  console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
-  albumFetchResult.close();
-  photoFetchResult.close();
-} catch (err) {
-  console.error('album getAssets failed with err: ' + err);
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    let photoFetchResult = await album.getAssets(photoFetchOptions);
+    let fileAsset = await photoFetchResult.getFirstObject();
+    console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
+    albumFetchResult.close();
+    photoFetchResult.close();
+  } catch (err) {
+    console.error('album getAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -263,33 +284,37 @@ Example: Remove an image from the album named **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
-albumPredicates.equalTo(albumName, 'albumName');
-let albumFetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: albumPredicates
-};
+async function example() {
+  let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  albumPredicates.equalTo(albumName, 'albumName');
+  let albumFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: albumPredicates
+  };
 
-let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let photoFetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: photoPredicates
-};
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
 
-try {
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(photoFetchOptions);
-  let fileAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-  console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
-  await album.removeAssets([fileAsset]);
-  albumFetchResult.close();
-  photoFetchResult.close();
-} catch (err) {
-  console.error('removeAssets failed with err: ' + err);
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    let photoFetchResult = await album.getAssets(photoFetchOptions);
+    let fileAsset = await photoFetchResult.getFirstObject();
+    console.info('album getAssets successfully, albumName: ' + fileAsset.displayName);
+    await album.removeAssets([fileAsset]);
+    albumFetchResult.close();
+    photoFetchResult.close();
+  } catch (err) {
+    console.error('removeAssets failed with err: ' + err);
+  }
 }
 ```
 
@@ -314,22 +339,26 @@ Example: Delete a user album named **albumName**.
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKey.ALBUM_NAME;
-predicates.equalTo(albumName, '%albumName%');
-let fetchOptions: photoAccessHelper.FetchOptions = {
-  fetchColumns: [],
-  predicates: predicates
-};
+async function example() {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
+  predicates.equalTo(albumName, '%albumName%');
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
 
-try {
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
-  let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-  console.info('getAlbums successfully, albumName: ' + album.albumName);
-  phAccessHelper.deleteAlbums([album]);
-  fetchResult.close();
-} catch (err) {
-  console.error('deleteAlbums failed with err: ' + err);
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
+    let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
+    console.info('getAlbums successfully, albumName: ' + album.albumName);
+    phAccessHelper.deleteAlbums([album]);
+    fetchResult.close();
+  } catch (err) {
+    console.error('deleteAlbums failed with err: ' + err);
+  }
 }
 ```

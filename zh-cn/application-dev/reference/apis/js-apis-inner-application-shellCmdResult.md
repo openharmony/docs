@@ -28,11 +28,13 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 **示例：**
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (error: any, data: any) => {
+abilityDelegator.executeShellCommand(cmd, (error: BusinessError, data) => {
     if (error) {
         console.error('executeShellCommand fail, error: ${JSON.stringify(error)}');
     } else {

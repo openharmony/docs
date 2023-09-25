@@ -16,14 +16,14 @@ You can draw an image around a component.
 
 This API is supported in ArkTS widgets.
 
-| Name    | Type                                      | Description                                      |
-| ------ | ---------------------------------------- | ---------------------------------------- |
+| Name  | Type                                                        | Description                                                        |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | source | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.<br>**NOTE**<br>The border image source applies only to container components, such as **\<Row>**, **\<Column>**, and **\<Flex>**.|
-| slice  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the border image.<br>Default value: **0**                   |
-| width  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**                     |
-| outset | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                 |
-| repeat | [RepeatMode](#repeatmode)            | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch** |
-| fill   | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**               |
+| slice  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Slice width of the upper left corner, upper right corner, lower left corner, and lower right corner of the border image.<br>Default value: **0**<br>**NOTE**<br>If this parameter is set to a negative value, the default value is used.<br>When this parameter is set to a value of the [Length](ts-types.md#length) type, the value applies to the four corners in a unified manner.<br>When this parameter is set to a value of the [EdgeWidths](ts-types.md#edgewidths9) type:<br>- **Top**: slice height of the upper left or upper right corner of the image.<br>- **Bottom**: slice height of the lower left or lower right corner of the image.<br>- **Left**: slice width of the upper left or lower left corner of the image.<br>- **Right**: slice width of the upper right or lower right corner of the image.|
+| width  | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Width of the border image.<br>Default value: **0**<br>**NOTE**<br>If this parameter is set to a negative value, the default value is used.<br>When this parameter is set to a value of the [Length](ts-types.md#length) type, the value applies to the four corners in a unified manner.<br>When this parameter is set to a value of the [EdgeWidths](ts-types.md#edgewidths9) type:<br>- **Top**: width of the top edge of the border image.<br>- **Bottom**: width of the bottom edge of the border image.<br>- **Left**: width of the left edge of the border image.<br>- **Right**: width of the right edge of the border image.<br>If this parameter is set to a negative value, the value **1** is used.|
+| outset | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | Amount by which the border image is extended beyond the border box.<br>Default value: **0**<br>**NOTE**<br>If this parameter is set to a negative value, the default value is used.<br>When this parameter is set to a value of the [Length](ts-types.md#length) type, the value applies to the four corners in a unified manner.<br>When this parameter is set to a value of the [EdgeWidths](ts-types.md#edgewidths9) type:<br>- **Top**: amount by which the top edge of the border image is extended beyond the border box.<br>- **Bottom**: amount by which the bottom edge of the border image is extended beyond the border box.<br>- **Left**: amount by which the left edge of the border image is extended beyond the border box.<br>- **Right**: amount by which the right edge of the border image is extended beyond the border box.|
+| repeat | [RepeatMode](#repeatmode)                            | Repeat mode of the source image's slices on the border.<br>Default value: **RepeatMode.Stretch**|
+| fill   | boolean                                                      | Whether to fill the center of the border image.<br>Default value: **false**                    |
 
 ## RepeatMode
 
@@ -32,9 +32,9 @@ This API is supported in ArkTS widgets.
 | Name     | Description                                 |
 | ------- | ----------------------------------- |
 | Repeat  | The source image's slices are tiled. Tiles beyond the border box will be clipped.         |
-| Stretch | The source image's slices stretched to fill the border box.               |
+| Stretch | The source image's slices are stretched to fill the border box.               |
 | Round   | The source image's slices are tiled to fill the border box. Tiles may be compressed when needed.|
-| Space   | The source image's slices are tiled to fill the border box. Extra space will be filled in between tiles.  |
+| Space   | The source image's slices are tiled to fill the border box. Extra space will be distributed in between tiles.  |
 
 ## Example
 
@@ -77,35 +77,88 @@ struct Index {
 // xxx.ets
 @Entry
 @Component
-struct Index {
-  @State outSetValue: number = 40
+struct BorderImage {
+  @State WidthValue: number = 0
+  @State SliceValue: number = 0
+  @State OutSetValue: number = 0
+  @State RepeatValue: RepeatMode[] = [RepeatMode.Repeat, RepeatMode.Stretch, RepeatMode.Round, RepeatMode.Space]
+  @State SelectIndex: number = 0
+  @State SelectText: string = 'Repeat'
+  @State FillValue: boolean = false
 
   build() {
     Row() {
-      Column() {
+      Column({ space: 20 }) {
         Row() {
           Text('This is borderImage.').textAlign(TextAlign.Center).fontSize(50)
         }
         .borderImage({
           source: $r('app.media.icon'),
-          slice: `${this.outSetValue}%`,
-          width: `${this.outSetValue}px`,
-          outset: '5px',
-          repeat: RepeatMode.Repeat,
-          fill: false
+          slice: this.SliceValue,
+          width: this.WidthValue,
+          outset: this.OutSetValue,
+          repeat: this.RepeatValue[this.SelectIndex],
+          fill: this.FillValue
         })
 
-        Slider({
-          value: this.outSetValue,
-          min: 0,
-          max: 100,
-          style: SliderStyle.OutSet
-        })
-          .margin({ top: 30 })
-          .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValue = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+        Column() {
+          Text(`borderImageSlice = ${this.SliceValue}px`)
+          Slider({
+            value: this.SliceValue,
+            min: 0,
+            max: 100,
+            style: SliderStyle.OutSet
           })
+            .onChange((value: number, mode: SliderChangeMode) => {
+              this.SliceValue = value
+            })
+        }
+
+        Column() {
+          Text(`borderImageWidth = ${this.WidthValue}px`)
+          Slider({
+            value: this.WidthValue,
+            min: 0,
+            max: 100,
+            style: SliderStyle.OutSet
+          })
+            .onChange((value: number, mode: SliderChangeMode) => {
+              this.WidthValue = value
+            })
+        }
+
+        Column() {
+          Text(`borderImageOutSet = ${this.OutSetValue}px`)
+          Slider({
+            value: this.OutSetValue,
+            min: 0,
+            max: 100,
+            style: SliderStyle.OutSet
+          })
+            .onChange((value: number, mode: SliderChangeMode) => {
+              this.OutSetValue = value
+            })
+        }
+
+        Row() {
+          Text('borderImageRepeat: ')
+          Select([{ value: 'Repeat' }, { value: 'Stretch' }, { value: 'Round' }, { value: 'Space' }])
+            .value(this.SelectText)
+            .selected(this.SelectIndex)
+            .onSelect((index: number, value?: string) => {
+              this.SelectIndex = index
+              this.SelectText = value as string
+            })
+        }
+
+        Row() {
+          Text(`borderImageFill: ${this.FillValue} `)
+          Toggle({ type: ToggleType.Switch, isOn: this.FillValue })
+            .onChange((isOn: boolean) => {
+              this.FillValue = isOn
+            })
+        }
+
       }
       .width('100%')
     }
@@ -114,4 +167,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_borderImage](figures/borderImage.gif)
+![borderImage](figures/borderImage.gif)

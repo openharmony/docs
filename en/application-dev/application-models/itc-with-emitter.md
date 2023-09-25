@@ -12,12 +12,12 @@ To develop the Emitter mode, perform the following steps:
    import emitter from "@ohos.events.emitter";
 
    // Define an event with eventId 1.
-   let event = {
+   let event: emitter.InnerEvent = {
      eventId: 1
    };
 
    // Trigger the callback after the event with eventId 1 is received.
-   let callback = (eventData) => {
+   let callback = (eventData: emitter.EventData) => {
      console.info('event callback');
    };
 
@@ -31,18 +31,16 @@ To develop the Emitter mode, perform the following steps:
    import emitter from "@ohos.events.emitter";
    
    // Define an event with eventId 1 and priority Low.
-   let event = {
+   let event: emitter.InnerEvent = {
      eventId: 1,
      priority: emitter.EventPriority.LOW
    };
    
-   let eventData = {
-     data: {
-       "content": "c",
-       "id": 1,
-       "isEmpty": false,
-     }
-   };
+   let data = new Map<string, Object>();
+   data.set("content", "c");
+   data.set("id", 1);
+   data.set("isEmpty", false);
+   let eventData: emitter.EventData = {data};
    
    // Emit the event with eventId 1 and event content eventData.
    emitter.emit(event, eventData);

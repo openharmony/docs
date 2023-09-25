@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import ethernet from '@ohos.net.ethernet'
 ```
 
@@ -28,7 +28,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 参数名   | 类型                                              | 必填 | 说明                                       |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------ |
 | iface    | string                                            | 是   | 网络接口名                                     |
-| ic       | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息                   |
+| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息                   |
 | callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
 
 **错误码：**
@@ -48,24 +48,24 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 
 **示例：**
 
-```js
-ethernet.setIfaceConfig("eth0", {
+```ts
+import ethernet from '@ohos.net.ethernet'
+import { BusinessError } from '@ohos.base'
+
+let config: ethernet.InterfaceConfiguration = {
   mode: 0,
-  ipAddr: "192.168.xx.xxx",
-  route: "192.168.xx.xxx",
-  gateway: "192.168.xx.xxx",
-  netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
-}, (error) => {
+  ipAddr: "192.168.xx.xxx"
+  route: "192.168.xx.xxx"
+  gateway: "192.168.xx.xxx"
+  netMask: "255.255.255.0"
+  dnsServers: "1.1.1.1"
+};
+
+ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
-    console.log("setIfaceConfig callback ok ");
+    console.log("setIfaceConfig callback ok");
   }
 });
 ```
@@ -87,7 +87,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 参数名 | 类型                                              | 必填 | 说明                     |
 | ------ | ------------------------------------------------- | ---- | ------------------------ |
 | iface  | string                                            | 是   | 接口名                   |
-| ic     | [InterfaceConfiguration](#interfaceconfiguration) | 是   | 要设置的网络接口配置信息 |
+| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息 |
 
 **返回值：**
 
@@ -112,22 +112,21 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
 **示例：**
 
-```js
-ethernet.setIfaceConfig("eth0", {
-  mode: 0,
-  ipAddr: "192.168.xx.xxx",
-  route: "192.168.xx.xxx",
-  gateway: "192.168.xx.xxx",
-  netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  httpProxy: {
-    host: "180.89.xx.xx",
-    port: 8080,
-    exclusionList: {"example.com","192.168.0.1"}
-  }
-}).then(() => {
-  console.log("setIfaceConfig promise ok ");
-}).catch(error => {
+```ts
+class Config  {
+  mode: number= 0,
+  ipAddr: string = "192.168.xx.xxx"
+  route: string = "192.168.xx.xxx"
+  gateway:string = "192.168.xx.xxx"
+  netMask:string = "255.255.255.0"
+  dnsServers: string = "1.1.1.1"
+};
+
+const setConfigPromise: Object = ethernet.setIfaceConfig("eth0", new Config());
+
+setConfigPromise.then(() => {
+  console.log("setIfaceConfig promise ok");
+}).catch((error: BusinessError)  => {
   console.log("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
@@ -165,8 +164,8 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 
 **示例：**
 
-```js
-ethernet.getIfaceConfig("eth0", (error, value) => {
+```ts
+ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
     console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
@@ -218,15 +217,16 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 **示例：**
 
-```js
-ethernet.getIfaceConfig("eth0").then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
   console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
   console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
   console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
@@ -264,8 +264,8 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```js
-ethernet.isIfaceActive("eth0", (error, value) => {
+```ts
+ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
     console.log("whether2Activate callback error = " + JSON.stringify(error));
   } else {
@@ -312,10 +312,11 @@ isIfaceActive(iface: string): Promise\<number>
 
 **示例：**
 
-```js
-ethernet.isIfaceActive("eth0").then((data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
@@ -349,8 +350,8 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
 **示例：**
 
-```js
-ethernet.getAllActiveIfaces((error, value) => {
+```ts
+ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
     console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
@@ -391,13 +392,13 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 
 **示例：**
 
-```js
-ethernet.getAllActiveIfaces().then((data) => {
+```ts
+ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
-}).catch(error => {
+}).catch((error:BusinessError) => {
   console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 ```
@@ -431,8 +432,8 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 
 **示例：**
 
-```js
- ethernet.on('interfaceStateChange', (data) => {
+```ts
+ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```
@@ -466,7 +467,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 
 **示例：**
 
-```js
+```ts
 ethernet.off('interfaceStateChange');
 ```
 

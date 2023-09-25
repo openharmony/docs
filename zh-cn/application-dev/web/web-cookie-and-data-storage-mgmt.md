@@ -13,6 +13,7 @@ Web组件提供了WebCookieManager类，用于管理Web组件的Cookie信息。C
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -26,7 +27,8 @@ struct WebComponent {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'value=test');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -82,6 +84,7 @@ struct WebComponent {
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -96,7 +99,8 @@ struct WebComponent {
             // 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存
             this.controller.removeCache(true);
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

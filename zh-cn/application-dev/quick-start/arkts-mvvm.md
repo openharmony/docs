@@ -125,7 +125,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
+     @Link @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -139,7 +139,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -175,7 +175,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    ```ts
    @Component
    struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
+     @Link @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -189,7 +189,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
    
    @Component
    struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number;
+     @Prop @Watch("testNumChange") testNumGrand: number = 0;
    
      testNumChange(propName: string): void {
        console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -277,7 +277,7 @@ ViewModel通常包含多个顶层数据源。\@State和\@Provide装饰的变量�
 ```ts
 @Component
 struct LinkLinkChild {
-  @Consume @Watch("testNumChange") testNum: number;
+  @Consume @Watch("testNumChange") testNum: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`LinkLinkChild: testNum value ${this.testNum}`);
@@ -290,7 +290,7 @@ struct LinkLinkChild {
 
 @Component
 struct PropLinkChild {
-  @Prop @Watch("testNumChange") testNumGrand: number;
+  @Prop @Watch("testNumChange") testNumGrand: number = 0;
 
   testNumChange(propName: string): void {
     console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
@@ -609,7 +609,7 @@ struct Parent {
 
   ```ts
   @Observed class ObservedArray<T> extends Array<T> {
-      constructor(args: any[]) {
+      constructor(args: T[]) {
           super(...args);
       }
       /* otherwise empty */
@@ -621,7 +621,7 @@ struct Parent {
 
   ```ts
   class Outer {
-    innerArrayProp : ObservedArray<string>;
+    innerArrayProp : ObservedArray<string> = [];
     ...
   }
   ```
@@ -686,10 +686,10 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => { return item.id.toString(); }
       )
 
       Divider().height(10)
@@ -738,7 +738,7 @@ struct ViewB {
 @Component
 struct ViewA {
 
-  @Prop a: ClassA;
+  @Prop a: ClassA = new ClassA(0);
   label : string = "ViewA1";
 
   build() {
@@ -875,9 +875,9 @@ export class Person {
 ```ts
 @Observed
 export class ObservedArray<T> extends Array<T> {
-  constructor(args?: any[]) {
+  constructor(args: T[]) {
     console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (Array.isArray(args)) {
+    if (args instanceof Array) {
       super(...args);
     } else {
       super(args)
@@ -903,7 +903,7 @@ export class ObservedArray<T> extends Array<T> {
    
        @ObjectLink me : Person;
        @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = undefined;
+       @State selectedPerson: Person = new Person("", "", 0, "", []);
    
        aboutToAppear() {
            this.selectedPerson = this.me;
@@ -916,13 +916,12 @@ export class ObservedArray<T> extends Array<T> {
    
                Divider().height(8)
    
-               ForEach(this.contacts,
-                   contact => {
-                       PersonView({person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson})
-                   },
-                   contact => contact.id_
-               )
-   
+              ForEach(this.contacts, (contact: Person) => {
+                PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+              },
+                (contact: Person): string => { return contact.id_; }
+              )
+
                Divider().height(8)
    
                Text("Edit:")
@@ -971,7 +970,7 @@ export class ObservedArray<T> extends Array<T> {
        build() {
            Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
              Text(this.person.name)
-             if (this.phones.length) {
+             if (this.phones.length > 0) {
                Text(this.phones[0])
              }
            }
@@ -1005,12 +1004,12 @@ export class ObservedArray<T> extends Array<T> {
          @Link selectedPerson: Person;
      
          /*在本地副本上编辑，直到点击保存*/
-         @Prop name: string;
-         @Prop address : Address;
-         @Prop phones : ObservedArray<string>;
+         @Prop name: string = "";
+         @Prop address : Address = new Address("", 0, "");
+         @Prop phones : ObservedArray<string> = [];
      
          selectedPersonIndex() : number {
-             return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
+             return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
          }
      
          build() {
@@ -1031,24 +1030,24 @@ export class ObservedArray<T> extends Array<T> {
      
                  TextInput({text: this.address.zip.toString()})
                      .onChange((value) => {
-                         const result = parseInt(value);
-                         this.address.zip= isNaN(result) ? 0 : result;
+                         const result = Number.parseInt(value);
+                         this.address.zip= Number.isNaN(result) ? 0 : result;
                      })
      
-                 if(this.phones.length>0) {
-                     ForEach(this.phones,
-                             (phone, index) => {
-                                 TextInput({text: phone})
-                                     .width(150)
-                                     .onChange((value) => {
-                                         console.log(`${index}. ${value} value has changed`)
-                                         this.phones[index] = value;
-                                     })
-                             },
-                             (phone, index) => `${index}-${phone}`
-                     ) 
+                 if (this.phones.length > 0) {
+                   ForEach(this.phones,
+                     (phone: ResourceStr, index?:number) => {
+                       TextInput({ text: phone })
+                         .width(150)
+                         .onChange((value) => {
+                           console.log(`${index}. ${value} value has changed`)
+                           this.phones[index!] = value;
+                         })
+                     },
+                     (phone: ResourceStr, index?:number) => `${index}-${phone}`
+                   )
                  }
-     
+
                  Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
                      Text("Save Changes")
                          .onClick(() => {
@@ -1103,25 +1102,25 @@ export class ObservedArray<T> extends Array<T> {
 
  // ViewModel classes
  let nextId = 0;
- 
+
  @Observed
  export class ObservedArray<T> extends Array<T> {
-   constructor(args?: any[]) {
+   constructor(args: T[]) {
      console.log(`ObservedArray: ${JSON.stringify(args)} `)
-     if (Array.isArray(args)) {
+     if (args instanceof Array) {
        super(...args);
      } else {
        super(args)
      }
    }
  }
- 
+
  @Observed
  export class Address {
    street: string;
    zip: number;
    city: string;
- 
+
    constructor(street: string,
                zip: number,
                city: string) {
@@ -1130,14 +1129,14 @@ export class ObservedArray<T> extends Array<T> {
      this.city = city;
    }
  }
- 
+
  @Observed
  export class Person {
    id_: string;
    name: string;
    address: Address;
    phones: ObservedArray<string>;
- 
+
    constructor(name: string,
                street: string,
                zip: number,
@@ -1154,13 +1153,13 @@ export class ObservedArray<T> extends Array<T> {
  export class AddressBook {
    me: Person;
    contacts: ObservedArray<Person>;
- 
+
    constructor(me: Person, contacts: Person[]) {
      this.me = me;
      this.contacts = new ObservedArray<Person>(contacts);
    }
  }
- 
+
  //渲染出Person对象的名称和Observed数组<string>中的第一个号码
  //为了更新电话号码，这里需要@ObjectLink person和@ObjectLink phones，
  //不能使用this.person.phones，内部数组的更改不会被观察到。
@@ -1170,7 +1169,7 @@ export class ObservedArray<T> extends Array<T> {
    @ObjectLink person: Person;
    @ObjectLink phones: ObservedArray<string>;
    @Link selectedPerson: Person;
- 
+
    build() {
      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
        Text(this.person.name)
@@ -1185,26 +1184,26 @@ export class ObservedArray<T> extends Array<T> {
      })
    }
  }
- 
+
  // 渲染Person的详细信息
  // @Prop装饰的变量从父组件AddressBookView深拷贝数据，将变化保留在本地, TextInput的变化只会在本地副本上进行修改。
  // 点击 "Save Changes" 会将所有数据的复制通过@Prop到@Link, 同步到其他组件
  @Component
  struct PersonEditView {
    @Consume addrBook: AddressBook;
- 
+
    /* 指向父组件selectedPerson的引用 */
    @Link selectedPerson: Person;
- 
+
    /*在本地副本上编辑，直到点击保存*/
-   @Prop name: string;
-   @Prop address: Address;
-   @Prop phones: ObservedArray<string>;
- 
+   @Prop name: string = "";
+   @Prop address: Address = new Address("", 0, "");
+   @Prop phones: ObservedArray<string> = [];
+
    selectedPersonIndex(): number {
-     return this.addrBook.contacts.findIndex((person) => person.id_ == this.selectedPerson.id_);
+     return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
    }
- 
+
    build() {
      Column() {
        TextInput({ text: this.name })
@@ -1215,32 +1214,32 @@ export class ObservedArray<T> extends Array<T> {
          .onChange((value) => {
            this.address.street = value;
          })
- 
+
        TextInput({ text: this.address.city })
          .onChange((value) => {
            this.address.city = value;
          })
- 
+
        TextInput({ text: this.address.zip.toString() })
          .onChange((value) => {
-           const result = parseInt(value);
-           this.address.zip = isNaN(result) ? 0 : result;
+           const result = Number.parseInt(value);
+           this.address.zip = Number.isNaN(result) ? 0 : result;
          })
- 
+
        if (this.phones.length > 0) {
          ForEach(this.phones,
-           (phone, index) => {
+           (phone: ResourceStr, index?:number) => {
              TextInput({ text: phone })
                .width(150)
                .onChange((value) => {
                  console.log(`${index}. ${value} value has changed`)
-                 this.phones[index] = value;
+                 this.phones[index!] = value;
                })
            },
-           (phone, index) => `${index}-${phone}`
+           (phone: ResourceStr, index?:number) => `${index}-${phone}`
          )
        }
- 
+
        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
          Text("Save Changes")
            .onClick(() => {
@@ -1259,49 +1258,48 @@ export class ObservedArray<T> extends Array<T> {
              .onClick(() => {
                let index = this.selectedPersonIndex();
                console.log(`delete contact at index ${index}`);
- 
+
                // 删除当前联系人
                this.addrBook.contacts.splice(index, 1);
- 
+
                // 删除当前selectedPerson，选中态前移一位
                index = (index < this.addrBook.contacts.length) ? index : index - 1;
- 
+
                // 如果contract被删除完，则设置me为选中态
                this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
              })
          }
        }
- 
+
      }
    }
  }
- 
+
  @Component
  struct AddressBookView {
    @ObjectLink me: Person;
    @ObjectLink contacts: ObservedArray<Person>;
-   @State selectedPerson: Person = undefined;
- 
+   @State selectedPerson: Person = new Person("", "", 0, "", []);
+
    aboutToAppear() {
      this.selectedPerson = this.me;
    }
- 
+
    build() {
      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
        Text("Me:")
        PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
- 
+
        Divider().height(8)
- 
-       ForEach(this.contacts,
-         contact => {
-           PersonView({ person: contact, phones: contact.phones, selectedPerson: this.$selectedPerson })
-         },
-         contact => contact.id_
+
+       ForEach(this.contacts, (contact: Person) => {
+         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+       },
+         (contact: Person): string => { return contact.id_; }
        )
- 
+
        Divider().height(8)
- 
+
        Text("Edit:")
        PersonEditView({
          selectedPerson: this.$selectedPerson,
@@ -1313,7 +1311,7 @@ export class ObservedArray<T> extends Array<T> {
      .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
    }
  }
- 
+
  @Entry
  @Component
  struct PageEntry {
@@ -1324,7 +1322,7 @@ export class ObservedArray<T> extends Array<T> {
        new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
        new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
      ]);
- 
+
    build() {
      Column() {
        AddressBookView({ me: this.addrBook.me, contacts: this.addrBook.contacts, selectedPerson: this.addrBook.me })

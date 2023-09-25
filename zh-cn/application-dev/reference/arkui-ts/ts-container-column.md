@@ -33,6 +33,14 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 | alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
+>  **说明：**    
+>
+>  Column布局时若子组件不设置flexShrink则默认不会压缩子组件，即所有子组件主轴大小累加可超过容器主轴。
+
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
+
 ## 示例
 
 ```ts
@@ -41,41 +49,41 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 @Component
 struct ColumnExample {
   build() {
-    Column() {
+    Column({ space: 5 }) {
       // 设置子元素垂直方向间距为5
-      Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('space').width('90%')
       Column({ space: 5 }) {
         Column().width('100%').height(30).backgroundColor(0xAFEEEE)
         Column().width('100%').height(30).backgroundColor(0x00FFFF)
       }.width('90%').height(100).border({ width: 1 })
 
       // 设置子元素水平方向对齐方式
-      Text('alignItems(Start)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('alignItems(Start)').width('90%')
       Column() {
         Column().width('50%').height(30).backgroundColor(0xAFEEEE)
         Column().width('50%').height(30).backgroundColor(0x00FFFF)
       }.alignItems(HorizontalAlign.Start).width('90%').border({ width: 1 })
 
-      Text('alignItems(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('alignItems(End)').width('90%')
       Column() {
         Column().width('50%').height(30).backgroundColor(0xAFEEEE)
         Column().width('50%').height(30).backgroundColor(0x00FFFF)
       }.alignItems(HorizontalAlign.End).width('90%').border({ width: 1 })
 
-      Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('alignItems(Center)').width('90%')
       Column() {
         Column().width('50%').height(30).backgroundColor(0xAFEEEE)
         Column().width('50%').height(30).backgroundColor(0x00FFFF)
       }.alignItems(HorizontalAlign.Center).width('90%').border({ width: 1 })
-      
+
       // 设置子元素垂直方向的对齐方式
-      Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('justifyContent(Center)').width('90%')
       Column() {
         Column().width('90%').height(30).backgroundColor(0xAFEEEE)
         Column().width('90%').height(30).backgroundColor(0x00FFFF)
       }.height(100).border({ width: 1 }).justifyContent(FlexAlign.Center)
 
-      Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('justifyContent(End)').width('90%')
       Column() {
         Column().width('90%').height(30).backgroundColor(0xAFEEEE)
         Column().width('90%').height(30).backgroundColor(0x00FFFF)

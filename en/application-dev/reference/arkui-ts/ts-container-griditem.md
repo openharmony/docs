@@ -26,7 +26,7 @@ GridItem()
 | columnStart | number | Start column number of the component.|
 | columnEnd | number | End column number of the component.|
 | forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true** |
+| selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
 | selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
 
 >  **NOTE**
@@ -52,7 +52,7 @@ GridItem()
 
 | Name| Description|
 | -------- | -------- |
-| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise. |
+| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
 
 
 ## Example
@@ -62,9 +62,7 @@ GridItem()
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = Array.apply(null, { length: 16 }).map(function (item, i) {
-    return i.toString()
-  })
+  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
 
   build() {
     Column() {
@@ -78,7 +76,7 @@ struct GridItemExample {
             .textAlign(TextAlign.Center)
         }.rowStart(1).rowEnd(2).columnStart(1).columnEnd(2) // Set valid row and column numbers.
 
-        ForEach(this.numbers, (item) => {
+        ForEach(this.numbers, (item: string) => {
           GridItem() {
             Text(item)
               .fontSize(16)
@@ -87,7 +85,7 @@ struct GridItemExample {
               .height('100%')
               .textAlign(TextAlign.Center)
           }
-        }, item => item)
+        }, (item: string) => item)
 
         GridItem() {
           Text('5')

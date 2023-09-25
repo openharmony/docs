@@ -6,7 +6,7 @@
 
 
 ```ts
-GestureGroup(mode:GestureMode, ...gesture:GestureType[])
+GestureGroup(mode:GestureMode, gesture:GestureType[])
 ```
 
 
@@ -53,9 +53,11 @@ struct Index {
         // 该组合手势第一个触发的手势为长按手势，且长按手势可多次响应
         LongPressGesture({ repeat: true })
           // 当长按手势识别成功，增加Text组件上显示的count次数
-          .onAction((event: GestureEvent) => {
-            if (event.repeat) {
-              this.count++;
+          .onAction((event: GestureEvent|undefined) => {
+            if(event){
+              if (event.repeat) {
+                this.count++;
+              }
             }
             console.info('LongPress onAction');
           })
@@ -69,9 +71,11 @@ struct Index {
             console.info('pan start');
           })
             // 当该手势被触发时，根据回调获得拖动的距离，修改该组件的位移距离从而实现组件的移动
-          .onActionUpdate((event: GestureEvent) => {
-            this.offsetX = this.positionX + event.offsetX;
-            this.offsetY = this.positionY + event.offsetY;
+          .onActionUpdate((event: GestureEvent|undefined) => {
+            if(event){
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
+            }
             console.info('pan update');
           })
           .onActionEnd(() => {

@@ -35,12 +35,14 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  let want = {
-    'deviceId': '', // deviceId为空表示本设备
-    'bundleName': 'com.example.myapplication',
-    'abilityName': 'FuncAbility',
-    'moduleName': 'entry' // moduleName非必选
+  let want: Want = {
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.example.myapplication',
+    abilityName: 'FuncAbility',
+    moduleName: 'entry' // moduleName非必选
   };
   
   context.startAbility(want, (err) => {
@@ -54,8 +56,10 @@ import Want from '@ohos.app.ability.Want';
     * 字符串（String）
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -70,8 +74,10 @@ import Want from '@ohos.app.ability.Want';
     * 数字（Number）
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -87,8 +93,10 @@ import Want from '@ohos.app.ability.Want';
     * 布尔（Boolean）
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -103,8 +111,10 @@ import Want from '@ohos.app.ability.Want';
     * 对象（Object）
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -124,8 +134,10 @@ import Want from '@ohos.app.ability.Want';
     * 数组（Array）
         ```ts
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
           parameters: {
@@ -141,24 +153,28 @@ import Want from '@ohos.app.ability.Want';
         });
         ```
     * 文件描述符（FD）
-        ```ts
-        import fs from '@ohos.file.fs';
-        
+      ```ts
+        import fs from '@ohos.file.fs';        
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         
-        let fd;
+        let fd: number = 0;
         try {
           fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
         } catch(err) {
-          console.error(`Failed to openSync. Code: ${err.code}, message: ${err.message}`);
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`Failed to openSync. Code: ${code}, message: ${message}`);
         }
-        let want = {
-          'deviceId': '', // deviceId为空表示本设备
-          'bundleName': 'com.example.myapplication',
-          'abilityName': 'FuncAbility',
-          'moduleName': 'entry', // moduleName非必选
-          'parameters': {
+        let want: Want = {
+          deviceId: '', // deviceId为空表示本设备
+          bundleName: 'com.example.myapplication',
+          abilityName: 'FuncAbility',
+          moduleName: 'entry', // moduleName非必选
+          parameters: {
             'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
           }
         };
@@ -166,14 +182,16 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-        ```
+      ```
     - parameter参数用法：以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
 
-    ```ts
+      ```ts
         // (1) UIAbility1启动一个ServiceExtension
         import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want = {
+        let want: Want = {
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
@@ -181,11 +199,14 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    ```ts
-
+    
+      ```ts
         // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
-        let context ; // ServiceExtensionContext
-        let want = {
+        import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+
+        let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
+        let want: Want = {
           bundleName: 'com.example.myapplication2',
           abilityName: 'MainAbility',
           parameters: {
@@ -196,6 +217,6 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-    ```
+      ```
 
-    说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。
+    > 说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。

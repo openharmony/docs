@@ -15,9 +15,9 @@
 
 - [formBindingData](../reference/apis/js-apis-app-form-formBindingData.md): provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
-- [Page layout (Card.ets)](arkts-ui-widget-page-overview.md): provides APIs for a declarative paradigm UI.
+- [Page layout (WidgetCard.ets)](arkts-ui-widget-page-overview.md): provides APIs for the declarative UI paradigm.
   - [Capabilities exclusive to ArkTS widgets](arkts-ui-widget-event-overview.md): include the **postCardAction** API used for interaction between the widget internal and the provider application and can be called only in the widget.
-  - [ArkTS widget capability list](arkts-ui-widget-page-overview.md#page-capabilities-supported-by-arkts-widgets): contain the APIs, components, events, attributes, and lifecycle callbacks that can be used in ArkTS widgets.
+  - [ArkTS widget capability list](arkts-ui-widget-page-overview.md): contain the APIs, components, events, attributes, and lifecycle callbacks that can be used in ArkTS widgets.
 
 - [Widget configuration](arkts-ui-widget-configuration.md): includes FormExtensionAbility configuration and widget configuration.
   - Configure the FormExtensionAbility information under **extensionAbilities** in the [module.json5 file](../quick-start/module-configuration-file.md).

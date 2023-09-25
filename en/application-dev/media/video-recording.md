@@ -21,7 +21,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-   
+     
    ```ts
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
@@ -33,10 +33,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description|
+   | Event Type| Description| 
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
-   | error | Mandatory; used to listen for AVRecorder errors.|
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
+   | error | Mandatory; used to listen for AVRecorder errors.| 
 
    ```ts
    // Callback function for state changes.
@@ -84,11 +84,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 4. Obtain the surface ID required for video recording.
-   
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
-   The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-   
+     The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
+     
    ```ts
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
@@ -120,17 +119,17 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-
+  
 ```ts
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
 const TAG = 'VideoRecorderDemo:'
 export class VideoRecorderDemo {
-  private avRecorder: media.AVRecorder;
-  private videoOutSurfaceId: string;
+  private avRecorder: media.AVRecorder | undefined = undefined;
+  private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
-    videoBitrate: 100000, // Video bit rate.
+    videoBitrate : 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
@@ -145,14 +144,16 @@ export class VideoRecorderDemo {
 
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
-    // Callback function for state changes.
-    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.info(TAG + 'current state is: ' + state);
-    })
-    // Callback function for errors.
-    this.avRecorder.on('error', (err: BusinessError) => {
-      console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
-    })
+    if (this.avRecorder != undefined) {
+      // Callback function for state changes.
+      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+        console.info(TAG + 'current state is: ' + state);
+      })
+      // Callback function for errors.
+      this.avRecorder.on('error', (err: BusinessError) => {
+        console.error(TAG + 'error ocConstantSourceNode, error message is ' + err);
+      })
+    }
   }
 
   // Complete camera-related preparations.
@@ -177,24 +178,26 @@ export class VideoRecorderDemo {
 
   // Process of starting recording.
   async startRecordingProcess() {
-    // 1. Create an AVRecorder instance.
-    this.avRecorder = await media.createAVRecorder();
-    this.setAvRecorderCallback();
-    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
-    // 3. Set recording parameters to complete the preparations.
-    await this.avRecorder.prepare(this.avConfig);
-    this.videoOutSurfaceId = await this.avRecorder.getInputSurface(); 
-    // 4. Complete camera-related preparations.
-    await this.prepareCamera();
-    // 5. Start the camera stream output.
-    await this.startCameraOutput();
-    // 6. Start recording.
-    await this.avRecorder.start();
+    if (this.avRecorder != undefined) {
+      // 1. Create an AVRecorder instance.
+      this.avRecorder = await media.createAVRecorder();
+      this.setAvRecorderCallback();
+      // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
+      // 3. Set recording parameters to complete the preparations.
+      await this.avRecorder.prepare(this.avConfig);
+      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+      // 4. Complete camera-related preparations.
+      await this.prepareCamera();
+      // 5. Start the camera stream output.
+      await this.startCameraOutput();
+      // 6. Start recording.
+      await this.avRecorder.start();
+    }
   }
 
   // Process of pausing recording.
   async pauseRecordingProcess() {
-    if (this.avRecorder.state ==='started') { // pause() can be called only when the AVRecorder is in the started state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
       await this.avRecorder.pause();
       await this.stopCameraOutput(); // Stop the camera stream output.
     }
@@ -202,26 +205,28 @@ export class VideoRecorderDemo {
 
   // Process of resuming recording.
   async resumeRecordingProcess() {
-    if (this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
       await this.startCameraOutput(); // Start camera stream output.
       await this.avRecorder.resume();
     }
   }
 
   async stopRecordingProcess() {
-    // 1. Stop recording.
-    if (this.avRecorder.state === 'started'
-    || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
-      await this.avRecorder.stop();
-      await this.stopCameraOutput();
+    if (this.avRecorder != undefined) {
+      // 1. Stop recording.
+      if (this.avRecorder.state === 'started'
+        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+        await this.avRecorder.stop();
+        await this.stopCameraOutput();
+      }
+      // 2. Reset the AVRecorder.
+      await this.avRecorder.reset();
+      // 3. Release the AVRecorder instance.
+      await this.avRecorder.release();
+      // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
+      // 5. Release the camera instance.
+      await this.releaseCamera();
     }
-    // 2. Reset the AVRecorder.
-    await this.avRecorder.reset();
-    // 3. Release the AVRecorder instance.
-    await this.avRecorder.release();
-    // 4. After the file is recorded, close the file descriptor. The implementation is omitted here.
-    // 5. Release the camera instance.
-    await this.releaseCamera();
   }
 
   // Complete sample code for starting, pausing, resuming, and stopping recording.
@@ -234,5 +239,3 @@ export class VideoRecorderDemo {
   }
 }
 ```
-
- <!--no_check--> 

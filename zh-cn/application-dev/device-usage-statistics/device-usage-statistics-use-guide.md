@@ -7,7 +7,7 @@
 
 ## 接口说明
 注册相关接口包导入：
-```js
+```ts
 import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 ```
 
@@ -31,12 +31,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 | function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
-| function setAppGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
-| function registerAppGroupCallBack(groupCallback: Callback&gt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
-| function registerAppGroupCallBack(groupCallback: Callback&gt;AppGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
-| function unregisterAppGroupCallBack(callback: AsyncCallback&gt;boolean&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
-| function unregisterAppGroupCallBack(): Promise&gt;boolean&gt;; | 解除应用分组监听回调，以promise形式返回。 |
+| function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
+| function setAppGroup(bundleName : string, newGroup : GroupType): Promise&lt;void&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
+| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
+| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
+| function unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
+| function unregisterAppGroupCallBack(): Promise&lt;void&gt;; | 解除应用分组监听回调，以promise形式返回。 |
 
 ## 开发步骤
 
@@ -46,444 +46,330 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryBundleEvents(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryBundleEvents(0, 20000000000000).then( (res : Array<BundleEvents>) => {
+        console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE queryBundleEvents promise number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch((err : BusinessError)=> {
+        console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryBundleEvents(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
+    usageStatistics.queryBundleEvents(0, 20000000000000, (err : BusinessError, res : Array<BundleEvents>) => {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+            console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleEvents callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleEvents callback result ' + JSON.stringify(res[i]));
             }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+        }
+    });
     ```
 
 3. 通过指定起始和结束时间查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryBundleStatsInfos(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
-            let i = 1;
-            for(let key in res){
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise number : ' + i);
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res[key]));
-                i++;
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryBundleStatsInfos(0, 20000000000000).then( (res : BundleStatsMap) => {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
-            let i = 1;
-            for(let key in res){
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback number : ' + i);
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res[key]));
-                i++;
-            }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err : BusinessError, res : BundleStatsMap) => {
+        if (err) {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
+        }
+    });
     ```
 
 4. 通过指定起始和结束时间查询当前应用的事件集合，不需要配置权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then( (res : Array<BundleEvents>) => {
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
+        for (let i = 0; i < res.length; i++) {
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise number : ' + (i + 1));
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
-            }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err : BusinessError, res : Array<BundleEvents>) => {
+        if (err) {
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback result ' + JSON.stringify(res[i]));
+        }
+        }
+    });
     ```
 
 5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then( (res : Array<BundleStatsInfo>) => {
+    console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
+        for (let i = 0; i < res.length; i++) {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise number : ' + (i + 1));
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
-            }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+
+    usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err : BusinessError, res : Array<BundleStatsInfo>) => {
+        if (err) {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback result ' + JSON.stringify(res[i]));
+        }
+        }
+    });
     ```
 
 6. 查询当前应用的使用优先级群组，不需要配置权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // promise方式
-    try{
-        usageStatistics.queryAppGroup().then( res => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryAppGroup().then( (res : number) => {
+        console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // callback方式
-    try{
-        usageStatistics.queryAppGroup((err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryAppGroup((err : BusinessError, res : number) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+        }
+    });
 
     //同步方式
-    try{
-        var priorityGroup = usageStatistics.queryAppGroupSync();
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    let priorityGroup = usageStatistics.queryAppGroupSync();
 
     ```
 
 7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.isIdleState("com.ohos.camera").then( res => {
-            console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.isIdleState("com.ohos.camera").then( (res : boolean) => {
+        console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
-            if (err) {
-                console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-            }
-        });
-    } catch(error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.isIdleState("com.ohos.camera", (err : BusinessError, res : boolean) => {
+        if (err) {
+        console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+        }
+    });
 
     //同步方式
-    try{
-        var isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
-    } catch(error) {
-        console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    let isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
     ```
 
 8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000, 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryModuleUsageRecords(1000).then( res => {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryModuleUsageRecords(1000).then( (res : Array<HapModuleInfo>) => {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( (err : BusinessError)=> {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 无maxNum参数异步方法promise方式
-    try{
-        usageStatistics.queryModuleUsageRecords().then( res => {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
-            for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
-            }
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryModuleUsageRecords().then( (res : Array<HapModuleInfo>) => {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
+        for (let i = 0; i < res.length; i++) {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise number : ' + (i + 1));
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
+        }
+    }).catch( (err : BusinessError)=> {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryModuleUsageRecords(1000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
-                for (let i = 0; i < res.length; i++) {
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
-                console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
-                }
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
-
-    // 无maxNum参数异步方法callback方式
-    try{
-        usageStatistics.queryModuleUsageRecords((err, res) => {
+    usageStatistics.queryModuleUsageRecords(1000, (err : BusinessError, res : Array<HapModuleInfo>) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
-            for (let i = 0; i < res.length; i++) {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
+        for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
-            }
         }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+        }
+    });
+
+    // 无maxNum参数异步方法callback方式
+    usageStatistics.queryModuleUsageRecords((err : BusinessError, res : Array<HapModuleInfo>) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
+        for (let i = 0; i < res.length; i++) {
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback number : ' + (i + 1));
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback result ' + JSON.stringify(res[i]));
+        }
+        }
+    });
     ```
 
 9. 通过指定起始和结束时间查询所有应用的通知次数，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryNotificationEventStats(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryNotificationEventStats(0, 20000000000000).then( (res : Array<DeviceEventStats>) => {
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryNotificationEventStats(0, 20000000000000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
-                console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryNotificationEventStats(0, 20000000000000, (err : BusinessError, res : Array<DeviceEventStats>) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
+        console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
+        }
+    });
     ```
 
 10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```js
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise方式
-    try{
-        usageStatistics.queryDeviceEventStats(0, 20000000000000).then( res => {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-            console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
-        }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryDeviceEventStats(0, 20000000000000).then( (res : Array<DeviceEventStats>) => {
+        console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
+        console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback方式
-    try{
-        usageStatistics.queryDeviceEventStats(0, 20000000000000, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
-                console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryDeviceEventStats(0, 20000000000000, (err : BusinessError, res : Array<DeviceEventStats>) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
+        console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
+        }
+    });
     ```
 
 11. 查询指定bundleName的应用的使用优先级群组，返回查询的优先级分组结果，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-     ```js
+     ```ts
      import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 有bundleName异步promise方式
     let bundleName = "com.ohos.camera";
-    try{
-        usageStatistics.queryAppGroup(bundleName).then( res => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryAppGroup(bundleName).then( (res : number) => {
+        console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
-     // 有bundleName异步方法callback方式
+    // 有bundleName异步方法callback方式
     let bundleName = "com.ohos.camera";
-    try{
-        usageStatistics.queryAppGroup(bundleName, (err, res) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.queryAppGroup(bundleName, (err : BusinessError, res : number) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+        }
+    });
      ```
 
 12. 给指定bundleName的应用的优先级分组设置成newGroup。 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```javascript
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise
     let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
+    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
 
-    try{
-        usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
-            console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
+        console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback
     let bundleName = "com.example.deviceUsageStatistics";
-    let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
-
-    try{
-        usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+    usageStatistics.setAppGroup(bundleName, newGroup, (err : BusinessError) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
+        }
+    });
     ```
 
 13. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限
 
-    ```javascript
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // 异步方法promise形式
-    let onBundleGroupChanged = (res) =>{
+    function  onBundleGroupChanged (res : usageStatistics.AppGroupCallbackInfo) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
@@ -491,66 +377,50 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
     };
-    try{
-        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // 异步方法callback形式
-    let onBundleGroupChanged = (err, res) =>{
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
+    function onBundleGroupChanged (res : usageStatistics.AppGroupCallbackInfo) {
+    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appNewGroup is : ' + res.appNewGroup);
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack result changeReason is : ' + res.changeReason);
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack result userId is : ' + res.userId);
+    console.log('BUNDLE_ACTIVE registerAppGroupCallBack result bundleName is : ' + res.bundleName);
     };
-    try{
-        usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, err => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        } else {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
-        }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
+    usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err : BusinessError) => {
+    if(err) {
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+    } else {
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
     }
+    });
     ```
 
 14. 解除应用分组监听回调， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
-    ```javascript
+    ```ts
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
     // promise
-    try{
-        usageStatistics.unregisterAppGroupCallBack().then( () => {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
-        }).catch( err => {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.unregisterAppGroupCallBack().then( () => {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
+    }).catch( (err : BusinessError) => {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+    });
 
     // callback
-    try{
-        usageStatistics.unregisterAppGroupCallBack(err => {
-            if(err) {
-                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
-            } else {
-                console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
-            }
-        });
-    } catch (error) {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
-    }
+    usageStatistics.unregisterAppGroupCallBack((err : BusinessError) => {
+        if(err) {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        } else {
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
+        }
+    });
     ```
 ## 相关实例
 
@@ -559,5 +429,3 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 - [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
 
 - [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
-
-

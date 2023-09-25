@@ -16,8 +16,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
+     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want, launchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
          let uiAbilityContext = this.context;
          ...
        }
@@ -31,8 +33,9 @@
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+     import Want from '@ohos.app.ability.Want';
      export default class MyService extends ServiceExtensionAbility {
-       onCreate(want) {
+       onCreate(want: Want) {
          let serviceExtensionContext = this.context;
          ...
        }
@@ -53,8 +56,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
+     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want, launchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
          let applicationContext = this.context.getApplicationContext();
          ...
        }
@@ -96,9 +101,11 @@
 
     ```ts
     import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import Want from '@ohos.app.ability.Want';
     
     export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         let applicationContext = this.context.getApplicationContext();
         let cacheDir = applicationContext.cacheDir;
         let tempDir = applicationContext.tempDir;
@@ -131,9 +138,11 @@
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       let cacheDir = this.context.cacheDir;
       let tempDir = this.context.tempDir;
       let filesDir = this.context.filesDir;
@@ -167,9 +176,11 @@
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import contextConstant from '@ohos.app.ability.contextConstant';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 存储普通信息前，切换到EL1设备级加密
     if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
       this.context.area = contextConstant.AreaMode.EL1; // 修改area
@@ -203,9 +214,11 @@ export default class EntryAbility extends UIAbility {
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       let bundleName2 = 'com.example.application';
       let context2 = this.context.createBundleContext(bundleName2);
       let label2 = context2.applicationInfo.label;
@@ -225,9 +238,11 @@ export default class EntryAbility extends UIAbility {
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       let bundleName2 = 'com.example.application';
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(bundleName2, moduleName2);
@@ -240,9 +255,11 @@ export default class EntryAbility extends UIAbility {
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(moduleName2);
       ...
@@ -260,17 +277,20 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 
 const TAG: string = '[Example].[Entry].[EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
   // 定义生命周期ID
-  lifecycleId: number;
+  lifecycleId: number = -1;
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 定义生命周期回调对象
-    let abilityLifecycleCallback = {
+    let abilityLifecycleCallback: AbilityLifecycleCallback = {
       // 当UIAbility创建时被调用
       onAbilityCreate(uiAbility) {
         console.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);

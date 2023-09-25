@@ -215,7 +215,7 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 
 Parameters in the log are printed in the following format:
 
-%[private flag]specifier
+%{[private flag]}specifier
 
 |  Privacy Flag| Description|
 | ------------ | ---- |
@@ -230,10 +230,13 @@ Parameters in the log are printed in the following format:
 
 **Example**
 ```js
-let obj2 = new Object({name:"Jack", age:22});
+let testObj: Record<string, string | number> = {
+    'name': "Jack",
+    'age': 22
+}
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
-hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(obj2));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);

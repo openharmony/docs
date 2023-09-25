@@ -75,7 +75,7 @@ index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ```
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
-```js
+```ts
 // library/src/main/ets/components/MainPage/MainPage.ets
 @Component
 export struct MainPage {
@@ -94,16 +94,16 @@ export struct MainPage {
 }
 ```
 HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
-```js
+```ts
 // library/index.ets
 export { MainPage } from './src/main/ets/components/MainPage/MainPage'
 ```
 ### 导出ts类和方法
 通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
-```js
+```ts
 // library/src/main/ts/test.ets
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
@@ -117,7 +117,7 @@ export function func2() {
 }
 ```
 HAR对外暴露的接口，在index.ets导出文件中声明如下所示：
-```js
+```ts
 // library/index.ets
 export { Log } from './src/main/ts/test'
 export { func } from './src/main/ts/test'
@@ -135,7 +135,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 ### 引用HAR的ArkUI组件
 
 HAR的依赖配置成功后，可以引用HAR的ArkUI组件。ArkUI组件的导入方式与ts的导入方式一致，通过`import`引入HAR导出的ArkUI组件，示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 import { MainPage } from "library"
 
@@ -160,7 +160,7 @@ struct Index {
 ```
 ### 引用HAR的类和方法
 通过`import`引用HAR导出的ts类和方法，示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 import { Log } from "library"
 import { func } from "library"
@@ -186,7 +186,7 @@ struct Index {
 ```
 ### 引用HAR的资源
 通过`$r`引用HAR中的资源，例如在HAR模块的`src/main/resources`里添加字符串资源（在string.json中定义，name：hello_har）和图片资源（icon_har.png），然后在Entry模块中引用该字符串和图片资源的示例如下所示：
-```js
+```ts
 // entry/src/main/ets/pages/index.ets
 @Entry
 @Component

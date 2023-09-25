@@ -27,19 +27,20 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 3. 使用checkAccessToken接口对当前调用者进行权限校验。
 4. 根据权限校验结果采取对应的措施。
 
-```js
+```ts
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+  import { BusinessError } from '@ohos.base';
   import rpc from '@ohos.rpc'
 
   class Stub extends rpc.RemoteObject {
-      onRemoteRequest(code, data, reply, option) {
-          let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
+          let callerTokenId: number = rpc.IPCSkeleton.getCallingTokenId();
           console.log("RpcServer: getCallingTokenId result: " + callerTokenId);
-          var atManager = abilityAccessCtrl.createAtManager();
+          let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
           try {
-              atManager.checkAccessToken(callerTokenId, "ohos.permission.ACCELEROMETER").then((data) => {
+              atManager.checkAccessToken(callerTokenId, "ohos.permission.ACCELEROMETER").then((data: abilityAccessCtrl.GrantStatus) => {
                   console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
-              }).catch((err) => {
+              }).catch((err: BusinessError) => {
                   console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
               });
           } catch(err) {
@@ -48,5 +49,4 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
           return true;
       }
   }
-
 ```

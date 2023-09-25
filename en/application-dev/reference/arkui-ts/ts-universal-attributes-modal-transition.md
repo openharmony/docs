@@ -5,7 +5,10 @@ You can bind a full-screen modal to a component through the **bindContentCover**
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
 >  Switching between landscape and portrait modes is not supported.
+>
+>  Route hopping is not supported.
 
 ## Attributes
 

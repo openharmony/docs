@@ -121,12 +121,32 @@ Use ArkUI built-in components only in build methods of structs, **pageTransition
 
   - After the change, the child components are compressed and stretched. 
 
-3. Changed the clipping area of child components for when the **clip** attribute is used to clip the child component content that exceeds the component area: For **\<RowSplit>**, the clipping area is changed from the right side to both the left and right sides of the child component area;
-  For **\<ColumnSplit>**, the clipping area is changed from the bottom to both the top and bottom of the child component area.
+3. Changed the clipping area of child components for when the **clip** attribute is used to clip the child component content that exceeds the component area: 
+    
+    - For **\<RowSplit>**, the clipping area is changed from the right side to both the left and right sides of the child component area.
+    
+    - For **\<ColumnSplit>**, the clipping area is changed from the bottom to both the top and bottom of the child component area.
 
 **Change Impact** 
 The preceding changes affect the **\<RowSplit>** and **\<ColumnSplit>** components in API version 10 and later versions.
 
 **Key API/Component Changes**
+
+N/A
+
+## cl.arkui.4 Changes in Layout and Behavior of \<Search>, \<TextInput>, and \<TextArea> Components
+
+1. Changed the position of the edited text area in the **\<Search>**, **\<TextInput>**, and \**<TextArea>** components from moving by the distance specified by **padding** to moving by the distance specified by **padding** and **border**. 
+2. Changed the width of the text field in the **\<Search>** component from the component width minus the width and the left and right margins of the search icon, to the component width minus the width of the paddings and borders as well as the width and the left and right margins of the search icon.
+
+**Change Impact**
+
+The change affects only applications of API version 10 and later versions.
+
+**Key API/Component Changes**
+
+N/A
+
+**Adaptation Guide**
 
 N/A

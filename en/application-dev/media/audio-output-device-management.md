@@ -9,6 +9,8 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import audio from '@ohos.multimedia.audio'; // Import the audio module.
 
+import { BusinessError } from '@ohos.base'; // Import BusinessError.
+
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 
 let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
@@ -33,7 +35,7 @@ The table below lists the supported audio output devices.
 Use **getDevices()** to obtain information about all the output devices.
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -44,7 +46,7 @@ Set a listener to listen for changes of the device connection state. When a devi
 
 ```ts
 // Listen for connection state changes of audio devices.
-audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type}`);  // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
   console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // Device role.
@@ -64,7 +66,8 @@ Currently, only one output device can be selected, and the device ID is used as 
 > The user can connect to a group of audio devices (for example, a pair of Bluetooth headsets), but the system treats them as one device (a group of devices that share the same device ID).
 
 ```ts
-let outputAudioDeviceDescriptor = [{
+import audio from '@ohos.multimedia.audio';
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.SPEAKER,
     id : 1,
@@ -76,12 +79,13 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : ""
 }];
 
-async function selectOutputDevice(){
+async function selectOutputDevice() {
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
     console.info('Invoke selectOutputDevice succeeded.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
   });
 }
@@ -96,16 +100,17 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 > The output device with the highest priority is the device that will output audio.
 
 ```ts
-let rendererInfo = {
+import audio from '@ohos.multimedia.audio';
+let rendererInfo: audio.AudioRendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
-async function getPreferOutputDeviceForRendererInfo() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+async function getPreferredOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   })
 }
@@ -114,18 +119,19 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## Listening for Changes of the Output Device with the Highest Priority
 
 ```ts
-let rendererInfo = {
+import audio from '@ohos.multimedia.audio';
+let rendererInfo: audio.AudioRendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
 // Listen for changes of the output device with the highest priority.
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
-    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceRole}`);  // Device role.
-    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceType}`);  // Device type.
+audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // Device role.
+    console.info(`device change descriptor : ${desc[0].deviceType}`);  // Device type.
 });
 
 // Cancel the listening for changes of the output device with the highest priority.
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
 ```

@@ -19,6 +19,7 @@
   - [弹窗错误码](errorcode-promptAction.md)
   - [页面路由错误码](errorcode-router.md)
   - [用户界面外观服务错误码](errorcode-uiappearance.md)
+  - [拖拽事件错误码](errorcode-drag-event.md)
 - 图形图像
   - [色彩管理错误码](errorcode-colorspace-manager.md)
   - [屏幕错误码](errorcode-display.md)
@@ -43,6 +44,7 @@
   - [crypto framework错误码](errorcode-crypto-framework.md)
   - [cert错误码](errorcode-cert.md)
   - [用户认证错误码](errorcode-useriam.md)
+  - [DLP服务错误码](errorcode-dlp.md)
 - 数据管理
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)

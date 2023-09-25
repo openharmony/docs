@@ -45,9 +45,11 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
             console.log('The ability has been started by the way of startAbility.');
         }
@@ -77,9 +79,11 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
             console.log('The ability has exit last because the ability was not responding.');
         }
@@ -95,17 +99,18 @@ Ability迁移结果，该类型为枚举，可配合[Ability](js-apis-app-abilit
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| AGREE           | 0    | 同意。 |
-| REJECT           | 1    | 拒绝。 |
-| MISMATCH  | 2    | 不匹配。|
+| AGREE           | 0    | 表示同意。 |
+| REJECT           | 1    | 表示拒绝：如应用在onContinue中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
+| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在onContinue中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
 
 **示例：**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onContinue(wantParam) {
+    onContinue(wantParam: Record<string, Object>) {
         return AbilityConstant.OnContinueResult.AGREE;
     }
 }
@@ -130,18 +135,22 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-let want = {
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
 };
-let option = {
+let option: StartOptions = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // 确保从上下文获取到context
 this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
-}).catch((error)=>{
+}).catch((error: BusinessError)=>{
     console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
@@ -162,9 +171,10 @@ this.context.startAbility(want, option).then(()=>{
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
             console.log('The memory of device is critical, please release some memory.');
         }
@@ -191,9 +201,10 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
@@ -214,9 +225,10 @@ class MyAbility extends UIAbility {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
             console.log('Save the ability data when the ability continuation.');
         } 
@@ -240,8 +252,9 @@ ContinueState说明枚举值。用于表示当前应用任务流转的状态。�
 
 ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
     console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
   });
 ```

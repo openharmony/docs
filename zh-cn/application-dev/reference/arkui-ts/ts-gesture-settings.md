@@ -108,10 +108,10 @@ struct GestureSettingsExample {
       Column() {
         Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.priorityTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.priorityTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -120,18 +120,18 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // 设置为priorityGesture时，点击文本会忽略Text组件的TapGesture手势事件，优先识别父组件Column的TapGesture手势事件
       .priorityGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.priorityTestValue += '\nColumn'
-        }), GestureMask.IgnoreInternal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.priorityTestValue += '\nColumn'
+          }), GestureMask.IgnoreInternal)
 
       Column() {
         Text('TapGesture:' + this.parallelTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.parallelTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.parallelTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -140,14 +140,13 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // 设置为parallelGesture时，点击文本会同时触发子组件Text与父组件Column的TapGesture手势事件
       .parallelGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.parallelTestValue += '\nColumn'
-        }), GestureMask.Normal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.parallelTestValue += '\nColumn'
+          }), GestureMask.Normal)
     }
   }
 }
-
 ```
 
 ![zh-cn_image_0000001210195016](figures/zh-cn_image_0000001210195016.gif)

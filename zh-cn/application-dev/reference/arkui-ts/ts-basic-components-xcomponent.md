@@ -14,7 +14,9 @@
 
 ## 接口
 
-**方法1：**  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+### XComponent
+
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 
@@ -25,7 +27,9 @@
 | libraryname | string                                        | 否   | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
 
-**方法2：**  XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})<sup>10+</sup>
+### XComponent<sup>10+</sup>
+
+XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 

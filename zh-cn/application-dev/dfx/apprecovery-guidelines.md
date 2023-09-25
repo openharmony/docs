@@ -128,8 +128,13 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 - 定义和注册[ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback，具体可参考[errorManager](../reference/apis/js-apis-app-ability-errorManager.md)里的使用方法。
 
 ```ts
-  var registerId = -1;
-  var callback = {
+  import appRecovery from '@ohos.app.ability.appRecovery';
+  import errorManager from '@ohos.app.ability.errorManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+
+  let registerId = -1;
+  let callback: errorManager.ErrorObserver = {
       onUnhandledException(errMsg) {
           console.log(errMsg);
           appRecovery.saveAppState();
@@ -137,15 +142,20 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
       }
   }
 
-  onWindowStageCreate(windowStage) {
-      // Main window is created, set main page for this ability
-      console.log("[Demo] EntryAbility onWindowStageCreate")
-
-      globalThis.registerObserver = (() => {
+  export default class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+          // Main window is created, set main page for this ability
+          console.log("[Demo] EntryAbility onWindowStageCreate")
           registerId = errorManager.on('error', callback);
-      })
 
-      windowStage.loadContent("pages/index", null);
+          windowStage.loadContent("pages/index", (err, data) => {
+              if (err.code) {
+                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                  return;
+              }
+              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+          })
+      }
   }
 ```
 
@@ -154,12 +164,17 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 callback触发appRecovery.saveAppState()调用后，会触发EntryAbility的onSaveState(state, wantParams)函数回调。
 
 ```ts
-  onSaveState(state, wantParams) {
-      // Ability has called to save app data
-      console.log("[Demo] EntryAbility onSaveState")
-      wantParams["myData"] = "my1234567";
-      return AbilityConstant.OnSaveResult.ALL_AGREE;
-  }
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
+        // Ability has called to save app data
+        console.log("[Demo] EntryAbility onSaveState")
+        wantParams["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
+}
 ```
 
 - 数据恢复
@@ -167,15 +182,26 @@ callback触发appRecovery.saveAppState()调用后，会触发EntryAbility的onSa
 callback触发后appRecovery.restartApp()调用后，应用会重启，重启后会走到EntryAbility的onCreate(want, launchParam)函数，保存的数据会在want参数的parameters里。
 
 ```ts
-storage: LocalStorage
-onCreate(want, launchParam) {
-    console.log("[Demo] EntryAbility onCreate")
-    globalThis.abilityWant = want;
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-        this.storage = new LocalStorage();
-        let recoveryData = want.parameters["myData"];
-        this.storage.setOrCreate("myData", recoveryData);
-        this.context.restoreWindowStage(this.storage);
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    storage: LocalStorage | undefined = undefined;
+
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate")
+        abilityWant = want;
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+            this.storage = new LocalStorage();
+            if (want.parameters) {
+                let recoveryData = want.parameters["myData"];
+                this.storage.setOrCreate("myData", recoveryData);
+                this.context.restoreWindowStage(this.storage);
+            }
+        }
     }
 }
 ```
@@ -183,15 +209,20 @@ onCreate(want, launchParam) {
 - 取消注册ErrorObserver callback
 
 ```ts
-onWindowStageDestroy() {
-    // Main window is destroyed, release UI related resources
-    console.log("[Demo] EntryAbility onWindowStageDestroy")
+import errorManager from '@ohos.app.ability.errorManager';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-    globalThis.unRegisterObserver = (() => {
+let registerId = -1;
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
+
         errorManager.off('error', registerId, (err) => {
             console.error("[Demo] err:", err);
         });
-    })
+    }
 }
 ```
 
@@ -200,20 +231,28 @@ onWindowStageDestroy() {
 被动保存和恢复依赖恢复框架底层触发，无需注册监听ErrorObserver callback，只需实现Ability的onSaveState接口数据保存和onCreate接口数据恢复流程即可。
 
 ```ts
-export default class EntryAbility extends Ability {
-    storage: LocalStorage
-    onCreate(want, launchParam) {
-        console.log("[Demo] EntryAbility onCreate")
-        globalThis.abilityWant = want;
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    storage: LocalStorage | undefined = undefined
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] EntryAbility onCreate")
+        abilityWant = want;
         if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
             this.storage = new LocalStorage();
-            let recoveryData = want.parameters["myData"];
-            this.storage.setOrCreate("myData", recoveryData);
-            this.context.restoreWindowStage(this.storage);
+            if (want.parameters) {
+                let recoveryData = want.parameters["myData"];
+                this.storage.setOrCreate("myData", recoveryData);
+                this.context.restoreWindowStage(this.storage);
+            }
         }
     }
 
-    onSaveState(state, wantParams) {
+    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
         // Ability has called to save app data
         console.log("[Demo] EntryAbility onSaveState")
         wantParams["myData"] = "my1234567";
@@ -227,10 +266,16 @@ export default class EntryAbility extends Ability {
 发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams)标记数据，并且值为true。
 
 ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 import wantConstant from '@ohos.app.ability.wantConstant';
+
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        if (want.parameters === undefined) {
+            return;
+        }
         if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
             want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
             console.log("This ability need to recovery");

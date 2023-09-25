@@ -22,7 +22,9 @@ Function is disabled.
 
 调用配置接口开启打点功能。
 
-   ```js
+   ```ts
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+
    hiAppEvent.configure({
        disable: false
    });
@@ -43,7 +45,7 @@ Invalid event domain.
 
 - 事件领域名称只包含数字、小写字母、下划线字符。
 - 事件领域名称以小写字母开头，不以下划线结尾。
-- 事件领域名称非空且长度不超过32个字符。
+- 事件领域名称非空且长度不超过16个字符。
 
 **处理步骤**
 
@@ -185,7 +187,7 @@ Invalid filtering event domain.
 
 - 事件领域名称只包含数字、小写字母、下划线字符。
 - 事件领域名称以小写字母开头，不以下划线结尾。
-- 事件领域名称非空且长度不超过32个字符。
+- 事件领域名称非空且长度不超过16个字符。
 
 **处理步骤**
 

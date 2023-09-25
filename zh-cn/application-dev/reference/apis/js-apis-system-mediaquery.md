@@ -98,7 +98,10 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 **示例：**
 
 ```ts
-function maxWidthMatch(e){
+import mediaquery, { MediaQueryEvent } from '@system.mediaquery';
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
+
+function maxWidthMatch(e: MediaQueryEvent): void {
   if(e.matches){
     // do something
   }
@@ -124,13 +127,13 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 **示例：**
 
 ```ts
-function maxWidthMatch(e){
+import mediaquery, { MediaQueryEvent } from '@system.mediaquery';
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
+
+function maxWidthMatch(e: MediaQueryEvent): void {
   if(e.matches){
     // do something
   }
 }
 mMediaQueryList.removeListener(maxWidthMatch);
 ```
-
-
-

@@ -69,14 +69,16 @@ try {
             bundleName: 'com.example.application',
             abilityName: 'EntryAbility'
         }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
-          if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
-          } else {
-            console.info('Operation succeed:' + JSON.stringify(data));
-          }
+            if (err) {
+                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            } else {
+                console.info('Operation succeed:' + JSON.stringify(data));
+            }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -133,7 +135,9 @@ try {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -194,7 +198,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -258,7 +264,9 @@ try {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -313,7 +321,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -371,7 +381,9 @@ try {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -433,7 +445,9 @@ try {
           }
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -498,6 +512,8 @@ try {
             console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
-    console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```

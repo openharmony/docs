@@ -10,14 +10,14 @@ The **DrawableDescriptor** module provides APIs for obtaining **pixelMap** objec
 
 ## Modules to Import
 
-```js
+```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
 ```
 
 ## DrawableDescriptor.constructor
 constructor()
 
-Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The globalization API [getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor10) or [getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname10) is required for object construction.
+Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The [getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor10) or [getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname10) API is required for object construction.
 
 **System API**: This is a system API.
 
@@ -56,9 +56,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-          .id))).getForeground()).getPixelMap())
+        Image((this.resManager.getDrawableDescriptor($r('app.media.icon').id) as LayeredDrawableDescriptor))
+        Image(((this.resManager.getDrawableDescriptor($r('app.media.icon')
+          .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
       }.height('50%')
     }.width('50%')
   }
@@ -80,9 +80,11 @@ Obtains this **pixelMap** object.
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: PixelMap = (<DrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getPixelMap();
+let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as DrawableDescriptor;
+let pixmapNew: object = pixmap.getPixelMap()
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -100,9 +102,11 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let pixmap: PixelMap = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-          .id))).getPixelMap();
+let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let pixmapNew: object = pixmap.getPixelMap()
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -120,9 +124,11 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getForeground();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: object =drawable.getForeground()
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -140,9 +146,11 @@ Obtains the **DrawableDescriptor** object of the background.
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getBackground();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: object =drawable.getBackground()
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -160,9 +168,11 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 let resManager = getContext().resourceManager
-let drawable: DrawableDescriptor = (<LayeredDrawableDescriptor> (resManager.getDrawableDescriptor($r('app.media.icon')
-    .id))).getMask();
+let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+    .id)) as LayeredDrawableDescriptor;
+let drawableNew: object =drawable.getMask()
   ```
 ## LayeredDrawableDescriptor.getMaskClipPath
 static getMaskClipPath(): string
@@ -179,6 +189,7 @@ Obtains the built-in clipping path parameters of the system. It is a static meth
 
 **Example**
   ```ts
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 Image($r('app.media.icon'))
     .width('200px').height('200px')
     .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))

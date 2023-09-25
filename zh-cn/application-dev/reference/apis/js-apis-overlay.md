@@ -45,6 +45,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>;
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let moduleName = "feature";
 let isEnabled = false;
 
@@ -52,11 +54,13 @@ try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
         .then(() => {
             console.info('setOverlayEnabled success');
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
             console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
 } catch (err) {
-    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -88,6 +92,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let moduleName = "feature";
 let isEnabled = false;
 
@@ -100,7 +106,9 @@ try {
         console.info('setOverlayEnabled success');
     });
 } catch (err) {
-    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -144,6 +152,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -152,11 +162,13 @@ try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
             console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
 } catch (err) {
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -195,6 +207,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -208,7 +222,9 @@ try {
         console.info('setOverlayEnabledByBundleName successfully');
     });
 } catch (err) {
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -245,6 +261,8 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let moduleName = "feature";
 
 (async() => {
@@ -252,7 +270,9 @@ let moduleName = "feature";
         let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
         console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
     } catch(err) {
-        console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -285,6 +305,8 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let moduleName = "feature";
 try {
     overlay.getOverlayModuleInfo(moduleName, (err, data) => {
@@ -295,7 +317,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -331,6 +355,8 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let targetModuleName = "feature";
 
 (async() => {
@@ -338,7 +364,9 @@ let targetModuleName = "feature";
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -370,6 +398,8 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let targetModuleName = "feature";
 try {
     overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
@@ -380,7 +410,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -423,6 +455,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -431,7 +465,9 @@ let moduleName = "feature";
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -470,6 +506,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -482,7 +520,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -517,6 +557,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let bundleName = "com.example.myapplication_xxxxx";
 
 try {
@@ -528,7 +570,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -571,6 +615,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -579,7 +625,9 @@ let moduleName = "feature";
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -618,6 +666,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -630,7 +680,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -665,6 +717,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 **示例：**
 
 ```ts
+import overlay from '@ohos.bundle.overlay';
+import { BusinessError } from '@ohos.base';
 let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
@@ -676,7 +730,9 @@ try {
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 

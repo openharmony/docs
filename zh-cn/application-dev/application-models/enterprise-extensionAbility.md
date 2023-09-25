@@ -40,28 +40,27 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAdminEnabled() {
+    console.info("onAdminEnabled");
+  }
 
-    onAdminEnabled() {
-        console.info("onAdminEnabled");
-    }
+  onAdminDisabled() {
+    console.info("onAdminDisabled");
+  }
+  
+  onBundleAdded(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName);
+  }
 
-    onAdminDisabled() {
-        console.info("onAdminDisabled");
-    }
-    
-    onBundleAdded(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName)
-    }
-
-    onBundleRemoved(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName)
-    }
+  onBundleRemoved(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName);
+  }
 };
 ```
 
 ​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
-```ts
+```json
 "extensionAbilities": [
       {
         "name": "ohos.samples.enterprise_admin_ext_ability",
@@ -77,30 +76,39 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 通过@ohos.enterprise.adminManager模块中的subscribeManagedEvent接口进行企业设备管理事件的订阅，订阅应用安装、卸载事件。当订阅成功后，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。并可以通过unsubscribeManagedEvent接口进行企业设备管理事件的去订阅。
 
 ```ts
-  @State subscribeManagedEventMsg: string = ""
-  @State unsubscribeManagedEventMsg: string = ""
+import adminManager from '@ohos.enterprise.adminManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  async subscribeManagedEventCallback() {
-    await adminManager.subscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
-        if (error) {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::errorCode: ' + error.code + ' errorMessage: ' + error.message
-        } else {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::success'
-        }
-      })
+async function subscribeManagedEventCallback() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
-
-  async unsubscribeManagedEventPromise() {
-    await adminManager.unsubscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::success'
-    }).catch((error) => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::errorCode: ' + error.code + ' errorMessage: ' + error.message
+  adminManager.subscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
+      if (error) {
+        console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+      } else {
+        console.log('Succeeded in subscribing managed event');
+      }
     })
+}
+
+async function unsubscribeManagedEventPromise() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
+  await adminManager.unsubscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
+    console.log('Succeeded in subscribing managed event');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+  })
+}
 ```
 
 ## 相关实例

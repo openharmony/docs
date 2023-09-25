@@ -60,9 +60,10 @@ Called when a specified ability is started.
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbilityStage extends AbilityStage {
-    onAcceptWant(want) {
+    onAcceptWant(want: Want) {
         console.log('MyAbilityStage.onAcceptWant called');
         return 'com.example.test';
     }
@@ -88,9 +89,10 @@ Called when the global configuration is updated.
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdate(config) {
+    onConfigurationUpdate(config: Configuration) {
         console.log('onConfigurationUpdate, language: ${config.language}');
     }
 }
@@ -114,9 +116,10 @@ Called when the system has decided to adjust the memory level. For example, this
     
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
         console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
     } 
 }

@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```js
+```ts
 import document from '@ohos.document';
 ```
 
@@ -33,8 +33,8 @@ Chooses files of the specified types using the file manager. This API uses a pro
 
 **Example**
 
-  ```js
-  let types = [];
+  ```ts
+  let types: Array<string> = [];
   document.choose(types);
   ```
 ## document.choose<sup>(deprecated)</sup>
@@ -53,10 +53,10 @@ Chooses a file using the file manager. This API uses an asynchronous callback to
 
 **Example**
 
-  ```js
-  let uri = "";
-  document.choose(function(err, uri) {
-        // Do something with the URI. 
+  ```ts
+  let uri: string = "";
+  document.choose((err: TypeError, uri: string) => {
+    // Do something with the URI. 
   });
   ```
 ## document.choose<sup>(deprecated)</sup>
@@ -76,11 +76,11 @@ Chooses files using the file manager. This API uses an asynchronous callback to 
 
 **Example**
 
-  ```js
-  let types = [];
-  let uri = "";
-  document.choose(types, function(err, uri) {
-        // Do something with the URI. 
+  ```ts
+  let types: Array<string> = [];
+  let uri: string = "";
+  document.choose(types, (err: TypeError, uri: string) => {
+    // Do something with the URI. 
   });
   ```
 
@@ -107,9 +107,9 @@ Opens a file. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
-  let type = "";
-  let uri = "";
+  ```ts
+  let type: string = "";
+  let uri: string = "";
   document.show(uri, type);
   ```
 
@@ -131,10 +131,10 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
-  let type = "";
-  let uri = "";
-  document.show(uri, type, function(err) {
-        //do something
+  ```ts
+  let type: string = "";
+  let uri: string = "";
+  document.show(uri, type, (err: TypeError) => {
+    //do something
   });
   ```

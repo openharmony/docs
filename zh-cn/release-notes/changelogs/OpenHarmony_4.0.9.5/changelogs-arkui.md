@@ -214,3 +214,9 @@ struct SwiperExample {
   }
 }
 ```
+
+## cl.arkui.7 Navigation menus最右图标距离右边缘间距变更
+
+**变更影响**
+
+menus整体向右侧偏移12vp，最右图标距离右边缘的间距由原36vp变更为24vp。

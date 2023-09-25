@@ -31,8 +31,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 1. 在EntryAbility中，通过调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
      moduleName: 'func', // moduleName非必选
@@ -44,7 +48,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    // context为调用方UIAbility的UIAbilityContext
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -53,13 +57,15 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
 
    export default class FuncAbility extends UIAbility {
-     onCreate(want, launchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
        // 接收调用方UIAbility传过来的参数
        let funcAbilityWant = want;
        let info = funcAbilityWant?.parameters?.info;
-       ...
+       // ...
      }
    }
    ```
@@ -71,7 +77,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
 
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
@@ -96,8 +104,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 1. 在EntryAbility中，调用[`startAbilityForResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口启动FuncAbility，异步回调中的data用于接收FuncAbility停止自身后返回给EntryAbility的信息。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
      moduleName: 'func', // moduleName非必选
@@ -108,8 +120,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
-     ...
-   }).catch((err) => {
+     // ...
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -117,9 +129,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 2. 在FuncAbility停止自身时，需要调用[`terminateSelfWithResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法，入参abilityResult为FuncAbility需要返回给EntryAbility的信息。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
-   let abilityResult = {
+   let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.myapplication',
@@ -142,19 +157,28 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 3. FuncAbility停止自身后，EntryAbility通过[`startAbilityForResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调接收被FuncAbility返回的信息，RESULT_CODE需要与前面的数值保持一致。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
-   ...
+   let want: Want = {
+     deviceId: '', // deviceId为空表示本设备
+     bundleName: 'com.example.myapplication',
+     moduleName: 'func', // moduleName非必选
+     abilityName: 'FuncAbility',
+   }
 
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
      if (data?.resultCode === RESULT_CODE) {
        // 解析被调用方UIAbility返回的信息
        let info = data.want?.parameters?.info;
-       ...
+       // ...
      }
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -201,8 +225,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 2. 在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
      // bundleName: 'com.example.myapplication',
@@ -214,7 +242,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    // context为调用方UIAbility的UIAbilityContext
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -225,7 +253,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
 
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
@@ -270,8 +300,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 2. 调用方使用[`startAbilityForResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills标签配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want:Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
      // bundleName: 'com.example.myapplication',
@@ -282,8 +316,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
-     ...
-   }).catch((err) => {
+     // ...
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -291,9 +325,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 3. 在支付UIAbility完成支付之后，需要调用[`terminateSelfWithResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法实现停止自身，并将abilityResult参数信息返回给调用方。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
-   let abilityResult = {
+   let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
      want: {
        bundleName: 'com.example.funcapplication',
@@ -316,10 +353,14 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 4. 在调用方[`startAbilityForResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面[`terminateSelfWithResult()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)返回的数值保持一致。
 
    ```ts
-   let context = ...; // UIAbilityContext
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
-   let want = {
+   let want: Want = {
      // Want参数信息
    };
 
@@ -328,9 +369,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      if (data?.resultCode === RESULT_CODE) {
        // 解析被调用方UIAbility返回的信息
        let payResult = data.want?.parameters?.payResult;
-       ...
+       // ...
      }
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -361,9 +402,13 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
 
-let context = ...; // UIAbilityContext
-let want = {
+let context: common.UIAbilityContext = ...; // UIAbilityContext
+let want: Want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.myapplication',
   moduleName: 'func', // moduleName非必选
@@ -372,13 +417,13 @@ let want = {
     info: '来自EntryAbility Index页面',
   },
 }
-let options = {
+let options: StartOptions = {
   windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
 };
 // context为调用方UIAbility的UIAbilityContext
 context.startAbility(want, options).then(() => {
   console.info('Succeeded in starting ability.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 })
 ```
@@ -388,7 +433,16 @@ context.startAbility(want, options).then(() => {
 
 ## 启动UIAbility的指定页面
 
-一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。本文主要讲解目标UIAbility首次启动和目标UIAbility非首次启动两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
+### 概述
+
+一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。
+
+UIAbility的启动分为两种情况：UIAbility冷启动和UIAbility热启动。
+
+- UIAbility冷启动：指的是UIAbility实例处于完全关闭状态下被启动，这需要完整地加载和初始化UIAbility实例的代码、资源等。
+- UIAbility热启动：指的是UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例，这种情况下可以快速恢复UIAbility实例的状态。
+
+本文主要讲解[目标UIAbility冷启动](#目标uiability冷启动)和[目标UIAbility热启动](#目标uiability热启动)两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
 
 
 ### 调用方UIAbility指定启动页面
@@ -397,8 +451,12 @@ context.startAbility(want, options).then(() => {
 
 
 ```ts
-let context = ...; // UIAbilityContext
-let want = {
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let context: common.UIAbilityContext = ...; // UIAbilityContext
+let want: Want = {
   deviceId: '', // deviceId为空表示本设备
   bundleName: 'com.example.funcapplication',
   moduleName: 'entry', // moduleName非必选
@@ -410,15 +468,15 @@ let want = {
 // context为调用方UIAbility的UIAbilityContext
 context.startAbility(want).then(() => {
   console.info('Succeeded in starting ability.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
 
-### 目标UIAbility首次启动
+### 目标UIAbility冷启动
 
-目标UIAbility首次启动时，在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
+目标UIAbility冷启动时，在目标UIAbility的`onCreate()`生命周期回调中，接收调用方传过来的参数。然后在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
 
 
 ```ts
@@ -428,7 +486,7 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 
 export default class FuncAbility extends UIAbility {
-  funcAbilityWant: Want;
+  funcAbilityWant: Want | undefined = undefined;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // 接收调用方UIAbility传过来的参数
@@ -442,13 +500,13 @@ export default class FuncAbility extends UIAbility {
       url = 'pages/Second';
     }
     windowStage.loadContent(url, (err, data) => {
-      ...
+      // ...
     });
   }
 }
 ```
 
-### 目标UIAbility非首次启动
+### 目标UIAbility热启动
 
 在应用开发中，会遇到目标UIAbility实例之前已经启动过的场景，这时再次启动目标UIAbility时，不会重新走初始化逻辑，只会直接触发`onNewWant()`生命周期方法。为了实现跳转到指定页面，需要在`onNewWant()`中解析要参数进行处理。
 
@@ -460,26 +518,12 @@ export default class FuncAbility extends UIAbility {
 4. 用户点击联系人张三的短信按钮，会重新启动短信应用的UIAbility实例。
 5. 由于短信应用的UIAbility实例已经启动过了，此时会触发该UIAbility的`onNewWant()`回调，而不会再走`onCreate()`和`onWindowStageCreate()`等初始化逻辑。
 
-```mermaid
-sequenceDiagram
-Participant U as 用户
-Participant S as 短信应用
-Participant C as 联系人应用
-
-U->>S: 打开短信应用
-S-->>U: 显示短信应用主页
-U->>S: 将设备回到桌面界面
-S->>S: 短信应用进入后台
-U->>C: 打开联系人应用
-C-->>U: 显示联系人应用界面
-U->>C: 点击联系人张三的短信按钮
-C->>S: 构造Want启动短信应用
-S-->>U: 显示给张三发短信的页面
-```
+图1 目标UIAbility热启动  
+![](figures/uiability-hot-start.png)
 
 开发步骤如下所示。
 
-1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -490,24 +534,33 @@ S-->>U: 显示给张三发短信的页面
    import { Router, UIContext } from '@ohos.arkui.UIContext';
 
    export default class EntryAbility extends UIAbility {
-     funcAbilityWant: Want;
-     uiContext: UIContext;
+     funcAbilityWant: Want | undefined = undefined;
+     uiContext: UIContext | undefined = undefined;
 
-     ...
+     // ...
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Main window is created, set main page for this ability
-       ...
+       let url = 'pages/Index';
+       if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+         url = 'pages/Second';
+       }
 
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
-           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
            return;
          }
-         windowClass = data;
-         this.uiContext = windowClass.getUIContext();
-       })
+
+         let windowClass: window.Window;
+         windowStage.getMainWindow((err, data) => {
+           if (err.code) {
+             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           windowClass = data;
+           this.uiContext = windowClass.getUIContext();
+         })
+       });
      }
    }
    ```
@@ -515,23 +568,31 @@ S-->>U: 显示给张三发短信的页面
 2. 在短信应用UIAbility的`onNewWant()`回调中解析调用方传递过来的want参数，通过调用UIContext中的[`getRouter()`](../reference/apis/js-apis-arkui-UIContext.md#getrouter)方法获取[`Router`](../reference/apis/js-apis-arkui-UIContext.md#router)对象，并进行指定页面的跳转。此时再次启动该短信应用的UIAbility实例时，即可跳转到该短信应用的UIAbility实例的指定页面。
 
    ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   import { BusinessError } from '@ohos.base';
+
    export default class EntryAbility extends UIAbility {
-     funcAbilityWant: Want;
-     uiContext: UIContext;
+     funcAbilityWant: Want | undefined = undefined;
+     uiContext: UIContext | undefined = undefined;
 
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
        if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Second';
-         let router: Router = this.uiContext.getRouter();
-         router.pushUrl({
-           url: funcAUrl
-         }).catch((err) => {
-           console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
-         })
+         if (this.uiContext) {
+           let router: Router = this.uiContext.getRouter();
+           router.pushUrl({
+             url: funcAUrl
+           }).catch((err: BusinessError) => {
+             console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
+           })
+         }
        }
      }
 
-     ...
+     // ...
    }
    ```
 
@@ -625,22 +686,24 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 
    ```ts
+   import rpc from '@ohos.rpc';
+
    export default class MyParcelable {
      num: number = 0;
      str: string = '';
 
-     constructor(num, string) {
+     constructor(num: number, string: string) {
        this.num = num;
        this.str = string;
      }
 
-     marshalling(messageSequence) {
+     marshalling(messageSequence: rpc.MessageSequence) {
        messageSequence.writeInt(this.num);
        messageSequence.writeString(this.str);
        return true;
      }
 
-     unmarshalling(messageSequence) {
+     unmarshalling(messageSequence: rpc.MessageSequence) {
        this.num = messageSequence.readInt();
        this.str = messageSequence.readString();
        return true;
@@ -654,28 +717,38 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 
    ```ts
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import rpc from '@ohos.rpc';
+   import { BusinessError } from '@ohos.base';
+   import MyParcelable from './MyParcelable';
+
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
 
-   function sendMsgCallback(data) {
+   function sendMsgCallback(data: rpc.MessageSequence) {
      console.info('CalleeSortFunc called');
 
      // 获取Caller发送的序列化数据
-     let receivedData = new MyParcelable(0, '');
+     let receivedData: MyParcelable = new MyParcelable(0, '');
      data.readParcelable(receivedData);
      console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+     let num: number = receivedData.num;
 
      // 作相应处理
      // 返回序列化数据result给Caller
-     return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+     return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
    }
 
    export default class CalleeAbility extends UIAbility {
-     onCreate(want, launchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
        try {
          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
        } catch (err) {
-         console.error(`Failed to register. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to register. Code is ${code}, message is ${message}`);
        }
      }
 
@@ -683,7 +756,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        try {
          this.callee.off(MSG_SEND_METHOD);
        } catch (err) {
-         console.error(`Failed to unregister. Code is ${err.code}, message is ${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
        }
      }
    }
@@ -703,32 +778,44 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 
    ```ts
-   // 注册caller的release监听
-   private regOnRelease(caller) {
-     try {
-       caller.on('release', (msg) => {
-         console.info(`caller onRelease is called ${msg}`);
-       })
-       console.info('Succeeded in registering on release.');
-     } catch (err) {
-       console.err(`Failed to caller register on release. Code is ${err.code}, message is ${err.message}`);
-     }
-   }
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { Caller } from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
 
-   async onButtonGetCaller() {
-     try {
-       this.caller = await context.startAbilityByCall({
-         bundleName: 'com.samples.CallApplication',
-         abilityName: 'CalleeAbility'
-       });
-       if (this.caller === undefined) {
-         console.info('get caller failed')
-         return;
+   export default class CallerAbility extends UIAbility {
+     caller: Caller | undefined = undefined;
+
+     // 注册caller的release监听
+     private regOnRelease(caller: Caller) {
+       try {
+         caller.on('release', (msg: string) => {
+           console.info(`caller onRelease is called ${msg}`);
+         })
+         console.info('Succeeded in registering on release.');
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to caller register on release. Code is ${code}, message is ${message}`);
        }
-       console.info('get caller success')
-       this.regOnRelease(this.caller)
-     } (err) {
-       console.err(`Failed to get caller. Code is ${err.code}, message is ${err.message}`);
+     }
+
+     async onButtonGetCaller() {
+       try {
+         this.caller = await this.context.startAbilityByCall({
+           bundleName: 'com.samples.CallApplication',
+           abilityName: 'CalleeAbility'
+         });
+         if (this.caller === undefined) {
+           console.info('get caller failed')
+           return;
+         }
+         console.info('get caller success')
+         this.regOnRelease(this.caller)
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get caller. Code is ${code}, message is ${message}`);
+       }
      }
    }
    ```

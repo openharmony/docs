@@ -2,7 +2,7 @@
 
 ## When to Use
 
-**NativeWindow** is a local platform-based window of OpenHarmony that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
+**NativeWindow** is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
 
 The following scenarios are common for NativeWindow development:
 
@@ -54,6 +54,10 @@ libnative_window.so
         OH_NativeXComponent *nativeXComponent = nullptr;
         // Use the napi_unwrap API to parse the NativeXComponent instance pointer.
         napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+        // Obtain the XComponent ID.
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. Define **OH_NativeXComponent_Callback**.
         ```c++
@@ -105,10 +109,6 @@ libnative_window.so
     int32_t height = 0x100;
     // The nativeWindow instance is obtained from the callback in the previous step.
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-    // Set the step of the OHNativeWindowBuffer.
-    code = SET_STRIDE;
-    int32_t stride = 0x8;
-    ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, stride);
     ```
 
 3. Request an **OHNativeWindowBuffer** from the graphics queue.

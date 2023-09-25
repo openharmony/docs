@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
@@ -28,8 +28,8 @@ createAtManager(): AtManager
 
 **示例：**
 
-```js
-let atManager = abilityAccessCtrl.createAtManager();
+```ts
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 ```
 
 ## AtManager
@@ -67,15 +67,16 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
-    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
+    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
         console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -114,10 +115,12 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 **示例：**
 
-```js
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let data = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
+```ts
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
@@ -161,16 +164,17 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let permissionFlags = 1;
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionFlags: number = 1;
 try {
     atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -213,14 +217,15 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let permissionFlags = 1;
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -272,16 +277,17 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let permissionFlags = 1;
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionFlags: number = 1;
 try {
     atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -324,14 +330,15 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let permissionFlags = 1;
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -382,15 +389,16 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
-    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
+    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
@@ -416,10 +424,12 @@ getVersion(): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-let atManager = abilityAccessCtrl.createAtManager();
+```ts
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let promise = atManager.getVersion();
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
@@ -463,16 +473,16 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 **示例：**
 
-```js
-import {Permissions} from '@ohos.abilityAccessCtrl';
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
-    atManager.on('permissionStateChange', tokenIDList, permissionList, (data) => {
+    atManager.on('permissionStateChange', tokenIDList, permissionList, (data: abilityAccessCtrl.PermissionStateChangeInfo) => {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
@@ -516,12 +526,12 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 **示例：**
 
-```js
-import {Permissions} from '@ohos.abilityAccessCtrl';
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
@@ -558,15 +568,22 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 **示例：**
 
-```js
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
+try {
+    atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
+        console.log(`promise: data->${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+    });
+}catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### requestPermissionsFromUser<sup>9+</sup>
@@ -600,19 +617,67 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **示例：**
 
-  ```js
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-let atManager = abilityAccessCtrl.createAtManager();
+ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来做中转。开发者需要：
+
+   a. 在EntryAbility.ets中导入构建的单例对象GlobalThis。
+      ```ts
+       import { GlobalThis } from '../utils/globalThis'; // 需要根据globalThis.ets的路径自行适配
+      ```
+   b. 在onCreate中添加:
+      ```ts
+       GlobalThis.getInstance().setContext('context', this.context);
+      ```
+
+   > **说明：**
+   >
+   > 由于在ts中引入ets文件会有告警提示，需要将EntryAbility.ts的文件后缀修改为EntryAbility.ets，并在module.json5中同步修改。
+
+**globalThis.ets示例代码如下：**
+```ts
+import { Context } from '@ohos.abilityAccessCtrl';
+
+// 构造单例对象
+export class GlobalThis {
+    private constructor() {}
+    private static instance: GlobalThis;
+    private _uiContexts = new Map<string, Context>();
+
+    public static getInstance(): GlobalThis {
+    if (!GlobalThis.instance) {
+        GlobalThis.instance = new GlobalThis();
+    }
+    return GlobalThis.instance;
+    }
+
+    getContext(key: string): Context | undefined {
+    return this._uiContexts.get(key);
+    }
+
+    setContext(key: string, value: Context): void {
+    this._uiContexts.set(key, value);
+    }
+
+    // 其他需要传递的内容依此扩展
+}
+```
+
+```ts
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+import { GlobalThis } from '../utils/globalThis';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA'], (err, data)=>{
-        console.info('data:' + JSON.stringify(data));
-        console.info('data permissions:' + data.permissions);
-        console.info('data authResults:' + data.authResults);
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
+    console.info('data:' + JSON.stringify(data));
+    console.info('data permissions:' + data.permissions);
+    console.info('data authResults:' + data.authResults);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
-  ```
+```
 
 ### requestPermissionsFromUser<sup>9+</sup>
 
@@ -651,21 +716,27 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **示例：**
 
-  ```js
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-let atManager = abilityAccessCtrl.createAtManager();
+修改EntryAbility.ets和导入GlobalThis等步骤同上，此处不再重复
+
+```ts
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+import { GlobalThis } from '../utils/globalThis';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA']).then((data) => {
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.info('data:' + JSON.stringify(err));
     })
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
-  ```
+```
 
 ### verifyAccessToken<sup>(deprecated)</sup>
 
@@ -694,15 +765,21 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 **示例：**
 
-```js
+```ts
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+try {
+    atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
+        console.log(`promise: data->${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+        console.log(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+    });
+}catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### checkAccessTokenSync<sup>10+</sup>
@@ -736,10 +813,13 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
 
 **示例：**
 
-```js
-let atManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let data = atManager.checkAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
+let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
 console.log(`data->${JSON.stringify(data)}`);
 ```
 

@@ -63,15 +63,21 @@ Creates a **FormBindingData** object.
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import fs from '@ohos.file.fs';
+import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-  let obj = {
-    'temperature': '21°',
-    'formImages': { 'image': fd }
-  };
-  formBindingData.createFormBindingData(obj);
+
+  let createFormBindingDataParam = new Map<string, string | Object>();
+  let formImagesParam = new Map<string, Object>();
+  formImagesParam.set('image', fd);
+  createFormBindingDataParam.set("name", '21°');
+  createFormBindingDataParam.set('formImages', formImagesParam);
+
+  formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  let code = (error as Base.BusinessError).code;
+  let message = (error as Base.BusinessError).message;
+  console.error(`catch error, code: ${code}, message: ${message}`);
 }
 ```

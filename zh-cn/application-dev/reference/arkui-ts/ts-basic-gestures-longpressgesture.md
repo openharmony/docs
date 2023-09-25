@@ -45,8 +45,8 @@ struct LongPressGestureExample {
         .gesture(
         LongPressGesture({ repeat: true })
           // 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
-          .onAction((event: GestureEvent) => {
-            if (event.repeat) {
+          .onAction((event?: GestureEvent) => {
+            if (event && event.repeat) {
               this.count++
             }
           })

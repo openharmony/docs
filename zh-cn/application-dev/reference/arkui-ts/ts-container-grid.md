@@ -31,13 +31,25 @@
 
 ## 接口
 
-Grid(scroller?: Scroller)
+Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **参数：**
 
 | 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
+| layoutOptions<sup>10+</sup> | GridLayoutOptions | 否 | 滚动Grid布局选项。 |
+
+### GridLayoutOptions<sup>10+</sup>
+
+布局选项，配合rowsTemplate、columnsTemplate仅设置其中一个的Grid使用，可以替代通过columnStart/columnEnd控制GridItem占用多列、rowStart/rowEnd控制GridItem占用多行的场景。
+
+**参数：**
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。   |
+| irregularIndexes | number[] | 否    | 大小不规则的GridItem在Grid所有子节点中的索引值。onGetIrregularSizeByIndex不设置时irregularIndexes中的GridItem默认占垂直滚动Grid的一整行或水平滚动Grid的一整列。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 获取不规则GridItem占用的行数和列数，布局过程中针对irregularIndexes中的index调用，开发者应返回index对应GridItem占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。 |
 
 ## 属性
 
@@ -58,7 +70,7 @@ Grid(scroller?: Scroller)
 | maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大列数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大行数。<br/>默认值：Infinity<br/>**说明：** <br/>当maxCount小于minCount时，maxCount和minCount都按默认值处理。<br/>设置为小于1的值时，按默认值显示。 |
 | minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小列数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。<br/>默认值：1<br/>**说明：** <br/>设置为小于1的值时，按默认值显示。 |
 | cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：第一个元素的大小 |
-| multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
+| multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>**说明：**<br/> 开启框选后，可以配合Griditem的selected属性和onSelect事件获取GridItem的选中状态，还可以设置[选中态样式](./ts-universal-attributes-polymorphic-style.md)（无默认选中样式）。 |
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false |
 | edgeEffect<sup>10+</sup> | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/> |
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
@@ -111,13 +123,19 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onScrollIndex(event: (first: number) => void) | 当前网格显示的起始位置item发生变化时触发。列表初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>Grid显示区域上第一个子组件的索引值有变化就会触发。 |
+| onScrollIndex(event: (first: number, last<sup>10+</sup>: number) => void) | 当前网格显示的起始位置/终止位置的item发生变化时触发。网格初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>- last: 当前显示的网格终止位置的索引值。<br/>Grid显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。<br/>由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽；如有长按和拖拽同时使用的需求可以使用通用拖拽事件。 |
 | onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
 | onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
+| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: ScrollState) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- [scrollState](ts-container-list.md#scrollstate枚举说明): 当前滑动状态。 |
+| onReachStart<sup>10+</sup>(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时如果initialIndex为0会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
+| onReachEnd<sup>10+</sup>(event: () => void)            | 网格到底末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
+| onScrollStart<sup>10+</sup>(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
+| onScrollStop<sup>10+</sup>(event: () => void)          | 网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 
 ## ItemDragInfo对象说明
 
@@ -158,8 +176,8 @@ struct GridExample {
                 .height('100%')
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -181,8 +199,8 @@ struct GridExample {
                 .height(80)
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -244,7 +262,10 @@ struct GridExample {
   }
 
   changeIndex(index1: number, index2: number) { //交换数组位置
-    [this.numbers[index1], this.numbers[index2]] = [this.numbers[index2], this.numbers[index1]];
+    let temp: string;
+    temp = this.numbers[index1];
+    this.numbers[index1] = this.numbers[index2];
+    this.numbers[index2] = temp;
   }
 
   build() {
@@ -301,3 +322,84 @@ struct GridExample {
 网格子组件1与子组件6拖拽交换位置后：
 
 ![gridDrag](figures/gridDrag2.png)
+
+### 示例3
+
+使用GridLayoutOptions
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State Number: String[] = ['0', '1', '2', '3', '4']
+  scroller: Scroller = new Scroller()
+  layoutOptions1: GridLayoutOptions = {
+    regularSize: [1, 1],        // 只支持[1, 1]
+    irregularIndexes: [0, 6],   // 索引为0和6的GridItem占用一行
+  }
+
+  layoutOptions2: GridLayoutOptions = {
+    regularSize: [1, 1],
+    irregularIndexes: [0, 7],   // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
+    onGetIrregularSizeByIndex: (index: number) => {
+      if (index === 0) {
+        return [1, 5]
+      }
+      return [1, index % 6 + 1]
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Grid(this.scroller, this.layoutOptions1) {
+        ForEach(this.Number, (day: string) => {
+          ForEach(this.Number, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+      // 不使用scroll，需要undefined占位
+      Grid(undefined, this.layoutOptions2) {
+        ForEach(this.Number, (day: string) => {
+          ForEach(this.Number, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(10)
+      .scrollBar(BarState.Off)
+      .width('90%')
+      .backgroundColor(0xFAEEE0)
+      .height(300)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![gridLayoutOptions](figures/gridLayoutOptions.png)

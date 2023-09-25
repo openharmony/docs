@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import data_preferences from '@ohos.data.preferences';
 ```
 
@@ -46,13 +46,13 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 try {
     data_preferences.getPreferences(context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
@@ -64,7 +64,9 @@ try {
         console.info("Succeeded in getting preferences.");
     })
 } catch (err) {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -75,7 +77,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -89,7 +91,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in getting preferences.");
             })
         } catch (err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -120,14 +124,14 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 try {
     let promise = data_preferences.getPreferences(context, 'myStore');
     promise.then((object: data_preferences.Preferences) => {
@@ -136,8 +140,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -148,7 +154,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -160,8 +166,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -196,13 +204,13 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 try {
     let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
@@ -215,7 +223,9 @@ try {
         console.info("Succeeded in getting preferences.");
     })
 } catch (err) {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -227,7 +237,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -242,7 +252,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in getting preferences.");
             })
         } catch (err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -282,13 +294,13 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 try {
     let options: data_preferences.Options =  { name: 'myStore' };
     let promise = data_preferences.getPreferences(context, options);
@@ -298,8 +310,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -310,7 +324,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -323,8 +337,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -364,19 +380,21 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 try {
     let options: data_preferences.Options =  { name: 'myStore' };
     preferences = data_preferences.getPreferencesSync(context, options);
-} catch(err) {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -387,15 +405,17 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences = null;
+let preferences: data_preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
             let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
             preferences = data_preferences.getPreferencesSync(this.context, options);
-        } catch(err) {
-            console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to get preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -431,7 +451,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -447,7 +467,9 @@ try {
         console.info("Succeeded in deleting preferences." );
     })
 } catch (err) {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -469,7 +491,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in deleting preferences." );
             })
         } catch (err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -510,7 +534,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -524,8 +548,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -545,8 +571,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -584,7 +612,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -601,7 +629,9 @@ try {
         console.info("Succeeded in deleting preferences." );
     })
 } catch (err) {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -624,7 +654,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in deleting preferences." );
             })
         } catch (err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -668,7 +700,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -683,8 +715,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -705,8 +739,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to delete preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -737,7 +773,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -752,7 +788,9 @@ try {
         console.info("Succeeded in removing preferences.");
     })
 } catch (err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -774,7 +812,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in removing preferences.");
             })
         } catch (err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -809,7 +849,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -822,8 +862,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -843,8 +885,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -873,14 +917,16 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
     data_preferences.removePreferencesFromCacheSync(context, 'myStore');
-} catch(err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -893,8 +939,10 @@ class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
             data_preferences.removePreferencesFromCacheSync(this.context, 'myStore');
-        } catch(err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -933,7 +981,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -948,7 +996,9 @@ try {
         console.info("Succeeded in removing preferences.");
     })
 } catch (err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -971,7 +1021,9 @@ class EntryAbility extends UIAbility {
                 console.info("Succeeded in removing preferences.");
             })
         } catch (err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -1015,7 +1067,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
@@ -1028,8 +1080,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1050,8 +1104,10 @@ class EntryAbility extends UIAbility {
             }).catch((err: BusinessError) => {
                 console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             })
-        } catch(err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -1089,15 +1145,17 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 FA模型示例：
 
-```js
+```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
     let options: data_preferences.Options = { name: 'myStore' };
     data_preferences.removePreferencesFromCacheSync(context, options);
-} catch(err) {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to remove preferences. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1112,8 +1170,10 @@ class EntryAbility extends UIAbility {
         try {
             let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
             data_preferences.removePreferencesFromCacheSync(this.context, options);
-        } catch(err) {
-            console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            console.error("Failed to remove preferences. code =" + code + ", message =" + message);
         }
     }
 }
@@ -1155,7 +1215,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.get('startup', 'default', (err: BusinessError, val: data_preferences.ValueType) => {
         if (err) {
@@ -1165,7 +1225,9 @@ try {
         console.info("Succeeded in getting value of 'startup'. val： " + val);
     })
 } catch (err) {
-    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1193,7 +1255,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.get('startup', 'default');
     promise.then((data: data_preferences.ValueType) => {
@@ -1201,8 +1263,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1229,12 +1293,14 @@ getSync(key: string, defValue: ValueType): ValueType
 
 **示例：**
 
-```js
+```ts
 try {
     let value: data_preferences.ValueType = preferences.getSync('startup', 'default');
     console.info("Succeeded in getting value of 'startup'. Data: " + value);
-} catch(err) {
-    console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get value of 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1254,19 +1320,28 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **示例：**
 
-```js
+```ts
+// 由于ArkTS中无Object.keys，且无法使用for..in...
+// 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
+function getObjKeys(obj: Object): string[] {
+  let keys = Object.keys(obj);
+  return keys;
+}
+
 try {
-    preferences.getAll((err: BusinessError, value: data_preferences.ValueType) => {
+    preferences.getAll((err: BusinessError, value: Object) => {
         if (err) {
             console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
             return;
         }
-        let allKeys = Object.keys(value);
+        let allKeys = getObjKeys(value);
         console.info("getAll keys = " + allKeys);
         console.info("getAll object = " + JSON.stringify(value));
     })
 } catch (err) {
-    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1287,18 +1362,27 @@ getAll(): Promise&lt;Object&gt;
 
 **示例：**
 
-```js
+```ts
+// 由于ArkTS中无Object.keys，且无法使用for..in...
+// 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
+function getObjKeys(obj: Object): string[] {
+  let keys = Object.keys(obj);
+  return keys;
+}
+
 try {
     let promise = preferences.getAll();
-    promise.then((value: data_preferences.ValueType) => {
-        let allKeys = Object.keys(value);
+    promise.then((value: Object) => {
+        let allKeys = getObjKeys(value);
         console.info('getAll keys = ' + allKeys);
         console.info("getAll object = " + JSON.stringify(value));
     }).catch((err: BusinessError) => {
         console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1318,14 +1402,23 @@ getAllSync(): Object
 
 **示例：**
 
-```js
+```ts
+// 由于ArkTS中无Object.keys，且无法使用for..in...
+// 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
+function getObjKeys(obj: Object): string[] {
+  let keys = Object.keys(obj);
+  return keys;
+}
+
 try {
     let value = preferences.getAllSync();
-    let allKeys = Object.keys(value);
+    let allKeys = getObjKeys(value);
     console.info('getAll keys = ' + allKeys);
     console.info("getAll object = " + JSON.stringify(value));
 } catch (err) {
-    console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to get all key-values. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1347,7 +1440,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.put('startup', 'auto', (err: BusinessError) => {
         if (err) {
@@ -1357,7 +1450,9 @@ try {
         console.info("Succeeded in putting value of 'startup'.");
     })
 } catch (err) {
-    console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to put value of 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1385,7 +1480,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.put('startup', 'auto');
     promise.then(() => {
@@ -1393,8 +1488,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to put value of 'startup'. code =" + code +", message =" + message);
 }
 ```
 
@@ -1416,11 +1513,13 @@ putSync(key: string, value: ValueType): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.putSync('startup', 'auto');
-} catch(err) {
-    console.error("Failed to put value of 'startup'. code =" + err.code +", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to put value of 'startup'. code =" + code +", message =" + message);
 }
 ```
 
@@ -1442,7 +1541,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.has('startup', (err: BusinessError, val: boolean) => {
         if (err) {
@@ -1456,7 +1555,9 @@ try {
         }
     })
 } catch (err) {
-    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1483,7 +1584,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.has('startup');
     promise.then((val: boolean) => {
@@ -1495,8 +1596,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1523,7 +1626,7 @@ hasSync(key: string): boolean
 
 **示例：**
 
-```js
+```ts
 try {
     let isExist: boolean = preferences.hasSync('startup');
     if (isExist) {
@@ -1531,8 +1634,10 @@ try {
     } else {
         console.info("The key 'startup' dose not contain.");
     }
-} catch(err) {
-    console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to check the key 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1554,7 +1659,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.delete('startup', (err: BusinessError) => {
         if (err) {
@@ -1564,7 +1669,9 @@ try {
         console.info("Succeeded in deleting the key 'startup'.");
     })
 } catch (err) {
-    console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete the key 'startup'. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1591,7 +1698,7 @@ delete(key: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.delete('startup');
     promise.then(() => {
@@ -1599,8 +1706,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete the key 'startup'. code =" + code +", message =" + message);
 }
 ```
 
@@ -1621,11 +1730,13 @@ deleteSync(key: string): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.deleteSync('startup');
-} catch(err) {
-    console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to delete the key 'startup'. code =" + code +", message =" + message);
 }
 ```
 
@@ -1646,7 +1757,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.flush((err: BusinessError) => {
         if (err) {
@@ -1656,7 +1767,9 @@ try {
         console.info("Succeeded in flushing.");
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1677,7 +1790,7 @@ flush(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.flush();
     promise.then(() => {
@@ -1686,7 +1799,9 @@ try {
         console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1707,7 +1822,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.clear((err: BusinessError) =>{
         if (err) {
@@ -1717,7 +1832,9 @@ try {
         console.info("Succeeded in clearing.");
     })
 } catch (err) {
-    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to clear. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1738,7 +1855,7 @@ clear(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 try {
     let promise = preferences.clear();
     promise.then(() => {
@@ -1746,8 +1863,10 @@ try {
     }).catch((err: BusinessError) => {
         console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
     })
-} catch(err) {
-    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to clear. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1762,11 +1881,13 @@ clearSync(): void
 
 **示例：**
 
-```js
+```ts
 try {
     preferences.clearSync();
-} catch(err) {
-    console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
+} catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to clear. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1788,7 +1909,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 
-```js
+```ts
 interface observer {
   key: string
 }
@@ -1818,7 +1939,9 @@ try {
         })
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1849,7 +1972,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;{ key : string }&gt;): void
 
 **示例1：**
 
-```js
+```ts
 interface observer {
   key: string
 }
@@ -1879,13 +2002,15 @@ try {
         })
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
 **示例2：**
 
-```js
+```ts
 interface observer {
   key: string
 }
@@ -1909,7 +2034,9 @@ try {
                     console.info("Succeeded in removing preferences.");
                 })
             } catch (err) {
-                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+                console.error("Failed to remove preferences. code =" + code + ", message =" + message);
             }
 
             try {
@@ -1922,7 +2049,9 @@ try {
                     console.info("Succeeded in getting preferences.");
                 })
             } catch (err) {
-                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+                console.error("Failed to get preferences. code =" + code + ", message =" + message);
             }
         });
         preferences.put('startup', 'manual', (err: BusinessError) => {
@@ -1942,7 +2071,9 @@ try {
         })
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
@@ -1963,7 +2094,7 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
 **示例：**
 
-```js
+```ts
 interface observer {
   key: string
 }
@@ -1996,7 +2127,9 @@ try {
         })
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 
@@ -2017,7 +2150,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;{ key : string }&gt;): vo
 
 **示例：**
 
-```js
+```ts
 interface observer {
   key: string
 }
@@ -2051,7 +2184,9 @@ try {
         })
     })
 } catch (err) {
-    console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error("Failed to flush. code =" + code + ", message =" + message);
 }
 ```
 ## ValueType

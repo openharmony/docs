@@ -145,7 +145,7 @@ export default class EntryAbility extends UIAbility {
         this.context.eventHub.emit('myEvent', 1, 2);
     }
 
-    eventFunc(argOne, argTwo) {
+    eventFunc(argOne: number, argTwo: number) {
         console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
     }
 }

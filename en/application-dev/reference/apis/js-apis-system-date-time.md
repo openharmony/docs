@@ -8,9 +8,20 @@ The **systemDateTime** module provides system time and time zone features. You c
 
 ## Modules to Import
 
-```js
+```ts
 import systemDateTime from '@ohos.systemDateTime';
 ```
+
+## TimeType<sup>10+</sup>
+
+Enumerates the types of time to obtain.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+| Name   | Value  | Description                                            |
+| ------- | ---- | ------------------------------------------------ |
+| STARTUP | 0    | Number of milliseconds elapsed since system startup, including the deep sleep time.  |
+| ACTIVE  | 1    | Number of milliseconds elapsed since system startup, excluding the deep sleep time.|
 
 ## systemDateTime.setTime
 
@@ -33,11 +44,13 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
-  systemDateTime.setTime(time, (error) => {
+  systemDateTime.setTime(time, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -45,7 +58,8 @@ try {
     console.info(`Succeeded in setting time`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -75,17 +89,20 @@ Sets the system time. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // Set the system time to 2021-01-20 02:36:25.
 let time = 1611081385000;
 try {
   systemDateTime.setTime(time).then(() => {
     console.info(`Succeeded in setting time.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -106,9 +123,11 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime(true, (error, time) => {
+  systemDateTime.getCurrentTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -116,7 +135,8 @@ try {
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -136,9 +156,11 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime((error, time) => {
+  systemDateTime.getCurrentTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -146,7 +168,8 @@ try {
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -172,15 +195,18 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime().then((time) => {
+  systemDateTime.getCurrentTime().then((time: number) => {
     console.info(`Succeeded in getting currentTime : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -201,9 +227,11 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime(true, (error, time) => {
+  systemDateTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -211,7 +239,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -231,9 +260,11 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime((error, time) => {
+  systemDateTime.getRealActiveTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -241,7 +272,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -267,15 +299,18 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime().then((time) => {
+  systemDateTime.getRealActiveTime().then((time: number) => {
     console.info(`Succeeded in getting real active time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -296,9 +331,11 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime(true, (error, time) => {
+  systemDateTime.getRealTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -306,7 +343,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -326,9 +364,11 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime((error, time) => {
+  systemDateTime.getRealTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -336,7 +376,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -362,23 +403,91 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime().then((time) => {
+  systemDateTime.getRealTime().then((time: number) => {
     console.info(`Succeeded in getting real time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.getTime<sup>10+</sup>
+
+getTime(isNanoseconds?: boolean): number
+
+ Obtains the time elapsed since the Unix epoch. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name       | Type   | Mandatory| Description                                                        |
+| ------------- | ------- | ---- | ------------------------------------------------------------ |
+| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.<br>Default value: **false**|
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Time elapsed since the Unix epoch.|
+
+**Example**
+
+```ts
+try {
+  let time = systemDateTime.getTime(true)
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getUptime<sup>10+</sup>
+
+getUptime(timeType: TimeType, isNanoseconds?: boolean): number
+
+Obtains the time elapsed since system startup. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name       | Type                   | Mandatory| Description                                                        |
+| ------------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| timeType      | [TimeType](#timetype10) | Yes  | Type of the time to obtain.                                            |
+| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.<br>Default value: **false**|
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Time elapsed since system startup.|
+
+**Example**
+
+```ts
+try {
+  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the system date. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -395,10 +504,12 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date();
 try {
-  systemDateTime.setDate(date, (error) => {
+  systemDateTime.setDate(date, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -406,15 +517,18 @@ try {
     console.info(`Succeeded in setting date.`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
 Sets the system date. This API uses a promise to return the result.
+
+> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -436,24 +550,29 @@ Sets the system date. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date(); 
 try {
   systemDateTime.setDate(date).then(() => {
     console.info(`Succeeded in setting date.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 Obtains the current system date. This API uses an asynchronous callback to return the result.
+
+> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -465,9 +584,11 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getDate((error, date) => {
+  systemDateTime.getDate((error: BusinessError, date: Date) => {
     if (error) {
       console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -475,15 +596,18 @@ try {
     console.info(`Succeeded in getting date : ${date}`);;
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
 Obtains the current system date. This API uses a promise to return the result.
+
+> **NOTE**<br>This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -495,15 +619,18 @@ Obtains the current system date. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getDate().then((date) => {
+  systemDateTime.getDate().then((date: Date) => {
     console.info(`Succeeded in getting date : ${date}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -528,9 +655,11 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.setTimezone('Asia/Shanghai', (error) => {
+  systemDateTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -538,7 +667,8 @@ try {
     console.info(`Succeeded in setting timezone.`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -568,15 +698,18 @@ Sets the system time zone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   systemDateTime.setTimezone('Asia/Shanghai').then(() => {
     console.info(`Succeeded in setting timezone.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -596,9 +729,11 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getTimezone((error, data) => {
+  systemDateTime.getTimezone((error: BusinessError, data: string) => {
     if (error) {
       console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -606,7 +741,8 @@ try {
     console.info(`Succeeded in get timezone : ${data}`);;
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -626,15 +762,43 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getTimezone().then((data) => {
+  systemDateTime.getTimezone().then((data: string) => {
     console.info(`Succeeded in getting timezone: ${data}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getTimezoneSync<sup>10+</sup>
+
+getTimezoneSync(): string
+
+Obtain the system time zone. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type  | Description                                                      |
+| ------ | ---------------------------------------------------------- |
+| string | System time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+
+**Example**
+
+```ts
+try {
+  let timezone = systemDateTime.getTimezoneSync();
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 

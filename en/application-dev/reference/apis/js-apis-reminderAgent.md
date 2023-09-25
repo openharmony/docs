@@ -41,14 +41,14 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
 **Example**
 ```ts
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
+let timer:reminderAgent.ReminderRequestTimer = {
+  reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
 
-  reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("callback, reminderId = " + reminderId);
-  });
+reminderAgent.publishReminder(timer, (err: BusinessError, reminderId: number) => {
+  console.log("callback, reminderId = " + reminderId);
+});
 ```
 
 
@@ -78,14 +78,14 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 
 **Example**
 ```ts
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
+let timer:reminderAgent.ReminderRequestTimer = {
+  reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
 
-  reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("promise, reminderId = " + reminderId);
-  });
+reminderAgent.publishReminder(timer).then((reminderId: number) => {
+  console.log("promise, reminderId = " + reminderId);
+});
 ```
 
 
@@ -111,8 +111,8 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 **Example**
 
 ```ts
-reminderAgent.cancelReminder(1, (err, data) => {
-    console.log("cancelReminder callback");
+reminderAgent.cancelReminder(1, (err: BusinessError, data: void) => {
+  console.log("cancelReminder callback");
 });
 ```
 
@@ -170,29 +170,29 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 **Example**
 
 ```ts
-reminderAgent.getValidReminders((err, reminders) => {
-    console.log("callback, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-        }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
+reminderAgent.getValidReminders((err: BusinessError, reminders: Array<reminderAgent.ReminderRequest>) => {
+  console.log("callback, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
     }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
 })
 ```
 
@@ -218,30 +218,31 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 **Example**
 
 ```ts
-reminderAgent.getValidReminders().then((reminders) => {
-    console.log("promise, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-        }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
+reminderAgent.getValidReminders().then((reminders: Array<reminderAgent.ReminderRequest>) => {
+  console.log("promise, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
     }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
 })
+
 ```
 
 
@@ -266,8 +267,8 @@ Cancels all reminders set by the current application. This API uses an asynchron
 **Example**
 
 ```ts
-reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("cancelAllReminders callback")
+reminderAgent.cancelAllReminders((err: BusinessError, data: void) =>{
+  console.log("cancelAllReminders callback")
 })
 ```
 
@@ -320,13 +321,13 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot:notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot, (err, data) => {
-    console.log("addNotificationSlot callback");
+reminderAgent.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
+  console.log("addNotificationSlot callback");
 });
 ```
 
@@ -358,13 +359,13 @@ Adds a notification slot. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot:notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot).then(() => {
-   console.log("addNotificationSlot promise");
+  console.log("addNotificationSlot promise");
 });
 ```
 
@@ -393,8 +394,8 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 ```ts
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-    console.log("removeNotificationSlot callback");
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err: BusinessError, data: void) => {
+  console.log("removeNotificationSlot callback");
 });
 ```
 

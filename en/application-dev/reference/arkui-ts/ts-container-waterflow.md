@@ -93,117 +93,116 @@ Where, **repeat** and **auto-fill** are keywords, and **track-size** indicates t
 
 // Object that implements the IDataSource API, which is used by the <WaterFlow> component to load data.
 export class WaterFlowDataSource implements IDataSource {
-
   private dataArray: number[] = []
   private listeners: DataChangeListener[] = []
 
   constructor() {
-      for (let i = 0; i < 100; i++) {
-          this.dataArray.push(i)
-      }
+    for (let i = 0; i < 100; i++) {
+      this.dataArray.push(i)
+    }
   }
 
   // Obtain the data corresponding to the specified index.
-  public getData(index: number): any {
-      return this.dataArray[index]
+  public getData(index: number): number {
+    return this.dataArray[index]
   }
 
   // Notify the controller of data reloading.
   notifyDataReload(): void {
-      this.listeners.forEach(listener => {
-          listener.onDataReloaded()
-      })
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
   }
 
   // Notify the controller of data addition.
   notifyDataAdd(index: number): void {
-      this.listeners.forEach(listener => {
-          listener.onDataAdded(index)
-      })
+    this.listeners.forEach(listener => {
+      listener.onDataAdded(index)
+    })
   }
 
   // Notify the controller of data changes.
   notifyDataChange(index: number): void {
-      this.listeners.forEach(listener => {
-          listener.onDataChanged(index)
-      })
+    this.listeners.forEach(listener => {
+      listener.onDataChanged(index)
+    })
   }
 
   // Notify the controller of data deletion.
   notifyDataDelete(index: number): void {
-      this.listeners.forEach(listener => {
-          listener.onDataDeleted(index)
-      })
+    this.listeners.forEach(listener => {
+      listener.onDataDeleted(index)
+    })
   }
 
   // Notify the controller of the data location change.
   notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-          listener.onDataMoved(from, to)
-      })
+    this.listeners.forEach(listener => {
+      listener.onDataMoved(from, to)
+    })
   }
 
   // Obtain the total number of data records.
   public totalCount(): number {
-      return this.dataArray.length
+    return this.dataArray.length
   }
 
   // Register the data change listener.
   registerDataChangeListener(listener: DataChangeListener): void {
-      if (this.listeners.indexOf(listener) < 0) {
-          this.listeners.push(listener)
-      }
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
   }
 
   // Unregister the data change listener.
   unregisterDataChangeListener(listener: DataChangeListener): void {
-      const pos = this.listeners.indexOf(listener)
-      if (pos >= 0) {
-          this.listeners.splice(pos, 1)
-      }
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
   }
 
   // Add data.
   public Add1stItem(): void {
-      this.dataArray.splice(0, 0, this.dataArray.length)
-      this.notifyDataAdd(0)
+    this.dataArray.splice(0, 0, this.dataArray.length)
+    this.notifyDataAdd(0)
   }
 
   // Add an item to the end of the data.
   public AddLastItem(): void {
-      this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
-      this.notifyDataAdd(this.dataArray.length-1)
+    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
+    this.notifyDataAdd(this.dataArray.length - 1)
   }
 
   // Add an item to the position corresponding to the specified index.
   public AddItem(index: number): void {
-      this.dataArray.splice(index, 0, this.dataArray.length)
-      this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, this.dataArray.length)
+    this.notifyDataAdd(index)
   }
 
   // Delete the first item.
   public Delete1stItem(): void {
-      this.dataArray.splice(0, 1)
-      this.notifyDataDelete(0)
+    this.dataArray.splice(0, 1)
+    this.notifyDataDelete(0)
   }
 
   // Delete the second item.
   public Delete2ndItem(): void {
-      this.dataArray.splice(1, 1)
-      this.notifyDataDelete(1)
+    this.dataArray.splice(1, 1)
+    this.notifyDataDelete(1)
   }
 
   // Delete the last item.
   public DeleteLastItem(): void {
-      this.dataArray.splice(-1, 1)
-      this.notifyDataDelete(this.dataArray.length)
+    this.dataArray.splice(-1, 1)
+    this.notifyDataDelete(this.dataArray.length)
   }
 
   // Reload data.
   public Reload(): void {
-      this.dataArray.splice(1, 1)
-      this.dataArray.splice(3, 2)
-      this.notifyDataReload()
+    this.dataArray.splice(1, 1)
+    this.dataArray.splice(3, 2)
+    this.notifyDataReload()
   }
 }
 ```
@@ -224,25 +223,26 @@ struct WaterflowDemo {
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
-  // Calculate the width and height of a flow item. 
+  // Calculate the width and height of a flow item.
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
 
-  // Save the width and height of the flow item.  
+  // Save the width and height of the flow item.
   getItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
     }
   }
-    
+
   aboutToAppear() {
     this.getItemSizeArray()
   }
-    
-  @Builder itemFoot() {
+
+  @Builder
+  itemFoot() {
     Column() {
       Text(`Footer`)
         .fontSize(10)
@@ -256,7 +256,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: this.itemFoot.bind(this), scroller: this.scroller }) {
+      WaterFlow({ footer: this.itemFoot, scroller: this.scroller }) {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
@@ -270,7 +270,7 @@ struct WaterflowDemo {
           .width('100%')
           .height(this.itemHeightArray[item])
           .backgroundColor(this.colors[item % 5])
-        }, item => item)
+        }, (item: string) => item)
       }
       .columnsTemplate("1fr 1fr 1fr 1fr")
       .itemConstraintSize({

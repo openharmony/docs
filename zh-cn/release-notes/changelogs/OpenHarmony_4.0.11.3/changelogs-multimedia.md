@@ -1,39 +1,6 @@
 # multimedia子系统ChangeLog
 
-## cl.multimedia.1 preferOutputDeviceForRendererInfo系列接口命名变更
-
-对于getPreferOutputDeviceForRendererInfo和对应的on/off订阅接口，命名内preferOutput变更为preferredOutput，与新增的preferredInput相匹配，满足英文翻译要求
-
-**变更影响**
-
-已在Beta版本发布的ts接口，影响使用此三方应用的兼容性。
-
-**关键的接口/组件变更**
-
-修改前的接口原型：
-
- ```ts
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
-getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
-on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors>): void;
-off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors>): void;
- ```
-
-修改后的接口原型：
-
- ```ts
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
-on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors>): void;
-off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors>): void;
- ```
-
-**适配指导**
-
-修改后开发者调用该接口时，需要使用修改后的接口命名定义。
-系统会暂时兼容两种命名方式的接口调用，但建议在使用新版本SDK后立即修改适配。
-
-## cl.multimedia.2 @ohos.multimedia.audio.d.ts内带入参的API10接口新增错误码声明
+## cl.multimedia.1 @ohos.multimedia.audio.d.ts内带入参的API10接口新增错误码声明
 
 **变更影响**
 
@@ -45,8 +12,8 @@ off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<Audi
 涉及新增错误声明的接口：
 
  ```ts
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
-getPreferredOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback<AudioDeviceDescriptors>): void;
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise<AudioDeviceDescriptors>;
 on(type: 'preferredOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors>): void;
 off(type: 'preferredOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors>): void;
 setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback<void>): void;

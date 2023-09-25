@@ -49,12 +49,14 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
+  onFormEvent(formId: string, message: string) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}');
-    let want = {
+    console.log(`FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}`);
+    let want: Want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',
       abilityName: 'EntryAbility',
@@ -62,9 +64,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         'message': message
       }
     };
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: Base.BusinessError) => {
       if (error) {
-        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
+        console.error(`FormExtensionContext startAbility, error:${JSON.stringify(error)}`);
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -112,12 +114,14 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import Base from '@ohos.base';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onFormEvent(formId, message) {
+  onFormEvent(formId: string, message: string) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId:${formId}, message:${message}');
-    let want = {
+    console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
+    let want: Want = {
       deviceId: '',
       bundleName: 'com.example.formstartability',
       abilityName: 'EntryAbility',
@@ -127,7 +131,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     };
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
-    }).catch((error) => {
+    }).catch((error: Base.BusinessError) => {
       console.error('StartAbility failed');
     });
   }
@@ -176,41 +180,43 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **示例：**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
 
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      // 当触发卡片message事件时，执行connectServiceExtensionAbility
-      console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
-      let want = {
-        deviceId: '',
-        bundleName: 'com.example.formstartability',
-        abilityName: 'EntryAbility',
-        parameters: {
-          'message': message
-        }
-      };
-      let options = {
-        onConnect(elementName, remote) { 
-          commRemote = remote; // remote 用于与ServiceExtensionAbility进行通信
-          console.log('----------- onConnect -----------'); 
-        },
-        onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-        onFailed(code) { console.error('----------- onFailed -----------') }
-      };
-
-      let connection = null;
-      try {
-        connection = this.context.connectServiceExtensionAbility(want, options);
-      } catch (paramError) {
-        // 处理入参错误异常
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // 当触发卡片message事件时，执行connectServiceExtensionAbility
+    console.log(`FormExtensionAbility onFormEvent, formId:${formId}, message:${message}`);
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
+      parameters: {
+        'message': message
       }
+    };
+    let options: common.ConnectOptions = {
+      onConnect(elementName, remote) { 
+        commRemote = remote; // remote 用于与ServiceExtensionAbility进行通信
+        console.log('----------- onConnect -----------'); 
+      },
+      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+      onFailed(code) { console.error('----------- onFailed -----------') }
+    };
+
+    let connection: number | null = null;
+    try {
+      connection = this.context.connectServiceExtensionAbility(want, options);
+    } catch (paramError) {
+      // 处理入参错误异常
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
@@ -240,36 +246,38 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 **示例：**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
-  // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      // 实际使用时，connection为connectServiceExtensionAbility中的返回值，此处定义为1无任何实际意义，仅作示例
-      let connection = 1;
+// commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // 实际使用时，connection为connectServiceExtensionAbility中的返回值，此处定义为1无任何实际意义，仅作示例
+    let connection: number = 1;
 
-      try {
-        this.context.disconnectServiceExtensionAbility(connection, (error) => {
-          commRemote = null;
-          if (error.code) {
-            // 处理业务逻辑错误
-            console.error(
-              `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-            return;
-          }
-          // 执行正常业务
-          console.log('disconnectServiceExtensionAbility succeed');
-        });
-      } catch (paramError) {
+    try {
+      this.context.disconnectServiceExtensionAbility(connection, (error: Base.BusinessError) => {
         commRemote = null;
-        // 处理入参错误异常
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-      }
+        if (error.code) {
+          // 处理业务逻辑错误
+          console.error(
+            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.log('disconnectServiceExtensionAbility succeed');
+      });
+    } catch (paramError) {
+      commRemote = null;
+      // 处理入参错误异常
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
@@ -304,34 +312,36 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```ts
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import rpc from '@ohos.rpc';
+import Base from '@ohos.base';
 
-  // commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
-  let commRemote = null;
-  export default class MyFormExtensionAbility extends FormExtensionAbility {
-    onFormEvent(formId, message) {
-      // 实际使用时，connection为connectServiceExtensionAbility中的返回值，此处定义为1无任何实际意义，仅作示例
-      let connection = 1;
+// commRemote为onConnect回调内返回的remote对象，此处定义为null无任何实际意义，仅作示例
+let commRemote: rpc.IRemoteObject | null = null;
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onFormEvent(formId: string, message: string) {
+    // 实际使用时，connection为connectServiceExtensionAbility中的返回值，此处定义为1无任何实际意义，仅作示例
+    let connection: number = 1;
 
-      try {
-        this.context.disconnectServiceExtensionAbility(connection)
-          .then((data) => {
-            commRemote = null;
-            // 执行正常业务
-            console.log('disconnectServiceExtensionAbility succeed');
-          })
-          .catch((error) => {
-            commRemote = null;
-            // 处理业务逻辑错误
-            console.error(
-              `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-          });
-      } catch (paramError) {
-        commRemote = null;
-        // 处理入参错误异常
-        console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-      }
+    try {
+      this.context.disconnectServiceExtensionAbility(connection)
+        .then(() => {
+          commRemote = null;
+          // 执行正常业务
+          console.log('disconnectServiceExtensionAbility succeed');
+        })
+        .catch((error: Base.BusinessError) => {
+          commRemote = null;
+          // 处理业务逻辑错误
+          console.error(
+            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+        });
+    } catch (paramError) {
+      commRemote = null;
+      // 处理入参错误异常
+      console.error(`error.code: ${(paramError as Base.BusinessError).code}, error.message: ${(paramError as Base.BusinessError).message}`);
     }
-  };
-  ```
+  }
+};
+```

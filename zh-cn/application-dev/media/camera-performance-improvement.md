@@ -31,22 +31,25 @@
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-```js
-import camera from '@ohos.multimedia.camera';
+[各类Context的获取方式](../application-models/application-context-stage.md)
 
-function async preview(context: Context, cameraInfo: camera.Device, previewProfile: camera.Profile, photoProfile: camera.Profile, surfaceId: string): Promise<void> {
+```ts
+import camera from '@ohos.multimedia.camera';
+import featureAbility from '@ohos.ability.featureAbility';
+
+async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  const cameraInput camera.CameraInput = await cameraManager.createCameraInput(cameraInfo)
-  const previewOutput: camera.PreviewOutput = await cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = await cameraManager.createPhotoOutput(photoProfile);
-  const session: camera.CaptureSession  = await this.mCameraManager.createCaptureSession();
-  await session.beginConfig();
-  await session.addInput(cameraInput);
-  await session.addOutput(previewOutput);
-  await session.addOutput(photoOutput);
+  const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
+  const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
+  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, photoSurfaceId);
+  const session: camera.CaptureSession  = cameraManager.createCaptureSession();
+  session.beginConfig();
+  session.addInput(cameraInput);
+  session.addOutput(previewOutput);
+  session.addOutput(photoOutput);
   await session.commitConfig();
   await session.start();
-  await previewOutput.addDeferredSurface(surfaceId);
+  previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
 
@@ -79,34 +82,44 @@ function async preview(context: Context, cameraInfo: camera.Device, previewProfi
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-```js
-import camera from '@ohos.multimedia.camera'
+[各类Context的获取方式](../application-models/application-context-stage.md)
+```ts
+import camera from '@ohos.multimedia.camera';
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+import featureAbility from '@ohos.ability.featureAbility';
 
-this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
-let cameras = this.cameraManager.getSupportedCameras()
-// 创建CaptureSession实例
-this.captureSession = await this.cameraManager.createCaptureSession()
-// 开始配置会话
-await this.captureSession.beginConfig()
-// 把CameraInput加入到会话
-this.cameraInput = await this.cameraManager.createCameraInput(cameras[0])
-await this.cameraInput.open()
-await this.captureSession.addInput(this.cameraInput)
-// 把PhotoOutPut加入到会话
-this.photoOutPut = await this.cameraManager.createPhotoOutput(photoProfile, surfaceId)
-await this.captureSession.addOutput(this.photoOutPut)
-boolean isSupported = this.photoOutPut.isQuickThumbnailSupported()
-if (isSupported) {
+async function enableQuickThumbnail(context: featureAbility.Context, surfaceId: string, photoProfile: camera.Profile): Promise<void> {
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  // 创建CaptureSession实例
+  let captureSession: camera.CaptureSession = cameraManager.createCaptureSession();
+  // 开始配置会话
+  captureSession.beginConfig();
+  // 把CameraInput加入到会话
+  let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
+  cameraInput.open();
+  captureSession.addInput(cameraInput);
+  // 把PhotoOutPut加入到会话
+  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile, surfaceId);
+  captureSession.addOutput(photoOutPut);
+  let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
+  if (isSupported) {
     // 使能快速缩略图
-    this.photoOutPut.enableQuickThumbnail(true)
-    this.photoOutPut.on('quickThumbnail', (err, pixelmap) => {
-    if (err || pixelmap === undefined) {
-        Logger.error(this.tag, 'photoOutPut on thumbnail failed ')
-        return
-    }
-    // 显示或保存pixelmap
-    this.showOrSavePicture(pixelmap)
-  })
+    photoOutPut.enableQuickThumbnail(true);
+    photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
+      if (err || pixelMap === undefined) {
+        console.error('photoOutPut on thumbnail failed');
+        return;
+      }
+      // 显示或保存pixelmap
+      showOrSavePicture(pixelMap);
+    });
+  }
+}
+
+function showOrSavePicture(pixelMap: image.PixelMap): void {
+  //do something
 }
 ```
 
@@ -135,16 +148,23 @@ if (isSupported) {
 
 ![](figures/prelaunch-sequence-diagram.png)
 
+[各类Context的获取方式](../application-models/application-context-stage.md)
+
 - **桌面应用**
 
-  ```js
-  import camera from '@ohos.multimedia.camera'
+  ```ts
+  import camera from '@ohos.multimedia.camera';
+  import { BusinessError } from '@ohos.base';
+  import featureAbility from '@ohos.ability.featureAbility';
 
-  this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
-  try {
-    this.cameraManager.prelaunch(); 
-  } catch (error) {
-    console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+  function preLaunch(context: featureAbility.Context): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+    try {
+      cameraManager.prelaunch();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`catch error: Code: ${err.code}, message: ${err.message}`);
+    }
   }
   ```
 
@@ -154,16 +174,30 @@ if (isSupported) {
 
   具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
-  ```js
-  import camera from '@ohos.multimedia.camera'
+  ```ts
+  import camera from '@ohos.multimedia.camera';
+  import { BusinessError } from '@ohos.base';
+  import featureAbility from '@ohos.ability.featureAbility';
 
-  this.cameraManager = camera.getCameraManager(globalThis.abilityContext);
-  let cameras = this.cameraManager.getSupportedCameras()
-  if(this.cameraManager.isPrelaunchSupported(cameras[0])) {
+  function setPreLaunchConfig(context: featureAbility.Context): void {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+    let cameras: Array<camera.CameraDevice> = [];
     try {
-      this.cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
+      cameras = cameraManager.getSupportedCameras();
     } catch (error) {
-      console.error(`catch error: Code: ${error.code}, message: ${error.message}`)
+      let err = error as BusinessError;
+      console.error(`getSupportedCameras catch error: Code: ${err.code}, message: ${err.message}`);
+    }
+    if (cameras.length <= 0) {
+      return;
+    }
+    if(cameraManager.isPrelaunchSupported(cameras[0])) {
+      try {
+        cameraManager.setPrelaunchConfig({cameraDevice: cameras[0]});
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`setPrelaunchConfig catch error: Code: ${err.code}, message: ${err.message}`);
+      }
     }
   }
   ```

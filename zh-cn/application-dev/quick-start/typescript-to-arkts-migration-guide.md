@@ -3,10 +3,10 @@
 本文通过提供简洁的约束指导如何将标准的TypeScript代码重构为ArkTS代码。尽管ArkTS是基于TypeScript设计的，但出于性能考虑，一些TypeScript的特性被限制了。因此，在ArkTS中，所有的TypeScript特性被分成三类。 
 
 1. **完全支持的特性**：原始代码无需任何修改。根据测试，对于已遵循最佳TypeScript实践的项目，代码库中90%到97%的内容可以保持原封不动。
-2. **部分支持的特性**：需小规模的代码重构。例如，必须使用关键字`let`代替`var`来声明变量。注意，根据本文提供的约束进行代码重构后，您的代码仍为有效的TypeScript代码。
+2. **部分支持的特性**：需小规模的代码重构。例如，必须使用关键字`let`代替`var`来声明变量。
 3. **不支持的特性**：需大规模的代码重构。例如，不支持`any`类型，所有使用`any`的代码都需要引入显式类型。
 
-本文将逐一介绍所有部分支持和所有不支持的特性，并提供代码重构的建议。对于没有提到的特性，则说明ArkTS完全支持。
+本文将逐一介绍所有部分支持和所有不支持的特性，并提供代码重构的建议。根据本文提供的约束进行代码重构后代码仍为有效的TypeScript代码。对于没有提到的特性，则说明ArkTS完全支持。
 
 **示例**
 
@@ -49,7 +49,7 @@ ArkTS在设计之初，就确定了如下目标：
 - ArkTS代码需非常容易阅读和理解，因为代码的阅读频率高于编写频率。
 - 以最小功耗快速执行代码，这点对于移动设备（ArkTS的目标设备）来说至关重要。
 
-静态类型是ArkTS最重要的特性之一。使用静态类型有助于实现上述两个目标。如果程序采用静态类型，即所有类型在编译时都是已知的，那么开发者就能够容易理解代码中使用了哪些数据结构。同时，由于所有类型在程序实际运行前都是已知的，编译器可以提前验证代码的正确性，从而可以减少运行时类型检查项，有助于性能提升。
+静态类型是ArkTS最重要的特性之一。使用静态类型有助于实现上述两个目标。如果程序采用静态类型，即所有类型在编译时都是已知的，那么开发者就能够容易理解代码中使用了哪些数据结构。同时，由于所有类型在程序实际运行前都是已知的，编译器可以提前验证代码的正确性，从而可以减少运行时的类型检查，有助于性能提升。
 
 基于上述考虑，ArkTS中禁止使用`any`类型。
 
@@ -107,24 +107,24 @@ class Point {
 
 // 无法从对象中删除某个属性，从而确保所有Point对象都具有属性x：
 let p1 = new Point(1.0, 1.0)
-delete p1.x           // 无论使用TypeScript还是ArkTS，都会产生编译时错误
-delete (p1 as any).x  // 使用TypeScript时，不会报错；使用ArkTS时，会产生编译时错误
+delete p1.x           // 在TypeScript和ArkTS中，都会产生编译时错误
+delete (p1 as any).x  // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 
-// Point类没有定义命名为`z`的属性，在程序运行时也无法添加该属性：
+// Point类没有定义命名为z的属性，在程序运行时也无法添加该属性：
 let p2 = new Point(2.0, 2.0)
-p2.z = "Label";         // 无论使用TypeScript还是ArkTS，都会产生编译时错误
-(p2 as any).z = "Label" // 使用TypeScript时，不会报错；使用ArkTS时，会产生编译时错误
+p2.z = "Label";         // 在TypeScript和ArkTS中，都会产生编译时错误
+(p2 as any).z = "Label" // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 
-// 确保所有Point对象只有属性x和y，并且无法产生一些任意标识符并将其用作新属性：
+// 类的定义确保了所有Point对象只有属性x和y，并且无法被添加其他属性：
 let p3 = new Point(3.0, 3.0)
-let prop = Symbol();     // 使用TypeScript时，不会报错；使用ArkTS时，会产生编译时错误
-(p3 as any)[prop] = p3.x // 使用TypeScript时，不会报错；使用ArkTS时，会产生编译时错误
-p3[prop] = p3.x          // 无论使用TypeScript还是ArkTS，都会产生编译时错误
+let prop = Symbol();     // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
+(p3 as any)[prop] = p3.x // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
+p3[prop] = p3.x          // 在TypeScript和ArkTS中，都会产生编译时错误
 
-// 确保所有Point对象都具有number类型的属性x和y。因此，无法赋予其他类型的值给该属性：
+// 类的定义确保了所有Point对象的属性x和y都具有number类型，因此，无法将其他类型的值赋值给它们：
 let p4 = new Point(4.0, 4.0)
-p4.x = "Hello!";         // 无论使用TypeScript还是ArkTS，都会产生编译时错误
-(p4 as any).x = "Hello!" // 使用TypeScript时，不会报错；使用ArkTS时，会产生编译时错误
+p4.x = "Hello!";         // 在TypeScript和ArkTS中，都会产生编译时错误
+(p4 as any).x = "Hello!" // 在TypeScript中不会报错；在ArkTS中会产生编译时错误
 
 // 使用符合类定义的Point对象：
 function distance(p1 : Point, p2 : Point) : number {
@@ -148,22 +148,18 @@ console.log("Distance between p5 and p6: " + distance(p5, p6))
 **示例**
 
 ```typescript
-// 运算符`+`可以用于数字和字符串，但不能用于其他类型：
-class C {
-    // ...
-}
-let c1 : C = new C()
-let c2 : C = new C()
-console.log(c1 + c2) // 编译时报错
+// 一元运算符`+`只能作用于数值类型：
+console.log(+42)   // 合法运算
+console.log(+"42") // 编译时错误
 ```
 
 使用额外的语义重载语言运算符会增加语言规范的复杂度，而且，开发者还被迫牢记所有可能的例外情况及对应的处理规则。在某些情况下，产生一些不必要的运行时开销。
 
 当前只有不到1%的代码库使用该特性。因此，尽管限制运算符的语义需要重构代码，但重构量很小且非常容易操作，并且，通过重构能使代码更清晰、具备更高性能。
 
-### （暂时）不支持 structural typing
+### 不支持 structural typing
 
-假设两个不相关的类`T`和`U`拥有相同的公共API：
+假设两个不相关的类`T`和`U`拥有相同的`public`API：
 
 ```typescript
 class T {
@@ -203,8 +199,8 @@ greeter(t) // 是否允许？
 
 换句话说，我们将采取下面哪种方法呢：
 
-- `T`和`U`没有继承关系或没有任何公共接口，但由于它们具有相同的公共API，它们“在某种程度上是相等的”，所以上述两个问题的答案都是“是”；
-- `T`和`U`没有继承关系或没有任何公共接口，应当始终被视为完全不同的类型，因此上述两个问题的答案都是“否”。
+- `T`和`U`没有继承关系或没有`implements`相同的接口，但由于它们具有相同的`public`API，它们“在某种程度上是相等的”，所以上述两个问题的答案都是“是”；
+- `T`和`U`没有继承关系或没有`implements`相同的接口，应当始终被视为完全不同的类型，因此上述两个问题的答案都是“否”。
 
 采用第一种方法的语言支持structural typing，而采用第二种方法的语言则不支持structural typing。目前TypeScript支持structural typing，而ArkTS不支持。
 
@@ -254,12 +250,11 @@ console.log(z.get(2))
 **相关约束**
 
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 不支持delete运算符
 * 仅允许在表达式中使用typeof运算符
 * 不支持in运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 * 限制使用标准库
 
 
@@ -271,12 +266,34 @@ console.log(z.get(2))
 
 TypeScript中的`Symbol()`API用于在运行时生成唯一的属性名称。由于该API的常见使用场景在静态类型语言中没有意义，因此，ArkTS不支持`Symbol()`API。在ArkTS中，对象布局在编译时就确定了，且不能在运行时被更改。
 
+ArkTS也不支持`Symbol.iterator`和`Iterable interface`。请使用数组或容器。
+
 **TypeScript**
 
 ```typescript
 const sym = Symbol()
 let o = {
    [sym]: "value"
+}
+
+let obj = {
+    data: ['a', 'b', 'c'],
+    [Symbol.iterator]() {
+        const this_ = this
+        let index = 0
+        return {
+            next() {
+                return {
+                    done: index >= this_.data.length,
+                    value: 'name_' + this_.data[index++]
+                }
+            }
+        }
+    }
+}
+
+for (let t of obj) {
+    console.log(t)
 }
 ```
 
@@ -287,17 +304,21 @@ class SomeClass {
     public someProperty : string = ""
 }
 let o = new SomeClass()
+
+let arr:string[] = ['a', 'b', 'c']
+for (let t of arr) {
+    console.log('name_' + t)
+}
 ```
 
 **相关约束**
 
 * 仅支持属性名为标识符的对象
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 不支持delete运算符
 * 仅允许在表达式中使用typeof运算符
 * 不支持in运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 * 限制使用标准库
 
 ### 不支持以`#`开头的私有字段
@@ -324,13 +345,13 @@ class C {
 }
 ```
 
-### 类型、命名空间等的命名必须唯一
+### 类型、命名空间的命名必须唯一
 
 **规则：**`arkts-unique-names`
 
 **级别：错误**
 
-类型、命名空间等的命名必须唯一，且能够与其他名称（例如：变量名）区分开来。
+类型（类、接口、枚举）、命名空间的命名必须唯一，且与其他名称（例如：变量名、函数名）不同。
 
 **TypeScript**
 
@@ -830,93 +851,100 @@ class Point {x: number = 0; y: number = 0}
 type N = number
 ```
 
-### 不支持索引访问字段
+### 不支持通过索引访问字段
 
 **规则：**`arkts-no-props-by-index`
 
 **级别：错误**
 
-ArkTS不支持通过索引访问对象的字段。改用点操作符。
+ArkTS不支持动态声明字段，不支持动态访问字段。只能访问已在类中声明或者继承可见的字段，访问其他字段将会造成编译时错误。
+使用点操作符访问字段，例如（`obj.field`），不支持索引访问（`obj[field]`）。
+ArkTS支持通过索引访问`TypedArray`（例如`Int32Array`）中的元素。
 
 **TypeScript**
 
 ```typescript
-class Point {x: number = 0; y: number = 0}
+class Point {
+    x: number = 0
+    y: number = 0
+}
 let p: Point = {x: 1, y: 2}
-let x = p["x"]
-```
+console.log(p["x"])
 
-**ArkTS**
-
-```typescript
-class Point {x: number = 0; y: number = 0}
-let p: Point = {x: 1, y: 2}
-let x = p.x
-```
-
-### 不支持structural identity
-
-**规则：**`arkts-no-structural-identity`
-
-**级别：错误**
-
-目前ArkTS不支持structural identity，即编译器无法比较两种类型的公共API并决定它们是否相同。可改用其他机制，例如继承、接口或类型别名。
-
-对于下面的示例，类型`X`和`Y`在TypeScript中是等价的（可互换），而在ArkTS中，他们是不等价的。
-
-**TypeScript**
-
-```typescript
-interface X {
-    f(): string
+class Person {
+    name: string = ""
+    age: number = 0;
+    [key: string]: string | number
 }
 
-interface Y { // Y等于X
-    f(): string
+let person: Person = {
+    name: "John",
+    age: 30,
+    email: "***@example.com",
+    phoneNumber: "18*********",
 }
 ```
 
 **ArkTS**
 
 ```typescript
-interface X {
-    f(): string
+class Point {
+    x: number = 0
+    y: number = 0
+}
+let p: Point = {x: 1, y: 2}
+console.log(p.x)
+
+class Person {
+    name: string
+    age: number
+    email: string
+    phoneNumber: string
+
+    constructor(name: string, age: number, email: string,
+                phoneNumber: string) {
+        this.name = name
+        this.age = age
+        this.email = email
+        this.phoneNumber = phoneNumber
+    }
 }
 
-type Y = X // Y等于X
+let person = new Person("John", 30, "***@example.com", "18*********")
+console.log(person["name"])         // 编译时错误
+console.log(person.unknownProperty) // 编译时错误
+
+let arr = new Int32Array(1)
+console.log(arr[0])
 ```
 
-**相关约束**
+### 不支持structural typing
 
-* 子类型/父类型不支持structural typing
-* 赋值检查不支持structural typing
-* 类型推断不支持structural typing
-
-### 子类型/父类型不支持structural typing
-
-**规则：**`arkts-no-structural-subtyping`
+**规则：**`arkts-no-structural-typing`
 
 **级别：错误**
 
-当前ArkTS在类型推导时不会检查structural是否相同，即编译器无法比较两种类型的公共API并决定它们是否相同。改用其他机制，例如继承或接口。
+ArkTS不支持structural typing，编译器无法比较两种类型的`public`API并决定它们是否相同。使用其他机制，例如继承、接口或类型别名。
 
 **TypeScript**
 
 ```typescript
+interface I1 {
+    f(): string
+}
+
+interface I2 { // I2等价于I1
+    f(): string
+}
+
 class X {
-    public foo: number
-
-    constructor() {
-        this.foo = 0
-    }
+    n: number = 0
+    s: string = ""
 }
 
-class Y {
-    public foo: number
-
-    constructor() {
-        this.foo = 0
-    }
+class Y { // Y等价于X
+    n: number = 0
+    s: string = ""
 }
 
 let x = new X()
@@ -927,120 +955,82 @@ y = x
 
 console.log("Assign Y to X")
 x = y
+
+function foo(x: X) {
+    console.log(x.n, x.s)
+}
+
+// 由于X和Y的API是等价的，所以X和Y是等价的
+foo(new X())
+foo(new Y())
 ```
 
 **ArkTS**
 
 ```typescript
-class X {
-    public foo: number
-
-    constructor() {
-        this.foo = 0
-    }
+interface I1 {
+    f(): string
 }
 
-// Y从X派生，显式定义继承关系
-class Y extends X {
+type I2 = I1 // I2是I1的别名
+
+class B {
+    n: number = 0
+    s: string = ""
+}
+
+// D是B的继承类，构建了子类型和父类型的关系
+class D extends B {
     constructor() {
         super()
     }
 }
 
-let x = new X()
-let y = new Y()
+let b = new B()
+let d = new D()
 
-console.log("Assign Y to X")
-x = y // ok, X是Y的父类
+console.log("Assign D to B")
+b = d // 合法赋值，因为B是D的父类
 
-// 不能将X赋值给Y
-// y = x -编译时错误
-```
+// 将b赋值给d将会引起编译时错误
+// d = b
 
-**相关约束**
-
-* 不支持structural identity
-* 赋值检查不支持structural typing
-* 类型推断不支持structural typing
-
-### 赋值检查不支持structural typing
-
-**规则：**`arkts-no-structural-assignability`
-
-**级别：错误**
-
-当前ArkTS在检查变量是否可相互赋值时不检查结构等价性，即编译器无法比较两种类型的公共API并决定它们是否相同。改用其他机制，例如继承或接口。
-
-**TypeScript**
-
-```typescript
-class X {
-    public foo: number
-
-    constructor() {
-       this.foo = 0
-    }
-}
-
-class Y {
-    public foo: number
-    constructor() {
-        this.foo = 0
-    }
-}
-
-let x = new X()
-let y = new Y()
-
-console.log("Assign X to Y")
-y = x
-
-console.log("Assign Y to X")
-x = y
-```
-
-**ArkTS**
-
-```typescript
 interface Z {
-   foo: number
+   n: number
+   s: string
 }
 
-// X实现了接口Z，显式化定义了X和Y之间的关系。
+// 类X implements 接口Z，构建了X和Y的关系
 class X implements Z {
-    public foo: number
-
-    constructor() {
-       this.foo = 0
-    }
+    n: number = 0
+    s: string = ""
 }
 
-// Y实现了接口Z，显式化定义了X和Y之间的关系。
+// 类Y implements 接口Z，构建了X和Y的关系
 class Y implements Z {
-    public foo: number
-
-    constructor() {
-       this.foo = 0
-    }
+    n: number = 0
+    s: string = ""
 }
 
 let x: Z = new X()
 let y: Z = new Y()
 
 console.log("Assign X to Y")
-y = x // ok，两者类型相同
+y = x // 合法赋值，它们是相同的类型
 
 console.log("Assign Y to X")
-x = y // ok，两者类型相同
+x = y // 合法赋值，它们是相同的类型
+
+function foo(c: Z): void {
+    console.log(c.n, c.s)
+}
+
+// 类X和类Y implement 相同的接口，因此下面的两个函数调用都是合法的
+foo(new X())
+foo(new Y())
 ```
 
-**相关约束**
-
-* 不支持structural identity
-* 子类型/父类型不支持structural typing
-* 类型推断不支持structural typing
-
-### 显式标注泛型函数类型实参，除非可以从参数中推断出类型实参
+### 需要显式标注泛型函数类型实参
 
 **规则：**`arkts-no-inferred-generic-params`
 
@@ -1080,105 +1070,13 @@ function greet<T>(): T {
 let z = greet<string>()
 ```
 
-### 类型推断不支持structural typing
-
-**规则：**`arkts-no-structural-inference`
-
-**级别：错误**
-
-当前ArkTS不支持structural typing，即编译器无法比较两种类型的公共API并决定它们是否相同。使用继承和接口显式指定类型之间的关系。
-
-**TypeScript**
-
-```typescript
-class X  {
-    public foo: number
-    private s: string
-
-    constructor (f: number) {
-        this.foo = f
-        this.s = ""
-    }
-
-    public say(): void {
-       console.log("X = ", this.foo)
-    }
-}
-
-class Y {
-    public foo: number
-
-    constructor (f: number) {
-        this.foo = f
-    }
-    public say(): void {
-        console.log("Y = ", this.foo)
-    }
-}
-
-function bar(z: X): void {
-    z.say()
-}
-
-// X和Y具有相同的公共API，因此它们是等价的。
-// 允许第二次调用
-bar(new X(1))
-bar(new Y(2) as X)
-```
-
-**ArkTS**
-
-```typescript
-interface Z {
-   say(): void
-}
-
-class X implements Z {
-    public foo: number
-    private s: string
-
-    constructor (f: number) {
-        this.foo = f
-        this.s = ""
-    }
-    public say(): void {
-        console.log("X = ", this.foo)
-    }
-}
-
-class Y implements Z {
-    public foo: number
-
-    constructor (f: number) {
-        this.foo = f
-    }
-    public say(): void {
-        console.log("Y = ", this.foo)
-    }
-}
-
-function bar(z: Z): void {
-    z.say()
-}
-
-// X和Y实现了相同的接口Z，因此两个调用均允许：
-bar(new X(1))
-bar(new Y(2))
-```
-
-**相关约束**
-
-* 不支持structural identity
-* 子类型/父类型不支持structural typing
-* 赋值检查不支持structural typing
-
 ### 不支持使用正则字面量
 
 **规则：**`arkts-no-regexp-literals`
 
 **级别：错误**
 
-当前ArkTS不支持正则字面量。改用通过`RegExp()`创建。
+当前ArkTS不支持正则字面量。请使用`RegExp()`创建正则对象。
 
 **TypeScript**
 
@@ -1192,13 +1090,15 @@ let regex: RegExp = /bc*d/
 let regex: RegExp = new RegExp("/bc*d/")
 ```
 
-### 显式标注对象字面量的类型
+### 需要显式标注对象字面量的类型
 
 **规则：**`arkts-no-untyped-obj-literals`
 
 **级别：错误**
 
-显式标注对象字面量的类型，除非编译器可以根据上下文推断出字面量的类型是某些类或者接口。否则，将发生编译时错误。具体来说，在以下上下文中不支持使用字面量初始化类和接口：
+在ArkTS中，需要显式标注对象字面量的类型，否则，将发生编译时错误。在某些场景下，编译器可以根据上下文推断出字面量的类型。
+
+在以下上下文中不支持使用字面量初始化类和接口：
 
 * 初始化具有`any`、`Object`或`object`类型的任何对象
 * 初始化带有方法的类或接口
@@ -1249,7 +1149,7 @@ function id_x_y(o: Point): Point {
     return o
 }
 
-// 因为TS支持structural typing，编译器可以推断p的类型为Point
+// TS支持structural typing，可以推断p的类型为Point
 let p = {x: 5, y: 10}
 id_x_y(p)
 
@@ -1305,7 +1205,7 @@ class Point {
     y: number = 0
 
     // 在字面量初始化之前，使用constructor()创建一个有效对象。
-    // 由于Point没有其它构造函数，编译器将自动添加一个默认构造函数。
+    // 由于没有为Point定义构造函数，编译器将自动添加一个默认构造函数。
 }
 
 function id_x_y(o: Point): Point {
@@ -1391,32 +1291,6 @@ let a2: C[] = [{n: 1, s: "1"}, {n: 2, s : "2"}]      // a2的类型为“C[]”
 **相关约束**
 * 对象字面量必须对应某些显式声明的类或接口
 * 对象字面量不能用于类型声明
-
-### 显式标注Lambda函数的参数类型
-
-**规则：**`arkts-explicit-param-types-in-lambdas`
-
-**级别：错误**
-
-当前ArkTS要求显式标注lambda函数的参数的类型。
-
-**TypeScript**
-
-```typescript
-// 只有在开启noImplicitAny选项时会产生编译时错误
-let f = (s /* type any is assumed */) => {
-    console.log(s)
-}
-```
-
-**ArkTS**
-
-```typescript
-// 显式标注Lambda函数的参数类型
-let f = (s: string) => {
-    console.log(s)
-}
-```
 
 ### 使用箭头函数而非函数表达式
 
@@ -1540,53 +1414,64 @@ class C1 implements C {
 }
 ```
 
-### 访问未定义的属性将导致编译时错误
+### 不支持修改对象的方法
 
-**规则：**`arkts-no-undefined-prop-access`
+**规则：**`arkts-no-method-reassignment`
 
 **级别：错误**
 
-ArkTS仅支持访问那些在类中已声明或通过继承可访问的属性。禁止访问任何其他属性，否则会导致编译时错误。使用恰当的类型可以帮助编译期进行类型检查，确定属性是否存在。
+ArkTS不支持修改对象的方法。在静态语言中，对象的布局是确定的。一个类的所有对象实例享有同一个方法。
+如果需要为某个特定的对象增加方法，可以封装函数或者使用继承的机制。
 
 **TypeScript**
 
 ```typescript
-let person = {name: "Bob", isEmployee: true}
+class C {
+    foo() {
+        console.log("foo")
+    }
+}
 
-let n = person["name"]
-let e = person["isEmployee"]
-let s = person["office"] // 只有在开启noImplicitAny选项时会产生编译时错误
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c2.foo = bar
+
+c1.foo() // foo
+c2.foo() // bar
 ```
 
 **ArkTS**
 
 ```typescript
-class Person {
-    constructor(name: string, isEmployee: boolean) {
-        this.name = name
-        this.isEmployee = isEmployee
+class C {
+    foo() {
+        console.log("foo")
     }
-
-    name: string
-    isEmployee: boolean
 }
 
-let person = new Person("Bob", true)
-let n = person.name
-let e = person.isEmployee
-let s = person.office // 编译时错误
+class Derived extends C {
+    foo() {
+        console.log("Extra")
+        super.foo()
+    }
+}
+
+function bar() {
+    console.log("bar")
+}
+
+let c1 = new C()
+let c2 = new C()
+c1.foo() // foo
+c2.foo() // foo
+
+let c3 = new Derived()
+c3.foo() // Extra foo
 ```
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 不支持delete运算符
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 禁止运行时检查对象属性
-* 不支持声明动态属性
-* 限制使用标准库
 
 ### 类型转换仅支持`as T`语法
 
@@ -1743,11 +1628,10 @@ p.y = null
 
 * 对象的属性名必须是合法的标识符
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 仅允许在表达式中使用typeof运算符
 * 不支持in运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 
 ### 仅允许在表达式中使用`typeof`运算符
 
@@ -1783,65 +1667,11 @@ let s2: string
 
 * 对象的属性名必须是合法的标识符
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 不支持delete运算符
 * 不支持in运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 * 限制使用标准库
-
-### 二元运算符`+`仅支持数字和字符串的隐式转换
-
-**规则：**`arkts-no-polymorphic-plus`
-
-**级别：错误**
-
-如果二元运算符`+`的一个操作数是`string`类型（包括enum中的`string`），那么另一个操作数可以是任意的类型，在运算时它的值被隐式转换成`string`。在其他情况下，ArkTS只支持`number`和enum中的`number`的隐式转换。
-正如TypeScript一样，ArkTS不支持两个`boolean`类型的值相加。其他情形下，都需要显式转换为字符串。
-
-**TypeScript**
-
-```typescript
-enum E { E1, E2 }
-
-let a = 10 + 32   // 42
-let b = E.E1 + 10 // 10
-let c = 10 + "5"  // "105"
-
-let d = "5" + E.E2 // "51"
-let e = "Hello, " + "world!" // "Hello, world!"
-let f = "string" + true // "stringtrue"
-
-let g = (new Object()) + "string" // "[object Object]string"
-
-let i = true + true // JS: 2, TS: 编译时错误
-let j = true + 2 // JS: 3, TS: 编译时错误
-let k = E.E1 + true // JS: 1, TS: 编译时错误
-```
-
-**ArkTS**
-
-```typescript
-enum E { E1, E2 }
-
-let a = 10 + 32   // 42
-let b = E.E1 + 10 // 10
-let c = 10 + "5"  // "105"
-
-let d = "5" + E.E2 // "51"
-let e = "Hello, " + "world!" // "Hello, world!"
-let f = "string" + true // "stringtrue"
-
-let g = (new Object()).toString() + "string"
-
-let i = true + true // 编译时错误
-let j = true + 2 // 编译时错误
-let k = E.E1 + true // 编译时错误
-```
-
-**相关约束**
-
-* 一元运算符+、-和~仅适用于数值类型
 
 ### 部分支持`instanceof`运算符
 
@@ -1911,11 +1741,10 @@ let b = p instanceof Person // true，且属性name一定存在
 
 * 对象的属性名必须是合法的标识符
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 不支持delete运算符
 * 仅允许在表达式中使用typeof运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 * 限制使用标准库
 
 ### 不支持解构赋值
@@ -2030,33 +1859,6 @@ let x = zp.x
 let y = zp.y
 ```
 
-### 不支持隐含类型的推断
-
-**规则：**`arkts-no-implied-inference`
-
-**级别：错误**
-
-目前ArkTS不支持隐含类型的推断，改用显式的类型标注。如果容器中有不同类型的数据，请使用`Object[]`。
-
-**TypeScript**
-
-```typescript
-let [a, b, c] = [1, "hello", true]
-```
-
-**ArkTS**
-
-```typescript
-let a = 1
-let b = "hello"
-let c = true
-
-let arr: Object[] = [1, "hello", true]
-let a1 = arr[0]
-let b1 = arr[1]
-let c1 = arr[2]
-```
-
 ### 不支持在catch语句标注类型
 
 **规则：**`arkts-no-types-in-catch`
@@ -2119,22 +1921,7 @@ for (let i = 0; i < a.length; ++i) {
 
 **相关约束**
 
-* 不支持可迭代接口
 * for-of仅适用于数组和字符串
-
-### 不支持可迭代接口
-
-**规则：**`arkts-no-iterable`
-
-**级别：错误**
-
-ArkTS不支持`Symbol`API、`Symbol.iterator`和最终可迭代的接口。请使用数组和标准库中的容器。
-
-**相关约束**
-
-* 不支持Symbol() API
-* 不支持for .. in
-* for-of仅支持数组和字符串
 
 ### `for-of`仅适用于数组和字符串
 
@@ -2142,7 +1929,7 @@ ArkTS不支持`Symbol`API、`Symbol.iterator`和最终可迭代的接口。请�
 
 **级别：错误**
 
-ArkTS支持通过`for .. of`迭代数组和字符串，但不支持迭代对象。
+ArkTS支持通过`for .. of`迭代数组、字符串和`TypedArray`（例如`Int32Array`），但不支持迭代对象。
 
 **TypeScript**
 
@@ -2166,7 +1953,6 @@ for (let n of numbers) {
 **相关约束**
 
 * 不支持for .. in
-* 不支持可迭代接口
 
 ### 不支持映射类型
 
@@ -2224,92 +2010,6 @@ with (Math) { // 编译时错误, 但是仍能生成JavaScript代码
 ```typescript
 let r: number = 42
 console.log("Area: ", Math.PI * r * r)
-```
-
-### `case`语句仅支持编译期值
-
-**规则：**`arkts-no-computed-case`
-
-**级别：错误**
-
-在ArkTS中，`case`语句仅支持编译期值。若值无法在编译期确定，请使用`if`语句。
-
-**TypeScript**
-
-```typescript
-let x = 2
-let y = 3
-switch (x) {
-    case 1:
-        console.log(1)
-        break
-    case 2:
-        console.log(2)
-        break
-    case y:
-        console.log(y)
-        break
-    default:
-        console.log("other")
-}
-```
-
-**ArkTS**
-
-```typescript
-let x = 2
-switch (x) {
-    case 1:
-        console.log(1)
-        break
-    case 2:
-        console.log(2)
-        break
-    case 3:
-        console.log(3)
-        break
-    default:
-        console.log("other")
-}
-```
-
-### 限制`switch`语句中表达式的类型
-
-**规则：**`arkts-limited-switch`
-
-**级别：错误**
-
-ArkTS支持`switch`语句中使用`number`, `Number`, `string`, `String`或者`enum`类型的值。其他情况下请使用`if`语句。
-
-**TypeScript**
-
-```typescript
-class Point {
-    x: number = 0
-    y: number = 0
-}
-
-let a = new Point()
-
-switch (a) {
-    case null: break
-    default: console.log("not null")
-}
-```
-
-**ArkTS**
-
-```typescript
-class Point {
-    x: number = 0
-    y: number = 0
-}
-
-let a = new Point()
-
-if (a != null) {
-    console.log("not null")
-}
 ```
 
 ### 限制`throw`语句中表达式的类型
@@ -2469,13 +2169,13 @@ function addNum(a: number, b: number): void {
 }
 ```
 
-### 不支持在函数中使用`this`
+### 不支持在函数和类的静态方法中使用`this`
 
 **规则：**`arkts-no-standalone-this`
 
 **级别：错误**
 
-ArkTS不支持在函数中使用`this`。只能在方法中使用`this`。
+ArkTS不支持在函数和类的静态方法中使用`this`。只能在类的实例方法中使用`this`。
 
 **TypeScript**
 
@@ -2689,7 +2389,7 @@ function main(): void {
 
 **级别：错误**
 
-展开运算符唯一支持的场景是函数剩余参数为数组类型。
+展开运算符唯一支持的场景是函数剩余参数为数组类型，包括`TypedArray`（例如`Int32Array`）。
 
 **TypeScript**
 
@@ -2845,7 +2545,7 @@ class C implements Mover, Shaker {
 
 **级别：错误**
 
-ArkTS不支持合并声明。所用类、接口等的声明必须唯一。
+ArkTS不支持类、接口的声明合并。
 
 **TypeScript**
 
@@ -2962,11 +2662,10 @@ function main(): void {
 
 * 对象的属性名必须是合法的标识符
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 不支持delete运算符
 * 仅允许运算符typeof在表达式上下文中使用
 * 不支持in运算符
-* 不支持声明动态属性
 * 限制使用标准库
 
 ### 不支持构造函数类型
@@ -3018,65 +2717,7 @@ let Impersonizer: PersonCtor = (n: string, a: number): Person => {
 const person = createPerson(Impersonizer, "John", 30)
 ```
 
-### 不支持声明动态属性
-
-**规则：**`arkts-no-dyn-prop-decl`
-
-**级别：错误**
-
-ArkTS不支持声明动态属性。必须在类中声明所有的属性。尽管可以用对象数组来实现动态特性，但更推荐使用静态类型范式来显式声明字段、名称和类型。
-
-**TypeScript**
-
-```typescript
-class Person {
-    name: string = ""
-    age: number = 0; // 此处需要分号
-    [key: string]: string | number
-}
-
-const person: Person = {
-    name: "John",
-    age: 30,
-    email: "***@example.com",
-    phoneNumber: 18*********,
-}
-```
-
-**ArkTS**
-
-```typescript
-class Person {
-    name: string
-    age: number
-    email: string
-    phoneNumber: number
-
-    constructor(name: string, age: number, email: string, phoneNumber: number) {
-        this.name = name
-        this.age = age
-        this.email = email
-        this.phoneNumber = phoneNumber
-    }
-}
-
-function main(): void {
-    const person: Person = new Person("John", 30, "***@example.com", 18*********)
-}
-```
-
-**相关约束**
-
-* 对象的属性名必须是合法的标识符
-* 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
-* 不支持delete运算符
-* 仅允许在表达式中使用typeof运算符
-* 不支持in运算符
-* 禁止运行时检查对象属性
-* 限制使用标准库
-
-### 只能使用类型相同的编译期表达式初始化枚举成员
+### 只能使用类型相同的编译时表达式初始化枚举成员
 
 **规则：**`arkts-no-enum-mixed-types`
 
@@ -3273,7 +2914,7 @@ import "path/to/module"
 **ArkTS**
 
 ```typescript
-import * from "path/to/module"
+import * as ns from "path/to/module"
 ```
 
 ### 不支持`import default as ...`
@@ -3326,7 +2967,7 @@ import * as m from "mod"
 
 **级别：错误**
 
-ArkTS支持大多数场景下的重导出，比如命名导出和重命名导出，重导出import的。不支持`export * as ...`。
+ArkTS支持命名重导出和重命名重导出。支持`export * ...`的语法，不支持`export * as ...`的语法。
 
 **TypeScript**
 
@@ -3362,6 +3003,9 @@ export class Class2 {
 // module2
 export { Class1 } from "module1"
 export { C2 as Class2 } from "module1"
+
+// 支持以下语法
+// export * from "module1"
 
 // consumer模块
 import { Class1, Class2 } from "module2"
@@ -3512,7 +3156,7 @@ declare namespace N {
     function foo(x: number): number
 }
 
-import * from "module"
+import * as m from "module"
 console.log("N.foo called: ", N.foo(42))
 ```
 
@@ -3622,32 +3266,6 @@ let ce = new CustomError()
 
 * 不支持在原型上赋值
 
-### 不支持动态导入
-
-**规则：**`arkts-no-runtime-import`
-
-**级别：错误**
-
-由于在ArkTS中，导入是编译时而非运行时特性，因此，ArkTS不支持动态导入，如`await import...`。改用静态`import`语法。
-
-**TypeScript**
-
-```typescript
-const zipUtil = await import("utils/create-zip-file")
-```
-
-**ArkTS**
-
-```typescript
-import { zipUtil } from "utils/create-zip-file"
-```
-
-**相关约束**
-
-* 不支持在模块名中使用通配符
-* 不支持通用模块定义(UMD)
-* 不支持导入断言
-
 ### 不支持确定赋值断言
 
 **规则：**`arkts-no-definite-assignment`
@@ -3693,14 +3311,17 @@ console.log("x = " + x)
 **TypeScript**
 
 ```typescript
-var C = (function() {
-    function C(n: number) {
-        this.p = n // 只有在开启noImplicitThis选项时会产生编译时错误
+const C = (function () {
+    class Cl {
+        static static_value = "static_value";
+        static any_value: any = "any_value";
+        string_field = "string_field";
     }
-    C.staticProperty = 0
-    return C
-})()
-C.staticProperty = 1
+
+    return Cl;
+})();
+
+C.prop = 2;
 ```
 
 **ArkTS**
@@ -3796,7 +3417,7 @@ M.abc = 200
 
 **级别：错误**
 
-当前ArkTS不支持从TypeScript扩展到标准库的utility类型（例如`Omit`、`Pick`等）。支持`Partial`和`Record`。
+ArkTS仅支持`Partial`和`Record`，不支持TypeScript中其他的`Utility Types`。
 
 对于*Record<K, V>*类型，表达式*rec[index]*的类型是*V | undefined*。
 对于`Record`类型，键-值中的值的类型必须是可选类型或者包含`undefined`的联合类型。
@@ -4079,9 +3700,7 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 
 全局对象的属性和方法：`eval`、
 `Infinity`、`NaN`、`isFinite`、`isNaN`、`parseFloat`、`parseInt`、
-`encodeURI`、`encodeURIComponent`、`Encode`、
-`decodeURI`、`decodeURIComponent`、`Decode`、
-`escape`、`unescape`、`ParseHexOctet`
+`Encode`、`Decode`、`ParseHexOctet`
 
 `Object`：`__proto__`、`__defineGetter__`、`__defineSetter__`、
 `__lookupGetter__`、`__lookupSetter__`、`assign`、`create`、
@@ -4111,16 +3730,15 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 
 * 对象的属性名必须是合法的标识符
 * 不支持Symbol() API
-* 访问未定义的属性将导致编译时错误
+* 不支持通过索引访问字段
 * 仅允许在表达式中使用typeof运算符
 * 不支持in运算符
 * 禁止运行时检查对象属性
-* 不支持声明动态属性
 * 不支持globalThis
 
 ### 强制开启严格类型检查
 
-**规则 `arkts-strict-typing`**
+**规则：**`arkts-strict-typing`
 
 **级别：错误**
 
@@ -4172,7 +3790,7 @@ let n2: number = 0
 
 ### 不允许通过注释关闭类型检查
 
-**规则 `arkts-strict-typing-required`**
+**规则：**`arkts-strict-typing-required`
 
 **级别：错误**
 
@@ -4206,7 +3824,7 @@ let s2: string = null // 编译时报错
 
 ### 允许ArkTS代码导入TS代码, 不允许TS代码导入ArkTS代码
 
-**规则 `arkts-no-ts-deps`**
+**规则：**`arkts-no-ts-deps`
 
 **级别：错误**
 
@@ -4238,7 +3856,7 @@ import { C } from "lib1"
 
 ### 除了ArkUI中的装饰器，不允许使用其他装饰器
 
-**规则 `arkts-no-decorators-except-arkui`**
+**规则：**`arkts-no-decorators-except-arkui`
 
 **级别：错误**
 
@@ -4265,5 +3883,54 @@ function classDecorator(x: number, y: number): void {
 
 @classDecorator // 编译时错误
 class BugReport {
+}
+```
+
+### `class`不能被用作对象
+
+**规则：**`arkts-no-classes-as-obj`
+
+**级别：错误**
+
+在ArkTS中，`class`声明的是一个新的类型，不是一个值。因此，不支持将`class`用作对象（例如将`class`赋值给一个对象）。
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+let c = C
+```
+
+### 不支持在`import`语句前使用其他语句
+
+**规则：**`arkts-no-misplaced-imports`
+
+**级别：错误**
+
+在ArkTS中，除动态`import`语句外，所有`import`语句需要放在所有其他语句之前。
+
+**TypeScript**
+
+```typescript
+class C {
+    s: string = ""
+    n: number = 0
+}
+
+import foo from "module1"
+```
+
+**ArkTS**
+
+```typescript
+import foo from "module1"
+
+class C {
+    s: string = ""
+    n: number = 0
 }
 ```

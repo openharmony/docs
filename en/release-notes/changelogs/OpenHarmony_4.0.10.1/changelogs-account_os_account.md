@@ -53,4 +53,46 @@ All the involved interfaces are deleted.
 
 **Adaptation Guide**
 
-The deleted interfaces cannot be used any longer. Delete the corresponding functions accordingly.
+The deleted interfaces cannot be used any longer.
+
+
+## cl.account_os_account.2 Change of the Error Codes in addCredential()
+
+**Change Impact**
+
+For the applications developed based on earlier versions, you need to change the error code processing logic.
+
+**Key API/Component Changes**
+
+Involved API:
+
+```js
+  class UserIdentityManager {
+    ...
+    addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
+    ...
+  }
+```
+
+Error code list:
+| ID| Error Message                    |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
+| 12300101 | Token is invalid. |
+| 12300106 | Unsupported authType. |
+| 12300109 | Operation is canceled. |
+| 12300111 | Operation timeout. |
+| 12300115 | The number of credentials reaches the upper limit. |
+
+
+Before change:
+The error code 12300002 is returned when a session times out.
+
+After change:
+The error code 12300001 is returned when a session times out.
+
+
+**Adaptation Guide**
+
+Modify the error code processing logic based on the new error codes.

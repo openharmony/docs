@@ -46,7 +46,7 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 
 The main axis direction of a list refers to the direction in which the child component columns are laid out and in which the list scrolls. An axis perpendicular to the main axis is referred to as a cross axis, and the direction of the cross axis is perpendicular to a direction of the main axis.
 
-As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the horizontal direction.
+As shown below, the main axis of a vertical list is in the vertical direction, and the cross axis is in the horizontal direction. The main axis of a horizontal list is in the horizontal direction, and the cross axis is in the vertical direction.
 
   **Figure 4** Main axis and cross axis of the list 
 
@@ -99,20 +99,30 @@ The lanes attribute of the **\<List>** component is useful in building a list th
 
 
 ```ts
+class Tmp{
+  minLength:number = 200
+  maxLength:number = 300
+}
+let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(2)
+.lanes(Mn)
 ```
 
 If set to a value of the LengthConstrain type, the **lanes** attribute determines the number of rows or columns based on the LengthConstrain settings and the size of the **\<List>** component.
 
 
 ```ts
+class Tmp{
+  minLength:number = 200
+  maxLength:number = 300
+}
+let mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes({ minLength: 200, maxLength: 300 })
+.lanes(mn)
 ```
 
 For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength: 300 }** for a vertical list, then:
@@ -209,7 +219,7 @@ List() {
 
 Compared with a static list, a dynamic list is more common in applications. You can use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to obtain data from the data source and create components for each data item.
 
-For example, when creating a contacts list, you can store the contact name and profile picture data in a **Contact** class structure to the **contacts** array, and nest **ListItem**s in **ForEach**, thereby reducing repeated code needed for tiling similar list items.
+ For example, when creating a contacts list, you can store the contact name and profile picture data in a **Contact** class structure to the **contacts** array, and nest **ListItem**s in **ForEach**, thereby reducing repeated code needed for tiling similar list items.
 
 
 ```ts
@@ -229,10 +239,9 @@ class Contact {
 @Entry
 @Component
 struct SimpleContacts {
-  private contacts = [
+  private contacts:Array<object> = [
     new Contact ('Tom', $r ("app.media.iconA")),
     new Contact ('Tracy', $r ("app.media.iconB")),
-    ...
   ]
 
   build() {
@@ -249,7 +258,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, item => item.key)
+      }, ((item:Contact):string => item.key))
     }
     .width('100%')
   }
@@ -288,15 +297,16 @@ To add dividers between items in a **\<List>** component, you can use its **divi
 
 
 ```ts
+let opt = {
+  'strokeWidth': 1,
+  'startMargin': 60,
+  'endMargin': 10,
+  'color': '#ffe9f0f0'
+} as Record<string,number|string>
 List() {
   ...
 }
-.divider({
-  strokeWidth: 1,
-  startMargin: 60,
-  endMargin: 10,
-  color: '#ffe9f0f0'
-})
+.divider(opt)
 ```
 
 This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 9.
@@ -378,7 +388,11 @@ If the structures of multiple **\<ListItemGroup>** components are similar, you c
 
 
 ```ts
-contactsGroups: object[] = [
+class cgtmp{
+  title:string = ''
+  contacts:Array<object>|null = null
+}
+export let contactsGroups: object[] = [
   {
     title: 'A',
     contacts: [
@@ -386,15 +400,14 @@ contactsGroups: object[] = [
       new Contact ('Ann', $r ('app.media.iconB')),
       new Contact('Angela', $r('app.media.iconC')),
     ],
-  },
+  } as cgtmp,
   {
     title: 'B',
     contacts: [
       new Contact ('Ben', $r ('app.media.iconD')),
       new Contact ('Bryan', $r ('app.media.iconE')),
     ],
-  },
-  ...
+  } as cgtmp,
 ]
 ```
 
@@ -402,18 +415,30 @@ Then, with rendering of **contactsGroups** in **ForEach**, a contact list with m
 
 
 ```ts
+class cgtmpf{
+  title:string = ''
+  contacts:Array<object>|null = null
+  key:string = ''
+}
+class heF{
+  itemHead:Function = (text: string) => {}
+  foo(val:string){
+    this.itemHead(val)
+  }
+}
+let fff:heF = this.heF()
 List() {
   // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
-  ForEach(this.contactsGroups, item => {
-    ListItemGroup({ header: this.itemHead(item.title) }) {
+  ForEach(contactsGroups, (item: cgtmpf) => {
+    ListItemGroup({ header: fff(item.title) }) {
       // Render <ListItem> components cyclically.
-      ForEach(item.contacts, (contact) => {
-        ListItem() {
-          ...
-        }
-      }, item => item.key)
+      if (item.contacts) {
+        ForEach(item.contacts, () => {
+          ListItem() {
+          }
+        }, ((item: cgtmpf): string => item.key))
+      }
     }
-    ...
   })
 }
 ```
@@ -452,16 +477,16 @@ struct ContactsList {
   build() {
     List() {
       // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
-      ForEach(this.contactsGroups, item => {
+      ForEach(contactsGroups, (item:cgtmpf) => {
         ListItemGroup({ header: this.itemHead(item.title) }) {
           // Render <ListItem> components cyclically.
-          ForEach(item.contacts, (contact) => {
-            ListItem() {
-              ...
-            }
-          }, item => item.key)
+          if(item.contacts){
+            ForEach(item.contacts, () => {
+              ListItem() {
+              }
+            }, ((item:cgtmpf):string => item.key))
+          }
         }
-        ...
       })
     }
     .sticky(StickyStyle.Header) // Set a sticky header.
@@ -484,14 +509,15 @@ First, you need to create a **Scroller** object **listScroller**.
 
 
 ```ts
-private listScroller: Scroller = new Scroller();
+export let listScroller: Scroller = new Scroller();
 ```
 
 Then, use **listScroller** to initialize the **scroller** parameter to bind it with the **\<List>** component. Set **scrollToIndex** to **0**, meaning to return to the top of the list.
 
 
 ```ts
-Stack({ alignContent: Alignment.BottomEnd }) {
+let sttmo:Record<string,Alignment> = { 'alignContent': Alignment.BottomEnd }
+Stack(sttmo) {
   // use listScroller to initialize the scroller parameter to bind it with the <List> component.
   List({ space: 20, scroller: this.listScroller }) {
     ...
@@ -503,7 +529,7 @@ Stack({ alignContent: Alignment.BottomEnd }) {
   }
   .onClick(() => {
     // Specify where e to jump when the specific button is clicked, which is the top of the list in this example.
-    this.listScroller.scrollToIndex(0)
+    listScroller.scrollToIndex(0)
   })
   ...
 }
@@ -544,7 +570,6 @@ struct ContactsList {
       }
       .onScrollIndex((firstIndex: number) => {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
-        ...
       })
       ...
 
@@ -576,12 +601,22 @@ In the example of the message list, the **end** parameter is set to a custom del
 
 
 ```ts
+class swtmp{
+  temp:Record<string,object> = {}
+  itemEnd:Function|undefined = undefined
+  get(index:number){
+    if(this.itemEnd){
+      this.temp = {'end':this.itemEnd(this, index)}
+    }
+    return this.temp
+  }
+}
+let swipertmp:swtmp = new swtmp()
 @Entry
 @Component
 struct MessageList {
   @State messages: object[] = [
     // Initialize the message list data.
-    ...
   ];
 
   @Builder itemEnd(index: number) {
@@ -600,12 +635,13 @@ struct MessageList {
   build() {
     ...
       List() {
-        ForEach(this.messages, (item, index) => {
-          ListItem() {
-            ...
+        ForEach(this.messages, (item:MessageList, index:number|undefined) => {
+          if(index){
+            ListItem() {
+            }
+            .swipeAction(swipertmp.get(index)) // Set the swipe action.
           }
-          .swipeAction({ end: this.itemEnd.bind(this, index) }) // Set the swipe attributes.
-        }, item => item.id.toString())
+        }, ((item:MessageList):string => item.id.toString()))
       }
     ...
   }
@@ -615,7 +651,7 @@ struct MessageList {
 
 ## Adding a Mark to a List Item
 
-A mark is an intuitive, unintrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
+A mark is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
 
   **Figure 16** Adding a mark to a list item 
 
@@ -691,18 +727,27 @@ The process of implementing the addition feature is as follows:
 
    ```ts
    @State toDoData: ToDo[] = [];
-   private availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
+    export let availableThings: string[] = ['Reading', 'Fitness', 'Travel','Music','Movie', 'Singing'];
    ```
 
    Finally, build the list layout and list items:
 
    ```ts
+    export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+    }
+    let todo:ToDo = new ToDo()
    List({ space: 10 }) {
-     ForEach(this.toDoData, (toDoItem) => {
+     ForEach(todo.toDoData, (toDoItem:ToDo) => {
        ListItem() {
-         ...
        }
-     }, toDoItem => toDoItem.key)
+     }, ((toDoItem:ToDo):string => toDoItem.key))
    }
    ```
 
@@ -715,9 +760,9 @@ The process of implementing the addition feature is as follows:
    Text('+')
      .onClick(() => {
        TextPickerDialog.show({
-         range: this.availableThings,
+         range: availableThings,
          onAccept: (value: TextPickerResult) => {
-            this.toDoData.push(new ToDo(this.availableThings[value.index])); // Add the list item data.
+            todo.toDoData.push(new ToDo(availableThings[value.index])); // Add a list item data.
          },
        })
      })
@@ -737,64 +782,105 @@ The process of implementing the deletion feature is as follows:
 1. Generally, the deletion feature is available only after the list enters the editing mode. Therefore, the entry to the editing mode needs to be provided.
    In this example, by listening for the long press event of a list item, the list enters the editing mode when the user long presses a list item.
 
-   ```ts
+  ```ts
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoListItem.ets
 
-   Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-     ...
-   }
-   .gesture(
-   GestureGroup(GestureMode.Exclusive,
-     LongPressGesture()
-       .onAction(() => {
-         if (!this.isEditMode) {
-           this.isEditMode = true; // Enter the editing mode.
-           this.selectedItems.push(this.toDoItem); // Record the list item selected when the user long presses the button.
-         }
-       })
-     )
-   )
-   ```
+  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+    ...
+  }
+  .gesture(
+  GestureGroup(GestureMode.Exclusive,
+    LongPressGesture()
+      .onAction(() => {
+        if (!todolist.isEditMode) {
+          todolist.isEditMode = true; // Enter the editing mode.
+          todolist.selectedItems.push(todolist.toDoItem); // Record the list item selected when the user long presses the button.
+        }
+      })
+    )
+  )
+  ```
 
 2. Respond to the selection by the user and record the list items to be deleted.
    In this example of the to-do list, respond to the selection by correctly displaying the check mark and record all the selected list items.
 
-   ```ts
+  ```ts
+  import util from '@ohos.util';
+  export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoListItem.ets
 
-   if (this.isEditMode) {
-     Checkbox()
-       .onChange((isSelected) => {
-         if (isSelected) {
-           this.selectedItems.push(this.toDoItem) // When an item is selected, record the selected item.
-         } else {
-           let index = this.selectedItems.indexOf(this.toDoItem)
-           if (index !== -1) {
-             this.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
-           }
-         }
-       })
-       ...
-   }
-   ```
+  if (todolist.isEditMode) {
+    Checkbox()
+      .onChange((isSelected) => {
+        if (isSelected) {
+          todolist.selectedItems.push(todolist.toDoItem) // When an item is selected, record the selected item.
+        } else {
+          let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+          if (index !== -1) {
+            todolist.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
+          }
+        }
+      })
+      ...
+  }
+  ```
 
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 
-   ```ts
+  ```ts
+  import util from '@ohos.util';
+  export class ToDo {
+    key: string = util.generateRandomUUID(true);
+    name: string;
+    toDoData:ToDo[] = [];
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  class todoTmp{
+    isEditMode:boolean = false
+    selectedItems:Array<object> = []
+    toDoItem:ToDo[] = [];
+    toDoData:ToDo[] = [];
+  }
+  let todolist:todoTmp = new todoTmp()
    // ToDoList.ets
 
-   Button ('Delete')
-     .onClick(() => {
-       // Delete the toDoData data corresponding to the selected list items.
-       let leftData = this.toDoData.filter((item) => {
-         return this.selectedItems.find((selectedItem) => selectedItem !== item);
-       })
+  Button ('Delete')
+    .onClick(() => {
+      // Delete the toDoData data corresponding to the selected list items.
+      let leftData = todolist.toDoData.filter((item) => {
+        return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+      })
 
-       this.toDoData = leftData;
-       this.isEditMode = false;
-     })
-     ...
-   ```
+      todolist.toDoData = leftData;
+      todolist.isEditMode = false;
+    })
+    ...
+  ```
 
 
 ## Handling a Long List
@@ -807,12 +893,17 @@ When the list is rendered in lazy loading mode, to improve the list scrolling ex
 
 
 ```ts
+class dataTmp{
+  dataSource:IDataSource|undefined = undefined
+}
+let ds:dataTmp = new dataTmp()
 List() {
-  LazyForEach(this.dataSource, item => {
-    ListItem() {
-      ...
-    }
-  })
+  if(ds.dataSource){
+    LazyForEach(ds.dataSource, () => {
+      ListItem() {
+      }
+    })
+  }
 }.cachedCount(3)
 ```
 

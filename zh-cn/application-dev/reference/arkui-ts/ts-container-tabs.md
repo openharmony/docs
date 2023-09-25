@@ -20,7 +20,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 | 参数名         | 参数类型                              | 必填   | 参数描述                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | BarPosition                       | 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
+| barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
 | index       | number                            | 否    | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
@@ -107,7 +107,7 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 ### 导入对象
 
 ```ts
-controller: TabsController = new TabsController()
+let controller: TabsController = new TabsController()
 ```
 
 ### changeIndex
@@ -198,7 +198,7 @@ struct TabsExample {
 @Component
 struct TabsDivider1 {
   private controller1: TabsController = new TabsController()
-  @State dividerColor: string  = 'red'
+  @State dividerColor: string = 'red'
   @State strokeWidth: number = 2
   @State startMargin: number = 0
   @State endMargin: number = 0
@@ -210,15 +210,19 @@ struct TabsDivider1 {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar('pink')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Yellow)
         }.tabBar('yellow')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
         }.tabBar('blue')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Red)
         }.tabBar('red')
@@ -233,61 +237,61 @@ struct TabsDivider1 {
         console.info(index.toString())
       })
       .height('200vp')
-      .margin({bottom: '12vp'})
-      .divider(this.nullFlag ? null :{
-                                       strokeWidth: this.strokeWidth,
-                                       color: this.dividerColor,
-                                       startMargin: this.startMargin,
-                                       endMargin: this.endMargin
-                                     })
+      .margin({ bottom: '12vp' })
+      .divider(this.nullFlag ? null : {
+        strokeWidth: this.strokeWidth,
+        color: this.dividerColor,
+        startMargin: this.startMargin,
+        endMargin: this.endMargin
+      })
 
-      Button('常规Divider').width('100%').margin({bottom: '12vp'})
+      Button('常规Divider').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          this.nullFlag = false,
-          this.strokeWidth = 2,
-          this.dividerColor = 'red',
-          this.startMargin = 0,
-          this.endMargin = 0
+          this.nullFlag = false;
+          this.strokeWidth = 2;
+          this.dividerColor = 'red';
+          this.startMargin = 0;
+          this.endMargin = 0;
         })
-      Button('空Divider').width('100%').margin({bottom: '12vp'})
+      Button('空Divider').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.nullFlag = true
         })
-      Button('颜色变为蓝色').width('100%').margin({bottom: '12vp'})
+      Button('颜色变为蓝色').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.dividerColor = 'blue'
         })
-      Button('宽度增加').width('100%').margin({bottom: '12vp'})
+      Button('宽度增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.strokeWidth += 2
         })
-      Button('宽度减小').width('100%').margin({bottom: '12vp'})
+      Button('宽度减小').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          if(this.strokeWidth > 2) {
+          if (this.strokeWidth > 2) {
             this.strokeWidth -= 2
           }
         })
-      Button('上边距增加').width('100%').margin({bottom: '12vp'})
+      Button('上边距增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.startMargin += 2
         })
-      Button('上边距减少').width('100%').margin({bottom: '12vp'})
+      Button('上边距减少').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           if (this.startMargin > 2) {
             this.startMargin -= 2
           }
         })
-      Button('下边距增加').width('100%').margin({bottom: '12vp'})
+      Button('下边距增加').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.endMargin += 2
         })
-      Button('下边距减少').width('100%').margin({bottom: '12vp'})
+      Button('下边距减少').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
-          if(this.endMargin > 2) {
+          if (this.endMargin > 2) {
             this.endMargin -= 2
           }
         })
-    }.padding({top: '24vp', left: '24vp', right: '24vp'})
+    }.padding({ top: '24vp', left: '24vp', right: '24vp' })
   }
 }
 ```
@@ -305,81 +309,101 @@ struct TabsOpaque {
   private controller: TabsController = new TabsController()
   private controller1: TabsController = new TabsController()
   @State selfFadingFade: boolean = true;
+
   build() {
     Column() {
-      Button('子页签设置渐隐').width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button('子页签设置渐隐').width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           this.selfFadingFade = true;
         })
-      Button('子页签设置不渐隐').width('100%').margin({bottom: '12vp'})
-        .onClick((event: ClickEvent) => {
+      Button('子页签设置不渐隐').width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           this.selfFadingFade = false;
         })
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar('pink')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Yellow)
         }.tabBar('yellow')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
         }.tabBar('blue')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
       }
-      .vertical(false).scrollable(true)
+      .vertical(false)
+      .scrollable(true)
       .barMode(BarMode.Scrollable)
-      .barHeight(80).animationDuration(400)
+      .barHeight(80)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
       .fadingEdge(this.selfFadingFade)
-      .height('30%').width('100%')
+      .height('30%')
+      .width('100%')
+
       Tabs({ barPosition: BarPosition.Start, controller: this.controller1 }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar('pink')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Yellow)
         }.tabBar('yellow')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
         }.tabBar('blue')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar('green')
       }
-      .vertical(true).scrollable(true)
+      .vertical(true)
+      .scrollable(true)
       .barMode(BarMode.Scrollable)
       .barHeight(200)
-      .barWidth(80).animationDuration(400)
+      .barWidth(80)
+      .animationDuration(400)
       .onChange((index: number) => {
         console.info(index.toString())
       })
       .fadingEdge(this.selfFadingFade)
-      .height('30%').width('100%')
+      .height('30%')
+      .width('100%')
     }
-    .padding({top: '24vp', left: '24vp', right: '24vp'})
+    .padding({ top: '24vp', left: '24vp', right: '24vp' })
   }
 }
 ```
@@ -399,8 +423,8 @@ struct barBackgroundColorTest {
 
   build() {
     Column() {
-      Button("barOverlap变化").width('100%').margin({bottom: '12vp'})
-        .onClick((event:ClickEvent) =>{
+      Button("barOverlap变化").width('100%').margin({ bottom: '12vp' })
+        .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
             this.barOverlap = false;
           } else {
@@ -408,7 +432,7 @@ struct barBackgroundColorTest {
           }
         })
 
-      Tabs({ barPosition: BarPosition.Start, index:0, controller: this.controller }) {
+      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
         TabContent() {
           Column() {
             Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
@@ -417,6 +441,7 @@ struct barBackgroundColorTest {
           .backgroundColor(Color.Pink)
         }
         .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "1"))
+
         TabContent() {
           Column() {
             Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
@@ -425,6 +450,7 @@ struct barBackgroundColorTest {
           .backgroundColor(Color.Yellow)
         }
         .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "2"))
+
         TabContent() {
           Column() {
             Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
@@ -443,7 +469,7 @@ struct barBackgroundColorTest {
       .barBackgroundColor(this.barBackgroundColor)
     }
     .height(500)
-    .padding({top: '24vp', left: '24vp', right: '24vp'})
+    .padding({ top: '24vp', left: '24vp', right: '24vp' })
   }
 }
 ```
@@ -467,36 +493,59 @@ struct TabsExample5 {
   build() {
     Column() {
       Row() {
-        Button("gridMargin+10 " + this.gridMargin).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("gridMargin+10 " + this.gridMargin)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.gridMargin += 10
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("gridMargin-10 " + this.gridMargin).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("gridMargin-10 " + this.gridMargin)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.gridMargin -= 10
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("gridGutter+10 " + this.gridGutter).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("gridGutter+10 " + this.gridGutter)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.gridGutter += 10
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("gridGutter-10 " + this.gridGutter).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("gridGutter-10 " + this.gridGutter)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.gridGutter -= 10
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
+
       Row() {
-        Button("sm+2 "+this.sm).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("sm+2 " + this.sm)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.sm += 2
-          }).margin({ right:'6%'})
-        Button("sm-2 "+this.sm).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%' })
+        Button("sm-2 " + this.sm).width('47%').height(50).margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.sm -= 2
           })
       }
-      Text("点击内容:"+this.clickedContent).width('100%').height(200).margin({ top: 5 })
+
+      Text("点击内容:" + this.clickedContent).width('100%').height(200).margin({ top: 5 })
 
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
@@ -516,7 +565,7 @@ struct TabsExample5 {
       .height('60%')
       .barGridAlign({ sm: this.sm, margin: this.gridMargin, gutter: this.gridGutter })
       .backgroundColor(0xf1f3f5)
-      .onTabBarClick((index:number)=>{
+      .onTabBarClick((index: number) => {
         this.clickedContent += "now index " + index + " is clicked\n";
       })
     }
@@ -526,7 +575,6 @@ struct TabsExample5 {
     .padding('24vp')
   }
 }
-
 ```
 
 ![tabs5](figures/tabs6.gif)
@@ -539,52 +587,85 @@ struct TabsExample5 {
 @Component
 struct TabsExample6 {
   private controller: TabsController = new TabsController()
-  @State scrollMargin:number = 0
+  @State scrollMargin: number = 0
   @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER
   @State text: string = "文本"
-
 
   build() {
     Column() {
       Row() {
-        Button("scrollMargin+10 " + this.scrollMargin).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+        Button("scrollMargin+10 " + this.scrollMargin)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.scrollMargin += 10
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("scrollMargin-10 " + this.scrollMargin).width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("scrollMargin-10 " + this.scrollMargin)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
             this.scrollMargin -= 10
-          }).margin({bottom:'12vp'})
-      }
-      Row() {
-        Button("文本增加 ").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
-            this.text += '文本增加'
-          }).margin({ right:'6%', bottom:'12vp'})
-        Button("文本重置").width('47%').height(50).margin({ top: 5 })
-          .onClick((event: ClickEvent) => {
-            this.text = "文本"
-          }).margin({bottom:'12vp'})
-      }
-      Row() {
-        Button("layoutStyle.ALWAYS_CENTER").width('100%').height(50).margin({ top: 5 }).fontSize(15)
-          .onClick((event: ClickEvent) => {
-            this.layoutStyle = LayoutStyle.ALWAYS_CENTER;
-          }).margin({bottom:'12vp'})
-      }
-      Row() {
-        Button("layoutStyle.ALWAYS_AVERAGE_SPLIT").width('100%').height(50).margin({ top: 5 }).fontSize(15)
-          .onClick((event: ClickEvent) => {
-            this.layoutStyle = LayoutStyle.ALWAYS_AVERAGE_SPLIT;
-          }).margin({bottom:'12vp'})
-      }
-      Row() {
-        Button("layoutStyle.SPACE_BETWEEN_OR_CENTER").width('100%').height(50).margin({ top: 5 }).fontSize(15)
-          .onClick((event: ClickEvent) => {
-            this.layoutStyle = LayoutStyle.SPACE_BETWEEN_OR_CENTER;
-          }).margin({bottom:'12vp'})
+          })
+          .margin({ bottom: '12vp' })
       }
 
+      Row() {
+        Button("文本增加 ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.text += '文本增加'
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("文本重置")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.text = "文本"
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("layoutStyle.ALWAYS_CENTER")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .fontSize(15)
+          .onClick((event?: ClickEvent) => {
+            this.layoutStyle = LayoutStyle.ALWAYS_CENTER;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("layoutStyle.ALWAYS_AVERAGE_SPLIT")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .fontSize(15)
+          .onClick((event?: ClickEvent) => {
+            this.layoutStyle = LayoutStyle.ALWAYS_AVERAGE_SPLIT;
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("layoutStyle.SPACE_BETWEEN_OR_CENTER")
+          .width('100%')
+          .height(50)
+          .margin({ top: 5 })
+          .fontSize(15)
+          .onClick((event?: ClickEvent) => {
+            this.layoutStyle = LayoutStyle.SPACE_BETWEEN_OR_CENTER;
+          })
+          .margin({ bottom: '12vp' })
+      }
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
@@ -602,7 +683,7 @@ struct TabsExample6 {
       .animationDuration(300)
       .height('60%')
       .backgroundColor(0xf1f3f5)
-      .barMode(BarMode.Scrollable,{margin:this.scrollMargin, nonScrollableLayoutStyle:this.layoutStyle})
+      .barMode(BarMode.Scrollable, { margin: this.scrollMargin, nonScrollableLayoutStyle: this.layoutStyle })
     }
     .width('100%')
     .height(500)
@@ -610,7 +691,6 @@ struct TabsExample6 {
     .padding('24vp')
   }
 }
-
 ```
 
 ![tabs5](figures/tabs7.gif)

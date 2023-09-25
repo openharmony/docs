@@ -192,16 +192,17 @@ This example uses \@LocalStorage as an example to show how to:
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage({ 'PropA': 47 });
+  let storage = new LocalStorage();
+  storage['PropA'] = 47;
 
   @Component
   struct Child {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageLink('PropA') storLink2: number = 1;
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // The changes will be synchronized to ProA in LocalStorage and with Parent.storLink1.
+        // The changes will be synchronized to PropA in LocalStorage and with Parent.storLink1.
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -209,7 +210,7 @@ This example uses \@LocalStorage as an example to show how to:
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageLink creates a two-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageLink creates a two-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageLink('PropA') storLink1: number = 1;
 
     build() {
@@ -234,12 +235,14 @@ In this example, the **CompA** and **Child** components create local data that i
 
   ```ts
   // Create a new instance and initialize it with the given object.
-  let storage = new LocalStorage({ 'PropA': 47 });
+  let storage = new LocalStorage();
+  storage['PropA'] = 47;
+
   // Make LocalStorage accessible from the @Component decorated component.
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -254,7 +257,7 @@ In this example, the **CompA** and **Child** components create local data that i
 
   @Component
   struct Child {
-    // @LocalStorageProp creates a one-way data synchronization with the ProA attribute in LocalStorage.
+    // @LocalStorageProp creates a one-way data synchronization with the PropA attribute in LocalStorage.
     @LocalStorageProp('PropA') storProp2: number = 2;
 
     build() {
@@ -274,9 +277,10 @@ This example shows how to create a two-way data synchronization between an \@Loc
 
 ```ts
 // Create a LocalStorage instance.
-let storage = new LocalStorage({ 'PropA': 47 });
+let storage = new LocalStorage();
+storage['PropA'] = 47;
 // Invoke the link9+ API to create a two-way data synchronization with PropA. linkToPropA is a global variable.
-let linkToPropA = storage.link('PropA');
+let linkToPropA = storage.link<number>('PropA');
 
 @Entry(storage)
 @Component
@@ -388,22 +392,21 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage({
-    'PropA': 47
-  });
+  storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
+    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
 ```
 
-On the page, call the **GetShared** API to obtain the LocalStorage instance shared through **loadContent**.
+On the page, call the **getShared** API to obtain the LocalStorage instance shared through **loadContent**.
 
 
 ```ts
-// Use the GetShared API to obtain the Storage instance shared by stage.
-let storage = LocalStorage.GetShared()
+// Use the getShared API to obtain the LocalStorage instance shared by stage.
+let storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component

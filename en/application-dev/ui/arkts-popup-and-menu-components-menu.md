@@ -28,13 +28,19 @@ Button('click for Menu')
 
 ## Creating a Menu in a Custom Style
 
-If the default style does not meet requirements, you can use \@CustomBuilder to customize menu content. Menus can also be customized through the **bindMenu** API.
+If the default style does not meet requirements, you can use [\@Builder](../quick-start/arkts-builder.md) to customize menu content. You can also use the **bindMenu** API to bind a custom menu to a component.
 
 
 ### \@Builder: Customizing Menu Content
 
 
 ```ts
+class Tmp{
+  iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  set(val:Resource){
+    this.iconStr2 = val
+  }
+}
 @State select: boolean = true
 private iconStr: ResourceStr = $r("app.media.view_list_filled")
 private iconStr2: ResourceStr = $r("app.media.view_list_filled")
@@ -63,8 +69,9 @@ MyMenu(){
         .selectIcon(true)
         .selected(this.select)
         .onChange((selected) => {
-	   console.info("menuItem select" + selected);
-	   this.iconStr2 = $r("app.media.icon");
+           console.info("menuItem select" + selected);
+            let Str:Tmp = new Tmp()
+            Str.set($r("app.media.icon"))
         })
       MenuItem({
         startIcon: $r("app.media.view_list_filled"),
@@ -80,7 +87,6 @@ MyMenu(){
     })
   }
 }
-  
 ```
 
 

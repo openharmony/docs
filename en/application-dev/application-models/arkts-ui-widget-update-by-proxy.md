@@ -5,13 +5,16 @@ A widget can be updated through a proxy – a system application that has data s
 ## Implementation Principles
 
 **Figure 1** Updating widget content through a proxy
-
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
 Compared with the [implementation of the ArkTS widget](../application-models/arkts-ui-widget-working-principles.md#implementation-principles) alone, updating through a proxy involves the data management service and data provider.
 
 - Data management service: provides a mechanism for data sharing among multiple applications.
 - Data provider: must be a system application that has data sharing enabled. The shared data is identified through the defined **key** + **subscriberId** combination.
+
+> **NOTE**
+>
+> This feature can be used when the system provides applications as data providers and publicly available shared data identifiers.
 
 Processing flow of the widget provider (indicated by the blue arrows in the figure):
 
@@ -29,7 +32,7 @@ Processing flow of the widget update proxy (indicated by the red arrows in the f
 1. The data provider uses the **key** + **subscriberId** combination as the data ID to store data to the database.
 2. The data management service detects the change in the database and publishes the new data to all currently registered subscription instances.
 3. The Widget Manager parses data from the subscription instance and sends the data to the widget rendering service.
-4. The widget rendering service runs the widget page code **widgets.abc**, renders based on the new data, and sends the rendered data to the widget component (../reference/arkui-ts/ts-basic-components-formcomponent.md) corresponding to the widget host.
+4. The widget rendering service runs the widget page code **widgets.abc**, which implements rendering based on the new data and sends the rendered data to the [FormComponent](../reference/arkui-ts/ts-basic-components-formcomponent.md) corresponding to the widget host.
 
 There are two types of shared data provided by the data provider:
 
@@ -73,19 +76,22 @@ The update-through-proxy configuration varies by the type of shared data.
   > The value of **key** can be a URI or a simple string. The default value of **subscriberId** is the value of **formId**. The actual value depends on the definition of the data provider.
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
+  import Want from '@ohos.app.ability.Want';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
-  let dataShareHelper;
-  onAddForm(want) {
-    let formData = {};
-    let proxies = [
-      {
-        "key": "detail",
-        "subscriberId": "11"
-      }
-    ]
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding["proxies"] = proxies;
-    return formBinding;
+  export default class EntryFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want) {
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
+        {
+          "key": "detail",
+          "subscriberId": "11"
+        }
+      ]
+      let formBinding = formBindingData.createFormBindingData(formData);
+      formBinding["proxies"] = proxies;
+      return formBinding;
+    }
   }
   ```
 
@@ -148,33 +154,38 @@ The update-through-proxy configuration varies by the type of shared data.
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import dataShare from '@ohos.data.dataShare'
+  import dataShare from '@ohos.data.dataShare';
+  import Want from '@ohos.app.ability.Want';
 
-  let dataShareHelper;
-  onAddForm(want) {
-    let template = {
-      predicates : {
-        "list" : "select type from TBL00 limit 0,1"
-      },
-      scheduler: ""
-    }
-    let subscriberId = "111";
-    dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {isProxy : true}).then((data) => {
-      dataShareHelper = data;
-      dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
-    })
-
-    let formData = {};
-    let proxies = [
-      {
-        "key": "datashareproxy://com.example.myapplication/test",
-        "subscriberId": subscriberId
+  let dataShareHelper: dataShare.DataShareHelper;
+  export default class EntryFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want) {
+      let template: dataShare.Template = {
+        predicates: {
+          "list": "select type from TBL00 limit 0,1"
+        },
+        scheduler: ""
       }
-    ]
-    let formBinding = formBindingData.createFormBindingData(formData);
-    formBinding["proxies"] = proxies;
+      let subscriberId: string = "111";
+      dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {
+        isProxy: true
+      }).then((data: dataShare.DataShareHelper) => {
+        dataShareHelper = data;
+        dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
+      })
 
-    return formBinding;
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
+        {
+          "key": "datashareproxy://com.example.myapplication/test",
+          "subscriberId": subscriberId
+        }
+      ]
+      let formBinding = formBindingData.createFormBindingData(formData);
+      formBinding["proxies"] = proxies;
+
+      return formBinding;
+    }
   }
   ```
 
@@ -189,7 +200,7 @@ The update-through-proxy configuration varies by the type of shared data.
     readonly MESSAGE: string = 'add detail';
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
-    @LocalStorageProp('list') list: Array<object> = [{"type": "a"}];
+    @LocalStorageProp('list') list: Record<string, string>[] = [{"type": "a"}];
 
     build() {
       Row() {

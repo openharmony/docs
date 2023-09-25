@@ -16,6 +16,10 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
+
+   > **NOTE**
+   >
+   > Perform the subsequent operations after the AV recorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
    
    ```ts
    import media from '@ohos.multimedia.media';
@@ -96,13 +100,14 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 ## Sample Code
 
-  Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
+Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
 ```ts
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
+
 export class AudioRecorderDemo {
-  private avRecorder: media.AVRecorder;
+  private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // Audio bit rate.
     audioChannels: 2, // Number of audio channels.
@@ -118,54 +123,60 @@ export class AudioRecorderDemo {
 
   // Set AVRecorder callback functions.
   setAudioRecorderCallback() {
-    // Callback function for state changes.
-    this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
-      console.log(`AudioRecorder current state is ${state}`);
-    })
-    // Callback function for errors.
-    this.avRecorder.on('error', (err: BusinessError) => {
-      console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
-    })
+    if (this.avRecorder != undefined) {
+      // Callback function for state changes.
+      this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+        console.log(`AudioRecorder current state is ${state}`);
+      })
+      // Callback function for errors.
+      this.avRecorder.on('error', (err: BusinessError) => {
+        console.error(`AudioRecorder failed, code is ${err.code}, message is ${err.message}`);
+      })
+    }
   }
 
   // Process of starting recording.
   async startRecordingProcess() {
-    // 1. Create an AVRecorder instance.
-    this.avRecorder = await media.createAVRecorder();
-    this.setAudioRecorderCallback();
-    // 2. Obtain the file descriptor of the recording file and assign it to the URL in avConfig. For details, see FilePicker.
-    // 3. Set recording parameters to complete the preparations.
-    await this.avRecorder.prepare(this.avConfig);
-    // 4. Start recording.
-    await this.avRecorder.start();
+    if (this.avRecorder != undefined) {
+      // 1. Create an AVRecorder instance.
+      this.avRecorder = await media.createAVRecorder();
+      this.setAudioRecorderCallback();
+      // 2. Obtain the file descriptor of the recording file and assign it to the URL in avConfig. For details, see FilePicker.
+      // 3. Set recording parameters to complete the preparations.
+      await this.avRecorder.prepare(this.avConfig);
+      // 4. Start recording.
+      await this.avRecorder.start();
+    }
   }
 
   // Process of pausing recording.
   async pauseRecordingProcess() {
-    if (this.avRecorder.state ==='started') { // pause() can be called only when the AVRecorder is in the started state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
       await this.avRecorder.pause();
     }
   }
 
   // Process of resuming recording.
   async resumeRecordingProcess() {
-    if (this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'paused') { // resume() can be called only when the AVRecorder is in the paused state .
       await this.avRecorder.resume();
     }
   }
 
   // Process of stopping recording.
   async stopRecordingProcess() {
-    // 1. Stop recording.
-    if (this.avRecorder.state === 'started'
-    || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
-      await this.avRecorder.stop();
+    if (this.avRecorder != undefined) {
+      // 1. Stop recording.
+      if (this.avRecorder.state === 'started'
+        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+        await this.avRecorder.stop();
+      }
+      // 2. Reset the AVRecorder.
+      await this.avRecorder.reset();
+      // 3. Release the AVRecorder instance.
+      await this.avRecorder.release();
+      // 4. Close the file descriptor of the recording file.
     }
-    // 2. Reset the AVRecorder.
-    await this.avRecorder.reset();
-    // 3. Release the AVRecorder instance.
-    await this.avRecorder.release();
-    // 4. Close the file descriptor of the recording file.
   }
 
   // Complete sample code for starting, pausing, resuming, and stopping recording.
@@ -178,5 +189,3 @@ export class AudioRecorderDemo {
   }
 }
 ```
-
- <!--no_check--> 

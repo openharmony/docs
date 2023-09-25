@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 ```
 
@@ -36,9 +36,11 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 **示例：**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onCreate(want) {
+  onCreate(want: Want): void {
     console.log('onCreate, want:' + want.abilityName);
   }
 }
@@ -54,9 +56,10 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 **示例：**
 
-```js
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 class InputMethodExt extends InputMethodExtensionAbility {
-  onDestroy() {
+  onDestroy(): void {
     console.log('onDestroy');
   }
 }

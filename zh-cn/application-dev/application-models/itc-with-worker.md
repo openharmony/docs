@@ -9,7 +9,7 @@ Worker的开发步骤如下：
 
 1. 在工程的[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-building-configuration-0000001218440654#section6887184182020)文件的buildOption属性中添加配置信息。
 
-   ```ts
+   ```json
    "buildOption": {
      "sourceOption": {
        "workers": [
@@ -27,7 +27,7 @@ Worker的开发步骤如下：
    let parent = worker.workerPort;
 
    // 处理来自主线程的消息
-   parent.onmessage = function(message) {
+   parent.onmessage = (message) => {
      console.info("onmessage: " + message)
      // 发送消息到主线程
      parent.postMessage("message from worker thread.")
@@ -46,7 +46,7 @@ Worker的开发步骤如下：
       wk.postMessage("message from main thread.")
 
       // 处理来自worker线程的消息
-      wk.onmessage = function(message) {
+      wk.onmessage = (message) => {
         console.info("message from worker: " + message)
 
         // 根据业务按需停止worker线程
@@ -65,7 +65,7 @@ Worker的开发步骤如下：
       wk.postMessage("message from main thread.")
       
       // 处理来自worker线程的消息
-      wk.onmessage = function(message) {
+      wk.onmessage = (message) => {
         console.info("message from worker: " + message)
       
         // 根据业务按需停止worker线程

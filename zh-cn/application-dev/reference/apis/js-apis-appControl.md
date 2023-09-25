@@ -24,7 +24,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。。
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -50,18 +50,24 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import appControl from '@ohos.bundle.appControl';
+
 let appId = "com.example.myapplication_xxxxx";
-let want = {bundleName: 'com.example.myapplication'};
+let want:Want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want)
         .then(() => {
             console.info('setDisposedStatus success');
-        }).catch((error) => {
-            console.error('setDisposedStatus failed ' + error.message);
+        }).catch((error: BusinessError) => {
+            let message = (error as BusinessError).message;
+            console.error('setDisposedStatus failed ' + message);
         });
 } catch (error) {
-    console.error('setDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -96,23 +102,29 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
 let appId = "com.example.myapplication_xxxxx";
-let want = {bundleName: 'com.example.myapplication'};
+let want: Want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (error, data) => {
-        if (error) {
-            console.error('setDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('setDisposedStatus success');
-    });
+  appControl.setDisposedStatus(appId, want, (error: BusinessError, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('setDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('setDisposedStatus success');
+  });
 } catch (error) {
-    console.error('setDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
 }
 ```
 
-## appControl.setDisposedStatusSync
+## appControl.setDisposedStatusSync<sup>10+</sup>
 
 setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
@@ -143,6 +155,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
 ```ts
 import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 let appId: string = "com.example.myapplication_xxxxx";
@@ -151,7 +164,8 @@ let want: Want = {bundleName: 'com.example.myapplication'};
 try {
   appControl.setDisposedStatusSync(appId, want);
 } catch (error) {
-  console.error('setDisposedStatusSync failed ' + error.message);
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -190,17 +204,22 @@ getDisposedStatus(appId: string): Promise\<Want>;
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId)
-        .then((data) => {
-            console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-        }).catch((error) => {
-            console.error('getDisposedStatus failed ' + error.message);
-        });
+  appControl.getDisposedStatus(appId)
+    .then((data) => {
+      console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
+  });
 } catch (error) {
-    console.error('getDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -234,22 +253,27 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (error, data) => {
-        if (error) {
-            console.error('getDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-    });
+  appControl.getDisposedStatus(appId, (error, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('getDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+  });
 } catch (error) {
-    console.error('getDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
 }
 ```
 
-## appControl.getDisposedStatusSync
+## appControl.getDisposedStatusSync<sup>10+</sup>
 
 getDisposedStatusSync(appId: string): Want;
 
@@ -285,15 +309,17 @@ getDisposedStatusSync(appId: string): Want;
 
 ```ts
 import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 
 let appId: string = "com.example.myapplication_xxxxx";
 let want: Want;
 
 try {
-  want = appControl.getDisposedStatusSync(appId);
+    want = appControl.getDisposedStatusSync(appId);
 } catch (error) {
-  console.error('getDisposedStatusSync failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -332,17 +358,22 @@ deleteDisposedStatus(appId: string): Promise\<void>
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.deleteDisposedStatus(appId)
-        .then(() => {
-            console.info('deleteDisposedStatus success');
-        }).catch((error) => {
-            console.error('deleteDisposedStatus failed ' + error.message);
-        });
+  appControl.deleteDisposedStatus(appId)
+    .then(() => {
+      console.info('deleteDisposedStatus success');
+    }).catch((error: BusinessError) => {
+      let message = (error as BusinessError).message;
+      console.error('deleteDisposedStatus failed ' + message);
+  });
 } catch (error) {
-    console.error('deleteDisposedStatus failed ' + error.message);
+  let message = (error as BusinessError).message;
+  console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
@@ -376,21 +407,25 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
 let appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (error, data) => {
-        if (error) {
-            console.error('deleteDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('deleteDisposedStatus success');
-    });
+  appControl.deleteDisposedStatus(appId, (error: BusinessError, data) => {
+    if (error) {
+      console.error('deleteDisposedStatus failed ' + error.message);
+      return;
+    }
+    console.info('deleteDisposedStatus success');
+  });
 } catch (error) {
-    console.error('deleteDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
-## appControl.deleteDisposedStatusSync
+## appControl.deleteDisposedStatusSync<sup>10+</sup>
 
 deleteDisposedStatusSync(appId: string) : void
 
@@ -420,13 +455,15 @@ deleteDisposedStatusSync(appId: string) : void
 
 ```ts
 import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
 
 let appId: string = "com.example.myapplication_xxxxx";
 
 try {
     appControl.deleteDisposedStatusSync(appId);
 } catch (error) {
-    console.error('deleteDisposedStatusSync failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -438,18 +475,21 @@ appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.example.myapplication';
 let appId: string;
 try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-            console.info("appId is " + appId);
-        }).catch((error) => {
-            console.error("getBundleInfo failed " + error.message);
-        });
+  bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    .then((data) => {
+      appId = data.signatureInfo.appId;
+      console.info("appId is " + appId);
+    }).catch((error: BusinessError) => {
+      let message = (error as BusinessError).message;
+      console.error("getBundleInfo failed " + message);
+  });
 } catch (error) {
-    console.error("getBundleInfo failed " + error.message);
+    let message = (error as BusinessError).message;
+    console.error("getBundleInfo failed " + message);
 }
 ```

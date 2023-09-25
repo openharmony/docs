@@ -28,7 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
 | continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|
-| abilityState | number | Yes| Yes| Capability status of the mission.|
+| abilityState<sup>10+</sup> | number | Yes| Yes| Capability status of the mission.|
 | unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted.|
 
 **Example**

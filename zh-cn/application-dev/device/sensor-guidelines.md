@@ -25,13 +25,14 @@
 1. 导入模块。
 
    ```ts
-   import sensor from "@ohos.sensor";
+   import sensor from '@ohos.sensor';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 查询设备支持的所有传感器的参数。
 
     ```ts    
-    sensor.getSensorList(function (error, data) {
+    sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
         if (error) {
             console.info('getSensorList failed');
         } else {
@@ -54,19 +55,19 @@
 - 通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
 
     ```ts    
-    sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    }, {'interval': 100000000});
+    }, { interval: 100000000 });
     ```
 
     ![输入图片说明](figures/002.png)
 
 - 通过once()接口，实现对传感器的一次监听。
 
-    ```ts
-    sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+    ```ts  
+    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    });    
+    });
     ```
 
     ![输入图片说明](figures/003.png)

@@ -11,11 +11,12 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to i
 2. Obtain image information.
      
    ```
+   import {BusinessError} from '@ohos.base'
    // Obtain the image size.
-   pixelMap.getImageInfo().then( info => {
+   pixelMap.getImageInfo().then( (info : image.ImageInfo) => {
      console.info('info.width = ' + info.size.width);
      console.info('info.height = ' + info.size.height);
-   }).catch((err) => {
+   }).catch((err : BusinessError) => {
      console.error("Failed to obtain the image pixel map information.And the error is: " + err);
    });
    ```

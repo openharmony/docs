@@ -114,262 +114,30 @@ struct Page3 {
 }
 ```
 
-## cl.arkui.2 @StorageLink在页面跳转和页签场景行为优化
+## cl.arkui.2 更新4.0.10.x sdk后，出现组件功能异常的适配指导
+更新4.0.10.x sdk之后，如果设备未使用配套的镜像版本，应用代码中调用UI组件时，会无法正常显示。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index { // 自定义组件
+  build() {
+    Text('Hello, world') // 基础组件
+  }
+}
+```
 
 **变更影响**
 
-AppStorage是应用全局的UI状态存储，@StorageLink是对AppStorage中对应key的双向同步，即@StorageLink修饰的变量的改变会同步回AppStorage，AppStorage的修改也会同步给@StorageLink。
-当AppStorage某一个key发生改变时，会通知所有绑定该key的@StorageLink，@StorageLink装饰的变量的改变，会触发组件的重新渲染，包括不可见页面或者TabContent组件，这就造成了不必要的更新和性能浪费。
+更新4.0.10.x sdk之后，如果设备未使用配套的镜像版本，应用代码中调用UI组件时，
+运行到设备上会出现`this.observeComponentCreation2 is not callable`的报错。
 
-本次优化针对两个场景做出了优化：
-1. 不可见页面的@StorageLink不会被通知刷新。
-2. 不可见TabContent的@StorageLink不会被通知刷新。
-AppStorage的属性改变，将不立即通知这两个场景下的@StorageLink更新和其@Watch回调，而是当页面或TabContent重新回到激活状态时，即可见状态，再去触发UI更新和其@Watch回调。
+**关键的接口/组件变更**
 
-可见切换不可见状态或不可见切换可见状态流程如下：
-1. 页面或TabContent内的自定义组件从可见到不可见，即标记组件为inActive。
-2. 当AppStorage的属性变化时，标记不可见节点的@StorageLink装饰的变量已经变化，但不通知UI刷新。
-3. 当页面或TabContent重新可见，即从inActive回到Active状态，将@StorageLink的dependentElementIds添加到其所属自定义组件的脏节点，调用其@Watch方法，刷新UI。
-
-这次优化带来的最重要的应用行为变更是：不可见的页面和TabContent的@StorageLink的watch方法将不被回调。当其回到可见状态时，才会触发@Watch方法回调和UI更新。
+不涉及。
 
 **适配指导**
 
-不建议开发者通过借助@StorageLink和@Watch作为事件通知机制，因为@StorageLink是和UI强相关的装饰器，更新成本相较于一般的事件通知机制emit较高。
-
-TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步会AppStorage中，所以，所有绑定AppStorage的tapIndex可见自定义组件都会被通知UI刷新。UI刷新带来的成本是巨大的，因此不建议开发者使用此方式来实现基本的事件通知功能。
-
-```ts
-// xxx.ets
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData, index?: number) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: index
-            })
-          }.aspectRatio(1)
-
-        }, (item: ViewData, index?: number) => {
-          return JSON.stringify(item) + index;
-        })
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @StorageLink('tapIndex') @Watch('onTapIndexChange') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  // 判断是否被选中
-  onTapIndexChange() {
-    if (this.tapIndex >= 0 && this.index === this.tapIndex) {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, red`)
-      this.tapColor = Color.Red;
-    } else {
-      console.info(`tapindex: ${this.tapIndex}, index: ${this.index}, black`)
-      this.tapColor = Color.Black;
-    }
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .onClick(() => {
-          this.tapIndex = this.index;
-        })
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-
-  }
-}
-```
-
-开发者可以使用emit订阅某个事件并接收事件回调，可以减少开销，增强代码的可读性。
-
-
-```ts
-// xxx.ets
-import emitter from '@ohos.events.emitter';
-
-let NextID: number = 0;
-
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-  id: number;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-    this.id = NextID++;
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-  private preIndex: number = -1
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: item.id
-            })
-          }.aspectRatio(1)
-          .onClick(() => {
-            if (this.preIndex === item.id) {
-              return
-            }
-            var innerEvent = { eventId: item.id }
-            // 选中态：黑变红
-            var eventData = {
-              data: {
-                "colorTag": 1
-              }
-            }
-            emitter.emit(innerEvent, eventData)
-
-            if (this.preIndex != -1) {
-              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
-              var innerEvent = { eventId: this.preIndex }
-              // 取消选中态：红变黑
-              var eventData = {
-                data: {
-                  "colorTag": 0
-                }
-              }
-              emitter.emit(innerEvent, eventData)
-            }
-            this.preIndex = item.id
-          })
-
-        }, (item: ViewData) => JSON.stringify(item))
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  onTapIndexChange(colorTag: emitter.EventData) {
-    this.tapColor = colorTag.data.colorTag ? Color.Red : Color.Black
-  }
-
-  aboutToAppear() {
-    //定义事件ID
-    var innerEvent = { eventId: this.index }
-    emitter.on(innerEvent, this.onTapIndexChange.bind(this))
-  }
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .border({ width: 5, style: BorderStyle.Dotted, color: this.tapColor })
-    }
-  }
-}
-```
-
-以上通知事件逻辑简单，也可以简化成三元表达式。
-
-```
-// xxx.ets
-class ViewData {
-  title: string;
-  uri: Resource;
-  color: Color = Color.Black;
-
-  constructor(title: string, uri: Resource) {
-    this.title = title;
-    this.uri = uri
-  }
-}
-
-@Entry
-@Component
-struct Gallery2 {
-  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
-  scroller: Scroller = new Scroller()
-
-  build() {
-    Column() {
-      Grid(this.scroller) {
-        ForEach(this.dataList, (item: ViewData, index?: number) => {
-          GridItem() {
-            TapImage({
-              uri: item.uri,
-              index: index
-            })
-          }.aspectRatio(1)
-
-        }, (item: ViewData, index?: number) => {
-          return JSON.stringify(item) + index;
-        })
-      }.columnsTemplate('1fr 1fr')
-    }
-
-  }
-}
-
-@Component
-export struct TapImage {
-  @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
-  private index: number;
-  private uri: Resource;
-
-  build() {
-    Column() {
-      Image(this.uri)
-        .objectFit(ImageFit.Cover)
-        .onClick(() => {
-          this.tapIndex = this.index;
-        })
-        .border({
-          width: 5,
-          style: BorderStyle.Dotted,
-          color: (this.tapIndex >= 0 && this.index === this.tapIndex) ? Color.Red : Color.Black
-        })
-    }
-  }
-}
-```
+更新SDK配套的设备镜像。

@@ -1,4 +1,4 @@
-# UsbDdk
+# UsbDDK
 
 
 ## 概述
@@ -19,8 +19,8 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [usb_ddk_api.h](usb__ddk__api_8h.md) | 声明用于主机侧访问设备的USB DDK接口。<br/>引用文件：&lt;usb/usb_ddk_api.h&gt; |
-| [usb_ddk_types.h](usb__ddk__types_8h.md) | 提供USB DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;usb/usb_ddk_types.h&gt; |
+| [usb_ddk_api.h](usb__ddk__api_8h.md) | 声明用于主机侧访问设备的USB DDK接口。<br/>引用文件：&lt;usb/usb_ddk_api.h&gt; <br/>库： libusb_ndk.z.so|
+| [usb_ddk_types.h](usb__ddk__types_8h.md) | 提供USB DDK中的枚举变量、结构体定义与宏定义。<br/>引用文件：&lt;usb/usb_ddk_types.h&gt; <br/>库： libusb_ndk.z.so|
 
 
 ### 结构体
@@ -181,6 +181,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 
 声明接口。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -204,6 +206,8 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 **描述:**
 
 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 
@@ -229,6 +233,8 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 
 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -247,6 +253,8 @@ void OH_Usb_FreeConfigDescriptor (const struct UsbDdkConfigDescriptor *const con
 
 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -264,6 +272,8 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 **描述:**
 
 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 
@@ -289,6 +299,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 
 获取接口当前激活的备用设置。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -311,6 +323,8 @@ int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescripto
 **描述:**
 
 获取设备描述符。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 
@@ -335,6 +349,8 @@ int32_t OH_Usb_Init (void )
 
 初始化DDK。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **返回:**
 
 成功返回0，否则返回负数。
@@ -351,6 +367,8 @@ void OH_Usb_Release (void )
 
 释放DDK。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 
 ### OH_Usb_ReleaseInterface()
 
@@ -362,6 +380,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 **描述:**
 
 释放接口。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 
@@ -385,6 +405,8 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 激活接口的备用设置。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -407,6 +429,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 **描述:**
 
 发送控制读请求，该接口为同步接口。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 
@@ -434,6 +458,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 发送控制写请求，该接口为同步接口。
 
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
 **参数:**
 
 | 名称 | 描述 |
@@ -459,6 +485,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 **描述:**
 
 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
 
 **参数:**
 

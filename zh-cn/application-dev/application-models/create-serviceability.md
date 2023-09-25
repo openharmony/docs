@@ -6,36 +6,35 @@
      重写ServiceAbility的生命周期方法，添加其他Ability请求与ServiceAbility交互时的处理方法。
 
    ```ts
+     import Want from '@ohos.app.ability.Want';
      import rpc from "@ohos.rpc"
      
      class FirstServiceAbilityStub extends rpc.RemoteObject {
-       constructor(des: any) {
-         if (typeof des === 'string') {
-           super(des)
-         } else {
-           return
-         }
+       constructor(des: string) {
+         super(des);
        }
      }
      
-     export default {
+     class ServiceAbility {
        onStart() {
          console.info('ServiceAbility onStart')
-       },
+       }
        onStop() {
          console.info('ServiceAbility onStop')
-       },
-       onCommand(want, startId) {
+       }
+       onCommand(want: Want, startId: number) {
          console.info('ServiceAbility onCommand')
-       },
-       onConnect(want) {
+       }
+       onConnect(want: Want) {
          console.info('ServiceAbility onConnect' + want)
          return new FirstServiceAbilityStub('test')
-       },
-       onDisconnect(want) {
+       }
+       onDisconnect(want: Want) {
          console.info('ServiceAbility onDisconnect' + want)
        }
      }
+
+     export default new ServiceAbility()
    ```
 
 2. 注册ServiceAbility。

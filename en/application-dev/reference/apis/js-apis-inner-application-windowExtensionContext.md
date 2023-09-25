@@ -17,14 +17,16 @@ The **WindowExtensionContext** module provides the capabilities of the [WindowEx
 Before using the **WindowExtensionContext** module, you must define a child class that inherits from **WindowExtensionAbility**.
 
 ```ts
-  import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import WindowExtensionContext from 'application/WindowExtensionContext';
 
-  let context;
-  class WindowExtAbility extends WindowExtensionAbility {
-    onConnect() {
-      context = this.context; // Obtain a WindowExtensionContext instance.
-    }
+let context: WindowExtensionContext | null = null;
+
+class WindowExtAbility extends WindowExtensionAbility {
+  onConnect() {
+    context = this.context; // Obtain a WindowExtensionContext instance.
   }
+}
 ```
 
 ## WindowExtensionContext.startAbility
@@ -46,28 +48,36 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'MainAbility'
-  };
-  var options = {
-    windowMode: 102
-  };
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
 
-  try {
-    this.context.startAbility(want, options, (error) => {
-      if (error.code) {
-        // Process service logic errors.
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-        return;
-      }
-      // Carry out normal service processing.
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // Process input parameter errors.
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'MainAbility'
+};
+let options: StartOptions = {
+  windowMode: 102
+};
+
+try {
+  this.context.startAbility(want, options, (error: BusinessError) => {
+    let message = (error as BusinessError).message;
+    let errCode = (error as BusinessError).code;
+    if (errCode) {
+      // Process service logic errors.
+      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
+      return;
+    }
+    // Carry out normal service processing.
+    console.log('startAbility succeed');
+  });
+} catch (paramError) {
+  // Process input parameter errors.
+  let message = (paramError as BusinessError).message;
+  let errCode = (paramError as BusinessError).code;
+  console.error('error.code: ${errCode}, error.message: ${message}');
+}
   ```
 
 ## WindowExtensionContext.startAbility
@@ -94,26 +104,34 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
   ```ts
-  var want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MainAbility'
-  };
-  var options = {
-  	windowMode: 102,
-  };
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
 
-  try {
-    this.context.startAbility(want, options)
-      .then((data) => {
-        // Carry out normal service processing.
-        console.log('startAbility succeed');
-      })
-      .catch((error) => {
-        // Process service logic errors.
-        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
-      });
-  } catch (paramError) {
-    // Process input parameter errors.
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+let want: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MainAbility'
+};
+let options: StartOptions = {
+  windowMode: 102,
+};
+
+try {
+  this.context.startAbility(want, options)
+    .then(() => {
+      // Carry out normal service processing.
+      console.log('startAbility succeed');
+    })
+    .catch((error: BusinessError) => {
+      // Process service logic errors.
+      let message = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error('startAbility failed, error.code: ${errCode}, error.message: ${message}');
+    });
+} catch (paramError) {
+  // Process input parameter errors.
+  let message = (paramError as BusinessError).message;
+  let errCode = (paramError as BusinessError).code;
+  console.error('error.code: ${errCode}, error.message: ${message}');
+}
   ```

@@ -2,7 +2,7 @@
 
 <!--subsystem：ArkUI-->
 
-本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、用应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
+本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
 
 > **说明**
 >
@@ -55,18 +55,33 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   })
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -98,14 +113,27 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -148,18 +176,33 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -192,14 +235,27 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -241,15 +297,23 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceUrl({
     url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   })
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -280,11 +344,17 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceUrl({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -328,15 +398,23 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceUrl({
     url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -368,11 +446,17 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceUrl({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -416,18 +500,33 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   })
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -461,14 +560,27 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -511,18 +623,33 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -555,14 +682,27 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 **示例：**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -604,15 +744,23 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   })
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -643,11 +791,17 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -691,15 +845,23 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -731,11 +893,17 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 **示例：**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -861,12 +1029,14 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   router.showAlertBeforeBackPage({
     message: 'Message Info'
   });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+} catch(err) {
+  console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 ## EnableAlertOptions
@@ -954,7 +1124,8 @@ router.getParams();
 
 ### 基于JS扩展的类Web开发范式
 
-```ts
+以下代码仅适用于javascript文件，不适用于ArkTS文件
+```js
 // 在当前页面中
 export default {
   pushPage() {
@@ -967,7 +1138,7 @@ export default {
   }
 }
 ```
-```ts
+```js
 // 在detail页面中
 export default {
   onInit() {
@@ -981,24 +1152,39 @@ export default {
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import router from '@ohos.router'
+import { BusinessError } from '@ohos.base'
+
+// 定义传递参数的类
+class innerParams {
+  array:number[]
+
+  constructor(tuple:number[]) {
+    this.array = tuple
+  }
+}
+
+class routerParams {
+  text:string
+  data:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.text = str
+    this.data = new innerParams(tuple)
+  }
+}
 
 @Entry
 @Component
 struct Index {
   async routePage() {
-    let options = {
+    let options:router.RouterOptions = {
       url: 'pages/second',
-      params: {
-        text: '这是第一页的值',
-        data: {
-          array: [12, 45, 78]
-        }
-      }
+      params: new routerParams('这是第一页的值' ,[12, 45, 78])
     }
     try {
       await router.pushUrl(options)
     } catch (err) {
-      console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
+      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
     }
   }
 
@@ -1028,12 +1214,30 @@ struct Index {
 // 在second页面中接收传递过来的参数
 import router from '@ohos.router'
 
+class innerParams {
+  array:number[]
+
+  constructor(tuple:number[]) {
+    this.array = tuple
+  }
+}
+
+class routerParams {
+  text:string
+  data:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.text = str
+    this.data = new innerParams(tuple)
+  }
+}
+
 @Entry
 @Component
 struct Second {
   private content: string = "这是第二页"
-  @State text: string = router.getParams()['text']
-  @State data: object = router.getParams()['data']
+  @State text: string = (router.getParams() as routerParams).text
+  @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''
 
   build() {
@@ -1078,14 +1282,27 @@ push(options: RouterOptions): void
 **示例：**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.push({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 });
 ```
 
@@ -1108,11 +1325,17 @@ replace(options: RouterOptions): void
 **示例：**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replace({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 });
 ```
 

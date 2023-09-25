@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import browser from '@ohos.enterprise.browser';
 ```
 
@@ -48,8 +48,9 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -101,8 +102,10 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -110,7 +113,7 @@ let appId: string = 'com.example.myapplication';
 let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}'
 browser.setPolicies(wantTemp, appId, policies).then(() => {
   console.info('Succeeded in setting browser policies');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set browser policies. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -143,8 +146,9 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -191,15 +195,17 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let appId: string = 'com.example.myapplication';
 browser.getPolicies(wantTemp, appId).then((result) => {
   console.info(`Succeeded in getting browser policies, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get browser policies. Code is ${err.code}, message is ${err.message}`);
 });
 ```

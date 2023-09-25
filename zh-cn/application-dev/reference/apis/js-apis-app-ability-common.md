@@ -16,8 +16,6 @@ import common from '@ohos.app.ability.common';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
 | 名称        | 类型                 | 说明                                                         |
 | ----------- | -------------------- | ------------------------------------------------------------ |
 | UIAbilityContext    | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)               | UIAbilityContext二级模块。                                |
@@ -27,7 +25,7 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Context二级模块。 |
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | ExtensionContext二级模块。 |
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | FormExtensionContext二级模块。 |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。 |
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。|
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | PacMap二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |

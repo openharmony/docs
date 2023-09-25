@@ -30,24 +30,24 @@ The preference persistent file of an application is stored in the application sa
 
 The following table lists the APIs used for persisting user preference data. For more information about the APIs, see [User Preferences](../reference/apis/js-apis-data-preferences.md).
 
-  | API                                                                                            | Description                                                        | 
+| API                                                                                            | Description                                                        |
 |--------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void | Obtain a **Preferences** instance.                                          | 
-| putSync(key: string, value: ValueType): void                | Writes data to the Preferences instance. You can use **flush()** to persist the **Preferences** instance data. An asynchronous API is also provided.   | 
-| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. An asynchronous API is also provided.   | 
-| getSync(key: string, defValue: ValueType): void            | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. An asynchronous API is also provided.        | 
-| deleteSync(key: string): void                                   | Deletes the KV pair with the given key from the **Preferences** instance. An asynchronous API is also provided.                 | 
-| flush(callback: AsyncCallback&lt;void&gt;): void                                                 | Flushes the data of this **Preferences** instance to a file for data persistence.                      | 
-| on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void                             | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.            | 
-| off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void                           | Unsubscribes from data changes.                                                 | 
-| deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void     | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.| 
+| getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void | Obtains a **Preferences** instance.                          |
+| putSync(key: string, value: ValueType): void                | Writes data to the Preferences instance. You can use **flush()** to persist the **Preferences** instance data. An asynchronous API is also provided.|
+| hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. An asynchronous API is also provided. |
+| getSync(key: string, defValue: ValueType): void            | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. An asynchronous API is also provided. |
+| deleteSync(key: string): void                                   | Deletes the KV pair with the given key from the **Preferences** instance. An asynchronous API is also provided. |
+| flush(callback: AsyncCallback&lt;void&gt;): void                                                 | Flushes the data of this **Preferences** instance to a file for data persistence. |
+| on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data. |
+| off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void | Unsubscribes from data changes.   |
+| deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void     | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.|
 
 
 ## How to Develop
 
 1. Import the **@ohos.data.preferences** module.
-     
-   ```js
+   
+   ```ts
    import dataPreferences from '@ohos.data.preferences';
    ```
 
@@ -55,14 +55,16 @@ The following table lists the APIs used for persisting user preference data. For
 
    Stage model:
 
-     
-   ```js
+   
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
    
    class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        try {
-         dataPreferences.getPreferences(this.context, 'mystore', (err, preferences) => {
+         dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
            if (err) {
              console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
              return;
@@ -71,7 +73,9 @@ The following table lists the APIs used for persisting user preference data. For
            // Before performing related data operations, obtain a Preferences instance.
          })
        } catch (err) {
-         console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
      }
    }
@@ -79,15 +83,16 @@ The following table lists the APIs used for persisting user preference data. For
 
    FA model:
 
-     
-   ```js
+   
+   ```ts
    import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@ohos.base';
    
    // Obtain the context.
    let context = featureAbility.getContext();
    
    try {
-     dataPreferences.getPreferences(context, 'mystore', (err, preferences) => {
+     dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
        if (err) {
          console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
          return;
@@ -96,13 +101,15 @@ The following table lists the APIs used for persisting user preference data. For
        // Before performing related data operations, obtain a Preferences instance.
      })
    } catch (err) {
-     console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get preferences. Code is ${code},message:${message}`);
    }
    ```
 
 3. Write data.
 
-   Use **putSync()** to write data to the cached **Preferences** instance. After data is written, you can use **flush()** to persist the **Preferences** instance data to a file if necessary.
+   Use **putSync()** to save data to the cached **Preferences** instance. After data is written, you can use **flush()** to persist the **Preferences** instance data to a file if necessary.
 
    > **NOTE**
    >
@@ -110,8 +117,8 @@ The following table lists the APIs used for persisting user preference data. For
 
    Example:
 
-     
-   ```js
+   
+   ```ts
    try {
      if (preferences.hasSync('startup')) {
        console.info("The key 'startup' is contained.");
@@ -121,20 +128,26 @@ The following table lists the APIs used for persisting user preference data. For
        preferences.putSync('startup', 'auto');
      }
    } catch (err) {
-     console.error(`Failed to check the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to check the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
 4. Read data.
 
-     Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. Example:
-     
-   ```js
+   Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned. 
+
+   Example:
+
+   ```ts
    try {
      let val = preferences.getSync('startup', 'default');
      console.info(`Succeeded in getting value of 'startup'. val: ${val}.`);
    } catch (err) {
-     console.error(`Failed to get value of 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get value of 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -142,22 +155,26 @@ The following table lists the APIs used for persisting user preference data. For
 
    Use **deleteSync()** to delete a KV pair.<br>Example:
 
-     
-   ```js
+   
+   ```ts
    try {
      preferences.deleteSync('startup');
    } catch (err) {
-     console.error(`Failed to delete the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
 6. Persist data.
 
-     You can use **flush()** to persist the data held in a **Preferences** instance to a file. Example:
-     
-   ```js
+   You can use **flush()** to persist the data held in a **Preferences** instance to a file. 
+
+   Example:
+
+   ```ts
    try {
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -165,27 +182,33 @@ The following table lists the APIs used for persisting user preference data. For
        console.info('Succeeded in flushing.');
      })
    } catch (err) {
-     console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to flush. Code:${code}, message:${message}`);
    }
    ```
 
 7. Subscribe to data changes.
 
-     Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. Example:
-     
-   ```js
-   let observer = function (key) {
-     console.info('The key' + key + 'changed.');
+   Specify an observer as the callback to return the data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data. 
+
+   Example:
+
+   ```ts
+   interface observer {
+      key: string
    }
-   preferences.on('change', observer);
+   preferences.on('change', (key: observer) => {
+     console.info('The key' + key + 'changed.');
+   });
    // The data is changed from 'auto' to 'manual'.
-   preferences.put('startup', 'manual', (err) => {
+   preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to put the value of 'startup'. Code:${err.code},message:${err.message}`);
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     preferences.flush((err) => {
+     preferences.flush((err: BusinessError) => {
        if (err) {
          console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
          return;
@@ -207,10 +230,10 @@ The following table lists the APIs used for persisting user preference data. For
 
    Example:
 
-     
-   ```js
+   
+   ```ts
    try {
-     dataPreferences.deletePreferences(this.context, 'mystore', (err, val) => {
+     dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
        if (err) {
          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
          return;
@@ -218,6 +241,8 @@ The following table lists the APIs used for persisting user preference data. For
        console.info('Succeeded in deleting preferences.');
      })
    } catch (err) {
-     console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
    }
    ```

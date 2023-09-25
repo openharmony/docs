@@ -20,9 +20,10 @@ Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍]
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     let context = this.context;
     let resourceManager = context.resourceManager;
   }
@@ -191,7 +192,9 @@ import { BusinessError } from '@ohos.base';
       console.log("systemResourceManager getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`systemResourceManager getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`systemResourceManager getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -216,10 +219,8 @@ import { BusinessError } from '@ohos.base';
 
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | 手机   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车   |
-| DEVICE_TYPE_PC       | 0x03 | 电脑   |
 | DEVICE_TYPE_TV       | 0x04 | 电视   |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴   |
 
@@ -339,10 +340,14 @@ getStringSync(resId: number): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -380,10 +385,14 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -422,6 +431,7 @@ getStringSync(resource: Resource): string
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -431,7 +441,9 @@ getStringSync(resource: Resource): string
   try {
     this.context.resourceManager.getStringSync(resource);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -472,6 +484,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -481,7 +494,9 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
   try {
     this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
  ```
 
@@ -517,10 +532,14 @@ getStringByNameSync(resName: string): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByNameSync("test");
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -558,10 +577,14 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
  ```
 
@@ -592,6 +615,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例Stage：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
       if (error != null) {
@@ -601,7 +626,9 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -646,7 +673,9 @@ getStringValue(resId: number): Promise&lt;string&gt;
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -680,6 +709,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -695,7 +725,9 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -748,7 +780,9 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
       console.log("getStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -779,6 +813,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
@@ -788,7 +824,9 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -833,7 +871,9 @@ getStringByName(resName: string): Promise&lt;string&gt;
       console.log("getStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -869,10 +909,14 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
   } catch (error) {
-    console.error(`getStringArrayValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -911,6 +955,7 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -920,7 +965,9 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
   try {
     this.context.resourceManager.getStringArrayValueSync(resource);
   } catch (error) {
-    console.error(`getStringArrayValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -959,7 +1006,9 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
   try {
     this.context.resourceManager.getStringArrayByNameSync("test");
   } catch (error) {
-    console.error(`getStringArrayByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getStringArrayByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -990,6 +1039,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error, value) => {
       if (error != null) {
@@ -999,7 +1050,9 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1044,7 +1097,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
       console.log("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1078,6 +1133,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1093,7 +1149,9 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1146,7 +1204,9 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
       console.log("getStringArray promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1177,6 +1237,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
@@ -1186,7 +1248,9 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
       }
     });
   } catch (error) {
-    console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getStringArrayByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1231,7 +1295,9 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
       console.log("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getStringArrayByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1268,10 +1334,14 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
   } catch (error) {
-    console.error(`getPluralStringValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1311,6 +1381,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1320,7 +1391,9 @@ getPluralStringValueSync(resource: Resource, num: number): string
   try {
     this.context.resourceManager.getPluralStringValueSync(resource, 1);
   } catch (error) {
-    console.error(`getPluralStringValueSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1357,10 +1430,14 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringByNameSync("test", 1);
   } catch (error) {
-    console.error(`getPluralStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1392,6 +1469,8 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error, value) => {
       if (error != null) {
@@ -1401,7 +1480,9 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1447,7 +1528,9 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1482,6 +1565,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1497,7 +1581,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1551,7 +1637,9 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
       console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1583,6 +1671,8 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
@@ -1592,7 +1682,9 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
       }
     });
   } catch (error) {
-    console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1638,7 +1730,9 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
       console.log("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1674,16 +1768,22 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id, 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1722,6 +1822,7 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 **示例：**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1731,13 +1832,17 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
   try {
     this.context.resourceManager.getMediaContentSync(resource); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentSync(resource, 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1773,16 +1878,22 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaByNameSync("test", 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1812,6 +1923,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error, value) => {
       if (error != null) {
@@ -1821,7 +1934,9 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1852,6 +1967,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
       if (error != null) {
@@ -1861,7 +1978,9 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1905,7 +2024,9 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1950,7 +2071,9 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -1983,6 +2106,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1998,7 +2122,9 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2032,6 +2158,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2047,7 +2174,9 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2099,7 +2228,9 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
       console.log("getMediaContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2152,7 +2283,9 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
       console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2182,6 +2315,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
@@ -2191,7 +2326,9 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2222,6 +2359,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
       if (error != null) {
@@ -2231,7 +2370,9 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
       }
     });
   } catch (error) {
-    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2275,7 +2416,9 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
       console.log("getMediaByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2320,7 +2463,9 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
       console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2356,16 +2501,22 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2404,6 +2555,7 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2413,13 +2565,17 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
   try {
     this.context.resourceManager.getMediaContentBase64Sync(resource); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync(resource, 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaContentBase64Sync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaContentBase64Sync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2455,16 +2611,22 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // 默认屏幕密度
   } catch (error) {
-    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test", 120); // 指定屏幕密度
   } catch (error) {
-    console.error(`getMediaBase64ByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getMediaBase64ByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2494,6 +2656,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error, value) => {
       if (error != null) {
@@ -2503,7 +2667,9 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2534,6 +2700,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
       if (error != null) {
@@ -2543,7 +2711,9 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2587,7 +2757,9 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2632,7 +2804,9 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2665,6 +2839,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2680,7 +2855,9 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2714,6 +2891,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2729,7 +2907,9 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
       }
     });
   } catch (error) {
-    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2781,7 +2961,9 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
       console.log("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2834,7 +3016,9 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
       console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaContentBase64 failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2864,6 +3048,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
@@ -2873,7 +3059,9 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
       }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2904,6 +3092,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
       if (error != null) {
@@ -2913,7 +3103,9 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
       }
     });
   } catch (error) {
-    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -2957,7 +3149,9 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
       console.log("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3002,7 +3196,9 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
       console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getMediaBase64ByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3038,15 +3234,21 @@ getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3085,6 +3287,7 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 **示例：**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3094,12 +3297,16 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
   try {
     this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
-    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3135,15 +3342,21 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
-    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
-    console.error(`getDrawableDescriptorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3179,10 +3392,14 @@ getBoolean(resId: number): boolean
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBoolean failed, error code: ${code}, message: ${message}.`);
   }
   ```
 ### getBoolean<sup>9+</sup>
@@ -3220,6 +3437,7 @@ getBoolean(resource: Resource): boolean
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3229,7 +3447,9 @@ getBoolean(resource: Resource): boolean
   try {
     this.context.resourceManager.getBoolean(resource);
   } catch (error) {
-    console.error(`getBoolean failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBoolean failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3265,10 +3485,14 @@ getBooleanByName(resName: string): boolean
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
   } catch (error) {
-    console.error(`getBooleanByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getBooleanByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3304,16 +3528,22 @@ getNumber(resId: number): number
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getNumber($r('app.float.float_test').id); // float对应返回的是真实像素点值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3352,6 +3582,7 @@ getNumber(resource: Resource): number
 **示例：** 
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3361,7 +3592,9 @@ getNumber(resource: Resource): number
   try {
     this.context.resourceManager.getNumber(resource);// integer对应返回的是原数值, float对应返回的是真实像素点值
   } catch (error) {
-    console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3397,16 +3630,22 @@ getNumberByName(resName: string): number
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getNumberByName("integer_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumberByName failed, error code: ${code}, message: ${message}.`);
   }
 
   try {
     this.context.resourceManager.getNumberByName("float_test");
   } catch (error) {
-    console.error(`getNumberByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumberByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3442,10 +3681,14 @@ getColorSync(resId: number) : number;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3484,6 +3727,7 @@ getColorSync(resource: Resource): number
 **示例：**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3493,7 +3737,9 @@ getColorSync(resource: Resource): number
   try {
     this.context.resourceManager.getColorSync(resource);
   } catch (error) {
-    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3529,10 +3775,14 @@ getColorByNameSync(resName: string) : number;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorByNameSync("test");
   } catch (error) {
-    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getColorByNameSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3563,6 +3813,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 **示例Stage：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
       if (error != null) {
@@ -3572,7 +3824,9 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
       }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3617,7 +3871,9 @@ getColor(resId: number): Promise&lt;number&gt;
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3651,6 +3907,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 **示例：**
   ```ts
   import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3666,7 +3923,9 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
       }
     });
   } catch (error) {
-    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3719,7 +3978,9 @@ getColor(resource: Resource): Promise&lt;number&gt;;
       console.log("getColor promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3750,6 +4011,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getColorByName("test", (error, value) => {
       if (error != null) {
@@ -3759,7 +4022,9 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getColorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3804,7 +4069,9 @@ getColorByName(resName: string): Promise&lt;number&gt;
       console.log("getColorByName promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getColorByName failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3838,10 +4105,14 @@ getRawFileContentSync(path: string): Uint8Array
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
   } catch (error) {
-    console.error(`getRawFileContentSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileContentSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3870,6 +4141,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error, value) => {
       if (error != null) {
@@ -3879,7 +4152,9 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFileContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3922,7 +4197,9 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
       console.log("getRawFileContent promise error is " + error);
     });
   } catch (error) {
-    console.error(`promise getRawFileContent failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFileContent failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3956,10 +4233,14 @@ getRawFileListSync(path: string): Array\<string\>
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileListSync("")
   } catch (error) {
-    console.error(`getRawFileListSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFileListSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -3988,6 +4269,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try { // 传入""表示获取rawfile根目录下的文件列表
     this.context.resourceManager.getRawFileList("", (error, value) => {
       if (error != null) {
@@ -3997,7 +4280,9 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
       }
     });
   } catch (error) {
-    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFileList failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4040,7 +4325,9 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
       console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFileList failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4074,10 +4361,14 @@ getRawFdSync(path: string): RawFileDescriptor
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
   } catch (error) {
-    console.error(`getRawFdSync failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getRawFdSync failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4106,6 +4397,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.getRawFd("test.txt", (error, value) => {
       if (error != null) {
@@ -4117,7 +4410,9 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4162,7 +4457,9 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
       console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
-    console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4190,10 +4487,14 @@ closeRawFdSync(path: string): void
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
   } catch (error) {
-    console.error(`closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4222,6 +4523,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error, value) => {
       if (error != null) {
@@ -4229,7 +4532,9 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
       }
     });
   } catch (error) {
-    console.error(`callback closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4263,10 +4568,14 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **示例：** 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.resourceManager.closeRawFd("test.txt");
   } catch (error) {
-    console.error(`promise closeRawFd failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise closeRawFd failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4444,7 +4753,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 release()
 
-用户释放创建的resourceManager。
+用户释放创建的resourceManager, 此接口暂不支持。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4481,11 +4790,15 @@ addResource(path: string) : void;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
-    console.error(`addResource failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`addResource failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -4513,11 +4826,15 @@ removeResource(path: string) : void;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
-    console.error(`removeResource failed, error code: ${error.code}, message: ${error.message}.`);
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`removeResource failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

@@ -20,7 +20,9 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 **图1** 单实例模式演示效果  
 ![uiability-launch-type1](figures/uiability-launch-type1.gif)  
 
-> **说明**：应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
+> **说明**：
+>
+> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
 
 如果需要使用singleton启动模式，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的`launchType`字段配置为`singleton`即可。
 
@@ -95,12 +97,16 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    ```ts
    // 在启动指定实例模式的UIAbility时，给每一个UIAbility实例配置一个独立的Key标识
    // 例如在文档使用场景中，可以用文档路径作为Key标识
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
    function getInstance() {
-     ...
+     return 'key';
    }
    
-   let context = ...; // context为调用方UIAbility的UIAbilityContext
-   let want = {
+   let context:common.UIAbilityContext = ...; // context为调用方UIAbility的UIAbilityContext
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      bundleName: 'com.example.myapplication',
      abilityName: 'SpecifiedAbility',
@@ -112,7 +118,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    
    context.startAbility(want).then(() => {
      console.info('Succeeded in starting ability.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -123,14 +129,17 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
+   import Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onAcceptWant(want): string {
+     onAcceptWant(want: Want): string {
        // 在被调用方的AbilityStage中，针对启动模式为specified的UIAbility返回一个UIAbility实例对应的一个Key值
        // 当前示例指的是module1 Module的SpecifiedAbility
        if (want.abilityName === 'SpecifiedAbility') {
          // 返回的字符串Key标识为自定义拼接的字符串内容
-         return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         if (want.parameters) {
+           return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+         }
        }
    
        return '';

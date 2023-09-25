@@ -44,7 +44,7 @@ Vector的构造函数。
 **示例：**
 
 ```ts
-let vector : Vector<string | number | C1 | Array<number>> = new Vector();
+let vector : Vector<string | number | Array<number>> = new Vector();
 ```
 
 
@@ -359,12 +359,12 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let vector : Vector<string | number | Object | Array<number>> = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.forEach((value : Vector<string | number | Object | Array<number>> , index : number) : void => {
+vector.forEach((value : number, index ?: number) : void => {
   console.log("value:" + value, "index:" + index);
 });
 ```
@@ -864,7 +864,7 @@ for (let item of nums) {
 
 // 使用方法二：
 let iter = vector[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

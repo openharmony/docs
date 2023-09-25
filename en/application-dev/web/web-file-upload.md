@@ -12,6 +12,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
@@ -25,7 +26,9 @@ In the following example, when a user clicks the **Upload** button on the fronte
              let fileList: Array<string> = [
                 'xxx/test.png',
              ]
-             event.result.handleFileList(fileList)
+             if (event) {
+                event.result.handleFileList(fileList)
+             }
              return true;
           })
       }

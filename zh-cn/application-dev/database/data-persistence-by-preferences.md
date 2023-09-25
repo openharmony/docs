@@ -47,7 +47,7 @@
 
 1. 导入`@ohos.data.preferences`模块。
      
-   ```js
+   ```ts
    import dataPreferences from '@ohos.data.preferences';
    ```
 
@@ -56,7 +56,7 @@
    Stage模型示例：
 
      
-   ```js
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
@@ -73,7 +73,9 @@
            // 请确保获取到Preferences实例后，再进行相关数据操作
          })
        } catch (err) {
-         console.error(`Failed to get preferences. Code:${err.code},message:${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
      }
    }
@@ -82,7 +84,7 @@
    FA模型示例：
 
      
-   ```js
+   ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    import { BusinessError } from '@ohos.base';
    
@@ -99,7 +101,9 @@
        // 请确保获取到Preferences实例后，再进行相关数据操作
      })
    } catch (err) {
-     console.error(`Failed to get preferences. Code is ${err.code},message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get preferences. Code is ${code},message:${message}`);
    }
    ```
 
@@ -114,7 +118,7 @@
    示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
      if (preferences.hasSync('startup')) {
        console.info("The key 'startup' is contained.");
@@ -124,7 +128,9 @@
        preferences.putSync('startup', 'auto');
      }
    } catch (err) {
-     console.error(`Failed to check the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to check the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -132,12 +138,14 @@
 
      使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。示例代码如下所示：
      
-   ```js
+   ```ts
    try {
      let val = preferences.getSync('startup', 'default');
      console.info(`Succeeded in getting value of 'startup'. val: ${val}.`);
    } catch (err) {
-     console.error(`Failed to get value of 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to get value of 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -146,11 +154,13 @@
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
      preferences.deleteSync('startup');
    } catch (err) {
-     console.error(`Failed to delete the key 'startup'. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete the key 'startup'. Code:${code}, message:${message}`);
    }
    ```
 
@@ -158,7 +168,7 @@
 
      应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
      
-   ```js
+   ```ts
    try {
      preferences.flush((err: BusinessError) => {
        if (err) {
@@ -168,7 +178,9 @@
        console.info('Succeeded in flushing.');
      })
    } catch (err) {
-     console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to flush. Code:${code}, message:${message}`);
    }
    ```
 
@@ -176,7 +188,7 @@
 
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
-   ```js
+   ```ts
    interface observer {
       key: string
    }
@@ -213,7 +225,7 @@
    示例代码如下所示：
 
      
-   ```js
+   ```ts
    try {
      dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
        if (err) {
@@ -223,7 +235,9 @@
        console.info('Succeeded in deleting preferences.');
      })
    } catch (err) {
-     console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+     let code = (err as BusinessError).code;
+     let message = (err as BusinessError).message;
+     console.error(`Failed to delete preferences. Code:${code}, message:${message}`);
    }
    ```
 

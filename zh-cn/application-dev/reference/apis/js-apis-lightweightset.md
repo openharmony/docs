@@ -611,7 +611,7 @@ callbackfn的参数说明：
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
-lightWeightSet.forEach((value:string, key:string) => {
+lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -691,7 +691,7 @@ for (let item of nums) {
 
 // 使用方法二：
 let iter = lightWeightSet[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();

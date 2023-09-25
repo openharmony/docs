@@ -28,7 +28,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.                                 |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.                                 |
 | space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group. |
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.|
 
 ## Attributes
 
@@ -61,7 +61,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timetable: any = [
+  private timetable: TimeTable[] = [
     {
       title: 'Monday',
       projects: ['Language', 'Math', 'English']
@@ -80,7 +80,8 @@ struct ListItemGroupExample {
     }
   ]
 
-  @Builder itemHead(text:string) {
+  @Builder
+  itemHead(text: string) {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
@@ -88,7 +89,8 @@ struct ListItemGroupExample {
       .padding(10)
   }
 
-  @Builder itemFoot(num:number) {
+  @Builder
+  itemFoot(num: number) {
     Text(''Total lessons:'+ num")
       .fontSize(16)
       .backgroundColor(0xAABBCC)
@@ -99,24 +101,32 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timetable, (item) => {
-          ListItemGroup({ header:this.itemHead(item.title), footer:this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project) => {
+        ForEach(this.timetable, (item: TimeTable) => {
+          ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
+            ForEach(item.projects, (project: string) => {
               ListItem() {
                 Text(project)
-                  .width("100%").height(100).fontSize(20)
-                  .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+                  .width("100%")
+                  .height(100)
+                  .fontSize(20)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(0xFFFFFF)
               }
-            }, item => item)
+            }, (item: string) => item)
           }
           .divider ({ strokeWidth: 1,color:Color.Blue }) // Divider between lines
         })
       }
       .width('90%')
-      .sticky(StickyStyle.Header|StickyStyle.Footer)
+      .sticky(StickyStyle.Header | StickyStyle.Footer)
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
+}
+
+interface TimeTable {
+  title: string;
+  projects: string[];
 }
 ```
 
@@ -129,47 +139,54 @@ struct ListItemGroupExample {
 @Entry
 @Component
 struct ListItemGroupExample2 {
- private arr: any = [
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
-  },
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
-  },
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
-  },
-  {
-   style:ListItemGroupStyle.NONE,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  private arr: ArrObject[] = [
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
+    },
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+    },
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
+    },
+    {
+      style: ListItemGroupStyle.NONE,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+    }
+  ]
+
+  build() {
+    Column() {
+      List({ space: "4vp", initialIndex: 0 }) {
+        ForEach(this.arr, (item: ArrObject, index?: number) => {
+          ListItemGroup({ style: item.style }) {
+            ForEach(item.itemStyles, (itemStyle: number, itemIndex?: number) => {
+              ListItem({ style: itemStyle }) {
+                if (index != undefined && itemIndex != undefined) {
+                  Text("Item" + (itemIndex + 1) +" in group" + (index + 1) +" ")
+                    .width("100%")
+                    .textAlign(TextAlign.Center)
+                }
+              }
+            }, (item: string) => item)
+          }
+        })
+      }
+      .width('100%')
+      .multiSelectable(true)
+      .backgroundColor(0xDCDCDC) // List in light blue
+    }
+    .width('100%')
+    .padding({ top: 5 })
   }
- ]
- build() {
-  Column() {
-   List({ space: "4vp", initialIndex: 0 }) {
-    ForEach(this.arr, (item,index) => {
-     ListItemGroup({ style:item.style }) {
-      ForEach(item.itemStyles, (itemStyle,itemIndex) => {
-       ListItem({style:itemStyle}) {
-        Text("Item "+(itemIndex+1)+" in group "+(index+1))
-         .width("100%")
-         .textAlign(TextAlign.Center)
-       }
-      }, item => item)
-     }
-    })
-   }
-   .width('100%')
-   .multiSelectable(true)
-   .backgroundColor(0xDCDCDC) // List in light blue
-  }
-  .width('100%')
-  .padding({ top: 5 })
- }
 }
 
+interface ArrObject {
+  style: number;
+  itemStyles: number[];
+}
 ```
 ![ListItemGroupStyle](figures/listItemGroup2.jpeg)

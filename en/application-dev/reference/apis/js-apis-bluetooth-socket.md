@@ -47,7 +47,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -55,11 +55,11 @@ function serverSocket(code, number) {
   }
 }
 
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -94,7 +94,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -102,7 +102,7 @@ function serverSocket(code, number) {
   }
 }
 let clientNumber = -1;
-function acceptClientSocket(code, number) {
+function acceptClientSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth clientSocket Number: ' + number);
@@ -113,7 +113,7 @@ function acceptClientSocket(code, number) {
 try {
     socket.sppAccept(serverNumber, acceptClientSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -133,7 +133,7 @@ Initiates an SPP connection to a remote device from the client.
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| option   | [SppOptions](#sppoptions)     | Yes   | SSP listensing configuration for the connection. |
+| option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.  |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
 
 **Error codes**
@@ -152,7 +152,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 ```js
 
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -160,11 +160,11 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -181,7 +181,7 @@ Closes an SPP listening socket of the server.
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| socket | number | Yes   | Server socket ID, which is obtained by **sppListen()**. |
+| socket | number | Yes   | Server socket ID, which is obtained by **sppListen()**.|
 
 **Error codes**
 
@@ -196,7 +196,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -206,7 +206,7 @@ function serverSocket(code, number) {
 try {
     socket.sppCloseServerSocket(serverNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -223,7 +223,7 @@ Closes an SPP listening socket of the client.
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | ------------- |
-| socket | number | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect**(). |
+| socket | number | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.|
 
 **Error codes**
 
@@ -238,7 +238,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -249,7 +249,7 @@ function clientSocket(code, number) {
 try {
     socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -266,7 +266,7 @@ Writes data to the remote device through a socket.
 
 | Name         | Type         | Mandatory  | Description           |
 | ------------ | ----------- | ---- | ------------- |
-| clientSocket | number      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect**(). |
+| clientSocket | number      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.|
 | data         | ArrayBuffer | Yes   | Data to write.       |
 
 **Error codes**
@@ -282,7 +282,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -296,7 +296,7 @@ data[0] = 123;
 try {
     socket.sppWrite(clientNumber, arrayBuffer);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -330,7 +330,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -338,14 +338,14 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-function dataRead(dataBuffer) {
+function dataRead(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
 try {
     socket.on('sppRead', clientNumber, dataRead);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -370,7 +370,7 @@ Unsubscribes from SPP read request events.
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code: BusinessError, number: number) {
   if (code.code != 0) {
     return;
   }
@@ -381,7 +381,7 @@ function clientSocket(code, number) {
 try {
     socket.off('sppRead', clientNumber);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -407,4 +407,4 @@ Enumerates the SPP link types.
 
 | Name        | Value | Description           |
 | ---------- | ---- | ------------- |
-| SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link. |
+| SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link.|

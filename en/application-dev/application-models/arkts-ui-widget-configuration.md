@@ -54,7 +54,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification.| String| Yes (initial value: left empty)|
    | metadata | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
    | dataProxyEnabled | Whether the widget supports the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature.<br>- **true**: The widget supports the update-through-proxy feature.<br>- **false**: The widget does not support the update-through-proxy feature.<br>If this tag is set to **true**, the settings for the scheduled update time will still take effect, but the settings for the update interval and next update time will not.| Boolean| Yes (initial value: **false**)|
-   | isDynamic | Whether the widget is a dynamic widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget. In this case, the widget is displayed as a static image after being added.| Boolean| Yes (initial value: **true**)|
+   | isDynamic | Whether the widget is a dynamic widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget.<br>| Boolean| Yes (initial value: **true**)|
 
    **Table 2** Internal structure of the window object
 

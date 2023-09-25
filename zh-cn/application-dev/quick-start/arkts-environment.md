@@ -12,11 +12,11 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 
 ### 从UI中访问Environment参数
 
-- 使用Environment.EnvProp将设备运行的环境变量存入AppStorage中：
+- 使用Environment.envProp将设备运行的环境变量存入AppStorage中：
 
   ```ts
   // 将设备的语言code存入AppStorage，默认值为en
-  Environment.EnvProp('languageCode', 'en');
+  Environment.envProp('languageCode', 'en');
   ```
 
 - 可以使用\@StorageProp链接到Component中。
@@ -34,8 +34,8 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 
 ```ts
 // 将设备languageCode存入AppStorage中
-Environment.EnvProp('languageCode', 'en');
-let enable = AppStorage.Get('languageCode');
+Environment.envProp('languageCode', 'en');
+let enable: undefined = AppStorage.get<undefined>('languageCode');
 
 @Entry
 @Component
@@ -59,9 +59,9 @@ struct Index {
 
 ```ts
 // 使用Environment.EnvProp将设备运行languageCode存入AppStorage中；
-Environment.EnvProp('languageCode', 'en');
+Environment.envProp('languageCode', 'en');
 // 从AppStorage获取单向绑定的languageCode的变量
-const lang: SubscribedAbstractProperty<string> = AppStorage.Prop('languageCode');
+const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
 
 if (lang.get() === 'zh') {
   console.info('你好');
@@ -89,7 +89,7 @@ export default class EntryAbility extends UIAbility {
     window.then(window => {
       let uicontext = window.getUIContext()
       uicontext.runScopedTask(() => {
-        Environment.EnvProp('languageCode', 'en');
+        Environment.envProp('languageCode', 'en');
       })
     })
   }

@@ -1,6 +1,8 @@
 # @ohos.router (Page Routing)
 
-The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
+<!--subsystem: ArkUI-->
+
+The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in the same application, and return to the previous page or a specified page.
 
 > **NOTE**
 >
@@ -11,6 +13,8 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 > - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 >
 > - Since API version 10, you can use the [getRouter](./js-apis-arkui-UIContext.md#getrouter) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](./js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+>
+> - To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
 
 ## Modules to Import
 
@@ -51,18 +55,33 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   })
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -94,14 +113,27 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -144,18 +176,33 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -188,14 +235,27 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -237,15 +297,23 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceUrl({
     url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   })
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -276,11 +344,17 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceUrl({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -324,15 +398,23 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceUrl({
     url: 'pages/detail',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -364,11 +446,17 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceUrl({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -412,18 +500,33 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   })
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -457,14 +560,27 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -507,18 +623,33 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
-    }
+    params: new routerParams('message' ,[123,456,789])
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -551,14 +682,27 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.pushNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -600,15 +744,23 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   })
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -639,11 +791,17 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -687,15 +845,23 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 try {
   router.replaceNamedRoute({
     name: 'myPage',
-    params: {
-      data1: 'message'
-    }
+    params: new routerParams('message')
   }, router.RouterMode.Standard)
 } catch (err) {
-  console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`replaceNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 
@@ -727,11 +893,17 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replaceNamedRoute({
   name: 'myPage',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -857,12 +1029,14 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   router.showAlertBeforeBackPage({
     message: 'Message Info'
   });
-} catch(error) {
-  console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
+} catch(err) {
+  console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
 ## EnableAlertOptions
@@ -950,7 +1124,8 @@ Describes the named route options.
 
 ### JavaScript-based Web-like Development Paradigm
 
-```ts
+The following sample code applies only to JavaScript files, not ArkTS files.
+```js
 // Current page
 export default {
   pushPage() {
@@ -963,7 +1138,7 @@ export default {
   }
 }
 ```
-```ts
+```js
 // detail page
 export default {
   onInit() {
@@ -977,24 +1152,39 @@ export default {
 ```ts
 // Navigate to the target page through router.pushUrl with the params parameter carried.
 import router from '@ohos.router'
+import { BusinessError } from '@ohos.base'
+
+// Define the class for passing parameters.
+class innerParams {
+  array:number[]
+
+  constructor(tuple:number[]) {
+    this.array = tuple
+  }
+}
+
+class routerParams {
+  text:string
+  data:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.text = str
+    this.data = new innerParams(tuple)
+  }
+}
 
 @Entry
 @Component
 struct Index {
   async routePage() {
-    let options = {
+    let options:router.RouterOptions = {
       url: 'pages/second',
-      params: {
-        text: 'This is the value on the first page.',
-        data: {
-          array: [12, 45, 78]
-        }
-      }
+      params: new routerParams ('This is the value on the first page', [12, 45, 78])
     }
     try {
       await router.pushUrl(options)
     } catch (err) {
-      console.info(` fail callback, code: ${err.code}, msg: ${err.msg}`)
+      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
     }
   }
 
@@ -1024,12 +1214,30 @@ struct Index {
 // Receive the transferred parameters on the second page.
 import router from '@ohos.router'
 
+class innerParams {
+  array:number[]
+
+  constructor(tuple:number[]) {
+    this.array = tuple
+  }
+}
+
+class routerParams {
+  text:string
+  data:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.text = str
+    this.data = new innerParams(tuple)
+  }
+}
+
 @Entry
 @Component
 struct Second {
   private content: string = "This is the second page."
-  @State text: string = router.getParams()['text']
-  @State data: object = router.getParams()['data']
+  @State text: string = (router.getParams() as routerParams).text
+  @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''
 
   build() {
@@ -1074,14 +1282,27 @@ This API is deprecated since API version 9. You are advised to use [pushUrl<sup>
 **Example**
 
 ```ts
+class innerParams {
+  data3:number[]
+
+  constructor(tuple:number[]) {
+    this.data3 = tuple
+  }
+}
+
+class routerParams {
+  data1:string
+  data2:innerParams
+
+  constructor(str:string, tuple:number[]) {
+    this.data1 = str
+    this.data2 = new innerParams(tuple)
+  }
+}
+
 router.push({
   url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    }
-  }
+  params: new routerParams('message' ,[123,456,789])
 });
 ```
 
@@ -1104,11 +1325,17 @@ This API is deprecated since API version 9. You are advised to use [replaceUrl<s
 **Example**
 
 ```ts
+class routerParams {
+  data1:string
+
+  constructor(str:string) {
+    this.data1 = str
+  }
+}
+
 router.replace({
   url: 'pages/detail',
-  params: {
-    data1: 'message'
-  }
+  params: new routerParams('message')
 });
 ```
 

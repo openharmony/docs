@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Illegal service state exception.
+IllegalStateError, an attempt is made to use an SE session that has been closed.
 
 **Description**
 
@@ -28,7 +28,7 @@ The SecureElement (SE) service is abnormal.
 
 **Error Message**
 
-No such element exception.
+NoSuchElementError, the AID on the SE is not available or cannot be selected.
 
 **Description**
 
@@ -48,7 +48,7 @@ The SE is unavailable.
 
 **Error Message**
 
-Illegal access rule exception.
+SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.
 
 **Description**
 
@@ -67,7 +67,7 @@ The access rule cannot be obtained.
 
 **Error Message**
 
-Secure element IO exception.
+IOError, there is a communication problem to the reader or the SE.
 
 **Description**
 

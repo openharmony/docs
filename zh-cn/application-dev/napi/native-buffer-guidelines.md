@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通过`NativeBuffer`接口实现共享内存的申请、使用、属性查询、释放等操作。
+NativeBuffer是提供**共享内存**的模块。开发者可以通过`NativeBuffer`接口实现共享内存的申请、使用、属性查询、释放等操作。
 针对NativeBuffer，常见的开发场景如下：
 
 * 通过`NativeBuffer`提供的Native API接口申请`OH_NativeBuffer`实例，获取内存的属性信息，把对应的ION内存映射到进程空间。
@@ -23,7 +23,7 @@ NativeBuffer是`OpenHarmony`提供**共享内存**的模块。开发者可以通
 
 ## 开发步骤
 
-以下步骤描述了在**OpenHarmony**中如何使用`NativeBuffer`提供的Native API接口，创建`OH_NativeBuffer`实例获取内存的属性信息，并把对应的ION内存映射到进程空间。
+以下步骤描述了如何使用`NativeBuffer`提供的Native API接口，创建`OH_NativeBuffer`实例获取内存的属性信息，并把对应的ION内存映射到进程空间。
 
 **添加动态链接库**
 
@@ -39,6 +39,8 @@ libnative_buffer.so
 
 1. **创建OH_NativeBuffer实例**。
     ```c++
+    #include <iostream>
+
     OH_NativeBuffer_Config config {
         .width = 0x100,
         .height = 0x100,
@@ -69,8 +71,8 @@ libnative_buffer.so
 3. **获取内存的属性信息**。
     ```c++
     // 获取OH_NativeBuffer的属性
-    OH_NativeBuffer_Config config = {};
-    OH_NativeBuffer_GetConfig(buffer, &config);
+    OH_NativeBuffer_Config config2 = {};
+    OH_NativeBuffer_GetConfig(buffer, &config2);
     // 获取OH_NativeBuffer的序列号
      uint32_t hwBufferID = OH_NativeBuffer_GetSeqNum(buffer);
     ```

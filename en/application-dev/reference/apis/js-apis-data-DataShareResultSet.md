@@ -4,9 +4,9 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 
 ## Modules to Import
@@ -22,28 +22,31 @@ You can call [query()](js-apis-data-dataShare.md#query) to obtain the **DataShar
 ```ts
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
+import { BusinessError } from '@ohos.base'
 
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-	if (err != undefined) {
-        console.error("createDataShareHelper fail, error message : " + err);
-    } else {
-        console.info("createDataShareHelper end, data : " + data);
-        dataShareHelper = data;
-    }
+  if (err != undefined) {
+    console.error("createDataShareHelper fail, error message : " + err);
+  } else {
+    console.info("createDataShareHelper end, data : " + data);
+    dataShareHelper = data;
+  }
 });
 
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
-let resultSet;
+let resultSet: DataShareResultSet | undefined = undefined;
 da.equalTo("name", "ZhangSan");
-dataShareHelper.query(uri, da, columns).then((data) => {
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
     console.info("query end, data : " + data);
     resultSet = data;
-}).catch((err) => {
-	console.error("query fail, error message : " + err);
-});
+  }).catch((err: BusinessError) => {
+    console.error("query fail, error message : " + err);
+  });
+}
 ```
 
 ## DataShareResultSet
@@ -77,8 +80,10 @@ Moves to the first row of the result set.
 **Example**
 
 ```ts
-let isGoTOFirstRow = resultSet.goToFirstRow();
-console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
+if (resultSet != undefined) {
+  let isGoToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  console.info('resultSet.goToFirstRow: ' + isGoToFirstRow);
+}
 ```
 
 ### goToLastRow
@@ -98,8 +103,10 @@ Moves to the last row of the result set.
 **Example**
 
 ```ts
-let isGoToLastRow = resultSet.goToLastRow();
-console.info('resultSet.goToLastRow: ' + isGoToLastRow);
+if (resultSet != undefined) {
+  let isGoToLastRow = (resultSet as DataShareResultSet).goToLastRow();
+  console.info('resultSet.goToLastRow: ' + isGoToLastRow);
+}
 ```
 
 ### goToNextRow
@@ -119,8 +126,10 @@ Moves to the next row in the result set.
 **Example**
 
 ```ts
-let isGoToNextRow = resultSet.goToNextRow();
-console.info('resultSet.goToNextRow: ' + isGoToNextRow);
+if (resultSet != undefined) {
+  let isGoToNextRow = (resultSet as DataShareResultSet).goToNextRow();
+  console.info('resultSet.goToNextRow: ' + isGoToNextRow);
+}
 ```
 
 ### goToPreviousRow
@@ -140,8 +149,10 @@ Moves to the previous row in the result set.
 **Example**
 
 ```ts
-let isGoToPreviousRow = resultSet.goToPreviousRow();
-console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
+if (resultSet != undefined) {
+  let isGoToPreviousRow = (resultSet as DataShareResultSet).goToPreviousRow();
+  console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
+}
 ```
 
 ### goTo
@@ -168,8 +179,10 @@ Moves based on the specified offset.
 
 ```ts
 let goToNum = 1;
-let isGoTo = resultSet.goTo(goToNum);
-console.info('resultSet.goTo: ' + isGoTo);
+if (resultSet != undefined) {
+  let isGoTo = (resultSet as DataShareResultSet).goTo(goToNum);
+  console.info('resultSet.goTo: ' + isGoTo);
+}
 ```
 
 ### goToRow
@@ -196,8 +209,10 @@ Moves to the specified row in the result set.
 
 ```ts
 let goToRowNum = 2;
-let isGoToRow = resultSet.goToRow(goToRowNum);
-console.info('resultSet.goToRow: ' + isGoToRow);
+if (resultSet != undefined) {
+  let isGoToRow = (resultSet as DataShareResultSet).goToRow(goToRowNum);
+  console.info('resultSet.goToRow: ' + isGoToRow);
+}
 ```
 
 ### getBlob
@@ -224,9 +239,11 @@ Obtains the value in the form of a byte array based on the specified column and 
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getBlob = resultSet.getBlob(columnIndex);
-console.info('resultSet.getBlob: ' + getBlob);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
+  console.info('resultSet.getBlob: ' + getBlob);
+}
 ```
 
 ### getString
@@ -253,9 +270,11 @@ Obtains the value in the form of a string based on the specified column and the 
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getString = resultSet.getString(columnIndex);
-console.info('resultSet.getString: ' + getString);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getString = (resultSet as DataShareResultSet).getString(columnIndex);
+  console.info('resultSet.getString: ' + getString);
+}
 ```
 
 ### getLong
@@ -282,9 +301,11 @@ Obtains the value in the form of a long integer based on the specified column an
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getLong = resultSet.getLong(columnIndex);
-console.info('resultSet.getLong: ' + getLong);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getLong = (resultSet as DataShareResultSet).getLong(columnIndex);
+  console.info('resultSet.getLong: ' + getLong);
+}
 ```
 
 ### getDouble
@@ -311,9 +332,11 @@ Obtains the value in the form of a double-precision floating-point number based 
 
 ```ts
 let columnIndex = 1;
-let goToFirstRow = resultSet.goToFirstRow();
-let getDouble = resultSet.getDouble(columnIndex);
-console.info('resultSet.getDouble: ' + getDouble);
+if (resultSet != undefined) {
+  let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
+  let getDouble = (resultSet as DataShareResultSet).getDouble(columnIndex);
+  console.info('resultSet.getDouble: ' + getDouble);
+}
 ```
 
 ### close
@@ -327,7 +350,9 @@ Closes this result set.
 **Example**
 
 ```ts
-resultSet.close();
+if (resultSet != undefined) {
+  (resultSet as DataShareResultSet).close();
+}
 ```
 
 ### getColumnIndex
@@ -354,8 +379,10 @@ Obtains the column index based on the column name.
 
 ```ts
 let ColumnName = "name";
-let getColumnIndex = resultSet.getColumnIndex(ColumnName);
-console.info('resultSet.getColumnIndex: ' + getColumnIndex);
+if (resultSet != undefined) {
+  let getColumnIndex = (resultSet as DataShareResultSet).getColumnIndex(ColumnName);
+  console.info('resultSet.getColumnIndex: ' + getColumnIndex);
+}
 ```
 
 ### getColumnName
@@ -382,8 +409,10 @@ Obtains the column name based on the column index.
 
 ```ts
 let columnIndex = 1;
-let getColumnName = resultSet.getColumnName(columnIndex);
-console.info('resultSet.getColumnName: ' + getColumnName);
+if (resultSet != undefined) {
+  let getColumnName = (resultSet as DataShareResultSet).getColumnName(columnIndex);
+  console.info('resultSet.getColumnName: ' + getColumnName);
+}
 ```
 
 ### getDataType
@@ -410,8 +439,10 @@ Obtains the data type based on the specified column index.
 
 ```ts
 let columnIndex = 1;
-let getDataType = resultSet.getDataType(columnIndex);
-console.info('resultSet.getDataType: ' + getDataType);
+if (resultSet != undefined) {
+  let getDataType = (resultSet as DataShareResultSet).getDataType(columnIndex);
+  console.info('resultSet.getDataType: ' + getDataType);
+}
 ```
 
 ## DataType

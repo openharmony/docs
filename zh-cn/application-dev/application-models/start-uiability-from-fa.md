@@ -10,16 +10,18 @@
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
-let parameter = {
-    "want": {
-        bundleName: "com.ohos.stage",
-        abilityName: "EntryAbility"
+featureAbility.startAbility(
+    {
+        want: {
+            bundleName: "com.ohos.stage",
+            abilityName: "EntryAbility"
+        }
     }
-};
-featureAbility.startAbility(parameter).then((code) => {
+).then((code) => {
     console.info('Ability verify code: ' + JSON.stringify(code));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error("Ability failed: " + JSON.stringify(error));
 });
 ```
@@ -34,16 +36,17 @@ startAbilityForResult和startAbility的区别是当UIAbility销毁的时候会�
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
 
-let parameter = {
-    "want": {
-        bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.EntryAbility"
-    }
-};
-featureAbility.startAbilityForResult(parameter).then((result) => {
+featureAbility.startAbilityForResult(
+    {
+        want: {
+            bundleName: "com.ohos.stage",
+            abilityName: "com.ohos.stage.EntryAbility"
+        }
+    }).then((result) => {
     console.info('Ability verify result: ' + JSON.stringify(result));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error("Ability failed: " + JSON.stringify(error));
 });
 ```
@@ -56,16 +59,18 @@ featureAbility.startAbilityForResult(parameter).then((result) => {
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
+import { BusinessError } from '@ohos.base';
 
-let parameter = {
-    "want": {
-        bundleName: "com.ohos.stage",
-        abilityName: "com.ohos.stage.EntryAbility"
+particleAbility.startAbility(
+    {
+        want: {
+            bundleName: "com.ohos.stage",
+            abilityName: "com.ohos.stage.EntryAbility"
+        }
     }
-};
-particleAbility.startAbility(parameter).then(() => {
+).then(() => {
     console.info('Start Ability successfully.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error("Ability failed: " + JSON.stringify(error));
 });
 ```

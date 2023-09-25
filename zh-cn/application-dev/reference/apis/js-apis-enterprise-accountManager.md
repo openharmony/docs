@@ -12,7 +12,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import accountManager from '@ohos.enterprise.accountManager';
 ```
 
@@ -47,8 +47,9 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -98,15 +99,17 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
   console.info('Succeeded in disallowing add local account');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
 });
 ```

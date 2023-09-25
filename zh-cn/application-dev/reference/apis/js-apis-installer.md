@@ -57,7 +57,8 @@ try {
         }
     });
 } catch (error) {
-    console.error('getBundleInstaller failed:' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed:' + message);
 }
 ```
 
@@ -89,7 +90,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -112,12 +114,14 @@ getBundleInstallerSync(): BundleInstaller;
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
 
 try {
     installer.getBundleInstallerSync();
     console.info('getBundleInstallerSync successfully.');
 } catch (error) {
-    console.error('getBundleInstallerSync failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstallerSync failed. Cause: ' + message);
 }
 ```
 
@@ -200,7 +204,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 ## BundleInstaller.install
@@ -275,7 +280,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -363,7 +369,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -425,7 +432,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -480,7 +488,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 ## BundleInstaller.uninstall
@@ -544,7 +553,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -603,7 +613,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -656,7 +667,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -718,7 +730,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -774,7 +787,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -835,7 +849,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -910,7 +925,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -978,7 +994,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
@@ -1051,7 +1068,8 @@ try {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
     });
 } catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
 }
 ```
 
