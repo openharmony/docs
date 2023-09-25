@@ -2883,7 +2883,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -2938,7 +2938,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 以异步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3014,7 +3014,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 以同步方法根据给定的moduleName、abilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3084,7 +3084,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用callback形式返回结果。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3138,7 +3138,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 以异步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，使用Promise形式返回结果。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3206,7 +3206,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 以同步方法根据给定的moduleName、extensionAbilityName和metadataName获取相应配置文件的json格式字符串，返回对象为string数组。
 
->应用使用此接口获取的profile资源信息，**需注意**，对于如 $string:res_name 此种类型的引用资源，需要应用调用资源管理模块的相关接口，获取具体的资源。
+>**需注意**，如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
