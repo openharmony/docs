@@ -12,6 +12,7 @@ baseProfile模块提供了基础的profile方法。
 
 ```js
 import baseProfile from '@ohos.bluetooth.baseProfile';
+import { BusinessError } from '@ohos.base';
 ```
 
 
