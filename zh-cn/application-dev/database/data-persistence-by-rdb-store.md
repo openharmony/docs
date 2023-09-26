@@ -239,7 +239,7 @@
    }
 
    // 删除数据
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
    if (store != undefined) {
      (store as relationalStore.RdbStore).delete(predicates, (err: BusinessError, rows: number) => {
@@ -318,7 +318,7 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = featureAbility.getContext();
+   let context = getContext(this);
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
