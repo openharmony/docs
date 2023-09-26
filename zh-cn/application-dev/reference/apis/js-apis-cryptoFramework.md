@@ -1545,20 +1545,6 @@ cipher.update(plainText)
   }, (error: BusinessError) => {
     console.info(`Update cipher failed.`);
   })
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
 ```
 
 ### doFinal
