@@ -1,6 +1,6 @@
-# @ohos.app.ability.PrintExtensionAbility (打印扩展)
+# @ohos.app.ability.PrintExtensionAbility (打印扩展能力)
 
-该模块为打印扩展的操作API，提供调用打印扩展功能的接口。
+该模块为打印扩展能力的操作API，提供调用打印扩展能力的接口。
 
 > **说明：**  
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
