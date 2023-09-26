@@ -42,7 +42,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
+    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
@@ -54,7 +54,7 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error : BusinessError) => {
     if (error) {
-        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     }
 });
 ```

@@ -76,8 +76,8 @@
     }
 
     onConfigurationUpdate(config: Configuration) {
-      // 当系统配置信息置更新时触发的回调
-      console.info('[EntryFormAbility] configurationUpdate:' + JSON.stringify(config));
+      // 当系统配置信息更新时触发的回调
+      console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 
     onAcquireFormState(want: Want) {
