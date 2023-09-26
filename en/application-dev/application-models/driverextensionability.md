@@ -27,17 +27,18 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
    const REQUEST_CODE = 99;
    
    class StubTest extends rpc.RemoteObject {
-     constructor(des) {
+     constructor(des: string) {
        super(des);
      }
      
      // Receive the message sent from the application and return the processing result to the application.
-     onRemoteMessageRequest(code, data, reply, option) {
+     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+                            option: rpc.MessageOption) {
        if (code === REQUEST_CODE) {
          // Receive the data sent from the application.
          // When the application calls data.writeInt() multiple times to write data, the driver can receive the corresponding data by calling data.readInt() for multiple times.
-         let optFir = data.readInt();
-         let optSec = data.readInt();
+         let optFir: number = data.readInt();
+         let optSec: number = data.readInt();
          // The driver returns the data processing result to the application.
          // In the example, two pieces of data are received, and the sum of the two pieces of data is returned to the application.
          reply.writeInt(optFir + optSec);
@@ -52,6 +53,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
    
    ```ts
    import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
    import rpc from '@ohos.rpc';
    
    const TAG: string = '[Example].[Entry].[DriverExtAbility]';
@@ -62,24 +64,24 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
    }
    
    export default class DriverExtAbility extends DriverExtensionAbility {
-     onInit(want) {
+     onInit(want: Want) {
        console.info(TAG, `onInit, want: ${want.abilityName}`);
      }
    
      onRelease() {
-       console.info(TAG, `onRelease, want: ${want.abilityName}`);
+       console.info(TAG, `onRelease`);
      }
    
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        return new StubTest("test");
      }
    
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
    
-     onDump() {
+     onDump(params: Array<string>) {
        console.info(TAG, `onDump, params:` + JSON.stringify(params));
        return ['params'];
      }

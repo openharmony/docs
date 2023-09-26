@@ -10,7 +10,7 @@ The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-a
 
 ## Implementing an Input Method Application
 
-InputMethodExtensionAbility provides the **onCreate()** and **onDestory()** callbacks, as described below. Override them as required.  
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestory()** callbacks, as described below. Override them as required.
 
 - **onCreate**
   This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
@@ -55,20 +55,19 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    In the **InputMethodService.ts** file, add the dependency package for importing InputMethodExtensionAbility. Customize a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
 
    ```ts
+   import Want from '@ohos.app.ability.Want';
    import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-   import { KeyboardController } from './model/KeyboardController'
+   import keyboardController from './model/KeyboardController'
    
    export default class InputDemoService extends InputMethodExtensionAbility {
-     private keyboardController: KeyboardController;
    
-     onCreate(want) {
-       this.keyboardController = new KeyboardController(this.context);
-       this.keyboardController.onCreate();  // Initialize the window and register an event listener for the input method framework.
+     onCreate(want: Want): void {
+       keyboardController.onCreate(this.context); // Initialize the window and register an event listener for the input method framework.
      }
    
-     onDestroy() {
+     onDestroy(): void {
        console.log("onDestroy.");
-       this.keyboardController.onDestroy(); // Destroy the window and deregister the event listener.
+       keyboardController.onDestroy(); // Destroy the window and deregister the event listener.
      }
    }
    ```
@@ -76,109 +75,106 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 2. **KeyboardController.ts** file:
 
    ```ts
-   import inputMethodEngine from '@ohos.inputMethodEngine';
+   import common from '@ohos.app.ability.common';
    import display from '@ohos.display';
-   import windowManager from '@ohos.window';
+   import inputMethodEngine from '@ohos.inputMethodEngine';
+   import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
    
    // Call the getInputMethodAbility API to obtain an instance, and then call the other APIs of the input method framework based on the instance.
-   globalThis.inputAbility = inputMethodEngine.getInputMethodAbility();
+   const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    
    export class KeyboardController {
-     mContext;	// Save the context attribute in InputMethodExtensionAbility.
-     WINDOW_TYPE_INPUT_METHOD_FLOAT = 2105;		// Define the window type. The value 2105 indicates the input method window type, which is used to create an input method application window.
-     windowName = 'inputApp';
-     private windowHeight: number = 0;
-     private windowWidth: number = 0;
-     private nonBarPosition: number = 0;
-     private isWindowShowing: boolean = false;
+     private mContext: InputMethodExtensionContext | undefined = undefined; // Save the context attribute in InputMethodExtensionAbility.
+     private panel: inputMethodEngine.Panel | undefined = undefined; 
+     private textInputClient: inputMethodEngine.InputClient | undefined = undefined; 
+     private keyboardController: inputMethodEngine.KeyboardController | undefined = undefined;
    
-     constructor(context) {
+     constructor() {
+     }
+   
+     public onCreate(context: InputMethodExtensionContext): void
+     {
        this.mContext = context;
+       this.initWindow(); // Initialize the window.
+       this.registerListener(); // Register an event listener for the input method framework.
      }
    
-     public onCreate(): void
+     public onDestroy(): void // Destroy the instance.
      {
-       this.initWindow();				// Initialize the window.
-       this.registerListener();		// Register an event listener for the input method framework.
+       this.unRegisterListener(); // Deregister the event listener.
+       if(this.panel) { // Destroy the window.
+         this.panel.hide();
+         inputMethodAbility.destroyPanel(this.panel);
+       }
+       if(this.mContext) {
+         this.mContext.destroy();
+       }
      }
    
-     public onDestroy(): void			// Destroy the instance.
-     {
-       this.unRegisterListener();		// Deregister the event listener.
-       let win = windowManager.findWindow(this.windowName);
-       win.destroyWindow();				// Destroy the window.
+     public insertText(text: string): void {
+       if(this.textInputClient) {
+         this.textInputClient.insertText(text);
+       }
      }
    
-     private initWindow(): void		// Initialize the window.
+     public deleteForward(length: number): void {
+       if(this.textInputClient) {
+         this.textInputClient.deleteForward(length);
+       }
+     }
+   
+     private initWindow(): void // Initialize the window.
      {
+       if(this.mContext === undefined) {
+         return;
+       }
        let dis = display.getDefaultDisplaySync();
        let dWidth = dis.width;
        let dHeight = dis.height;
        let keyHeightRate = 0.47;
        let keyHeight = dHeight * keyHeightRate;
-       this.windowWidth = dWidth;
-       this.windowHeight = keyHeight;
-       this.nonBarPosition = dHeight - keyHeight;
-   
-       let config = {
-         name: this.windowName,
-         windowType: this.WINDOW_TYPE_INPUT_METHOD_FLOAT,
-         ctx: this.mContext
-       }
-       windowManager.createWindow(config).then((win) => {	// Create a window of the specified type.
-         win.resize(dWidth, keyHeight).then(() => {
-           win.moveWindowTo(0, this.nonBarPosition).then(() => {
-             win.setUIContent('pages/InputMethodExtAbility/Index').then(() => {
-             });
-           });
-         });
+       let nonBarPosition = dHeight - keyHeight;
+       let panelInfo: inputMethodEngine.PanelInfo = {
+         type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+         flag: inputMethodEngine.PanelFlag.FLG_FLOATING
+       };
+       inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
+         this.panel = inputPanel;
+         if(this.panel) {
+           await this.panel.resize(dWidth, keyHeight);
+           await this.panel.moveTo(0, nonBarPosition);
+           await this.panel.setUiContent('inputmethodextability/pages/Index');
+         }
        });
      }
    
      private registerListener(): void
      {
-       this.registerInputListener();	// Register an event listener for the input method framework service.
-       globalThis.inputAbility.on('keyboardShow', () => {// Register an event listener for the keyboard .
-         if (this.isWindowShowing) {
-           return;
-         }
-         this.isWindowShowing = true;
-         this.showHighWindow(); // Show the window.
-       });
+       this.registerInputListener(); // Register an event listener for the input method framework service.
        ...
        // Register a listener for keyboard hiding.
      }
    
-     private registerInputListener() {		// Register a listener for the enabling and disabling events of the input method framework service.
-       globalThis.inputAbility.on('inputStart', (kbController, textInputClient) => {
-         globalThis.textInputClient = textInputClient;		// This is an input method client instance, based on which you can call the functional APIs that the input method framework provides for the input method application.
-         globalThis.keyboardController = kbController;
+     private registerInputListener(): void { // Register a listener for the enabling and disabling events of the input method framework service.
+       inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
+         this.textInputClient = textInputClient; // This is an input method client instance, based on which you can call the APIs that the input method framework provides for the input method.
+         this.keyboardController = kbController;
        })
-       globalThis.inputAbility.on('inputStop', (imeId) => {
-         if (imeId == "Bundle name/Ability name") {
-           this.mContext.destroy(); // Destroy the InputMethodExtensionAbility service.
-         }
+       inputMethodAbility.on('inputStop', () => {
+         this.onDestroy (); // Destroy the KeyboardController instance.
        });
      }
    
      private unRegisterListener(): void
      {
-       globalThis.inputAbility.off('inputStart');
-       globalThis.inputAbility.off('inputStop', () => {});
-       globalThis.inputAbility.off('keyboardShow');
-     }
-   
-     private showHighWindow() {
-       let win = windowManager.findWindow(this.windowName)
-       win.resize(this.windowWidth, this.windowHeight).then(() => {
-         win.moveWindowTo(0, this.nonBarPosition).then(() => {
-           win.showWindow().then(() => {
-             this.isWindowShowing = false;
-           })
-         })
-       })
+       inputMethodAbility.off('inputStart');
+       inputMethodAbility.off('inputStop', () => {});
      }
    }
+   
+   const keyboardController = new KeyboardController();
+   
+   export default keyboardController;
    ```
 
 3. **KeyboardKeyData.ts** file:
@@ -231,11 +227,12 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    Add the path to this file to the **src** field in the **resources/base/profile/main_pages.json** file.
 
    ```ets
-   import { numberSourceListData, sourceListType } from './keyboardKeyData'
+   import { numberSourceListData, sourceListType } from './keyboardKeyData';
+   import keyboardController from '../model/KeyboardController';
    
    @Component
    struct keyItem {
-     private keyValue: sourceListType
+     private keyValue: sourceListType = numberSourceListData[0];
      @State keyBgc: string = "#fff"
      @State keyFontColor: string = "#000"
    
@@ -250,10 +247,8 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        .borderRadius(6)
        .width("8%")
        .height("65%")
-       .onTouch((event: TouchEvent) => {
-         if (event.type === TouchType.Down) {
-           globalThis.textInputClient.insertText(this.keyValue.content);
-         }
+       .onClick(() => {
+         keyboardController.insertText(this.keyValue.content);
        })
      }
    }
@@ -274,10 +269,8 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        .backgroundColor(this.keyBgc)
        .width("13%")
        .borderRadius(6)
-       .onTouch((event: TouchEvent) => {
-         if (event.type === TouchType.Down) {
-           globalThis.textInputClient.deleteForward(1);
-         }
+       .onClick(() => {
+         keyboardController.deleteForward(1);
        })
      }
    }
@@ -285,12 +278,12 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    // Numeric keyboard
    @Component
    struct numberMenu {
-     private numberList: sourceListType[]
+     private numberList: sourceListType[] = numberSourceListData;
    
      build() {
        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceEvenly }) {
          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-           ForEach(this.numberList, (item: sourceListType) => {  // First row on the numeric keyboard
+           ForEach(this.numberList, (item: sourceListType) => {// First row on the numeric keyboard
              keyItem({ keyValue: item })
            }, (item: sourceListType) => item.content);
          }
@@ -341,7 +334,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 
 5. Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
 
-   ```ts
+   ```json
    {
      "module": {
        ...
@@ -403,5 +396,3 @@ To reduce the risk of abuse of the InputMethodExtensionAbility by third-party ap
 - [@system.geolocation (Geolocation)](../reference/apis/js-apis-system-location.md)
 - [nfctech (Standard NFC Technologies)](../reference/apis/js-apis-nfctech.md)
 - [tagSession (Standard NFC Tag Session)](../reference/apis/js-apis-tagSession.md)
-
-

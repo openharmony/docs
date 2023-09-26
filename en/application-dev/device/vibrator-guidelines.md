@@ -105,158 +105,172 @@ The following requirements must be met:
 
 2. Start vibration with the specified effect and attribute.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   
-   try {
-     vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
-       type: 'time',
-       duration: 1000,
-     }, {
-       id: 0,
-       usage: 'alarm'
-     }, (error) => {
-       if (error) {
-         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeed in starting vibration.');
-     });
-   } catch (err) {
-     console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration.');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 3. Stop vibration in the specified mode.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   
-   try {
-     // Stop vibration in VIBRATOR_STOP_MODE_TIME mode. To use stopVibration, you must configure the ohos.permission.VIBRATE permission.
-     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
-       if (error) {
-         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeeded in stopping vibration.');
-     })
-   } catch (err) {
-     console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // Stop vibration in VIBRATOR_STOP_MODE_TIME mode. To use stopVibration, you must configure the ohos.permission.VIBRATE permission.
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeeded in stopping vibration.');
+  })
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 4. Stop vibration in all modes.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   // To use startVibration and stopVibration, you must configure the ohos.permission.VIBRATE permission.
-   try {
-     vibrator.startVibration({
-       type: 'time',
-       duration: 1000,
-     }, {
-       id: 0,
-       usage: 'alarm'
-     }, (error) => {
-       if (error) {
-         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeed in starting vibration');
-     });
-     // Stop vibration in all modes.
-     vibrator.stopVibration(function (error) {
-       if (error) {
-         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
-       }
-       console.info('Succeed in stopping vibration');
-     })
-   } catch (error) {
-     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
-   }
-   ```
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  vibrator.startVibration({
+    type: 'time',
+    duration: 1000,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+  // Stop vibration in all modes.
+  vibrator.stopVibration((error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 5. Check whether the passed effect ID is supported.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   
-   try {
-     // Check whether 'haptic.clock.timer' is supported.
-     vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
-       if (err) {
-         console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
-         return;
-       }
-       console.info('Succeed in querying effect');
-       if (state) {
-         try {
-           vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
-             type: 'preset',
-             effectId: 'haptic.clock.timer',
-             count: 1,
-           }, {
-             usage: 'unknown'
-           }, (error) => {
-             if (error) {
-               console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-             } else {
-               console.info('Succeed in starting vibration');
-             }
-           });
-         } catch (error) {
-           console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
-         }
-       }
-     })
-   } catch (error) {
-     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
-   }
-   ```
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // Check whether 'haptic.clock.timer' is supported.
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+    if (err) {
+      console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeed in querying effect');
+    if (state) {
+      try {
+        // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+        vibrator.startVibration({
+          type: 'preset',
+          effectId: 'haptic.clock.timer',
+          count: 1,
+        }, {
+          usage: 'unknown'
+        }, (error: BusinessError) => {
+          if (error) {
+            console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+          } else {
+            console.info('Succeed in starting vibration');
+          }
+        });
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+      }
+    }
+  })
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 6. Start and stop custom vibration.
 
-   ```ts
-   import vibrator from '@ohos.vibrator';
-   
-   // Obtain the file descriptor of the vibration configuration file.
-   async function getRawfileFd(fileName) {
-     let rawFd = await globalThis.getContext().resourceManager.getRawFd(fileName);
-     return rawFd;
-   }
-   
-   // Close the file descriptor of the vibration configuration file.
-   async function closeRawfileFd(fileName) {
-     await globalThis.getContext().resourceManager.closeRawFd(fileName)
-   }
-   
-   // Play the custom vibration. To use startVibration and stopVibration, you must configure the ohos.permission.VIBRATE permission.
-   async function playCustomHaptic(fileName) {
-     try {
-       let rawFd = await getRawfileFd(fileName);
-       vibrator.startVibration({
-         type: "file",
-         hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-       }, {
-         usage: "alarm"
-       }).then(() => {
-         console.info('Succeed in starting vibration');
-       }, (error) => {
-         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-       });
-       vibrator.stopVibration(function (error) {
-         if (error) {
-           console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-           return;
-         }
-         console.info('Succeed in stopping vibration');
-       })
-       await closeRawfileFd(fileName);
-     } catch (error) {
-       console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
-     }
-   }
-   ```
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+import resourceManager from '@ohos.resourceManager';
+
+// Obtain the file descriptor of the vibration configuration file.
+async function getRawfileFd(fileName: string): Promise<resourceManager.RawFileDescriptor> {
+  let rawFd = await getContext().resourceManager.getRawFd(fileName);
+  return rawFd;
+}
+
+// Close the file descriptor of the vibration configuration file.
+async function closeRawfileFd(fileName: string): Promise<void> {
+  await getContext().resourceManager.closeRawFd(fileName)
+}
+
+// Play the custom vibration. To use startVibration and stopVibration, you must configure the ohos.permission.VIBRATE permission.
+async function playCustomHaptic(fileName: string): Promise<void> {
+  try {
+    let rawFd = await getRawfileFd(fileName);
+    vibrator.startVibration({
+      type: "file",
+      hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+    }, {
+      usage: "alarm"
+    }).then(() => {
+      console.info('Succeed in starting vibration');
+    }, (error: BusinessError) => {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+    });
+    vibrator.stopVibration((error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+        return;
+      }
+      console.info('Succeed in stopping vibration');
+    })
+    await closeRawfileFd(fileName);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+}
+```
 

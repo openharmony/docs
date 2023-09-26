@@ -39,7 +39,6 @@ The following table describes the APIs for notification publishing. You specify 
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
-   import image from '@ohos.multimedia.image';
    ```
 
 3. Create a **NotificationRequest** object and publish a progress notification.

@@ -10,59 +10,74 @@ This example implements a shared element transition for the scenario where, as a
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
   
-   ```ts
-   // Build two pages for the normal and expanded states of the same component, which are then used based on the declared state variables.
-   @Component
-   export struct MyExtendView {
-     // Declare the isExpand variable to be synced with the parent component.
-     @Link isExpand: boolean;
-     @State cardList: Array<CardData> = xxxx;
-   
-     build() {
-       List() {
-         // Customize the expanded component as required.
-         if (this.isExpand) {
-           Text('expand')
-             .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
-         }
-   
-         ForEach(this.cardList, (item: CradData) => {
-           MyCard({ cardData: item })
-         })
-       }
-       .width(this.isExpand ? 200 : 500) // Define the attributes of the expanded component.
-       .animation({ curve: curves.springMotion()}) // Bind an animation to component attributes.
-     }
-   }
-   ```
+  ```ts
+  class Tmp{
+    set(item:CradData):CradData{
+      return item
+    }
+  }
+  // Build two pages for the normal and expanded states of the same component, which are then used based on the declared state variables.
+  @Component
+  export struct MyExtendView {
+    // Declare the isExpand variable to be synced with the parent component.
+    @Link isExpand: boolean;
+    @State cardList: Array<CardData> = xxxx;
+  
+    build() {
+      List() {
+        // Customize the expanded component as required.
+        if (this.isExpand) {
+          Text('expand')
+            .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+        }
+  
+        ForEach(this.cardList, (item: CradData) => {
+          let Item:Tmp = new Tmp()
+          let Imp:Tmp = Item.set(item)
+          let Mc:Record<string,Tmp> = {'cardData':Imp}
+          MyCard(Mc)
+        })
+      }
+      .width(this.isExpand ? 200 : 500) // Define the attributes of the expanded component.
+      .animation({ curve: curves.springMotion()}) // Bind an animation to component attributes.
+    }
+  }
+  ```
 
 2. Expand the component to be expanded. Use state variables to control the disappearance or appearance of sibling components, and apply the enter/exit transition to the disappearance and appearance.
   
-   ```ts
-   @State isExpand: boolean = false
-   
-   ...
-   List() {
-     // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-     if (!this.isExpand) {
-       Text ('I appear in normal state')
-         .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
-     }
-   
-     MyExtendView({ isExpand: $isExpand })
-       .onClick(() => {
-         this.isExpand = !this.isExpand;
-       })
-   
-     // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-     if (this.isExpand) {
-       Text ('I appear in expanded state')
-         .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
-     }
-   }
-   
-   ...
-   ```
+  ```ts
+  class Tmp{
+    isExpand: boolean = false;
+    set(){
+      this.isExpand = !this.isExpand;
+    }
+  }
+  let Exp:Record<string,boolean> = {'isExpand': false}
+    @State isExpand: boolean = false
+    
+    ...
+    List() {
+      // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
+      if (!this.isExpand) {
+        Text ('I appear in normal state')
+          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
+      }
+    
+      MyExtendView(Exp)
+        .onClick(() => {
+          let Epd:Tmp = new Tmp()
+          Epd.set()
+        })
+    
+      // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
+      if (this.isExpand) {
+        Text ('I appear in expanded state')
+          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
+      }
+    }
+  ...
+  ```
 
 
 Below is the complete sample code and effect.
@@ -86,7 +101,7 @@ export struct share_transition_expand {
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item:number, index) => {
+        ForEach(this.listArray, (item:number, index?:number|undefined) => {
           // Customize the expanded component as required.
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -128,7 +143,9 @@ export struct share_transition_expand {
               .onClick(() => {
                 // Define the animation parameters for expanding and collapsing.
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  this.curIndex = index as number;
+                  if(index){
+                    this.curIndex = index;
+                  }
                   this.isExpand = !this.isExpand;
                 })
               })
@@ -161,7 +178,7 @@ export struct share_transition_expand {
 ```ts
 // Index.ets
 import { share_transition_expand } from './utils';
-
+let Tmp:Record<string,boolean> = { 'isExpand': false }
 @Entry
 @Component
 struct ShareTransitionDemo {
@@ -175,7 +192,7 @@ struct ShareTransitionDemo {
         .fontColor(Color.Black)
         .margin(10)
 
-      share_transition_expand({ isExpand: $isExpand })
+      share_transition_expand(Tmp)
 
     }
     .width('100%')
@@ -221,7 +238,7 @@ export struct share_zIndex_expand {
   build() {
     Column() {
       List() {
-        ForEach(this.listArray, (item: number, index) => {
+        ForEach(this.listArray, (item:number, index?:number|undefined) => {
           // Customize the expanded component as required.
           if (!this.isExpand || this.curIndex == index) {
             ListItem() {
@@ -271,13 +288,15 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // Define the animation parameters for expanding and collapsing.
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                this.curIndex = index as number;
+                if(index){
+                  this.curIndex = index;
+                }
                 this.isExpand = !this.isExpand;
               })
             })
             .zIndex(this.curIndex == index? 1: 0) // When the current list item is selected, its zIndex attribute is set to 1, and it is displayed over other sibling components whose zIndex is 0.
             .translate({ // Move the list item to the top of the parent container through translate.
-              y: this.isExpand && this.curIndex == index ? -60 - this.parentScroller.currentOffset()['yOffset'] : 0
+                y: this.isExpand && this.curIndex == index ? -60 - this.parentScroller.currentOffset()['yOffset'] : 0
             })
           }
         })
@@ -298,7 +317,10 @@ export struct share_zIndex_expand {
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
-
+let isExpand: boolean = false;
+let curIndex: number = 0;
+let scroller: Scroller = new Scroller();
+let Sze:Record<string,boolean|number|Scroller> = { 'isExpand': isExpand, 'curIndex': curIndex, 'parentScroller': scroller }
 @Entry
 @Component
 struct ShareZIndexDemo {
@@ -316,7 +338,7 @@ struct ShareZIndexDemo {
           .zIndex(0)
           .margin(10)
 
-        share_zIndex_expand({ isExpand: $isExpand, curIndex: $curIndex, parentScroller: this.scroller })
+        share_zIndex_expand(Sze)
       }
       .width('100%')
       .height('100%')
@@ -540,7 +562,7 @@ struct AutoAchieveShareTransitionDemo {
     Stack() {
       Scroll() {
         Column({ space: 20 }) {
-          ForEach(this.items, (item:string, index) => {
+          ForEach(this.items, (item:string, index?:number|undefined) => {
             Row() {
               Column() {
                 Text('Shared element ' + item)
@@ -567,7 +589,15 @@ struct AutoAchieveShareTransitionDemo {
             .onClick(() => {
               // Obtain the position and size of the corresponding component.
               let strJson = getInspectorByKey(item);
-              let rect_top:number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
+              let obj:string = JSON.parse(strJson);
+              let rectInfo:string = JSON.parse('[' + obj.$rect + ']');
+              let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
+              let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
+              let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
+              let rect_bottom:string = JSON.parse('[' + rectInfo[1] + ']')[1];
+              let rect_value:Record<string,string> = {
+                "left": rect_left, "top": rect_top, "right": rect_right, "bottom": rect_bottom
+              };
 
               // Set the location, content, and status of the shared element.
               this.rect_top = rect_top;

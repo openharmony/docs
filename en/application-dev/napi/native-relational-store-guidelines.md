@@ -41,7 +41,9 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
 ## How to Develop
 
-1. Obtain the OH_Rdb_Store instance and create a database file.
+1. Obtain an OH_Rdb_Store instance and create a database file. 
+
+   The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). 
 
    Example:
 
@@ -62,7 +64,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
    config.isEncrypt = false;
    // Memory size occupied by config.
    config.selfSize = sizeof(OH_Rdb_Config);
-
+   
    int errCode = 0;
    // Obtain the OH_Rdb_Store instance.
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
@@ -77,7 +79,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
                            "AGE INTEGER, SALARY REAL, CODES BLOB)";
    // Create a table.
    OH_Rdb_Execute(store_, createTableSql);
-
+   
    // Create a key-value pair instance.
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Lisa");
@@ -111,7 +113,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
    uint8_t arr[] = {1, 2, 3, 4, 5};
    int len = sizeof(arr) / sizeof(arr[0]);
    valueBucket->putBlob(valueBucket, "CODES", arr, len);
-
+   
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
    OH_VObject *valueObject = OH_Rdb_CreateValueObject();
    const char *name = "Lisa";
@@ -121,7 +123,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
    double salary = 100.5;
    valueObject->putDouble(valueObject, &salary, count);
    predicates->equalTo(predicates, "SALARY", valueObject);
-
+       
    int changeRows = OH_Rdb_Update(store_, valueBucket, predicates);
    valueObject->destroy(valueObject);
    valueBucket->destroy(valueBucket);
@@ -148,20 +150,20 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
    ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
-
+   
    const char *columnNames[] = {"NAME", "AGE"};
    int len = sizeof(columnNames) / sizeof(columnNames[0]);
    OH_Cursor *cursor = OH_Rdb_Query(store_, predicates, columnNames, len);
-
+   
    int columnCount = 0;
    cursor->getColumnCount(cursor, &columnCount);
-
+   
    // OH_Cursor is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
    int64_t age;
    while (cursor->goToNextRow(cursor) == OH_Rdb_ErrCode::RDB_OK) {
        cursor->getInt64(cursor, 1, &age);
    }
-
+   
    // Destroy the Predicates instance.
    predicates->destroy(predicates);
    // Destroy the result set.
@@ -174,9 +176,12 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
    Example:
 
+
    ```c
    // Close the database instance.
    OH_Rdb_CloseStore(store_);
    // Delete the database file.
    OH_Rdb_DeleteStore(&config);
    ```
+
+   

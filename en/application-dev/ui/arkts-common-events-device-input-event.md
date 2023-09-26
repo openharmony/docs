@@ -70,8 +70,10 @@ struct MouseExample {
       Button(this.isHovered ? 'Hovered!' : 'Not Hover')
         .width(200).height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-        .onHover((isHover: boolean) => { // Use the onHover API to listen for whether the mouse pointer is hovered over the component.
-          this.isHovered = isHover;
+        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse pointer is hovered over the button.
+          if(isHover){
+            this.isHovered = isHover;
+          }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
@@ -126,15 +128,19 @@ struct MouseExample {
         .width(200)
         .height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-        .onHover((isHover: boolean) => {
-          this.isHovered = isHover
+        .onHover((isHover?: boolean) => {
+          if(isHover){
+            this.isHovered = isHover
+          }
         })
-        .onMouse((event: MouseEvent) => {    // Set the onMouse callback for the button.
-          this.buttonText = 'Button onMouse:\n' + '' +
-          'button = ' + event.button + '\n' +
-          'action = ' + event.action + '\n' +
-          'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-          'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+       .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the button.
+          if(event){
+            this.buttonText = 'Button onMouse:\n' + '' +
+            'button = ' + event.button + '\n' +
+            'action = ' + event.action + '\n' +
+            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+          }
         })
       Divider()
       Text(this.buttonText).fontColor(Color.Green)
@@ -146,12 +152,14 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event: MouseEvent) => {    // Set the onMouse callback for the column.
-      this.columnText = 'Column onMouse:\n' + '' +
-      'button = ' + event.button + '\n' +
-      'action = ' + event.action + '\n' +
-      'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-      'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
+      if(event){
+        this.columnText = 'Column onMouse:\n' + '' +
+          'button = ' + event.button + '\n' +
+          'action = ' + event.action + '\n' +
+          'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+          'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+      }
     })
   }
 }
@@ -177,20 +185,40 @@ To prevent the mouse event from bubbling, call the **stopPropagation()** API.
 
 
 ```ts
+class ish{
+  isHovered:boolean = false
+  set(val:boolean){
+    this.isHovered = val;
+  }
+}
+class butf{
+  buttonText:string = ''
+  set(val:string){
+    this.buttonText = val
+  }
+}
 Button(this.isHovered ? 'Hovered!' : 'Not Hover')
   .width(200)
   .height(100)
   .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-  .onHover((isHover: boolean) => {
-    this.isHovered = isHover;
+  .onHover((isHover?: boolean) => {
+    if(isHover){
+      let ishset = new ish()
+      ishset.set(isHover)
+    }
   })
-  .onMouse((event: MouseEvent) => {
-    event.stopPropagation(); // Prevent the mouse event from bubbling.
-    this.buttonText = 'Button onMouse:\n' + '' +
-    'button = ' + event.button + '\n' +
-    'action = ' + event.action + '\n' +
-    'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-    'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+  .onMouse((event?: MouseEvent) => {
+    if(event){
+      if(event.stopPropagation){
+        event.stopPropagation(); // Prevent the onMouse event from bubbling.
+      }
+      let butset = new butf()
+      butset.set('Button onMouse:\n' + '' +
+        'button = ' + event.button + '\n' +
+        'action = ' + event.action + '\n' +
+        'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+        'windowXY=(' + event.windowX + ',' + event.windowY + ')');
+    }
   })
 ```
 
@@ -298,17 +326,19 @@ struct KeyEventExample {
     Column() {
       Button('onKeyEvent')
         .width(140).height(70)
-        .onKeyEvent((event: KeyEvent) => {// Set the onKeyEvent event for the <Button> component.
-          if (event.type === KeyType.Down) {
-            this.buttonType = 'Down';
+        .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the button.
+          if(event){
+            if (event.type === KeyType.Down) {
+              this.buttonType = 'Down';
+            }
+            if (event.type === KeyType.Up) {
+              this.buttonType = 'Up';
+            }
+            this.buttonText = 'Button: \n' +
+            'KeyType:' + this.buttonType + '\n' +
+            'KeyCode:' + event.keyCode + '\n' +
+            'KeyText:' + event.keyText;
           }
-          if (event.type === KeyType.Up) {
-            this.buttonType = 'Up';
-          }
-          this.buttonText = 'Button: \n' +
-          'KeyType:' + this.buttonType + '\n' +
-          'KeyCode:' + event.keyCode + '\n' +
-          'KeyText:' + event.keyText;
         })
 
       Divider()
@@ -317,17 +347,19 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event: KeyEvent) => {// Set the onKeyEvent event for the parent container <Column>.
-      if (event.type === KeyType.Down) {
-        this.columnType = 'Down';
+    .onKeyEvent((event?: KeyEvent) => { //  Set the onKeyEvent event for the parent container <Column>.
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+        'KeyType:' + this.buttonType + '\n' +
+        'KeyCode:' + event.keyCode + '\n' +
+        'KeyText:' + event.keyText;
       }
-      if (event.type === KeyType.Up) {
-        this.columnType = 'Up';
-      }
-      this.columnText = 'Column: \n' +
-      'KeyType:' + this.buttonType + '\n' +
-      'KeyCode:' + event.keyCode + '\n' +
-      'KeyText:' + event.keyText;
     })
   }
 }
@@ -353,21 +385,36 @@ To prevent the key event of the **\<Button>** component from bubbling up to its 
 
 
 ```ts
+class butypef{
+  buttonType:string = ''
+  set(val:string){
+    this.buttonType = val
+  }
+  get(){
+    return this.buttonType
+  }
+}
 Button('onKeyEvent')
   .width(140).height(70)
-  .onKeyEvent((event: KeyEvent) => {
+  .onKeyEvent((event?: KeyEvent|object) => {
     // Use stopPropagation to prevent the key event from bubbling up.
-    event.stopPropagation();
-    if (event.type === KeyType.Down) {
-      this.buttonType = 'Down';
+    if(event){
+      event.stopPropagation();
+      if (event.type === KeyType.Down) {
+        let butset = new butypef()
+        butset.set('Down')
+      }
+      if (event.type === KeyType.Up) {
+        let butset = new butypef()
+        butset.set('Up')
+      }
+      let butfset = new butf()
+      let butset = new butypef()
+      butfset.set('Button: \n' +
+        'KeyType:' + butset.get() + '\n' +
+        'KeyCode:' + event.keyCode + '\n' +
+        'KeyText:' + event.keyText)
     }
-    if (event.type === KeyType.Up) {
-       this.buttonType = 'Up';
-    }
-     this.buttonText = 'Button: \n' +
-     'KeyType:' + this.buttonType + '\n' +
-     'KeyCode:' + event.keyCode + '\n' +
-     'KeyText:' + event.keyText;
 })
 ```
 

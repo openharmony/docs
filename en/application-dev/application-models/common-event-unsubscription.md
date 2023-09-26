@@ -19,6 +19,7 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. Subscribe to an event by following the procedure described in [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md).
@@ -28,7 +29,7 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
    ```ts
    // The subscriber object is created during event subscription.
    if (subscriber !== null) {
-       commonEventManager.unsubscribe(subscriber, (err) => {
+       commonEventManager.unsubscribe(subscriber, (err: Base.BusinessError) => {
            if (err) {
                console.error(`[CommonEvent] UnsubscribeCallBack err=${JSON.stringify(err)}`);
            } else {

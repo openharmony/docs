@@ -14,7 +14,7 @@ An application is suspended after it runs in the background for a short period o
 
 - **Quota mechanism**: An application has a certain quota for transient tasks (adjusted based on the system status and user habits). The default quota for a single day (within 24 hours) is 10 minutes, and the maximum quota for each request is 3 minutes. In case of [low battery](../reference/apis/js-apis-battery-info.md), the default quota for each request is 1 minute. After the quota is used up, the application cannot request transient tasks anymore. The system also provides an API for an application to query the remaining duration of a transient task so as to determine whether to continue running other services.
 
-- **Quota calculation**: Transient tasks are timed only when the application is running in the background. If the application has multiple transient tasks during the same time segment, no repeated timing is performed. As in the figure below, the application has two transient tasks, A and B. Task A is requested when the application is running in the foreground, and the timing starts when the application switches to the background (marked as ①). When the application switches to the foreground, the timing stops (marked as ②). When the application switches to the background again, the timing starts again (marked as ③). When task A is finished, task B still exists, and therefore the timing continues (marked as ④). In this process, the total time consumed by the transient tasks is ①+③+④.
+- **Quota calculation**: Transient tasks are timed only when the application is running in the background. If the application has multiple transient tasks during the same time segment, no repeated timing is performed. As in the figure below, the application has two transient tasks, A and B. Task A is requested when the application is running in the foreground, and the timing starts when the application switches to the background (marked as ①). When the application switches to the foreground, the timing stops (marked as ②). When the application switches to the background again, the timing starts again (marked as ③). When task A is finished, task B still exists, and therefore the timing continues (marked as ④). In this process, the total time consumed by the transient tasks is ①+③+④. 
   
   **Figure 1** Quota calculation for transient tasks
   
@@ -22,7 +22,7 @@ An application is suspended after it runs in the background for a short period o
   
   > **NOTE**
   >
-> The application shall proactively cancel a transient task when it is finished. Otherwise, the time frame allowed for the application to run in the background will be affected.
+  > The application shall proactively cancel a transient task when it is finished. Otherwise, the time frame allowed for the application to run in the background will be affected.
 
 - **Timeout**: If a transient task is about to time out, the system notifies the application of the timeout by using a callback. The application needs to cancel the task. Otherwise, the system forcibly terminates the application process.
 
@@ -43,20 +43,20 @@ The table below lists the main APIs used for transient task development. For det
 
 1. Import the module.
    
-   ```js
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   ```
-
+     ```ts
+     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+     import { BusinessError } from '@ohos.base';
+     ```
+   
 2. Request a transient task and implement the callback.
-   
-   ```js
-   let id;         // ID of the transient task.
-   let delayTime; // Remaining time of the transient task.
-   
-   // Request a transient task.
-   function requestSuspendDelay() {
-     let myReason = 'test requestSuspendDelay'; // Reason for the request.
-     try {
+
+     ```ts
+     let id: number;         // ID of the transient task.
+     let delayTime: number;  // Remaining time of the transient task.
+      
+     // Request a transient task.
+     function requestSuspendDelay() {
+       let myReason = 'test requestSuspendDelay'; // Reason for the request.
        let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
          // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
          console.info('Succeeded in requesting suspend delay.');
@@ -64,33 +64,26 @@ The table below lists the main APIs used for transient task development. For det
        })
        id = delayInfo.requestId;
        delayTime = delayInfo.actualDelayTime;
-     } catch (err) {
-       console.error(`Failed to request suspend delay. Code: ${err.code}, message: ${err.message}`);
      }
-   }
-   ```
+     ```
 
 3. Obtain the remaining time of the transient task. Based on the remaining time, the application determines whether to continue to run other services. For example, the application has two small tasks. After the first task is executed, it queries the remaining time of the current transient task to determine whether to execute the second task.
-   
-   ```js
-   async function getRemainingDelayTime() {
-     try {
-       backgroundTaskManager.getRemainingDelayTime(id).then(res => {
+
+     ```ts
+     async function getRemainingDelayTime() {
+       backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
          console.info('Succeeded in getting remaining delay time.');
-       }).catch(err => {
+       }).catch((err: BusinessError) => {
          console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
        })
-     } catch (err) {
-       console.error(`Failed to get remaining delay time. Code: ${err.code}, message: ${err.message}`);
      }
-   }
-   ```
+     ```
 
 4. Cancel the transient task.
    
-   ```js
-   function cancelSuspendDelay() {
-     backgroundTaskManager.cancelSuspendDelay(id);
-   }
-   ```
+     ```ts
+     function cancelSuspendDelay() {
+       backgroundTaskManager.cancelSuspendDelay(id);
+     }
+     ```
 

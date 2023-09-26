@@ -5,7 +5,7 @@ There may be cases you want to provide in a widget access to features available 
 
 > **NOTE**
 >
-> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../../application-dev/reference/arkui-ts/ts-container-formlink.md).
+> This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/arkui-ts/ts-container-formlink.md).
 
 Typically, the call event is triggered for touching of buttons. Below is an example.
 
@@ -55,27 +55,48 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
-  
-  function FunACall(data) {
-    // Obtain all parameters passed in the call event.
-    console.info('FunACall param:' + JSON.stringify(data.readString()));
-    return null;
-  }
-  
-  function FunBCall(data) {
-    console.info('FunBCall param:' + JSON.stringify(data.readString()));
-    return null;
+  import Base from '@ohos.base'
+  import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+
+  class MyParcelable implements rpc.Parcelable {
+    num: number;
+    str: string;
+    constructor(num: number, str: string) {
+      this.num = num;
+      this.str = str;
+    }
+    marshalling(messageSequence: rpc.MessageSequence): boolean {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      return true;
+    }
+    unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      return true;
+    }
   }
   
   export default class CameraAbility extends UIAbility {
     // If the UIAbility is started for the first time, onCreate is triggered after the call event is received.
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       try {
         // Listen for the method required by the call event.
-        this.callee.on('funA', FunACall);
-        this.callee.on('funB', FunBCall);
+        this.callee.on('funA', (data: rpc.MessageSequence) => {
+          // Obtain all parameters passed in the call event.
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(1, 'aaa');
+        });
+        this.callee.on('funB', (data: rpc.MessageSequence) => {
+          // Obtain all parameters passed in the call event.
+          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          return new MyParcelable(2, 'bbb');
+        });
       } catch (err) {
-        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   
@@ -87,7 +108,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err)}`);
+        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
       }
     }
   };
