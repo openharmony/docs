@@ -265,41 +265,34 @@ Grid组件初始化时，可以绑定一个[Scroller](../reference/arkui-ts/ts-c
 
 
 ```ts
-export let scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller()
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
 
 
 ```ts
-class Tmp{
-  scroller: Scroller = new Scroller()
-  set(boo:boolean){
-    this.scroller.scrollPage({next:boo})
-  }
-}
 Column({ space: 5 }) {
   Grid(this.scroller) {
-    ...
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
-  ...
- 
- Row({space: 20}) {
-   Button('上一页')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(false)
-     })
 
-   Button('下一页')
-     .onClick(() => {
-       let ClickN = new Tmp()
-       ClickN.set(true)
-     })
- }
+  Row({space: 20}) {
+    Button('上一页')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: false
+        })
+      })
+
+    Button('下一页')
+      .onClick(() => {
+        this.scroller.scrollPage({
+          next: true
+        })
+      })
+  }
 }
-...
 ```
 
 
