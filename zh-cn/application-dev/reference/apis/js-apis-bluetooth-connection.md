@@ -12,6 +12,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 
 ```js
 import connection from '@ohos.bluetooth.connection';
+import { BusinessError } from '@ohos.base';
 ```
 
 
