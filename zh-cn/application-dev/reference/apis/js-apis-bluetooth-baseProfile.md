@@ -80,7 +80,7 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
+    a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
         console.info('setConnectionStrategy, err: ' + JSON.stringify(err));
     });
 } catch (err) {
@@ -380,6 +380,7 @@ function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
 try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
     a2dpSrc.off('connectionStateChange', onReceiveEvent);
 } catch (err) {
