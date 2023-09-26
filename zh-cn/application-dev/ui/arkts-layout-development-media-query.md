@@ -64,7 +64,7 @@ listener.on('change', onPortrait);
 
 - (max-height: 800) ：表示当高度小于等于800时条件成立。
 
-- (height &lt;= 800) ：表示当高度小于等于800时条件成立。
+- (height &lt;= 800) ：表示当高度小于等于800时条件成立。（媒体特性不确定具体值时推荐使用媒体逻辑范围操作符）
 
 - screen and (device-type: tv) or (resolution &lt; 2) ：表示包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
