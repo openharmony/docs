@@ -1547,3 +1547,40 @@ abilityDelegator.waitAbilityStageMonitor({
     console.info('waitAbilityStageMonitor callback');
 });
 ```
+
+### setMockList<sup>11+</sup>
+
+setMockList(mockList: { [key: string]: string }): void;
+
+设置模块的mock替换关系。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| mockList | { [key: string]: string } | 是   | 模块mock替换关系的键值对象，其中key为待替换的目标路径，value为用于替换的mock实现文件的路径。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let mockList: Record<string, string> = {
+    '@ohos.router': 'src/main/mock/ohos/router.mock',
+    'common.time': 'src/main/mock/common/time.mock',
+};
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.setMockList(mockList);
+```
+
