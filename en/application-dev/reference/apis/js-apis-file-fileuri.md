@@ -25,7 +25,7 @@ export default class EntryAbility extends UIAbility {
 }
  ```
 
-## fileUri.getUriFromPath
+## fileuri.getUriFromPath
 
 getUriFromPath(path: string): string
 
