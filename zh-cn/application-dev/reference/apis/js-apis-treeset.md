@@ -574,7 +574,6 @@ while(!t.done) {
 **示例：**
 
 ```ts
-
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
