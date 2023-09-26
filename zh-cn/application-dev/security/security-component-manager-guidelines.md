@@ -49,7 +49,7 @@ SaveButton(options: SaveButtonOptions)
 SaveButton({ icon:SaveIconStyle.FULL_FILLED })
 
 /* 只有文字和图标的样式 */
-SaveButton({ icon:SaveIconStyle.FULL_FILLED， text:SaveDescription.DOWNLOAD })
+SaveButton({ icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD })
 ```
 
 
