@@ -9,29 +9,29 @@ You will learn how to use native image APIs to process images.
 
 Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libpixelmap_ndk.z.so** of the image and **libhilog_ndk.z.so** of the log to the **target_link_libraries** dependency.
 
-    ```txt
-    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
-    ```
+```txt
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
+```
 
 **Adding API Mappings**
 
 Open the **src/main/cpp/hello.cpp** file and add the following API mappings to the **Init** function:
 
-    ```c++
-    EXTERN_C_START
-    static napi_value Init(napi_env env, napi_value exports)
-    {
-        napi_property_descriptor desc[] = {
-            { "testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
-        };
+```c++
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
+    };
 
-        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-        return exports;
-    }
-    EXTERN_C_END
-    ```
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+```
 
 
 **Calling the Native APIs**
@@ -108,7 +108,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     @Component
     struct Index {
     @State message: string = 'IMAGE'
-    @State _PixelMap: image.PixelMap = undefined
+    @State _PixelMap : image.PixelMap | undefined = undefined;
 
     build() {
         Row() {
@@ -117,10 +117,10 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
             .onClick(() => {
-                const color = new ArrayBuffer(96);
-                let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                const color : ArrayBuffer = new ArrayBuffer(96);
+                let opts: image.InitializationOptions = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
                 image.createPixelMap(color, opts)
-                .then( pixelmap => {
+                .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
                 })
 

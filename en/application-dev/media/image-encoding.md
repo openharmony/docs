@@ -1,6 +1,6 @@
 # Image Encoding
 
-Image encoding refers to the process of encoding a pixel map into an archived image in different formats (only in JPEG and WebP currently) for subsequent processing, such as storage and transmission.
+Image encoding refers to the process of encoding a pixel map into an archived image in different formats (only in JPEG, WebP, and PNG currently) for subsequent processing, such as storage and transmission.
 
 ## How to Develop
 

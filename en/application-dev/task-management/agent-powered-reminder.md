@@ -43,16 +43,17 @@ The table below uses promise as an example to describe the APIs used for develop
 
 3. Import the modules.
    
-   ```js
+   ```ts
    import reminderAgentManager from '@ohos.reminderAgentManager';
    import notificationManager from '@ohos.notificationManager';
+   import { BusinessError } from '@ohos.base';
    ```
 
 4. Define a reminder. You can define the following types of reminders based on project requirements.
 
    - Timer
      
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,   // The reminder type is timer.
         triggerTimeInSeconds: 10,
@@ -80,7 +81,7 @@ The table below uses promise as an example to describe the APIs used for develop
 
    - Calendar
      
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestCalendar = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR, // The reminder type is calendar.
         dateTime: {   // Reminder time.
@@ -125,7 +126,7 @@ The table below uses promise as an example to describe the APIs used for develop
 
    - Alarm
    
-      ```js
+      ```ts
       let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // The reminder type is alarm.
         hour: 23, // Hour portion of the reminder time.
@@ -163,31 +164,24 @@ The table below uses promise as an example to describe the APIs used for develop
 
 5. Publish the reminder. After the reminder is published, your application can use the agent-powered reminder feature.
    
-   ```js
-   try {
-     reminderAgentManager.publishReminder(targetReminderAgent).then(res => {
+     ```ts
+     reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
        console.info('Succeeded in publishing reminder. ');
        let reminderId: number = res; // ID of the published reminder.
-     }).catch(err => {
+     }).catch((err: BusinessError) => {
        console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
      })
-   } catch (err) {
-       console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
-
-6. Delete the reminder as required.
+     ```
    
-   ```js
-   try {
-       // The reminder ID is obtained from the callback after the reminder is published.
-       reminderAgentManager.cancelReminder(reminderId).then(() => {
-           console.log('Succeeded in canceling reminder.');
-       }).catch(err => {
-           console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-       });
-   } catch (err) {
+6. Delete the reminder as required.
+
+     ```ts
+     let reminderId: number = 1;
+     // The reminder ID is obtained from the callback after the reminder is published.
+     reminderAgentManager.cancelReminder(reminderId).then(() => {
+       console.log('Succeeded in canceling reminder.');
+     }).catch((err: BusinessError) => {
        console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-   }
-   ```
+     });
+     ```
 

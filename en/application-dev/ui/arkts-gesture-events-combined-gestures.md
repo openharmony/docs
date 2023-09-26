@@ -6,7 +6,7 @@ A combined gesture consists of multiple single gestures. Different GestureModes 
 
 
 ```ts
-GestureGroup(mode:GestureMode, ...gesture:GestureType[])
+GestureGroup(mode:GestureMode, gesture:GestureType[])
 ```
 
 
@@ -53,9 +53,11 @@ struct Index {
         // The first gesture recognized in the combined gestures is the long press gesture, which can be responded to for multiple times.
         LongPressGesture({ repeat: true })
           // When the long press gesture is successfully recognized, the value of count displayed on the <Text> component is increased.
-          .onAction((event: GestureEvent) => {
-            if (event.repeat) {
-              this.count++;
+          .onAction((event: GestureEvent|undefined) => {
+            if(event){
+              if (event.repeat) {
+                this.count++;
+              }
             }
             console.info('LongPress onAction');
           })
@@ -69,9 +71,11 @@ struct Index {
             console.info('pan start');
           })
             // When the gesture is triggered, the pan distance is obtained based on the callback, and the displacement distance of the component is modified. In this way, the component is translated.
-          .onActionUpdate((event: GestureEvent) => {
-            this.offsetX = this.positionX + event.offsetX;
-            this.offsetY = this.positionY + event.offsetY;
+          .onActionUpdate((event: GestureEvent|undefined) => {
+            if(event){
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
+            }
             console.info('pan update');
           })
           .onActionEnd(() => {

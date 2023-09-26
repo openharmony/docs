@@ -25,8 +25,8 @@ After the session configuration is complete, the application must commit the con
 2. Call **createCaptureSession()** in the **CameraManager** class to create a session.
      
    ```ts
-   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession {
-     let captureSession: camera.CaptureSession;
+   function getCaptureSession(cameraManager: camera.CameraManager): camera.CaptureSession | undefined {
+     let captureSession: camera.CaptureSession | undefined = undefined;
      try {
        captureSession = cameraManager.createCaptureSession();
      } catch (error) {

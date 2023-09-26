@@ -22,12 +22,13 @@ The **\<Stack>** component can contain a wide variety of child components, which
 
 
 ```ts
+let MTop:Record<string,number> = { 'top': 50 }
 Column(){
   Stack({ }) {
     Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
     Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
     Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
-  }.width('100%').height(150).margin({ top: 50 })
+  }.width('100%').height(150).margin(MTop)
 }
 ```
 
@@ -51,6 +52,7 @@ The stacking order of child components in the **\<Stack>** component is set thro
   In the stack layout, if the size of a component is greater than that of the one before it, the one before it is hidden.
 
 ```ts
+let MTopM1:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text ('Stacked component 1').textAlign (TextAlign.End).fontSize (20)
@@ -63,7 +65,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text ('Stacked component 3').fontSize (20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
+}.margin(MTopM1).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![en-us_image_0000001511900544](figures/en-us_image_0000001511900544.png)
@@ -72,6 +74,7 @@ In the following figure, the size of the stacked component 3 is greater than tha
 
 
 ```ts
+let MTopM:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text ('Stacked component 1').fontSize (20)
@@ -84,7 +87,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text ('Stacked component 3').fontSize (20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
+}.margin(MTopM).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![en-us_image_0000001563060797](figures/en-us_image_0000001563060797.png)
@@ -104,7 +107,7 @@ struct StackSample {
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Flex({ wrap: FlexWrap.Wrap }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item:string) => {
           Text(item)
             .width(100)
             .height(100)
@@ -113,7 +116,7 @@ struct StackSample {
             .textAlign(TextAlign.Center)
             .borderRadius(10)
             .backgroundColor(0xFFFFFF)
-        }, item => item)
+        }, ((item:string):string => item))
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {

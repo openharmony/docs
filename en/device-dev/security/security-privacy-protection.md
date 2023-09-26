@@ -127,7 +127,7 @@ Collect personal data only when they are adequate, relevant, and limited to what
 
 - Printing sensitive personal data in logs is prohibited. If common personal data needs to be printed in logs, make sure the data is anonymized or pseudonymized.
 
-  Preferentially use identifiers that are resettable. For example, use the NetworkID and DVID as the device identifier in the distributed scenario; use the OAID in the advertising scenario; use the ODID and AAID in the application-based analysis scenario; and use the UUID in other scenarios where a unique identifier is required. Use permanent identifiers such as the sequence number and MAC address only when resettable identifiers cannot meet your service requirements.
+- Preferentially use identifiers that are resettable. For example, use the NetworkID and DVID as the device identifier in the distributed scenario; use the OAID in the advertising scenario; use the ODID and AAID in the application-based analysis scenario; and use the UUID in other scenarios where a unique identifier is required. Use permanent identifiers such as the sequence number and MAC address only when resettable identifiers cannot meet your service requirements.
 
 **Data Processing Selection and Control**
 

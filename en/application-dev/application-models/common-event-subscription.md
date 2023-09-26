@@ -23,15 +23,16 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo).
    
    ```ts
    // Used to save the created subscriber object for subsequent subscription and unsubscription.
-   let subscriber = null;
+   let subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // Subscriber information.
-   let subscribeInfo = {
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
      events: ["usual.event.SCREEN_OFF"], // Subscribe to the common event screen-off.
    }
    ```
@@ -40,7 +41,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    
    ```ts
    // Callback for subscriber creation.
-   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
+   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
        console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -56,7 +57,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    ```ts
    // Callback for common event subscription.
    if (subscriber !== null) {
-     commonEventManager.subscribe(subscriber, (err, data) => {
+     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
          console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;

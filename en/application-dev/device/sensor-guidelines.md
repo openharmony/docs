@@ -25,13 +25,14 @@ The acceleration sensor is used as an example.
 1. Import the module.
 
    ```ts
-   import sensor from "@ohos.sensor";
+   import sensor from '@ohos.sensor';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. Obtain information about all sensors on the device.
 
     ```ts    
-    sensor.getSensorList(function (error, data) {
+    sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
         if (error) {
             console.info('getSensorList failed');
         } else {
@@ -54,19 +55,19 @@ The acceleration sensor is used as an example.
 - The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
 
     ```ts    
-    sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    }, {'interval': 100000000});
+    }, { interval: 100000000 });
     ```
 
     ![](figures/002.png)
 
 - The **once()** API is used to listen for only one data change of the sensor.
 
-    ```ts
-    sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
+    ```ts  
+    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    });    
+    });
     ```
 
     ![](figures/003.png)
