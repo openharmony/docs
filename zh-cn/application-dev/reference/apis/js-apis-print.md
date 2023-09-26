@@ -17,7 +17,7 @@ import print from '@ohos.print';
 
 ### on
 
-on(type: 'block' | 'succceed' | 'fail' | 'cancel', Callback&lt;void&gt;): void
+on(type: 'block', callback: Callback&lt;void&gt;): void
 
 注册打印完成后的监听，使用callback回调。
 
@@ -28,7 +28,7 @@ on(type: 'block' | 'succceed' | 'fail' | 'cancel', Callback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 注册监听，<br/>可选监听字段：block/succeed/fail/cancel <br/>依次表示打印：阻塞/成功/失败/取消 |
+| type | string | 是 | 注册监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
 **示例：**
@@ -42,12 +42,102 @@ print.print(file).then((printTask: print.PrintTask) => {
     printTask.on('block', () => {
         console.log('print state is block');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### on
+
+on(type: 'succeed', callback: Callback&lt;void&gt;): void
+
+注册打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 注册监听，<br/>监听字段：succeed，<br/>表示打印成功 |
+| callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### on
+
+on(type: 'fail', callback: Callback&lt;void&gt;): void
+
+注册打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 注册监听，<br/>监听字段：fail，<br/>表示打印失败 |
+| callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.on('fail', () => {
         console.log('print state is fail');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### on
+
+on(type: 'cancel', callback: Callback&lt;void&gt;): void
+
+注册打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 注册监听，<br/>监听字段：cancel，<br/>表示打印取消 |
+| callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.on('cancel', () => {
         console.log('print state is cancel');
     })
@@ -59,7 +149,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 ### off
 
-off(type: 'block' | 'succceed' | 'fail' | 'cancel', Callback&lt;void&gt;): void
+off(type: 'block', callback?: Callback&lt;void&gt;): void
 
 取消打印完成后的监听，使用callback回调。
 
@@ -70,7 +160,7 @@ off(type: 'block' | 'succceed' | 'fail' | 'cancel', Callback&lt;void&gt;): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 取消监听，<br/>可选监听字段：block/succeed/fail/cancel <br/>依次表示打印：阻塞/成功/失败/取消 |
+| type | string | 是 | 取消监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
 **示例：**
@@ -84,12 +174,102 @@ print.print(file).then((printTask: print.PrintTask) => {
     printTask.off('block', () => {
         console.log('unregister state block');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### off
+
+off(type: 'succeed', callback?: Callback&lt;void&gt;): void
+
+取消打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 取消监听，<br/>监听字段：succeed，<br/>表示打印成功 |
+| callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.off('succeed', () => {
         console.log('unregister state succeed');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### off
+
+off(type: 'fail', callback?: Callback&lt;void&gt;): void
+
+取消打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 取消监听，<br/>监听字段：fail，<br/>表示打印失败 |
+| callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.off('fail', () => {
         console.log('unregister state fail');
     })
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('print err ' + JSON.stringify(error));
+})
+```
+
+### off
+
+off(type: 'cancel', callback?: Callback&lt;void&gt;): void
+
+取消打印完成后的监听，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 取消监听，<br/>监听字段：cancel，<br/>表示打印取消 |
+| callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
+
+**示例：**
+
+```ts
+import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
+let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+print.print(file).then((printTask: print.PrintTask) => {
     printTask.off('cancel', () => {
         console.log('unregister state cancel');
     })
@@ -319,6 +499,8 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 打印机状态的枚举
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Print.PrintFramework
 
 | **名称** | **值** | **说明** |
@@ -334,6 +516,8 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 打印任务状态的枚举
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Print.PrintFramework
 
 | **名称** | **值** | **说明** |
@@ -347,6 +531,8 @@ print.print(file).then((printTask: print.PrintTask) => {
 ## PrintJobSubState
 
 打印任务子状态的枚举
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Print.PrintFramework
 
@@ -375,6 +561,8 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 打印错误代码的枚举
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Print.PrintFramework
 
 | **名称** | **值** | **说明** |
@@ -401,8 +589,8 @@ print.print(file).then((printTask: print.PrintTask) => {
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| entensionId | string | 是 | 表示打印机扩展的扩展ID |
-| vendorID | string | 是 | 表示扩展的供应商ID |
+| extensionId | string | 是 | 表示打印机扩展的扩展ID |
+| vendorId | string | 是 | 表示扩展的供应商ID |
 | vendorName | string | 是 | 表示供应商名称 |
 | vendorIcon | number | 是 | 表示供应商图标 |
 | version | string | 是 | 表示当前打印机扩展的版本 |
@@ -472,7 +660,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
 
 ## startDiscoverPrinter
 
-startDiscoverPrinter(entensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 加载特定的打印机扩展并开始发现打印机，使用callback异步回调。
 
@@ -485,7 +673,7 @@ startDiscoverPrinter(entensionList: Array&lt;string&gt;, callback: AsyncCallback
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| entensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
+| extensionList | Array&lt;string&gt; | 是 | 要加载的打印机扩展列表 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步开始发现打印机之后的回调 |
 
 **示例：**
@@ -1195,7 +1383,7 @@ print.off('jobStateChange', (data: boolean) => {
 
 ## on
 
-on(type: 'extInfoChange', callback: (entensionId: string, info: string) => void): void
+on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void): void
 
 注册打印扩展信息变化事件回调，使用callback回调。
 
@@ -1209,15 +1397,15 @@ on(type: 'extInfoChange', callback: (entensionId: string, info: string) => void)
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | 'extInfoChange' | 是 | 表示打印扩展信息改变 |
-| callback | (entensionId: string, info: string) => void | 是 | 打印扩展信息改变之后的回调 |
+| callback | (extensionId: string, info: string) => void | 是 | 打印扩展信息改变之后的回调 |
 
 **示例：**
 
 ```ts
 import print from '@ohos.print';
 
-print.on('extInfoChange', (entensionId: string, info: string) => {
-    console.log('onExtInfoChange, entensionId : ' + JSON.stringify(entensionId) + ', info : ' + JSON.stringify(info));
+print.on('extInfoChange', (extensionId: string, info: string) => {
+    console.log('onExtInfoChange, entensionId : ' + JSON.stringify(extensionId) + ', info : ' + JSON.stringify(info));
 })
 ```
 
