@@ -12,6 +12,7 @@ hfp模块提供了访问蓝牙呼叫接口的方法。
 
 ```js
 import hfp from '@ohos.bluetooth.hfp';
+import { BusinessError } from '@ohos.base';
 ```
 
 

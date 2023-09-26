@@ -12,6 +12,7 @@ socket模块提供了操作和管理蓝牙socket的方法。
 
 ```js
 import socket from '@ohos.bluetooth.socket';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## socket.sppListen<a name="sppListen"></a>
