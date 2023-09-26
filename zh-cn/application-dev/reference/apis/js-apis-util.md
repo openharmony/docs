@@ -1081,7 +1081,7 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 
 **示例：**
 
-```ts 
+```ts
   let  pro : util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.put(1,8);
