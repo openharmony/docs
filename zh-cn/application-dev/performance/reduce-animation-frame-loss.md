@@ -9,7 +9,7 @@
 ```typescript
 @Entry
 @Component
-struct AttrAnimationExample {
+struct AttrAnimationExample0 {
   @State widthSize: number = 200
   @State heightSize: number = 100
   @State flag: boolean = true
@@ -59,7 +59,7 @@ struct AttrAnimationExample {
 ```typescript
 @Entry
 @Component
-struct AttrAnimationExample {
+struct AttrAnimationExample1 {
   @State widthSize: number = 200
   @State heightSize: number = 100
   @State flag: boolean = true
@@ -90,7 +90,7 @@ struct AttrAnimationExample {
 }
 ```
 
-更详细的API文档请参考：[属性动画](../../reference/arkui-ts/ts-animatorproperty.md)。
+更详细的API文档请参考：[属性动画](../reference/arkui-ts/ts-animatorproperty.md)。
 
 ## 使用系统提供的显式动效API
 
@@ -99,7 +99,7 @@ struct AttrAnimationExample {
 ```typescript
 @Entry
 @Component
-struct AnimateToExample {
+struct AnimateToExample2 {
   @State widthSize: number = 200;
   @State heightSize: number = 100;
   @State flag: boolean = true;
@@ -139,4 +139,4 @@ struct AnimateToExample {
 }
 ```
 
-更详细的API文档请参考：[显式动画](../../reference/arkui-ts/ts-explicit-animation.md)。
+更详细的API文档请参考：[显式动画](../reference/arkui-ts/ts-explicit-animation.md)。

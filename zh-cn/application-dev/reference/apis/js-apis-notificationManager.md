@@ -3026,6 +3026,8 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 应用请求通知使能模态弹窗（Callback形式）。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
@@ -3073,6 +3075,8 @@ class MyAbility extends UIAbility {
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 应用请求通知使能模态弹窗（Promise形式）。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3198,11 +3202,9 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
-
-## notificationManager.requestEnableNotification<sup>10+<sup>
 
 ## notificationManager.isDistributedEnabled
 

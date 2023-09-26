@@ -10,7 +10,6 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 ## 导入模块
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -366,7 +365,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回获取指定卡槽SIM卡的归属PLMN号。                          |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回指定卡槽SIM卡的归属PLMN号。                          |
 
 **错误码：**
 
@@ -481,7 +480,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回获取指定卡槽SIM卡的SPN。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回指定卡槽SIM卡的SPN。                             |
 
 **错误码：**
 
@@ -1025,7 +1024,7 @@ sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-获取活跃SIM卡帐户信息列表。使用callback异步回调。
+获取激活SIM卡帐户信息列表。使用callback异步回调。
 
 >**说明：**
 >
@@ -1039,7 +1038,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回活跃SIM卡帐户信息列表。 |
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 是   | 回调函数。返回激活SIM卡帐户信息列表。 |
 
 **错误码：**
 
@@ -1069,7 +1068,7 @@ sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountI
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-获取活跃SIM卡帐户信息列表。使用Promise异步回调。
+获取激活SIM卡帐户信息列表。使用Promise异步回调。
 
 >**说明：**
 >
@@ -1083,7 +1082,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | 以Promise形式返回激活卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 

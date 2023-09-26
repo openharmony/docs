@@ -941,7 +941,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 
 ## DataAbilityHelper.query
 
-query(uri: string, callback: AsyncCallback<ResultSet>): void
+query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
 predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
 

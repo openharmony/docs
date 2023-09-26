@@ -117,6 +117,43 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 });
 ```
 
+### addAbilityMonitorSync<sup>10+</sup>
+
+addAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+同步添加AbilityMonitor实例
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitorSync(monitor);
+```
+
 ### removeAbilityMonitor<sup>9+</sup>
 
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
@@ -213,6 +250,43 @@ abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor).then(() => {
     console.info('removeAbilityMonitor promise');
 });
+```
+
+### removeAbilityMonitorSync<sup>10+</sup>
+
+removeAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+同步删除已经添加的AbilityMonitor实例
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityMonitorSync(monitor);
 ```
 
 ### waitAbilityMonitor<sup>9+</sup>
@@ -1173,6 +1247,44 @@ abilityDelegator.addAbilityStageMonitor({
 });
 ```
 
+### addAbilityStageMonitorSync<sup>10+</sup>
+
+addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+同步添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
+| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitorSync(monitor);
+```
+
 ### removeAbilityStageMonitor<sup>9+</sup>
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
@@ -1255,6 +1367,43 @@ abilityDelegator.removeAbilityStageMonitor({
 }).then(() => {
     console.info('removeAbilityStageMonitor promise');
 });
+```
+
+### removeAbilityStageMonitorSync<sup>10+</sup>
+
+removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+同步从应用程序内存中删除指定的AbilityStageMonitor对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitorSync(monitor);
 ```
 
 ### waitAbilityStageMonitor<sup>9+</sup>

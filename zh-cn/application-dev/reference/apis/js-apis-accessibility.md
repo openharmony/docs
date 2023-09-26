@@ -611,10 +611,10 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名      | 类型                      | 必填   | 说明                                       |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | 是    | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 是    | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。           |
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。此状态为全局辅助应用启用状态。 |
 
 **示例：**
 
@@ -772,7 +772,7 @@ accessibility.isOpenAccessibility((err: BusinessError<void>, data: boolean) => {
 });
 ```
 
-## accessibility.isOpenAccessibilitySync
+## accessibility.isOpenAccessibilitySync<sup>10+</sup>
 
 isOpenAccessibilitySync(): boolean
 
@@ -854,13 +854,13 @@ accessibility.isOpenTouchGuide((err: BusinessError<void>, data: boolean) => {
 });
 ```
 
-## accessibility.isOpenTouchGuideSync
+## accessibility.isOpenTouchGuideSync<sup>10+</sup>
 
 isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
 **返回值：**
 

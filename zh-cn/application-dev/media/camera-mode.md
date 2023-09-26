@@ -16,7 +16,7 @@ import { BusinessError } from '@ohos.base';
 import image from '@ohos.multimedia.image';
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function cameraModeCase(context: common.Context, surfaceId: string): Promise<void> {
+async function cameraModeCase(context: featureAbility.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
@@ -252,7 +252,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // 获取支持的虚化类型
   let portraitTypes: Array<camera.PortraitEffect> = [];
   try {
-    portraitTypes = portraitSession.getSupportedPortraitEffects();
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    portraitTypes = portraitSession1.getSupportedPortraitEffects();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the portrait effects types. errorCode = ' + err.code);
@@ -262,7 +263,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   }
   // 设置虚化类型
   try {
-    portraitSession.setPortraitEffect(portraitTypes[0]);
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    portraitSession1.setPortraitEffect(portraitTypes[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to set the portrait effects value. errorCode = ' + err.code);
@@ -270,7 +272,8 @@ async function cameraModeCase(context: common.Context, surfaceId: string): Promi
   // 获取已经设置的虚化类型
   let effect: camera.PortraitEffect | undefined = undefined;
   try {
-    effect = portraitSession.getPortraitEffect();
+    let portraitSession1: camera.PortraitSession = portraitSession as camera.PortraitSession;
+    effect = portraitSession1.getPortraitEffect();
   } catch (error) {
     let err = error as BusinessError;
     console.error('Failed to get the portrait effects value. errorCode = ' + err.code);

@@ -22,7 +22,6 @@
       - [HAR](har-package.md)
       - HSP
         - [In-Application HSP Development](in-app-hsp.md)
-        - [Inter-Application HSP Development](cross-app-hsp.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)

@@ -207,7 +207,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -312,7 +312,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)
@@ -396,7 +396,7 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item)
+          Text(item.toString())
             .width('90%')
             .height(160)
             .backgroundColor(0xAFEEEE)

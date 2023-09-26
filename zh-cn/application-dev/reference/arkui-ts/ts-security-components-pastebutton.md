@@ -81,7 +81,9 @@ struct Index {
     Row() {
       Column({space:10}) {
         // 默认参数下，图标、文字、背景都存在
-        PasteButton()
+        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult)=>{
+          console.info("result " + result)
+        })
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
         PasteButton({icon:PasteIconStyle.LINES})
         // 只显示图标+背景

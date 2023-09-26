@@ -6,6 +6,12 @@
   - [访问控制权限校验指导](permission-verify-guidelines.md)
   - [应用权限列表](permission-list.md)
   - [应用权限组列表](permission-group-list.md)
+- 安全控件
+  - [安全控件开发概述](security-component-manager-overview.md)
+  - [安全控件开发指导](security-component-manager-guidelines.md)
+- 数据防泄漏（DLP）
+  - [数据防泄漏（DLP）开发概述](dlp-overview.md)
+  - [数据防泄漏（DLP）开发指导](dlp-guidelines.md)
 - 用户认证
   - [用户认证开发概述](userauth-overview.md)
   - [用户认证开发指导](userauth-guidelines.md)

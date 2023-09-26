@@ -982,7 +982,9 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 **示例：**
 
 ```ts
-function getDeferredPreviewOutput(context: Context, previewProfile: camera.Profile): camera.PreviewOutput {
+import featureAbility from '@ohos.ability.featureAbility';
+
+function getDeferredPreviewOutput(context: featureAbility.Context, previewProfile: camera.Profile): camera.PreviewOutput {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const output: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
   return output;
@@ -1017,8 +1019,8 @@ getSupportedModes(device: CameraDevice): Array\<CameraMode\>
 **示例：**
 
 ```ts
-function getSupportedModes(cameraManager: camera.CameraManager, cameraDevice: camera.CameraDevice): Array<camera.CameraMode> {
-  let cameraModes: Array<camera.CameraMode> = cameraManager.getSupportedModes(cameraDevice);
+function getSupportedModes(modeManager: camera.ModeManager, cameraDevice: camera.CameraDevice): Array<camera.CameraMode> {
+  let cameraModes: Array<camera.CameraMode> = modeManager.getSupportedModes(cameraDevice);
   return cameraModes;
 }
 ```
@@ -3938,7 +3940,7 @@ addDeferredSurface(surfaceId: string): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-async function preview(context: common.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
+async function preview(context: featureAbility.Context, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, photoSurfaceId: string, previewSurfaceId: string): Promise<void> {
   const cameraManager: camera.CameraManager = camera.getCameraManager(context);
   const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo)
   const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);

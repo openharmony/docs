@@ -62,6 +62,8 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
     console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -110,12 +112,55 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
+## usageStatistics.isIdleStateSync<sup>10+<sup>
+
+isIdleStateSync(bundleName: string): boolean
+
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+
+**返回值**：
+
+| 类型                     | 说明                                       |
+| ---------------------- | ---------------------------------------- |
+| boolean | 如果指定的bundleName有效，返回true则表示空闲状态，false则非空闲。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                     |
+| ---------- | ----------------------------     |
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
+
+**示例**：
+```ts
+let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
+```
+
 ## usageStatistics.queryAppGroup
 
 queryAppGroup(): Promise&lt;number&gt;
@@ -149,6 +194,8 @@ queryAppGroup(): Promise&lt;number&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryAppGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -189,6 +236,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
   if(err) {
     console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -196,6 +245,86 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
     console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
   }
 });
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(): number;
+
+查询当前应用的优先级分组。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| number | 返回当前应用优先级分组结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync();
+```
+
+## usageStatistics.queryAppGroupSync<sup>10+<sup>
+
+queryAppGroupSync(bundleName: string): number
+
+查询指定bundleName应用的优先级分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                           | 必填   | 说明                                       |
+| ---------- | ---------------------------- | ---- | ---------------------------------------- |
+| bundleName | string                       | 是    | 应用的bundleName。                           |
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| number | 返回指定bundleName应用优先级分组结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```ts
+let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
 ```
 
 ## usageStatistics.queryBundleStatsInfos
@@ -234,6 +363,8 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -285,6 +416,8 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatistics.BundleStatsMap) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
@@ -330,6 +463,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -385,6 +520,8 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: Array<usageStatistics.BundleStatsInfo>) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -432,6 +569,8 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -486,6 +625,8 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -531,6 +672,8 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
     console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -583,6 +726,8 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
   for (let i = 0; i < res.length; i++) {

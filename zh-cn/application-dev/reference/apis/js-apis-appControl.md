@@ -24,7 +24,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口。。
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -121,6 +121,51 @@ try {
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('setDisposedStatus failed ' + message);
+}
+```
+
+## appControl.setDisposedStatusSync<sup>10+</sup>
+
+setDisposedStatusSync(appId: string, disposedWant: Want): void;
+
+以同步方法设置应用的处置状态。成功返回null，失败抛出对应异常。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型                              | 必填   | 说明                                    |
+| ----------- | ------------------------------- | ---- | --------------------------------------- |
+| appId  | string | 是    | 需要设置处置的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。                      |
+| disposedWant | Want  | 是 | 对应用的处置意图。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId: string = "com.example.myapplication_xxxxx";
+let want: Want = {bundleName: 'com.example.myapplication'};
+
+try {
+  appControl.setDisposedStatusSync(appId, want);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -228,6 +273,56 @@ try {
 }
 ```
 
+## appControl.getDisposedStatusSync<sup>10+</sup>
+
+getDisposedStatusSync(appId: string): Want;
+
+以同步方法获取指定应用已设置的处置状态。成功返回应用的处置状态，失败抛出对应异常。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Want | 返回应用的处置状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId: string = "com.example.myapplication_xxxxx";
+let want: Want;
+
+try {
+    want = appControl.getDisposedStatusSync(appId);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatusSync failed ' + message);
+}
+```
+
 ## appControl.deleteDisposedStatus
 
 deleteDisposedStatus(appId: string): Promise\<void>
@@ -310,6 +405,67 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 17700005 |  The specified app ID is empty string.  |
 
 **示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
+try {
+  appControl.deleteDisposedStatus(appId, (error: BusinessError, data) => {
+    if (error) {
+      console.error('deleteDisposedStatus failed ' + error.message);
+      return;
+    }
+    console.info('deleteDisposedStatus success');
+  });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatus failed ' + message);
+}
+```
+
+## appControl.deleteDisposedStatusSync<sup>10+</sup>
+
+deleteDisposedStatusSync(appId: string) : void
+
+以同步方法删除应用的处置状态。成功返回null，失败抛出对应异常。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId: string = "com.example.myapplication_xxxxx";
+
+try {
+    appControl.deleteDisposedStatusSync(appId);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatusSync failed ' + message);
+}
+```
 
 ## 获取应用的appId
 

@@ -1,7 +1,8 @@
 # 页面路由（router）
 
-
 页面路由指在应用程序中实现不同页面之间的跳转和数据传递。OpenHarmony提供了Router模块，通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)和[页面返回前增加一个询问框](#页面返回前增加一个询问框)几个方面介绍Router模块提供的功能。
+
+Router适应于模块间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
 
 
 ## 页面跳转
@@ -375,9 +376,8 @@ struct MyComponent {
 配置成功后需要在需要跳转的页面中引入命名路由的页面：
 
 ```ts
-// entry/src/main/ets/pages/Index.ets
 import router from '@ohos.router';
-import * as ns from 'library/src/main/ets/Index.ets' // 引入共享包library中的命名路由页面
+const moudel = import('./Index')  // 引入共享包中的命名路由页面
 import { BusinessError } from '@ohos.base';
 @Entry
 @Component

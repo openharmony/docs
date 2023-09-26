@@ -17,11 +17,11 @@ getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在Stage模型下使用。
-
 > **说明：**
 >
 > 此接口从API version 9开始废弃。请使用[getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)替代。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -51,11 +51,11 @@ getMediaLibrary(): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在FA模型下使用。
-
 > **说明：**
 >
 > 此接口从API version 9开始废弃。无替代接口。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
