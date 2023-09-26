@@ -14,7 +14,7 @@ The **relationalStore** module provides the following functions:
 
 ## Modules to Import
 
-```js
+```ts
 import relationalStore from '@ohos.data.relationalStore';
 ```
 
@@ -51,21 +51,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 FA model:
 
 ```js
-
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
-
-// Obtain the context.
-let context = featureAbility.getContext();
+let store: relationalStore.RdbStore | undefined = undefined;
+let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -84,7 +81,6 @@ import { BusinessError } from "@ohos.base";
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let store: relationalStore.RdbStore;
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
@@ -143,18 +139,14 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
-
-// Obtain the context.
-let context = featureAbility.getContext();
+let context = getContext(this);
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-promise.then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   console.info(`Get RdbStore successfully.`)
 }).catch((err: BusinessError) => {
@@ -177,8 +169,7 @@ class EntryAbility extends UIAbility {
       securityLevel: relationalStore.SecurityLevel.S1
     };
 
-    let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-    promise.then(async (rdbStore: relationalStore.RdbStore) => {
+    relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
     }).catch((err: BusinessError) => {
@@ -223,17 +214,14 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
+let context = getContext(this);
 
-// Obtain the context.
-let context = featureAbility.getContext()
-
-relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
+relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  store = null;
+  store = undefined;
   console.info(`Delete RdbStore successfully.`);
 })
 ```
@@ -245,8 +233,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", (err: BusinessError) => {
@@ -254,7 +240,7 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      store = null;
+      store = undefined;
       console.info(`Delete RdbStore successfully.`);
     })
   }
@@ -301,14 +287,10 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
+let context = getContext(this);
 
-// Obtain the context.
-let context = featureAbility.getContext();
-
-let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
-promise.then(()=>{
-  store = null;
+relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
+  store = undefined;
   console.info(`Delete RdbStore successfully.`);
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -322,13 +304,10 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
-    let promise = relationalStore.deleteRdbStore(this.context, "RdbTest.db");
-    promise.then(()=>{
-      store = null;
+    relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
+      store = undefined;
       console.info(`Delete RdbStore successfully.`);
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -374,21 +353,19 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
+let context = getContext(this);
 
-// Obtain the context.
-let context = featureAbility.getContext()
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
+relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
   if (err) {
     console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  store = null;
+  store = undefined;
   console.info(`Delete RdbStore successfully.`);
 })
 ```
@@ -399,8 +376,6 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
-
-let store: relationalStore.RdbStore;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
@@ -413,11 +388,12 @@ class EntryAbility extends UIAbility {
         console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      store = null;
+      store = undefined;
       console.info(`Delete RdbStore successfully.`);
     })
   }
 }
+
 ```
 
 ## relationalStore.deleteRdbStore<sup>10+</sup>
@@ -462,18 +438,15 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
+let context = getContext(this);
 
-// Obtain the context.
-let context = featureAbility.getContext();
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
 
-let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
-promise.then(()=>{
-  store = null;
+relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
+  store = undefined;
   console.info(`Delete RdbStore successfully.`);
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -487,17 +460,14 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from "@ohos.base";
 
-let store: relationalStore.RdbStore;
-
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1
     };
-    let promise = relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
-    promise.then(()=>{
-      store = null;
+    relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
+      store = undefined;
       console.info(`Delete RdbStore successfully.`);
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
@@ -806,7 +776,7 @@ A constructor used to create an **RdbPredicates** object.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 ```
 
@@ -837,23 +807,32 @@ If **inDevices** is specified in **predicates** when **sync()** is called, data 
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceIds: Array<string> = [];
+
+let dmInstance: deviceManager.DeviceManager;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
+  let devices: Array<string> = dmInstance.getAvailableDeviceListSync();     
   for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId;
+    let deviceIds: Array<string> = devices[i].networkId;
   }
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
+
+if(store != undefined) {
+  // Set the RDB store version.
+  (store as relationalStore.RdbStore).version = 3;
+  // Obtain the RDB store version.
+  console.info(`RdbStore version is ${(store as relationalStore.RdbStore).version}`);
+}
 ```
 
 ### inAllDevices
@@ -874,7 +853,7 @@ Sets an **RdbPredicates** to specify all remote devices on the network to connec
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inAllDevices();
 ```
@@ -903,7 +882,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "lisi");
 ```
@@ -933,7 +912,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notEqualTo("NAME", "lisi");
 ```
@@ -956,7 +935,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
@@ -982,7 +961,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
@@ -1008,7 +987,7 @@ Adds the OR condition to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1031,7 +1010,7 @@ Adds the AND condition to the **RdbPredicates**.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1061,7 +1040,7 @@ Sets an **RdbPredicates** to match a string containing the specified value.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1089,7 +1068,7 @@ Sets an **RdbPredicates** to match a string that starts with the specified value
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.beginsWith("NAME", "os");
 ```
@@ -1117,7 +1096,7 @@ Sets an **RdbPredicates** to match a string that ends with the specified value.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1144,7 +1123,7 @@ Sets an **RdbPredicates** to match the field whose value is null.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNull("NAME");
 ```
@@ -1171,7 +1150,7 @@ Sets an **RdbPredicates** to match the field whose value is not null.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNotNull("NAME");
 ```
@@ -1199,7 +1178,7 @@ Sets an **RdbPredicates** to match a string that is similar to the specified val
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1227,7 +1206,7 @@ Sets an **RdbPredicates** to match the specified string.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1256,7 +1235,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1285,7 +1264,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1313,7 +1292,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1341,7 +1320,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1369,7 +1348,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1397,7 +1376,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1424,7 +1403,7 @@ Sets an **RdbPredicates** to match the column with values sorted in ascending or
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByAsc("NAME");
 ```
@@ -1451,7 +1430,7 @@ Sets an **RdbPredicates** to match the column with values sorted in descending o
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByDesc("AGE");
 ```
@@ -1472,7 +1451,7 @@ Sets an **RdbPredicates** to filter out duplicate records.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").distinct();
 ```
@@ -1499,7 +1478,7 @@ Sets an **RdbPredicates** to specify the maximum number of records.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
@@ -1526,7 +1505,7 @@ Sets an **RdbPredicates** to specify the start position of the returned result.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").offsetAs(3);
 ```
@@ -1553,7 +1532,7 @@ Sets an **RdbPredicates** to group rows that have the same value into summary ro
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.groupBy(["AGE", "NAME"]);
 ```
@@ -1581,7 +1560,7 @@ Sets an **RdbPredicates** object to specify the index column.
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.indexedBy("SALARY_INDEX");
 ```
@@ -1609,7 +1588,7 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1637,7 +1616,7 @@ Sets an **RdbPredicates** to match the field with data type **Array&#60;ValueTyp
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -1658,12 +1637,13 @@ Before using the APIs of this class, use [executeSql](#executesql) to initialize
 
 **Example**
 
-```js
-let store: relationalStore.RdbStore;
+```ts
 // Set the RDB store version.
-store.version = 3;
-// Obtain the RDB store version.
-console.info(`RdbStore version is ${store.version}`);
+if(store != undefined) {
+  (store as relationalStore.RdbStore).version = 3;
+  // Obtain the RDB store version.
+  console.info(`RdbStore version is ${store.version}`);
+}
 ```
 
 ### insert
@@ -1693,7 +1673,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 let key1 = "NAME";
@@ -1705,18 +1685,20 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 const valueBucket: ValuesBucket = {
-   key1: value1,
-   key2: value2,
-   key3: value3,
-   key4: value4,
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-store.insert("EMPLOYEE", valueBucket, (err, rowId) => {
-  if (err) {
-    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Insert is successful, rowId = ${rowId}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, (err: BusinessError, rowId: number) => {
+    if (err) {
+      console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Insert is successful, rowId = ${rowId}`);
+  })
+}
 ```
 
 ### insert<sup>10+</sup>
@@ -1747,7 +1729,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 let key1 = "NAME";
@@ -1759,18 +1741,21 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3, 4, 5]);
 const valueBucket: ValuesBucket = {
-   key1: value1,
-   key2: value2,
-   key3: value3,
-   key4: value4,
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
-  if (err) {
-    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Insert is successful, rowId = ${rowId}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE,
+    (err: BusinessError, rowId: number) => {
+      if (err) {
+        console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info(`Insert is successful, rowId = ${rowId}`);
+  })
+}
 ```
 
 ### insert
@@ -1805,7 +1790,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
@@ -1823,12 +1808,13 @@ const valueBucket: ValuesBucket = {
   key3: value3,
   key4: value4,
 };
-let promise = store.insert("EMPLOYEE", valueBucket);
-promise.then((rowId: number) => {
-  console.info(`Insert is successful, rowId = ${rowId}`);
-}).catch((err: BusinessError) => {
-  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket).then((rowId: number) => {
+    console.info(`Insert is successful, rowId = ${rowId}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### insert<sup>10+</sup>
@@ -1864,7 +1850,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
@@ -1882,12 +1868,13 @@ const valueBucket: ValuesBucket = {
   key3: value3,
   key4: value4,
 };
-let promise = store.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then((rowId: number) => {
-  console.info(`Insert is successful, rowId = ${rowId}`);
-}).catch((err: BusinessError) => {
-  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then((rowId: number) => {
+    console.info(`Insert is successful, rowId = ${rowId}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### batchInsert
@@ -1917,7 +1904,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 let key1 = "NAME";
@@ -1956,13 +1943,15 @@ const valueBucket3: ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-store.batchInsert("EMPLOYEE", valueBuckets, (err, insertNum) => {
-  if (err) {
-    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets, (err, insertNum) => {
+    if (err) {
+      console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+  })
+}
 ```
 
 ### batchInsert
@@ -1997,7 +1986,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
@@ -2037,12 +2026,13 @@ const valueBucket3: ValuesBucket = {
 };
 
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-let promise = store.batchInsert("EMPLOYEE", valueBuckets);
-promise.then((insertNum: number) => {
-  console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
-}).catch((err: BusinessError) => {
-  console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).batchInsert("EMPLOYEE", valueBuckets).then((insertNum: number) => {
+    console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
+  }).catch((err: BusinessError) => {
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### update
@@ -2072,7 +2062,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 let key1 = "NAME";
@@ -2091,13 +2081,15 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-store.update(valueBucket, predicates, function (err, rows) {
-  if (err) {
-    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Updated row count: ${rows}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates,(err, rows) => {
+    if (err) {
+      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Updated row count: ${rows}`);
+  })
+}
 ```
 
 ### update<sup>10+</sup>
@@ -2128,7 +2120,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 let key1 = "NAME";
@@ -2147,13 +2139,15 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
-  if (err) {
-    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Updated row count: ${rows}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rows) => {
+    if (err) {
+      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Updated row count: ${rows}`);
+  })
+}
 ```
 
 ### update
@@ -2188,7 +2182,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
@@ -2208,12 +2202,13 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-let promise = store.update(valueBucket, predicates);
-promise.then(async (rows: Number) => {
-  console.info(`Updated row count: ${rows}`);
-}).catch((err: BusinessError) => {
-  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates).then(async (rows: Number) => {
+    console.info(`Updated row count: ${rows}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### update<sup>10+</sup>
@@ -2249,7 +2244,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
 
@@ -2269,12 +2264,13 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-let promise = store.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE);
-promise.then(async (rows: Number) => {
-  console.info(`Updated row count: ${rows}`);
-}).catch((err: BusinessError) => {
-  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE).then(async (rows: Number) => {
+    console.info(`Updated row count: ${rows}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### update
@@ -2309,7 +2305,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
@@ -2329,13 +2325,15 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-store.update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
-  if (err) {
-    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Updated row count: ${rows}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates, (err, rows) => {
+    if (err) {
+      console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Updated row count: ${rows}`);
+  })
+}
 ```
 
 ### update
@@ -2375,7 +2373,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from "@ohos.base";
@@ -2396,12 +2394,13 @@ const valueBucket: ValuesBucket = {
 };
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-let promise = store.update("EMPLOYEE", valueBucket, predicates);
-promise.then(async (rows: Number) => {
-  console.info(`Updated row count: ${rows}`);
-}).catch((err: BusinessError) => {
-  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).update("EMPLOYEE", valueBucket, predicates).then(async (rows: Number) => {
+    console.info(`Updated row count: ${rows}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### delete
@@ -2430,16 +2429,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-store.delete(predicates, (err, rows) => {
-  if (err) {
-    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Delete rows: ${rows}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).delete(predicates, (err, rows) => {
+    if (err) {
+      console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Delete rows: ${rows}`);
+  })
+}
 ```
 
 ### delete
@@ -2473,17 +2474,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
-let promise = store.delete(predicates);
-promise.then((rows: Number) => {
-  console.info(`Delete rows: ${rows}`);
-}).catch((err: BusinessError) => {
-  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).delete(predicates).then((rows: Number) => {
+    console.info(`Delete rows: ${rows}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### delete
@@ -2517,17 +2519,20 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-store.delete("EMPLOYEE", predicates, (err, rows) => {
-  if (err) {
-    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Delete rows: ${rows}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates, (err, rows) => {
+    if (err) {
+      console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Delete rows: ${rows}`);
+  })
+}
 ```
 
 ### delete
@@ -2566,18 +2571,19 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from "@ohos.base";
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
-let promise = store.delete("EMPLOYEE", predicates);
-promise.then((rows: Number) => {
-  console.info(`Delete rows: ${rows}`);
-}).catch((err: BusinessError) => {
-  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).delete("EMPLOYEE", predicates).then((rows: Number) => {
+    console.info(`Delete rows: ${rows}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### query<sup>10+</sup>
@@ -2605,26 +2611,28 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-store.query(predicates, (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### query
@@ -2653,26 +2661,28 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### query
@@ -2706,27 +2716,28 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### query<sup>10+</sup>
@@ -2759,27 +2770,30 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-store.query("EMPLOYEE", predicates, (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### query
@@ -2813,27 +2827,30 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### query
@@ -2872,28 +2889,29 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from "@ohos.base";
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
-let promise = store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### remoteQuery
@@ -2928,39 +2946,44 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceId: string = null;
+let dmInstance: deviceManager.DeviceManager;
+let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  deviceId = devices[0].networkId;
+  if(deviceId != undefined) {
+    deviceId = devices[0].networkId;
+  }
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### remoteQuery
@@ -3000,39 +3023,44 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceId: string = null;
+let dmInstance: deviceManager.DeviceManager;
+let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices = dmInstance.getAvailableDeviceListSync();
-  deviceId = devices[0].networkId;
+  if(devices != undefined) {
+    let devices = dmInstance.getAvailableDeviceListSync();
+    deviceId = devices[0].networkId;
+  }
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet: relationalStore.ResultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### querySql<sup>10+</sup>
@@ -3060,24 +3088,26 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'", (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### querySql
@@ -3106,24 +3136,26 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
-  if (err) {
-    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err, resultSet) => {
+    if (err) {
+      console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  })
+}
 ```
 
 ### querySql
@@ -3157,25 +3189,26 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
-promise.then((resultSet: relationalStore.ResultSet) => {
-  console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-  // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
-  while (resultSet.goToNextRow()) {
-    const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-    const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-    const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-    const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-    console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
-  }
-  // Release the dataset memory.
-  resultSet.close();
-}).catch((err: BusinessError) => {
-  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
+    console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+    // resultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
+    while (resultSet.goToNextRow()) {
+      const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+      const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+      console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+    }
+    // Release the dataset memory.
+    resultSet.close();
+  }).catch((err: BusinessError) => {
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### executeSql<sup>10+</sup>
@@ -3204,15 +3237,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-store.executeSql(SQL_DELETE_TABLE, (err) => {
-  if (err) {
-    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Delete table done.`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, (err) => {
+    if (err) {
+      console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Delete table done.`);
+  })
+}
 ```
 
 ### executeSql
@@ -3242,15 +3277,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
-  if (err) {
-    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Delete table done.`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err) => {
+    if (err) {
+      console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Delete table done.`);
+  })
+}
 ```
 
 ### executeSql
@@ -3285,16 +3322,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-let promise = store.executeSql(SQL_DELETE_TABLE);
-promise.then(() => {
-  console.info(`Delete table done.`);
-}).catch((err: BusinessError) => {
-  console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
+    console.info(`Delete table done.`);
+  }).catch((err: BusinessError) => {
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### getModifyTime<sup>10+</sup>
@@ -3324,15 +3362,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 let PRIKey = [1, 4, 2, 3];
-store.getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime)=> {
-  if (err) {
-    console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  let size = modifyTime.size;
-});
+if(store != undefined) {
+  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
+    if (err) {
+      console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    let size = modifyTime.size;
+  });
+}
 ```
 
 ### getModifyTime<sup>10+</sup>
@@ -3367,15 +3407,19 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
 let PRIKey = [1, 2, 3];
-store.getModifyTime("cloud_tasks", "uuid", PRIKey).then((modifyTime: relationalStore.ModifyTime) => {
-  let size = modifyTime.size;
-}).catch((err: BusinessError) => {
-  console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
-});
+if(store != undefined) {
+  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey)
+    .then((modifyTime: relationalStore.ModifyTime) => {
+      let size = modifyTime.size;
+    })
+    .catch((err: BusinessError) => {
+      console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
+    });
+}
 ```
 
 ### beginTransaction
@@ -3397,11 +3441,12 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = featureAbility.getContext();
+let context = getContext(this);
+
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3414,7 +3459,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3441,11 +3486,11 @@ Commits the executed SQL statements.
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility'
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = featureAbility.getContext();
+let context = getContext(this);
+
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3458,10 +3503,10 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
-     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-     return;
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
+    return;
   }
   store.beginTransaction();
   const valueBucket: ValuesBucket = {
@@ -3485,11 +3530,11 @@ Rolls back the SQL statements that have been executed.
 
 **Example**
 
-```js
-import featureAbility from '@ohos.ability.featureAbility'
+```ts
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = featureAbility.getContext();
+let context = getContext(this);
+
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3502,7 +3547,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
   securityLevel: relationalStore.SecurityLevel.S1
 };
-relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
+relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
   if (err) {
     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3514,11 +3559,13 @@ relationalStore.getRdbStore(this.context, STORE_CONFIG, async (err, store) => {
       key2: value2,
       key3: value3,
       key4: value4,
-  };
-	await store.insert("test", valueBucket);
+    };
+    await store.insert("test", valueBucket);
     store.commit();
   } catch (err) {
-    console.error(`Transaction failed, code is ${err.code},message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Transaction failed, code is ${code},message is ${message}`);
     store.rollBack();
   }
 })
@@ -3549,14 +3596,16 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.backup("dbBackup.db", (err) => {
-  if (err) {
-    console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Backup success.`);
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).backup("dbBackup.db", (err) => {
+    if (err) {
+      console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Backup success.`);
+  })
+}
 ```
 
 ### backup
@@ -3589,15 +3638,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-let promiseBackup = store.backup("dbBackup.db");
-promiseBackup.then(()=>{
-  console.info(`Backup success.`);
-}).catch((err: BusinessError)=>{
-  console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
+  promiseBackup.then(() => {
+    console.info(`Backup success.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### restore
@@ -3625,14 +3676,16 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.restore("dbBackup.db", (err) => {
-  if (err) {
-    console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Restore success.`);
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).restore("dbBackup.db", (err) => {
+    if (err) {
+      console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Restore success.`);
+  })
+}
 ```
 
 ### restore
@@ -3665,15 +3718,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-let promiseRestore = store.restore("dbBackup.db");
-promiseRestore.then(()=>{
-  console.info(`Restore success.`);
-}).catch((err: BusinessError)=>{
-  console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
+  promiseRestore.then(() => {
+    console.info(`Restore success.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### setDistributedTables
@@ -3703,14 +3758,16 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.setDistributedTables(["EMPLOYEE"], (err) => {
-  if (err) {
-    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`SetDistributedTables successfully.`);
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], (err) => {
+    if (err) {
+      console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`SetDistributedTables successfully.`);
+  })
+}
 ```
 
 ### setDistributedTables
@@ -3745,15 +3802,16 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-let promise = store.setDistributedTables(["EMPLOYEE"]);
-promise.then(() => {
-  console.info(`SetDistributedTables successfully.`);
-}).catch((err: BusinessError) => {
-  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
+    console.info(`SetDistributedTables successfully.`);
+  }).catch((err: BusinessError) => {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### setDistributedTables<sup>10+</sup>
@@ -3785,15 +3843,19 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, (err) => {
-  if (err) {
-    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`SetDistributedTables successfully.`);
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, (err) => {
+    if (err) {
+      console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`SetDistributedTables successfully.`);
+  })
+}
 ```
+
+
 
 ### setDistributedTables<sup>10+</sup>
 
@@ -3825,16 +3887,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
-  autoSync: true
-},(err) => {
-  if (err) {
-    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`SetDistributedTables successfully.`);
-})
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+    autoSync: true
+  }, (err) => {
+    if (err) {
+      console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`SetDistributedTables successfully.`);
+  })
+}
 ```
 
 ### setDistributedTables<sup>10+</sup>
@@ -3872,17 +3936,18 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
-  autoSync: true
-});
-promise.then(() => {
-  console.info(`SetDistributedTables successfully.`);
-}).catch((err: BusinessError) => {
-  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
+    autoSync: true
+  }).then(() => {
+    console.info(`SetDistributedTables successfully.`);
+  }).catch((err: BusinessError) => {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### obtainDistributedTableName
@@ -3917,26 +3982,31 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceId: string = null;
+
+let dmInstance: deviceManager.DeviceManager;
+let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   deviceId = devices[0].networkId;
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-store.obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
-  if (err) {
-    console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
-})
+if(store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE", (err, tableName) => {
+    if (err) {
+      console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
+  })
+}
 ```
 
 ### obtainDistributedTableName
@@ -3976,27 +4046,30 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceId: string = null;
+let dmInstance: deviceManager.DeviceManager;
+let deviceId: string | undefined = undefined;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   deviceId = devices[0].networkId;
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
-let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
-promise.then((tableName: string) => {
-  console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
-}).catch((err: BusinessError) => {
-  console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined && deviceId != undefined) {
+  (store as relationalStore.RdbStore).obtainDistributedTableName(deviceId, "EMPLOYEE").then((tableName: string) => {
+    console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
+  }).catch((err: BusinessError) => {
+    console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### sync
@@ -4027,33 +4100,37 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceIds: Array<string> = [];
+
+let dmInstance: deviceManager.DeviceManager;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId;
+      let deviceIds: Array<string> = devices[i].networkId;
   }
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
-  if (err) {
-    console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`Sync done.`);
-  for (let i = 0; i < result.length; i++) {
-    console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
-  }
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
+    if (err) {
+      console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info(`Sync done.`);
+    for (let i = 0; i < result.length; i++) {
+      console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
+    }
+  })
+}
 ```
 
 ### sync
@@ -4089,34 +4166,36 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedDeviceManager';
 import { BusinessError } from "@ohos.base";
 
-let dmInstance: deviceManager.DeviceManager = null;
-let deviceIds: Array<string> = [];
+let dmInstance: deviceManager.DeviceManager;
 
 try {
   dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
-      deviceIds[i] = devices[i].networkId;
+    let deviceIds: Array<string> = devices[i].networkId;
   }
 } catch (err) {
-  console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
 }
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
-let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-promise.then((result: Object[][]) =>{
-  console.info(`Sync done.`);
-  for (let i = 0; i < result.length; i++) {
-    console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
-  }
-}).catch((err: BusinessError) => {
-  console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
-})
+if(store != undefined) {
+  (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
+    console.info(`Sync done.`);
+    for (let i = 0; i < result.length; i++) {
+      console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ### cloudSync<sup>10+</sup>
@@ -4139,16 +4218,18 @@ Manually starts device-cloud synchronization for all distributed tables. This AP
 
 **Example**
 
-```js
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
-  console.info(`Progess: ${progressDetails}`);
-}, (err) =>{
-  if (err) {
-    console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info('Cloud sync succeeded');
-});
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
+    console.info(`Progess: ${progressDetails}`);
+  }, (err) => {
+    if (err) {
+      console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Cloud sync succeeded');
+  });
+}
 ```
 
 ### cloudSync<sup>10+</sup>
@@ -4176,16 +4257,18 @@ Manually starts device-cloud synchronization for all distributed tables. This AP
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-}).then(() => {
+  }).then(() => {
     console.info('Cloud sync succeeded');
-}).catch((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
-});
+  });
+}
 ```
 
 ### cloudSync<sup>10+</sup>
@@ -4209,17 +4292,20 @@ Manually starts device-cloud synchronization of the specified table. This API us
 
 **Example**
 
-```js
+```ts
 const tables = ["table1", "table2"];
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
-  console.info(`Progess: ${progressDetails}`);
-}, (err) => {
-  if (err) {
-    console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info('Cloud sync succeeded');
-});
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`Progess: ${progressDetail}`);
+  }, (err) => {
+    if (err) {
+      console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Cloud sync succeeded');
+  });
+};
 ```
 
 ### cloudSync<sup>10+</sup>
@@ -4248,18 +4334,20 @@ Manually starts device-cloud synchronization of the specified table. This API us
 
 **Example**
 
-```js
+```ts
 import { BusinessError } from "@ohos.base";
 
 const tables = ["table1", "table2"];
 
-store.cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
-}).then(() => {
+  }).then(() => {
     console.info('Cloud sync succeeded');
-}).catch((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}`);
-});
+  });
+};
 ```
 
 ### on('dataChange')
@@ -4274,24 +4362,32 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.                          |
+| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
 | type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to register.                                                  |
 | observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devices: string | undefined = undefined;
+
 try {
-  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-    let devices: string;
-    for (let i = 0; i < devices.length; i++) {
-      console.info(`device= ${devices[i]} data changed`);
-    }
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+      if (devices != undefined) {
+        for (let i = 0; i < devices.length; i++) {
+          console.info(`device= ${devices[i]} data changed`);
+        }
+      }
+    });
   }
-  );
-} catch (err) {
-  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+  catch(err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  }
 }
 ```
 
@@ -4307,23 +4403,31 @@ Registers a data change event listener for the RDB store. When the data in the R
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.         |
+| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
 | observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
-function storeObserver(devices) {
-  for (let i = 0; i < devices.length; i++) {
-    console.info(`device= ${devices[i]} data changed`);
-  }
-}
+
+let devices: string | undefined = undefined;
+
 try {
-  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver => {
+      if (devices != undefined) {
+        for (let i = 0; i < devices.length; i++) {
+          console.info(`device= ${devices[i]} data changed`);
+        }
+      }
+    });
+  }
 } catch (err) {
-  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4354,13 +4458,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 try {
-  store.on('storeObserver', false, (storeObserver) => {
-    console.info(`storeObserver`);
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('storeObserver', false, (storeObserver) => {
+      console.info(`storeObserver`);
     });
+  }
 } catch (err) {
-  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4376,24 +4484,29 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates a data change event.                      |
+| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
 | type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change event. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed. |
 
 **Example**
 
-```
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+```ts
+let devices: string | undefined = undefined;
+
 try {
-  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-    let devices: string;
-    for (let i = 0; i < devices.length; i++) {
-      console.info(`device= ${devices[i]} data changed`);
-    }
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+      if (devices != undefined){
+        for (let i = 0; i < devices.length; i++) {
+          console.info(`device= ${devices[i]} data changed`);
+        }
+      }
+    });
   }
-  );
 } catch (err) {
-  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4409,24 +4522,31 @@ Unregisters the data change event listener.
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
-| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event.      |
+| event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback invoked to return the result.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.<br>If **observer** is not specified, listening for all data change events of the specified **type** will be canceled.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | No| Callback for the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.<br>If **observer** is not specified, listening for all data change events of the specified **type** will be canceled. |
 
 **Example**
 
-```js
+```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devices: string | undefined = undefined;
+
 try {
-  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
-    let devices: string;
-    for (let i = 0; i < devices.length; i++) {
-      console.info(`device= ${devices[i]} data changed`);
-    }
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver) => {
+      if (devices !=  undefined) {
+        for (let i = 0; i < devices.length; i++) {
+          console.info(`device= ${devices[i]} data changed`);
+        }
+      }
+    });
   }
-  );
 } catch (err) {
-  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4442,9 +4562,9 @@ Unregisters the data change event listener.
 
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
-| event        | string          | Yes  | Name of the event to unsubscribe from.                                          |
+| event        | string          | Yes  | Name of the event.                                          |
 | interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event.|
-| observer     | Callback\<void> | No  | Callback for the event to unregister. If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered.|
+| observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
 
 **Error codes**
 
@@ -4457,14 +4577,17 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
+```ts
 try {
-  store.off('storeObserver', false, (storeObserver) => {
-    console.info(`storeObserver`);
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('storeObserver', false, (storeObserver) => {
+      console.info(`storeObserver`);
+    });
   }
-  );
 } catch (err) {
-  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
 
@@ -4493,8 +4616,10 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-store.emit('storeObserver');
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).emit('storeObserver');
+}
 ```
 
 ## ResultSet
@@ -4505,16 +4630,17 @@ Provides APIs to access the result set obtained by querying the RDB store. A res
 
 Obtain the **resultSet** object first.
 
-```js
-let resultSet: relationalStore.ResultSet = null;
+```ts
+let resultSet: relationalStore.ResultSet | undefined = undefined;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
-let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((result: relationalStore.ResultSet) => {
-  resultSet = result;
-  console.info(`resultSet columnNames: ${resultSet.columnNames}`);
-  console.info(`resultSet columnCount: ${resultSet.columnCount}`);
-});
+if(store != undefined) {
+  (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
+    resultSet = result;
+    console.info(`resultSet columnNames: ${resultSet.columnNames}`);
+    console.info(`resultSet columnCount: ${resultSet.columnCount}`);
+  });
+}
 ```
 
 ### Attributes
@@ -4563,11 +4689,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
-const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+  ```ts
+if(resultSet != undefined) {
+  const id = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("ID"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+}
   ```
 
 ### getColumnName
@@ -4600,11 +4728,13 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const id = resultSet.getColumnName(0);
-const name = resultSet.getColumnName(1);
-const age = resultSet.getColumnName(2);
-  ```
+```ts
+if(resultSet != undefined) {
+const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+}
+```
 
 ### goTo
 
@@ -4636,9 +4766,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goTo(1);
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goTo(1);
+}
+```
 
 ### goToRow
 
@@ -4670,9 +4802,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goToRow(5);
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goToRow(5);
+}
+```
 
 ### goToFirstRow
 
@@ -4699,9 +4833,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goToFirstRow();
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goToFirstRow();
+}
+```
 
 ### goToLastRow
 
@@ -4727,9 +4863,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goToLastRow();
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goToLastRow();
+}
+```
 
 ### goToNextRow
 
@@ -4755,9 +4893,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goToNextRow();
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goToNextRow();
+}
+```
 
 ### goToPreviousRow
 
@@ -4783,9 +4923,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-  resultSet.goToPreviousRow();
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).goToPreviousRow();
+}
+```
 
 ### getBlob
 
@@ -4817,9 +4959,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
-  ```
+```ts
+if(resultSet != undefined) {
+const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+}
+```
 
 ### getString
 
@@ -4851,9 +4995,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
-  ```
+```ts
+if(resultSet != undefined) {
+const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+}
+```
 
 ### getLong
 
@@ -4885,9 +5031,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
-  ```
+```ts
+if(resultSet != undefined) {
+const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+ }
+```
 
 ### getDouble
 
@@ -4919,9 +5067,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
-  ```
+```ts
+if(resultSet != undefined) {
+const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+}
+```
 
 ### getAsset<sup>10+</sup>
 
@@ -4953,8 +5103,10 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-const doc = resultSet.getAsset(resultSet.getColumnIndex("DOC"));
+```ts
+if(resultSet != undefined) {
+const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+}
 ```
 
 ### getAssets<sup>10+</sup>
@@ -4987,8 +5139,10 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-```js
-const docs = resultSet.getAssets(resultSet.getColumnIndex("DOCS"));
+```ts
+if(resultSet != undefined) {
+const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+}
 ```
 
 
@@ -5022,9 +5176,11 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 **Example**
 
-  ```js
-const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
-  ```
+```ts
+if(resultSet != undefined) {
+const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+}
+```
 
 ### close
 
@@ -5036,9 +5192,11 @@ Closes this result set.
 
 **Example**
 
-  ```js
-  resultSet.close();
-  ```
+```ts
+if(resultSet != undefined) {
+(resultSet as relationalStore.ResultSet).close();
+}
+```
 
 **Error codes**
 

@@ -3,7 +3,9 @@
 The **inputConsumer** module implements listening for combination key events.
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs provided by this module are system APIs.
 
 
@@ -36,10 +38,17 @@ Enables listening for combination key events. This API uses an asynchronous call
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
+let keyOptions: inputConsumer.KeyOptions = {
+  preKeys: [ leftAltKey ],
+  finalKey: tabKey,
+  isFinalKeyDown: true,
+  finalKeyDownDuration: 0
+};
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
+  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+}
 try {
-  inputConsumer.on("key", {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0}, keyOptions => {
-    console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-  });
+  inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
   console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -67,11 +76,11 @@ Disables listening for combination key events.
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
-// Disable listening for a single callback function.
-let callback = function (keyOptions) {
+// Disable listening for a single callback.
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption, callback);
@@ -83,11 +92,11 @@ try {
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
-// Disable listening for all callback functions.
-let callback = function (keyOptions) {
+// Disable listening for all callbacks.
+let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
-let keyOption = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
   inputConsumer.on("key", keyOption, callback);
   inputConsumer.off("key", keyOption);
@@ -106,7 +115,7 @@ Represents combination key options.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| preKeys              | Array<number>   | Yes   | No| Front key set. The number of front keys ranges from 0 to 4. There is no requirement on the sequence of the keys.|
-| finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback function is triggered by the final key.|
+| preKeys              | Array\<number>   | Yes   | No| Preceding key set. The number of preceding keys ranges from 0 to 4. There is no requirement on the sequence of the keys.|
+| finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback is triggered by the final key.|
 | isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.|
 | finalKeyDownDuration | number  | Yes   |  No| Duration within which the final key is pressed. If the value is **0**, the callback function is triggered immediately. If the value is greater than **0** and the value of **isFinalKeyDown** is **true**, the callback function is triggered when the key press duration is longer than the value of this parameter. If the value of **isFinalKeyDown** is **false**, the callback function is triggered when the duration from key press to key release is less than the value of this parameter.  |

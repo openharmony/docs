@@ -57,11 +57,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md) and [
 
 The [universal events](ts-universal-events-click.md) are supported.
 
-
 ## Example
 
 ### Example 1
-Examples of using **textAlign**, **textOverflow**, **maxLines**, and **lineHeight**
+
 ```ts
 // xxx.ets
 @Entry
@@ -144,7 +143,7 @@ struct TextExample1 {
 ![textExp1](figures/textExp1.png)
 
 ### Example 2
-Example of using **decoration**, **baselineOffset**, **letterSpacing**, and **textCase**:
+
 ```ts
 @Entry
 @Component
@@ -253,14 +252,13 @@ struct TextExample2 {
 
 ### Example 3
 
-Example of using **textShadow**, **heightAdaptivePolicy**, and **TextOverflow.MARQUEE**:
-
 ```ts
 @Entry
 @Component
 struct TextExample {
   build() {
     Column({ space: 8 }) {
+      // Set the text shadow.
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('textShadow')
         .width('80%')
@@ -271,6 +269,7 @@ struct TextExample {
         .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
         .borderWidth(1)
       Divider()
+      // Set how the adaptive height is determined for the text.
       Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the height adaptive policy set')
         .width('80%')
@@ -300,6 +299,7 @@ struct TextExample {
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
       Divider()
+      // Set the text to continuously scroll when text overflow occurs.
       Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the text overflow set marquee')
         .width(300)

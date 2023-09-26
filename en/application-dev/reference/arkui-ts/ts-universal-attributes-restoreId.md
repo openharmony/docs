@@ -33,7 +33,7 @@ struct RestoreIdExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item:number) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -43,7 +43,7 @@ struct RestoreIdExample {
               .borderRadius(10)
               .backgroundColor(Color.Pink)
           }
-        }, item => item)
+        }, (item:number) => (item.toString()))
       }
       .restoreId(1)
     }

@@ -410,8 +410,8 @@ This API is not supported currently.
 **Example**
 
 ```js
-let isEnabled = true;
-settings.enableAirplaneMode(isEnabled, (err) => {
+let isEnabled :boolean = true;
+settings.enableAirplaneMode(isEnabled, (err:Error) => {
     if (err) {
         console.log('Failed to enable AirplaneMode.');
         return;
@@ -445,10 +445,10 @@ This API is not supported currently.
 **Example**
 
 ```js
-let isEnabled = true;
+let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled).then(() => {
   console.log('Succeeded in enabling AirplaneMode.');
-}).catch((err) => {
+}).catch((err:Error) => {
   console.log(`Failed to enable AirplaneMode. Cause: ${err}`);
 })
 ```
@@ -470,7 +470,7 @@ Checks whether the application can be displayed in a floating window. This API u
 **Example**
 
 ```js
-settings.canShowFloating((status) => {
+settings.canShowFloating((status:boolean) => {
     console.log('Checks whether a specified application can show as float window.');
 });
 ```
@@ -492,7 +492,7 @@ Checks whether the application can be displayed in a floating window. This API u
 **Example**
 
 ```js
-settings.canShowFloating().then((status) => {
+settings.canShowFloating().then((status:boolean) => {
     console.log('Checks whether a specified application can show as float window.');
 });
 ```
@@ -521,7 +521,7 @@ Obtains the URI of a data item.
 
 ```js
 // Obtain the URI of a data item.
-let uriVar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
 ## setting.getURI<sup>(deprecated)</sup>
@@ -546,7 +546,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 **Example**
 
 ```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
     console.log(`callback:uri -> ${JSON.stringify(uri)}`)
 })
 ```
@@ -578,7 +578,7 @@ Obtains the URI of a data item. This API uses a promise to return the result.
 **Example**
 
 ```js
-settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => {
     console.log(`promise:uri -> ${JSON.stringify(uri)}`)
 })
 ```
@@ -666,9 +666,9 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uri:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error, value:string) => {
     if (err) {
         console.error(`Failed to get the setting. ${err.message} `);
         return;
@@ -709,9 +709,9 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uri:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value:string) => {
     console.log(`promise:value -> ${JSON.stringify(value)}`)
 });
 ```
@@ -750,9 +750,9 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 import featureAbility from '@ohos.ability.featureAbility';
 
 // Obtain the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uri:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+let value:string = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.setValueSync<sup>(deprecated)</sup>
@@ -793,7 +793,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 import featureAbility from '@ohos.ability.featureAbility';
 
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update the value of the data item.)
-let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let uri:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-let ret = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+let ret:string = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```

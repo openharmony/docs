@@ -72,13 +72,13 @@ struct PageTransitionExample1 {
   // Customize the transition process.
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale1 = 1
-        this.opacity1 = progress
+        this.opacity1 = progress as number
       }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale1 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale1 = 1 - (progress as number)
         this.opacity1 = 1
       }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
   }
@@ -103,13 +103,13 @@ struct AExample {
   // Customize the transition process.
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale2 = 1
-        this.opacity2 = progress
+        this.opacity2 = progress as number
       }) // The onEnter callback is triggered frame by frame during the entrance process. The input parameter is the normalized progress of the animation (0% to 100%).
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale2 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale2 = 1 - (progress as number)
         this.opacity2 = 1
       }) // The onExit callback is triggered frame by frame during the exit process. The input parameter is the normalized progress of the animation (0% to 100%).
   }

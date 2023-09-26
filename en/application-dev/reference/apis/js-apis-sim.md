@@ -9,7 +9,8 @@ The **sim** module provides basic SIM card management functions. You can obtain 
 
 ## Modules to Import
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 ```
 
@@ -26,12 +27,15 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. Boolean value indicating whether the SIM card in the specified slot is activated. The value **true** means yes and the value **false** means no.                            |
 
 **Example**
 
-```js
-sim.isSimActive(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.isSimActive(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -59,11 +63,13 @@ Checks whether the SIM card in the specified slot is activated. This API uses a 
 
 **Example**
 
-```js
-let promise = sim.isSimActive(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -81,12 +87,15 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 | Name  | Type                       | Mandatory| Description      |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: card slot not set or service not unavailable|
 
 **Example**
 
-```js
-sim.getDefaultVoiceSlotId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -104,15 +113,17 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | Promise used to return the result.|
+| Promise\<number\> | Promise used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: card slot not set or service not unavailable|
 
 **Example**
 
-```js
-let promise = sim.getDefaultVoiceSlotId();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -130,11 +141,11 @@ Checks whether the application (caller) has been granted the operator permission
 | Name  | Type                    | Mandatory| Description                                    |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -146,8 +157,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.hasOperatorPrivileges(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasOperatorPrivileges(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -174,7 +188,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -186,11 +200,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.hasOperatorPrivileges(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -212,7 +228,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -225,8 +241,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getISOCountryCodeForSim(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getISOCountryCodeForSim(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -254,7 +273,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -267,11 +286,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getISOCountryCodeForSim(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -281,7 +302,7 @@ promise.then(data => {
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the public land mobile network \(PLMN\) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the home public land mobile network \(PLMN\) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -290,11 +311,11 @@ Obtains the public land mobile network \(PLMN\) ID of the SIM card in the specif
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. Home PLMN number of the SIM card in the specified slot.                         |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -307,8 +328,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimOperatorNumeric(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimOperatorNumeric(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -318,7 +342,7 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 
 getSimOperatorNumeric\(slotId: number\): Promise\<string\>
 
-Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the home PLMN ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -336,7 +360,7 @@ Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promi
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -349,11 +373,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimOperatorNumeric(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -372,11 +398,11 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. SPN of the SIM card in the specified slot.                            |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -389,8 +415,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimSpn(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimSpn(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -418,7 +447,7 @@ Obtains the SPN of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -431,11 +460,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimSpn(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -458,7 +489,7 @@ Obtains the state of the SIM card in the specified slot. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -470,8 +501,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimState(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimState(0, (err: BusinessError, data: sim.SimState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -499,7 +533,7 @@ Obtains the state of the SIM card in the specified slot. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -511,11 +545,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimState(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimState(0).then((data: sim.simstate) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -537,7 +573,7 @@ Obtains the type of the SIM card in the specified slot. This API uses an asynchr
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -550,8 +586,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getCardType(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getCardType(0, (err: BusinessError, data: sim.CardType) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -579,7 +618,7 @@ Obtains the type of the SIM card in the specified slot. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -592,11 +631,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getCardType(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -619,7 +660,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -631,8 +672,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.hasSimCard(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasSimCard(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -660,7 +704,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses a 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -672,11 +716,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.hasSimCard(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -685,7 +731,7 @@ promise.then(data => {
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
-Obtains SIM card account information. This API uses an asynchronous callback to return the result.
+Obtains account information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -700,11 +746,11 @@ Obtains SIM card account information. This API uses an asynchronous callback to 
 | Name  | Type                                               | Mandatory| Description                                  |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo10)\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -718,8 +764,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimAccountInfo(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimAccountInfo(0, (err:BusinessError , data: sim.IccAccountInfo) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -729,7 +778,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
-Obtains SIM card account information. This API uses a promise to return the result.
+Obtains account information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 >**NOTE**
 >
@@ -749,11 +798,11 @@ Obtains SIM card account information. This API uses a promise to return the resu
 
 | Type                                        | Description                                      |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | Promise used to return the result.|
+| Promise<[IccAccountInfo](#iccaccountinfo10)\> | Promise used to return the result.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -767,11 +816,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimAccountInfo(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -794,11 +845,11 @@ Obtains the account information list of the active SIM card. This API uses an as
 
 | Name  | Type                                                       | Mandatory| Description      |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -810,8 +861,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getActiveSimAccountInfoList((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -835,11 +889,11 @@ Obtains the account information list of the active SIM card. This API uses a pro
 
 | Type                                                | Description                                          |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Promise used to return the result.|
+| Promise<Array<[IccAccountInfo](#iccaccountinfo10)\>\> | Promise used to return the result.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -850,11 +904,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getActiveSimAccountInfoList();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -880,7 +936,7 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -896,8 +952,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.setDefaultVoiceSlotId(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setDefaultVoiceSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -929,7 +988,7 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -945,11 +1004,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.setDefaultVoiceSlotId(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -976,7 +1037,7 @@ Sets a display name for the SIM card in the specified slot. This API uses an asy
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -991,9 +1052,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let name = "ShowName";
-sim.setShowName(0, name, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let name: string = "ShowName";
+sim.setShowName(0, name, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1025,7 +1089,7 @@ Sets a display name for the SIM card in the specified slot. This API uses a prom
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1040,12 +1104,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let name = "ShowName";
-let promise = sim.setShowName(0, name);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let name: string = "ShowName";
+sim.setShowName(0, name).then(() => {
     console.log(`setShowName success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1067,11 +1133,11 @@ Obtains the name of the SIM card in the specified slot. This API uses an asynchr
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1086,8 +1152,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getShowName(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowName(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1119,7 +1188,7 @@ Obtains the name of the SIM card in the specified slot. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1134,11 +1203,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getShowName(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1165,7 +1236,7 @@ Sets a display number for the SIM card in the specified slot. This API uses an a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1180,9 +1251,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let number = '+861xxxxxxxxxx';
-sim.setShowNumber(0, number, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let number: string = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1215,7 +1289,7 @@ Sets a display number for the SIM card in the specified slot. This API uses a pr
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1230,12 +1304,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let number = '+861xxxxxxxxxx';
-let promise = sim.setShowNumber(0, number);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let number: string = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number).then(() => {
     console.log(`setShowNumber success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1257,11 +1333,11 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | Name  | Type                       | Mandatory| Description                                  |
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1276,8 +1352,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getShowNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1309,7 +1388,7 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1324,11 +1403,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getShowNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1354,7 +1435,7 @@ Activates a SIM card in a specified card slot. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1369,8 +1450,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.activateSim(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.activateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1402,7 +1486,7 @@ Activates the SIM card in the specified slot. This API uses a promise to return 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1417,11 +1501,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.activateSim(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1447,7 +1533,7 @@ Disables the SIM card in the specified slot. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1462,8 +1548,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.deactivateSim(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.deactivateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1495,7 +1584,7 @@ Disables the SIM card in the specified slot. This API uses a promise to return t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1510,11 +1599,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.deactivateSim(0);
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1541,7 +1632,7 @@ Sets the lock status of the SIM card in the specified slot. This API uses an asy
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1557,13 +1648,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let lockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
     password: "1234",
     state: sim.LockState.LOCK_OFF
 };
-sim.setLockState(0, lockInfo, (err, data) => {
+sim.setLockState(0, lockInfo, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1596,7 +1690,7 @@ Sets the lock status of the SIM card in the specified slot. This API uses a prom
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1612,16 +1706,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let lockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
     password: "1234",
     state: sim.LockState.LOCK_OFF
 };
-let promise = sim.setLockState(0, lockInfo);
-promise.then(data => {
+sim.setLockState(0, lockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1648,7 +1744,7 @@ Obtains the lock status of the SIM card in the specified slot. This API uses an 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1664,8 +1760,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getLockState(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getLockState(0, 1, (err: BusinessError, data: sim.LockState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1698,7 +1797,7 @@ Obtains the lock status of the SIM card in the specified slot. This API uses a p
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1714,11 +1813,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getLockState(0, 1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1746,7 +1847,7 @@ Changes the PIN of the SIM card in the specified slot. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1762,8 +1863,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.alterPin(0, "1234", "0000", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1797,7 +1901,7 @@ Changes the PIN of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1813,11 +1917,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.alterPin(0, "1234", "0000");
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1845,7 +1951,7 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses an asynchrono
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1861,8 +1967,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.alterPin2(0, "1234", "0000", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin2(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1896,7 +2005,7 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1912,11 +2021,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.alterPin2(0, "1234", "0000");
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1943,7 +2054,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1959,9 +2070,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let pin = '1234';
-sim.unlockPin(0, pin, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin: string = '1234';
+sim.unlockPin(0, pin, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1994,7 +2108,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2010,12 +2124,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let pin = '1234';
-let promise = sim.unlockPin(0, pin);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin: string = '1234';
+sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2043,7 +2159,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2059,10 +2175,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let puk = '1xxxxxxx';
-let newPin = '1235';
-sim.unlockPuk(0, newPin, puk, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk: string = '1xxxxxxx';
+let newPin: string = '1235';
+sim.unlockPuk(0, newPin, puk, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2096,7 +2215,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2112,13 +2231,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let puk = '1xxxxxxx';
-let newPin = '1235';
-let promise = sim.unlockPuk(0, newPin, puk);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk: string = '1xxxxxxx';
+let newPin: string = '1235';
+sim.unlockPuk(0, newPin, puk).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2145,7 +2266,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2161,9 +2282,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let pin2 = '1234';
-sim.unlockPin2(0, pin2, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin2: string = '1234';
+sim.unlockPin2(0, pin2, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2196,7 +2320,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2212,12 +2336,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let pin2='1234';
-let promise = sim.unlockPin2(0, pin2);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let pin2: string = '1234';
+sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2245,7 +2371,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2261,10 +2387,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let puk2 = '1xxxxxxx';
-let newPin2 = '1235';
-sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk2: string = '1xxxxxxx';
+let newPin2: string = '1235';
+sim.unlockPuk2(0, newPin2, puk2, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2298,7 +2427,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses a promise t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2314,13 +2443,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let puk2 = '1xxxxxxx';
-let newPin2 = '1235';
-let promise = sim.unlockPuk2(0, newPin2, puk2);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let puk2: string = '1xxxxxxx';
+let newPin2: string = '1235';
+sim.unlockPuk2(0, newPin2, puk2).then((data: sim.LockStatusResponse) => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2341,8 +2472,10 @@ Obtains the number of card slots.
 
 **Example**
 
-```js
-console.log("Result: "+ sim.getMaxSimCount())
+```ts
+import sim from '@ohos.telephony.sim';
+
+console.log("Result: "+ sim.getMaxSimCount());
 ```
 
 ## sim.getSimIccId<sup>7+</sup>
@@ -2366,7 +2499,7 @@ Obtains the ICCID of the SIM card in the specified slot. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2381,8 +2514,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimIccId(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimIccId(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2414,7 +2550,7 @@ Obtains the ICCID of the SIM card in the specified slot. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2429,11 +2565,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimIccId(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2459,7 +2597,7 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2474,8 +2612,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getVoiceMailIdentifier(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailIdentifier(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2507,7 +2648,7 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2522,11 +2663,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getVoiceMailIdentifier(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2552,7 +2695,7 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2567,8 +2710,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getVoiceMailNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2600,7 +2746,7 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2615,11 +2761,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getVoiceMailNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2648,7 +2796,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2664,8 +2812,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2699,7 +2850,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2715,11 +2866,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2745,7 +2898,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses an async
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2760,8 +2913,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimTelephoneNumber(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimTelephoneNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2793,7 +2949,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses a promis
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2808,11 +2964,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimTelephoneNumber(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2838,7 +2996,7 @@ Obtains the group identifier level 1 (GID1) of the SIM card in the specified slo
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2853,8 +3011,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getSimGid1(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimGid1(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2886,7 +3047,7 @@ Obtains the GID1 of the SIM card in the specified slot. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2901,11 +3062,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getSimGid1(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2931,7 +3094,7 @@ Obtains the international mobile subscriber identity (IMSI) of the SIM card in t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2946,8 +3109,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getIMSI(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getIMSI(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2979,7 +3145,7 @@ Obtains the IMSI of the SIM card in the specified slot. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2994,11 +3160,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getIMSI(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3024,7 +3192,7 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3038,8 +3206,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getOperatorConfigs(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getOperatorConfigs(0, (err: BusinessError, data: Array<sim.OperatorConfig>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3071,7 +3242,7 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3085,11 +3256,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.getOperatorConfigs(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3116,7 +3289,7 @@ Queries contact numbers of the SIM card in the specified slot. This API uses an 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3132,8 +3305,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.queryIccDiallingNumbers(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.queryIccDiallingNumbers(0, 1, (err: BusinessError, data: Array<sim.DiallingNumbersInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3166,7 +3342,7 @@ Queries contact numbers of the SIM card in the specified slot. This API uses a p
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3182,11 +3358,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.queryIccDiallingNumbers(0, 1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3195,7 +3373,7 @@ promise.then(data => {
 
 addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback\<void\>\): void
 
-Adds contact numbers for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Adds contact numbers to the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3214,7 +3392,7 @@ Adds contact numbers for the SIM card in the specified slot. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3230,13 +3408,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3246,7 +3427,7 @@ sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersIno
 
 addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo\): Promise\<void\>
 
-Adds contact numbers for the SIM card in the specified slot. This API uses a promise to return the result.
+Adds contact numbers to the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3270,7 +3451,7 @@ Adds contact numbers for the SIM card in the specified slot. This API uses a pro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3286,15 +3467,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`addIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3322,7 +3505,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3338,14 +3521,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3379,7 +3565,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3395,15 +3581,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx"
 };
-let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`delIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3431,7 +3619,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3447,14 +3635,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123,
     pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3488,7 +3679,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3504,16 +3695,18 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let diallingNumbersInof = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
     recordNumber: 123
 };
-let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(() => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof).then(() => {
     console.log(`updateIccDiallingNumbers success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3540,7 +3733,7 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3555,8 +3748,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.sendEnvelopeCmd(0, "ls", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendEnvelopeCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3589,7 +3785,7 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3604,11 +3800,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.sendEnvelopeCmd(0, "ls");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3635,7 +3833,7 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3650,8 +3848,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.sendTerminalResponseCmd(0, "ls", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendTerminalResponseCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3684,7 +3885,7 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3699,11 +3900,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = sim.sendTerminalResponseCmd(0, "ls");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3731,7 +3934,7 @@ Unlocks the SIM card in the specified slot. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3747,12 +3950,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let persoLockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
     password: "1234"
 };
-sim.unlockSimLock(0, persoLockInfo, (err, data) => {
+sim.unlockSimLock(0, persoLockInfo, (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3785,7 +3991,7 @@ Unlocks the SIM card in the specified slot. This API uses a promise to return th
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3801,15 +4007,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let persoLockInfo = {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
     password: "1234"
 };
-let promise = sim.unlockSimLock(0, persoLockInfo);
-promise.then(data => {
+sim.unlockSimLock(0, persoLockInfo).then((data: sim.LockStatusResponse) => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3831,7 +4039,7 @@ Obtains the opkey of the SIM card in the specified slot. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3844,9 +4052,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    sim.getOpKey(0, (err, data) => {
+    sim.getOpKey(0, (err: BusinessError, data: string) => {
     if (err) {
       console.log("getOpKey failed, err: " + JSON.stringify(err));
     } else {
@@ -3881,7 +4092,7 @@ Obtains the opkey of the SIM card in the specified slot. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3894,9 +4105,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    let data = sim.getOpKey(0);
+    let data: Promise<string> = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
@@ -3920,7 +4134,7 @@ Obtains the OpName of the SIM card in the specified slot. This API uses an async
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3933,9 +4147,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    sim.getOpName(0, (err, data) => {
+    sim.getOpName(0, (err: BusinessError, data: string) => {
     if (err) {
       console.log("getOpName failed, err: " + JSON.stringify(err));
     } else {
@@ -3970,7 +4187,7 @@ Obtains the OpName of the SIM card in the specified slot. This API uses a promis
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -3983,9 +4200,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 try {
-    let data = sim.getOpName(0);
+    let data: Promise<string> = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
@@ -4008,7 +4228,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4022,8 +4242,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-sim.getDefaultVoiceSimId((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
+sim.getDefaultVoiceSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4044,7 +4267,7 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -4057,11 +4280,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+import sim from '@ohos.telephony.sim';
+
 let promise = sim.getDefaultVoiceSimId();
-promise.then(data => {
+promise.then((data: number) => {
     console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4187,11 +4413,9 @@ Defines the personalized lock information.
 | lockType | [PersoLockType](#persolocktype8) |  Yes | Personalized lock type.|
 | password | string                           |  Yes | Password.       |
 
-## IccAccountInfo<sup>7+</sup>
+## IccAccountInfo<sup>10+</sup>
 
 ICC account information.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -4215,8 +4439,8 @@ Defines the carrier configuration.
 
 | Name | Type  | Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| field | string |  Yes | Field.|
-| value | string |  Yes | Value.  |
+| field | string |  Yes | Field name.|
+| value | string |  Yes | Field value.  |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 

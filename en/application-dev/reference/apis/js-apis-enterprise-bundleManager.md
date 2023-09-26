@@ -12,7 +12,7 @@ The **bundleManager** module provides APIs for bundle management, including addi
 
 ## Modules to Import
 
-```js
+```ts
 import bundleManager from '@ohos.enterprise.bundleManager';
 ```
 
@@ -47,12 +47,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -95,12 +96,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -148,16 +150,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding allowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -193,12 +197,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -241,12 +246,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -294,16 +300,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing allowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -338,8 +346,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -384,8 +393,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -435,15 +445,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting allowed install bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -479,12 +491,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -527,12 +540,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -580,16 +594,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -625,12 +641,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -673,12 +690,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -726,16 +744,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed install bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -770,8 +790,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -816,10 +837,11 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
@@ -867,15 +889,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedInstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -911,12 +935,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -959,12 +984,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1012,16 +1038,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed uninstall bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to add disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1057,12 +1085,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -1105,12 +1134,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -1158,16 +1188,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed uninstall bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1202,8 +1234,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1248,8 +1281,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1299,15 +1333,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((result) => {
   console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1343,8 +1379,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1389,8 +1426,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1435,8 +1473,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1482,8 +1521,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1534,15 +1574,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.info('Succeeded in uninstalling bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
@@ -1579,12 +1621,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
 
 bundleManager.install(wantTemp, hapFilePaths, (err) => {
   if (err) {
@@ -1627,13 +1670,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
-let installParam = {
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let installParam: bundleManager.InstallParam = {
   userId: 100,
   installFlag: 1,
 };
@@ -1684,16 +1728,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let hapFilePaths = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap']
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
   console.info('Succeeded in installing bundles');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

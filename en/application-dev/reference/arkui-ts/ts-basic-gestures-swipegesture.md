@@ -59,9 +59,11 @@ struct SwipeGestureExample {
       // The gesture event is triggered by swiping vertically with one finger.
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
-        .onAction((event: GestureEvent) => {
-          this.speed = event.speed
-          this.rotateAngle = event.angle
+        .onAction((event?: GestureEvent) => {
+          if (event) {
+            this.speed = event.speed
+            this.rotateAngle = event.angle
+          }
         })
       )
     }.width('100%')

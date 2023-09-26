@@ -8,12 +8,14 @@
     - [@ohos.app.ability.AbilityConstant (AbilityConstant)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
+    - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.common (Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](js-apis-app-ability-extensionAbility.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](js-apis-app-ability-serviceExtensionAbility.md)
+    - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](js-apis-app-ability-shareExtensionAbility.md)
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](js-apis-app-ability-uiExtensionAbility.md)
@@ -216,7 +218,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -226,9 +228,6 @@
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
   - [@ohos.window (Window)](js-apis-window.md)
-  - webgl
-    - [WebGL](js-apis-webgl.md)
-    - [WebGL2](js-apis-webgl2.md)
 
 - Multimedia
   - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control)](js-apis-app-ability-MediaControlExtensionAbility.md)
@@ -284,6 +283,7 @@
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
+  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.backup (Backup and Restoration)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (Device-Cloud Synchronization)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
@@ -304,6 +304,7 @@
 
 - AI
   - [@ohos.ai.mindSporeLite (Inference)](js-apis-mindSporeLite.md)
+  - [@ohos.ai.intelligentVoice (Intelligent Voice)](js-apis-intelligentVoice.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -396,7 +397,7 @@
   - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.cooperate (Screen Hopping)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
-  - [@ohos.deviceStatus.dragInteraction (Drag)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction (Drag Interaction)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
@@ -405,7 +406,6 @@
   - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](js-apis-multimodalinput-gestureevent.md)
   - [@ohos.multimodalInput.inputConsumer (Input Consumer)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (Input Device)](js-apis-inputdevice.md)
-  - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent (Input Event)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (Key Event Injection)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (Input Monitor)](js-apis-inputmonitor.md)
@@ -500,6 +500,7 @@
   - [@ohos.geolocation (Geolocation)](js-apis-geolocation.md)
   - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
   - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)](js-apis-cooperate.md)
   - [@ohos.prompt (Prompt)](js-apis-prompt.md)
   - [@ohos.reminderAgent (Reminder Agent)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)

@@ -36,7 +36,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct Matrix2DScaleX {
   @State message: string = 'Matrix2D ScaleX'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -50,7 +50,7 @@ struct Matrix2DScaleX {
           .fontWeight(FontWeight.Bold)
         Button("Set scaleX")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             this.printMatrix(this.message, matrix)
           })
@@ -71,7 +71,7 @@ struct Matrix2DScaleX {
 struct Matrix2DScaleY {
   @State message: string = 'Matrix2D ScaleY'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -85,7 +85,7 @@ struct Matrix2DScaleY {
           .fontWeight(FontWeight.Bold)
         Button("Set scaleY")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleY = 1
             this.printMatrix(this.message, matrix)
           })
@@ -106,7 +106,7 @@ struct Matrix2DScaleY {
 struct Matrix2DRotateX {
   @State message: string = 'Matrix2D RotateX'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -120,7 +120,7 @@ struct Matrix2DRotateX {
           .fontWeight(FontWeight.Bold)
         Button("Set rotateX")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.rotateX = Math.sin(45 / Math.PI)
             this.printMatrix(this.message, matrix)
           })
@@ -141,7 +141,7 @@ struct Matrix2DRotateX {
 struct Matrix2DRotateY {
   @State message: string = 'Matrix2D RotateY'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -155,7 +155,7 @@ struct Matrix2DRotateY {
           .fontWeight(FontWeight.Bold)
         Button("Set rotateY")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.rotateY = Math.cos(45 / Math.PI)
             this.printMatrix(this.message, matrix)
           })
@@ -176,7 +176,7 @@ struct Matrix2DRotateY {
 struct Matrix2DTranslateX {
   @State message: string = 'Matrix2D TranslateX'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -190,7 +190,7 @@ struct Matrix2DTranslateX {
           .fontWeight(FontWeight.Bold)
         Button("Set translateX")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.translateX = 10
             this.printMatrix(this.message, matrix)
           })
@@ -211,7 +211,7 @@ struct Matrix2DTranslateX {
 struct Matrix2DTranslateY {
   @State message: string = 'Matrix2D TranslateY'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -225,7 +225,7 @@ struct Matrix2DTranslateY {
           .fontWeight(FontWeight.Bold)
         Button("Set translateY")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.translateY = 10
             this.printMatrix(this.message, matrix)
           })
@@ -262,7 +262,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct Matrix2DIdentity {
   @State message: string = 'Matrix2D Identity'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -276,7 +276,7 @@ struct Matrix2DIdentity {
           .fontWeight(FontWeight.Bold)
         Button("matrix identity")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix = matrix.identity()
             this.printMatrix(this.message, matrix)
           })
@@ -311,7 +311,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct Matrix2DInvert {
   @State message: string = 'Matrix2D Invert'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -325,7 +325,7 @@ struct Matrix2DInvert {
           .fontWeight(FontWeight.Bold)
         Button("matrix invert")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 2
             matrix.scaleY = 1
             matrix.rotateX = 0
@@ -374,7 +374,7 @@ This API is deprecated since API version 10.
 struct Matrix2DMultiply {
   @State message: string = 'Matrix2D Multiply'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -388,14 +388,14 @@ struct Matrix2DMultiply {
           .fontWeight(FontWeight.Bold)
         Button("matrix multiply")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             matrix.scaleY = 1
             matrix.rotateX = 0
             matrix.rotateY = 0
             matrix.translateX = 0
             matrix.translateY = 0
-            var other: Matrix2D = new Matrix2D()
+            let other: Matrix2D = new Matrix2D()
             other.scaleX = 2
             other.scaleY = 2
             other.rotateX = 0
@@ -445,7 +445,7 @@ This API is deprecated since API version 10. You are advised to use [rotate](#ro
 struct Matrix2DRotate {
   @State message: string = 'Matrix2D Rotate'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -459,7 +459,7 @@ struct Matrix2DRotate {
           .fontWeight(FontWeight.Bold)
         Button("matrix rotate")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             matrix.scaleY = 1
             matrix.rotateX = 0
@@ -508,7 +508,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 struct Matrix2DRotate {
   @State message: string = 'Matrix2D Rotate'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -522,7 +522,7 @@ struct Matrix2DRotate {
           .fontWeight(FontWeight.Bold)
         Button("matrix rotate")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             matrix.scaleY = 1
             matrix.rotateX = 0
@@ -570,7 +570,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct Matrix2DTranslate {
   @State message: string = 'Matrix2D Translate'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -584,7 +584,7 @@ struct Matrix2DTranslate {
           .fontWeight(FontWeight.Bold)
         Button("matrix translate")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             matrix.scaleY = 1
             matrix.rotateX = 0
@@ -632,7 +632,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct Matrix2DScale {
   @State message: string = 'Matrix2D Scale'
 
-  printMatrix(title, matrix) {
+  printMatrix(title: string, matrix: Matrix2D) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
                 ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
@@ -646,7 +646,7 @@ struct Matrix2DScale {
           .fontWeight(FontWeight.Bold)
         Button("matrix scale")
           .onClick(() => {
-            var matrix : Matrix2D = new Matrix2D()
+            let matrix : Matrix2D = new Matrix2D()
             matrix.scaleX = 1
             matrix.scaleY = 1
             matrix.rotateX = 0

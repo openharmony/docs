@@ -14,7 +14,9 @@ Since API version 9, child components are supported when **type** is set to **"c
 
 ## APIs
 
-**API 1**: XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+### XComponent
+
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
@@ -25,7 +27,9 @@ Since API version 9, child components are supported when **type** is set to **"c
 | libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when **type** is **"surface"**.|
 | controller  | [XComponentcontroller](#xcomponentcontroller) | No  | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when the component type is **"surface"**.|
 
-**API 2**: XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})<sup>10+</sup>
+### XComponent<sup>10+</sup>
+
+XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 

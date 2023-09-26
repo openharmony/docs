@@ -719,9 +719,9 @@ taskpoolExecute();
 ```ts
 // The async functions are supported.
 @Concurrent
-async function delayExcute() {
-  let ret = await Promise.all([
-    new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+async function delayExcute(): Promise<Object> {
+  let ret = await Promise.all<Object>([
+    new Promise<Object>(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
   return ret;
 }
@@ -943,7 +943,8 @@ let priority: number = 0;
 let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
-for(let threadInfo of taskpoolInfo.threadInfos) {
+let threadIS = Array.from(taskpoolInfo.threadInfos)
+for(let threadInfo of threadIS) {
   tid = threadInfo.tid;
   if (threadInfo.taskIds != undefined && threadInfo.priority != undefined )
   {
@@ -952,7 +953,8 @@ for(let threadInfo of taskpoolInfo.threadInfos) {
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-for(let taskInfo of taskpoolInfo.taskInfos) {
+let taskIS = Array.from(taskpoolInfo.taskInfos)
+for(let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;
   if (taskInfo.duration != undefined )

@@ -1079,7 +1079,7 @@ Checks whether the format of the specified phone number is valid.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber("15812312312"); // isValidNumber = true
+  let isValidNumber: boolean = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
 
@@ -1106,7 +1106,7 @@ Formats a phone number.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let formattedPhoneNumber: string = phonenumberfmt.format("15812312312"); // formattedPhoneNumber = "158 1231 2312"
+  let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
 
@@ -1134,7 +1134,7 @@ Obtains the home location of a phone number.
 **Example**
   ```ts
   let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
-  let locationName: string = phonenumberfmt.getLocationName("15812312345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
   ```
 
 
@@ -2057,7 +2057,7 @@ Checks whether the input character is an uppercase letter.
 
 static getType(char: string): string
 
-Obtains the category value of the input string.
+Obtains the type of the input string.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2071,9 +2071,9 @@ Obtains the category value of the input string.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|
 
-The following table lists only the general category values. For more details, see the Unicode Standard.
+The following table lists only the common types. For more details, see the Unicode Standard.
 
 | Name| Value| Description|
 | ---- | -------- | ---------- |
@@ -2983,4 +2983,4 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Category value of the input character.|
+| string | Type of the input character.|

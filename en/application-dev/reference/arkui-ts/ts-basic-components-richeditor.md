@@ -30,12 +30,12 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 >  **NOTE**
 >
 > The default value of the **clip** attribute is **true**.
+> The **align** attribute supports only the start, center, and end options.
 
 | Name                     | Type                                                    | Description                                                        |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.| 
-
-
+| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus.|
+| copyOption | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>**NOTE**<br>If **copyOptions** is set to **CopyOptions.InApp** or **CopyOptions.LocalDevice**, long pressing content in the component will display a shortcut menu, after which you can adjust the content selection scope and perform the desired operation, such as copy and select all.<br>If **copyOptions** is set to **CopyOptions.None**, copy and paste is not allowed. |
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -123,7 +123,7 @@ Provides the image span style information returned by the backend.
 | ------ | -------- | ---- | -------------------------------------- |
 | size | [number, number] | Yes| Width and height of the image.|
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes | Vertical alignment mode of the image.|
-| objectFit  | [ImageFit](ts-basic-components-imagespan.md#imagefit) | Yes| Scale mode of the image.|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes| Scale mode of the image.|
 
 
 ## RichEditorOptions
@@ -218,7 +218,7 @@ Adds an image span.
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
 
-Updates the text or image span style.<br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
+Updates the text or image span style. <br>If only part of a span is updated, the span is split into multiple spans based on the updated part and the unupdated part.
 
 **Parameters**
 
@@ -392,11 +392,11 @@ struct Index {
             start: this.start,
             end: this.end
           }).forEach(item => {
-            if ("imageStyle" in item) {
-              this.content += item.valueResourceStr;
+            if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += item.value;
+              this.content += (item as RichEditorTextSpanResult).value;
               this.content += "\n"
             }
           })
@@ -444,7 +444,8 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            [this.start, this.end] = value.selection;
+            this.start = value.selection[0];
+            this.end = value.selection[1];
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
@@ -470,10 +471,10 @@ struct Index {
               console.log("spanIndex:" + item.spanPosition.spanIndex)
               console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
-              if ("imageStyle" in item) {
-                console.log("image:" + item.valueResourceStr)
+              if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
               } else {
-                console.log("text:" + item.value)
+                console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
             return true;
@@ -509,7 +510,7 @@ struct RichEditorExample {
   @Builder CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {

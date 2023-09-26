@@ -8,7 +8,7 @@ The **colorSpaceManager** module provides APIs for creating and managing color s
 
 ## Modules to Import
 
-```js
+```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 ```
 
@@ -74,8 +74,8 @@ For details about the error codes, see [colorSpaceManager Error Codes](../errorc
 
 **Example**
 
-```js
-let colorSpace = null;
+```ts
+let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     colorSpace = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 } catch (err) {
@@ -114,10 +114,10 @@ For details about the error codes, see [colorSpaceManager Error Codes](../errorc
 
 **Example**
 
-```js
-let colorSpace = null;
+```ts
+let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
-    let primaries = {
+    let primaries: colorSpaceManager.ColorSpacePrimaries = {
         redX: 0.1,
         redY: 0.1,
         greenX: 0.2,
@@ -164,7 +164,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](../errorc
 
 **Example**
 
-```js
+```ts
 try {
     colorSpace.getColorSpaceName();
 } catch (err) {
@@ -196,7 +196,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](../errorc
 
 **Example**
 
-```js
+```ts
 try {
     colorSpace.getWhitePoint();
 } catch (err) {
@@ -228,7 +228,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](../errorc
 
 **Example**
 
-```js
+```ts
 try {
     colorSpace.getGamma();
 } catch (err) {
