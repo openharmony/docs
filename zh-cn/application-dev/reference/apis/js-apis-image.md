@@ -79,6 +79,97 @@ image.createPixelMap(color, opts, (error : BusinessError, pixelmap : image.Pixel
 })
 ```
 
+## image.createPixelMapFromParcel<sup>11+</sup>
+
+createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
+
+从MessageSequence中获取PixelMap。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                                                  | 必填 | 说明                                     |
+| ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
+| sequence               | [rpc.MessageSequence](js-apis-rpc.md#messagesequence9) | 是   | 保存有PixelMap信息的MessageSequence。      |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| PixelMap | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096 | If transaction operation failed|
+| 62980097 | If the ipc error|
+| 62980115 | If the input parameter invalid|
+| 62980105 | Get data error|
+| 62980177 | Napi environmental abnormality|
+| 62980178 | Pixelmap create failed|
+| 62980179 | Unmarshalling bufferSize parcelling error|
+| 62980180 | Fd acquisition failed|
+| 62980246 | Read pixelmap failed|
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import rpc from '@ohos.rpc'
+class MySequence implements rpc.Parcelable {
+    pixel_map;
+    constructor(pixelmap : image.PixelMap) {
+        this.pixel_map = pixelmap;
+    }
+    marshalling(messageSequence : rpc.MessageSequence) {
+        this.pixel_map.marshalling(messageSequence);
+        return true;
+    }
+    unmarshalling(messageSequence : rpc.MessageSequence) {
+        try {
+            this.pixel_map = image.createPixelMapFromParcel(messageSequence);
+        } catch(e) {
+            console.log('createPixelMapFromParcel error: '+ e);
+        }
+      return true;
+    }
+}
+async function Demo() {
+   const color : ArrayBuffer = new ArrayBuffer(96);
+   let bufferArr : Uint8Array = new Uint8Array(color);
+   for (let i = 0; i < bufferArr.length; i++) {
+      bufferArr[i] = 0x80;
+   }
+   let opts : image.InitializationOptions = {
+      editable: true,
+      pixelFormat: 4,
+      size: { height: 4, width: 6 },
+      alphaType: 3
+   }
+   let pixelMap : image.PixelMap | undefined = undefined;
+   await image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+      pixelMap = pixelmap;
+   })
+   if (pixelMap != undefined) {
+     // 序列化
+     let parcelable : MySequence = new MySequence(pixelMap);
+     let data : rpc.MessageSequence = rpc.MessageSequence.create();
+     data.writeParcelable(parcelable);
+
+     // 反序列化 rpc获取到data
+     let ret : MySequence = new MySequence(pixelMap);
+     data.readParcelable(ret);
+
+     // 获取到pixelmap
+     let unmarshPixelmap = ret.pixel_map;
+   }
+}
+```
+
 ## PixelMap<sup>7+</sup>
 
 图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
@@ -1048,7 +1139,8 @@ async function Demo() {
 
 unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
-从MessageSequence中获取PixelMap。
+从MessageSequence中获取PixelMap，
+如需使用同步方式创建PixelMap可使用：[createPixelMapFromParcel](#imagecreatepixelmapfromparcel11)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
