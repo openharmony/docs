@@ -40,7 +40,7 @@ struct TimePickerDialogExample {
           TimePickerDialog.show({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
-              //Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
+              // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
               this.selectTime.setHours(value.hour, value.minute)
               console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
             },

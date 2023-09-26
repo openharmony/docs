@@ -6,15 +6,13 @@ The **Web** component provides the capability of opening pages in a new window. 
 
 > **NOTE**
 >
-> If you do not want to open a new window in [onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9), set the return value of [ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9) to **null**.
+> If you do not want to open a new window in [onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9), set the return value of [ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md#setwebcontroller9) to **null**.
 
 
 In the following example, when a user clicks the **Open Page in New Window** button, the application receives a window opening event in the [onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9) callback.
 
 
 - Application code:
-
-  For details about how to create a window, see [Web Development Examples] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser).
 
   ```ts
   // xxx.ets
