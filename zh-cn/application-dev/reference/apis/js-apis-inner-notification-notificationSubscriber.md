@@ -272,6 +272,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 ```ts
 import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
