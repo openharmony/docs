@@ -91,7 +91,7 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 >**NOTE**
 >
->Prop supports only simple types.
+> Prop supports only simple types.
 
 **Parameters**
 
@@ -194,7 +194,7 @@ let value: number = AppStorage.get('PropA'); // 47
 
 static set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage.
+Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 **Parameters**
 
@@ -221,7 +221,9 @@ let res1: boolean = AppStorage.set('PropB', 47) // false
 
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 **Parameters**
 
@@ -240,9 +242,7 @@ AppStorage.setOrCreate('simpleProp', 121);
 
 static delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage
-
-under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
@@ -397,10 +397,8 @@ static Prop(propName: string): any
 Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
 
 >**NOTE**
->
->Prop supports only simple types.
->
->This API is deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
+> Prop supports only simple types.
+> This API is deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
 
 **Parameters**
 
@@ -558,9 +556,7 @@ AppStorage.SetOrCreate('simpleProp', 121);
 
 static Delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage
-
-under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
@@ -744,7 +740,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
 
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
@@ -805,7 +801,7 @@ let value: number = storage.get('PropA'); // 47
 
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a value for the attribute with the specified attribute name in LocalStorage.
+Sets a value for the attribute with the specified attribute name in LocalStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -834,7 +830,8 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
