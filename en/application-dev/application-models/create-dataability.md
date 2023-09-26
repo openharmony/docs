@@ -7,56 +7,73 @@ To meet the basic requirements of the database storage service, implement the **
 The following sample code shows how to create a DataAbility:
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import dataAbility from '@ohos.data.dataAbility'
-import dataRdb from '@ohos.data.rdb'
+import featureAbility from '@ohos.ability.featureAbility';
+import dataAbility from '@ohos.data.dataAbility';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import { AsyncCallback, BusinessError } from '@ohos.base';
+import rdb from '@ohos.data.rdb';
 
 const TABLE_NAME = 'book'
-const STORE_CONFIG = { name: 'book.db' }
+const STORE_CONFIG: rdb.StoreConfig = { name: 'book.db'}
 const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
-let rdbStore: dataRdb.RdbStore = undefined
+let rdbStore: rdb.RdbStore | undefined = undefined
 
-export default {
-  onInitialized(abilityInfo) {
-    console.info('DataAbility onInitialized, abilityInfo:' + abilityInfo.bundleName)
-    let context = featureAbility.getContext()
-    dataRdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
+class DataAbility {
+  onInitialized(want: Want) {
+    console.info('DataAbility onInitialized, abilityInfo:' + want.bundleName)
+    let context: common.BaseContext = {stageMode: featureAbility.getContext().stageMode}
+    rdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
       console.info('DataAbility getRdbStore callback')
       store.executeSql(SQL_CREATE_TABLE, [])
       rdbStore = store
     });
-  },
-  insert(uri, valueBucket, callback) {
+  }
+  insert(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>) {
     console.info('DataAbility insert start')
-    rdbStore.insert(TABLE_NAME, valueBucket, callback)
-  },
-  batchInsert(uri, valueBuckets, callback) {
+    if (rdbStore) {
+      rdbStore.insert(TABLE_NAME, valueBucket, callback)
+    }
+  }
+  batchInsert(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>) {
     console.info('DataAbility batch insert start')
-    for (let i = 0;i < valueBuckets.length; i++) {
-      console.info('DataAbility batch insert i=' + i)
-      if (i < valueBuckets.length - 1) {
-        rdbStore.insert(TABLE_NAME, valueBuckets[i], (err: any, num: number) => {
-          console.info('DataAbility batch insert ret=' + num)
-        })
-      } else {
-        rdbStore.insert(TABLE_NAME, valueBuckets[i], callback)
+    if (rdbStore) {
+      for (let i = 0;i < valueBuckets.length; i++) {
+        console.info('DataAbility batch insert i=' + i)
+        if (i < valueBuckets.length - 1) {
+          rdbStore.insert(TABLE_NAME, valueBuckets[i], (err: BusinessError, num: number) => {
+            console.info('DataAbility batch insert ret=' + num)
+          })
+        } else {
+          rdbStore.insert(TABLE_NAME, valueBuckets[i], callback)
+        }
       }
     }
-  },
-  query(uri, columns, predicates, callback) {
+  }
+  query(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates,
+        callback: AsyncCallback<rdb.ResultSet>) {
     console.info('DataAbility query start')
     let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
-    rdbStore.query(rdbPredicates, columns, callback)
-  },
-  update(uri, valueBucket, predicates, callback) {
+    if (rdbStore) {
+      rdbStore.query(rdbPredicates, columns, callback)
+    }
+  }
+  update(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates,
+         callback: AsyncCallback<number>) {
     console.info('DataAbilityupdate start')
     let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
-    rdbStore.update(valueBucket, rdbPredicates, callback)
-  },
-  delete(uri, predicates, callback) {
+    if (rdbStore) {
+      rdbStore.update(valueBucket, rdbPredicates, callback)
+    }
+  }
+  delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>) {
     console.info('DataAbilitydelete start')
     let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
-    rdbStore.delete(rdbPredicates, callback)
+    if (rdbStore) {
+      rdbStore.delete(rdbPredicates, callback)
+    }
   }
-};
+}
+
+export default new DataAbility()
 ```

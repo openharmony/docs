@@ -12,15 +12,15 @@ The resId invalid.
 
 **Description**
 
-This error code is reported if the specified resource ID meets the type requirement but the resource ID does not exist.
+This error code is reported if the specified resId meets the type requirement but the **resId** does not exist.
 
 **Possible Causes**
 
-The specified resource ID does not exist.
+The specified **resId** does not exist.
 
 **Solution**
 
-Check whether the specified resource ID exists.
+Check whether the specified **resId** exists.
 
 ## 9001002 Matching Resource Not Found Based on the Specified Resource ID
 
@@ -30,17 +30,17 @@ The resource not found by resId.
 
 **Description**
 
-This error code is reported if the specified resource ID meets the type requirement but no resource is found based on the resource ID.
+This error code is reported if the specified **resId** meets the type requirement but no resource is found based on the **resId**.
 
 **Possible Causes**
 
-1. The specified resource ID is incorrect.
+1. The specified **resId** is incorrect.
 
 2. Resource parsing is incorrect.
 
 **Solution**
 
-Check whether the specified resource ID is correct.
+Check whether the specified **resId** is correct.
 
 ## 9001003 Invalid Resource Name
 
@@ -50,15 +50,15 @@ The resName invalid.
 
 **Description**
 
-This error code is reported if the specified resource name meets the type requirement but the resource name does not exist.
+This error code is reported if the specified **resName** meets the type requirement but the **resName** does not exist.
 
 **Possible Causes**
 
-The specified resource name does not exist.
+The specified **resName** does not exist.
 
 **Solution**
 
-Check whether the specified resource name is correct.
+Check whether the specified **resName** is correct.
 
 ## 9001004 Matching Resource Not Found Based on the Specified Resource Name
 
@@ -68,17 +68,17 @@ The resource not found by resName.
 
 **Description**
 
-This error code is reported if the specified resource ID meets the type requirement but no resource is found based on the resource ID.
+This error code is reported if the specified resId meets the type requirement but no resource is found based on the **resId**.
 
 **Possible Causes**
 
-1. The specified resource name is incorrect.
+1. The specified **resName** is incorrect.
 
 2. Resource parsing is incorrect.
 
 **Solution**
 
-Check whether the specified resource name is correct.
+Check whether the specified **resName** is correct.
 
 ## 9001005 Invalid Relative Path
 
@@ -115,3 +115,83 @@ Resources are referenced cyclically.
 **Solution**
 
 Check the reference of resource $, and remove the cyclic reference, if any.
+
+## 9001007 Failed to Format the Resource Obtained Based on resId
+
+**Error Message**
+
+The resource obtained by resId formatting error.
+
+**Description**
+
+This error code is reported in the case of a failure to format the string resource obtained based on **resId**.
+
+**Possible Causes**
+
+1. The parameter type is not supported.
+
+2. The numbers of parameters and placeholders are inconsistent.
+
+3. The parameter does not match the placeholder type.
+
+**Solution**
+
+Check whether the number and type of **args** parameters are the same as those of placeholders.
+
+## 9001008 Failed to Format the Resource Obtained Based on resName
+
+**Error Message**
+
+The resource obtained by resName formatting error.
+
+**Description**
+
+This error code is reported in the case of a failure to format the string resource obtained based on **resName**.
+
+**Possible Causes**
+
+1. The parameter type is not supported.
+
+2. The numbers of parameters and placeholders are inconsistent.
+
+3. The parameter does not match the placeholder type.
+
+**Solution**
+
+Check whether the number and type of **args** parameters are the same as those of placeholders.
+
+## 9001009 Failed to Obtain a ResourceManager Object
+
+**Error Message**
+
+Get system resource manager failed.
+
+**Description**
+
+This error code is reported in the case of a failure to obtain a ResourceManager object.
+
+**Possible Causes**
+
+System resources are not loaded to the sandbox path of the application process.
+
+**Solution**
+
+Check whether the application process contains the sandbox path of system resources.
+
+## 9001010 Invalid Overlay Path
+
+**Error Message**
+
+Overlay resource path is invalid.
+
+**Description**
+
+This error code is reported if the specified overlay path is invalid.
+
+**Possible Causes**
+
+The path does not exist or is not in the installation path of the application.
+
+**Solution**
+
+Check the location of the specified overlay path.

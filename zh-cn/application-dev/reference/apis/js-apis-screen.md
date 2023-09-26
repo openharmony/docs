@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import screen from '@ohos.screen';
 ```
 
@@ -38,15 +38,18 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 **示例：**
 
-```js
-let screenClass = null;
-screen.getAllScreens((err, data) => {
-    if (err.code) {
-        console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-    screenClass = data[0];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+screen.getAllScreens((err: BusinessError, data: AsyncCallback<Array<Screen>>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+  screenClass = data[0];
 });
 ```
 
@@ -74,14 +77,16 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 **示例：**
 
-```js
-let screenClass = null;
-let promise = screen.getAllScreens();
-promise.then((data) => {
-    screenClass = data[0];
-    console.log('Succeeded in getting all screens. Data:'+ JSON.stringify(data));
-}).catch((err) => {
-    console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let promise: Promise<Array<Screen>> = screen.getAllScreens();
+promise.then((data: Array<Screen>) => {
+  screenClass = data[0];
+  console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -95,21 +100,21 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 **参数：**
 
-| 参数名    | 类型                   | 必填 | 说明                                                         |
-| --------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| 参数名    | 类型                   | 必填 | 说明                                                        |
+| --------- | ---------------------- | ---- | ----------------------------------------------------------- |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id。                                     |
+| callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id，该参数应为整数。                                    |
 
 **示例：**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.on('connect', callback);
+  let callback: Callback<number> = (data: Callback<number>) => {
+    console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.on('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -126,18 +131,18 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | --------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
-| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id。                                     |
+| callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id，该参数应为整数。                                     |
 
 **示例：**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.off('connect', callback);
+  let callback: Callback<number> = (data: Callback<number>) => {
+    console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.off('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -151,10 +156,10 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **参数：**
 
-| 参数名   | 类型                                       | 必填 | 说明                             |
-| -------- | ------------------------------------------ | ---- | -------------------------------- |
-| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。         |
-| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
+| 参数名   | 类型                                       | 必填 | 说明                         |
+| -------- | ------------------------------------------ | ---- |----------------------------|
+| options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。               |
+| callback | AsyncCallback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -166,19 +171,30 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let groupId = null;
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
-      if (err.code) {
-        console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-        return;
-      }
-      groupId = data;
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    });
+  let groupId: number | null = null;
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray, (err: BusinessError, data: AsyncCallback<number>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+      return;
+    }
+    groupId = data;
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -198,9 +214,9 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id。 |
+| 类型                  | 说明                              |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -212,15 +228,26 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-    });
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray).then((
+    data: Promise<number>) => {
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -234,9 +261,9 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
-| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合。                                               |
+| 参数名 | 类型 | 必填 | 说明                                      |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id应为整数。                      |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -249,18 +276,21 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping expand screens.');
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping expand screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -274,9 +304,9 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------- | --- | --------------- |
-| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------------ | ------------------- | --- |--------------------|
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id应为整数。 |
 
 **返回值：**
 
@@ -294,16 +324,18 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds).then(() => {
-      console.info('Succeeded in stopping expand screens.');
-    }).catch((err) => {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds).then(() => {
+    console.info('Succeeded in stopping expand screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -317,11 +349,11 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **参数：**
 
-| 参数名       | 类型                        | 必填 | 说明              |
-| ------------ | --------------------------- | ---- |-----------------|
-| mainScreen   | number                      | 是   | 主屏幕id。          |
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。       |
-| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id。 |
+| 参数名       | 类型                        | 必填 | 说明                 |
+| ------------ | --------------------------- | ---- |--------------------|
+| mainScreen   | number                      | 是   | 主屏幕id，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 |
+| callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id，其中id应为整数。  |
 
 **错误码：**
 
@@ -333,19 +365,22 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **示例：**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
-      if (err.code) {
-        console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: AsyncCallback<number>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -359,16 +394,16 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **参数：**
 
-| 参数名       | 类型                | 必填 | 说明        |
-| ------------ | ------------------- | ---- |-----------|
-| mainScreen   | number              | 是   | 主屏幕id。    |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。 |
+| 参数名       | 类型                | 必填 | 说明                 |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreen   | number              | 是   | 主屏幕id，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为整数。 |
 
 **返回值：**
 
-| 类型                  | 说明                                |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id。 |
+| 类型                  | 说明                              |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id，其中id应为整数。 |
 
 **错误码：**
 
@@ -380,17 +415,19 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **示例：**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: Promise<number>) => {
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -404,9 +441,9 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。                                               |
+| 参数名 | 类型 | 必填 | 说明                                      |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。                      |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕镜像模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -419,18 +456,21 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping mirror screens.');
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping mirror screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -444,9 +484,9 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------- | --- | --------------- |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------------ | ------------------- | --- |--------------------|
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合，其中id应为整数。 |
 
 **返回值：**
 
@@ -464,16 +504,18 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds).then(() => {
-      console.info('Succeeded in stopping mirror screens.');
-    }).catch((err) => {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds).then(() => {
+    console.info('Succeeded in stopping mirror screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -504,25 +546,37 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **示例：**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }, (err, data) => {
-      if (err.code) {
-        console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    });
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+  screen.createVirtualScreen(option, (err: BusinessError, data: AsyncCallback<Screen>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -558,23 +612,35 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **示例：**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }).then((data) => {
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: Promise<Screen>) => {
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -590,7 +656,7 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId | number                    | 是   | 屏幕的id。                                                   |
+| screenId | number                    | 是   | 屏幕的id，该参数仅支持整数输入。                                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当销毁虚拟屏幕成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -603,18 +669,21 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId, (err,data) => {
-      if (err.code) {
-        console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in destroying the virtual screen.');
-    });
+  screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in destroying the virtual screen.');
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -630,7 +699,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 参数名   | 类型   | 必填 | 说明       |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | 是   | 屏幕的id。 |
+| screenId | number | 是   | 屏幕的id，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -648,16 +717,18 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId).then((data) => {
-      console.info('Succeeded in destroying the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.destroyVirtualScreen(screenId).then(() => {
+    console.info('Succeeded in destroying the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -675,7 +746,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | 是   | 屏幕的id。                                                   |
+| screenId  | number                    | 是   | 屏幕的id，该参数仅支持整数输入。                                                   |
 | surfaceId | string                    | 是   | surface的id。                                                |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
 
@@ -689,19 +760,22 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 **示例：**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-  screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
-    if (err.code) {
+  screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
       console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in setting the surface for the virtual screen.');
   });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -719,7 +793,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕的id。    |
+| screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
 | surfaceId | string | 是   | surface的id。 |
 
 **返回值：**
@@ -738,17 +812,19 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-    screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-      console.info('Succeeded in setting the surface for the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+    console.info('Succeeded in setting the surface for the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -768,10 +844,12 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-screen.isScreenRotationLocked().then((isLocked) => {
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
-}).catch((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+screen.isScreenRotationLocked().then((isLocked: Promise<boolean>) => {
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+}).catch((err: BusinessError) => {
   console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
 });
 ```
@@ -792,9 +870,12 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-screen.isScreenRotationLocked((err, isLocked) => {
-  if (err.code) {
+```ts
+import { BusinessError } from '@ohos.base';
+
+screen.isScreenRotationLocked((err: BusinessError, isLocked: AsyncCallback<boolean>) => {
+  const errCode: number = err.code;
+  if (errCode) {
     console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
     return;
   }
@@ -824,16 +905,18 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked).then((data) => {
-      console.info('Succeeded in unlocking auto rotate');
-    }).catch((err) => {
-      console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
-    });
+  screen.setScreenRotationLocked(isLocked).then(() => {
+    console.info('Succeeded in unlocking auto rotate');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -854,18 +937,21 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked, (err, data) => {
-      if (err.code) {
-        console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in unlocking auto rotate.');
-    });
+  screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in unlocking auto rotate.');
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -877,9 +963,9 @@ try {
 
 | 名称     | 类型 | 可读 | 可写 | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | 是   | 是   | 屏幕的id。          |
-| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标。 |
-| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标。 |
+| screenId | number   | 是   | 是   | 屏幕的id，该参数应为整数。          |
+| startX   | number   | 是   | 是   | 屏幕的起始X轴坐标，该参数应为整数。 |
+| startY   | number   | 是   | 是   | 屏幕的起始Y轴坐标，该参数应为整数。 |
 
 ## VirtualScreenOption
 
@@ -887,13 +973,13 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                      |
-| --------- | -------- | ---- | ---- | ------------------------- |
-| name      | string   | 是   | 是   | 指定虚拟屏幕的名称。      |
-| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为像素。 |
-| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为像素。 |
-| density   | number   | 是   | 是   | 指定虚拟屏幕的密度。      |
-| surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。 |
+| 名称      | 类型 | 可读 | 可写 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | 是   | 是   | 指定虚拟屏幕的名称。               |
+| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为像素，该参数应为整数。 |
+| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为像素，该参数应为整数。 |
+| density   | number   | 是   | 是   | 指定虚拟屏幕的密度，该参数为浮点数。       |
+| surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
 
 ## Screen
 
@@ -905,14 +991,14 @@ try {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称              | 类型                                       | 可读 | 可写 | 说明                   |
-| ----------------- | ---------------------------------------------- | ---- | ---- | ---------------------- |
-| id                | number                                         | 是   | 否   | 屏幕的id。             |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。             |
+| 名称              | 类型                                       | 可读 | 可写 | 说明                                                          |
+| ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
+| id                | number                                         | 是   | 否   | 屏幕的id，该参数应为整数。                                              |
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数应为整数。                                          |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。                                                  |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
 
 ### setOrientation
 
@@ -937,17 +1023,20 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
-    });
+  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -979,16 +1068,18 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
-    promise.then((data) => {
-        console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-    });
+  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  promise.then(() => {
+    console.info('Succeeded in setting the vertical orientation.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1002,7 +1093,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
+| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1015,18 +1106,21 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **示例：**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let modeIndex: number = 0;
 try {
-    screenClass.setScreenActiveMode(modeIndex, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
-    });
+  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1040,7 +1134,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明       |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
+| modeIndex | number | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1058,17 +1152,19 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let modeIndex: number = 0;
 try {
-    let promise = screenClass.setScreenActiveMode(modeIndex);
-      promise.then((data) => {
-          console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
-      }).catch((err) => {
-          console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-      });
+  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
+  promise.then(() => {
+    console.info('Succeeded in setting screen active mode 0.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1080,9 +1176,9 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型                      | 必填 | 说明                                                         |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
+| 参数名     | 类型                      | 必填 | 说明                                       |
+| ---------- | ------------------------- | ---- |------------------------------------------|
+| densityDpi | number                    | 是   | 像素密度。支持的输入范围为[80, 640]，该参数仅支持整数输入。       |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1095,18 +1191,21 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let densityDpi: number = 320;
 try {
-    screenClass.setDensityDpi(densityDpi, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
-    });
+  screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1118,9 +1217,9 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型   | 必填 | 说明                               |
-| ---------- | ------ | ---- | ---------------------------------- |
-| densityDpi | number | 是   | 像素密度。支持的输入范围为80-640。 |
+| 参数名     | 类型   | 必填 | 说明                                 |
+| ---------- | ------ | ---- |------------------------------------|
+| densityDpi | number | 是   | 像素密度。支持的输入范围为[80, 640]，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1138,17 +1237,19 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let densityDpi: number = 320;
 try {
-    let promise = screenClass.setDensityDpi(densityDpi);
-    promise.then((data) => {
-        console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-    });
+  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
+  promise.then(() => {
+    console.info('Succeeded in setting the pixel density of the screen to 320.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1187,7 +1288,7 @@ try {
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定。 |
-| width       | number   | 是   | 是   | 屏幕的宽度，单位为像素。                                |
-| height      | number   | 是   | 是   | 屏幕的高度，单位为像素。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率。                                     |
+| id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
+| width       | number   | 是   | 是   | 屏幕的宽度，单位为像素，该参数应为整数。                                |
+| height      | number   | 是   | 是   | 屏幕的高度，单位为像素，该参数应为整数。                                |
+| refreshRate | number   | 是   | 是   | 屏幕的刷新率，该参数应为整数，该参数应为整数。                                     |

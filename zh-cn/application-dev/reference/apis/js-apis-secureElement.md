@@ -1,4 +1,4 @@
-# @ohos.secureElement( 安全单元的通道管理)
+# @ohos.secureElement (安全单元的通道管理)
 
 本模块主要用于操作及管理安全单元（SecureElement，简称SE）。文档中出现的SE服务为SEService实例，参见[newSEService](#secureelementnewseservice)。
 
@@ -43,10 +43,10 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 **参数：**
 
-| **参数名** | **类型**                                             | **说明**             |
-| ---------- | ---------------------------------------------------- | -------------------- |
-| type       | string                                               | 'serviceState'       |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | 返回SE服务状态的回调 |
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 'serviceState'       |
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | 是      | 返回SE服务状态的回调 |
 
 **返回值：**
 
@@ -58,21 +58,18 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 ```js
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
-
-this.result = "Service state is Unkown";
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    let nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService occurs exception:" + e.message;
+    console.log("newSEService occurs " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -93,37 +90,36 @@ getReaders(): Reader[]
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
-@State nfcServiceState: secureElement.ServiceState = null;
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaReaderList: secureElement.Reader[] = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
-// get SEService
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
         if (state == secureElement.ServiceState.DISCONNECTED) {
-            this.result = "Service state is Disconnected";
+            console.log("Service state is Disconnected");
         } else {
-            this.result = "Service state is Connected";
+            console.log("Service state is Connected");
         }
     });
 } catch (e) {
-    this.result = "newSEService excpetion:" + e.message;
+    console.log("newSEService " + "excpetion: ${(e : BusinessError).message}");
 }
 
 try {
-    this.nfcOmaReaderList = this.nfcSEService.getReaders();
-    if (this.nfcOmaReaderList != null && this.nfcOmaReaderList.length > 0) {
-        this.nfcOmaReader = this.nfcOmaReaderList[0];
-        this.result = "get reader successfully";
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        console.log("get reader successfully");
     } else {
-        this.result = "get reader failed";
+        console.log("get reader failed");
     }
 } catch (e) {
-    this.result = "getReaders exception:" + e.message;
+    console.log("getReaders " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -144,22 +140,37 @@ isConnected(): boolean
 **示例：**
 
 ```JS
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = ''
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService : omapi.SEService | null = null;
 
 try {
-    let ret: boolean;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService" + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    let ret: boolean = false;
     // refer to newSEService for this.nfcSEService 
-    ret = this.nfcSEService.isConnected();
+    if (nfcSEService != null) {
+        ret = nfcSEService.isConnected();
+    }
     if (ret) {
-        this.result = 'get state: connected';
+        console.log("get state: connected");
     } else {
-        this.result = 'get state: not connected';
+        console.log("get state: not connected");
     }
 } catch (e) {
-    this.result = "isConnected exception: " + e.message;
+        console.log("isConnected " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -174,17 +185,32 @@ shutdown(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService : omapi.SEService | null = null;
+
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
 
 try {
     // refer to newSEService for this.nfcSEService 
-    this.nfcSEService.shutdown();
-    this.result = "shutdown successfully";
+    if (nfcSEService != null) {
+        nfcSEService.shutdown();
+    }
+    console.log("shutdown successfully");
 } catch (e) {
-    this.result = "shutdown exception:" + e.message;
+    console.log("shutdown exception:" + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -205,17 +231,31 @@ getVersion(): string
 **示例：**
 
 ```JS
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcSEService: secureElement.SEService = null;
+let nfcSEService : omapi.SEService | null = null;
 
-this.result = "version: "
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
 try {
     // refer to newSEService for this.nfcSEService 
-    this.result += this.nfcSEService.getVersion();
+    if (nfcSEService != null) {
+        console.log("version: " + nfcSEService.getVersion());
+    }
 } catch (e) {
-    this.result = "getVersion exception:" + e.message;
+    console.log("getVersion " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -236,16 +276,36 @@ getName(): string
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader 
-    this.result = this.nfcOmaReader.getName();
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    this.result = "getName exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        console.log(nfcOmaReaderList[0].getName());
+    } else {
+        console.log("getName failed");
+    }
+} catch (e) {
+    console.log("getName " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -269,25 +329,46 @@ isSecureElementPresent(): boolean
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+import omapi from '@ohos.secureElement';
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    if (this.nfcOmaReader.isSecureElementPresent()) {
-        this.result = "isSecureElementPresent TRUE";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].isSecureElementPresent()) {
+            console.log("isSecureElementPresent success");
+        } else {
+            console.log("isSecureElementPresent failed");
+        }
     } else {
-        this.result = "isSecureElementPresent FALSE";
+        console.log("isSecureElementPresent failed");
     }
 } catch (e) {
-    this.result = "isSecureElementPresent exception:" + e.message;
+    console.log("isSecureElementPresent " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -311,28 +392,46 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, service state exception. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaSession = this.nfcOmaReader.openSession();
-    if (this.nfcOmaSession) {
-        this.result = "get session successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].openSession()) {
+            console.log("get session successfully");
+        } else {
+            console.log("get session failed");
+        }
     } else {
-        this.result = "get session failed";
+        console.log("OpenSession failed");
     }
 } catch (e) {
-    this.result = "OpenSession exception: " + e.message;
+    console.log("OpenSession " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -350,22 +449,45 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
 
 try {
-    // refer to SEService.getReaders for this.nfcOmaReader
-    this.nfcOmaReader.closeSessions();
-    this.result = "close Sessions successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    this.result = "closeSessions exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        if (nfcOmaReaderList[0].closeSessions()) {
+            console.log("closeSessions successfully");
+        } else {
+            console.log("closeSessions failed");
+        }
+    } else {
+        console.log("closeSessions failed");
+    }
+} catch (e) {
+  console.log("closeSessions " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -386,22 +508,42 @@ getReader(): Reader
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaReader: secureElement.Reader = null;
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaReader = this.nfcOmaSession.getReader();
-    if (this.nfcOmaReader) {
-        this.result = "get reader successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession.getReader() != null) {
+            console.log("get reader successfully");
+        } else {
+            console.log("get reader failed");
+        }
     } else {
-        this.result = "get reader failed";
+        console.log("getReader failed");
     }
 } catch (e) {
-    this.result = "getReader exception:" + e.message;
+    console.log("getReader " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -425,31 +567,58 @@ getATR(): number[]
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let omaATR : number[] | null = null;
+let str : string = "";
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.getATR();
-    if (ret) {
-        this.result = "getATR result:[";
-        for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.result += ']';
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaATR = omaSession.getATR();
+        } else {
+            console.log("getATR failed");
+        }
+    }
+    if (omaATR != null && omaATR.length > 0) {
+        str = 'getATR result:[';
+        for (let i = 0; i < omaATR.length; ++i) {
+            str += omaATR[i];
+            tr += ' ';
+        }
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getATR result is null";
+        console.log("getATR failed");
     }
 } catch (e) {
-    this.result = "getATR exception:" + e.message;
+    console.log("getATR " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -467,23 +636,47 @@ close(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.close();
-    this.result = "session close successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    this.result = "session close exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 }
+
+try {
+    if(nfcSEService != null) {
+        nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.close();
+        } else {
+            console.log("close failed");
+        }
+    }
+} catch (e) {
+    console.log("close " + "exception: ${(e : BusinessError).message}");
+}
+
 ```
 
 ## Session. isClosed
@@ -507,21 +700,40 @@ isClosed(): boolean
 **示例：**
 
 ```Js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let ret = this.nfcOmaSession.isClosed();
-    if (ret) {
-        this.result = "session state is closed";
-    } else {
-        this.result = "session state is not closed";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null &&  omaSession.isClosed()) {
+           console.log("isClosed success");
+        } else {
+            console.log("isClosed failed");
+        }
     }
 } catch (e) {
-    this.result = "isClosed exception:" + e.message;
+    console.log("isClosed " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -539,28 +751,52 @@ closeChannels(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
+| 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.closeChannels();
-    this.result = "close Channels successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    this.result = "closeChannels exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.closeChannels();
+            console.log("closeChannels success");
+        } else {
+            console.log("closeChannels failed");
+        }
+    }
+} catch (e) {
+    console.log("closeChannels " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[]): Promise<Channel>
+openBasicChannel(aid: number[]): Promise\<Channel>
 
 获取基本channel，参考[ISO 7816-4]协议，返回Channel实例对象，SE不能提供新逻辑Channel或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -568,9 +804,9 @@ openBasicChannel(aid: number[]): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                                     |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | 在此channel上选择的applet的AID数组或如果没有applet被选择时空的数组null。 |
+| **参数名** | **类型** | **必填** | **说明**                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | 是      |在此channel上选择的applet的AID数组或如果没有applet被选择时空的数组null。 |
 
 **返回值：**
 
@@ -584,37 +820,59 @@ openBasicChannel(aid: number[]): Promise<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
+let getPromise : Promise<omapi.Channel> | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray);
-    getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel1 get channel successfully";
-    }).catch ((err) => {
-        this.result = "openBasicChannel1 exception:" + err.message;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
 } catch (e) {
-    this.result = "OpenBasicChannel1 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            getPromise = omaSession.openBasicChannel(aidArray);
+        } else {
+            console.log("openBasicChannel1 failed");
+        }
+    }
+    if (getPromise != null) {
+        console.log("openBasicChannel1 get channel successfully");
+    }
+} catch (e) {
+    console.log("openBasicChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openBasicChannel
 
- openBasicChannel(aid: number[], callback: AsyncCallback<Channel>): void
+ openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
 获取基本channel，参考[ISO 7816-4]协议，返回channel实例对象，SE不能提供新逻辑Channel或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -622,10 +880,10 @@ try {
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例。                            |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -633,39 +891,59 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openBasicChannel(this.aidArray, (error, data) => {
-        if (error) {
-            this.result = "openBasicChannel2 failed:" + JSON.stringify(error);
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel2 get channel successfully";
     });
 } catch (e) {
-    this.result = "openBasicChannel2 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            omaSession.openBasicChannel(aidArray, (error, data) => {
+                if (error) {
+                    console.log("openBasicChannel2 failed:" + JSON.stringify(error));
+                    return;
+                }
+                console.log("openBasicChannel2 get channel successfully");
+            });
+        }
+    }
+} catch (e) {
+    console.log("openBasicChannel2 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2: number): Promise<Channel>
+openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 获取基本channel，参考[ISO 7816-4]协议，返回Channel实例对象，SE不能提供新逻辑Channel对象或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -673,10 +951,10 @@ openBasicChannel(aid: number[], p2: number): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                                     |
-| ---------- | -------- | ------------------------------------------------------------ |
-| aid        | number[] | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| p2         | number   | 在该channel上执行的SELECT APDU的P2参数。                     |
+| **参数名** | **类型** | **必填** | **说明**                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ |
+| aid        | number[] | 是       | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| p2         | number   | 是       |在该channel上执行的SELECT APDU的P2参数。                     |
 
 **返回值：**
 
@@ -690,39 +968,60 @@ openBasicChannel(aid: number[], p2: number): Promise<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2);
-    getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-        this.result = "openBasicChannel3 get channel successfully";
-    }).catch ((err) => {
-        this.result = "openBasicChannel3 exception";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
 } catch (e) {
-    this.result = "openBasicChannel3 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openBasicChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            nfcOmaChannel = channel;
+            console.log("openBasicChannel3 get channel successfully");
+        })
+    }
+} catch (e) {
+    console.log("openBasicChannel3 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): void
+openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
 获取基本channel，参考[ISO 7816-4]协议，返回channel实例对象，SE不能提供新逻辑Channel对象或因缺乏可用逻辑Channel对象而无法获取访问控制规则，返回null。
 
@@ -730,11 +1029,11 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): vo
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
-| p2         | number                 | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例。                            |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在此channel上选择的applet的AID数组或null 如果没有applet被选择。 |
+| p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例。                            |
 
 **错误码：**
 
@@ -742,40 +1041,62 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<Channel>): vo
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openBasicChannel(this.aidArray, this.p2, (error, data) => {
-        if (error) {
-            this.result = "openBasicChannel4 failed:" + JSON.stringify(error);
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.nfcOmaChannel = data;
-        this.result = "openBasicChannel4 get channel successfully";
     });
 } catch (e) {
-    this.result = "openBasicChannel4 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+  if(nfcSEService != null) {
+    nfcOmaReaderList = nfcSEService.getReaders();
+  }
+  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+    omaSession = nfcOmaReaderList[0].openSession();
+  }
+  if (omaSession != null) {
+    omaSession.openBasicChannel(aidArray, p2, (error , data) => {
+      if (error) {
+        console.log("openBasicChannel4 failed:" + JSON.stringify(error));
+        return;
+      }
+      nfcOmaChannel = data;
+      console.log("openBasicChannel4 get channel successfully");
+    });
+  }
+} catch (e) {
+  console.log("openBasicChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[]): Promise<Channel>
+openLogicalChannel(aid: number[]): Promise\<Channel>
 
 打开指定SE的逻辑Channel对象。
 
@@ -783,9 +1104,9 @@ openLogicalChannel(aid: number[]): Promise<Channel>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                                |
-| ---------- | -------- | --------------------------------------- |
-| aid        | number[] | 在该Channel对象上选择的applet AID数组。 |
+| **参数名** | **类型** | **必填** | **说明**                                |
+| ---------- | -------- | ------ | --------------------------------------- |
+| aid        | number[] | 是      | 在该Channel对象上选择的applet AID数组。 |
 
 **返回值：**
 
@@ -799,38 +1120,59 @@ openLogicalChannel(aid: number[]): Promise<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
+let getPromise : Promise<omapi.Channel> | null = null;
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray)
-    getPromise.then((channel) => {
-        this.nfcOmaChannel = channel;
-   	    this.result = "openLogicChannel1 get channel successfully";
-    }).catch ((err) => {
-        this.result = "openLogicChannel1 exception:" + err.message;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
     });
 } catch (e) {
-    this.result = "openLogicChannel1 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+        if (omaSession != null) {
+            getPromise = omaSession.openLogicalChannel(aidArray);
+        } else {
+            console.log("openLogicalChannel1 failed");
+        }
+    }
+    if (getPromise != null) {
+        console.log("openLogicalChannel1 get channel successfully");
+    }
+} catch (e) {
+    console.log("openLogicalChannel1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid:number[], callback: AsyncCallback<Channel>): void
+ openLogicalChannel(aid:number[], callback: AsyncCallback\<Channel>): void
 
 打开指定SE的逻辑Channel对象。
 
@@ -838,10 +1180,10 @@ try {
 
 **参数：**
 
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在该Channel对象上被选择的applet AID数组。                    |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的channel或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
 
 **错误码：**
 
@@ -849,150 +1191,211 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let aidArray : number[] = [720, 1080];
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, (error, data) => {
-        if (error) {
-            this.result = "openLogicChannel2 failed:" + JSON.stringify(error);
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel2 get channel successfully";
     });
 } catch (e) {
-    this.result = "openLogicChannel2 exception:" + e.message;
-}
-```
-
-## Session.openLogicalChannel
-
-openLogicalChannel(aid: number[], p2: number): Promise<Channel>
-
-使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
-
-如果AID数组长度为0，则该方法将通过发送一个select命令来选择SE的Issuer Security Domain，该命令的AID长度为0（如[GPCS]中所定义）。
-
-如果AID为Null，则该方法应仅发送MANAGE CHANNEL Open（管理通道打开），而不应发送SELECT（选择）命令。在这种情况下，默认情况下将选择与逻辑通道关联的默认applet.
-
-P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x00, 0x04, 0x08, 0x0C (如 [ISO 7816-4](https://www.iso.org/standard/77180.html)中所定义).
-
-**系统能力：**  SystemCapability.Communication.SecureElement
-
-**参数：**
-
-| **参数名** | **类型** | **说明**                                  |
-| ---------- | -------- | ----------------------------------------- |
-| aid        | number[] | 在该Channel对象上被选择的applet AID数组。 |
-| p2         | number   | 此channel上执行SELECT APDU命令的P2参数。  |
-
-**错误码：**
-
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
-
-**示例：**
-
-```js
-import secureElement from '@ohos.secureElement';
-
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
-
-if (this.nfcOmaSession) {
-    try {
-    // refer to Reader.openSession for this.nfcOmaSession
-        let getPromise = this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2);
-        getPromise.then((channel) => {
-            this.nfcOmaChannel = channel;
-            this.result = "openLogicChannel3 get channel successfully";
-        }).catch ((err) => {
-            this.result = "openLogicChannel3 exception";
-        })
-} catch (e) {
-    this.result = "openLogicChannel3 exception:" + e.message;
-}
-```
-
-## Session.openLogicalChannel
-
-openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback<Channel>):void
-
-使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
-
-如果AID数组长度为0，则该方法将通过发送一个select命令来选择SE的Issuer Security Domain，该命令的AID长度为0（如[GPCS]中所定义）。
-
-如果AID为Null，则该方法应仅发送MANAGE CHANNEL Open（管理通道打开），而不应发送SELECT（选择）命令。在这种情况下，默认情况下将选择与逻辑通道关联的默认applet.
-
-P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x00, 0x04, 0x08, 0x0C (如 [ISO 7816-4](https://www.iso.org/standard/77180.html)中所定义).
-
-**系统能力：**  SystemCapability.Communication.SecureElement
-
-**参数：**
-
-| **参数名** | **类型**               | **说明**                                                     |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| aid        | number[]               | 在该Channel对象上被选择的applet AID数组。                    |
-| p2         | number                 | 此channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback<Channel> | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300102  | No such element exception.       |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
-
-**示例：**
-
-```js
-import secureElement from '@ohos.secureElement';
-
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
-aidArray: number[] = [720, 1080];
-p2: number = 0x00;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
 
 try {
-    // refer to Reader.openSession for this.nfcOmaSession
-    this.nfcOmaSession.openLogicalChannel(this.aidArray, this.p2, (error, data) => {
-        if (error) {
-            this.result = "openLogicChannel4 failed:" + JSON.stringify(error);
-            return;
-        }
-        this.nfcOmaChannel = data;
-        this.result = "openLogicChannel4 get channel successfully";
-    })
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        omaSession.openLogicalChannel(aidArray, (error, data) => {
+            if (error) {
+                console.log("openLogicalChannel2 failed:" + JSON.stringify(error));
+                return;
+            }
+            console.log("openLogicalChannel2 get channel successfully");
+        });
+    }
 } catch (e) {
-    this.result = "openLogicChannel4 exception:" + e.message;
+    console.log("openLogicalChannel2 " + "exception: ${(e : BusinessError).message}");
+}
+```
+
+## Session.openLogicalChannel
+
+openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
+
+使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
+
+如果AID数组长度为0，则该方法将通过发送一个select命令来选择SE的Issuer Security Domain，该命令的AID长度为0（如[GPCS]中所定义）。
+
+如果AID为Null，则该方法应仅发送MANAGE CHANNEL Open（管理通道打开），而不应发送SELECT（选择）命令。在这种情况下，默认情况下将选择与逻辑通道关联的默认applet.
+
+P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x00, 0x04, 0x08, 0x0C (如 [ISO 7816-4](https://www.iso.org/standard/77180.html)中所定义).
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明**                                  |
+| ---------- | -------- | ------ | ----------------------------------------- |
+| aid        | number[] | 是      | 在该Channel对象上被选择的applet AID数组。 |
+| p2         | number   | 是      | 此channel上执行SELECT APDU命令的P2参数。  |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
+
+**示例：**
+
+```js
+import omapi from '@ohos.secureElement';
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            nfcOmaChannel = channel;
+            console.log("openLogicalChannel3 get channel successfully");
+        })
+    }
+} catch (e) {
+    console.log("openLogicalChannel3 " + "exception: ${(e : BusinessError).message}");
+}
+```
+
+## Session.openLogicalChannel
+
+openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
+
+使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
+
+如果AID数组长度为0，则该方法将通过发送一个select命令来选择SE的Issuer Security Domain，该命令的AID长度为0（如[GPCS]中所定义）。
+
+如果AID为Null，则该方法应仅发送MANAGE CHANNEL Open（管理通道打开），而不应发送SELECT（选择）命令。在这种情况下，默认情况下将选择与逻辑通道关联的默认applet.
+
+P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x00, 0x04, 0x08, 0x0C (如 [ISO 7816-4](https://www.iso.org/standard/77180.html)中所定义).
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型**               | **必填** | **说明**                                                     |
+| ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
+| aid        | number[]               | 是      | 在该Channel对象上被选择的applet AID数组。                    |
+| p2         | number                 | 是      | 此channel上执行SELECT APDU命令的P2参数。                     |
+| callback   | AsyncCallback\<Channel> | 是      | callback返回可用Channel对象实例，SE不能提供新的Channel对象或因缺乏可用逻辑Channel对象无法获取访问控制规则返回null。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](../errorcodes/errorcode-se.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
+
+**示例：**
+
+```js
+import omapi from '@ohos.secureElement';
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let nfcOmaChannel : omapi.Channel | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+
+try {
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+  if(nfcSEService != null) {
+    nfcOmaReaderList = nfcSEService.getReaders();
+  }
+  if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+    omaSession = nfcOmaReaderList[0].openSession();
+  }
+  if (omaSession != null) {
+    omaSession.openLogicalChannel(aidArray, p2, (error, data) => {
+      if (error) {
+        console.log("openLogicalChannel4 failed:" + JSON.stringify(error));
+        return;
+      }
+      nfcOmaChannel = data;
+      console.log("openLogicalChannel4 get channel successfully");
+    });
+  }
+} catch (e) {
+  console.log("openLogicalChannel4 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1013,22 +1416,51 @@ try {
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let mySession : omapi.Session | null = null;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.getSession();
-    if (ret) {
-        this.result = "get session successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            mySession = channel.getSession();
+            console.log("openLogicalChannel get channel successfully");
+        })
+    }
+    if (mySession != null) {
+        console.log("get session successfully");
     } else {
-        this.result = "get session failed";
+        console.log("get session failed");
     }
 } catch (e) {
-    this.result = "getSession exception:" + e.message;
+    console.log("get session " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1043,18 +1475,45 @@ close(): void
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaSession: secureElement.Session = null;
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    this.nfcOmaChannel.close();
-    this.result = "channel close successfully";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
 } catch (e) {
-    this.result = "channel close exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            channel.close();
+            console.log("channel close successfully");
+        })
+    }
+} catch (e) {
+    console.log("channel close " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1075,21 +1534,50 @@ isBasicChannel(): boolean
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let ret : boolean = false;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.isBasicChannel();
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            ret = channel.isBasicChannel();
+        })
+    }
     if (ret) {
-        this.result = "isBasicChannel TRUE";
+        console.log("isBasicChannel TRUE");
     } else {
-        this.result = "isBasicChannel FALSE";
+        console.log("isBasicChannel FALSE");
     }
 } catch (e) {
-    this.result = "isBasicChannel异常:" + e.message;
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1110,21 +1598,50 @@ isClosed(): boolean
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let ret : boolean = false;
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.isClosed();
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
+        }
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            ret = channel.isClosed();
+        })
+    }
     if (ret) {
-        this.result = "channel isClosed TRUE";
+        console.log("channel isClosed TRUE");
     } else {
-        this.result = "channel isClosed False";
+        console.log("channel isClosed False");
     }
 } catch (e) {
-    this.result = "Channel isClosed exception:" + e.message;
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1149,26 +1666,57 @@ getSelectResponse():number[]
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let responseArray : number[] = [720, 1080];
+let str : string = "";
 
 try {
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let ret = this.nfcOmaChannel.getSelectResponse();
-    if (ret) {
-        this.result = "getSelectResponse result:[";
-        for (let i = 0; i < ret.length; ++i) {
-            this.result += ret[i];
-            this.result += ' ';
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.result += ']';
+    });
+} catch (e) {
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            responseArray = channel.getSelectResponse();
+        })
+    }
+    if (responseArray) {
+        str = "getSelectResponse result:[";
+        for (let i = 0; i < responseArray.length; ++i) {
+            str += responseArray[i];
+            str += ' ';
+        }
+        str += ']';
+        console.log(str);
     } else {
-        this.result = "getSelectResponse result is null";
+        console.log("getSelectResponse result is null");
     }
 } catch (e) {
-    this.result = "getSelectResponse exception:" + e.message;
+    console.log("isBasicChannel " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1182,9 +1730,9 @@ transmit(command: number[]): Promise<number[]>
 
 **参数：**
 
-| **参数名** | **类型** | **说明**                              |
-| ---------- | -------- | ------------------------------------- |
-| command    | number[] | 在该channel上被选择的applet AID数组。 |
+| **参数名** | **类型** | **必填** | **说明**                              |
+| ---------- | -------- | ------ | ------------------------------------- |
+| command    | number[] | 是      | 在该channel上被选择的applet AID数组。 |
 
 **返回值：**
 
@@ -1198,34 +1746,59 @@ transmit(command: number[]): Promise<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let responseArray : Promise<number[]> | null = null;
 
 try {
-    let command: number[] = [100, 200];
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    let getPromise = this.nfcOmaChannel.transmit(command);
-    getPromise.then((data) => {
-        this.result = "transmit1 result:[";
-        for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.result += "]";
-    }).catch ((err) => {
-        this.result = "transmit1 exception:" + err.code;
-    })
+    });
 } catch (e) {
-    this.result = "transit1 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            let command: number[] = [100, 200];
+            // refer to Session.openBasicChannel for this.nfcOmaChannel
+            responseArray = channel.transmit(command);
+        })
+    }
+    if (responseArray != null) {
+        console.log("transmit1 success");
+    } else {
+        console.log("transmit1 failed");
+    }
+} catch (e) {
+    console.log("transmit1 " + "exception: ${(e : BusinessError).message}");
 }
 ```
 
@@ -1239,10 +1812,10 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 **参数：**
 
-| **参数名** | **类型**                | **说明**                              |
-| ---------- | ----------------------- | ------------------------------------- |
-| command    | number[]                | 在该Channel上被选择的applet AID数组。 |
-| callback   | AsyncCallback<number[]> | 返回接收到的响应的回调，number数组。  |
+| **参数名** | **类型**                | **必填** | **说明**                              |
+| ---------- | ----------------------- | ------ | ------------------------------------- |
+| command    | number[]                | 是      | 在该Channel上被选择的applet AID数组。 |
+| callback   | AsyncCallback<number[]> | 是      | 返回接收到的响应的回调，number数组。  |
 
 **错误码：**
 
@@ -1250,34 +1823,65 @@ transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 3300101  | Illegal service state exception. |
-| 3300103  | Illegal access rule exception.   |
-| 3300104  | Secure element IO exception.     |
+| 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
+| 3300103  | SecurityError, the command is filtered by the security policy. |
+| 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
 ```js
+import omapi from '@ohos.secureElement';
 import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
 
-@State result: string = '';
-@State nfcOmaChannel: secureElement.Channel = null;
+let nfcSEService : omapi.SEService | null = null;
+let nfcOmaReaderList : omapi.Reader[] | null = null;
+let omaSession : omapi.Session | null = null;
+let getPromise : Promise<omapi.Channel> | null = null;
+let aidArray : number[] = [720, 1080];
+let p2 : number = 0x00;
+let str : string = "";
 
 try {
-    let command: number[] = [100, 200];
-    // refer to Session.openBasicChannel for this.nfcOmaChannel
-    this.nfcOmaChannel.transmit(command, (error, data) => {
-        if (error) {
-            this.result = "transmit2 exception:" + JSON.stringify(error);
-            return;
+    nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            console.log("Service state is Disconnected");
+        } else {
+            console.log("Service state is Connected");
         }
-        this.result = "transmit2 result:[";
-        for (let i = 0; i < data.length; ++i) {
-            this.result += data[i];
-            this.result += " ";
-        }
-        this.result += "]";
     });
 } catch (e) {
-    this.result = "transit2 exception:" + e.message;
+    console.log("newSEService " + "exception: ${(e : BusinessError).message}");
+}
+
+try {
+    if(nfcSEService != null) {
+      nfcOmaReaderList = nfcSEService.getReaders();
+    }
+    if (nfcOmaReaderList != null && nfcOmaReaderList.length > 0) {
+        omaSession = nfcOmaReaderList[0].openSession();
+    }
+    if (omaSession != null) {
+        getPromise = omaSession.openLogicalChannel(aidArray, p2);
+        getPromise.then((channel) => {
+            let command: number[] = [100, 200];
+            // refer to Session.openBasicChannel for this.nfcOmaChannel
+            channel.transmit(command, (error, data) => {
+                if (error) {
+                    console.log("transmit2 exception:" + JSON.stringify(error));
+                    return;
+                }
+                str = "transmit2 result:[";
+                for (let i = 0; i < data.length; ++i) {
+                    str += data[i];
+                    str += " ";
+                }
+                str += "]";
+                console.log(str)
+            });
+        })
+    }
+} catch (e) {
+    console.log("transmit2 " + "exception: ${(e : BusinessError).message}");
 }
 ```

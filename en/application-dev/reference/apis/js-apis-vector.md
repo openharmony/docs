@@ -44,7 +44,7 @@ A constructor used to create a **Vector** instance.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string | number | Array<number>> = new Vector();
 ```
 
 
@@ -71,12 +71,16 @@ Adds an element at the end of this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+let vector : Vector<string | number | C1 | Array<number>> = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 let result2 = vector.add(b);
-let c = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -98,7 +102,7 @@ Inserts an element at the specified position in this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string | number | Object | Array<number>> = new Vector();
 vector.insert("A", 0);
 vector.insert(0, 1);
 vector.insert(true, 2);
@@ -127,7 +131,7 @@ Checks whether this container has the specified element.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<string> = new Vector();
 let result = vector.has("squirrel");
 vector.add("squirrel");
 let result1 = vector.has("squirrel");
@@ -156,7 +160,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -190,7 +194,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -224,7 +228,7 @@ Removes an element at the specified position from this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -256,7 +260,7 @@ Removes the first occurrence of the specified element from this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -282,7 +286,7 @@ Removes from this container all of the elements within a range, including the el
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -304,27 +308,27 @@ Replaces all elements in this container with new elements, and returns the new o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **replaceAllElements** API.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **replaceAllElements** API. The default value is this instance.|
 
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value) => {
-    // Add the user operation logic based on the actual scenario.
-    return value;
+vector.replaceAllElements((value : number) : number => {
+  // Add the user operation logic based on the actual scenario.
+  return value;
 });
 ```
 
@@ -342,28 +346,27 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked for replacement.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Position index of the element that is currently traversed.|
-| vector | Vector&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| vector | Vector&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+vector.forEach((value : number, index ?: number) : void => {
+  console.log("value:" + value, "index:" + index);
 });
-
 ```
 
 ### sort
@@ -378,7 +381,7 @@ Sorts elements in this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Callback invoked for sorting.|
+| comparator | function | No| Callback invoked for sorting. The default value is this instance.|
 
 comparator
 
@@ -390,7 +393,7 @@ comparator
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -424,7 +427,7 @@ Obtains elements within a range in this container, including the element at the 
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -447,7 +450,7 @@ Clears all elements in this container and sets its length to **0**.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -472,7 +475,7 @@ Clones this container and returns a copy. The modification to the copy does not 
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -497,7 +500,7 @@ Obtains the capacity of this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -522,7 +525,7 @@ Converts this container into an array.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -547,7 +550,7 @@ Checks whether this container is empty (contains no elements).
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -572,7 +575,7 @@ Increases the capacity of this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -592,7 +595,7 @@ Trims the capacity of this container into its current length.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -617,7 +620,7 @@ Uses commas (,) to concatenate elements in this container into a string.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -656,7 +659,7 @@ Obtains the first element in this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -681,7 +684,7 @@ Obtains the last element in this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -713,7 +716,7 @@ Searches for an element backward from the specified position index and returns t
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -746,7 +749,7 @@ Searches for an element forward from the specified position index and returns th
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -772,7 +775,7 @@ Sets a new length for this container.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
@@ -803,14 +806,14 @@ Obtains an element at the specified position in this container.
 
 **Example**
 
-  ```ts
-  let vector = new Vector();
-  vector.add(2);
-  vector.add(4);
-  vector.add(5);
-  vector.add(4);
-  let result = vector.get(2);
-  ```
+```ts
+let vector : Vector<number> = new Vector();
+vector.add(2);
+vector.add(4);
+vector.add(5);
+vector.add(4);
+let result = vector.get(2);
+```
 ### set
 
 set(index: number, element: T): T
@@ -848,20 +851,20 @@ Obtains an iterator. Each item of the iterator is a JavaScript object.
 **Example**
 
 ```ts
-let vector = new Vector();
+let vector : Vector<number> = new Vector();
 vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-
 // Method 1:
-for (let item of vector) { 
-  console.log("value:" + item); 
-} 
+let nums: Array<number> =  vector.convertToArray()
+for (let item of nums) {
+  console.log("value:" + item);
+}
 
 // Method 2:
 let iter = vector[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

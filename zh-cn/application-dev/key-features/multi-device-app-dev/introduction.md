@@ -63,7 +63,7 @@ Module分为“Ability”和“Library”两种类型：
 
 * “Ability”类型的Module编译后生成HAP包。
 
-* “Library”类型的Module编译后生成HAR包。
+* “Library”类型的Module编译后生成HAR包或[HSP包](../../quick-start/shared-guide.md)。
 
 OpenHarmony的应用以APP Pack形式发布，其包含一个或多个HAP包。HAP是OpenHarmony应用安装的基本单位，HAP可以分为Entry和Feature两种类型：
 
@@ -72,7 +72,7 @@ OpenHarmony的应用以APP Pack形式发布，其包含一个或多个HAP包。H
 * Feature类型的HAP：应用的动态特性模块。Feature类型的HAP通常用于实现应用的特性功能，一个应用程序包可以包含一个或多个Feature类型的HAP，也可以不包含。
 
 > **说明：**
-> 关于Entry类型的HAP包、Feature类型的HAP包、HAR包以及APP Pack的详细介绍请参考[应用程序包结构说明](../../quick-start/application-package-structure-stage.md) 。
+> 关于Entry类型的HAP包、Feature类型的HAP包、HAR包、HSP包以及APP Pack的详细介绍请参考[应用程序包结构说明](../../quick-start/application-package-structure-stage.md) 。
 
 ### 部署模型
 
@@ -110,11 +110,11 @@ OpenHarmony的应用以APP Pack形式发布，其包含一个或多个HAP包。H
 
 - common（公共能力层）：用于存放公共基础能力集合（如工具库、公共配置等）。
 
-  common层不可分割，需编译成一个HAR包，其只可以被products和features依赖，不可以反向依赖。
+  common层可编译成一个或多个HAR包或HSP包（HAR中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝；而HSP中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份），其只可以被products和features依赖，不可以反向依赖。
 
 - features（基础特性层）：用于存放基础特性集合（如应用中相对独立的各个功能的UI及业务逻辑实现等）。
 
-  各个feature高内聚、低耦合、可定制，供产品灵活部署。不需要单独部署的feature通常编译为HAR包，供products或其它feature使用。需要单独部署的feature通常编译为Feature类型的HAP包，和products下Entry类型的HAP包进行[组合部署](../../quick-start/multi-hap-objective.md)。features层可以横向调用及依赖common层，同时可以被products层不同设备形态的HAP所依赖，但是不能反向依赖products层。
+  各个feature高内聚、低耦合、可定制，供产品灵活部署。不需要单独部署的feature通常编译为HAR包或HSP包，供products或其它feature使用。需要单独部署的feature通常编译为Feature类型的HAP包，和products下Entry类型的HAP包进行[组合部署](../../quick-start/multi-hap-objective.md)。features层可以横向调用及依赖common层，同时可以被products层不同设备形态的HAP所依赖，但是不能反向依赖products层。
 
 - products（产品定制层）：用于针对不同设备形态进行功能和特性集成。
 
@@ -125,10 +125,10 @@ OpenHarmony的应用以APP Pack形式发布，其包含一个或多个HAP包。H
 
 ```
 /application
-├── common                  # 可选。公共能力层, 编译为HAR包
+├── common                  # 可选。公共能力层, 编译为HAR包或HSP包
 ├── features                # 可选。基础特性层
-│   ├── feature1            # 子功能1, 编译为HAR包或Feature类型的HAP包
-│   ├── feature2            # 子功能2, 编译为HAR包或Feature类型的HAP包
+│   ├── feature1            # 子功能1, 编译为HAR包或HSP包或Feature类型的HAP包
+│   ├── feature2            # 子功能2, 编译为HAR包或HSP包或Feature类型的HAP包
 │   └── ...
 └── products                # 必选。产品定制层
     ├── wearable            # 智能穿戴泛类目录, 编译为Entry类型的HAP包

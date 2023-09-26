@@ -12,9 +12,11 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name          | Type      | Mandatory  | Description                       |
+|    Name     | Type      | Mandatory  | Description                       |
 | ------------ | -------- | ---- | ------------------------- |
 | onConnect<sup>7+</sup>    | function | Yes   | Callback invoked when a connection is set up.     |
 | onDisconnect<sup>7+</sup> | function | Yes   | Callback invoked when a connection is interrupted.          |
@@ -23,7 +25,10 @@ import common from '@ohos.app.ability.common';
 **Example**
 
   ```ts
-  let want = {
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
@@ -40,5 +45,5 @@ import common from '@ohos.app.ability.common';
     }
   };
 
-  let connection = this.context.connectAbility(want, connectOptions);
+  let connection: number = this.context.connectAbility(want, connectOptions);
   ```

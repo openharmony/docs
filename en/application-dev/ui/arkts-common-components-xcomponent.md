@@ -193,7 +193,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   > **NOTE**
   >
   > An application loads modules to implement cross-language invoking in either of the following modes:
-  > 
+  >
   > 1. Use the **import** mode of the NAPI.
   >
   > ```ts
@@ -205,15 +205,15 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   >    While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
 
 - **onLoad** event
-  - Trigger time: when the surface of the **\<XComponent>** is prepared.
+  - Trigger time: when the surface of the **\<XComponent>** is ready.
   - **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of the **context2** instance obtained after the module is directly loaded using **import context2 from "libnativerender.so"**.
-  - Time sequence: When the **onLoad** event is subject to the surface. The following figure shows the time sequence of the **onLoad** event and the **OnSurfaceCreated** event on the native side.
+  - Time sequence: subject to the surface. The figure below shows the time sequence of the **onLoad** event and the **OnSurfaceCreated** event at the native layer.
 
      ![onLoad](figures/onLoad.png)
 
 - **onDestroy** event
 
-  Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The following figure shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event on the native side.
+  Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
 
   ![onDestroy](figures/onDestroy.png)
 
@@ -222,7 +222,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 The surface held by the **\<XComponent>** complies with the producer-consumer model.
 
-In OpenHarmony, components that comply with the producer design, such as the camera and video player, can write data to the surface held by the **\<XComponent>** and display the data through the **\<XComponent>**.
+In OpenHarmony, components that comply with the producer design, such as the Camera and AVPlayer components, can write data to the surface held by the **\<XComponent>** and display the data through the **\<XComponent>**.
 
 ![picture-1](figures/picture-1.png)
 
@@ -230,11 +230,19 @@ You can bind the **\<XComponent>** to the **XComponentController** to obtain the
 
 
 ```ts
+class suf{
+  surfaceId:string = "";
+  mXComponentController: XComponentController = new XComponentController();
+  set(){
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+  }
+}
 @State surfaceId:string = "";
-mXComponentController: XComponentController = new XComponentController();
+mXComponentController: object = new XComponentController();
 XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   .onLoad(() => {
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    let sufset = new suf()
+    sufset.set()
   })
 ```
 

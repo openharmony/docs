@@ -5,6 +5,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs provided by this module are system APIs.
 
 ##  Modules to Import
@@ -15,9 +16,9 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 ##  shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
+setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the delay for starting an ability using the shortcut key. This API uses an asynchronous callback to return the result.
+Sets the delay for starting an ability using shortcut keys. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.ShortKey
 
@@ -25,9 +26,9 @@ Sets the delay for starting an ability using the shortcut key. This API uses an 
 
 | Name    | Type               | Mandatory| Description                                                        |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
-| businessId | string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
-| delay      | number              | Yes  | Delay for starting an ability using the shortcut key, in ms.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
+| businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
 
 **Example**
 
@@ -45,13 +46,11 @@ try {
 }
 ```
 
-
-
 ## shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number): Promise&lt;void&gt;
+setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 
-Sets the delay for starting an ability using the shortcut key. This API uses a promise to return the result.
+Sets the delay for starting an ability using shortcut keys. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.ShortKey
 
@@ -59,14 +58,14 @@ Sets the delay for starting an ability using the shortcut key. This API uses a p
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| businessId | string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
-| delay      | number | Yes  | Delay for starting an ability using the shortcut key, in ms.|
+| businessKey| string | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file.|
+| delay      | number | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 
 **Return value**
 
 | Parameters         | Description         |
 | ------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 

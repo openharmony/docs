@@ -9,13 +9,14 @@ Layout constraints refer to constraints on the aspect ratio and display priority
 
 ## Attributes
 
-| Name           | Type| Description                                                        |
-| --------------- | -------- | ------------------------------------------------------------ |
-| aspectRatio     | number   | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| displayPriority | number   | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
-
+| Name             | Type  | Description                                      |
+| --------------- | ------ | ---------------------------------------- |
+| aspectRatio     | number | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>Since API version 9, this API is supported in ArkTS widgets.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **\<Row>** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **\<Row>** component is 0.|
+| displayPriority | number | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -28,7 +29,7 @@ struct AspectRatioExample {
     Column({ space: 20 }) {
       Text('using container: row').fontSize(14).fontColor(0xCCCCCC).width('100%')
       Row({ space: 10 }) {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:string) => {
           // Component width = Component height x 1.5 = 90
           Text(item)
             .backgroundColor(0xbbb2cb)
@@ -41,7 +42,7 @@ struct AspectRatioExample {
             .fontSize(20)
             .aspectRatio(1.5)
             .width(60)
-        }, item => item)
+        }, (item:string) => item)
       }
       .size({ width: "100%", height: 100 })
       .backgroundColor(0xd2cab3)
@@ -50,15 +51,15 @@ struct AspectRatioExample {
       // Grid child component width/height = 3/2
       Text('using container: grid').fontSize(14).fontColor(0xCCCCCC).width('100%')
       Grid() {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:string) => {
           GridItem() {
             Text(item)
               .backgroundColor(0xbbb2cb)
               .fontSize(40)
-              .height(160)
+              .width('100%')
               .aspectRatio(1.5)
           }
-        }, item => item)
+        }, (item:string) => item)
       }
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
@@ -71,10 +72,12 @@ struct AspectRatioExample {
 ```
 
 **Figure 1** Portrait display<br>
-![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
+![en-us_image_0000001219744205](figures/en-us_image_0000001219744205.PNG)
 
 **Figure 2** Landscape display<br>
-![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
+![en-us_image_0000001174264382](figures/en-us_image_0000001174264382.PNG)
+
+### Example 2
 
 ```ts
 class ContainerInfo {
@@ -114,7 +117,7 @@ struct DisplayPriorityExample {
         })
       // Set the width for the parent flex container through variables.
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        ForEach(this.children, (item) => {
+        ForEach(this.children, (item:ChildInfo) => {
           // Bind the display priority to the child component through displayPriority.
           Text(item.text)
             .width(120)
@@ -123,14 +126,15 @@ struct DisplayPriorityExample {
             .textAlign(TextAlign.Center)
             .backgroundColor(0xbbb2cb)
             .displayPriority(item.priority)
-        }, item => item.text)
+        }, (item:ChildInfo) => item.text)
       }
       .width(this.container[this.currentIndex].size)
       .backgroundColor(0xd2cab3)
     }.width("100%").margin({ top: 50 })
   }
 }
-
 ```
+
+Landscape display in containers of different sizes
 
 ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)

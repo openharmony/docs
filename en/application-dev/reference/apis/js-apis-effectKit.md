@@ -14,14 +14,14 @@ This module provides the following classes:
 
 ## Modules to Import
 
-```js
+```ts
 import effectKit from '@ohos.effectKit';
 ```
 
 ## effectKit.createEffect
 createEffect(source: image.PixelMap): Filter
 
-Creates a **Filter** instance based on the pixel map.
+Creates a **Filter** instance based on a pixel map.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -39,11 +39,19 @@ Creates a **Filter** instance based on the pixel map.
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
 image.createPixelMap(color, opts).then((pixelMap) => {
   let headFilter = effectKit.createEffect(pixelMap);
 })
@@ -53,7 +61,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses a promise to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -71,15 +79,72 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap).then(colorPicker => {
     console.info("color picker=" + colorPicker);
-  }).catch(ex => console.error(".error=" + ex.toString()))
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
+})
+```
+
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<ColorPicker>
+
+Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | ----------- | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).|
+| region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.<br>If no value is passed, the default value [0, 0, 1, 1] is used, indicating that the color region is the entire image.|
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap).then(colorPicker => {
+    console.info("color picker=" + colorPicker);
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
 })
 ```
 
@@ -87,7 +152,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>): void
 
-Creates a **ColorPicker** instance based on the pixel map. This API uses an asynchronous callback to return the result.
+Creates a **ColorPicker** instance based on a pixel map. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -100,11 +165,61 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses an asyn
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+    }
+  })
+})
+```
+
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region:Array\<number>, callback: AsyncCallback\<ColorPicker>): void
+
+Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type               | Mandatory| Description                      |
+| -------- | ------------------ | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md). |
+| region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.<br>If no value is passed, the default value [0, 0, 1, 1] is used, indicating that the color region is the entire image.|
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
@@ -124,10 +239,10 @@ A class that stores the color picked.
 
 | Name  | Type  | Readable| Writable| Description             |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | Yes  | No  | Value of the red component.          |
-| green | number | Yes  | No  | Value of the green component.          |
-| blue  | number | Yes  | No  | Value of the blue component.          |
-| alpha | number | Yes  | No  | Value of the alpha component.      |
+| red   | number | Yes  | No  | Value of the red component. The value range is [0x0, 0xFF].          |
+| green | number | Yes  | No  | Value of the green component. The value range is [0x0, 0xFF].          |
+| blue  | number | Yes  | No  | Value of the blue component. The value range is [0x0, 0xFF].          |
+| alpha | number | Yes  | No  | Value of the alpha component. The value range is [0x0, 0xFF].      |
 
 ## ColorPicker
 
@@ -149,13 +264,34 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 **Example**
 
-```js
-colorPicker.getMainColor().then(color => {
-    console.log('Succeeded in getting main color.');
-    console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-}).catch(error => {
-    console.log('Failed to get main color.');
-})
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+export function test06(): void {
+  const color = new ArrayBuffer(96);
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 3,
+    size: {
+      height: 4,
+      width: 6
+    }
+  }
+  image.createPixelMap(color, opts).then((pixelMap) => {
+    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+      if (error) {
+        console.log('Failed to create color picker.');
+      } else {
+        console.log('Succeeded in creating color picker.');
+        colorPicker.getMainColor().then(color => {
+          console.log('Succeeded in getting main color.');
+          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+        })
+      }
+    })
+  })
+}
 ```
 
 ### getMainColorSync
@@ -174,9 +310,30 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 **Example**
 
-```js
-let color = colorPicker.getMainColorSync();
-console.log('get main color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getMainColorSync();
+      console.log('get main color =' + color);
+    }
+  })
+})
 ```
 ![en-us_image_Main_Color.png](figures/en-us_image_Main_Color.png)
 
@@ -196,9 +353,30 @@ Obtains the color with the largest proportion from the image and writes the resu
 
 **Example**
 
-```js
-let color = colorPicker.getLargestProportionColor();
-console.log('get largest proportion color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getLargestProportionColor();
+      console.log('get largest proportion color =' + color);
+    }
+  })
+})
 ```
 ![en-us_image_Largest_Proportion_Color.png](figures/en-us_image_Largest_Proportion_Color.png)
 
@@ -218,9 +396,30 @@ Obtains the color with the highest saturation from the image and writes the resu
 
 **Example**
 
-```js
-let color = colorPicker.getHighestSaturationColor();
-console.log('get highest saturation color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getHighestSaturationColor();
+      console.log('get highest saturation color =' + color);
+    }
+  })
+})
 ```
 ![en-us_image_Highest_Saturation_Color.png](figures/en-us_image_Highest_Saturation_Color.png)
 
@@ -240,9 +439,30 @@ Obtains the average color from the image and writes the result to a [Color](#col
 
 **Example**
 
-```js
-let color = colorPicker.getAverageColor();
-console.log('get average color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getAverageColor();
+      console.log('get average color =' + color);
+    }
+  })
+})
 ```
 ![en-us_image_Average_Color.png](figures/en-us_image_Average_Color.png)
 
@@ -250,9 +470,15 @@ console.log('get average color =' + color);
 
 isBlackOrWhiteOrGrayColor(color: number): boolean
 
-Checks whether this image is black, white, and gray.
+Checks whether a color is black, white, and gray.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | ----------- | ---- | -------------------------- |
+| color| number | Yes  |  Color to check. The value range is [0x0, 0xFFFFFFFF].|
 
 **Return value**
 
@@ -262,9 +488,30 @@ Checks whether this image is black, white, and gray.
 
 **Example**
 
-```js
-let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
-console.log('is black or white or gray color[bool](white) =' + bJudge);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
+      console.log('is black or white or gray color[bool](white) =' + bJudge);
+    }
+  })
+})
 ```
 
 ## Filter
@@ -293,11 +540,19 @@ Adds the blur effect to the filter linked list, and returns the head node of the
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let radius = 5;
   let headFilter = effectKit.createEffect(pixelMap);
@@ -330,11 +585,19 @@ Adds the brightness effect to the filter linked list, and returns the head node 
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let bright = 0.5;
   let headFilter = effectKit.createEffect(pixelMap);
@@ -361,11 +624,19 @@ Adds the grayscale effect to the filter linked list, and returns the head node o
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let headFilter = effectKit.createEffect(pixelMap);
   if (headFilter != null) {
@@ -391,12 +662,21 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 
 **Example**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
+  console.log('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
 })
 ```

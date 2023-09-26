@@ -9,15 +9,22 @@ StaticSubscriberExtensionContext模块提供StaticSubscriberExtensionAbility具�
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+```
+
 ## 使用说明
 
 在使用StaticSubscriberExtensionContext的功能前，需要通过StaticSubscriberExtensionAbility获取。
 
 ```ts
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
 
 export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context = this.context;
+    context: StaticSubscriberExtensionContext = this.context;
 };
 ```
 
@@ -30,6 +37,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+
+**需要权限**：ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -65,13 +74,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
 
   try {
-    this.context.startAbility(want, (error) => {
+    this.context.startAbility(want, (error: BusinessError) => {
       if (error) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
@@ -83,8 +95,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```
 
@@ -97,6 +111,8 @@ startAbility(want: Want): Promise&lt;void&gt;;
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+
+**需要权限**：ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -137,7 +153,10 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  let want = {
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
     bundleName: "com.example.myapp",
     abilityName: "MyAbility"
   };
@@ -148,14 +167,16 @@ startAbility(want: Want): Promise&lt;void&gt;;
         // 执行正常业务
         console.log('startAbility succeed');
       })
-      .catch((error) => {
+      .catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+    ' error.message: ' + JSON.stringify(message));
   }
   ```

@@ -1,7 +1,7 @@
 # @system.file (文件存储)
 
 > **说明：**
-> - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.fileio`](js-apis-fileio.md)。
+> - 从API Version 10开始，该接口不再维护，推荐使用新接口[`@ohos.file.fs`](js-apis-file-fs.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -20,7 +20,11 @@ move(Object): void
 
 将指定文件移动到其他指定位置。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.moveFile](js-apis-file-fs.md#fsmovefile)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -66,7 +70,11 @@ copy(Object): void
 
 将指定文件拷贝并存储到指定位置。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.copyFile](js-apis-file-fs.md#fscopyfile)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -112,7 +120,11 @@ list(Object): void
 
 获取指定路径下全部文件的列表。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -171,7 +183,11 @@ get(Object): void
 
 获取指定本地文件的信息。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.stat](js-apis-file-fs.md#fsstat)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -226,7 +242,11 @@ delete(Object): void
 
 删除本地文件。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.unlink](js-apis-file-fs.md#fsunlink)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -270,7 +290,11 @@ writeText(Object): void
 
 写文本内容到指定文件。仅支持文本文档读写。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.write](js-apis-file-fs.md#fswrite)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -317,7 +341,11 @@ writeArrayBuffer(Object): void
 
 写Buffer内容到指定文件。仅支持文本文档读写。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.write](js-apis-file-fs.md#fswrite)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -364,7 +392,11 @@ readText(Object): void
 
 从指定文件中读取文本内容。仅支持文本文档读写。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.readText](js-apis-file-fs.md#fsreadtext)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -418,7 +450,11 @@ readArrayBuffer(Object): void
 
 从指定文件中读取Buffer内容。仅支持文本文档读写。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.read](js-apis-file-fs.md#fsread)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -472,7 +508,11 @@ access(Object): void
 
 判断指定文件或目录是否存在。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.access](js-apis-file-fs.md#fsaccess)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -516,7 +556,11 @@ mkdir(Object): void
 
 创建指定目录。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.mkdir](js-apis-file-fs.md#fsmkdir)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 
@@ -560,7 +604,11 @@ rmdir(Object): void
 
 删除指定目录。
 
-**系统能力：** SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 10开始废弃，请使用[fs.rmdir](js-apis-file-fs.md#fsrmdir)替代。
+
+**系统能力：** SystemCapability.FileManagement.File.FileIO.Lite
 
 **参数：**
 

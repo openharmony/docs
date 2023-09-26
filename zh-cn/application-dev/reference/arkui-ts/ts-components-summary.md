@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     多选框群组，用于控制多选框全选或者不全选状态。
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    提供下拉日历弹窗，可以让用户选择日期。
 - [DatePicker](ts-basic-components-datepicker.md)
 
     选择日期的滑动选择器组件。
@@ -168,7 +171,9 @@
 - [RichText](ts-basic-components-richtext.md)
 
     富文本组件，解析并显示HTML格式文本。
+- [RichEditor](ts-basic-components-richeditor.md)
 
+    支持图文混排和文本交互式编辑的组件。
 
 ## 图片视频与媒体
 
@@ -270,42 +275,65 @@
 - [ScrollBar](ts-basic-components-scrollbar.md)
 
     滚动条组件，用于配合可滚动组件使用，如List、Grid、Scroll等。
+
 - [Badge](ts-container-badge.md)
 
     可以附加在单个组件上用于信息标记的容器组件。
+
 - [AlphabetIndexer](ts-container-alphabet-indexer.md)
 
     可以与容器组件联动用于按逻辑结构快速定位容器显示区域的索引条组件。
+
 - [Panel](ts-container-panel.md)
 
     可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
+
 - [Refresh](ts-container-refresh.md)
 
     可以进行页面下拉操作并显示刷新动效的容器组件。
+
 - [AbilityComponent](ts-container-ability-component.md)
 
     独立显示Ability的容器组件。
+
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画的能力。
-- [Formcomponent](ts-basic-components-formcomponent.md)
+
+- [FormComponent](ts-basic-components-formcomponent.md)
 
     提供卡片组件，实现卡片的显示功能。
+
+- [FormLink](ts-container-formlink.md)
+
+    提供静态卡片事件交互功能。
+
+- [Hyperlink](ts-container-hyperlink.md)
+
+    超链接组件，组件宽高范围内点击实现跳转。
+
 - [Menu](ts-basic-components-menu.md)
 
     以垂直列表形式显示的菜单。
+
 - [MenuItem](ts-basic-components-menuitem.md)
 
     用来展示菜单Menu中具体的item菜单项。
+
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     用来展示菜单MenuItem的分组。
-- [SecLocationButton](ts-basic-components-seclocationbutton.md)
 
-    安全控件的位置按钮，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
-- [SecPasteButton](ts-basic-components-secpastebutton.md)
+- [UIExtensionComponent](ts-container-ui-extension-component.md)
 
-    安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
-- [SecSaveButton](ts-basic-components-secsavebutton.md)
+    在页面中嵌入显示带UI界面的Ability扩展的容器组件。
 
-    安全控件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
+- [LocationButton](ts-security-components-locationbutton.md)
+
+    安全控件的位置控件，用户通过点击该位置控件，可以临时获取精准定位权限，而不需要权限弹框授权确认。
+- [PasteButton](ts-security-components-pastebutton.md)
+
+    安全控件的粘贴控件，用户通过点击该粘贴控件，可以临时获取读取剪贴板权限，而不会触发toast提示。
+- [SaveButton](ts-security-components-savebutton.md)
+
+    安全控件的保存控件，用户通过点击该保存控件，可以临时获取存储权限，而不需要权限弹框授权确认。

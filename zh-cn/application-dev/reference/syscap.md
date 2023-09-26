@@ -110,11 +110,11 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
   - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。
 
 	```ts
-	import geolocation from '@ohos.geolocation';
+	import geolocationManager from '@ohos.geoLocationManager';
 
-	if (geolocation) {
-	geolocation.getCurrentLocation((location) => {
-		console.log(location.latitude, location.longitude);
+	if (geolocationManager) {
+	geolocationManager.getCurrentLocation((location) => {
+		console.log('current location: ' + JSON.stringify(location));
 	});
 	} else {
 	console.log('该设备不支持位置信息');

@@ -1,13 +1,15 @@
 # NotificationUserInput
 
-The **NotificationUserInput** module provides the notification user input.
+The **NotificationUserInput** module provides APIs for defining the notification user input.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## NotificationUserInput
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name    | Type  | Read-only| Mandatory| Description                         |
-| -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | No | Yes | Key to identify the user input.|
+| Name    | Type  | Mandatory| Description                         |
+| -------- | ------ | ---- | ----------------------------- |
+| inputKey | string | Yes | Key to identify the user input.|

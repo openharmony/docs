@@ -16,7 +16,7 @@ ImageBitmap(src: string)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                                     |
 | ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
-| src    | string   | 是   | -      | 图片的数据源<br/>**说明：**<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串 |
+| src    | string   | 是   | -      | 图片的数据源支持本地图片。<br>1、string格式用于加载本地图片，例如ImageBitmap("common/images/example.jpg")，图片加载路径的起点为ets文件夹。<br/>2、支持本地图片类型：bmp、jpg、png、svg和webp类型。<br/>**说明：**<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串。 |
 
 
 
@@ -24,8 +24,8 @@ ImageBitmap(src: string)
 
 | 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| width | number | ImageBitmap的像素宽度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | ImageBitmap的像素高度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width | number | ImageBitmap的像素宽度，当前值为0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | ImageBitmap的像素高度，当前值为0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **示例：**
 

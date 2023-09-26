@@ -14,36 +14,37 @@ Called when the mission continuation is complete.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | result |  number | No| Mission continuation result.|
+  | result |  number | Yes| Mission continuation result.|
 
 **Example**
 
   ```ts
   import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { BusinessError } from '@ohos.base';
 
-  let continueDeviceInfo = {
+  distributedMissionManager.continueMission(
+    {
       srcDeviceId: '123',
       dstDeviceId: '456',
       missionId: 123,
       wantParam: {
           'key':'value'
       }
-  };
-
-  let continueCallback = {
+    },
+    {
       onContinueDone(result) {
           console.log('onContinueDone, result: ${JSON.stringify(result)}');
       }
-  };
-
-  distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
+    }, (error: BusinessError) => {
       if (error && error.code) {
           console.error('continueMission failed, error.code: ${error.code}, error.message: ${error.message}');
       }
       console.log('continueMission finished');
-  });
+    });
   ```

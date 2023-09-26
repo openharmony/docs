@@ -24,8 +24,8 @@
 | 标签      | 是否必填 | 说明                                                         |
 | --------- | -------- | ------------------------------------------------------------ |
 | name      | 是       | 权限名称。                                                   |
-| reason    | 否       | 描述申请权限的原因。<br/>> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
-| usedScene | 否       | 描述权限使用的场景和时机。<br/>> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
+| reason    | 否       | 描述申请权限的原因，可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。<br/> > **说明**：当申请的权限为user_grant权限时，此字段必填。 |
+| usedScene | 否       | 描述权限使用的场景和时机。<br/> > **说明**：当申请的权限为user_grant权限时，此字段必填。 |
 | abilities | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：Stage模型 |
 | ability   | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：FA模型 |
 | when      | 否       | 标识权限使用的时机，值为`inuse/always`。<br/>- inuse：表示为仅允许前台使用。<br/>- always：表示前后台都可使用。 |
@@ -98,6 +98,38 @@
 }
 ```
 
+### 权限使用理由的文案内容规范
+
+当申请的权限为user_grant权限时，字段reason（申请权限的原因）必填。开发者需要在应用配置文件中，配置每一个需要使用的权限。
+
+但在实际向用户弹窗申请授权时，user_grant权限将会以[权限组](accesstoken-overview.md#权限组和子权限)向用户申请。当前支持的权限组请查看[应用权限组列表](permission-group-list.md)。
+
+**reason字段的内容写作规范及建议如下：**
+
+1. 保持句子简洁、不要加入多余的分割符号。
+
+   **建议句式**：用于某事。
+
+   **示例**：用于扫码拍照。
+
+2. 用途描述的字串建议小于72个字符（即36个中文字符，UI界面显示大约为两行）。不能超过256个字符，以免在多语言适配后体验不好。
+
+3. 如果不写，将展示默认的申请理由。
+
+**权限使用理由展示方式：**
+
+权限使用理由有两个展示途径：授权弹窗界面和“设置（Settings）”界面。“设置”的具体路径：设置-隐私-权限管理-某应用某权限详情
+
+1. 如果是申请“电话、信息、日历、通讯录、通话记录”这五个权限组中的权限，根据工信部要求，将展示具体子权限的内容与用途。
+
+   **句式**：包括子权限A和子权限B，用于某事。
+
+   **样例**：用于获取通话状态和移动网络信息，用于安全运营和统计计费服务。
+
+2. 如果是申请其他权限组中的权限。系统将使用权限组内当前被申请的第一个子权限的使用理由，作为该权限组的使用理由进行展示。组内的排序，固定按照权限管理内排列的权限组数组顺序。
+
+   举例说明：权限组A = {权限A, 权限B, 权限C}；申请传入的是{权限C, 权限B}，界面将展示权限B中的权限使用理由。
+
 ## ACL方式声明
 
 当应用需要申请`system_basic`和`system_core`等级的权限时，比应用默认权限等级`normal`更高。如果需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
@@ -120,7 +152,8 @@
 
 当应用需要访问用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应该向用户请求授权。这需要使用 `user_grant` 类型权限。在此之前，应用需要进行权限校验，以判断当前调用者是否具备所需的权限。如果权限校验结果表明当前应用尚未被授权该权限，则应使用动态弹框授权方式，为用户提供手动授权的入口。示意效果如下图所示。
 
-图1 向用户申请授权   
+图1 向用户申请授权
+
 ![](figures/permission-read_calendar.png)
 
 > **说明**：
@@ -140,25 +173,28 @@
    ```ts
    import bundleManager from '@ohos.bundle.bundleManager';
    import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+   import { BusinessError } from '@ohos.base';
    
    async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
-     let atManager = abilityAccessCtrl.createAtManager();
-     let grantStatus: abilityAccessCtrl.GrantStatus;
+     let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+     let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
      // 获取应用程序的accessTokenID
-     let tokenId: number;
+     let tokenId: number = 0;
      try {
        let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
-     } catch (err) {
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // 校验应用是否被授予权限
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
-     } catch (err) {
+     } catch (error) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
@@ -188,74 +224,74 @@
    ```typescript
    import UIAbility from '@ohos.app.ability.UIAbility';
    import window from '@ohos.window';
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
+   import { BusinessError } from '@ohos.base';
+
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-   
    export default class EntryAbility extends UIAbility {
-     // ...
-   
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       // Main window is created, set main page for this ability
-       let context = this.context;
-       let atManager = abilityAccessCtrl.createAtManager();
-       // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-   
-       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-         let grantStatus: Array<number> = data.authResults;
-         let length: number = grantStatus.length;
-         for (let i = 0; i < length; i++) {
-           if (grantStatus[i] === 0) {
-             // 用户授权，可以继续访问目标操作
-           } else {
-             // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
-             return;
-           }
-         }
-         // 授权成功
-       }).catch((err) => {
-         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-   
-       // ...
-     }
+    // ...
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      // Main window is created, set main page for this ability
+      let context: Context = this.context;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+      // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
+        let grantStatus: Array<number> = data.authResults;
+        let length: number = grantStatus.length;
+        for (let i = 0; i < length; i++) {
+          if (grantStatus[i] === 0) {
+            // 用户授权，可以继续访问目标操作
+          } else {
+            // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
+            return;
+          }
+        }
+        // 授权成功
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+      })
+      // ...
+    }
    }
    ```
 
    在UI中向用户申请授权。
+
    ```typescript
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import common from '@ohos.app.ability.common';
-   
+   import abilityAccessCtrl, { Context, PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl';
+   import { BusinessError } from '@ohos.base';
+
    const permissions: Array<Permissions> = ['ohos.permission.READ_CALENDAR'];
-   
+
    @Entry
    @Component
    struct Index {
-     reqPermissionsFromUser(permissions: Array<Permissions>): void {
-       let context = getContext(this) as common.UIAbilityContext;
-       let atManager = abilityAccessCtrl.createAtManager();
-       // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-       atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-         let grantStatus: Array<number> = data.authResults;
-         let length: number = grantStatus.length;
-         for (let i = 0; i < length; i++) {
-           if (grantStatus[i] === 0) {
-             // 用户授权，可以继续访问目标操作
-           } else {
-             // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
-             return;
-           }
-         }
-         // 授权成功
-       }).catch((err) => {
-         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
-       })
-     }
-   
-     // 页面展示
-     build() {
-       // ...
-     }
+    reqPermissionsFromUser(permissions: Array<Permissions>): void {
+      let context: Context = getContext(this) as Context;
+      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+      // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+      atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
+        let grantStatus: Array<number> = data.authResults;
+        let length: number = grantStatus.length;
+        for (let i = 0; i < length; i++) {
+          if (grantStatus[i] === 0) {
+            // 用户授权，可以继续访问目标操作
+          } else {
+            // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
+            return;
+          }
+        }
+        // 授权成功
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+      })
+    }
+
+    // 页面展示
+    build() {
+      // ...
+    }
    }
    ```
 
@@ -263,10 +299,60 @@
 
    调用[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
 
+   ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来做中转。开发者需要：
+
+   a. 在EntryAbility.ets中导入构建的单例对象GlobalThis。
+      ```ts
+       import { GlobalThis } from '../utils/globalThis'; // 需要根据globalThis.ets的路径自行适配
+      ```
+   b. 在onCreate中添加:
+      ```ts
+       GlobalThis.getInstance().setContext('context', this.context);
+      ```
+
+   > **说明：**
+   >
+   > 由于在ts中引入ets文件会有告警提示，需要将EntryAbility.ts的文件后缀修改为EntryAbility.ets，并在module.json5中同步修改。
+
+   **globalThis.ets示例代码如下：**
    ```ts
+   import { Context } from '@ohos.abilityAccessCtrl';
+
+   // 构造单例对象
+   export class GlobalThis {
+     private constructor() {}
+     private static instance: GlobalThis;
+     private _uiContexts = new Map<string, Context>();
+
+     public static getInstance(): GlobalThis {
+       if (!GlobalThis.instance) {
+         GlobalThis.instance = new GlobalThis();
+       }
+       return GlobalThis.instance;
+     }
+
+     getContext(key: string): Context | undefined {
+       return this._uiContexts.get(key);
+     }
+
+     setContext(key: string, value: Context): void {
+       this._uiContexts.set(key, value);
+     }
+
+     // 其他需要传递的内容依此扩展
+   }
+   ```
+
+   ```ts
+   import { Context } from '@ohos.abilityAccessCtrl';
+   import { BusinessError } from '@ohos.base';
+   import Want from '@ohos.app.ability.Want';
+   import { GlobalThis } from '../utils/globalThis';
+   import common from '@ohos.app.ability.common';
+
    function openPermissionsInSystemSettings(): void {
-     let context = getContext(this) as common.UIAbilityContext;
-     let wantInfo = {
+     let context: Context = GlobalThis.getInstance().getContext('context');
+     let wantInfo: Want = {
        action: 'action.settings.app.info',
        parameters: {
          settingsParamBundleName: 'com.example.myapplication' // 打开指定应用的详情页面
@@ -274,7 +360,7 @@
      }
      context.startAbility(wantInfo).then(() => {
        // ...
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        // ...
      })
    }
@@ -284,32 +370,31 @@
 
 通过调用[requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7)接口向用户动态申请授权。
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
 
 reqPermissions() {
-    let context = featureAbility.getContext();
-    let array:Array<string> = ["ohos.permission.PERMISSION2"];
-    //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array, 1).then(function(data) {
-        console.log("data:" + JSON.stringify(data));
-        console.log("data permissions:" + JSON.stringify(data.permissions));
-        console.log("data result:" + JSON.stringify(data.authResults));
-    }, (err) => {
-        console.error('Failed to start ability', err.code);
-    });
+  let context = featureAbility.getContext();
+  let array:Array<string> = ["ohos.permission.PERMISSION2"];
+  //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
+  context.requestPermissionsFromUser(array, 1).then(data => {
+      console.log("data:" + JSON.stringify(data));
+      console.log("data permissions:" + JSON.stringify(data.permissions));
+      console.log("data result:" + JSON.stringify(data.authResults));
+  }, (err: BusinessError) => {
+      console.error('Failed to start ability', err.code);
+  });
 }
 ```
+
 ## user_grant权限预授权
-应用在申请`user_grant`类型的权限默认未授权，需要通过拉起弹框由用户确认是否授予该权限。对于一些预制应用，不希望出现弹窗申请`user_grant`类型的权限，例如系统相机应用需要使用麦克风` ohos.permission.MICROPHONE`等权限，需要对麦克风等权限进行预授权，可以通过预授权的方式完成`user_grant`类型权限的授权。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`user_grant`类型权限授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`permissions`。
+
+user_grant权限可以通过预授权方式请求权限。预授权方式需要预置配置文件，[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`user_grant`类型权限授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`permissions`。
 
 - `bundleName`字段配置为应用的Bundle名称。
 - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 - `permissions`字段中`name`配置为需要预授权的`user_grant`类型的权限名；`permissions`字段中`userCancellable`表示为用户是否能够取消该预授权，配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
-
-> **说明**：
-> 
-> 当前仅支持预置应用配置该文件。
 
 ```json
 [
@@ -335,5 +420,6 @@ reqPermissions() {
 
 针对访问控制，有以下相关实例可供参考：
 
-- [AbilityAccessCtrl：访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
-- [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)
+- [访问权限控制（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
+
+- [为应用添加运行时权限（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Security/AccessPermission)

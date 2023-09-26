@@ -47,9 +47,11 @@ publish(event: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //发布公共事件回调
-function publishCB(err) {
-	if (err) {
+function publishCB(err:Base.BusinessError) {
+    if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish");
@@ -59,7 +61,8 @@ function publishCB(err) {
 //发布公共事件
 try {
     CommonEventManager.publish("event", publishCB);
-} catch(err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -70,7 +73,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 以回调的形式发布公共事件。
 
-**系统能力：**SystemCapability.Notification.CommonEvent
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -94,15 +97,17 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //公共事件相关信息
-let options = {
+let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 	isOrdered: true	 //有序公共事件
 }
 
 //发布公共事件回调
-function publishCB(err) {
+function publishCB(err:Base.BusinessError) {
 	if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -113,7 +118,8 @@ function publishCB(err) {
 //发布公共事件
 try {
     CommonEventManager.publish("event", options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -150,8 +156,10 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 //发布公共事件回调
-function publishCB(err) {
+function publishCB(err:Base.BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -165,7 +173,8 @@ let userId = 100;
 //发布公共事件
 try {
     CommonEventManager.publishAsUser("event", userId, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -204,14 +213,16 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 
 ```ts
+import Base from '@ohos.base';
+
 //公共事件相关信息
-let options = {
+let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 //公共事件的初始代码
 	data: "initial data",//公共事件的初始数据
 }
 
 //发布公共事件回调
-function publishCB(err) {
+function publishCB(err:Base.BusinessError) {
 	if (err) {
         console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -225,7 +236,8 @@ let userId = 100;
 //发布公共事件
 try {
     CommonEventManager.publishAsUser("event", userId, options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -248,15 +260,17 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 **示例：**
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import Base from '@ohos.base';
+
+let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
     events: ["event"]
 };
 
 //创建订阅者回调
-function createCB(err, commonEventSubscriber) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
@@ -268,7 +282,8 @@ function createCB(err, commonEventSubscriber) {
 //创建订阅者
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -295,20 +310,63 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 **示例：**
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import Base from '@ohos.base';
+
+let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 //订阅者信息
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
 	events: ["event"]
 };
 
 //创建订阅者
-CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
+CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => {
     console.info("createSubscriber");
     subscriber = commonEventSubscriber;
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 });
+
+```
+
+## CommonEventManager.createSubscriberSync
+
+createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
+
+createSubscriber的同步接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**参数：**
+
+| 参数名          | 类型                                                  | 必填 | 说明           |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
+
+**返回值：**
+| 类型                                                      | 说明             |
+| --------------------------------------------------------- | ---------------- |
+| [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let subscriber: CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
+//订阅者信息
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
+};
+
+//创建订阅者
+try {
+    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+}
 
 ```
 
@@ -340,16 +398,18 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 **示例：**
 
 ```ts
-//订阅者信息
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import Base from '@ohos.base';
 
 //订阅者信息
-let subscribeInfo = {
+let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+
+//订阅者信息
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
     events: ["event"]
 };
 
 //订阅公共事件回调
-function SubscribeCB(err, data) {
+function SubscribeCB(err:Base.BusinessError, data:CommonEventManager.CommonEventData) {
     if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -358,14 +418,15 @@ function SubscribeCB(err, data) {
 }
 
 //创建订阅者回调
-function createCB(err, commonEventSubscriber) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
-        } catch (err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     } else {
@@ -376,7 +437,8 @@ function createCB(err, commonEventSubscriber) {
 //创建订阅者
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -409,13 +471,15 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 **示例：**
 
 ```ts
-let subscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import Base from '@ohos.base';
+
+let subscriber:CommonEventManager.CommonEventSubscriber; //用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 //订阅者信息
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
     events: ["event"]
 };
 //订阅公共事件回调
-function subscribeCB(err, data) {
+function subscribeCB(err:Base.BusinessError, data:CommonEventManager.CommonEventData) {
     if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -423,7 +487,7 @@ function subscribeCB(err, data) {
     }
 }
 //创建订阅者回调
-function createCB(err, commonEventSubscriber) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
     if (err) {
         console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -432,13 +496,14 @@ function createCB(err, commonEventSubscriber) {
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
-        } catch(err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     }
 }
 //取消订阅公共事件回调
-function unsubscribeCB(err) {
+function unsubscribeCB(err:Base.BusinessError) {
     if (err) {
         console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -448,14 +513,16 @@ function unsubscribeCB(err) {
 //创建订阅者
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
 //取消订阅公共事件
 try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -493,7 +560,9 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 
 ```ts
-CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => {
+import Base from '@ohos.base';
+
+CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
         console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
@@ -540,9 +609,11 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`Remove sticky event AsyncCallback success`);
-}).catch ((err) => {
+}).catch ((err:Base.BusinessError) => {
     console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
@@ -552,6 +623,8 @@ CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -577,12 +650,14 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 
 ```ts
-CommonEventManager.setStaticSubscriberState(true, (err) => {
+import Base from '@ohos.base';
+
+CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
         console.info(`Set static subscriber state callback failed, err is null.`);
         return;
     }
-    if (err.code) {
+    if (err.code !== undefined && err.code != null) {
         console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
@@ -595,6 +670,8 @@ CommonEventManager.setStaticSubscriberState(true, (err) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -625,9 +702,11 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscriber state promise success`);
-}).catch ((err) => {
+}).catch ((err:Base.BusinessError) => {
     console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

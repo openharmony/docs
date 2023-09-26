@@ -5,14 +5,14 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 
 > **说明：**
-> 本章的内容基于[DevEco Studio 3.0 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)版本进行介绍，如您使用DevEco Studio其它版本，可能存在文档与产品功能界面、操作不一致的情况，请以实际功能界面为准。
+> 本章的内容基于[DevEco Studio 3.1.1 Release](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony)版本进行介绍，如您使用DevEco Studio其它版本，可能存在文档与产品功能界面、操作不一致的情况，请以实际功能界面为准。
 
 
 ## 工程创建
 
-参考[创建OpenHarmony工程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-create-new-project-0000001263280423)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
+参考[创建系统工程](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/create_new_project-0000001053342414-V3?catalogVersion=V3)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
 
-![zh-cn_image_0000001267274204](figures/zh-cn_image_0000001267274204.jpg)
+![zh-cn_image_0000001267274204](figures/zh-cn_image_0000001267274204.png)
 
 如果直接使用如下所示的平级目录进行模块管理，工程逻辑结构较混乱且模块间的依赖关系不够清晰，不利于开发及后期维护。
 
@@ -51,14 +51,12 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 新建Module
 
-参考[开发OpenHarmony npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434)，新建三个npm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-adding-deleting-module-0000001218760594)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
+参考[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section143510369612)，新建三个ohpm模块，分别命名为common、feature1、feature2。参考[添加/删除Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3?catalogVersion=V3)，新建一个entry类型的模块，假设命名为“wearable”（仅仅为了说明某一类产品）。示例如下：
 
 ![zh-cn_image_0000001315434285](figures/zh-cn_image_0000001315434285.png)
 
 > **说明：**
 > - 在一个工程中同一个设备类型只支持一个Entry类型的模块。
-> 
-> - 当前的DevEco Studio（3.0 Beta3版本）在创建工程时，设备类型仅能选择default和tablet，默认该模块已经选择了entry类型，那么在创建wearable这个模块，只能选择feature类型。
 > 
 > - 在下一个小节，我们将介绍如何修改Module的配置，包括Module的类型以及其支持的设备类型等。
 
@@ -70,7 +68,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 修改创建工程时默认的entry模块名称。在该模块上点击鼠标右键，依次选择”Refactor -&gt; Rename”，将名称修改为default。
 
-![zh-cn_image_0000001315914185](figures/zh-cn_image_0000001315914185.jpg)
+![zh-cn_image_0000001315914185](figures/zh-cn_image_0000001315914185.png)
 
 
 ### 修改Module类型及其设备类型
@@ -98,7 +96,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 用鼠标左键将default目录拖拽到新建的product目录中，在IDE弹出的确认窗口中，点击“Refactor”即可。
 
-![zh-cn_image_0000001315714137](figures/zh-cn_image_0000001315714137.jpg)
+![zh-cn_image_0000001315714137](figures/zh-cn_image_0000001315714137.png)
 
 按照同样的步骤，将wearable目录放到product目录中，将feature1和feature2放到features目录中。
 
@@ -109,18 +107,18 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 回顾之前小节中关于“工程结构”的介绍，我们推荐在common目录中存放基础公共代码，features目录中存放相对独立的功能模块代码，product目录中存放完全独立的产品代码。这样在product目录中依赖features和common中的公共代码来实现功能，可以最大程度实现代码复用。
 
-配置依赖关系可以通过修改模块中的package.json文件。如下图所示，通过修改default模块中的package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置OpenHarmony npm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001252769386#section89674298391)。
+配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统 ohpm包依赖](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/configuring-dependencies-0000001545614945-V3#section1361763617508)。
 
 ![zh-cn_image_0000001267274208](figures/zh-cn_image_0000001267274208.png)
 
-同样的，修改feature1和feature2模块中的package.json文件，使其可以使用common模块中的代码。
+同样的，修改feature1和feature2模块中的oh-package.json文件，使其可以使用common模块中的代码。
 
-修改package.json文件后，一定要点击右上角的“Sync Now”，否则改动不会生效！
+修改oh-package.json文件后，请点击右上角的“Sync Now”，否则改动不会生效。
 
 
-## 引用npm包中的代码
+## 引用ohpm包中的代码
 
-在[开发OpenHarmony npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001252769386)中，仅介绍了如何使用npm包中的页面和资源，本小节以例子的形式补充介绍如何使用npm包中的类和函数。
+在[开发ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section611662614153)中，仅介绍了如何使用ohpm包中的页面和资源，本小节以例子的形式补充介绍如何使用ohpm包中的类和函数。
 
 示例如下：
 
@@ -136,11 +134,11 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 2. 在”common/index.ets”文件中，申明需要export的类、函数的名称及在当前模块中的位置，否则其它模块无法使用。
    ![zh-cn_image_0000001315914189](figures/zh-cn_image_0000001315914189.png)
 
-3. 在default模块中import和使用这些类和函数。注意提前在default模块的package.json文件中配置对common模块的依赖关系。
+3. 在default模块中import和使用这些类和函数。注意提前在default模块的oh-package.json文件中配置对common模块的依赖关系。
    ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
 > **说明：**
-> 如果需要将npm包发布供其他开发者使用，当前npm包可发布到npm官方中心仓和OpenHarmony npm专用仓，具体可参考[发布OpenHarmony npm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section663116411397)。
+> 如果需要将ohpm包发布供其他开发者使用，具体可参考[发布ohpm包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3?catalogVersion=V3#section1213451811512)。
 
 
 ## 总结

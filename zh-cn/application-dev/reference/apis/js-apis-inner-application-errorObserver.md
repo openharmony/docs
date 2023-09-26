@@ -24,14 +24,14 @@ onUnhandledException(errMsg: string): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| errMsg | string | 否 | 有关异常的消息和错误堆栈跟踪。 |
+| errMsg | string | 是 | 有关异常的消息和错误堆栈跟踪。 |
 
 **示例：**
 
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   }
@@ -63,7 +63,7 @@ onException?(errObject: Error): void;
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   },

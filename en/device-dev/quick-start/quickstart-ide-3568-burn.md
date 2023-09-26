@@ -7,9 +7,9 @@ Burning is the process of downloading compiled program files to a development bo
 The images of RK3568 are burnt in the Windows environment. After burning is initiated, DevEco Device Tool copies the target program files generated in the Ubuntu environment to the specified Windows directory in remote mode, and then burns the program files to RK3568 using the Windows burning tool.
 
 
-## Prerequisites
+## Preparations
 
-[Download](https://gitee.com/hihope_iot/docs/blob/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97/windows/DriverAssitant_v5.1.1.zip) and install **DriverInstall.exe**.
+[Download](https://gitee.com/hihope_iot/docs/blob/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97/windows/DriverAssitant_v5.1.1.zip) and install **DriverInstall.exe**. If a message is displayed to indicate that the driver has been installed, you can proceed to the burning steps.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 >
@@ -31,9 +31,12 @@ The images of RK3568 are burnt in the Windows environment. After burning is init
 
    ![en-us_image_0000001330777737](figures/en-us_image_0000001330777737.png)
 
-4. On the **Tool Chain** tab page, set the Uploader burning tool. You can click **Install** on this page to install the tool online.
+4. On the **Tool Chain** tab page, DevEco Device Tool automatically checks for the uploader tool.
 
-   ![3865-uploader](figures/3865-uploader.png)
+   - If any tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
+
+   ![rk3568_false](figures/rk3568_false.png)
 
 5. On the **rk3568** tab page, set the burning options. The settings are automatically saved.
 
@@ -53,10 +56,8 @@ The images of RK3568 are burnt in the Windows environment. After burning is init
 
 7. If the message "Operation paused, Please press Enter key to continue" is displayed, press **Enter**.
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   >
    > If the message "The board is not in Loader mode. Please Hold on the VOL+key..." is displayed, place the development board in Loader mode as follows: Press and hold the Volume+ key for 3 seconds, press the RESET key, wait for 3 seconds, and then release the Volume+ key.
-   
 
-Wait until the burning is complete. If the following message is displayed, the burning is successful.
+   Wait until the burning is complete. If the following message is displayed, the burning is successful.
 
    ![en-us_image_0000001327549705](figures/en-us_image_0000001327549705.png)

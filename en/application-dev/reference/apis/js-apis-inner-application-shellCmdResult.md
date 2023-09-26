@@ -12,6 +12,8 @@ The **ShellCmdResult** module provides the shell command execution result.
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name     | Type  | Readable| Writable| Description                                                        |
@@ -26,11 +28,13 @@ The result is obtained by calling [executeShellCommand](js-apis-inner-applicatio
 **Example**
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (error: any, data: any) => {
+abilityDelegator.executeShellCommand(cmd, (error: BusinessError, data) => {
     if (error) {
         console.error('executeShellCommand fail, error: ${JSON.stringify(error)}');
     } else {

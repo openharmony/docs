@@ -94,7 +94,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 ## Setting Styles
 
-- Set the border radius:
+- Set the border radius.
   In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
   ```ts
@@ -106,8 +106,8 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511900392](figures/en-us_image_0000001511900392.png)
 
 
-- The **Font** type is used to set the text style.
-  Add a font style for text displayed on the button.
+- Set the text style.
+  Add text style attributes for the button.
 
   ```ts
   Button('font style', { type: ButtonType.Normal }) 
@@ -119,8 +119,8 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001511580828](figures/en-us_image_0000001511580828.png)
 
 
-- Set the background color:
-  You can do so by adding the **backgroundColor** attribute.
+- Set the background color.
+  Add the **backgroundColor** attribute for the button.
 
   ```ts
   Button('background color').backgroundColor(0xF55A42)
@@ -129,13 +129,14 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   ![en-us_image_0000001562940477](figures/en-us_image_0000001562940477.png)
 
 
-- Assign a function to the button:
+- Assign a function to the button.
   In this example, the delete function is assigned to the button.
 
   ```ts
-  Button({ type: ButtonType.Circle, stateEffect: true }) { 
-    Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
-  }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
+  let MarLeft:Record<string,number> = {'left':20}
+  Button({ type: ButtonType.Circle, stateEffect: true }) {
+  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+  }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 
   ![en-us_image_0000001511740436](figures/en-us_image_0000001511740436.png)
@@ -153,14 +154,18 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 ```
 
 
-## Example Scenario
+## Example
 
-- Using the Button for Startup
+- Using the button for startup
+
   You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
 
   ```ts
   // xxx.ets
   import router from '@ohos.router';
+  let furl:Record<string,string> = {'url':'pages/first_page'}
+  let surl:Record<string,string> = {'url':'pages/second_page'}
+  let turl:Record<string,string> = {'url':'pages/third_page'}
   @Entry
   @Component
   struct ButtonCase1 {
@@ -168,19 +173,19 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl({ url: 'pages/first_page' })
+            router.pushUrl(furl)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl({ url: 'pages/second_page' })
+            router.pushUrl(surl)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl({ url: 'pages/third_page' })
+            router.pushUrl(turl)
           })
             .width('100%')
         }
@@ -194,7 +199,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ![en-us_image_0000001562700393](figures/en-us_image_0000001562700393.png)
 
 
-- Use the button for submitting forms:
+- Using the button for submitting forms
+
   On the user login/registration page, you can use a button to submit a login or registration request.
 
   ```ts
@@ -217,7 +223,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ![en-us_image_0000001562940473](figures/en-us_image_0000001562940473.png)
 
-- Configure the button to float:
+- Configuring the button to float
+
   The button can remain floating when the user swipes on the screen.
 
   ```ts
@@ -229,13 +236,13 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
     build() {
       Stack() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
-          }, item => item)
+          }, ((item:number):number => item))
         }.width('90%')
         Button() {
           Image($r('app.media.ic_public_add'))

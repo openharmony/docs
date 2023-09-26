@@ -34,7 +34,7 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 ```js
 try {
-  inputDevice.getDeviceList((error, ids) => {
+  inputDevice.getDeviceList((error: Error, ids: Array<number>) => {
     if (error) {
       console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -64,7 +64,7 @@ getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
 
 ```js
 try {
-  inputDevice.getDeviceList().then((ids) => {
+  inputDevice.getDeviceList().then((ids: Array<number>) => {
     console.log(`Device id list: ${JSON.stringify(ids)}`);
   });
 } catch (error) {
@@ -129,11 +129,43 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 ```js
 // 获取输入设备id为1的设备信息。
 try {
-  inputDevice.getDeviceInfo(1).then((deviceData) => {
+  inputDevice.getDeviceInfo(1).then((deviceData: inputDevice.InputDeviceData) => {
     console.log(`Device info: ${JSON.stringify(deviceData)}`);
   });
 } catch (error) {
   console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getDeviceInfoSync<sup>10+</sup>
+
+getDeviceInfoSync(deviceId: number): InputDeviceData
+
+获取指定输入设备的信息。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| deviceId | number | 是   | 输入设备id。 |
+
+**返回值**：
+
+| 参数                                               | 说明                            |
+| -------------------------------------------------- | ------------------------------- |
+| [InputDeviceData](#inputdevicedata) | 返回输入设备信息。 |
+
+**示例**：
+
+```js
+// 获取输入设备id为1的设备信息。
+try {
+  let deviceData: InputDeviceData = inputDevice.getDeviceInfoSync(1)
+  console.log(`Device info: ${JSON.stringify(deviceData)}`)
+} catch (error) {
+  console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -157,9 +189,9 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 ```js
 let isPhysicalKeyboardExist = true;
 try {
-  inputDevice.on("change", (data) => {
+  inputDevice.on("change", (data: inputDevice.DeviceListener) => {
     console.log(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId, (err, type) => {
+    inputDevice.getKeyboardType(data.deviceId, (err: Error, type: inputDevice.KeyboardType) => {
       console.log("The keyboard type is: " + type);
       if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // 监听物理键盘已连接。
@@ -194,7 +226,7 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 **示例**：
 
 ```js
-function callback(data) {
+function callback(data: inputDevice.DeviceListener) {
   console.log(`Report device event info: ${JSON.stringify(data, [`type`, `deviceId`])}`);
 };
 
@@ -238,7 +270,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 **示例**：
 
 ```js
-inputDevice.getDeviceIds((error, ids) => {
+inputDevice.getDeviceIds((error: Error, ids: Array<number>) => {
   if (error) {
     console.log(`Failed to get device id list, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -266,7 +298,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例**：
 
 ```js
-inputDevice.getDeviceIds().then((ids) => {
+inputDevice.getDeviceIds().then((ids: Array<number>) => {
   console.log(`Device id list: ${JSON.stringify(ids)}`);
 });
 ```
@@ -292,7 +324,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDevice(1, (error, deviceData) => {
+inputDevice.getDevice(1, (error: Error, deviceData: inputDevice.InputDeviceData) => {
   if (error) {
     console.log(`Failed to get device info, error: ${JSON.stringify(error, [`code`, `message`])}`);
     return;
@@ -327,7 +359,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 ```js
 // 获取输入设备id为1的设备信息。
-inputDevice.getDevice(1).then((deviceData) => {
+inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
   console.log(`Device info: ${JSON.stringify(deviceData)}`);
 });
 ```
@@ -353,7 +385,7 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055], (error, supportResult) => {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
@@ -387,11 +419,44 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 ```js
 // 查询id为1的输入设备对于17、22和2055按键的支持情况。
 try {
-  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult) => {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
   });
 } catch (error) {
   console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.supportKeysSync<sup>10+</sup>
+
+supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&gt;
+
+获取输入设备是否支持指定的键码值。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型                 | 必填 | 说明                                                   |
+| -------- | -------------------- | ---- | ------------------------------------------------------ |
+| deviceId | number               | 是   | 输入设备id，同一个物理设备反复插拔，设备id会发生变化。 |
+| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                |
+
+**返回值**：
+
+| 参数                                | 说明                            |
+| ----------------------------------- | ------------------------------- |
+| Array&lt;boolean&gt; | 返回查询结果。true表示支持，false表示不支持。 |
+
+**示例**：
+
+```js
+// 查询id为1的输入设备对于17、22和2055按键的支持情况。
+try {
+  let supportResult: Array<boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
+  console.log(`Query result: ${JSON.stringify(supportResult)}`)
+} catch (error) {
+  console.log(`Query failed, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
 
@@ -415,7 +480,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 ```js
 // 查询id为1的输入设备的键盘类型。
 try {
-  inputDevice.getKeyboardType(1, (error, type) => {
+  inputDevice.getKeyboardType(1, (error: Error, type: number) => {
     if (error) {
       console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -452,11 +517,297 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 ```js
 // 示例查询设备id为1的设备键盘类型。
 try {
-  inputDevice.getKeyboardType(1).then((type) => {
+  inputDevice.getKeyboardType(1).then((type: number) => {
     console.log(`Keyboard type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardTypeSync<sup>10+</sup>
+
+getKeyboardTypeSync(deviceId: number): KeyboardType
+
+获取输入设备的键盘类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| deviceId | number | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
+
+**返回值**：
+
+| 参数                                          | 说明                            |
+| --------------------------------------------- | ------------------------------- |
+| [KeyboardType](#keyboardtype9) | 返回查询结果。 |
+
+**示例**：
+
+```js
+// 示例查询设备id为1的设备键盘类型。
+try {
+  let type: number = inputDevice.getKeyboardTypeSync(1)
+  console.log(`Keyboard type: ${JSON.stringify(type)}`)
+} catch (error) {
+  console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
+}
+```
+
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| delay    | number                    | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
+    if (error) {
+      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
+
+设置键盘按键的重复时延，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| delay | number | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(350).then(() => {
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatDelay<sup>10+</sup>
+
+getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
+
+获取键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| callback   | AsyncCallback&lt;number&gt;                    | 是    | 回调函数，异步返回键盘按键重复延迟时间。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getKeyboardRepeatDelay((error: Error, delay: number) => {
+    if (error) {
+      console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatDelay<sup>10+</sup>
+
+getKeyboardRepeatDelay(): Promise&lt;number&gt;
+
+获取键盘按键的重复时延，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复时延。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getKeyboardRepeatDelay().then((delay: number) => {
+    console.log(`Get keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| rate    | number                    | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
+    if (error) {
+      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
+
+设置键盘按键的重复速率，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| rate | number | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(60).then(() => {
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatRate<sup>10+</sup>
+
+getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
+
+获取键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回键盘按键的重复速率。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getKeyboardRepeatRate((error: Error, rate: number) => {
+    if (error) {
+      console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Get keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.getKeyboardRepeatRate<sup>10+</sup>
+
+getKeyboardRepeatRate(): Promise&lt;number&gt;
+
+获取键盘按键的重复速率，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复速率。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getKeyboardRepeatRate().then((rate: number) => {
+    console.log(`Get keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -506,7 +857,7 @@ try {
 | pressure    | string | 是 | 否 | 表示pressure轴。    |
 | x           | string | 是 | 否 | 表示x轴。           |
 | y           | string | 是 | 否 | 表示y轴。           |
-| NULL        | string | 是 | 否 | 无。              |
+| null        | string | 是 | 否 | 无。              |
 
 ## AxisRange
 

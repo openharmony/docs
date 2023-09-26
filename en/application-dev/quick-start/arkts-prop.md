@@ -1,4 +1,4 @@
-# \@Prop: One-Way Synchronization from Parent to Child Components
+# \@Prop Decorator: One-Way Synchronization from Parent to Child Components
 
 
 An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
@@ -15,24 +15,25 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 
 - An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
-- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value synchronization is from the parent component to the (owning) child component, but not from the other way around.
+- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not from the other way around.
 
 
 ## Rules of Use
 
-| \@Prop Decorator  | Description                                                        |
-| ------------------ | ------------------------------------------------------------ |
-| Decorator parameters        | None.                                                          |
-| Synchronization type          | One-way: from the data source provided by the parent component to the @Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>The type must be specified.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.<br>Negative examples:<br>CompA&nbsp;({&nbsp;aProp:&nbsp;undefined&nbsp;})<br>CompA&nbsp;({&nbsp;aProp:&nbsp;null&nbsp;})<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state attribute of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component](#class-object-type-prop-synced-from-state-class-object-attribute-in-parent-component).|
-| Initial value for the decorated variable| Local initialization is allowed.                                            |
+| \@Prop Decorator| Description                                      |
+| ----------- | ---------------------------------------- |
+| Decorator parameters      | None.                                       |
+| Synchronization type       | One-way: from the data source provided by the parent component to the @Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.<br>Negative examples:<br>CompA ({ aProp: undefined })<br>CompA ({ aProp: null })<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state attribute of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component](#class-object-type-prop-synced-from-state-class-object-attribute-in-parent-component).|
+| Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will follow, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead. If you do not want to synchronize the data of a child component to the parent component, consider using **aboutToReuse** in @Reusable to pass data from the parent component to the child component. For details, see [Component Reuse](arkts-state-management-best-practices.md)|
+| Initial value for the decorated variable  | Local initialization is allowed.                                |
 
 
 ## Variable Transfer/Access Rules
 
 | Transfer/Access    | Description                                      |
 | --------- | ---------------------------------------- |
-| Initialization from the parent component  | Optional. Initialization from the parent component or local initialization can be used. An \@Prop decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
+| Initialization from the parent component  | Optional if local initialization is used and mandatory otherwise. An @Prop decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
 | Subnode initialization | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.               |
 
@@ -88,29 +89,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class attribute can be observed.
-
-```
-@Observed
-class ClassA {
-  public value: string;
-  constructor(value: string) {
-    this.value = value;
-  }
-}
-class Model {
-  public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
-    this.value = value;
-    this.a = a;
-  }
-}
-@Prop title: Model;
-// The value changes at the first layer can be observed.
-this.title.value = 'Hi'
-// The value change of the ClassA attribute can be observed because ClassA is decorated by @Observed. this.title.a.value = 'ArkUi'.
-```
+In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class attribute can be observed. For the example, see [@Prop Nesting Scenario](#@prop-nesting-scenario).
 
 When the decorated variable is of the array type, the value assignment, addition, deletion, and updates of array items can be observed.
 
@@ -134,6 +113,61 @@ For synchronization between \@State and \@Prop decorated variables:
 - In addition to \@State, the source can also be decorated with \@Link or \@Prop, where the mechanisms for syncing the \@Prop would be the same.
 - The source and \@Prop decorated variable must be of the same type. The \@Prop decorated variable can be of simple and class types.
 
+- When the decorated variable is of the Date type, the overall value assignment of the Date object can be observed, and the following APIs can be called to update Date attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+
+```ts
+@Component
+struct DateComponent {
+  @Prop selectedDate: Date = new Date('');
+
+  build() {
+    Column() {
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
+        })
+      Button(`child increase the year by 1`).onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07')
+        })
+      Button('parent increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1)
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({selectedDate:this.parentSelectedDate})
+    }
+
+  }
+}
+```
 
 ### Framework Behavior
 
@@ -154,7 +188,7 @@ To understand the value initialization and update mechanism of the \@Prop decora
 ### Simple Type @Prop Synced from @State in Parent Component
 
 
-In this example, the \@Prop decorated **count** variable in the **CountDownComponent** child component is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**. When **Try again** is touched, the value of the **count** variable is modified, but the change remains within the **CountDownComponent** and does not affect the **CountDownComponent**.
+In this example, the \@Prop decorated **count** variable in the **CountDownComponent** child component is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**. When **Try again** is touched, the value of the **count** variable is modified, but the change remains within the **CountDownComponent** and does not affect the **ParentComponent**.
 
 
 Updating **countDownStartValue** in the **ParentComponent** will update the value of the @Prop decorated **count**.
@@ -164,7 +198,7 @@ Updating **countDownStartValue** in the **ParentComponent** will update the valu
 ```ts
 @Component
 struct CountDownComponent {
-  @Prop count: number;
+  @Prop count: number = 0;
   costOfOneAttempt: number = 1;
 
   build() {
@@ -211,9 +245,9 @@ In the preceding example:
 
 1. On initial render, when the **CountDownComponent** child component is created, its @Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
 
-2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the changed **count** variable value.
+2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
 
-3. Because of the changed **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's conditions (**this.counter> 0**) is-evaluated and the **\<Text>** child component inside the **if** would be updated.
+3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **\<Text>** child component inside the **if** statement would be updated.
 
 4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is modified, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
 
@@ -230,7 +264,7 @@ The \@State decorated array an array item in the parent component can be used as
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
 
   build() {
     Text(`${this.value}`)
@@ -254,10 +288,10 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          item => {
+          (item: void) => {
             Child({value: item})
           }, 
-          item => item.toString()
+          (item: string) => item.toString()
         )
         Text('replace entire arr')
         .fontSize(50)
@@ -336,7 +370,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 0);
 
   build() {
     Row() {
@@ -366,7 +400,7 @@ struct Library {
 
 In the following example, an attribute of the **Book** object in the \@State decorated **allBooks** array is changed, but the system does not respond when **Mark read for everyone** is clicked. This is because the attribute is a nested attribute of the second layer, and the \@State decorator can observe only the attribute of the first layer. Therefore, the framework does not update **ReaderComp**.
 
-```
+```ts
 let nextId: number = 1;
 
 // @Observed
@@ -385,7 +419,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -408,10 +442,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, book => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        book => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -431,7 +465,7 @@ struct Library {
 
  To observe the attribute of the **Book** object, you must use \@Observed to decorate the **Book** class. Note that the \@Prop decorated state variable in the child component is one-way synchronized from the data source of the parent component. This means that, the changes of the \@Prop decorated **book** in **ReaderComp** is not synchronized to the parent **library** component. The parent component triggers UI re-rendering only when the value is updated (compared with the last state).
 
-```
+```ts
 @Observed
 class Book {
   public id: number;
@@ -463,7 +497,7 @@ The following example includes two @Prop decorated variables in child component.
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number;
+  @Prop customCounter: number = 0;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -473,11 +507,11 @@ struct MyComponent {
       }
 
       Row() {
-        Button('Click to change locally !').width(480).height(60).margin({ top: 10 })
+        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(480)
+      }.height(100).width(180)
 
       Row() {
         Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
@@ -503,14 +537,98 @@ struct MainProgram {
       }
 
       Row() {
-        Column()
-        // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
-        MyComponent({ customCounter: this.mainCounter })
-        // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
-        MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-      }.width('40%')
+        Column() {
+          // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+        }
+      }
     }
   }
 }
 ```
+
+### \@Prop Nesting Scenario
+
+In nesting scenario, each layer must be decorated with @Observed, and each layer must be received by @Prop. In this way, the nested scenario can be observed.
+
+```ts
+// The following is the data structure of a nested class object.
+@Observed
+class ClassA {
+  public title: string;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+}
+
+@Observed
+class ClassB {
+  public name: string;
+  public a: ClassA;
+
+  constructor(name: string, a: ClassA) {
+    this.name = name;
+    this.a = a;
+  }
+}
+```
+
+The following component hierarchy presents a data structure of nested @Prop.
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+
+  build() {
+    Column() {
+      Button('change')
+        .onClick(() => {
+          this.votes.name = "aaaaa"
+          this.votes.a.title = "wwwww"
+        })
+      Child({ vote: this.votes })
+    }
+
+  }
+}
+
+@Component
+struct Child {
+  @Prop vote: ClassB = new ClassB('', new ClassA(''));
+  build() {
+    Column() {
+
+      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote.name = 'Bye'
+        })
+      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+        .onClick(() => {
+          this.vote.a.title = "openHarmony"
+        })
+      Child1({vote1:this.vote.a})
+
+    }
+  }
+}
+
+@Component
+struct Child1 {
+  @Prop vote1: ClassA = new ClassA('');
+  build() {
+    Column() {
+      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote1.title = 'Bye Bye'
+        })
+    }
+  }
+}
+```
+
 <!--no_check-->

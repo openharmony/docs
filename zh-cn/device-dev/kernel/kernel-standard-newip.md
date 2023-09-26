@@ -97,7 +97,7 @@ New IP支持可变长地址（IPv4/IPv6地址长度固定），支持自解析�
 # kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
 CONFIG_NEWIP=y          // 使能New IP内核协议栈
 CONFIG_NEWIP_HOOKS=y    // 使能New IP内核侵入式修改插桩函数注册，使能New IP的同时必须使用New IP HOOKS功能
-VENDOR_HOOKS=y          // 使能内核插桩基础框架(New IP依赖此配置项，rk3568开发板已默认开启)
+HCK_VENDOR_HOOKS=y      // 使能内核插桩基础框架(New IP依赖此配置项，rk3568开发板已默认开启)
 ```
 
 代码编译完成后，通过下面命令可以确认New IP协议栈代码是否使能成功。
@@ -117,8 +117,18 @@ out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
 
 ```c
 /* 将New IP ehash函数注册到内核 */
-register_trace_ninet_ehashfn_hook(&ninet_ehashfn_hook, NULL);
+/* call the newip hook function in sk_ehashfn function (net\ipv4\inet_hashtables.c):
+ */
+void nip_ninet_ehashfn(const struct sock *sk, u32 *ret)
+{
+	*ret = ninet_ehashfn(sock_net(sk), &sk->SK_NIP_RCV_SADDR,
+			     sk->sk_num, &sk->SK_NIP_DADDR, sk->sk_dport);
+}
 
+void nip_ninet_ehashfn_lhck_register(void)
+{
+	REGISTER_HCK_LITE_HOOK(nip_ninet_ehashfn_lhck, nip_ninet_ehashfn);
+}
 
 /* 下面是IPv4，IPv6协议栈总入口函数，在总入口函数内新增New IP协议栈相关处理 */
 static u32 sk_ehashfn(const struct sock *sk)
@@ -132,14 +142,12 @@ static u32 sk_ehashfn(const struct sock *sk)
 				     &sk->sk_v6_daddr, sk->sk_dport);
 #endif
 
-	if (trace_vendor_ninet_ehashfn_enabled()) {
-		if (sk->sk_family == AF_NINET) {
-			u32 ret = 0;
+	if (sk->sk_family == AF_NINET) {
+		u32 ret = 0;
 
         /* New IP注册的ehash函数 */
-			trace_vendor_ninet_ehashfn(sk, &ret);
-			return ret;
-		}
+		CALL_HCK_LITE_HOOK(nip_ninet_ehashfn_lhck, sk, &ret);
+		return ret;
 	}
     /* IPv4 */
 	return inet_ehashfn(sock_net(sk),

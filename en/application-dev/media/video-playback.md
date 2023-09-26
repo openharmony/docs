@@ -4,9 +4,9 @@ OpenHarmony provides two solutions for video playback development:
 
 - [AVPlayer](using-avplayer-for-playback.md) class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
 
-- <Video\> component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
+- **\<Video>** component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
 
-In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task-dev-guide.md) to prevent the playback from being forcibly interrupted by the system.
+In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task.md) to prevent the playback from being forcibly interrupted by the system.
 
 ## Development Guidelines
 
@@ -46,7 +46,7 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
    > 
@@ -73,71 +73,67 @@ Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API refere
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export class AVPlayerDemo {
-  private avPlayer;
   private count: number = 0;
-  private surfaceID: string; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
+  private surfaceID: string = ''; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
   private isSeek: boolean = true; // Specify whether the seek operation is supported.
   private fileSize: number = -1;
   private fd: number = 0;
   // Set AVPlayer callback functions.
-  setAVPlayerCallback() {
+  setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for the seek operation.
-    this.avPlayer.on('seekDone', (seekDoneTime) => {
+    avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
-    this.avPlayer.on('error', (err) => {
+    avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      this.avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
+      avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
     })
     // Callback function for state changes.
-    this.avPlayer.on('stateChange', async (state, reason) => {
+    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
         case 'idle': // This state is reported upon a successful callback of reset().
           console.info('AVPlayer state idle called.');
-          this.avPlayer.release(); // Call release() to release the instance.
+          avPlayer.release(); // Call release() to release the instance.
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
-          console.info('AVPlayerstate initialized called.');
-          this.avPlayer.surfaceId = this.surfaceID // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
-          this.avPlayer.prepare().then(() => {
-            console.info('AVPlayer prepare succeeded.');
-          }, (err) => {
-            console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
-          });
+          console.info('AVPlayer state initialized called.');
+          avPlayer.surfaceId = this.surfaceID; // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
+          avPlayer.prepare();
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
           console.info('AVPlayer state prepared called.');
-          this.avPlayer.play(); // Call play() to start playback.
+          avPlayer.play(); // Call play() to start playback.
           break;
         case 'playing': // This state is reported upon a successful callback of play().
           console.info('AVPlayer state playing called.');
           if (this.count !== 0) {
             if (this.isSeek) {
               console.info('AVPlayer start to seek.');
-              this.avPlayer.seek (this.avPlayer.duration); // Call seek() to seek to the end of the video clip.
+              avPlayer.seek(avPlayer.duration); // Call seek() to seek to the end of the video clip.
             } else {
               // When the seek operation is not supported, the playback continues until it reaches the end.
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            this.avPlayer.pause(); // Call pause() to pause the playback.
+            avPlayer.pause(); // Call pause() to pause the playback.
           }
           this.count++;
           break;
         case 'paused': // This state is reported upon a successful callback of pause().
           console.info('AVPlayer state paused called.');
-          this.avPlayer.play(); // Call play() again to start playback.
+          avPlayer.play(); // Call play() again to start playback.
           break;
         case 'completed': // This state is reported upon the completion of the playback.
           console.info('AVPlayer state completed called.');
-          this.avPlayer.stop(); // Call stop() to stop the playback.
+          avPlayer.stop(); // Call stop() to stop the playback.
           break;
         case 'stopped': // This state is reported upon a successful callback of stop().
           console.info('AVPlayer state stopped called.');
-          this.avPlayer.reset(); // Call reset() to reset the AVPlayer state.
+          avPlayer.reset(); // Call reset() to reset the AVPlayer state.
           break;
         case 'released':
           console.info('AVPlayer state released called.');
@@ -152,9 +148,9 @@ export class AVPlayerDemo {
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file using the URL attribute.
   async avPlayerUrlDemo() {
     // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback function for state changes.
-    this.setAVPlayerCallback();
+    this.setAVPlayerCallback(avPlayer);
     let fdPath = 'fd://';
     let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
@@ -164,34 +160,36 @@ export class AVPlayerDemo {
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
-    this.avPlayer.url = fdPath;
+    avPlayer.url = fdPath;
   }
 
   // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and play the media file by using the fdSrc attribute.
   async avPlayerFdSrcDemo() {
     // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback function for state changes.
-    this.setAVPlayerCallback();
+    this.setAVPlayerCallback(avPlayer);
     // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+    let avFileDescriptor: media.AVFileDescriptor =
+      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
     this.isSeek = true; // The seek operation is supported.
     // Assign a value to fdSrc to trigger the reporting of the initialized state.
-    this.avPlayer.fdSrc = fileDescriptor;
+    avPlayer.fdSrc = avFileDescriptor;
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file with the seek operation using the dataSrc attribute.
   async avPlayerDataSrcSeekDemo() {
     // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback function for state changes.
-    this.setAVPlayerCallback();
+    this.setAVPlayerCallback(avPlayer);
     // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
-    let src = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number, pos: number | undefined) => {
         let num = 0;
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
@@ -207,26 +205,26 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
-    this.avPlayer.dataSrc = src;
+    avPlayer.dataSrc = src;
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file without the seek operation using the dataSrc attribute.
   async avPlayerDataSrcNoSeekDemo() {
     // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback function for state changes.
-    this.setAVPlayerCallback();
+    this.setAVPlayerCallback(avPlayer);
     let context = getContext(this) as common.UIAbilityContext;
-    let src: object = {
+    let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
-      callback: (buf, length, pos) => {
+      callback: (buf: ArrayBuffer, length: number) => {
         let num = 0;
         if (buf == undefined || length == undefined) {
           return -1;
@@ -241,23 +239,22 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
-    this.avPlayer.dataSrc = src;
+    avPlayer.dataSrc = src;
   }
 
   // The following demo shows how to play live streams by setting the network address through the URL.
   async avPlayerLiveDemo() {
     // Create an AVPlayer instance.
-    this.avPlayer = await media.createAVPlayer();
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback function for state changes.
-    this.setAVPlayerCallback();
+    this.setAVPlayerCallback(avPlayer);
     this.isSeek = false; // The seek operation is not supported.
-    this.avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
+    avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
   }
 }
 ```
 
- <!--no_check--> 

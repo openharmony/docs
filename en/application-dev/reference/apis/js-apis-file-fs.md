@@ -8,8 +8,8 @@ The **fs** module provides APIs for file operations, including basic file manage
 
 ## Modules to Import
 
-```js
-import fs from '@ohos.file.fs';
+```ts
+import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
 ```
 
 ## Guidelines
@@ -18,27 +18,28 @@ Before using the APIs provided by this module to perform operations on a file or
 
 **Stage Model**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 FA Model
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
@@ -64,16 +65,17 @@ Obtains detailed file information. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.stat(filePath).then((stat) => {
-      console.info("get file info succeed, the size of file is " + stat.size);
-  }).catch((err) => {
-      console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+  fs.stat(filePath).then((stat: fs.Stat) => {
+    console.info("get file info succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -94,12 +96,13 @@ Obtains detailed file information. This API uses an asynchronous callback to ret
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  fs.stat(pathDir, (err, stat) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -130,11 +133,11 @@ Obtains detailed file information synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let stat = fs.statSync(pathDir);
   console.info("get file info succeed, the size of file is " + stat.size);
   ```
@@ -161,17 +164,18 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath).then((res) => {
+  fs.access(filePath).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     }
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -193,13 +197,14 @@ Checks whether a file exists. This API uses an asynchronous callback to return t
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.access(filePath, (err, res) => {
+  fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
       console.info("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -232,26 +237,28 @@ Synchronously checks whether a file exists.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   try {
-      let res = fs.accessSync(filePath);
-      if (res) {
-        console.info("file exists");
-      }
-  } catch(err) {
-      console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    let res = fs.accessSync(filePath);
+    if (res) {
+      console.info("file exists");
+    }
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
 
 ## fs.close
 
-close(file: File|number): Promise&lt;void&gt;
+close(file: number|File): Promise&lt;void&gt;
 
 Closes a file. This API uses a promise to return the result.
 
@@ -261,7 +268,7 @@ Closes a file. This API uses a promise to return the result.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Return value**
 
@@ -271,24 +278,24 @@ Closes a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
-      console.info("File closed");
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File closed");
+  }).catch((err: BusinessError) => {
+    console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ## fs.close
 
-close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
+close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
 
 Closes a file. This API uses an asynchronous callback to return the result.
 
@@ -298,30 +305,32 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | [File](#file)\|number                  | Yes   | File object or FD of the file to close.|
+  | file       | number\|[File](#file)                  | Yes   | File object or FD of the file to close.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.close(file, (err) => {
+  fs.close(file, (err: BusinessError) => {
     if (err) {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file success");
+      fs.closeSync(file);
     }
   });
   ```
 
 ## fs.closeSync
 
-closeSync(file: File|number): void
+closeSync(file: number|File): void
 
 Synchronously closes a file.
 
@@ -331,15 +340,15 @@ Synchronously closes a file.
 
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | file   | number\|[File](#file) | Yes   | File object or FD of the file to close.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.closeSync(file);
@@ -369,17 +378,18 @@ Copies a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath).then(() => {
-      console.info("copy file succeed");
-  }).catch((err) => {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("copy file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -402,14 +412,15 @@ Copies a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
-  fs.copyFile(srcPath, dstPath, (err) => {
+  fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -437,11 +448,11 @@ Synchronously copies a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
@@ -461,7 +472,7 @@ Copies a directory to the specified directory. This API uses a promise to return
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
@@ -471,31 +482,25 @@ Copies a directory to the specified directory. This API uses a promise to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
-  }).catch((err) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+  }).catch((err: BusinessError) => {
+    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ## fs.copyDir<sup>10+</sup>
 
-copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 Copies a directory to the specified directory. This API uses an asynchronous callback to return the result.
 
@@ -507,24 +512,24 @@ Copies a directory to the specified directory. This API uses an asynchronous cal
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to copy.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked immediately after the directory is copied.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.copyDir(srcPath, destPath, 0, (err) => {
+  fs.copyDir(srcPath, destPath, 0, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("copy directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -533,6 +538,41 @@ Copies a directory to the specified directory. This API uses an asynchronous cal
     }  
   });
   ```
+
+## fs.dup<sup>10+</sup>
+
+dup(fd: number): File
+
+Opens a **File** object based on the specified FD.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | fd | number | Yes   | FD of the file.|
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | [File](#file) | File object opened.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  // convert fd to file
+  let fd: number = 0;  // fd comes from other modules
+  let file = fs.dup(fd);
+  console.info("The name of the file is " + file.name);
+  fs.closeSync(file);
+  ```
+
 
 ## fs.mkdir
 
@@ -556,16 +596,17 @@ Creates a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
-      console.info("Directory created");
-  }).catch((err) => {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Directory created");
+  }).catch((err: BusinessError) => {
+    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -586,13 +627,14 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fs.mkdir(dirPath, (err) => {
+  fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -617,11 +659,11 @@ Synchronously creates a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
@@ -639,26 +681,27 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
   | Type                   | Description         |
   | --------------------- | ----------- |
-  | Promise&lt;[File](#file)&gt; | Promise used to return the file object.|
+  | Promise&lt;[File](#file)&gt; | Promise used to return the **File** object.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file) => {
-      console.info("file fd: " + file.fd);
-  }).catch((err) => {
-      console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
+    console.info("file fd: " + file.fd);
+  }).catch((err: BusinessError) => {
+    console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -676,17 +719,18 @@ Opens a file. This API uses an asynchronous callback to return the result. File 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
+  fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -708,7 +752,7 @@ Synchronously opens a file. File URIs are supported.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -718,11 +762,11 @@ Synchronously opens a file. File URIs are supported.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   console.info("file fd: " + file.fd);
@@ -743,7 +787,7 @@ Reads data from a file. This API uses a promise to return the result.
 | ------- | ----------- | ---- | ------------------------------------------------------------ |
 | fd      | number      | Yes  | FD of the file.                                    |
 | buffer  | ArrayBuffer | Yes  | Buffer used to store the file data read.                          |
-| options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+| options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
@@ -753,20 +797,23 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-  let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf).then((readLen) => {
-      console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+  let arrayBuffer = new ArrayBuffer(4096);
+  fs.read(file.fd, arrayBuffer).then((readLen: number) => {
+    console.info("Read file data successfully");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -784,25 +831,28 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | FD of the file.                            |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
   | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-  let buf = new ArrayBuffer(4096);
-  fs.read(file.fd, buf, (err, readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
       fs.closeSync(file);
     }
   });
@@ -822,7 +872,7 @@ Synchronously reads data from a file.
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
-  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
@@ -832,15 +882,15 @@ Synchronously reads data from a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let buf = new ArrayBuffer(4096);
-  let num = fs.readSync(file.fd, buf);
+  fs.readSync(file.fd, buf);
   fs.closeSync(file);
   ```
 
@@ -866,16 +916,17 @@ Deletes a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
-      console.info("Directory deleted");
-  }).catch((err) => {
-      console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Directory deleted");
+  }).catch((err: BusinessError) => {
+    console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -896,13 +947,14 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fs.rmdir(dirPath, (err) => {
+  fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -927,11 +979,11 @@ Synchronously deletes a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
@@ -958,16 +1010,17 @@ Deletes a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath).then(() => {
-      console.info("File deleted");
-  }).catch((err) => {
-      console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
+    console.info("File deleted");
+  }).catch((err: BusinessError) => {
+    console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
   });
   ```
 
@@ -988,13 +1041,14 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.unlink(filePath, (err) => {
+  fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
       console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1019,11 +1073,11 @@ Synchronously deletes a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fs.unlinkSync(filePath);
   ```
@@ -1043,7 +1097,7 @@ Writes data into a file. This API uses a promise to return the result.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
@@ -1053,17 +1107,19 @@ Writes data into a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world").then((writeLen) => {
+  let str: string = "hello, world";
+  fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1082,19 +1138,21 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | FD of the file.                            |
   | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
   | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  fs.write(file.fd, "hello, world", (err, writeLen) => {
+  let str: string = "hello, world";
+  fs.write(file.fd, str, (err: BusinessError, writeLen: number) => {
     if (err) {
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1118,7 +1176,7 @@ Synchronously writes data into a file.
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | FD of the file.                            |
   | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
@@ -1128,14 +1186,15 @@ Synchronously writes data into a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let writeLen = fs.writeSync(file.fd, "hello, world");
+  let str: string = "hello, world";
+  let writeLen = fs.writeSync(file.fd, str);
   console.info("write data to file succeed and size is:" + writeLen);
   fs.closeSync(file);
   ```
@@ -1163,17 +1222,18 @@ Truncates a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let len = 5;
+  let len: number = 5;
   fs.truncate(filePath, len).then(() => {
-      console.info("File truncated");
-  }).catch((err) => {
-      console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File truncated");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1195,14 +1255,15 @@ Truncates a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let len = 5;
-  fs.truncate(filePath, len, (err) => {
+  let len: number = 5;
+  fs.truncate(filePath, len, (err: BusinessError) => {
     if (err) {
       console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1228,13 +1289,13 @@ Synchronously truncates a file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let len = 5;
+  let len: number = 5;
   fs.truncateSync(filePath, len);
   ```
 
@@ -1251,26 +1312,27 @@ Reads the text content of a file. This API uses a promise to return the result.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
   | Type                   | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the content read.|
+  | Promise&lt;string&gt; | Promise used to return the file content read.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath).then((str) => {
-      console.info("readText succeed:" + str);
-  }).catch((err) => {
-      console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+  fs.readText(filePath).then((str: string) => {
+    console.info("readText succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1287,18 +1349,28 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file.                                  |
-| options  | Object                      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object                      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding**: format of the data to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, (err, str) => {
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let stat = fs.statSync(filePath);
+  let option = new Option();
+  option.offset = 1;
+  option.length = stat.size;
+  fs.readText(filePath, option, (err: BusinessError, str: string) => {
     if (err) {
       console.info("read text failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1320,23 +1392,32 @@ Synchronously reads the text of a file.
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file.                                  |
-| options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
+| options  | Object | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the data (string) to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
   | Type  | Description                |
   | ------ | -------------------- |
-  | string | Promise used to return the content of the file read.|
+  | string | Returns the content of the file read.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let str = fs.readTextSync(filePath, {offset: 1, length: 3});
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let stat = fs.statSync(filePath);
+  let option = new Option();
+  option.offset = 1;
+  option.length = stat.size;
+  let str = fs.readTextSync(filePath, option);
   console.info("readText succeed:" + str);
   ```
 
@@ -1362,16 +1443,17 @@ Obtains information about a symbolic link. This API uses a promise to return the
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath).then((stat) => {
-      console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch((err) => {
-      console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
+  fs.lstat(filePath).then((stat: fs.Stat) => {
+    console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1392,13 +1474,14 @@ Obtains information about a symbolic link. This API uses an asynchronous callbac
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.lstat(filePath, (err, stat) => {
+  fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
       if (err) {
         console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
       } else {
@@ -1429,13 +1512,13 @@ Obtains information about a symbolic link synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let stat = fs.lstatSync(filePath);
+  fs.lstatSync(filePath);
   ```
 
 ## fs.rename
@@ -1461,17 +1544,18 @@ Renames a file or folder. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
-      console.info("File renamed");
-  }).catch((err) => {
-      console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File renamed");
+  }).catch((err: BusinessError) => {
+    console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1493,14 +1577,15 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
-  fs.rename(srcFile, dstFile, (err) => {
+  fs.rename(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1526,11 +1611,11 @@ Renames a file or folder synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
@@ -1558,17 +1643,19 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
-      console.info("Data flushed");
-  }).catch((err) => {
-      console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Data flushed");
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1589,14 +1676,15 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fsync(file.fd, (err) => {
+  fs.fsync(file.fd, (err: BusinessError) => {
     if (err) {
       console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1623,11 +1711,11 @@ Flushes data of a file to disk synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsyncSync(file.fd);
@@ -1656,17 +1744,18 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync(file.fd).then((err) => {
+  fs.fdatasync(file.fd).then((err: BusinessError) => {
     console.info("Data flushed");
     fs.closeSync(file);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
@@ -1688,14 +1777,15 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdatasync (file.fd, (err) => {
+  fs.fdatasync (file.fd, (err: BusinessError) => {
     if (err) {
       console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1721,11 +1811,11 @@ Synchronizes data in a file synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   let stat = fs.fdatasyncSync(file.fd);
@@ -1755,17 +1845,18 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
-      console.info("Symbolic link created");
-  }).catch((err) => {
-      console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Symbolic link created");
+  }).catch((err: BusinessError) => {
+    console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1787,14 +1878,15 @@ Creates a symbolic link based on a file path. This API uses an asynchronous call
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
-  fs.symlink(srcFile, dstFile, (err) => {
+  fs.symlink(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1820,11 +1912,11 @@ Synchronously creates a symbolic link based on a file path.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlinkSync(srcFile, dstFile);
@@ -1852,7 +1944,7 @@ Lists all files in a folder. This API uses a promise to return the result.<br>Th
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1860,32 +1952,33 @@ Lists all files in a folder. This API uses a promise to return the result.<br>Th
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string[]&gt; | Promise used to return the files names listed.|
+  | Promise&lt;string[]&gt; | Promise used to return the file names listed.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  fs.listFile(pathDir, options).then((filenames) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  fs.listFile(pathDir, option).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
-  }).catch((err) => {
-      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError) => {
+    console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1897,6 +1990,8 @@ listFile(path: string, options?: {
 }, callback: AsyncCallback<string[]>): void
 
 Lists all files in a folder. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subfolders) and file filtering.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
@@ -1910,28 +2005,29 @@ Lists all files in a folder. This API uses an asynchronous callback to return th
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  fs.listFile(pathDir, options, (err, filenames) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1953,6 +2049,8 @@ listFileSync(path: string, options?: {
 
 Lists all files in a folder synchronously. This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
@@ -1964,7 +2062,7 @@ Lists all files in a folder synchronously. This API supports recursive listing o
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, the relative paths (starting with /) of all files that meet the specified conditions in the directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1976,22 +2074,22 @@ Lists all files in a folder synchronously. This API supports recursive listing o
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let options = {
-    "recursion": false,
-    "listNum": 0,
-    "filter": {
-      "suffix": [".png", ".jpg", ".jpeg"],
-      "displayName": ["%abc", "efg%"],
-      "fileSizeOver": 1024,
-      "lastModifiedAfter": new Date().getTime(),
-    }
-  };
-  let filenames = fs.listFileSync(pathDir, options);
+  ```ts
+  class ListFileOption {
+    public recursion: boolean = false;
+    public listNum: number = 0;
+    public filter: Filter;
+  }
+  let option = new ListFileOption();
+  option.filter.suffix = [".png", ".jpg", ".jpeg"];
+  option.filter.displayName = ["*abc", "efg*"];
+  option.filter.fileSizeOver = 1024;
+  option.filter.lastModifiedAfter = new Date(0).getTime();
+  let filenames = fs.listFileSync(pathDir, option);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
@@ -2012,7 +2110,7 @@ Moves a directory. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the directory to move.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a non-empty directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
 
 **Return value**
 
@@ -2022,31 +2120,25 @@ Moves a directory. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1).then(() => {
-      console.info("move directory succeed");
-  }).catch((err) => {
-    if (err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
-      }
-    } else {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
-    }
+    console.info("move directory succeed");
+  }).catch((err: BusinessError) => {
+    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ## fs.moveDir<sup>10+</sup>
 
-moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 Moves a directory. This API uses an asynchronous callback to return the result.
 
@@ -2058,24 +2150,24 @@ Moves a directory. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source directory.|
   | dest | string | Yes   | Application sandbox path of the destination directory.|
-  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the directory is moved.             |
+  | mode | number | No   | Mode for moving the directory. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a directory with the same name in the destination directory and files with the same name exist in the conflicting directory, all the files with the same name in the destination directory will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br>Move the source directory to the destination directory and overwrite the conflicting directory completely. That is, if there is a directory with the same name in the destination directory, all the original files in that directory will not be retained.|
+  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked when the directory is moved.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
-  fs.moveDir(srcPath, destPath, 1, (err) => {
+  fs.moveDir(srcPath, destPath, 1, (err: BusinessError, data: Array<ConflictFiles>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
-          " " + err.data[i].destFile);
+      for (let i = 0; i < data.length; i++) {
+        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
       }
     } else if (err) {
       console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
@@ -2109,17 +2201,18 @@ Moves a file. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
-      console.info("move file succeed");
-  }).catch((err) => {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("move file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2137,19 +2230,20 @@ Moves a file. This API uses an asynchronous callback to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. <br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
-  fs.moveFile(srcPath, destPath, 0, (err) => {
+  fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2160,7 +2254,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
 
 ## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void
+moveFileSync(src: string, dest: string, mode?: number): void
 
 Moves a file synchronously.
 
@@ -2172,15 +2266,15 @@ Moves a file synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. <br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFileSync(srcPath, destPath, 0);
@@ -2205,19 +2299,20 @@ Creates a temporary directory. This API uses a promise to return the result.
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the unique directory generated.|
+  | Promise&lt;string&gt; | Promise used to return the directory created.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  fs.mkdtemp(pathDir + "/XXXXXX").then((pathDir) => {
-      console.info("mkdtemp succeed:" + pathDir);
-  }).catch((err) => {
-      console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
+    console.info("mkdtemp succeed:" + dir);
+  }).catch((err: BusinessError) => {
+    console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2238,12 +2333,13 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  fs.mkdtemp(pathDir + "/XXXXXX", (err, res) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
       console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2274,13 +2370,126 @@ Synchronously creates a temporary directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
   ```  
+
+
+## fs.createRandomAccessFile<sup>10+</sup>
+
+createRandomAccessFile(file: string|File, mode?: number): Promise&lt;RandomAccessFile&gt;
+
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+|    Name   | Type    | Mandatory  | Description                         |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+|     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+
+**Return value**
+
+  | Type                               | Description       |
+  | --------------------------------- | --------- |
+  | Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise used to return the **RandomAccessFile** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
+    console.info("randomAccessFile fd: " + randomAccessFile.fd);
+    randomAccessFile.close();
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+
+## fs.createRandomAccessFile<sup>10+</sup>
+
+createRandomAccessFile(file: string|File, mode?: number, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
+
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+|  Name   | Type    | Mandatory  | Description                         |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+|     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | Yes  | Callback invoked to return the **RandomAccessFile** instance created.                                  |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+    if (err) {
+      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("randomAccessFilefile fd: " + randomAccessFile.fd);
+      randomAccessFile.close();
+      fs.closeSync(file);
+    }
+  });
+  ```
+
+
+## fs.createRandomAccessFileSync<sup>10+</sup>
+
+createRandomAccessFileSync(file: string|File, mode?: number): RandomAccessFile
+
+Creates a **RandomAccessFile** instance based on the specified file path or file object.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+|  Name   | Type    | Mandatory  | Description                         |
+| ------------ | ------ | ------ | ------------------------------------------------------------ |
+|     file     | string\|[File](#file) | Yes   | Application sandbox path of the file or an opened file object.|
+|     mode     | number | No  | [Option](#openmode) for creating the **RandomAccessFile** instance. This parameter is valid only when the application sandbox path of the file is passed in. One of the following options must be specified:<br>- **OpenMode.READ_ONLY(0o0)**: Create the file in read-only mode. This is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: Create the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Create the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the **RandomAccessFile** object already exists and is created in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Create the file in append mode. New data will be added to the end of the **RandomAccessFile** object. <br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the created file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Create a **RandomAccessFile** instance in synchronous I/O mode.|
+
+**Return value**
+
+  | Type               | Description       |
+  | ------------------ | --------- |
+  | [RandomAccessFile](#randomaccessfile) | **RandomAccessFile** instance created.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  randomaccessfile.close();
+  fs.closeSync(file);
+  ```
 
 ## fs.createStream
 
@@ -2301,20 +2510,21 @@ Creates a stream based on the file path. This API uses a promise to return the r
 
   | Type                               | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream) => {
-      console.info("Stream created");
-  }).catch((err) => {
-      console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
+  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
+    console.info("Stream created");
+  }).catch((err: BusinessError) => {
+    console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2337,13 +2547,14 @@ Creates a stream based on the file path. This API uses an asynchronous callback 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+", (err, stream) => {
+  fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2375,11 +2586,11 @@ Synchronously creates a stream based on the file path.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
   ```
@@ -2404,22 +2615,23 @@ Opens a stream based on the file descriptor. This API uses a promise to return t
 
   | Type                              | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
-  fs.fdopenStream(file.fd, "r+").then((stream) => {
-      console.info("Stream opened");
-      fs.closeSync(file);
-  }).catch((err) => {
-      console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
+    console.info("Stream opened");
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2437,18 +2649,19 @@ Opens a stream based on the file descriptor. This API uses an asynchronous callb
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | FD of the file.                            |
   | mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is opened.                         |
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is created asynchronously.                           |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-  fs.fdopenStream(file.fd, "r+", (err, stream) => {
+  fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2481,11 +2694,11 @@ Synchronously opens a stream based on the file descriptor.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let ss = fs.fdopenStreamSync(file.fd, "r+");
@@ -2498,8 +2711,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
 Creates a **Watcher** object to observe file or directory changes.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2507,7 +2718,7 @@ Creates a **Watcher** object to observe file or directory changes.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
-  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (&#124;)|.<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is changed.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory not opened for writing is closed.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (&#124;).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory opened is closed without being written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
   | listener   | WatchEventListener | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
 
 **Return value**
@@ -2518,14 +2729,14 @@ Creates a **Watcher** object to observe file or directory changes.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: fs.WatchEventListener) => {
     if (watchEvent.event == 0x2) {
       console.info(watchEvent.fileName + 'was modified');
     } else if (watchEvent.event == 0x10) {
@@ -2544,8 +2755,6 @@ Creates a **Watcher** object to observe file or directory changes.
 
 Called when an observed event occurs.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2557,8 +2766,6 @@ Called when an observed event occurs.
 ## WatchEvent<sup>10+</sup>
 
 Defines the event to observe.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2579,7 +2786,7 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 | Name    | Type  | Readable  | Writable  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | number | Yes   | No   | File ID. Different files on the same device have different **ino**s.|                 |
-| mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>- **0o400**: The owner has the read permission on a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the read permission on a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
+| mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>**NOTE**<br>The following values are in octal format. The returned values are in decimal format. You need to convert the values.<br>- **0o400**: The owner has the permission to read a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the permission to read a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
 | size   | number | Yes   | No   | File size, in bytes. This parameter is valid only for regular files. |
@@ -2603,11 +2810,11 @@ Checks whether this file is a block special file. A block special file supports 
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isBLockDevice = fs.statSync(filePath).isBlockDevice();
   ```
@@ -2628,11 +2835,11 @@ Checks whether this file is a character special file. A character special file s
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fs.statSync(filePath).isCharacterDevice();
   ```
@@ -2653,11 +2860,11 @@ Checks whether this file is a directory.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/test";
   let isDirectory = fs.statSync(dirPath).isDirectory(); 
   ```
@@ -2674,15 +2881,15 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
   | Type     | Description                   |
   | ------- | --------------------- |
-  | boolean | Whether the file is a FIFO.|
+  | boolean | Whether the file is an FIFO.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFIFO = fs.statSync(filePath).isFIFO(); 
   ```
@@ -2703,11 +2910,11 @@ Checks whether this file is a regular file.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFile = fs.statSync(filePath).isFile();
   ```
@@ -2728,11 +2935,11 @@ Checks whether this file is a socket.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isSocket = fs.statSync(filePath).isSocket(); 
   ```
@@ -2753,11 +2960,11 @@ Checks whether this file is a symbolic link.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test";
   let isSymbolicLink = fs.statSync(filePath).isSymbolicLink(); 
   ```
@@ -2778,21 +2985,22 @@ Closes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream close result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.close().then(() => {
-      console.info("File stream closed");
-  }).catch((err) => {
-      console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("File stream closed");
+  }).catch((err: BusinessError) => {
+    console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2812,14 +3020,15 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.close((err) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  ss.close((err: BusinessError) => {
     if (err) {
       console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2838,13 +3047,13 @@ Synchronously closes the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -2860,21 +3069,22 @@ Flushes the stream. This API uses a promise to return the result.
 
   | Type                 | Description           |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.flush().then(() => {
-      console.info("Stream flushed");
-  }).catch((err) => {
-      console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
+    console.info("Stream flushed");
+  }).catch((err: BusinessError) => {
+    console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2894,14 +3104,15 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.flush((err) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  ss.flush((err: BusinessError) => {
     if (err) {
       console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2920,13 +3131,13 @@ Synchronously flushes the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
+  let ss = fs.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -2953,17 +3164,26 @@ Writes data into the stream. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{ offset: 5, length: 5, encoding: 'utf-8' }).then((number) => {
-      console.info("write succeed and size is:" + number);
-  }).catch((err) => {
-      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+  let ss = fs.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.write("hello, world", option).then((number: number) => {
+    console.info("write succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2985,14 +3205,23 @@ Writes data into the stream. This API uses an asynchronous callback to return th
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath, "r+");
-  ss.write("hello, world", { offset: 5, length: 5, encoding :'utf-8'}, (err, bytesWritten) => {
+  let ss = fs.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
       console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3026,14 +3255,22 @@ Synchronously writes data into the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fs.createStreamSync(filePath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 5, length: 5, encoding :'utf-8'});
+  let ss = fs.createStreamSync(filePath,"r+");
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let num = ss.writeSync("hello, world", option);
   ```
 
 ### read
@@ -3049,7 +3286,7 @@ Reads data from the stream. This API uses a promise to return the result.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.|
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
 
 **Return value**
 
@@ -3059,19 +3296,29 @@ Reads data from the stream. This API uses a promise to return the result.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let buf = new ArrayBuffer(4096);
-  ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.read(arrayBuffer, option).then((readLen: number) => {
     console.info("Read data successfully");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
-  }).catch((err) => {
-      console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.log(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3088,25 +3335,35 @@ Reads data from the stream. This API uses an asynchronous callback to return the
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.|
+  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
   | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let buf = new ArrayBuffer(4096)
-  ss.read(buf, {offset: 5, length: 5}, (err, readLen) => {
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
     if (err) {
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.log(`The content of file: ${buf.toString()}`);
     }
   });
   ```
@@ -3124,7 +3381,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.<br> |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>|
 
 **Return value**
 
@@ -3134,14 +3391,21 @@ Synchronously reads data from the stream.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fs.createStreamSync(filePath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 5, length: 5});
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let num = ss.readSync(new ArrayBuffer(4096), option);
   ```
 
 ## File
@@ -3155,6 +3419,8 @@ Represents a **File** object opened by **open()**.
 | Name  | Type  | Readable  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
 | fd | number | Yes   | No   | FD of the file.|
+| path<sup>10+</sup> | string | Yes   | No   | Path of the file.|
+| name<sup>10+</sup> | string | Yes   | No   | Name of the file.|
 
 ### lock
 
@@ -3178,16 +3444,17 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
     console.log("lock file successful");
-  }).catch((err) => {
-      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+  }).catch((err: BusinessError) => {
+    console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3208,13 +3475,14 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  file.lock(true, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  file.lock(true, (err: BusinessError) => {
     if (err) {
       console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -3239,12 +3507,12 @@ Applies an exclusive lock or a shared lock on this file in non-blocking mode.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  ```ts
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
   ```
@@ -3259,16 +3527,353 @@ Unlocks this file synchronously.
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  ```ts
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
   ```
+
+
+## RandomAccessFile
+
+Randomly reads and writes a stream. Before invoking any API of **RandomAccessFile**, you need to use **createRandomAccess()** to create a **RandomAccessFile** instance synchronously or asynchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+### Attributes
+
+| Name        | Type  | Readable | Writable | Description             |
+| ----------- | ------ | ----  | ----- | ---------------- |
+| fd          | number | Yes   | No   | FD of the file.|
+| filePointer | number | Yes   | Yes   | Offset pointer to the **RandomAccessFile** instance.|
+
+### setFilePointer<sup>10+</sup>
+
+setFilePointer(): void
+
+Sets the file offset pointer.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  randomAccessFile.setFilePointer(1);
+  randomAccessFile.close();
+  ```
+
+
+### close<sup>10+</sup>
+
+close(): void
+
+Closes this **RandomAccessFile** instance synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  randomAccessFile.close();
+  ```
+
+### write<sup>10+</sup>
+
+write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;number&gt;
+
+Writes data into a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+
+**Return value**
+
+  | Type                   | Description      |
+  | --------------------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
+    console.info("randomAccessFile bytesWritten: " + bytesWritten);
+    randomaccessfile.close();
+    fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+
+### write<sup>10+</sup>
+
+write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+
+Writes data into a file. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name  | Type                           | Mandatory| Description                                                        |
+  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+  | buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
+  | options  | Object                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomAccessFile = fs.createRandomAccessFileSync(file);
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = bufferLength;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
+    if (err) {
+      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      if (bytesWritten) {
+        console.info("write succeed and size is:" + bytesWritten);
+        randomAccessFile.close();
+        fs.closeSync(file);
+      }
+    }
+  });
+  ```
+
+### writeSync<sup>10+</sup>
+
+writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; encoding?: string; }): number
+
+Synchronously writes data into a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+
+**Return value**
+
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data written in the file.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let randomaccessfile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  class Option {
+    offset: number = 0;
+    length: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 5;
+  option.length = 5;
+  let bytesWritten = randomaccessfile.writeSync("hello, world", option);
+  randomaccessfile.close();
+  fs.closeSync(file);
+  ```
+
+### read<sup>10+</sup>
+
+read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Promise&lt;number&gt;
+
+Reads data from a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name    | Type         | Mandatory  | Description                                      |
+  | ------- | ----------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
+
+**Return value**
+
+  | Type                                | Description    |
+  | ---------------------------------- | ------ |
+  | Promise&lt;number&gt; | Promise used to return the data read.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  let bufferLength: number = 4096;
+  class Option {
+    offset: number = 0;
+    length: number = bufferLength;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(bufferLength);
+  randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
+    console.info("randomAccessFile readLength: " + readLength);
+    randomaccessfile.close();
+    fs.closeSync(file);
+  }).catch((err) => {
+    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### read<sup>10+</sup>
+
+read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;number&gt;): void
+
+Reads data from a file. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name     | Type                                      | Mandatory  | Description                                      |
+  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
+  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
+  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  let length: number = 20;
+  class Option {
+    offset: number = 0;
+    length: number = length;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  let arrayBuffer = new ArrayBuffer(length);
+  randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
+    if (err) {
+      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      if (readLength) {
+        console.info("read succeed and size is:" + readLength);
+        randomaccessfile.close();
+        fs.closeSync(file);
+      }
+    }
+  });
+  ```
+
+### readSync<sup>10+</sup>
+
+readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
+
+Synchronously reads data from a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name    | Type         | Mandatory  | Description                                      |
+  | ------- | ----------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br>|
+
+**Return value**
+
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data read.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let randomaccessfile = fs.createRandomAccessFileSync(file);
+  let length: number = 4096;
+  let arrayBuffer = new ArrayBuffer(length);
+  let readLength = randomaccessfile.readSync(arrayBuffer);
+  randomaccessfile.close();
+  fs.closeSync(file);
+  ```
+
 
 ## Watcher<sup>10+</sup>
 
@@ -3280,17 +3885,15 @@ start(): void
 
 Starts listening.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let watcher = fs.createWatcher(filePath, 0xfff, () => {});
   watcher.start();
@@ -3303,17 +3906,15 @@ stop(): void
 
 Stops listening.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Error codes**
 
- For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let watcher = fs.createWatcher(filePath, 0xfff, () => {});
   watcher.start();
@@ -3339,7 +3940,7 @@ Defines the constants of the **mode** parameter used in **open()**. It specifies
 | NOFOLLOW | number | 0o400000    | If **path** points to a symbolic link, throw an exception.|
 | SYNC | number | 0o4010000    | Open the file in synchronous I/O mode.|
 
-## Filter
+## Filter<sup>10+</sup>
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3354,7 +3955,7 @@ Defines the file filtering configuration, which can be used by **listFile()**.
 | lastModifiedAfter    | number | Locate files whose last modification time is the same or later than the specified time.      |
 | excludeMedia    | boolean | Whether to exclude the files already in **Media**.      |
 
-## ConflictFiles
+## ConflictFiles<sup>10+</sup>
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

@@ -3,42 +3,48 @@
 
 ## Overview
 
-To accelerate test automation of OpenHarmony, arkXtest — an automated unit and UI test framework that supports both the JavaScript (JS) and TypeScript (TS) programming languages — is provided.
+arkXtest is an automated test framework that supports both the JavaScript (JS) and TypeScript (TS) programming languages. It consists of JsUnit and UiTest. 
 
-In this document you will learn about the key functions of arkXtest and how to use it to perform unit testing on application or system APIs and to write UI automated test scripts.
+JsUnit is a unit test framework that provides basic APIs for compiling test cases and generating test reports for testing system and application APIs.
+
+UiTest is a UI test framework that provides the UI component search and operation capabilities through simple and easy-to-use APIs, and allows you to develop automated test scripts based on GUI operations. 
+
+This document describes the main functions, implementation principles, environment setup, and test script compilation and execution of arkXtest.
 
 
-### Introduction
-
-arkXtest is part of the OpenHarmony toolkit and provides basic capabilities of writing and running OpenHarmony automated test scripts. In terms of test script writing, arkXtest offers a wide range of APIs, including basic process APIs, assertion APIs, and APIs related to UI operations. In terms of test script running, arkXtest offers such features as identifying, scheduling, and executing test scripts, as well as summarizing test script execution results.
-
-
-### Implementation
+## Implementation
 
 arkXtest is divided into two parts: unit test framework and UI test framework.
 
-- Unit Test Framework
+As the backbone of arkXtest, the unit test framework offers such features as identifying, scheduling, and executing test scripts, as well as summarizing test script execution results.
 
-  As the backbone of arkXtest, the unit test framework offers such features as identifying, scheduling, and executing test scripts, as well as summarizing test script execution results. The figure below shows the main functions of the unit test framework.
+The UI test framework provides UiTest APIs for you to call in different test scenarios. The UI test scripts are executed on top of the unit test framework.
 
-  ![](figures/UnitTest.PNG)
+### Unit Test Framework
 
-  The following figure shows the basic unit test process. To start the unit test framework, run the **aa test** command.
-  
-  ![](figures/TestFlow.PNG)
+Figure 1 Main functions of the unit test framework
 
-- UI Test Framework
+![](figures/UnitTest.PNG)
 
-  The UI test framework provides [UiTest APIs](../reference/apis/js-apis-uitest.md) for you to call in different test scenarios. The UI test scripts are executed on top of the aformentioned unit test framework.
+Figure 2 Basic script process
 
-  The figure below shows the main functions of the UI test framework.
+![](figures/TestFlow.PNG)
 
-  ![](figures/Uitest.PNG)
+> **NOTE**
+>
+> For details about the API in the unit test framework, see [Function Definition](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md#how-to-use).
+
+### UI Test Framework
+
+Figure 3 Main functions of the UI test framework
+
+![](figures/Uitest.PNG)
 
 
-### Constraints
+## Constraints
 
-- The features of the UI test framework are available only in OpenHarmony 3.1 and later versions.
+- The features of the UI test framework are available only in OpenHarmony 3.1 Release and later versions.
+
 - The feature availability of the unit test framework varies by version. For details about the mappings between the features and versions, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
 
 
@@ -54,46 +60,16 @@ Hardware: PC connected to an OpenHarmony device, such as the RK3568 development 
 
 [Download DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download) and set it up as instructed on the official website.
 
+## Creating and Compiling a Test Script
 
-## Creating a Test Script
+### Creating a Test Script
 
 1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
 2. Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class.
 
-## Writing a Unit Test Script
+### Writing a Unit Test Script
 
-```TS
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
-export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('testUiExample',0, async function (done) {
-      console.info("uitest: TestUiExample begin");
-      //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
-        console.info('Uitest, start ability finished:' + result)
-      }).catch(err => {
-        console.info('Uitest, start ability failed: ' + err)
-      })
-      await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
-      done();
-    })
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
-  })
-}
-```
-
-The unit test script must contain the following basic elements:
+ The unit test script must contain the following basic elements:
 
 1. Import of the dependencies so that the dependent test APIs can be used.
 
@@ -101,53 +77,93 @@ The unit test script must contain the following basic elements:
 
 3. Invoking of the assertion APIs and setting of checkpoints. If there is no checkpoint, the test script is considered as incomplete.
 
-## Writing a UI Test Script
-
-You write a UI test script based on the unit test framework, adding the invoking of APIs provided by the UI test framework to implement the corresponding test logic.
-
-In this example, the UI test script is written based on the preceding unit test script. First, import the dependency, as shown below:
+The following sample code is used to start the test page to check whether the page displayed on the device is the expected page.
 
 ```js
-import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
-```
+import { describe, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-Then, write specific test code. Specifically, implement the click action on the started application page and add checkpoint check cases.
-
-```js
+const delegator = abilityDelegatorRegistry.getAbilityDelegator()
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-    it('testUiExample',0, async function (done) {
+    describe('ActsAbilityTest', () =>{
+    it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
-      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then(result =>{
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
         console.info('Uitest, start ability finished:' + result)
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.info('Uitest, start ability failed: ' + err)
       })
       await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability)=>{
+      // Check the top display ability.
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
-      //ui test code
-      //init driver
-      var driver = await Driver.create();
+      done();
+    })
+  })
+}
+```
+
+### Writing a UI Test Script
+
+The UI test is based on the unit test. The UI test script adds the invoking of the UiTest interface (providing a link) to the unit test script to complete the corresponding test activities. In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+
+1. Import the dependency.
+
+```js
+import { Driver, ON } from '@ohos.UiTest'
+```
+
+2. Write test code.
+
+```js
+import { describe, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Driver, ON } from '@ohos.UiTest'
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+function sleep(time: number) {
+  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+}
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
+    it('testUiExample',0, async (done: Function) => {
+      console.info("uitest: TestUiExample begin");
+      //start tested ability
+      await delegator.executeShellCommand('aa start -b com.ohos.uitest -a EntryAbility').then((result: abilityDelegatorRegistry.ShellCmdResult) =>{
+        console.info('Uitest, start ability finished:' + result)
+      }).catch((err: BusinessError) => {
+        console.info('Uitest, start ability failed: ' + err)
+      })
+      await sleep(1000);
+      // Check the top display ability.
+      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
+        console.info("get top ability");
+        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      })
+      // UI test code
+      // Initialize the driver.
+      let driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button on text 'Next'
-      var button = await driver.findComponent(ON.text('Next'));
-      //click button
+      // Find the button on text 'Next'.
+      let button = await driver.findComponent(ON.text('Next'));
+      // Click the button.
       await button.click();
       await driver.delayMs(1000);
-      //check text
+      // Check text.
       await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
       done();
     })
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
   })
 }
 ```
@@ -158,9 +174,11 @@ export default function abilityTest() {
 
 You can run a test script in DevEco Studio in any of the following modes:
 
-- Test package level: All test cases in the test package are executed.
-- Test suite level: All test cases defined in the **describe** method are executed.
-- Test method level: The specified **it** method, that is, a single test case, is executed.
+1. Test package level: All test cases in the test package are executed.
+
+2. Test suite level: All test cases defined in the **describe** method are executed.
+
+3. Test method level: The specified **it** method, that is, a single test case, is executed.
 
 ![](figures/Execute.PNG)
 
@@ -170,9 +188,17 @@ After the test is complete, you can view the test result in DevEco Studio, as sh
 
 ![](figures/TestResult.PNG)
 
+**Viewing the Test Case Coverage**
+
+After the test is complete, you can view the test case coverage.
+
 ### In the CLI
 
-To run a test script in the CLI, execute **aa** commands with different execution control keywords.
+Install the application test package on the test device and run the **aa** command with different execution control keywords in the CLI.
+
+> **NOTE**
+>
+> Before running commands in the CLI, make sure hdc-related environment variables have been configured.
 
 The table below lists the keywords in **aa** test commands.
 
@@ -196,15 +222,13 @@ The framework supports multiple test case execution modes, which are triggered b
 | random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small |
 | stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
 
-> Before running commands in the CLI, make sure hdc-related environment variables have been configured.
-
-- Open the CLI.
-- Run the **aa test** commands.
+1. Open the CLI.
+2. Run the **aa test** commands.
 
 Example 1: Execute all test cases.
 
@@ -303,8 +327,8 @@ OHOS_REPORT_STATUS: consuming=4
 | OHOS_REPORT_STATUS: numtests | Total number of test cases in the test package.|
 | OHOS_REPORT_STATUS: stream | Error information of the current test case.|
 | OHOS_REPORT_STATUS: test| Name of the current test case.|
-| OHOS_REPORT_STATUS_CODE | Execution result of the current test case. The options are as follows:<br>**0**: pass<br>**1**: error<br>**2**: fail|
-| OHOS_REPORT_STATUS: consuming | Time spent in executing the current test case.|
+| OHOS_REPORT_STATUS_CODE | Execution result of the current test case.<br>**0**: pass.<br>**1**: error.<br>**2**: fail. |
+| OHOS_REPORT_STATUS: consuming | Time spent in executing the current test case, in milliseconds.|
 
 - After the commands are executed, the log information similar to the following is displayed:
 
@@ -323,9 +347,68 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Error | Number of test cases whose execution encounters errors. |
 | Pass | Number of passed test cases.|
 | Ignore | Number of test cases not yet executed.|
-| taskconsuming| Total time spent in executing the current test case.|
+| taskconsuming| Total time spent in executing the current test case, in milliseconds.|
 
 > When an error occurs in break-on-error mode, check the **Ignore** and interrupt information.
+
+## Recording User Operations
+### Using the Recording Feature
+> You can record the operations performed on the current page to **/data/local/tmp/layout/record.csv**. To end the recording, press **Ctrl+C**.
+
+```shell  
+ hdc shell uitest uiRecord record
+```
+### Viewing Recording Data
+You can view the recording data in either of the following ways.
+
+#### Reading and Printing Recording Data
+
+```shell  
+ hdc shell uitest uiRecord read
+```
+#### Exporting the record.csv File
+```shell  
+hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the local save path, which can be customized.
+```
+- The following describes the fields in the recording data:
+```
+{
+	"ABILITY": "com.ohos.launcher.MainAbility", // Foreground application page.
+	"BUNDLE": "com.ohos.launcher", // Application.
+	"CENTER_X": "", // X-coordinate of the center of the pinch gesture.
+	"CENTER_Y": "", // Y-coordinate of the center of the pinch gesture.
+	"EVENT_TYPE": "pointer", //  
+	"LENGTH": "0", // Total length.
+	"OP_TYPE": "click", // Event type. Currently, click, double-click, long-press, drag, pinch, swipe, and fling types are supported.
+	"VELO": "0.000000", // Hands-off velocity.
+	"direction.X": "0.000000",// Movement along the x-axis.
+	"direction.Y": "0.000000", // Movement along the y-axis.
+	"duration": 33885000.0, // Gesture duration.
+	"fingerList": [{
+		"LENGTH": "0", // Total length.
+		"MAX_VEL": "40000", // Maximum velocity.
+		"VELO": "0.000000", // Hands-off velocity.
+		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting component bounds.
+		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0", // Starting component hierarchy.
+		"W1_ID": "", // ID of the starting component.
+		"W1_Text": "", // Text of the starting component.
+		"W1_Type": "Image", // Type of the starting component.
+		"W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Ending component bounds.
+		"W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Ending component hierarchy.
+		"W2_ID": "", // ID of the ending component.
+		"W2_Text": "", // Text of the ending component.
+		"W2_Type": "Image", // Type of the ending component.
+		"X2_POSI": "47", // X coordinate of the ending point.
+		"X_POSI": "47", // X coordinate of the starting point.
+		"Y2_POSI": "301", // Y coordinate of the ending point.
+		"Y_POSI": "301", // Y coordinate of the starting point.
+		"direction.X": "0.000000", // Movement along the x-axis.
+		"direction.Y": "0.000000" // Movement along the y-axis.
+	}],
+	"fingerNumber": "1" // Number of fingers.
+}
+```
+
 
 ## FAQs
 
@@ -404,7 +487,7 @@ hdc shell param set persist.ace.testmode.enabled 1
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently".
+The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently."
 
 **Possible Causes**
 
@@ -415,7 +498,6 @@ The UI test case fails to be executed. The HiLog file contains the error message
 **Solution**
 
 1. Check the case implementation and add the **await** operator to the asynchronous API.
-
 2. Do not execute UI test cases in multiple processes.
 
 #### The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"

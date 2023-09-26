@@ -9,11 +9,9 @@ Node-API (NAPI) provides APIs to encapsulate JavaScript (JS) capabilities as a n
 
 NAPI eliminates the differences between underlying JS engines and provides a set of stable interfaces.
 
-The OpenHarmony N-API component optimizes the Node-API interface implementation and provides connection to underlying engines such as ArkJS. Currently, some APIs in the [Node-API](https://nodejs.org/docs/v14.9.0/api/n-api.html) standard library are supported.
+The OpenHarmony N-API component optimizes the Node-API interface implementation and provides connection to underlying engines such as ArkJS. Currently, some interfaces in the Node-API standard library are supported.
 
-## Extended Symbols of the N-API Component
-
-**Symbols Exported from the NAPI Library**
+## Symbols Exported from the N-API Component Standard Library
 
 |Type|Symbol|Description|
 | --- | --- | --- |
@@ -24,9 +22,9 @@ The OpenHarmony N-API component optimizes the Node-API interface implementation 
 |FUNC|napi_throw_type_error|Throws a JS **TypeError** with text information.|
 |FUNC|napi_throw_range_error|Throws a JS **RangeError** with text information.|
 |FUNC|napi_is_error|Checks whether **napi_value** indicates an error object.|
-|FUNC|napi_create_error|Creates and obtains a JS **Error** with text information.|
-|FUNC|napi_create_type_error|Creates and obtains a JS **TypeError** with text information.|
-|FUNC|napi_create_range_error|Creates and obtains a JS **RangeError** with text information.|
+|FUNC|napi_create_error|Creates a JS **Error** with text information.|
+|FUNC|napi_create_type_error|Creates a JS **TypeError** with text information.|
+|FUNC|napi_create_range_error|Creates a JS **RangeError** with text information.|
 |FUNC|napi_get_and_clear_last_exception|Obtains and clears the latest exception.|
 |FUNC|napi_is_exception_pending|Checks whether an exception occurs.|
 |FUNC|napi_fatal_error|Raises a fatal error to terminate the process immediately.|
@@ -40,9 +38,9 @@ The OpenHarmony N-API component optimizes the Node-API interface implementation 
 |FUNC|napi_reference_ref|Increments the reference count for the reference passed in and returns the count.|
 |FUNC|napi_reference_unref|Decrements the reference count for the reference passed in and returns the count.|
 |FUNC|napi_get_reference_value|Obtains the JS **Object** associated with the reference.|
-|FUNC|napi_create_array|Creates and obtains a JS **Array**.|
-|FUNC|napi_create_array_with_length|Creates and obtains a JS **Array** of the specified length.|
-|FUNC|napi_create_arraybuffer|Creates and obtains a JS **ArrayBuffer** of the specified size.|
+|FUNC|napi_create_array|Creates a JS **Array**.|
+|FUNC|napi_create_array_with_length|Creates a JS **Array** of the specified length.|
+|FUNC|napi_create_arraybuffer|Creates a JS **ArrayBuffer** of the specified size.|
 |FUNC|napi_create_external|Allocates a JS value with external data.|
 |FUNC|napi_create_external_arraybuffer|Allocates a JS **ArrayBuffer** with external data.|
 |FUNC|napi_create_object|Creates a default JS **Object**.|
@@ -137,3 +135,19 @@ The OpenHarmony N-API component optimizes the Node-API interface implementation 
 |FUNC|napi_get_value_bigint_int64|Obtains the C **int64** equivalent of the given JS **BigInt**.|
 |FUNC|napi_get_value_bigint_uint64|Obtains the C **uint64** equivalent of the given JS **BigInt**.|
 |FUNC|napi_get_value_bigint_words|Obtains information from the given JS **BigInt**, including the sign bit, 64-bit little-endian array, and number of elements in the array.|
+|FUNC|napi_create_buffer|Creates a JS **Buffer** instance of the specified size.|
+|FUNC|napi_create_buffer_copy|Creates a JS **Buffer** instance of the specified size, and initializes it with data copied from the passed-in buffer.|
+|FUNC|napi_create_external_buffer|Creates a JS **Buffer** instance of the specified size, and initializes it with the given data. The **Buffer** instance created can include extra.|
+|FUNC|napi_get_buffer_info|Obtains the underlying data of **Buffer** and its length.|
+|FUNC|napi_is_buffer|Checks whether the given JS value is a **Buffer** object.|
+|FUNC|napi_object_freeze|Freezes the given object.|
+|FUNC|napi_object_seal|Seals the given object.|
+|FUNC|napi_get_all_property_names|Obtains an array containing the names of all the available properties of this object.|
+|FUNC|napi_detach_arraybuffer|Detaches the underlying data of the given **ArrayBuffer**.|
+|FUNC|napi_is_detached_arraybuffer|Checks whether the given **ArrayBuffer** has been detached.|
+
+## Extended Symbols of the N-API Component
+
+|Type|Symbol|Description|
+| --- | --- | --- |
+|FUNC|napi_queue_async_work_with_qos|Adds asynchronously working objects to the queue and schedules them based on the QoS priority.|

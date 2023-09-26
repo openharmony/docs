@@ -12,6 +12,8 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 import appManager from '@ohos.application.appManager';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -29,7 +31,7 @@ import appManager from '@ohos.application.appManager';
 ```ts
 import appManager from '@ohos.application.appManager';
 
-let applicationStateObserver = {
+let observerCode = appManager.registerApplicationStateObserver({
     onForegroundApplicationChanged(appStateData) {
         console.log('onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}');
     },
@@ -49,6 +51,5 @@ let applicationStateObserver = {
         console.log('onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}');
         console.log('onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}');
     }
-};
-let observerCode = appManager.registerApplicationStateObserver(applicationStateObserver);
+});
 ```

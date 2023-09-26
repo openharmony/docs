@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileuri from "@ohos.file.fileuri";
 ```
 
@@ -16,29 +16,94 @@ import fileuri from "@ohos.file.fileuri";
 
 **Stage模型**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
 **FA模型**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
+  ```js
+  import featureAbility from '@ohos.ability.featureAbility';
  
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
 FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
+
+## FileUri<sup>10+</sup>
+
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.AppFileService
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |    
+| path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名 |
+| name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名 |
+
+### constructor<sup>10+</sup>
+
+constructor(uriOrPath: string)
+
+constructor是FileUri的构造函数。
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uriOrPath | string | 是 | uri或路径。uri类型：<br/>-&nbsp; 应用沙箱URI：file://\<bundleName>/\<sandboxPath> <br/>-&nbsp; 公共目录文件类URI：file://docs/storage/Users/currentUser/\<publicPath> <br/>-&nbsp; 公共目录媒体类URI：file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13900005 | I/O error |
+| 13900042 | Unknown error |
+
+**示例：**
+
+  ```ts
+  let path = pathDir + '/test';
+  let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let fileUriObject = new fileuri.FileUri(uri);
+  console.info("The name of FileUri is " + fileUriObject.name);
+  ```
+
+### toString<sup>10+</sup>
+
+toString(): string
+
+**系统能力：** SystemCapability.FileManagement.AppFileService
+
+返回字符串类型uri。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 返回字符串类型uri |
+
+**示例：**
+
+  ```ts
+  let path = pathDir + '/test';
+  let fileUriObject = new fileuri.FileUri(path);
+  console.info("The uri of FileUri is " + fileUriObject.toString());
+  ```
 
 ## fileUri.getUriFromPath
 
@@ -69,7 +134,7 @@ getUriFromPath(path: string): string
 
 **示例：**
 
-  ```js
-let filePath = pathDir + "test.txt";
-let uri = fileuri.getUriFromPath(filePath);
+  ```ts
+  let filePath = pathDir + "/test";
+  let uri = fileuri.getUriFromPath(filePath);
   ```

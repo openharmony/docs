@@ -25,3 +25,9 @@
 相机应用通过控制相机，实现图像显示（预览）、照片保存（拍照）、视频录制（录像）等基础操作。在实现基本操作过程中，相机服务会控制相机设备采集和输出数据，采集的图像数据在相机底层的设备硬件接口（HDI，Hardware Device Interfaces），直接通过BufferQueue传递到具体的功能模块进行处理。BufferQueue在应用开发中无需关注，用于将底层处理的数据及时送到上层进行图像显示。
 
 以视频录制为例进行说明，相机应用在录制视频过程中，媒体录制服务先创建一个视频Surface用于传递数据，并提供给相机服务，相机服务可控制相机设备采集视频数据，生成视频流。采集的数据通过底层相机HDI处理后，通过Surface将视频流传递给媒体录制服务，媒体录制服务对视频数据进行处理后，保存为视频文件，完成视频录制。
+
+## 相关实例
+
+针对相机开发，有以下相关实例可供参考：
+
+- [相机和媒体库（ArkTS）(Full SDK)（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)

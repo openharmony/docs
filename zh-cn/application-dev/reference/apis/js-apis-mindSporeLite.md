@@ -6,10 +6,11 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。示例代码使用模型均为MindSpore端侧模型。
->
+> 
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
-```js
+```ts
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 ```
 
@@ -30,7 +31,7 @@ import mindSporeLite from '@ohos.ai.mindSporeLite';
 
 **示例：** 
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
 context.target = ['cpu','nnrt'];
 ```
@@ -54,7 +55,7 @@ CPU后端设备选项。
 
 **示例：** 
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
 context.cpu = {};
 context.target = ['cpu'];
@@ -98,10 +99,10 @@ loadModelFromFile(model: string, callback: Callback&lt;Model&gt;): void
 
 **示例：** 
 
-```js
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, (result) => {
-  const modelInputs = result.getInputs();
+```ts
+let model_file : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(model_file, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -123,12 +124,12 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 
 **示例：** 
 
-```js
+```ts
 let context: mindSporeLite.Context = {};
-let context = {'target': ['cpu']};
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, context, (result) => {
-  const modelInputs = result.getInputs();
+context.target = ['cpu'];
+let model_file : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(model_file, context, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -155,10 +156,10 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
 **示例：** 
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -178,19 +179,51 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 | callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
 
 **示例：** 
+```ts
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
 
-```js
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+
+}
+```
+
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+let modelName = '/path/to/xxx.ms';
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
+  let modelBuffer : ArrayBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+    console.log(modelInputs[0].name);
+  })
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -211,20 +244,28 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 
 **示例：** 
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
-  this.modelBuffer = buffer;
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-let context: mindSporeLite.Context = {};
-context = {'target': ['cpu']};
-mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, context, (result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+let modelName = '/path/to/xxx.ms';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
+  let modelBuffer : ArrayBuffer = buffer;
+  let context: mindSporeLite.Context = {};
+  context.target = ['cpu'];
+  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+    console.log(modelInputs[0].name);
+  })
 })
 ```
 ## mindSporeLite.loadModelFromBuffer
@@ -250,18 +291,26 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 
 **示例：** 
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State modelName: string = 'xxx.ms';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
-  this.modelBuffer = buffer;
-}).catch(error => {
-  console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-})
-mindSporeLite.loadModelFromBuffer(model_file).then((result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+let modelName = '/path/to/xxx.ms';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+globalContext.resourceManager.getRawFileContent(modelName).then((buffer : ArrayBuffer) => {
+  let modelBuffer : ArrayBuffer = buffer;
+  mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
+    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+    console.log(modelInputs[0].name);
+  })
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -281,12 +330,12 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 
 **示例：** 
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
-mindSporeLite.loadModelFromFd(file.fd, (result) => {
-  const modelInputs = result.getInputs();
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -308,14 +357,14 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 
 **示例：** 
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
-context = {'target': ['cpu']};
-let file = await fs.open(model_file, 0);
-mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
-  const modelInputs = result.getInputs();
+context.target = ['cpu'];
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
@@ -342,15 +391,13 @@ loadModelFromFd(model: number, context?: Context): Promise&lt; Model&gt;
 
 **示例：** 
 
-```js
+```ts
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let file = await fs.open(model_file, 0);
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
-mindSporeLite.loadModelFromFd(file.fd).then((result) => {
-  const modelInputs = result.getInputs();
-  console.log(modelInputs[0].name);
-})
+let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
+let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+console.log(modelInputs[0].name);
 ```
 ## Model
 
@@ -374,18 +421,18 @@ getInputs(): MSTensor[]
 
 **示例：** 
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result) => {
-  const modelInputs = result.getInputs();
+mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
 })
 ```
 ### predict
 
-predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
+predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 
-执行推理模型。使用callback异步回调。
+执行推理模型。使用callback异步回调。需要确保调用时模型对象不被资源回收。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -394,21 +441,32 @@ predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
 | 参数名 | 类型                    | 必填 | 说明                       |
 | ------ | ----------------------- | ---- | -------------------------- |
 | inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入。MSTensor对象。 |
-| callback | Callback<[Model](#model)> | 是   | 回调函数。返回模型对象。 |
+| callback | Callback<[MSTensor](#mstensor)[]> | 是   | 回调函数。返回MSTensor对象。 |
 
 **示例：** 
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
-  let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
-  result.predict(modelInputs, (result) => {
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+
+let inputName = 'input_data.bin';
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
+  let modelBuffer : ArrayBuffer = buffer;
+  let model_file : string = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+
+  modelInputs[0].setData(modelBuffer);
+  mindSporeLiteModel.predict(modelInputs, (result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -420,7 +478,7 @@ syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
 
 predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
-执行推理模型。使用Promise异步函数。
+执行推理模型。使用Promise异步函数。需要确保调用时模型对象不被资源回收。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -438,17 +496,26 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
 **示例：** 
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+    value:number = 0;
+    foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+}
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
+let inputName = 'input_data.bin';
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
+  let inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-  const modelInputs = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(this.inputBuffer.buffer);
-  result.predict(modelInputs).then((result) => {
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(modelBuffer);
+  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(result[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.log(output[i].toString());
@@ -480,12 +547,13 @@ resize(inputs: MSTensor[], dims: Array&lt;Array&lt;number&gt;&gt;): boolean
 
 **示例：** 
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-let new_dim = new Array([1,32,32,1]);
-mindSporeLiteModel.resize(modelInputs, new_dim);
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  let new_dim = new Array([1,32,32,1]);
+  mindSporeLiteModel.resize(modelInputs, new_dim);
+})
 ```
 
 ## MSTensor
@@ -509,16 +577,17 @@ mindSporeLiteModel.resize(modelInputs, new_dim);
 
 **示例：** 
 
-```js
+```ts
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-console.log(modelInputs[0].name);
-console.log(modelInputs[0].shape.toString());
-console.log(modelInputs[0].elementNum.toString());
-console.log(modelInputs[0].dtype.toString());
-console.log(modelInputs[0].format.toString());
-console.log(modelInputs[0].dataSize.toString());
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  console.log(modelInputs[0].name);
+  console.log(modelInputs[0].shape.toString());
+  console.log(modelInputs[0].elementNum.toString());
+  console.log(modelInputs[0].dtype.toString());
+  console.log(modelInputs[0].format.toString());
+  console.log(modelInputs[0].dataSize.toString());
+})
 ```
 
 ### getData
@@ -537,13 +606,31 @@ getData(): ArrayBuffer
 
 **示例：** 
 
-```js
-//如果已经获取了输入张量
-result.predict(modelInputs, (result) => {
-  let output = new Float32Array(result[0].getData());
-  for (let i = 0; i < output.length; i++) {
-    console.log(output[i].toString());
+```ts
+import resourceManager from '@ohos.resourceManager'
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
   }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+let inputName = 'input_data.bin';
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
+  let inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer);
+  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
+    let output = new Float32Array(result[0].getData());
+    for (let i = 0; i < output.length; i++) {
+      console.log(output[i].toString());
+    }
+  })
 })
 ```
 
@@ -563,17 +650,26 @@ setData(inputArray: ArrayBuffer): void
 
 **示例：** 
 
-```js
+```ts
 import resourceManager from '@ohos.resourceManager'
-@State inputName: string = 'input_data.bin';
-let syscontext = globalThis.context;
-syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
-  this.inputBuffer = buffer;
+import { GlobalContext } from '../GlobalContext';
+import mindSporeLite from '@ohos.ai.mindSporeLite';
+import common from '@ohos.app.ability.common';
+export class Test {
+  value:number = 0;
+  foo(): void {
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+let inputName = 'input_data.bin';
+globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : ArrayBuffer) => {
+  let inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(inputBuffer);
 })
-let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-modelInputs[0].setData(this.inputBuffer.buffer);
 ```
 
 ## DataType

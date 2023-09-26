@@ -7,7 +7,7 @@
 |      | 说明项                            | 细则                                                         |
 | ---- | --------------------------------- | ------------------------------------------------------------ |
 | 1    | 客户化写作基本要求                | **写作中，请变身开发者，对于开发者使用该API时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本API进行开发的目标。** |
-| 2    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
+| 2    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径\![]\(figures/xxx.jpg)或\![]\(figures/xxx.png)引用。 |
 | 3    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
 | 4    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。<br/>目录按字母顺序排列。 |
 | 5    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、常量、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |

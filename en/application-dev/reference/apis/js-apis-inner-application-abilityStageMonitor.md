@@ -6,6 +6,8 @@ The **AbilityStageMonitor** module provides conditions for matching **AbilitySta
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                                                        | Type    | Readable| Writable| Description                                                        |
@@ -17,13 +19,11 @@ The **AbilityStageMonitor** module provides conditions for matching **AbilitySta
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let monitor = {
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'feature_as1',
     srcEntrance: './ets/Application/MyAbilityStage.ts',
-};
-
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
+}, (error, data) => {
     if (error) {
         console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
     } else {

@@ -18,8 +18,6 @@ Describes widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                  |
@@ -27,7 +25,8 @@ Describes widget information.
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
 | name        | string               | Yes   | No    | Widget name.                                |
 | description | string               | Yes   | No    | Description of the widget.  |
-| type        | [FormType](#formtype)             | Yes   | No    | Type of the widget. Currently, only JS widgets are supported.|
+| descriptionId<sup>10+</sup>      | number               | Yes   | No    | ID of the widget description.              |
+| type        | [FormType](#formtype)             | Yes   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.|
 | jsComponentName      | string               | Yes   | No    | Name of the component used in the JS widget.              |
 | colorMode  | [ColorMode](#colormode) | Yes   | No    | Color mode of the widget.                                      |
 | isDefault    | boolean      | Yes   | No    | Whether the widget is the default one.                             |
@@ -39,6 +38,7 @@ Describes widget information.
 | defaultDimension  | number | Yes   | No    | Default dimension of the widget.                                      |
 | supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).  |
 | customizeData    | {[key: string]: [value: string]}      | Yes   | No    | Custom data of the widget.        |
+| isDynamic<sup>10+</sup>      | boolean               | Yes   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.              |
 
 ## FormType
 
@@ -102,7 +102,7 @@ Enumerates the widget parameters.
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | Ability name. |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id' <br>**System API**: This is a system API and cannot be called by third-party applications. | Device ID.  |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Key that specifies the target bundle name.|
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | Reason for creating the widget.  |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | Custom data.  |
@@ -128,9 +128,9 @@ Defines the widget information filter. Only the widget information that meets th
 
 **System capability**: SystemCapability.Ability.Form
 
-| Name       | Type  | Description        |
-| ----------- | ---- | ------------ |
-| moduleName    | string    | Optional. Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.  |
+| Name       | Type  | Mandatory        |Description        |
+| ----------- | ---- | ------------ |------------ |
+| moduleName    | string    |No   | Optional. Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.  |
 
 ## VisibilityType
 
@@ -140,7 +140,7 @@ Enumerates the visibility types of the widget.
 
 | Name       |  Value  | Description        |
 | ----------- | ---- | ------------ |
-| UNKNOWN | 0   | The visibility type of the widget is unknown.|
+| UNKNOWN<sup>10+</sup> | 0   | The visibility type of the widget is unknown.|
 | FORM_VISIBLE | 1   | The widget is visible.|
 | FORM_INVISIBLE   | 2   | The widget is invisible.|
 
@@ -150,15 +150,17 @@ Defines the information about the widget host.
 
 **System capability**: SystemCapability.Ability.Form
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formId  | string               | Yes   | No    | Widget ID.                  |
-| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
+| bundleName<sup>10+</sup>  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
 | hostBundleName  | string               | Yes   | No    | Name of the bundle to which the widget host belongs.                  |
 | visibilityType  | [VisibilityType](#visibilitytype)               | Yes   | No    | Visibility types of the widget.                  |
-| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
-| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
-| formName        | string               | Yes   | No    | Widget name.                                |
+| moduleName<sup>10+</sup>  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
+| abilityName<sup>10+</sup> | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
+| formName<sup>10+</sup>        | string               | Yes   | No    | Widget name.                                |
 | dimension | number               | Yes   | No    | Widget specifications.  |
 
 ## formProviderFilter<sup>10+</sup>
@@ -166,6 +168,8 @@ Defines the information about the widget host.
 Defines the information about the widget provider.
 
 **System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |

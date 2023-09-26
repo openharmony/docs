@@ -177,3 +177,21 @@ Get system resource manager failed.
 **处理步骤**
 
 查看应用进程是否包含系统资源沙箱路径。
+
+## 9001010 无效的overlay路径
+
+**错误信息**
+
+Overlay resource path is invalid.
+
+**错误描述**
+
+传入的overlay路径无效
+
+**可能原因**
+
+路径不存在或者没有在对应应用的安装路径下，访问不到
+
+**处理步骤**
+
+查看传入overlay路径放的位置

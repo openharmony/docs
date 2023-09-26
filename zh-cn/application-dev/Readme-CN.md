@@ -27,7 +27,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -46,19 +45,20 @@
       - 自定义组件
         - [创建自定义组件](quick-start/arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
-      - [\@Builder：自定义构建函数](quick-start/arkts-builder.md)
-      - [\@BuilderParam：引用\@Builder函数](quick-start/arkts-builderparam.md)
-      - [\@Styles：定义组件重用样式](quick-start/arkts-style.md)
-      - [\@Extend：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
+      - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
+      - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [\@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
       - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
     - 状态管理
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
       - 管理组件拥有的状态
-        - [\@State：组件内状态](quick-start/arkts-state.md)
-        - [\@Prop：父子单向同步](quick-start/arkts-prop.md)
-        - [\@Link：父子双向同步](quick-start/arkts-link.md)
-        - [\@Provide和\@Consume：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
-        - [\@Observed和\@ObjectLink：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
+        - [\@State装饰器：组件内状态](quick-start/arkts-state.md)
+        - [\@Prop装饰器：父子单向同步](quick-start/arkts-prop.md)
+        - [\@Link装饰器：父子双向同步](quick-start/arkts-link.md)
+        - [\@Provide装饰器和\@Consume装饰器：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
       - 管理应用拥有的状态
         - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
         - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
@@ -67,7 +67,7 @@
         - [Environment：设备环境查询](quick-start/arkts-environment.md)
       - 其他状态管理
         - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
-        - [\@Watch：状态变量更改通知](quick-start/arkts-watch.md)
+        - [\@Watch装饰器：状态变量更改通知](quick-start/arkts-watch.md)
         - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
     - 渲染控制
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
@@ -77,6 +77,7 @@
 - 开发
   - [应用模型](application-models/Readme-CN.md)
   - [UI开发](ui/Readme-CN.md)
+  - [ArkTS语言基础类库](arkts-utils/Readme-CN.md)
   - [Web](web/Readme-CN.md)
   - [通知](notification/Readme-CN.md)
   - [窗口管理](windowmanager/Readme-CN.md)
@@ -96,6 +97,7 @@
   - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - [Native API的相关指导](napi/Readme-CN.md)
+  - [性能](performance/readme-CN.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [调试工具](tools/Readme-CN.md)

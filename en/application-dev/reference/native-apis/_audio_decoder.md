@@ -1,380 +1,517 @@
 # AudioDecoder
 
-
 ## Overview
 
-Provides the functions for audio decoding. This module may not be supported on some devices. You can call [CanIUse](../syscap.md) to check whether this module is supported on your device.
+The **AudioDecoder** module provides the functions for audio decoding. This module may not be supported on some devices. You can call [CanIUse](../syscap.md) to check whether your device supports this module.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Since**
+
 9
 
 ## Summary
 
-
 ### Files
 
-  | Name| Description| 
-| -------- | -------- |
-| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md) | Declares the native APIs used for audio decoding.<br>File to include: <multimedia/player_framework/native_avcodec_audiodecoder.h> |
+| Name                                                                | Description                                                                                                       |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md)    | Declares the native APIs used for audio decoding.<br>**File to include**: <multimedia/player_framework/native_avcodec_audiodecoder.h><br>**Library**: libnative_media_adec.so|
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | Declares the enums used for audio codec.<br>**File to include**: <multimedia/player_framework/avcodec_audio_channel_layout.h><br>**Library**: libnative_media_codecbase.so                  |
 
+### Enums
+
+| Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Description                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [OHOS::Media::AudioChannelSet](#audiochannelset) : uint64_t {`**FRONT_LEFT** = 1ULL &lt;&lt; 0U, **FRONT_RIGHT** = 1ULL &lt;&lt; 1U, **FRONT_CENTER** = 1ULL &lt;&lt; 2U, **LOW_FREQUENCY** = 1ULL &lt;&lt; 3U,`**BACK_LEFT** = 1ULL &lt;&lt; 4U, **BACK_RIGHT** = 1ULL &lt;&lt; 5U, **FRONT_LEFT_OF_CENTER** = 1ULL &lt;&lt; 6U, **FRONT_RIGHT_OF_CENTER** = 1ULL &lt;&lt; 7U,`**BACK_CENTER** = 1ULL &lt;&lt; 8U, **SIDE_LEFT** = 1ULL &lt;&lt; 9U, **SIDE_RIGHT** = 1ULL &lt;&lt; 10U, **TOP_CENTER** = 1ULL &lt;&lt; 11U,`**TOP_FRONT_LEFT** = 1ULL &lt;&lt; 12U, **TOP_FRONT_CENTER** = 1ULL &lt;&lt; 13U, **TOP_FRONT_RIGHT** = 1ULL &lt;&lt; 14U, **TOP_BACK_LEFT** = 1ULL &lt;&lt; 15U,`**TOP_BACK_CENTER** = 1ULL &lt;&lt; 16U, **TOP_BACK_RIGHT** = 1ULL &lt;&lt; 17U, **STEREO_LEFT** = 1ULL &lt;&lt; 29U, **STEREO_RIGHT** = 1ULL &lt;&lt; 30U,`**WIDE_LEFT** = 1ULL &lt;&lt; 31U, **WIDE_RIGHT** = 1ULL &lt;&lt; 32U, **SURROUND_DIRECT_LEFT** = 1ULL &lt;&lt; 33U, **SURROUND_DIRECT_RIGHT** = 1ULL &lt;&lt; 34U,`**LOW_FREQUENCY_2** = 1ULL &lt;&lt; 35U, **TOP_SIDE_LEFT** = 1ULL &lt;&lt; 36U, **TOP_SIDE_RIGHT** = 1ULL &lt;&lt; 37U, **BOTTOM_FRONT_CENTER** = 1ULL &lt;&lt; 38U,`**BOTTOM_FRONT_LEFT** = 1ULL &lt;&lt; 39U, **BOTTOM_FRONT_RIGHT** = 1ULL &lt;&lt; 40U, **AMBISONICS_ACN0** = 1ULL &lt;&lt; 41U, OHOS::Media::AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,`OHOS::Media::AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U, OHOS::Media::AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U, OHOS::Media::AMBISONICS_W = AMBISONICS_ACN0, OHOS::Media::AMBISONICS_Y = AMBISONICS_ACN1,`OHOS::Media::AMBISONICS_Z = AMBISONICS_ACN2, OHOS::Media::AMBISONICS_X = AMBISONICS_ACN3, OHOS::Media::AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U, OHOS::Media::AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,`OHOS::Media::AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U, OHOS::Media::AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U, OHOS::Media::AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U, OHOS::Media::AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,`OHOS::Media::AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U, OHOS::Media::AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U, OHOS::Media::AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U, OHOS::Media::AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,`OHOS::Media::AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U, OHOS::Media::AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U`}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enumerates the audio channel numbers. Each channel number is mapped to a variable of int64.                   |
+| [OHOS::Media::AudioChannelLayout](#audiochannellayout) : uint64_t {``**UNKNOWN_CHANNEL_LAYOUT** = 0, **MONO** = (AudioChannelSet::FRONT_CENTER), **STEREO** = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT), **CH_2POINT1** = (STEREO \| AudioChannelSet::LOW_FREQUENCY),``**CH_2_1** = (STEREO \| AudioChannelSet::BACK_CENTER), **SURROUND** = (STEREO \| AudioChannelSet::FRONT_CENTER), **CH_3POINT1** = (SURROUND \| AudioChannelSet::LOW_FREQUENCY), **CH_4POINT0** = (SURROUND \| AudioChannelSet::BACK_CENTER),``**CH_4POINT1** = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_2_2** = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT), **QUAD** = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT0** = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),``**CH_5POINT1** = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY), **CH_5POINT0_BACK** = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_5POINT1_BACK** = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY), **CH_6POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),``**CH_6POINT0_FRONT** = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **HEXAGONAL** = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER), **CH_6POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER), **CH_6POINT1_BACK** = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),``**CH_6POINT1_FRONT** = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY), **CH_7POINT0** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT), **CH_7POINT0_FRONT** = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1** = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),``**CH_7POINT1_WIDE** = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER), **CH_7POINT1_WIDE_BACK**, **CH_3POINT1POINT2** = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT), **CH_5POINT1POINT2** = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),``**CH_5POINT1POINT4**, **CH_7POINT1POINT2** = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_7POINT1POINT4**, **CH_9POINT1POINT4** = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),``**CH_9POINT1POINT6** = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT), **CH_10POINT2**, **CH_22POINT2**, **OCTAGONAL** = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),``**HEXADECAGONAL**, **STEREO_DOWNMIX** = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT), **HOA_FIRST**, **HOA_SECOND**,`**HOA_THIRD**`} | Enumerates the types of the audio channel numbers. The output format of the decoder is represented as the channel type of the codec.|
 
 ### Functions
 
-  | Name| Description| 
-| -------- | -------- |
-| [OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime) | Creates an audio decoder instance based on a Multipurpose Internet Mail Extension (MIME) type. This API is recommended in most cases. | 
-| [OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name) | Creates an audio decoder instance based on an audio decoder name. To use this API, you must know the exact name of the audio decoder. | 
-| [OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec) | Clears the internal resources of an audio decoder and destroys the audio decoder instance. | 
-| [OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | Sets an asynchronous callback so that your application can respond to events generated by an audio decoder. This API must be called prior to **Prepare**. | 
-| [OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | Configures an audio decoder. Typically, you need to configure the attributes, which can be extracted from the container, of the audio track that can be decoded. This API must be called prior to **Prepare**. | 
-| [OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec) | Prepares internal resources for an audio decoder. This API must be called after **Configure**. | 
-| [OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec) | Starts an audio decoder. This API can be called only after the decoder is prepared successfully. After being started, the decoder starts to report the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) event. | 
-| [OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec) | Stops an audio decoder. After the decoder is stopped, you can call **Start** to start it again. If you have passed codec-specific data in the previous **Start** for the decoder, you must pass it again. | 
-| [OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec) | Clears the input and output data in the internal buffer of an audio decoder. This API invalidates the indexes of all buffers previously reported through the asynchronous callback. Therefore, before calling this API, ensure that the buffers corresponding to the indexes are no longer required. | 
-| [OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec) | Resets an audio decoder. To continue decoding, you must call **Configure** and **Start** to configure and start the decoder again. | 
-| [OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec) | Obtains the attributes of the output data of an audio decoder. The caller must manually release the **OH_AVFormat** instance in the return value. | 
-| [OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | Sets dynamic parameters for an audio decoder. This API can be called only after the decoder is started. Incorrect parameter settings may cause decoding failure. | 
-| [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | Pushes the input buffer filled with data to an audio decoder. The [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback reports available input buffers and their indexes. After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback. In addition, some decoders require the input of codec-specific data to initialize the decoding process. | 
-| [OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of an audio decoder. | 
+| Name                                                                                                                                         | Description                                                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| \*[OHOS::Media::OH_AudioDecoder_CreateByMime](#oh_audiodecoder_createbymime) (const char \*mime)                                                 | Creates an audio decoder instance based on a Multipurpose Internet Mail Extension (MIME) type. This function is recommended in most cases.                                        |
+| \*[OHOS::Media::OH_AudioDecoder_CreateByName](#oh_audiodecoder_createbyname) (const char \*name)                                                 | Creates an audio decoder instance based on a decoder name. To use this function, you must know the exact name of the decoder.                      |
+| [OHOS::Media::OH_AudioDecoder_Destroy](#oh_audiodecoder_destroy) (OH_AVCodec \*codec)                                                            | Clears the internal resources of an audio decoder and destroys the decoder instance.                                                                |
+| [OHOS::Media::OH_AudioDecoder_SetCallback](#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, OH_AVCodecAsyncCallback callback, void \*userData) | Sets an asynchronous callback so that your application can respond to events generated by an audio decoder.                                      |
+| [OHOS::Media::OH_AudioDecoder_Configure](#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format)                                  | Configures an audio decoder. Typically, you need to configure the audio description information that can be extracted from the container.                                          |
+| [OHOS::Media::OH_AudioDecoder_Prepare](#oh_audiodecoder_prepare) (OH_AVCodec \*codec)                                                            | Prepares internal resources for an audio decoder. This function must be called after **Configure**.                                       |
+| [OHOS::Media::OH_AudioDecoder_Start](#oh_audiodecoder_start) (OH_AVCodec \*codec)                                                                | Starts an audio decoder. This function can be called only after the decoder is prepared successfully.                                                                 |
+| [OHOS::Media::OH_AudioDecoder_Stop](#oh_audiodecoder_stop) (OH_AVCodec \*codec)                                                                  | Stops an audio decoder.                                                                                        |
+| [OHOS::Media::OH_AudioDecoder_Flush](#oh_audiodecoder_flush) (OH_AVCodec \*codec)                                                                | Clears the input and output data in the internal buffer of an audio decoder.                                                                  |
+| [OHOS::Media::OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec)                                                                | Resets an audio decoder. To continue decoding, you must call **Configure** to configure the decoder again.                              |
+| \*[OHOS::Media::OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec)                                | Obtains the description information about the output data of an audio decoder. For details, see **OH_AVFormat**.                                 |
+| [OHOS::Media::OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format)                            | Sets dynamic parameters for an audio decoder. This function can be called only after the decoder is started. Incorrect parameter settings may cause decoding failure.|
+| [OHOS::Media::OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr)     | Pushes the input buffer filled with data to an audio decoder.                                                          |
+| [OHOS::Media::OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index)                              | Frees an output buffer of an audio decoder.                                                                  |
+| [OHOS::Media::OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid)                                            | Checks whether an audio decoder instance is valid.                                                                        |
 
+## Enum Description
+
+### AudioChannelLayout
+
+```
+enum OHOS::Media::AudioChannelLayout : uint64_t
+```
+
+**Description**
+
+Enumerates the types of the audio channel numbers. The output format of the decoder is represented as the channel type of the codec.
+
+\@syscap SystemCapability.Multimedia.Media.CodecBase
+
+**Since**
+
+10
+
+### AudioChannelSet
+
+```
+enum OHOS::Media::AudioChannelSet : uint64_t
+```
+
+**Description**
+
+Enumerates the audio channel numbers. Each channel number is mapped to a variable of int64.
+
+\@syscap SystemCapability.Multimedia.Media.CodecBase
+
+**Since**
+
+10
+
+| Value          | Description                  |
+| ---------------- | ---------------------- |
+| AMBISONICS_ACN1  | Channel 0 for the zero-order stereo.    |
+| AMBISONICS_ACN2  | Channel 1 for the first-order stereo.    |
+| AMBISONICS_ACN3  | Channel 2 for the first-order stereo.    |
+| AMBISONICS_W     | Channel 3 for the first-order stereo.    |
+| AMBISONICS_Y     | Equivalent to channel 0 for the zero-order stereo.|
+| AMBISONICS_Z     | Equivalent to channel 1 for the first-order stereo.|
+| AMBISONICS_X     | Equivalent to channel 2 for the first-order stereo.|
+| AMBISONICS_ACN4  | Equivalent to channel 3 for the first-order stereo.|
+| AMBISONICS_ACN5  | Channel 4 for the second-order stereo.    |
+| AMBISONICS_ACN6  | Channel 5 for the second-order stereo.    |
+| AMBISONICS_ACN7  | Channel 6 for the second-order stereo.    |
+| AMBISONICS_ACN8  | Channel 7 for the second-order stereo.    |
+| AMBISONICS_ACN9  | Channel 8 for the second-order stereo.    |
+| AMBISONICS_ACN10 | Channel 9 for the third-order stereo.    |
+| AMBISONICS_ACN11 | Channel 10 for the third-order stereo.   |
+| AMBISONICS_ACN12 | Channel 11 for the third-order stereo.   |
+| AMBISONICS_ACN13 | Channel 12 for the third-order stereo.   |
+| AMBISONICS_ACN14 | Channel 13 for the third-order stereo.   |
+| AMBISONICS_ACN15 | Channel 14 for the third-order stereo.   |
 
 ## Function Description
 
-
 ### OH_AudioDecoder_Configure()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Configure (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**Description**<br>
-Configures an audio decoder. Typically, you need to configure the attributes, which can be extracted from the container, of the audio track that can be decoded. This API must be called prior to **Prepare**.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Configures an audio decoder. Typically, you need to configure the audio description information that can be extracted from the container.
+
+This function must be called prior to **Prepare**.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
-| format | Indicates the handle to an **OH_AVFormat** instance, which provides the attributes of the audio track to be decoded. | 
+| Name  | Description                                               |
+| ------ | --------------------------------------------------- |
+| codec  | Pointer to an **OH_AVCodec** instance.                         |
+| format | Pointer to the **OH_AVFormat** instance, which provides the description information about the audio track to be decoded.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_CreateByMime()
 
-  
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByMime (const char * mime)
+OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByMime (const char * mime)
 ```
-**Description**<br>
-Creates an audio decoder instance based on a MIME type. This API is recommended in most cases.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Creates an audio decoder instance based on a MIME type. This function is recommended in most cases.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| mime | Indicates the pointer to a MIME type. For details, see [OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac).| 
+| Name| Description                                                   |
+| ---- | ------------------------------------------------------- |
+| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**.|
 
 **Returns**
 
 Returns the pointer to an **OH_AVCodec** instance.
 
+**Since**
+
+9
 
 ### OH_AudioDecoder_CreateByName()
 
-  
 ```
-OH_AVCodec* OH_AudioDecoder_CreateByName (const char * name)
+OH_AVCodec* OHOS::Media::OH_AudioDecoder_CreateByName (const char * name)
 ```
-**Description**<br>
-Creates an audio decoder instance based on an audio decoder name. To use this API, you must know the exact name of the audio decoder.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Creates an audio decoder instance based on a decoder name. To use this function, you must know the exact name of the decoder.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| name | Indicates the pointer to an audio decoder name. | 
+| Name| Description            |
+| ---- | ---------------- |
+| name | Pointer to an audio decoder name.|
 
 **Returns**
 
 Returns the pointer to an **OH_AVCodec** instance.
 
+**Since**
+
+9
 
 ### OH_AudioDecoder_Destroy()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Destroy (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Destroy (OH_AVCodec * codec)
 ```
-**Description**<br>
-Clears the internal resources of an audio decoder and destroys the audio decoder instance.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Clears the internal resources of an audio decoder and destroys the decoder instance.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_Flush()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Flush (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Flush (OH_AVCodec * codec)
 ```
-**Description**<br>
-Clears the input and output data in the internal buffer of an audio decoder. This API invalidates the indexes of all buffers previously reported through the asynchronous callback. Therefore, before calling this API, ensure that the buffers corresponding to the indexes are no longer required.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Clears the input and output data in the internal buffer of an audio decoder.
+
+This function invalidates the indexes of all buffers previously reported through the asynchronous callback. Therefore, before calling this function, ensure that the buffers with the specified indexes are no longer required.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_FreeOutputData()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_FreeOutputData (OH_AVCodec * codec, uint32_t index )
 ```
-**Description**<br>
+
+**Description**
+
 Frees an output buffer of an audio decoder.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
-| index | Indicates the index of an output buffer. | 
+| Name | Description                          |
+| ----- | ------------------------------ |
+| codec | Pointer to an **OH_AVCodec** instance.    |
+| index | Index of the output buffer.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_GetOutputDescription()
 
-  
 ```
-OH_AVFormat* OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
+OH_AVFormat* OHOS::Media::OH_AudioDecoder_GetOutputDescription (OH_AVCodec * codec)
 ```
-**Description**<br>
-Obtains the attributes of the output data of an audio decoder. The caller must manually release the **OH_AVFormat** instance in the return value.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Obtains the description information about the output data of an audio decoder. For details, see **OH_AVFormat**. The caller must manually release the **OH_AVFormat** instance in the return value.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns the handle to an **OH_AVFormat** instance, which must be manually released.
+Returns the handle to an **OH_AVFormat** instance. The lifecycle of this instance is refreshed when **GetOutputDescription** is called again and destroyed when the **OH_AVCodec** instance is destroyed.
 
+**Since**
+
+9
+
+### OH_AudioDecoder_IsValid()
+
+```
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_IsValid (OH_AVCodec * codec, bool * isValid )
+```
+
+**Description**
+
+Checks whether an audio decoder instance is valid.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
+
+**Parameters**
+
+| Name   | Description                                                             |
+| ------- | ----------------------------------------------------------------- |
+| codec   | Pointer to an **OH_AVCodec** instance.                                       |
+| isValid | Pointer to an instance of the Boolean type. The value **true** means that the decoder instance is valid and **false** means the opposite.|
+
+**Returns**
+
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+
+**Since**
+
+10
 
 ### OH_AudioDecoder_Prepare()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Prepare (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Prepare (OH_AVCodec * codec)
 ```
-**Description**<br>
-Prepares internal resources for an audio decoder. This API must be called after **Configure**.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Prepares internal resources for an audio decoder. This function must be called after **Configure**.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_PushInputData()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_PushInputData (OH_AVCodec * codec, uint32_t index, OH_AVCodecBufferAttr attr )
 ```
-**Description**<br>
-Pushes the input buffer filled with data to an audio decoder. The [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback reports available input buffers and their indexes. After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback. In addition, some decoders require the input of codec-specific data to initialize the decoding process.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Pushes the input buffer filled with data to an audio decoder.
+
+The **OH_AVCodecOnNeedInputData** callback reports the available input buffer and the index. After being pushed to the decoder, a buffer is not accessible until the buffer with the same index is reported again through the **OH_AVCodecOnNeedInputData** callback. In addition, some decoders require the input of specific data to initialize the decoding process.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
-| index | Indicates the index of an input buffer. | 
-| attr | Indicates the attributes of the data contained in the buffer. | 
+| Name | Description                          |
+| ----- | ------------------------------ |
+| codec | Pointer to an **OH_AVCodec** instance.    |
+| index | Index of the input buffer.|
+| attr  | Description information about the data in the buffer.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_Reset()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Reset (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Reset (OH_AVCodec * codec)
 ```
-**Description**<br>
-Resets an audio decoder. To continue decoding, you must call **Configure** and **Start** to configure and start the decoder again.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Resets an audio decoder. To continue decoding, you must call **Configure** to configure the decoder again.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_SetCallback()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetCallback (OH_AVCodec * codec, OH_AVCodecAsyncCallback callback, void * userData )
 ```
-**Description**<br>
-Sets an asynchronous callback so that your application can respond to events generated by an audio decoder. This API must be called prior to **Prepare**.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Sets an asynchronous callback so that your application can respond to events generated by an audio decoder.
+
+This function must be called prior to **Prepare**.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
-| callback | Indicates a collection of all callback functions. For details, see [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md).| 
-| userData | Indicates the pointer to user-specific data. | 
+| Name    | Description                                                         |
+| -------- | ------------------------------------------------------------- |
+| codec    | Pointer to an **OH_AVCodec** instance.                                   |
+| callback | Callback function to set. For details, see **OH_AVCodecAsyncCallback**.|
+| userData | User-specific data.                                               |
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_SetParameter()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_SetParameter (OH_AVCodec * codec, OH_AVFormat * format )
 ```
-**Description**<br>
-Sets dynamic parameters for an audio decoder. This API can be called only after the decoder is started. Incorrect parameter settings may cause decoding failure.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Sets dynamic parameters for an audio decoder.
+
+This function can be called only after the decoder is started. Incorrect parameter settings may cause decoding failure.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
-| format | Indicates the handle to an **OH_AVFormat** instance. | 
+| Name  | Description                      |
+| ------ | -------------------------- |
+| codec  | Pointer to an **OH_AVCodec** instance.|
+| format | Handle to an **OH_AVFormat** instance.     |
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_Start()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Start (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Start (OH_AVCodec * codec)
 ```
-**Description**<br>
-Starts an audio decoder. This API can be called only after the decoder is prepared successfully. After being started, the decoder starts to report the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) event.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Starts an audio decoder. This function can be called only after the decoder is prepared successfully.
+
+After being started, the decoder starts to report the **OH_AVCodecOnNeedInputData** event.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
 
+9
 
 ### OH_AudioDecoder_Stop()
 
-  
 ```
-OH_AVErrCode OH_AudioDecoder_Stop (OH_AVCodec * codec)
+OH_AVErrCode OHOS::Media::OH_AudioDecoder_Stop (OH_AVCodec * codec)
 ```
-**Description**<br>
-Stops an audio decoder. After the decoder is stopped, you can call **Start** to start it again. If you have passed codec-specific data in the previous **Start** for the decoder, you must pass it again.
 
-@syscap SystemCapability.Multimedia.Media.AudioDecoder
+**Description**
+
+Stops an audio decoder.
+
+After the decoder is stopped, you can call **Start** to start it again. If you have passed specific data in the previous **Start** for the decoder, you must pass it again.
+
+\@syscap SystemCapability.Multimedia.Media.AudioDecoder
 
 **Parameters**
 
-  | Name| Description| 
-| -------- | -------- |
-| codec | Indicates the pointer to an **OH_AVCodec** instance. | 
+| Name | Description                      |
+| ----- | -------------------------- |
+| codec | Pointer to an **OH_AVCodec** instance.|
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
 
-Returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) if the operation fails.
+**Since**
+
+9

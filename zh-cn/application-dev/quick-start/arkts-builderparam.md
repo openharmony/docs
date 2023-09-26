@@ -1,4 +1,4 @@
-# \@BuilderParam：引用\@Builder函数
+# \@BuilderParam装饰器：引用\@Builder函数
 
 
 当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向\@Builder方法的变量，开发者可在初始化自定义组件时对此属性进行赋值，为自定义组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
@@ -36,7 +36,11 @@
   ```ts
   @Component
   struct Child {
-    @BuilderParam aBuilder0: () => void;
+    @Builder componentBuilder() {
+      Text(`Parent builder `)
+    }
+
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
 
     build() {
       Column() {
@@ -63,7 +67,7 @@
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this.label指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this.label指向在Child的label，即“Child”。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this.label指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this.label指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
 
    >  **说明：**
    >
@@ -72,12 +76,18 @@
   ```ts
   @Component
   struct Child {
+    @Builder componentBuilder() {
+      Text(`Child builder `)
+    }
+
     label: string = `Child`
-    @BuilderParam aBuilder0: () => void;
+    @BuilderParam aBuilder0: () => void = this.componentBuilder;
+    @BuilderParam aBuilder1: () => void = this.componentBuilder;
 
     build() {
       Column() {
         this.aBuilder0()
+        this.aBuilder1()
       }
     }
   }
@@ -94,7 +104,7 @@
     build() {
       Column() {
         this.componentBuilder()
-        Child({ aBuilder0: this.componentBuilder })
+        Child({ aBuilder0: this.componentBuilder, aBuilder1: this.componentBuilder })
       }
     }
   }
@@ -110,7 +120,11 @@
 
 
 ```ts
-@Builder function GlobalBuilder1($$ : {label: string }) {
+class GlobalBuilderParam {
+  label: string = ""
+}
+
+@Builder function GlobalBuilder1($$ : GlobalBuilderParam) {
   Text($$.label)
     .width(400)
     .height(50)
@@ -119,11 +133,15 @@
 
 @Component
 struct Child {
+  @Builder componentBuilder() {
+    Text(`Child builder `)
+  }
+
   label: string = 'Child'
   // 无参数类，指向的componentBuilder也是无参数类型
-  @BuilderParam aBuilder0: () => void;
+  @BuilderParam aBuilder0: () => void = this.componentBuilder;
   // 有参数类型，指向的GlobalBuilder1也是有参数类型的方法
-  @BuilderParam aBuilder1: ($$ : { label : string}) => void;
+  @BuilderParam aBuilder1: ($$ : GlobalBuilderParam) => void = this.componentBuilder;
 
   build() {
     Column() {
@@ -152,7 +170,7 @@ struct Parent {
 ```
 
 
-### 尾随闭包初始化组件示例
+### 尾随闭包初始化组件
 
 在自定义组件中使用\@BuilderParam装饰的属性时也可通过尾随闭包进行初始化。在初始化自定义组件时，组件后紧跟一个大括号“{}”形成尾随闭包场景。
 
@@ -165,10 +183,17 @@ struct Parent {
 
 ```ts
 // xxx.ets
+class CustomContainerParam {
+  header: string = '';
+}
 @Component
 struct CustomContainer {
-  @Prop header: string;
-  @BuilderParam closer: () => void
+  @Builder componentCloser() {
+    Text(`Custom closer `)
+  }
+
+  @Prop header: string = '';
+  @BuilderParam closer: () => void = this.componentCloser;
 
   build() {
     Column() {
@@ -192,12 +217,15 @@ struct CustomContainer {
 @Component
 struct CustomContainerUser {
   @State text: string = 'header';
+  param: CustomContainerParam = {
+    header: this.text
+  };
 
   build() {
     Column() {
       // 创建CustomContainer，在创建CustomContainer时，通过其后紧跟一个大括号“{}”形成尾随闭包
       // 作为传递给子组件CustomContainer @BuilderParam closer: () => void的参数
-      CustomContainer({ header: this.text }) {
+      CustomContainer(this.param) {
         Column() {
           specificParam('testA', 'testB')
         }.backgroundColor(Color.Yellow)

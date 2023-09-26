@@ -22,7 +22,7 @@
 
 ## 分享文件给其他应用
 
-在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。
+在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
 
@@ -54,6 +54,8 @@
    import window from '@ohos.window';
    import wantConstant from '@ohos.app.ability.wantConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -61,7 +63,7 @@
        let filePath = this.context.filesDir + '/test.txt';
        // 将沙箱路径转换为uri
        let uri = fileuri.getUriFromPath(filePath);
-       let want = {
+       let want: Want  = {
          // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
          flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
          // 配置分享应用的隐式拉起规则
@@ -73,14 +75,15 @@
          .then(() => {
            console.info('Invoke getCurrentBundleStats succeeded.');
          })
-         .catch((err) => {
+         .catch((err: BusinessError) => {
            console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
          });
      }
-   
-     ...
+     // ...
    }
    ```
+**图1** 效果示意图：<br/>
+![share-app-file](figures/share-app-file.png)
 
 ## 使用其他应用分享的文件
 
@@ -120,10 +123,12 @@
 ```ts
 // xxx.ets
 import fs from '@ohos.file.fs';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
-    let want = ...; // 获取分享方传递过来的want信息
+    let want: Want = ...; // 获取分享方传递过来的want信息
 
     // 从want信息中获取uri字段
     let uri = want.uri;
@@ -135,11 +140,13 @@ function getShareFile() {
       // 根据需要对被分享文件的URI进行相应操作。例如读写的方式打开URI获取file对象
       let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
       console.info('open file successfully!');
-    } catch (error) {
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
       console.error(`Invoke openSync failed, code is ${error.code}, message is ${error.message}`);
     }
   } catch (error) {
-    console.error(`Invoke openSync failed, code is ${error.code}, message is ${error.message}`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`Invoke openSync failed, code is ${err.code}, message is ${err.message}`);
   }
 }
 ```

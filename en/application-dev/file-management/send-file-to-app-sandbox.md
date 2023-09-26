@@ -1,10 +1,10 @@
-# Sending Files to an Application Sandbox
+# Pushing Files to an Application Sandbox
 
-During the development and debugging process of an application, you may need to place some files to the application sandbox for intra-application access or for testing purposes. In this case, you can use either of the following methods:
+During the development and debugging process of an application, you may need to push files to the application sandbox for intra-application access or for testing purposes. In this case, you can use either of the following methods:
 
-1. Use DevEco Studio to place the files to the application installation directory. For details, see [Application Installation Resource Access](../quick-start/resource-categories-and-access.md# resource-access).
+- Use DevEco Studio to push the files to the application installation directory. For details, see [Application Installation Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
 
-2. Use the hdc tool to send files to the application sandbox directory on the device. This section describes the second method.
+- Use the hdc tool to push files to the application sandbox directory on the device. This section describes the second method.
 
 However, the file directories visible to the debugged process in the hdc shell are different from the application sandbox directories visible to the application. You need to understand the mappings between the application sandbox directories and the physical (real) directories.
 
@@ -27,15 +27,26 @@ The read and write operations performed based on the application sandbox paths v
 
 The following uses the application bundle **com.ohos.example** as an example. If the application sandbox path is **/data/storage/el1/bundle**, the physical path is **/data/app/el1/bundle/public/<PACKAGENAME>**, that is, **/data/app/el1/bundle/public/com.ohos.example**.
 
-Run the following command to send the file:
+Run the following command to push files:
 
 ```
-hdc file send ${Path of the local file to send} /data/app/el1/bundle/public/com.ohos.example/
+hdc file send ${Path of the local files to send} /data/app/el1/bundle/public/com.ohos.example/
+```
+
+After the file is pushed, set **user_id** and **group_id** of the file to the **user_id** of the application. You can run the following command to query the **user_id** of the application. The value in the first column of the process is the **user_id** of the application.
+
+```
+ps -ef | grep com.ohos.example
+```
+
+Run the following command to set **user_id** and **group_id**:
+```
+chown ${user_id}:${user_id} ${file_path}
 ```
 
 ## Switching to the Application View
 
-During the debugging process, if you do not have the permission or the file does not exist, you need to switch from the process view to the application view and further analyze permission and directory problems. To switch to the application view, run the following commands:
+During the debugging process, if the required permission is unavailable or the file does not exist, you need to switch from the process view to the application view and further analyze permission and directory problems. To switch to the application view, run the following commands:
 
 ```
 hdc shell                         // Switch to shell.

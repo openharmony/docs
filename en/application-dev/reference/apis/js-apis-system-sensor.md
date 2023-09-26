@@ -25,7 +25,7 @@ import sensor from '@system.sensor';
 
 Subscribes to data changes of the acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
@@ -37,22 +37,26 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **Example**
 
-```js
-sensor.subscribeAccelerometer({
+```ts
+import sensor from '@system.sensor';
+import { AccelerometerResponse, subscribeAccelerometerOptions } from '@system.sensor';
+
+let accelerometerOptions: subscribeAccelerometerOptions = {
   interval: 'normal',
-  success: function(ret) {
-    console.log('X-axis data: ' + ret.x);
-    console.log('Y-axis data: ' + ret.y);
-    console.log('Z-axis data: ' + ret.z);
+  success: (ret: AccelerometerResponse) => {
+    console.info('Succeeded in subscribing. X-axis data: ' + ret.x);
+    console.info('Succeeded in subscribing. Y-axis data: ' + ret.y);
+    console.info('Succeeded in subscribing. Z-axis data: ' + ret.z);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeAccelerometer
 
@@ -60,13 +64,13 @@ unsubscribeAccelerometer(): void
 
 Unsubscribes from data changes of the acceleration sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeAccelerometer();
 ```
 
@@ -76,7 +80,7 @@ sensor.unsubscribeAccelerometer();
 
 Subscribes to data changes of the compass sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -86,19 +90,23 @@ Subscribes to data changes of the compass sensor. If this API is called multiple
 
 **Example**
 
-```js
-sensor.subscribeCompass({
-  success: function(ret) {
-    console.log('Get data direction:' + ret.direction);
+```ts
+import sensor from '@system.sensor';
+import { CompassResponse, SubscribeCompassOptions } from '@system.sensor';
+
+let subscribeCompassOptions: SubscribeCompassOptions = {
+  success: (ret: CompassResponse) => {
+    console.info('Succeeded in subscribing. Get data direction:' + ret.direction);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeCompass
 
@@ -106,11 +114,11 @@ unsubscribeCompass(): void
 
 Unsubscribes from data changes of the compass sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeCompass();
 ```
 
@@ -120,7 +128,7 @@ sensor.unsubscribeCompass();
 
 Subscribes to data changes of the proximity sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -130,19 +138,23 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 
 **Example**
 
-```js
-sensor.subscribeProximity({
-  success: function(ret) {
-    console.log('Get data distance:' + ret.distance);
+```ts
+import sensor from '@system.sensor';
+import { ProximityResponse, SubscribeProximityOptions } from '@system.sensor';
+
+let subscribeProximityOptions: SubscribeProximityOptions = {
+  success: (ret: ProximityResponse) => {
+    console.info('Succeeded in subscribing. Get data distance:' + ret.distance);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeProximity
 
@@ -150,11 +162,11 @@ unsubscribeProximity(): void
 
 Unsubscribes from data changes of the proximity sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeProximity();
 ```
 
@@ -164,7 +176,7 @@ sensor.unsubscribeProximity();
 
 Subscribes to data changes of the ambient light sensor. If this API is called multiple times, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -174,19 +186,23 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 
 **Example**
 
-```js
-sensor.subscribeLight({
-  success: function(ret) {
-    console.log('Get data intensity:' + ret.intensity);
+```ts
+import sensor from '@system.sensor';
+import { LightResponse, SubscribeLightOptions } from '@system.sensor';
+
+let subscribeLightOptions: SubscribeLightOptions = {
+  success: (ret: LightResponse) => {
+    console.info('Succeeded in subscribing. Get data intensity:' + ret.intensity);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeLight
 
@@ -194,11 +210,11 @@ unsubscribeLight(): void
 
 Unsubscribes from data changes of the ambient light sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeLight();
 ```
 
@@ -208,7 +224,7 @@ sensor.unsubscribeLight();
 
 Subscribes to data changes of the step counter sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
@@ -220,19 +236,23 @@ Subscribes to data changes of the step counter sensor. If this API is called mul
 
 **Example**
 
-```js
-sensor.subscribeStepCounter({
-  success: function(ret) {
-    console.log('Get step value:' + ret.steps);
+```ts
+import sensor from '@system.sensor';
+import { StepCounterResponse, SubscribeStepCounterOptions } from '@system.sensor';
+
+let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
+  success: (ret: StepCounterResponse) => {
+    console.info('Succeeded in subscribing. Get step value:' + ret.steps);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeStepCounter
 
@@ -240,13 +260,13 @@ unsubscribeStepCounter(): void
 
 Unsubscribes from data changes of the step counter sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeStepCounter();
 ```
 
@@ -257,7 +277,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 
 Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -267,19 +287,23 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 
 **Example**
 
-```js
-sensor.subscribeBarometer({
-  success: function(ret) {
-    console.log('Get data value:' + ret.pressure);
+```ts
+import sensor from '@system.sensor';
+import { BarometerResponse, SubscribeBarometerOptions } from '@system.sensor';
+
+let subscribeBarometerOptions: SubscribeBarometerOptions = {
+  success: (ret: BarometerResponse) => {
+    console.info('Succeeded in subscribing. Get data value:' + ret.pressure);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
 ## sensor.unsubscribeBarometer
@@ -288,11 +312,11 @@ unsubscribeBarometer(): void
 
 Unsubscribes from data changes of the barometer sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeBarometer();
 ```
 
@@ -303,7 +327,7 @@ sensor.unsubscribeBarometer();
 
 Subscribes to data changes of the heart rate sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
@@ -315,19 +339,23 @@ Subscribes to data changes of the heart rate sensor. If this API is called multi
 
 **Example**
 
-```js
-sensor.subscribeHeartRate({
-  success: function(ret) {
-    console.log('Get heartrate value:' + ret.heartRate);
+```ts
+import sensor from '@system.sensor';
+import { HeartRateResponse, SubscribeHeartRateOptions } from '@system.sensor';
+
+let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
+  success: (ret: HeartRateResponse) => {
+    console.info('Succeeded in subscribing. Get heartrate value:' + ret.heartRate);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 
 ## sensor.unsubscribeHeartRate
@@ -336,13 +364,13 @@ unsubscribeHeartRate(): void
 
 Unsubscribes from data changes of the heart rate sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeHeartRate();
 ```
 
@@ -352,7 +380,7 @@ sensor.unsubscribeHeartRate();
 
 Subscribes to changes of the wearing state of a wearable device. If this API is called multiple times for the same application, the last call takes effect.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -362,19 +390,23 @@ Subscribes to changes of the wearing state of a wearable device. If this API is 
 
 **Example**
 
-```js
-sensor.subscribeOnBodyState({
-  success: function(ret) {
-    console.log('Get on-body state value:' + ret.value);
+```ts
+import sensor from '@system.sensor';
+import { OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@system.sensor';
+
+let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
+  success: (ret: OnBodyStateResponse) => {
+    console.info('Succeeded in subscribing. Get on-body state value:' + ret.value);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeOnBodyState
 
@@ -382,11 +414,11 @@ unsubscribeOnBodyState(): void
 
 Unsubscribes from changes of the wearing state of a wearable device.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeOnBodyState();
 ```
 
@@ -396,7 +428,7 @@ sensor.unsubscribeOnBodyState();
 
 Obtains the wearing state of a wearable device.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -406,15 +438,19 @@ Obtains the wearing state of a wearable device.
 
 **Example**
 
-```js
-sensor.getOnBodyState({
-  success: function(ret) {
-    console.log('On body state: ' + ret.value);
+```ts
+import sensor from '@system.sensor';
+import { OnBodyStateResponse, GetOnBodyStateOptions } from '@system.sensor';
+
+let getOnBodyStateOptions: GetOnBodyStateOptions = {
+  success: (ret: OnBodyStateResponse) => {
+    console.info('Succeeded in subscribing. On body state: ' + ret.value);
   },
-  fail: function(data, code) {
-    console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
-});
+};
+sensor.getOnBodyState(getOnBodyStateOptions);
 ```
 
 ## sensor.subscribeDeviceOrientation<sup>6+</sup>
@@ -425,7 +461,7 @@ Subscribes to data changes of the device orientation sensor.
 
 If this API is called multiple times for the same application, the last call takes effect. However, this API cannot be called multiple times in one click event.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Parameters**
 
@@ -435,22 +471,26 @@ If this API is called multiple times for the same application, the last call tak
 
 **Example**
 
-```js
-sensor.subscribeDeviceOrientation({
+```ts
+import sensor from '@system.sensor';
+import { DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@system.sensor';
+
+let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
   interval: 'normal',
-  success: function(ret) {
-    console.log('Alpha data: ' + ret.alpha);
-    console.log('Beta data: ' + ret.beta);
-    console.log('Gamma data: ' + ret.gamma);
+  success: (ret: DeviceOrientationResponse) => {
+    console.info('Succeeded in subscribing. Alpha data: ' + ret.alpha);
+    console.info('Succeeded in subscribing. Beta data: ' + ret.beta);
+    console.info('Succeeded in subscribing. Gamma data: ' + ret.gamma);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
-});
+};
+sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
@@ -458,11 +498,11 @@ unsubscribeDeviceOrientation(): void
 
 Unsubscribes from data changes of the device orientation sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeDeviceOrientation();
 ```
 
@@ -474,7 +514,7 @@ Subscribes to data changes of the gyroscope sensor.
 
 If this API is called multiple times for the same application, the last call takes effect. However, this API cannot be called multiple times in one click event.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.GYROSCOPE (a system permission)
 
@@ -486,22 +526,26 @@ If this API is called multiple times for the same application, the last call tak
 
 **Example**
 
-```js
-sensor.subscribeGyroscope({
+```ts
+import sensor from '@system.sensor';
+import { GyroscopeResponse, SubscribeGyroscopeOptions } from '@system.sensor';
+
+let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
   interval: 'normal',
-  success: function(ret) {
-    console.log('X-axis data: ' + ret.x);
-    console.log('Y-axis data: ' + ret.y);
-    console.log('Z-axis data: ' + ret.z);
+  success: (ret: GyroscopeResponse) => {
+    console.info('Succeeded in subscribing. X-axis data: ' + ret.x);
+    console.info('Succeeded in subscribing. Y-axis data: ' + ret.y);
+    console.info('Succeeded in subscribing. Z-axis data: ' + ret.z);
   },
-  fail: function(data, code) {
-    console.error('Subscription failed. Code: ' + code + '; data: ' + data);
+  fail: (data: string, code: number) => {
+    console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
-});
+};
+sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **NOTE**
-> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
+> To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestroy** callback.
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>
 
@@ -509,13 +553,13 @@ unsubscribeGyroscope(): void
 
 Unsubscribes from data changes of the gyroscope sensor.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 **Required permissions**: ohos.permission.GYROSCOPE (a system permission)
 
 **Example**
 
-```js
+```ts
 sensor.unsubscribeGyroscope();
 ```
 
@@ -525,7 +569,7 @@ Defines the type of data to return for a subscription to the acceleration sensor
 
 **Required permissions**: ohos.permission.ACCELEROMETER
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -539,7 +583,7 @@ Defines the type of data to include in an **AccelerometerResponse** object.
 
 **Required permissions**: ohos.permission.ACCELEROMETER
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name| Type  | Mandatory| Description         |
 | ---- | ------ | ---- | ------------- |
@@ -551,7 +595,7 @@ Defines the type of data to include in an **AccelerometerResponse** object.
 
 Defines the type of data to return for a subscription to the compass sensor data.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                               | Mandatory| Description                          |
 | ------- | ----------------------------------- | ---- | ------------------------------ |
@@ -562,7 +606,7 @@ Defines the type of data to return for a subscription to the compass sensor data
 
 Defines the type of data to include in a **CompassResponse** object.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name     | Type  | Mandatory| Description                |
 | --------- | ------ | ---- | -------------------- |
@@ -572,7 +616,7 @@ Defines the type of data to include in a **CompassResponse** object.
 
 Defines the type of data to return for a subscription to the proximity sensor data.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                   | Mandatory| Description                              |
 | ------- | --------------------------------------- | ---- | ---------------------------------- |
@@ -583,7 +627,7 @@ Defines the type of data to return for a subscription to the proximity sensor da
 
 Defines the type of data to include in a **ProximityResponse** object.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type  | Mandatory| Description                                      |
 | -------- | ------ | ---- | ------------------------------------------ |
@@ -593,18 +637,18 @@ Defines the type of data to include in a **ProximityResponse** object.
 
 Defines the type of data to return for a subscription to the ambient light sensor data.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                           | Mandatory| Description                          |
 | ------- | ------------------------------- | ---- | ------------------------------ |
-| success | [LightResponse](#lightresponse) | Yes  | Called when the ambient light sensor data changes|
+| success | [LightResponse](#lightresponse) | Yes  | Called when the ambient light sensor data changes.|
 | fail    | Function                        | No  | Callback upon an API call failure.      |
 
 ## LightResponse 
 
 Defines the type of data to include in a **LightResponse** object.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name     | Type  | Mandatory| Description                 |
 | --------- | ------ | ---- | --------------------- |
@@ -616,7 +660,7 @@ Defines the type of data to return for a subscription to the step counter sensor
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                       | Mandatory| Description                            |
 | ------- | ------------------------------------------- | ---- | -------------------------------- |
@@ -629,7 +673,7 @@ Defines the type of data to include in a **StepCounterResponse** object.
 
 **Required permissions**: ohos.permission.ACTIVITY_MOTION
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name | Type  | Mandatory| Description                            |
 | ----- | ------ | ---- | -------------------------------- |
@@ -639,7 +683,7 @@ Defines the type of data to include in a **StepCounterResponse** object.
 
 Defines the type of data to return for a subscription to the barometer sensor data.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                   | Mandatory| Description                            |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
@@ -650,7 +694,7 @@ Defines the type of data to return for a subscription to the barometer sensor da
 
 Defines the type of data to include in a **BarometerResponse** object.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
@@ -662,7 +706,7 @@ Defines the type of data to return for a subscription to the heart rate sensor d
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                   | Mandatory| Description                                           |
 | ------- | --------------------------------------- | ---- | ----------------------------------------------- |
@@ -675,7 +719,7 @@ Defines the type of data to include in a **HeartRateResponse** object.
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name     | Type  | Mandatory| Description    |
 | --------- | ------ | ---- | -------- |
@@ -685,7 +729,7 @@ Defines the type of data to include in a **HeartRateResponse** object.
 
 Defines the type of data to return for a subscription to the wearing state changes.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name   | Type                                       | Mandatory| Description                      |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
@@ -696,7 +740,7 @@ Defines the type of data to return for a subscription to the wearing state chang
 
 Defines the wearing state.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name | Type   | Mandatory| Description        |
 | ----- | ------- | ---- | ------------ |
@@ -706,7 +750,7 @@ Defines the wearing state.
 
  Defines the type of data to return for obtaining the wearing state.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type                                       | Mandatory| Description                    |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
@@ -718,7 +762,7 @@ Defines the wearing state.
 
 Defines the type of data to return for a subscription to the device orientation sensor data.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -730,7 +774,7 @@ Defines the type of data to return for a subscription to the device orientation 
 
 Defines the type of data to include in a **DeviceOrientationResponse** object.
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name | Type  | Mandatory| Description                                                        |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
@@ -744,7 +788,7 @@ Defines the type of data to return for a subscription to the gyroscope sensor da
 
 **Required permissions**: ohos.permission.GYROSCOPE
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name    | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -758,7 +802,7 @@ Defines the type of data to include in a **GyroscopeResponse** object.
 
 **Required permissions**: ohos.permission.GYROSCOPE
 
-**System capability**: SystemCapability.Sensors.Sensor
+**System capability**: SystemCapability.Sensors.Sensor.Lite
 
 | Name| Type  | Mandatory| Description             |
 | ---- | ------ | ---- | ----------------- |

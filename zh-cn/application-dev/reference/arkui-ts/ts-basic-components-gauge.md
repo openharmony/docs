@@ -68,7 +68,7 @@ struct GaugeExample {
       
       // 参数设置当前值为75，属性设置值为25，属性设置优先级高
       Gauge({ value: 75 })
-        .value(25) // 属性和参数都设置时以参数为准
+        .value(25) // 属性和参数都设置时以属性为准
         .width(200).height(200)
         .colors([[0x317AF7, 1], [0x5BA854, 1], [0xE08C3A, 1], [0x9C554B, 1]])
       

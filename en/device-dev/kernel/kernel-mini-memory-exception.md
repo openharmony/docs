@@ -25,11 +25,12 @@ In the figure, the registers in different colors indicate different functions. T
 
 The following table describes APIs available for the OpenHarmony LiteOS-M stack trace module. For more details about the APIs, see the API reference.
 
-  **Table 1** APIs of the stack trace module
+**Table 1** APIs of the stack trace module
 
-| Category| API|
+| API| Description|
 | -------- | -------- |
-| Stack tracing| **LOS_BackTrace**: prints the call stack relationship at the calling point.<br>**LOS_RecordLR**: obtains the call stack relationship at the calling point when print is unavailable.|
+| LOS_BackTrace | Prints the call stack relationship at the calling point.|
+| LOS_RecordLR  | Obtains the call stack relationship at the calling point when print is unavailable.|
 
 
 ## Development Guidelines
@@ -39,17 +40,18 @@ The following table describes APIs available for the OpenHarmony LiteOS-M stack 
 
 The typical process for enabling exception debugging is as follows:
 
-1. Configure the macros related to exception handling
-     in the **target_config.h** file.
-     | Configuration Item| Description| Value|
+1. Configure the macros related to exception handling in the **target_config.h** file.
+
+   | Configuration Item| Description| Value|
    | -------- | -------- | -------- |
    | LOSCFG_BACKTRACE_DEPTH | Depth of the function call stack. The default value is **15**.| 15 |
    | LOSCFG_BACKTRACE_TYPE | Type of the stack tracing.<br>**0**: The stack tracing is disabled.<br>**1**: supports call stack analysis of the Cortex-M series hardware.<br>**2**: supports call stack analysis of the RISC-V series hardware.| Set this parameter to **1** or **2** based on the toolchain type.|
-
-1. Use the error code in the example to build and run a project, and check the error information displayed on the serial port terminal. The sample code simulates error code. During actual product development, use the exception debugging mechanism to locate exceptions.
-     The following example demonstrates the exception output through a task. The task entry function simulates calling of multiple functions and finally calls a function that simulates an exception. The sample code is as follows:
-     
-   The sample code can be compiled and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. The **ExampleExcEntry** function is called in **TestTaskEntry**.
+   
+2. Use the error code in the example to build and run a project, and check the error information displayed on the serial port terminal. The sample code simulates error code. During actual product development, use the exception debugging mechanism to locate exceptions.
+   
+   The following example demonstrates the exception output through a task. The task entry function simulates calling of multiple functions and finally calls a function that simulates an exception. The sample code is as follows:
+   
+   The sample code is built and verified in **./kernel/liteos_m/testsuites/src/osTest.c**. Call **ExampleExcEntry** in **TestTaskEntry**.
    
    ```
    #include <stdio.h>
@@ -210,10 +212,10 @@ The typical process for enabling exception debugging is as follows:
 
 The procedure for locating the exception is as follows:
 
-1. Ensure that the compiler optimization is disabled. Otherwise, the following problems may be optimized during the compilation process.
+1. Check that the compiler optimization is disabled. Otherwise, the following problems may be optimized during the compilation process.
 
 2. Open the image disassembly file (.asm) generated. If the file is not generated, use the objdump tool to generate it. The command is as follows:
-
+   
    ```
    arm-none-eabi-objdump -S -l XXX.elf
    ```
@@ -221,7 +223,7 @@ The procedure for locating the exception is as follows:
 3. Search for the PC (pointing to the instruction being executed) in the .asm file to locate the abnormal function.
 
    The PC address directs to the instruction being executed when the exception occurs. In the .asm file corresponding to the currently executed binary file, search for the PC value **0x2101c61a** and locate the instruction being executed by the CPU. Disassemble the code as follows:
-
+   
    ```
    2101c60c <GetResultException0>:
    2101c60c:	b580      	push	{r7, lr}
@@ -242,13 +244,13 @@ The procedure for locating the exception is as follows:
    2101c62e:	bd80      	pop	{r7, pc}
    2101c630:	21025f90 	.word	0x21025f90
    ```
-
+   
    As indicated by the information displayed:
-
-   - The CPU is executing **ldr r3, [r3, #0]** when an exception occurs. The value of **r3** is **0xffffffff**, which causes an invalid address.
+   - When the exception occurs, the CPU is executing the **ldr r3, [r3, #0]** instruction. The value of **r3** is **0xffffffff**, which causes an invalid address.
    - The exception occurs in the **GetResultException0** function.
-
-4. Search for the parent function of the abnormal function based on the LR value.
+   
+5. Search for the parent function of the abnormal function based on the LR value.
+   
    The code disassembly of the LR value **0x2101c64d** is as follows:
 
    ```
@@ -271,7 +273,7 @@ The procedure for locating the exception is as follows:
    2101c656:	bf00      	nop
    2101c658:	21025fb0 	.word	0x21025fb0
    ```
-
-   The previous line of LR **2101c648** is **bl2101c60c <GetResultException0>**, which calls the abnormal function. The parent function is **GetResultException1**.
-
-5. Parse the LR value between **backtrace start** and **backtrace end** in the exception information to obtain the call stack relationship where the exception occurs and find the cause of the exception.
+   
+   The previous line of LR **2101c648** is **bl 2101c60c \<GetResultException0\>**, which calls the abnormal function. The parent function is **GetResultException1**.
+   
+7. Repeat step 3 to parse the LR value between **backtrace start** and **backtrace end** in the exception information to obtain the call stack relationship where the exception occurs and find the cause of the exception.

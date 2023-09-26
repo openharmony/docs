@@ -28,6 +28,9 @@
   - [组件visible配置参考](../quick-start/module-configuration-file.md#abilities标签)
 
 - **位于后台的应用，启动组件需校验BACKGROUND权限**
+> **说明：**
+> 基于API 8或更早版本SDK开发的应用在启动ServiceAbility组件或DataAbility组件时不受此限制的约束。
+
   - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
   - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
 

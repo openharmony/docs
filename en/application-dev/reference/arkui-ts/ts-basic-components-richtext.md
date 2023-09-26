@@ -5,6 +5,7 @@ The **\<RichText>** component parses and displays HTML text.
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > Set the height when using this component.
 
 
@@ -42,7 +43,7 @@ Among the [universal attributes](ts-universal-attributes-size.md), only the **wi
 | \<h1>--\<h6> | Defines six levels of headings in the HTML document. \<h1> defines the most important heading, and \<h6> defines the least important heading.| \<h1>This is an H1 heading\</h1> \<h2>This is an H2 heading\</h2>|
 | \<p>\</p> | Defines a paragraph.| \<p>This is a paragraph\</p>|
 | \<br/> | Inserts a newline character.| \<p>This is a paragraph\<br/>This is a new paragraph\</p>|
-| \<font/> | Defines the font style for the text contained within it, including the font face, size, and color.| \<font size="3" face="arial" color="red">This is in red\</font> |
+| \<font/> | Defines the font style for the text contained within it, including the font face, size, and color. In the \<font> tag, the font size can be set only to a number ranging from 1 to 7, with the default value being **3**. This tag is deprecated in HTML 4.01 and not supported in XHTML1.0 Strict DTD. Use the CSS font properties to style text instead. CSS syntax: \<p style="font-size: 35px; font-family: verdana; color: rgb(24,78,228)"> | \<font size="3" face="arial" color="red">This is in red\</font> |
 | \<hr/> | Defines a thematic break (such as a shift of topic) on an HTML page and creates a horizontal line.| \<p>This is text\</p>\<hr/>\<p>This is text\</p> |
 | \<image>\</image> | Defines an image.| \<image src="resource://rawfile/icon.png">\</image> |
 | \<div>\</div> | Defines a generic container that is generally used to group block-level elements. It allows you to apply CSS styles to multiple elements at the same time.| \<div style='color:#0000FF'>\<h3>This is the heading in a div element\</h3>\</div> |
@@ -51,6 +52,18 @@ Among the [universal attributes](ts-universal-attributes-size.md), only the **wi
 | \<style>\</style> | Used to embed CSS within an HTML document.| \<style>h1{color:red;}p{color:blue;}\</style> |
 | style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is text\</p> |
 | \<script>\</script> | Embeds or references a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
+
+## Precautions
+
+The underlying layer of the **\<RichText>** component uses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.
+
+The **\<RichText>** component complies with the constraints of the **\<Web>** component. A typical scenario is as follows:
+
+The default viewport size of a mobile device is 980 px. This default value ensures that most web pages can be browsed properly on the mobile device. If the width of the **\<RichText>** component is less than this value, the HTML content specified by **content** may generate a scrollable page that is wrapped by the **\<RichText>** component. If you want to replace the default value, add the following tags to **content**:
+
+```html
+<meta name="viewport" content="width=device-width">
+```
 
 ## Example
 
@@ -67,7 +80,7 @@ struct RichTextExample {
   '<h2 style="text-align: center;">h2 heading</h2>' +
   '<h3 style="text-align: center;">h3 heading</h3>' +
   '<p style="text-align: center;">Regular paragraph</p><hr/>' +
-  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
+  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0 auto;">' +
   '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">Font size: 35px; line height: 45px</p>' +
   '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
   '<p>This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text.</p>';
@@ -83,7 +96,7 @@ struct RichTextExample {
           console.info('RichText onComplete');
         })
         .width(500)
-        .height(400)
+        .height(500)
         .backgroundColor(0XBDDB69)
       RichText('layoutWeight(1)')
         .onStart(() => {
@@ -111,7 +124,3 @@ struct RichTextExample {
 ```
 
  ![richText](figures/richText.png)
-
-## Precautions
-
-The underlying layer of the **\<RichText>** component reuses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.

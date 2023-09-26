@@ -76,7 +76,6 @@ Sensor驱动模型对外开放的API接口能力的具体实现请参考：
 | int32_t SetOption(int32_t sensorId, uint32_t option) | 设置指定传感器量程，精度等可选配置。 |
 | int32_t Register(int32_t groupId, RecordDataCallback cb) | 订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。 |
 | int32_t Unregister(int32_t groupId, RecordDataCallback cb) | 订阅者根据groupId和回调函数注销对应订阅者的传感器数据回调函数。 |
-| int32_t ReadData(int32_t sensorId, struct SensorEvents *event); | 在小型系统上查询指定传感器的数据。 |
 
 Sensor驱动模型对驱动开发者开放的功能接口，驱动开发者无需实现，直接使用，请参考：
 
@@ -108,7 +107,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
 | int32_t SetBatch(int64_t samplingInterval, int64_t reportInterval) | 根据数据采样率和数据上报间隔，配置当前传感器设备的数据上报线程处理时间。 |
 | int32_t SetMode(int32_t mode) | 配置当前传感器设备数据上报方式。 |
 | int32_t SetOption(uint32_t option) | 根据可选配置、下发量程和精度等寄存器配置。 |
-| void ReadSensorData(void) | 实现传感器的数据读取函数。 |
+| void ReadSensorData(void) | 读取传感器数据。                                             |
 
 
 接口实现参考[开发步骤](#开发步骤)章节。
@@ -858,7 +857,6 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
     module_out_path = module_output_path
     sources = [ "sensor_test.cpp" ]
     include_dirs = [
-      "//drivers/hdf_core/framework/include/platform",
       "//drivers/peripheral/sensor/interfaces/include",
     ]
     deps = [ "//drivers/peripheral/sensor/hal:hdi_sensor" ]

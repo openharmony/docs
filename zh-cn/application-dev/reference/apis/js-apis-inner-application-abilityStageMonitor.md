@@ -6,6 +6,8 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
@@ -17,13 +19,11 @@
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let monitor = {
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'feature_as1',
     srcEntrance: './ets/Application/MyAbilityStage.ts',
-};
-
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
+}, (error, data) => {
     if (error) {
         console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
     } else {

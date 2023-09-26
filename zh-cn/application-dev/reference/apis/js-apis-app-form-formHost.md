@@ -48,11 +48,11 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.deleteForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error) {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   } else {
@@ -60,7 +60,7 @@ try {
   }
   });
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -105,17 +105,17 @@ deleteForm(formId: string): Promise&lt;void&gt;
 **参数：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -154,17 +154,17 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -204,17 +204,17 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.releaseForm(formId, true, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -259,17 +259,17 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -308,17 +308,17 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.requestForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.requestForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -362,17 +362,17 @@ requestForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 
 ```
@@ -412,17 +412,17 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
-  formHost.castToNormalForm(formId, (error) => {
+  let formId: string = '12400633174999288';
+  formHost.castToNormalForm(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -466,17 +466,17 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = '12400633174999288';
+  let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -513,17 +513,17 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyVisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -565,17 +565,17 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -612,17 +612,17 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.notifyInvisibleForms(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -664,17 +664,17 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -712,17 +712,17 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.enableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -765,17 +765,17 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -814,17 +814,17 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
-  formHost.disableFormsUpdate(formId, (error) => {
+  let formId: string[] = ['12400633174999288'];
+  formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -868,17 +868,17 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formId = ['12400633174999288'];
+  let formId: string[] = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -908,16 +908,16 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  formHost.isSystemReady((error, data) => {
+  formHost.isSystemReady((error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -946,16 +946,16 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -991,18 +991,19 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo((error, data) => {
+  formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getAllFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getAllFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1037,16 +1038,17 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getAllFormsInfo().then((data) => {
-    console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getAllFormsInfo data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1084,18 +1086,19 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+      console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1134,10 +1137,11 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1145,7 +1149,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1189,105 +1193,17 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfos<sup>10+</sup>
-
-getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
-
-获取设备上正在运行的所有非临时卡片信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 回调函数。获取设备上指定应用为卡片使用方的当前卡片信息成功，error为undefined，data为查询到的卡片信息。|
-| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-try {
-  formHost.getRunningFormInfos((error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
-    }
-  }, 'com.example.ohos.formjsdemo');
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfos<sup>10+</sup>
-
-getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
-
-**返回值：**
-
-| 类型                                                         | 说明                                |
-| :----------------------------------------------------------- | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. ||
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-try {
-  formHost.getRunningFormInfos('com.example.ohos.formjsdemo').then((data) => {
-    console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1324,19 +1240,19 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds, (error, data) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
+      console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1378,17 +1294,17 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
 try {
-  let formIds = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds).then((data) => {
-    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+  formHost.deleteInvalidForms(formIds).then((data: number) => {
+    console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1426,9 +1342,11 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1439,15 +1357,15 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want, (error, data) => {
+  formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
-      console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
+      console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1490,9 +1408,11 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -1503,13 +1423,13 @@ let want = {
   }
 };
 try {
-  formHost.acquireFormState(want).then((data) => {
-    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
+    console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1540,12 +1460,11 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.on('formUninstall', callback);
+formHost.on('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## off('formUninstall')
@@ -1575,145 +1494,12 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-}
-formHost.off('formUninstall', callback);
+formHost.off('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
-
-## on('formAdd')<sup>10+</sup>
-
- on(type: 'formAdd', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.on('formAdd', callback);
-formHost.on('formAdd', callback, bundleName);
-```
-
-## off('formAdd')<sup>10+</sup>
-
- off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.off('formAdd', callback);
-formHost.off('formAdd', callback, bundleName);
-```
-> **说明：**
-> on('formAdd', callback)与off('formAdd', callback)相对应；
-> on('formAdd', callback, bundleName)与off('formAdd', callback, bundleName)相对应；
-> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
-
-## on('formRemove')<sup>10+</sup>
-
- on(type: 'formRemove', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.on('formRemove', callback);
-formHost.on('formRemove', callback, bundleName);
-```
-
-## off('formRemove')<sup>10+</sup>
-
- off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
-
-取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
-| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
-| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-
-**示例：**
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let bundleName = 'ohos.samples.FormApplication';
-let callback = function(data) {
-  console.log('a new form added, data: ${JSON.stringify(data)');
-}
-
-formHost.off('formRemove', callback);
-formHost.off('formRemove', callback, bundleName);
-```
-> **说明：**
-> on('formRemove', callback)与off('formRemove', callback)相对应；
-> on('formRemove', callback, bundleName)与off('formRemove', callback, bundleName)相对应；
-> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
 
 ## notifyFormsVisible
 
@@ -1750,17 +1536,17 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error) => {
+  formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1804,17 +1590,17 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1853,17 +1639,17 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -1907,17 +1693,17 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 ## shareForm
@@ -1955,18 +1741,18 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error) => {
+  formHost.shareForm(formId, deviceId, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2010,18 +1796,18 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-let deviceId = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
+let formId: string = '12400633174999288';
+let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2059,17 +1845,17 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error) => {
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error: Base.BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2110,17 +1896,17 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2129,6 +1915,8 @@ try {
 acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
 
 请求卡片提供方数据。使用callback异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2144,6 +1932,8 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2154,17 +1944,19 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
-  formHost.acquireFormData(formId, (error) => {
+  formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log(`formHost acquireFormData, data: ${JSON.stringify(data)}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2173,6 +1965,8 @@ try {
 acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 请求卡片提供方数据。使用Promise异步回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2188,12 +1982,14 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2202,203 +1998,16 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 try {
-  formHost.acquireFormData(formId).then(() => {
-    console.log('formHost acquireFormData success');
-  }).catch((error) => {
+  formHost.acquireFormData(formId).then((data) => {
+    console.log('formHost acquireFormData success' + data);
+  }).catch((error: Base.BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfosByFilter<sup>10+</sup>
-
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formInstanceFilter = {
-  bundleName: "com.example.formprovide",
-  abilityName: "EntryFormAbility",
-  formName: "widget",
-  moduleName: "entry"
-}
-try {
-  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data1 => {
-    console.info('formHost getRunningFormInfosByFilter return err :');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfosByFilter<sup>10+</sup>
-
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
-
-根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formInstanceFilter = {
-  bundleName: "com.example.formprovide",
-  abilityName: "EntryFormAbility",
-  formName: "widget",
-  moduleName: "entry"
-}
-try {
-  formHost.getRunningFormInfosByFilter(formInstanceFilter,(error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
-    }
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfoById<sup>10+</sup>
-
-getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
-
-根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | 是   | 卡片标识。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-let formId = '12400633174999288';
-try {
-  formHost.getRunningFormInfoById(formId).then(data1 => {
-    console.info('formHost getRunningFormInfoById return err :');
-  }).catch((error) => {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
-}
-```
-
-## getRunningFormInfoById<sup>10+</sup>
-
-getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
-
-根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-| 参数名      | 类型            | 必填 | 说明                             |
-| ----------- | --------------- | ---- | -------------------------------- |
-| formId     | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16501000  | An internal functional error occurred. |
-
-```ts
-import formHost from '@ohos.app.form.formHost';
-
-let formId = '12400633174999288';
-try {
-  formHost.getRunningFormInfoById(formId,(error, data) => {
-    if (error) {
-      console.error(`error, code: ${error.code}, message: ${error.message}`);
-    } else {
-      console.log('formHost getRunningFormInfoById, data: ${JSON.stringify(data)}');
-    }
-  });
-} catch(error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```

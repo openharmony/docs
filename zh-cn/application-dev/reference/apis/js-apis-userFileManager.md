@@ -77,8 +77,8 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPhotoAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -86,7 +86,7 @@ async function example() {
   mgr.getPhotoAssets(fetchOptions, async (err, fetchResult) => {
     if (fetchResult != undefined) {
       console.info('fetchResult success');
-      let fileAsset = await fetchResult.getFirstObject();
+      let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
       if (fileAsset != undefined) {
         console.info('fileAsset.displayName : ' + fileAsset.displayName);
       }
@@ -134,16 +134,16 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPhotoAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
     if (fetchResult != undefined) {
       console.info('fetchResult success');
-      let fileAsset = await fetchResult.getFirstObject();
+      let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
       if (fileAsset != undefined) {
         console.info('fileAsset.displayName :' + fileAsset.displayName);
       }
@@ -187,13 +187,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('createPhotoAssetDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.AlbumFetchOptions = {
     predicates: predicates
   };
-  let albums = await mgr.getPhotoAlbums(fetchOptions);
-  let album = await albums.getFirstObject();
-  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let albums: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(fetchOptions);
+  let album: userFileManager.Album = await albums.getFirstObject();
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
   mgr.createPhotoAsset(testFileName, album.albumUri, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
@@ -236,7 +236,7 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo');
-  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
   mgr.createPhotoAsset(testFileName, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
@@ -285,8 +285,8 @@ createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&g
 async function example() {
   console.info('createPhotoAssetDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
@@ -327,8 +327,8 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback
 ```ts
 async function example() {
   console.info('createPhotoAssetDemo');
-  let testFileName = 'testFile' + Date.now() + '.jpg';
-  let createOption = {
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let createOption: userFileManager.PhotoCreateOptions = {
     subType: userFileManager.PhotoSubType.DEFAULT
   }
   mgr.createPhotoAsset(testFileName, createOption, (err, fileAsset) => {
@@ -379,11 +379,11 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise
 async function example() {
   console.info('createPhotoAssetDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let createOption = {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let createOption: userFileManager.PhotoCreateOptions = {
       subType: userFileManager.PhotoSubType.DEFAULT
     }
-    let fileAsset = await mgr.createPhotoAsset(testFileName, createOption);
+    let fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName, createOption);
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
@@ -423,7 +423,7 @@ createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 ```ts
 async function example() {
   console.info('createAudioAssetDemo');
-  let testFileName = 'testFile' + Date.now() + '.mp3';
+  let testFileName: string = 'testFile' + Date.now() + '.mp3';
   mgr.createAudioAsset(testFileName, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('createAudioAsset file displayName' + fileAsset.displayName);
@@ -471,119 +471,12 @@ createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;;
 async function example() {
   console.info('createAudioAssetDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.mp3';
-    let fileAsset = await mgr.createAudioAsset(testFileName);
+    let testFileName: string = 'testFile' + Date.now() + '.mp3';
+    let fileAsset: userFileManager.FileAsset = await mgr.createAudioAsset(testFileName);
     console.info('createAudioAsset file displayName' + fileAsset.displayName);
     console.info('createAudioAsset successfully');
   } catch (err) {
     console.error('createAudioAsset failed, message = ', err);
-  }
-}
-```
-
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
-
-
-获取相册，使用callback方式返回结果。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回相册检索结果。 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**示例：**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-
-  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
-    if (fetchResult != undefined) {
-      console.info('albums.count = ' + fetchResult.getCount());
-      fetchResult.getFirstObject((err, album) => {
-        if (album != undefined) {
-          console.info('first album.albumName = ' + album.albumName);
-        } else {
-          console.error('album is undefined, err = ', err);
-        }
-      });
-    } else {
-      console.error('getPhotoAlbums fail, message = ', err);
-    }
-  });
-}
-```
-
-### getPhotoAlbums
-
-getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
-
-获取相册，使用Promise方式返回结果。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
-**参数：**
-
-| 参数名   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------ | ---- | ------------------------- |
-| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
-
-**返回值：**
-
-| 类型                        | 说明           |
-| --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回相册检索结果。 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 13900020   | if type options is not AlbumFetchOptions.         |
-
-**示例：**
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
-async function example() {
-  console.info('getPhotoAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
-    predicates: predicates
-  };
-  try {
-    let fetchResult = await mgr.getPhotoAlbums(albumFetchOptions);
-    console.info('album.count = ' + fetchResult.getCount());
-    const album = await fetchResult.getFirstObject();
-    console.info('first album.albumName = ' + album.albumName);
-  } catch (err) {
-    console.error('getPhotoAlbums fail, message = ' + err);
   }
 }
 ```
@@ -616,7 +509,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
 ```ts
 async function example() {
   console.info('createAlbumDemo');
-  let albumName = 'newAlbumName' + new Date().getTime();
+  let albumName: string = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName, (err, album) => {
     if (err) {
       console.error('createAlbumCallback failed with err: ' + err);
@@ -658,12 +551,14 @@ createAlbum(name: string): Promise&lt;Album&gt;;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   console.info('createAlbumDemo');
-  let albumName = 'newAlbumName' + new Date().getTime();
+  let albumName: string  = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName).then((album) => {
     console.info('createAlbumPromise successfully, album: ' + album.albumName + ' album uri: ' + album.albumUri);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('createAlbumPromise failed with err: ' + err);
   });
 }
@@ -696,14 +591,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC, fetchOptions);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC, fetchOptions);
+  let album: userFileManager.Album = await fetchResult.getFirstObject();
   mgr.deleteAlbums([album], (err) => {
     if (err) {
       console.error('deletePhotoAlbumsCallback failed with err: ' + err);
@@ -743,21 +638,22 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC, fetchOptions);
-  let album = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC, fetchOptions);
+  let album: userFileManager.Album = await fetchResult.getFirstObject();
   mgr.deleteAlbums([album]).then(() => {
     console.info('deletePhotoAlbumsPromise successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('deletePhotoAlbumsPromise failed with err: ' + err);
   });
   fetchResult.close();
@@ -801,9 +697,9 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -816,7 +712,7 @@ async function example() {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
-    let album = await fetchResult.getFirstObject();
+    let album: userFileManager.Album = await fetchResult.getFirstObject();
     console.info('getAlbumsCallback successfully, albumName: ' + album.albumName);
     fetchResult.close();
   });
@@ -866,7 +762,7 @@ async function example() {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
-    let album = await fetchResult.getFirstObject();
+    let album: userFileManager.Album = await fetchResult.getFirstObject();
     console.info('getAlbumsCallback successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
   });
@@ -911,13 +807,14 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promi
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
-  let fetchOptions = {
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -926,12 +823,122 @@ async function example() {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
-    let album = await fetchResult.getFirstObject();
+    let album: userFileManager.Album = await fetchResult.getFirstObject();
     console.info('getAlbumsPromise successfully, albumName: ' + album.albumName);
     fetchResult.close();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('getAlbumsPromise failed with err: ' + err);
   });
+}
+```
+
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+
+获取相册，使用callback方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
+    predicates: predicates
+  };
+
+  mgr.getPhotoAlbums(albumFetchOptions, (err, fetchResult) => {
+    if (fetchResult != undefined) {
+      console.info('albums.count = ' + fetchResult.getCount());
+      fetchResult.getFirstObject((err, album) => {
+        if (album != undefined) {
+          console.info('first album.albumName = ' + album.albumName);
+        } else {
+          console.error('album is undefined, err = ', err);
+        }
+      });
+    } else {
+      console.error('getPhotoAlbums fail, message = ', err);
+    }
+  });
+}
+```
+
+### getPhotoAlbums
+
+getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+
+获取相册，使用Promise方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项。              |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回相册检索结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13900020   | if type options is not AlbumFetchOptions.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('getPhotoAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
+    predicates: predicates
+  };
+  try {
+    let fetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(albumFetchOptions);
+    console.info('album.count = ' + fetchResult.getCount());
+    const album: userFileManager.Album = await fetchResult.getFirstObject();
+    console.info('first album.albumName = ' + album.albumName);
+  } catch (err) {
+    console.error('getPhotoAlbums fail, message = ' + err);
+  }
 }
 ```
 
@@ -940,6 +947,8 @@ async function example() {
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -967,7 +976,7 @@ async function example() {
   console.info('getPrivateAlbumDemo');
   mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH, async (err, fetchResult) => {
     if (fetchResult != undefined) {
-      let trashAlbum = await fetchResult.getFirstObject();
+      let trashAlbum: userFileManager.PrivateAlbum = await fetchResult.getFirstObject();
       console.info('first album.albumName = ' + trashAlbum.albumName);
     } else {
       console.error('getPrivateAlbum failed. message = ', err);
@@ -981,6 +990,8 @@ async function example() {
 getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&gt;&gt;;
 
 获取系统相册，使用Promise方式返回结果。
+
+此接口即将废弃，请使用[getAlbums<sup>10+</sup>](#getalbums10)的新接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1012,8 +1023,8 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 async function example() {
   console.info('getPrivateAlbumDemo');
   try {
-    let fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-    let trashAlbum = await fetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+    let trashAlbum: userFileManager.PrivateAlbum = await fetchResult.getFirstObject();
     console.info('first album.albumName = ' + trashAlbum.albumName);
   } catch (err) {
     console.error('getPrivateAlbum failed. message = ', err);
@@ -1053,8 +1064,8 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAudioAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
@@ -1062,7 +1073,7 @@ async function example() {
   mgr.getAudioAssets(fetchOptions, async (err, fetchResult) => {
     if (fetchResult != undefined) {
       console.info('fetchFileResult success');
-      let fileAsset = await fetchResult.getFirstObject();
+      let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
       if (fileAsset != undefined) {
         console.info('fileAsset.displayName :' + fileAsset.displayName);
       }
@@ -1111,23 +1122,22 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAudioAssets');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    var fetchResult = await mgr.getAudioAssets(fetchOptions);
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getAudioAssets(fetchOptions);
+    if (fetchResult != undefined) {
+      console.info('fetchFileResult success');
+      let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+      if (fileAsset != undefined) {
+        console.info('fileAsset.displayName :' + fileAsset.displayName);
+      }
+    }
   } catch (err) {
     console.error('getAudioAssets failed, message = ', err);
-  }
-
-  if (fetchResult != undefined) {
-    console.info('fetchFileResult success');
-    let fileAsset = await fetchResult.getFirstObject();
-    if (fileAsset != undefined) {
-      console.info('fileAsset.displayName :' + fileAsset.displayName);
-    }
   }
 }
 ```
@@ -1164,29 +1174,30 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('deleteAssetDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await mgr.getPhotoAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
+    const fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+
+
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
+    mgr.delete(asset.uri, (err) => {
+      if (err == undefined) {
+        console.info('delete successfully');
+      } else {
+        console.error('delete failed with error: ' + err);
+      }
+    });
   } catch (err) {
     console.info('fetch failed, message =', err);
   }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  mgr.delete(asset.uri, (err) => {
-    if (err == undefined) {
-      console.info('delete successfully');
-    } else {
-      console.error('delete failed with error: ' + err);
-    }
-  });
 }
 ```
 
@@ -1227,123 +1238,22 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('deleteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    const fetchResult = await mgr.getPhotoAssets(fetchOptions);
-    var asset = await fetchResult.getFirstObject();
-  } catch (err) {
-    console.info('fetch failed, message =', err);
-  }
-
-  if (asset == undefined) {
-    console.error('asset not exist');
-    return;
-  }
-  try {
+    const fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    if (asset == undefined) {
+      console.error('asset not exist');
+      return;
+    }
     await mgr.delete(asset.uri);
     console.info('delete successfully');
   } catch (err) {
     console.error('delete failed with error: ' + err);
-  }
-}
-```
-
-### on
-
-on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
-
-打开文件管理库变更通知，使用callback方式返回异步结果。
-
-此接口即将废弃，请使用[on<sup>10+</sup>](#on10)的新接口
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
-| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
-
-**示例：**
-
-```ts
-async function example() {
-  console.info('onDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // image file had changed, do something
-  });
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  //sleep 1s
-  if (count > 0) {
-    console.info('onDemo success');
-  } else {
-    console.error('onDemo fail');
-  }
-  mgr.off('imageChange', () => {
-    // stop listening success
-  });
-}
-```
-
-### off
-
-off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
-
-关闭文件管理库变更通知，使用callback方式返回异步结果。
-
-此接口即将废弃，请使用[off<sup>10+</sup>](#off10)的新接口
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
-| callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
-
-**示例：**
-
-```ts
-async function example() {
-  console.info('offDemo');
-  let count = 0;
-  mgr.on('imageChange', () => {
-    count++;
-    // image file had changed, do something
-  });
-
-  mgr.off('imageChange', () => {
-    // stop listening success
-  });
-
-  try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    let fileAsset = await mgr.createPhotoAsset(testFileName);
-    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
-    console.info('createPhotoAsset successfully');
-  } catch (err) {
-    console.error('createPhotoAsset failed, message = ' + err);
-  }
-  //sleep 1s
-  if (count == 0) {
-    console.info('offDemo success');
-  } else {
-    console.error('offDemo fail');
   }
 }
 ```
@@ -1400,17 +1310,17 @@ getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
 async function example() {
   console.info('getActivePeersDemo');
   try {
-    var devicesInfo = await mgr.getActivePeers();
+    let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getActivePeers();
+    if (devicesInfo != undefined) {
+      console.log('getActivePeers succeed.');
+      for (let i = 0; i < devicesInfo.length; i++) {
+        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+      }
+    } else {
+      console.error('get distributed fail');
+    }
   } catch (err) {
     console.error('getActivePeers failed. message = ', err);
-  }
-  if (devicesInfo != undefined) {
-    console.log('getActivePeers succeed.');
-    for (let i = 0; i < devicesInfo.length; i++) {
-      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-    }
-  } else {
-    console.error('get distributed fail');
   }
 }
 ```
@@ -1467,17 +1377,163 @@ getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;;
 async function example() {
   console.info('getAllPeersDemo');
   try {
-    var devicesInfo = await mgr.getAllPeers();
+    let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getAllPeers();
+
+    if (devicesInfo != undefined) {
+      console.log('getAllPeers succeed.');
+      for (let i = 0; i < devicesInfo.length; i++) {
+        console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+      }
+    } else {
+      console.error('get distributed fail');
+    }
   } catch (err) {
     console.error('getAllPeers failed. message = ', err);
   }
-  if (devicesInfo != undefined) {
-    console.log('getAllPeers succeed.');
-    for (let i = 0; i < devicesInfo.length; i++) {
-      console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-    }
-  } else {
-    console.error('get distributed fail');
+}
+```
+
+### getPhotoIndex<sup>10+</sup>
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callback: AsyncCallback&lt;number&gt;): void
+
+获取相册中图片或视频的位置，使用callback方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOp: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(userFileManager.ImageVideoKey.DATE_MODIFIED.toString());
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [userFileManager.ImageVideoKey.DATE_MODIFIED.toString()],
+      predicates: predicates
+    };
+    let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
+    mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
+      if (err == undefined) {
+        console.info(`getPhotoIndex successfully and index is : ${index}`);
+      } else {
+        console.info(`getPhotoIndex failed;`);
+      }
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
+  }
+}
+```
+
+### getPhotoIndex<sup>10+</sup>
+
+getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise&lt;number&gt;
+
+获取相册中图片或视频的位置，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoUri | string | 是   | 所查询的图库资源的uri。 |
+| albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
+| options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt;| 返回相册中资源的索引。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  try {
+    console.info('getPhotoIndexDemo');
+    let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOp: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicatesForGetAsset
+    };
+    // Obtain the uri of the album
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.FAVORITE, fetchOp);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByAsc(userFileManager.ImageVideoKey.DATE_MODIFIED.toString());
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [userFileManager.ImageVideoKey.DATE_MODIFIED.toString()],
+      predicates: predicates
+    };
+    let photoFetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOptions);
+    let expectIndex = 1;
+    // Obtain the uri of the second file
+    let photoAsset: userFileManager.FileAsset = await photoFetchResult.getPositionObject(expectIndex);
+    mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
+      console.info(`getPhotoIndex successfully and index is : ${index}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getPhotoIndex failed; error: ${err}`);
+    });
+  } catch (error) {
+    console.info(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1545,7 +1601,7 @@ async function example() {
 
 on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-打开对指定uri的监听，使用callback方式返回异步结果。
+对指定uri注册监听，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1572,26 +1628,26 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('onDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   if (fileAsset != undefined) {
     console.info('fileAsset.displayName : ' + fileAsset.displayName);
   }
-  let onCallback1 = (changeData) => {
+  let onCallback1 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
     //file had changed, do something
   }
-  let onCallback2 = (changeData) => {
+  let onCallback2 = (changeData: userFileManager.ChangeData) => {
       console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
     //file had changed, do something
   }
   // 注册onCallback1监听
-  mgr.on(fileAsset.uri, false, onCallback1); 
+  mgr.on(fileAsset.uri, false, onCallback1);
   // 注册onCallback2监听
   mgr.on(fileAsset.uri, false, onCallback2);
 
@@ -1609,7 +1665,7 @@ async function example() {
 
  off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
-关闭指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该uri的所有监听。
+取消对指定uri的监听，一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时解除该uri的所有监听。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1618,7 +1674,7 @@ async function example() {
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 解除[on<sup>10+</sup>](#on10)注册时的callback的监听，不填时，解除该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 取消[on<sup>10+</sup>](#on10)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
 
 **错误码：**
 
@@ -1635,20 +1691,20 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('offDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOptions);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   if (fileAsset != undefined) {
     console.info('fileAsset.displayName : ' + fileAsset.displayName);
   }
-  let onCallback1 = (changeData) => {
+  let onCallback1 = (changeData: userFileManager.ChangeData) => {
     console.info('onCallback1 on');
   }
-  let onCallback2 = (changeData) => {
+  let onCallback2 = (changeData: userFileManager.ChangeData) => {
     console.info('onCallback2 on');
   }
   // 注册onCallback1监听
@@ -1667,6 +1723,102 @@ async function example() {
 }
 ```
 
+### on
+
+on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
+
+打开文件管理库变更通知，使用callback方式返回异步结果。
+
+此接口即将废弃，请使用[on<sup>10+</sup>](#on10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更 |
+| callback | Callback&lt;void&gt; | 是   | callback返回void                                                   |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('onDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+  try {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count > 0) {
+    console.info('onDemo success');
+  } else {
+    console.error('onDemo fail');
+  }
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
+}
+```
+
+### off
+
+off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
+
+关闭文件管理库变更通知，使用callback方式返回异步结果。
+
+此接口即将废弃，请使用[off<sup>10+</sup>](#off10)的新接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | [ChangeEvent](#changeevent)               | 是   | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
+| callback | Callback&lt;void&gt; | 否   | callback返回void。                                                   |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('offDemo');
+  let count = 0;
+  mgr.on('imageChange', () => {
+    count++;
+    // image file had changed, do something
+  });
+
+  mgr.off('imageChange', () => {
+    // stop listening success
+  });
+
+  try {
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    let fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
+    console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+    console.info('createPhotoAsset successfully');
+  } catch (err) {
+    console.error('createPhotoAsset failed, message = ' + err);
+  }
+  //sleep 1s
+  if (count == 0) {
+    console.info('offDemo success');
+  } else {
+    console.error('offDemo fail');
+  }
+}
+```
+
 ## FileAsset
 
 提供封装文件属性的方法。
@@ -1677,7 +1829,7 @@ async function example() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/image/2）。         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg）。         |
 | fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 
@@ -1703,15 +1855,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('fileAssetGetDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: ['title'],
       predicates: predicates
     };
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    let fileAsset = await fetchResult.getFirstObject();
-    let title = userFileManager.ImageVideoKey.TITLE;
-    let fileAssetTitle = fileAsset.get(title.toString());
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let title: userFileManager.ImageVideoKey = userFileManager.ImageVideoKey.TITLE;
+    let fileAssetTitle: userFileManager.MemberType = fileAsset.get(title.toString());
     console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1742,14 +1894,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('fileAssetSetDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    let fileAsset = await fetchResult.getFirstObject();
-    let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
     fileAsset.set(displayName, 'newDisplayName1');
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1780,20 +1932,20 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
-  let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
-  let fileAssetDisplayName = fileAsset.get(displayName);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
   fileAsset.set(displayName, 'newDisplayName2');
   fileAsset.commitModify((err) => {
     if (err == undefined) {
-      let newFileAssetDisplayName = fileAsset.get(displayName);
+      let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
       console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
     } else {
       console.error('commitModify failed, message =', err);
@@ -1818,27 +1970,27 @@ commitModify(): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回void。 |
 
-**示例：**  
+**示例：**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('commitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
-  let fileAssetDisplayName = fileAsset.get(displayName);
+  let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
   fileAsset.set(displayName, 'newDisplayName3');
   try {
     await fileAsset.commitModify();
-    let newFileAssetDisplayName = fileAsset.get(displayName);
+    let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
     console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
   } catch (err) {
     console.error('release failed. message = ', err);
@@ -1870,8 +2022,8 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 ```ts
 async function example() {
   console.info('openDemo');
-   let testFileName = 'testFile' + Date.now() + '.jpg';
-  const fileAsset = await mgr.createPhotoAsset(testFileName);
+   let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  const fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
   fileAsset.open('rw', (err, fd) => {
     if (fd != undefined) {
       console.info('File fd' + fd);
@@ -1913,9 +2065,9 @@ open(mode: string): Promise&lt;number&gt;
 async function example() {
   console.info('openDemo');
   try {
-    let testFileName = 'testFile' + Date.now() + '.jpg';
-    const fileAsset = await mgr.createPhotoAsset(testFileName);
-    let fd = await fileAsset.open('rw');
+    let testFileName: string = 'testFile' + Date.now() + '.jpg';
+    const fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
+    let fd: number = await fileAsset.open('rw');
     if (fd != undefined) {
       console.info('File fd' + fd);
       fileAsset.close(fd);
@@ -1951,14 +2103,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('closeDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    const fileAsset = await fetchResult.getFirstObject();
-    let fd = await fileAsset.open('rw');
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    const fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let fd: number = await fileAsset.open('rw');
     console.info('file fd', fd);
     fileAsset.close(fd, (err) => {
       if (err == undefined) {
@@ -2001,14 +2153,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('closeDemo');
   try {
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    const asset = await fetchResult.getFirstObject();
-    let fd = await asset.open('rw');
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let fd: number = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
     console.info('asset close succeed.');
@@ -2041,13 +2193,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
     if (err == undefined) {
@@ -2080,17 +2232,18 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image';
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let size = { width: 720, height: 720 };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let size: image.Size = { width: 720, height: 720 };
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
     if (err == undefined) {
@@ -2128,21 +2281,23 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('getThumbnailDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let size = { width: 720, height: 720 };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let size: image.Size = { width: 720, height: 720 };
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('getThumbnail fail' + err);
   });
 }
@@ -2172,13 +2327,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('favoriteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   asset.favorite(true, (err) => {
     if (err == undefined) {
       console.info('favorite successfully');
@@ -2215,19 +2370,20 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('favoriteDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
-  asset.favorite(true).then(function () {
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  asset.favorite(true).then(() => {
     console.info('favorite successfully');
-  }).catch(function (err) {
+  }).catch((err: BusinessError) => {
     console.error('favorite failed with error:' + err);
   });
 }
@@ -2268,13 +2424,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('setHiddenDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
     if (err == undefined) {
       console.info('setHidden successfully');
@@ -2322,24 +2478,309 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
   console.info('setHiddenDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let albumList = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.HIDDEN);
-  const album = await albumList.getFirstObject();
-  let fetchResult = await album.getPhotoAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let albumList: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.HIDDEN);
+  const album: userFileManager.Album = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+  const asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('setHidden failed with error:' + err);
   });
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(): Promise&lt;string&gt;
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | 返回exif标签组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: ['all_exif', userFileManager.ImageVideoKey.USER_COMMENT.toString()],
+      predicates: predicates
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
+    let exifMessage: string = await fileAsset.getExif();
+    let userCommentKey: string = 'UserComment';
+    let userComment: string = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### getExif<sup>10+</sup>
+
+getExif(callback: AsyncCallback&lt;string&gt;): void
+
+返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
+
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | 是   | 返回exif标签组成的json格式的字符串。 |
+
+**支持Exif标签列表**：
+
+Exif标签的详细信息请参考[image.PropertyKey](js-apis-image.md#propertykey7)。
+
+| 标签key值                                    | 标签说明              |
+| --------------------------------------- | ----------------- |
+| BitsPerSample | 每个像素比特数 |
+| Orientation | 图像方向 |
+| ImageLength | 图像长度 |
+| ImageWidth | 图像宽度 |
+| GPSLatitude | GPS纬度 |
+| GPSLongitude | GPS经度 |
+| GPSLatitudeRef | 经度引用，例如W或E |
+| GPSLongitudeRef | 纬度引用，例如N或S |
+| DateTimeOriginal | 拍摄时间 |
+| ExposureTime | 曝光时间 |
+| SceneType | 场景类型 |
+| ISOSpeedRatings | ISO感光度分值 |
+| FNumber | 光圈F值 |
+| DateTime | 修改时间 |
+| GPSTimeStamp | GPS时间戳 |
+| GPSDateStamp | GPS日期戳 |
+| ImageDescription | 图像描述 |
+| Make | 制造商 |
+| MakeNote | 制造商 |
+| Model | 型号 |
+| PhotoMode | 拍摄模式 |
+| SensitivityType | 感光类型 |
+| StandardOutputSensitivity | 标准输出感光度 |
+| RecommendedExposureIndex | 推荐曝光指数 |
+| ApertureValue | 光圈 |
+| MeteringMode | 测光模式 |
+| LightSource | 光源 |
+| Flash | 闪光灯 |
+| FocalLength | 镜头焦距 |
+| UserComment | 用户注释 |
+| PixelXDimension | 有效图像宽度 |
+| PixelYDimension | 有效图像高度 |
+| WhiteBalance | 白平衡 |
+| FocalLengthIn35mmFilm | 35mm等效焦距 |
+| ExposureBiasValue | 曝光补偿 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getExifDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.isNotNull('all_exif')
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: ['all_exif', userFileManager.ImageVideoKey.USER_COMMENT.toString()],
+      predicates: predicates
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
+    let userCommentKey: string = 'UserComment';
+    fileAsset.getExif((err, exifMessage) => {
+      if (exifMessage != undefined) {
+        let userComment: string = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+        console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
+      } else {
+        console.error('getExif failed, message = ', err);
+      }
+    });
+    fetchResult.close();
+  } catch (err) {
+    console.error('getExifDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string): Promise&lt;void&gt;
+
+修改图片或者视频的备注信息，该方法使用Promise来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let userComment: string = 'test_set_user_comment';
+    await fileAsset.setUserComment(userComment);
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
+}
+```
+
+### setUserComment<sup>10+</sup>
+
+setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
+
+修改图片或者视频的备注信息，该方法使用callback形式来返回结果。
+
+**注意**：此接口只可修改图片或者视频的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setUserCommentDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: userFileManager.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOptions);
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+    let userComment: string = 'test_set_user_comment';
+    fileAsset.setUserComment(userComment, (err) => {
+      if (err === undefined) {
+        console.info('setUserComment successfully');
+      } else {
+        console.error('setUserComment failed with error: ' + err);
+      }
+    });
+  } catch (err) {
+    console.error('setUserCommentDemoCallback failed with error: ' + err);
+  }
 }
 ```
 
@@ -2368,13 +2809,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getCountDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const fetchCount: number = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
 ```
@@ -2399,15 +2840,15 @@ isAfterLast(): boolean
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  const fetchCount: number = fetchResult.getCount();
   console.info('count:' + fetchCount);
-  let fileAsset = await fetchResult.getLastObject();
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
     console.info('fileAsset isAfterLast displayName = ', fileAsset.displayName);
   } else {
@@ -2431,13 +2872,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('fetchResultCloseDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
   try {
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
     await fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
@@ -2467,12 +2908,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getFirstObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   fetchResult.getFirstObject((err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -2504,13 +2945,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getFirstObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   console.info('fileAsset displayName: ', fileAsset.displayName);
 }
 ```
@@ -2536,12 +2977,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getNextObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
   if (fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, fileAsset) => {
@@ -2576,15 +3017,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getNextObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   await fetchResult.getFirstObject();
   if (fetchResult.isAfterLast()) {
-    let fileAsset = await fetchResult.getNextObject();
+    let fileAsset: userFileManager.FileAsset = await fetchResult.getNextObject();
     console.info('fileAsset displayName: ', fileAsset.displayName);
   }
 }
@@ -2611,12 +3052,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getLastObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   fetchResult.getLastObject((err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -2648,13 +3089,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getLastObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getLastObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getLastObject();
   console.info('fileAsset displayName: ', fileAsset.displayName);
 }
 ```
@@ -2689,12 +3130,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPositionObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   fetchResult.getPositionObject(0, (err, fileAsset) => {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
@@ -2740,13 +3181,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getPositionObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAsset = await fetchResult.getPositionObject(0);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getPositionObject(0);
   console.info('fileAsset displayName: ', fileAsset.displayName);
 }
 ```
@@ -2772,12 +3213,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAllObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   fetchResult.getAllObject((err, fileAssetList) => {
     if (fileAssetList != undefined) {
       console.info('fileAssetList length: ', fileAssetList.length);
@@ -2809,13 +3250,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('getAllObjectDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let fetchResult = await mgr.getPhotoAssets(fetchOption);
-  let fileAssetList = await fetchResult.getAllObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+  let fileAssetList: Array<userFileManager.FileAsset> = await fetchResult.getAllObject();
   console.info('fileAssetList length: ', fileAssetList.length);
 }
 ```
@@ -2870,16 +3311,16 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   console.info('albumGetFileAssetsDemoCallback');
 
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
     predicates: predicates
   };
-  let fetchOption = {
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await mgr.getPhotoAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  let albumList: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(albumFetchOptions);
+  let album: userFileManager.Album = await albumList.getFirstObject();
   album.getPhotoAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
       console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
@@ -2924,23 +3365,24 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumGetFileAssetsDemoPromise');
 
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
     predicates: predicates
   };
-  let fetchOption = {
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList = await mgr.getPhotoAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  const albumList: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(albumFetchOptions);
+  const album: userFileManager.Album = await albumList.getFirstObject();
   album.getPhotoAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getFileAssets successfully, getCount: ' + albumFetchResult.getCount());
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('album getFileAssets failed with error: ' + err);
   });
 }
@@ -2969,12 +3411,12 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('albumCommitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
     predicates: predicates
   };
-  const albumList = await mgr.getPhotoAlbums(albumFetchOptions);
-  const album = await albumList.getFirstObject();
+  const albumList: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(albumFetchOptions);
+  const album: userFileManager.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err != undefined) {
@@ -3006,25 +3448,26 @@ commitModify(): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumCommitModifyDemo');
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let albumFetchOptions = {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumFetchOptions: userFileManager.AlbumFetchOptions = {
     predicates: predicates
   };
   try {
-    var albumList = await mgr.getPhotoAlbums(albumFetchOptions);
+    let albumList: userFileManager.FetchResult<userFileManager.Album> = await mgr.getPhotoAlbums(albumFetchOptions);
+    let album: userFileManager.Album = await albumList.getFirstObject();
+    album.albumName = 'hello';
+    album.commitModify().then(() => {
+      console.info('commitModify successfully');
+    }).catch((err: BusinessError) => {
+      console.error('commitModify failed with error: ' + err);
+    });
   } catch (err) {
     console.error('getPhotoAlbums failed. message = ', err);
   }
-  const album = await albumList.getFirstObject();
-  album.albumName = 'hello';
-  album.commitModify().then(() => {
-    console.info('commitModify successfully');
-  }).catch((err) => {
-    console.error('commitModify failed with error: ' + err);
-  });
 }
 ```
 
@@ -3061,15 +3504,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('addPhotoAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.addPhotoAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album addPhotoAssets successfully');
@@ -3117,22 +3560,23 @@ addPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('addPhotoAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await mgr.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.addPhotoAssets([asset]).then(() => {
       console.info('album addPhotoAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album addPhotoAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3174,15 +3618,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('removePhotoAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.removePhotoAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album removePhotoAssets successfully');
@@ -3230,22 +3674,23 @@ removePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('removePhotoAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.USER, userFileManager.AlbumSubType.USER_GENERIC);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.removePhotoAssets([asset]).then(() => {
       console.info('album removePhotoAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album removePhotoAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3287,15 +3732,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('recoverPhotoAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.recoverPhotoAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album recoverPhotoAssets successfully');
@@ -3343,22 +3788,23 @@ recoverPhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('recoverPhotoAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.recoverPhotoAssets([asset]).then(() => {
       console.info('album recoverPhotoAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album recoverPhotoAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3402,15 +3848,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('deletePhotoAssetsDemoCallback');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.deletePhotoAssets([asset], (err) => {
       if (err === undefined) {
         console.info('album deletePhotoAssets successfully');
@@ -3460,22 +3906,23 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
     console.info('deletePhotoAssetsDemoPromise');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOption = {
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOption: userFileManager.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
-    let albumFetchResult = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
-    let album = await albumFetchResult.getFirstObject();
-    let fetchResult = await album.getPhotoAssets(fetchOption);
-    let asset = await fetchResult.getFirstObject();
+    let albumFetchResult: userFileManager.FetchResult<userFileManager.Album> = await mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.TRASH);
+    let album: userFileManager.Album = await albumFetchResult.getFirstObject();
+    let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await album.getPhotoAssets(fetchOption);
+    let asset: userFileManager.FileAsset = await fetchResult.getFirstObject();
     album.deletePhotoAssets([asset]).then(() => {
       console.info('album deletePhotoAssets successfully');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
       console.error('album deletePhotoAssets failed with error: ' + err);
     });
   } catch (err) {
@@ -3487,6 +3934,8 @@ async function example() {
 ## PrivateAlbum
 
 系统相册。
+
+此接口即将废弃，请使用[Album](#album)接口替代。
 
 ### 属性
 
@@ -3505,6 +3954,8 @@ async function example() {
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
 获取系统相册中的文件。该方法使用callback形式来返回文件。
+
+此接口即将废弃，请使用[Album.getPhotoAssets](#getphotoassets-2)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -3532,13 +3983,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoCallback');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
+  const trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
   trashAlbum.getPhotoAssets(fetchOption, (err, fetchResult) => {
     if (fetchResult != undefined) {
       let count = fetchResult.getCount();
@@ -3556,6 +4007,8 @@ async function example() {
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
 
 获取系统相册中的文件。该方法使用Promise来返回文件。
+
+此接口即将废弃，请使用[Album.getPhotoAssets](#getphotoassets-3)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
@@ -3588,14 +4041,14 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoPromise');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
-  let fetchResult = await trashAlbum.getPhotoAssets(fetchOption);
+  const trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
   let count = fetchResult.getCount();
   console.info('fetchResult.count = ', count);
 }
@@ -3606,6 +4059,8 @@ async function example() {
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除系统相册中的文件。
+
+此接口即将废弃，请使用[Album.deletePhotoAssets](#deletephotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3625,15 +4080,15 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('privateAlbumDeleteCallback');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
-  let fetchResult = await trashAlbum.getPhotoAssets(fetchOption);
-  const fileAsset = await fetchResult.getFirstObject();
+  let trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   let deleteFileUri = fileAsset.uri;
   trashAlbum.delete(deleteFileUri, (err) => {
     if (err != undefined) {
@@ -3650,6 +4105,8 @@ async function example() {
 delete(uri: string): Promise&lt;void&gt;;
 
 删除系统相册中的文件。
+
+此接口即将废弃，请使用[Album.deletePhotoAssets](#deletephotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3671,25 +4128,25 @@ delete(uri: string): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('privateAlbumDeleteDemoPromise');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumListlet albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum>let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
-  let fetchResult = await trashAlbum.getPhotoAssets(fetchOption);
-  const fileAsset = await fetchResult.getFirstObject();
+  let trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   let deleteFileUri = fileAsset.uri;
   trashAlbum.delete(deleteFileUri).then(() => {
     console.info('trashAlbum.delete successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('trashAlbum.delete failed, message = ', err);
   });
-}   
+}
 ```
 
 ### recover
@@ -3697,6 +4154,8 @@ async function example() {
 recover(uri: string, callback: AsyncCallback&lt;void&gt;): void;
 
 恢复系统相册中的文件。
+
+此接口即将废弃，请使用[Album.recoverPhotoAssets](#recoverphotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3716,16 +4175,16 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   console.info('privateAlbumRecoverDemoCallback');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
-  let fetchResult = await trashAlbum.getPhotoAssets(fetchOption);
-  const fileAsset = await fetchResult.getFirstObject();
-  let recoverFileUri = fileAsset.uri;
+  let trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let recoverFileUri: string = fileAsset.uri;
   trashAlbum.recover(recoverFileUri, (err) => {
     if (err != undefined) {
       console.error('trashAlbum.recover failed, message = ', err);
@@ -3741,6 +4200,8 @@ async function example() {
 recover(uri: string): Promise&lt;void&gt;;
 
 恢复系统相册中的文件。
+
+此接口即将废弃，请使用[Album.recoverPhotoAssets](#recoverphotoassets10)接口替代。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 和 ohos.permission.WRITE_AUDIO
 
@@ -3762,22 +4223,23 @@ recover(uri: string): Promise&lt;void&gt;;
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('privateAlbumRecoverDemoPromise');
-  let albumList = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
-  let predicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption = {
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  const trashAlbum = await albumList.getFirstObject();
-  let fetchResult = await trashAlbum.getPhotoAssets(fetchOption);
-  const fileAsset = await fetchResult.getFirstObject();
-  let recoverFileUri = fileAsset.uri;
+  let trashAlbum: userFileManager.PrivateAlbum = await albumList.getFirstObject();
+  let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await trashAlbum.getPhotoAssets(fetchOption);
+  let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
+  let recoverFileUri: string = fileAsset.uri;
   trashAlbum.recover(recoverFileUri).then(() => {
     console.info('trashAlbum.recover successfully');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('trashAlbum.recover failed, message = ', err);
   });
 }
@@ -3890,6 +4352,8 @@ async function example() {
 
 枚举，系统相册类型。
 
+此接口即将废弃，请使用[AlbumType](#albumtype10)和[AlbumSubType](#albumsubtype10)和接口替代。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 | 名称    |  值 |   说明   |
@@ -3938,6 +4402,8 @@ async function example() {
 | POSITION<sup>10+</sup>  | position            | 文件位置类型。                               |
 | DATE_TRASHED<sup>10+</sup>  | date_trashed  | 删除日期（删除文件时间距1970年1月1日的秒数值）。                 |
 | HIDDEN<sup>10+</sup>  | hidden            | 文件的隐藏状态。                               |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。    |
+| USER_COMMENT<sup>10+</sup>  | user_comment            | 用户注释信息。                               |
 
 ## AlbumKey
 
@@ -3962,6 +4428,7 @@ async function example() {
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subType           | [PhotoSubType](#photosubtype10) | 否  | 图片或者视频的子类型。  |
+| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。  |
 
 ## FetchOptions
 

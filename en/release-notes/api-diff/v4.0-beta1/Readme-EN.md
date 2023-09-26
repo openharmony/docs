@@ -12,7 +12,6 @@
 - [Distributed data management subsystem](js-apidiff-distributed-data.md)
 - [Distributed hardware subsystem](js-apidiff-distributed-hardware.md)
 - [File management subsystem](js-apidiff-file-management.md)
-- [Location subsystem](js-apidiff-geolocation.md)
 - [Globalization subsystem](js-apidiff-global.md)
 - [Graphic subsystem](js-apidiff-graphic.md)
 - [Misc services subsystem](js-apidiff-misc.md)

@@ -1,4 +1,4 @@
-# \@Watch：状态变量更改通知
+# \@Watch装饰器：状态变量更改通知
 
 
 \@Watch应用于对状态变量的监听。如果开发者需要关注某个状态变量的值是否改变，可以使用\@Watch为状态变量设置回调函数。
@@ -52,6 +52,51 @@
 
 ## 使用场景
 
+### \@Watch和自定义组件更新
+
+以下示例展示组件更新和\@Watch的处理步骤。count在CountModifier中由\@State装饰，在TotalView中由\@Prop装饰。
+
+
+```ts
+@Component
+struct TotalView {
+  @Prop @Watch('onCountUpdated') count: number = 0;
+  @State total: number = 0;
+  // @Watch cb
+  onCountUpdated(propName: string): void {
+    this.total += this.count;
+  }
+
+  build() {
+    Text(`Total: ${this.total}`)
+  }
+}
+
+@Entry
+@Component
+struct CountModifier {
+  @State count: number = 0;
+
+  build() {
+    Column() {
+      Button('add to basket')
+        .onClick(() => {
+          this.count++
+        })
+      TotalView({ count: this.count })
+    }
+  }
+}
+```
+
+处理步骤：
+
+1. CountModifier自定义组件的Button.onClick点击事件自增count。
+
+2. 由于\@State count变量更改，子组件TotalView中的\@Prop被更新，其\@Watch('onCountUpdated')方法被调用，更新了子组件TotalView 中的total变量。
+
+3. 子组件TotalView中的Text重新渲染。
+
 
 ### \@Watch与\@Link组合使用
 
@@ -91,10 +136,10 @@ struct BasketViewer {
   build() {
     Column() {
       ForEach(this.shopBasket,
-        (item) => {
+        (item:PurchaseItem) => {
           Text(`Price: ${item.price.toFixed(2)} €`)
         },
-        item => item.id.toString()
+        (item:PurchaseItem) => item.id.toString()
       )
       Text(`Total: ${this.totalPurchase.toFixed(2)} €`)
     }
@@ -124,52 +169,6 @@ struct BasketModifier {
 
 2. \@Link装饰的BasketViewer shopBasket值发生变化；
 
-3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BaketViewer TotalPurchase的值；
+3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BasketViewer TotalPurchase的值；
 
 4. \@Link shopBasket的改变，新增了数组项，ForEach组件会执行item Builder，渲染构建新的Item项；\@State totalPurchase改变，对应的Text组件也重新渲染；重新渲染是异步发生的。
-
-
-### \@Watch和自定义组件更新
-
-以下示例展示组件更新和\@Watch的处理步骤。count在两个组件中均由\@State装饰。
-
-
-```ts
-@Component
-struct TotalView {
-  @Prop @Watch('onCountUpdated') count: number;
-  @State total: number = 0;
-  // @Watch cb
-  onCountUpdated(propName: string): void {
-    this.total += this.count;
-  }
-
-  build() {
-    Text(`Total: ${this.total}`)
-  }
-}
-
-@Entry
-@Component
-struct CountModifier {
-  @State count: number = 0;
-
-  build() {
-    Column() {
-      Button('add to basket')
-        .onClick(() => {
-          this.count++
-        })
-      TotalView({ count: this.count })
-    }
-  }
-}
-```
-
-处理步骤：
-
-1. CountModifier自定义组件的Button.onClick点击事件自增count。
-
-2. 由于\@State count变量更改，子组件TotalView中的\@Prop被更新，其\@Watch('onCountUpdated')方法被调用，更新了子组件TotalView 中的total变量。
-
-3. 子组件TotalView中的Text重新渲染。

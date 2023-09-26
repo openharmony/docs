@@ -65,7 +65,7 @@ text是文本组件，用于呈现一段文本信息。具体用法请参考[tex
 
 - 添加划线
 
-  设置text-decoration和text-decoration-colo属性为文本添加划线和划线颜色，text-decoration枚举值请参考    text自有样式。
+  设置text-decoration和text-decoration-color属性为文本添加划线和划线颜色，text-decoration枚举值请参考    text自有样式。
 
   ```html
   <!-- xxx.hml -->
@@ -276,4 +276,4 @@ export default {
 
 针对text开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

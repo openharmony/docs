@@ -1,10 +1,12 @@
 # NotificationContent
 
-The **NotificationContent** module describes the notification content.
+The **NotificationContent** module provides APIs for defining the notification content.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## NotificationContent
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -22,11 +24,11 @@ Describes the normal text notification.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Type  | Read-only| Mandatory| Description                              |
-| -------------- | ------ | ---- | ---- | ---------------------------------- |
-| title          | string | No  | Yes  | Notification title.                        |
-| text           | string | No  | Yes  | Notification content.                        |
-| additionalText | string | No  | No  | Additional information of the notification.|
+| Name          | Type  | Mandatory| Description                              |
+| -------------- | ------ | ---- | ---------------------------------- |
+| title          | string | Yes  | Notification title.                        |
+| text           | string | Yes  | Notification content.                        |
+| additionalText | string | No  | Additional information of the notification.|
 
 
 ## NotificationLongTextContent
@@ -35,14 +37,14 @@ Describes the long text notification.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Type  | Read-only| Mandatory| Description                            |
-| -------------- | ------ | ---- | --- | -------------------------------- |
-| title          | string | No | Yes | Notification title.                        |
-| text           | string | No | Yes | Notification content.                        |
-| additionalText | string | No | No | Additional information of the notification.|
-| longText       | string | No | Yes | Long text of the notification.                    |
-| briefText      | string | No | Yes | Brief text of the notification.  |
-| expandedTitle  | string | No | Yes | Title of the notification in the expanded state.                |
+| Name          | Type  | Mandatory| Description                            |
+| -------------- | ------ | --- | -------------------------------- |
+| title          | string | Yes | Notification title.                        |
+| text           | string | Yes | Notification content.                        |
+| additionalText | string | No | Additional information of the notification.  |
+| longText       | string | Yes | Long text of the notification.                    |
+| briefText      | string | Yes | Brief text of the notification.  |
+| expandedTitle  | string | Yes | Title of the notification in the expanded state.                |
 
 
 ## NotificationMultiLineContent
@@ -67,11 +69,11 @@ Describes the picture-attached notification.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Type          | Readable| Writable| Description                            |
-| -------------- | -------------- | ---- | --- | -------------------------------- |
-| title          | string         | No | Yes | Notification title.                        |
-| text           | string         | No | Yes | Notification content.                        |
+| Name          | Type          | Readable| Writable| Description         |
+| -------------- | -------------- | ---- | --- |-------------|
+| title          | string         | No | Yes | Notification title.      |
+| text           | string         | No | Yes | Notification content.      |
 | additionalText | string         | No | No | Additional information of the notification.|
 | briefText      | string         | No | Yes | Brief text of the notification.|
-| expandedTitle  | string         | No | Yes | Title of the notification in the expanded state.                |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | No | Yes | Picture attached to the notification.                  |
+| expandedTitle  | string         | No | Yes | Title of the notification in the expanded state.  |
+| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | No | Yes | Picture attached to the notification. The maximum size is 2 MB. |

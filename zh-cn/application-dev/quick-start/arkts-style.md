@@ -1,4 +1,4 @@
-# \@Styles：定义组件重用样式
+# \@Styles装饰器：定义组件重用样式
 
 
 如果每个组件的样式都需要单独设置，在开发过程中会出现大量代码在进行重复样式设置，虽然可以复制粘贴，但为了代码简洁性和后续方便维护，我们推出了可以提炼公共样式进行复用的装饰器\@Styles。
@@ -45,12 +45,12 @@
   ```ts
   @Component
   struct FancyUse {
-    @State heightVlaue: number = 100
+    @State heightValue: number = 100
     @Styles fancy() {
-      .height(this.heightVlaue)
+      .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightVlaue = 200
+        this.heightValue = 200
       })
     }
   }
@@ -77,14 +77,14 @@
 @Entry
 @Component
 struct FancyUse {
-  @State heightVlaue: number = 100
+  @State heightValue: number = 100
   // 定义在组件内的@Styles封装的样式
   @Styles fancy() {
     .width(200)
-    .height(this.heightVlaue)
+    .height(this.heightValue)
     .backgroundColor(Color.Yellow)
     .onClick(() => {
-      this.heightVlaue = 200
+      this.heightValue = 200
     })
   }
 

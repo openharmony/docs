@@ -35,7 +35,7 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应用模型解读](../application-models/application-model-description.md)。
 
-快速入门提供了一个含有两个页面的开发实例，并使用了不同的开发语言或不同的应用模型进行开发，以便开发者理解以上基本概念及应用开发流程。
+快速入门提供了一个含有两个页面的开发实例，并基于Stage模型构建第一个ArkTS应用，以便开发者理解以上基本概念及应用开发流程。
 
 
 ## 工具准备
@@ -44,4 +44,4 @@ FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应
 
 2. 请参考[配置开发环境](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)，完成**DevEco Studio**的安装和开发环境配置。
 
-完成上述操作及基本概念的理解后，可参照[使用ArkTS语言进行开发（Stage模型）](start-with-ets-stage.md)中的任一章节进行下一步体验和学习。
+完成上述操作及基本概念的理解后，可参照[构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)进行下一步体验和学习。

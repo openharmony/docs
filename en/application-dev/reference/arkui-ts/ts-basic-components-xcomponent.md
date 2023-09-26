@@ -14,20 +14,43 @@ Since API version 9, child components are supported when **type** is set to **"c
 
 ## APIs
 
+### XComponent
+
 XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description                                      |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| id          | string                                   | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.                  |
-| type        | string                                   | Yes   | Type of the component. The options are as follows:<br>- **"surface"**: The content of the component is displayed individually, without being combined with that of other components. This option is used for displaying EGL/OpenGL ES and media data.<br>- **"component"**<sup>9+</sup>: The component becomes a container where non-UI logic can be executed to dynamically load the display content.|
-| libraryname | string                                   | No   | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when the component type is **"surface"**.|
-| controller  | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when the component type is **"surface"**.|
+| Name     | Type                                     | Mandatory| Description                                                        |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | Yes  | Unique ID of the component. The value can contain a maximum of 128 characters.                   |
+| type        | string                                        | Yes  | Type of the component. The options are as follows:<br>- **"surface"**: The custom content is displayed individually on the screen. This option is used for displaying EGL/OpenGL ES and media data.<br>- **"component"**<sup>9+</sup>: The component becomes a container where non-UI logic can be executed to dynamically load the display content.<br>Any other value evaluates to **"surface"**.|
+| libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when **type** is **"surface"**.|
+| controller  | [XComponentcontroller](#xcomponentcontroller) | No  | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when the component type is **"surface"**.|
+
+### XComponent<sup>10+</sup>
+
+XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
+
+**Parameters**
+
+| Name     | Type                                     | Mandatory| Description                                                        |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | Yes  | Unique ID of the component. The value can contain a maximum of 128 characters.                   |
+| type        | [XComponentType](#xcomponenttype10)   | Yes  | Type of the component.                                |
+| libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when **type** is **SURFACE** or **TEXTURE**.|
+| controller  | [XComponentcontroller](#xcomponentcontroller) | No  | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when **type** is **SURFACE** or **TEXTURE**.|
+
+## XComponentType<sup>10+</sup>
+
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| SURFACE   | The custom content is displayed individually on the screen. This option is used for displaying EGL/OpenGL ES and media data.|
+| COMPONENT | The component becomes a container where non-UI logic can be executed to dynamically load the display content.|
+| TEXTURE   | The custom content of the component is grouped and displayed together with content of the component.|
 
 > **NOTE**
 >
-> When **type** is set to **"component"**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
+> When **type** is set to **COMPONENT("component")**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
 >
 > - Vertical alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Start
 > - Horizontal alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Center
@@ -39,13 +62,14 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 > The non-UI logic written internally needs to be encapsulated in one or more functions.
 
 ## Attributes
-- You can customize the content displayed in the **\<XComponent>**. Among the universal attributes, the [background](./ts-universal-attributes-background.md), [opacity](./ts-universal-attributes-opacity.md), and [image effects](./ts-universal-attributes-image-effect.md) attributes are not supported.
-- When **type** is set to **"surface"**, you are advised to use the APIs provided by the EGL/OpenGL ES to set the display content.
-- When **type** is set to **"component"**, you are advised to mount child components to set the display content.
+- You can customize the content displayed in the **\<XComponent>**. Depending on the **type** settings, the support for the universal attributes [background](ts-universal-attributes-background.md), [opacity](ts-universal-attributes-opacity.md), and [image effects](ts-universal-attributes-image-effect.md) varies.
+- When **type** is set to **SURFACE("surface")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
+- When **type** is set to **COMPONENT("component")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to mount child components.
+- When **type** is set to **TEXTURE**, only the **backgroundColor** attribute of [background](ts-universal-attributes-background.md), the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md), and [opacity](ts-universal-attributes-opacity.md) are supported. For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
 
 ## Events
 
-The following events are supported only when **type** is set to **"surface"**. The [universal events](ts-universal-events-click.md) and [universal gestures](ts-gesture-settings.md) are not supported.
+When **type** is set to **SURFACE("surface")** or **TEXTURE**, the following events are supported. The [universal events](ts-universal-events-click.md) are not supported.
 
 ### onLoad
 
@@ -79,7 +103,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used for @ohos interfaces. For details, see [Camera Management](../apis/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
+Obtains the ID of the surface held by the **\<XComponent>**, which can then be used for @ohos APIs. For details, see [Camera Management](../apis/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
 
 
 **Return value**
@@ -93,7 +117,7 @@ Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used 
 
 setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
-Sets the width and height of the surface held by the **\<XComponent>**. This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
+Sets the width and height of the surface held by the **\<XComponent>**. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
 
 
 **Parameters**
@@ -108,7 +132,7 @@ Sets the width and height of the surface held by the **\<XComponent>**. This API
 
 getXComponentContext(): Object
 
-Obtains the context of an **\<XComponent>** object. This API works only when **type** of the **\<XComponent>** is set to **"surface"**.
+Obtains the context of an **\<XComponent>** object. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Return value**
 

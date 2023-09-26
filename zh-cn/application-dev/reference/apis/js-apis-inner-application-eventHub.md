@@ -124,7 +124,7 @@ emit(event: string, ...args: Object[]): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
-| ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 |
+| ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
 **示例：**
 
@@ -145,8 +145,8 @@ export default class EntryAbility extends UIAbility {
         this.context.eventHub.emit('myEvent', 1, 2);
     }
 
-    eventFunc(argOne, argTwo) {
-        console.log('eventFunc is called, ${argOne}, ${argTwo}');
+    eventFunc(argOne: number, argTwo: number) {
+        console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
     }
 }
 ```

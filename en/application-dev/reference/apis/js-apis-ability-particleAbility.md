@@ -181,7 +181,7 @@ Obtains a **dataAbilityHelper** object.
 
 Observe the following when using this API:
  - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when accessing the DataAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
@@ -230,11 +230,12 @@ Requests a continuous task from the system. This API uses an asynchronous callba
  **Example**
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error && error.code !== 0) {
         console.error('Operation failed error: ${JSON.stringify(error)}');
     } else {
@@ -242,7 +243,7 @@ function callback(error, data) {
     }
 }
 
-let wantAgentInfo = {
+let wantAgentInfo: wantAgent.WantAgentInfo = {
     wants: [
         {
             bundleName: 'com.example.myapplication',
@@ -255,20 +256,19 @@ let wantAgentInfo = {
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let basicContent = {
-        title: 'title',
-        text: 'text'
-    };
-    let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: basicContent
-    };
-    let request = {
-        content: notificationContent,
-        wantAgent: wantAgentObj
-    };
     let id = 1;
-    particleAbility.startBackgroundRunning(id, request, callback);
+    particleAbility.startBackgroundRunning(id, {
+        content:
+        {
+            contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+            normal:
+            {
+                title: 'title',
+                text: 'text'
+            }
+        },
+        wantAgent: wantAgentObj
+    }, callback);
 });
 
 ```
@@ -299,11 +299,12 @@ Requests a continuous task from the system. This API uses a promise to return th
 **Example**
 
 ```ts
-import notification from '@ohos.notification';
+import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
 import wantAgent from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base';
 
-let wantAgentInfo = {
+let wantAgentInfo: wantAgent.WantAgentInfo = {
     wants: [
         {
             bundleName: 'com.example.myapplication',
@@ -316,22 +317,21 @@ let wantAgentInfo = {
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let basicContent = {
-        title: 'title',
-        text: 'text'
-    };
-    let notificationContent = {
-        contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: basicContent
-    };
-    let request = {
-        content: notificationContent,
-        wantAgent: wantAgentObj
-    };
     let id = 1;
-    particleAbility.startBackgroundRunning(id, request).then(() => {
+    particleAbility.startBackgroundRunning(id, {
+        content:
+        {
+            contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+            normal:
+            {
+                title: 'title',
+                text: 'text'
+            }
+        },
+        wantAgent: wantAgentObj
+    }).then(() => {
         console.info('Operation succeeded');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed cause: ${JSON.stringify(err)}');
     });
 });
@@ -356,8 +356,9 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error && error.code !== 0) {
         console.error('Operation failed error: ${JSON.stringify(error)}');
     } else {
@@ -390,7 +391,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info('Operation succeeded');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error('Operation failed cause: ${JSON.stringify(err)}');
 });
 
@@ -404,7 +405,7 @@ Connects this ability to a specific ServiceAbility.
 
 Observe the following when using this API:
  - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when connecting to the ServiceAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
@@ -424,33 +425,27 @@ Observe the following when using this API:
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 
-function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-
-function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
-}
-
-function onFailedCallback(code) {
-    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
-}
-
 let connId = particleAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+        },
     },
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
     console.log('data: ${data}');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('particleAbilityTest result errCode: ${error.code}');
 });
 ```
@@ -475,27 +470,21 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 
-function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-
-function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
-}
-
-function onFailedCallback(code) {
-    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
-}
-
 let connId = particleAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+        },
     },
 );
 
@@ -524,18 +513,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
-
-function onConnectCallback(element, remote) {
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-
-function onDisconnectCallback(element) {
-    console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
-}
-
-function onFailedCallback(code) {
-    console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
-}
+import { BusinessError } from '@ohos.base';
 
 let connId = particleAbility.connectAbility(
     {
@@ -543,18 +521,23 @@ let connId = particleAbility.connectAbility(
         abilityName: 'ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId: ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('particleAbilityTest ConnectAbility onFailed errCode: ${code}');
+        },
     },
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
     console.log(' data: ${data}');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('particleAbilityTest result errCode : ${error.code}');
 });
-
 ```
 
 ## ErrorCode

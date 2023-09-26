@@ -28,9 +28,13 @@ For the complete list of APIs and example code, see [mDNS Management](../referen
 | ohos.net.mdns.DiscoveryService | startSearchingMDNS(): void | Searches for mDNS services on the LAN.|
 | ohos.net.mdns.DiscoveryService | stopSearchingMDNS(): void | Stops searching for mDNS services on the LAN.|
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStart** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStart** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | Enables listening for **discoveryStop** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | Disables listening for **discoveryStop** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceFound** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceFound** events.|
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | Enables listening for **serviceLost** events.|
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | Disables listening for **serviceLost** events.|
 
 ## Managing Local Services
 
@@ -98,6 +102,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 4. Subscribe to mDNS service discovery status changes.
 5. Enable discovery of mDNS services on the LAN.
 6. Stop searching for mDNS services on the LAN.
+7. Unsubscribe from mDNS service discovery status changes.
 
 ```js
 // Import the mdns namespace from @ohos.net.mdns.
@@ -115,20 +120,6 @@ class EntryAbility extends UIAbility {
   }
 }
 let context = globalThis.context;
-
-// Create a LocalService object.
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
 
 // Create a DiscoveryService object, which is used to discover mDNS services of the specified type.
 let serviceType = "_print._tcp";
@@ -153,4 +144,18 @@ discoveryService.startSearchingMDNS();
 
 // Stop searching for mDNS services on the LAN.
 discoveryService.stopSearchingMDNS();
+
+// Unsubscribe from mDNS service discovery status changes.
+discoveryService.off('discoveryStart', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('discoveryStop', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceFound', (data) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceLost', (data) => {
+  console.log(JSON.stringify(data));
+});
 ```

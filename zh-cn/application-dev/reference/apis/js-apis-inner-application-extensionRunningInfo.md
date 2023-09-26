@@ -21,6 +21,8 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：以下各项对应的接口均为系统接口，三方应用不支持调用。
+
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | extension | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 否 | Extension信息。 |

@@ -1,4 +1,4 @@
-# 显示图片
+# 显示图片（Image）
 
 
 开发者经常需要在应用中显示一些图片，例如：按钮中的logo、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
@@ -9,7 +9,7 @@ Image通过调用接口来创建，接口调用形式如下：
 
 
 ```ts
-Image(src: string | Resource | media.PixelMap)
+Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 ```
 
 
@@ -23,7 +23,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 ### 存档图类型数据源
 
-存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
+存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库资源和base64。
 
 - 本地资源
 
@@ -48,7 +48,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
-  **图1** resouces  
+  **图1** resources  
 
   ![image-resource](figures/image-resource.jpg)
 
@@ -70,14 +70,14 @@ Image支持加载存档图、多媒体像素图两种类型。
   Image($rawfile('snap'))
   ```
 
-- 媒体库datashare
+- 媒体库file://data/storage
 
-  支持datashare://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。
-      ​    
       ```ts
       import picker from '@ohos.file.picker';
+      import { BusinessError } from '@ohos.base';
 
       @Entry
       @Component
@@ -85,23 +85,26 @@ Image支持加载存档图、多媒体像素图两种类型。
         @State imgDatas: string[] = [];
         // 获取照片url集
         getAllImg() {
-          let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
-            let PhotoSelectOptions = new picker.PhotoSelectOptions();
+            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-            }).catch((err) => {
-              console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
+            }).catch((err:Error) => {
+              let message = (err as BusinessError).message;
+              let code = (err as BusinessError).code;
+              console.error(`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
             });
           } catch (err) {
-            console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
+            console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
-
+      
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
           this.getAllImg();
@@ -110,21 +113,21 @@ Image支持加载存档图、多媒体像素图两种类型。
         build() {
           Column() {
             Grid() {
-              ForEach(this.imgDatas, item => {
+              ForEach(this.imgDatas, (item:string) => {
                 GridItem() {
                   Image(item)
                     .width(200)
                 }
-              }, item => JSON.stringify(item))
+              }, (item:string):string => JSON.stringify(item))
             }
           }.width('100%').height('100%')
         }
       }
       ```
+
   2. 从媒体库获取的url格式通常如下。
-      ​    
       ```ts
-      Image('file://media/5')
+      Image('file://media/Photos/5')
       .width(200)
       ```
 
@@ -146,20 +149,19 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    ```
 
 2. 引用多媒体。
+
    请求网络图片请求，解码编码PixelMap。
 
    1. 引用网络权限与媒体库权限。
-       ​    
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
        ```
    2. 填写网络图片地址。
-       ​    
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error, data) => {
+         (error:Error) => {
            if (error){
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
@@ -167,29 +169,49 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          }
        )
        ```
-   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。
-       ​    
+   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
-       let code = data.responseCode;
-       if(ResponseCode.ResponseCode.OK === code) {
-         let imageSource = image.createImageSource(data.result);
-         let options = {
-           alphaType: 0,                     // 透明度
-           editable: false,                  // 是否可编辑
-           pixelFormat: 3,                   // 像素格式
-           scaleMode: 1,                     // 缩略值
-           size: {height: 100, width: 100}
-          }  // 创建图片大小
-           imageSource.createPixelMap(options).then((pixelMap) => {
-           this.image = pixelMap
+       let code:object = data.responseCode;
+       if (ResponseCode.ResponseCode.OK === code) {
+         let imageSource:image = image.createImageSource(data.result);
+         class tmp{
+           height:number = 100
+           width:number = 100
+         }
+         let si:tmp = new tmp()
+         let options:Record<string,number|boolean|tmp> = {
+           'alphaType': 0, // 透明度
+           'editable': false, // 是否可编辑
+           'pixelFormat': 3, // 像素格式
+           'scaleMode': 1, // 缩略值
+           'size': { height: 100, width: 100 }
+         } // 创建图片大小
+         class imagetmp{
+           image:image
+           set(val:PixelMap){
+             this.image = val
+           }
+         }
+          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
+          let im = new imagetmp()
+            im.set(pixelMap)
        })
+       }
        ```
    4. 显示图片。
-       ​    
        ```ts
+       class htp{
+        httpRequest:Function|undefined = undefined
+        set(){
+          if(this.httpRequest){
+          this.httpRequest()
+          }
+        }
+      }
        Button("获取网络图片")
          .onClick(() => {
-           this.httpRequest()
+           let sethtp = new htp()
+           sethtp.set()
          })
        Image(this.image).height(100).width(100)
        ```
@@ -272,7 +294,216 @@ struct MyComponent {
 }
 ```
 
-![zh-cn_image_0000001511421240](figures/zh-cn_image_0000001511421240.png)
+![zh-cn_image_0000001622804833](figures/zh-cn_image_0000001622804833.png)
+
+
+### 图片插值
+
+当原图分辨率较低并且放大显示时，图片会模糊出现锯齿。这时可以使用interpolation属性对图片进行插值，使图片显示得更清晰。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.None)
+          .borderWidth(1)
+          .overlay("Interpolation.None", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Low)
+          .borderWidth(1)
+          .overlay("Interpolation.Low", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+
+      Row() {
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.Medium)
+          .borderWidth(1)
+          .overlay("Interpolation.Medium", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+        Image($r('app.media.grass'))
+          .width('40%')
+          .interpolation(ImageInterpolation.High)
+          .borderWidth(1)
+          .overlay("Interpolation.High", { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001643127365](figures/zh-cn_image_0000001643127365.png)
+
+
+### 设置图片重复样式
+
+通过objectRepeat属性设置图片的重复样式方式，重复样式请参考[ImageRepeat](../reference/arkui-ts/ts-appendix-enums.md#imagerepeat)枚举说明。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 5 }) {
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.XY)
+          .objectFit(ImageFit.ScaleDown)
+          // 在水平轴和竖直轴上同时重复绘制图片
+          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.Y)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在竖直轴上重复绘制图片
+          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.ic_public_favor_filled_1'))
+          .width(110)
+          .height(115)
+          .border({ width: 1 })
+          .objectRepeat(ImageRepeat.X)
+          .objectFit(ImageFit.ScaleDown)
+          // 只在水平轴上重复绘制图片
+          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding(8)
+  }
+}
+```
+
+![zh-cn_image_0000001593444112](figures/zh-cn_image_0000001593444112.png)
+
+
+### 设置图片渲染模式
+
+通过renderMode属性设置图片的渲染模式为原色或黑白。
+
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 50 }) {
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为原色 
+          .renderMode(ImageRenderMode.Original)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+            // overlay是通用属性，用于在组件上显示说明文字
+          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+        Image($r('app.media.example'))
+          // 设置图片的渲染模式为黑白
+          .renderMode(ImageRenderMode.Template)
+          .width(100)
+          .height(100)
+          .border({ width: 1 })
+          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
+      }
+    }.height(150).width('100%').padding({ top: 20,right: 10 })
+  }
+}
+```
+
+![zh-cn_image_0000001593293100](figures/zh-cn_image_0000001593293100.png)
+
+
+### 设置图片解码尺寸
+
+通过sourceSize属性设置图片解码尺寸，降低图片的分辨率。
+
+原图尺寸为1280\*960，该示例将图片解码为150\*100和400\*400。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 150,
+            height: 150
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:150 height:150', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+        Image($r('app.media.example'))
+          .sourceSize({
+            width: 400,
+            height: 400
+          })
+          .objectFit(ImageFit.ScaleDown)
+          .width('25%')
+          .aspectRatio(1)
+          .border({ width: 1 })
+          .overlay('width:400 height:400', { align: Alignment.Bottom, offset: { x: 0, y: 40 } })
+      }.height(150).width('100%').padding(20)
+
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001593769844](figures/zh-cn_image_0000001593769844.png)
+
+
+### 为图片添加滤镜效果
+
+通过colorFilter修改图片的像素颜色，为图片添加滤镜。
+
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.example'))
+          .width('40%')
+          .margin(10)
+        Image($r('app.media.example'))
+          .width('40%')
+          .colorFilter(
+            [1, 1, 0, 0, 0,
+             0, 1, 0, 0, 0,
+             0, 0, 1, 0, 0,
+             0, 0, 0, 1, 0])
+          .margin(10)
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+    }
+  }
+}
+```
+
+![zh-cn_image_0000001643171357](figures/zh-cn_image_0000001643171357.png)
 
 
 ### 同步加载图片
@@ -307,16 +538,13 @@ struct MyComponent {
           .width(200)
           .height(150)
           .margin(15)
-          .onComplete((msg: {
-            width: number,
-            height: number,
-            componentWidth: number,
-            componentHeight: number
-          }) => {
-            this.widthValue = msg.width
-            this.heightValue = msg.height
-            this.componentWidth = msg.componentWidth
-            this.componentHeight = msg.componentHeight
+          .onComplete(msg => {
+            if(msg){
+              this.widthValue = msg.width
+              this.heightValue = msg.height
+              this.componentWidth = msg.componentWidth
+              this.componentHeight = msg.componentHeight
+            }
           })
             // 图片获取失败，打印结果
           .onError(() => {

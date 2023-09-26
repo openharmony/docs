@@ -19,6 +19,10 @@ The following describes how to set up the Ubuntu environment.
 
 - DevEco Device Tool: latest and same version installed on both Ubuntu and Windows
 
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  >
+  > The following uses DevEco Device Tool of the 3.1 Release version as an example. The supported features and operations vary according to the DevEco Device Tool version. For details, see the [User Guide](https://device.harmonyos.com/en/docs/documentation/guide/service_introduction-0000001050166905).
+
 
 ## Procedure
 

@@ -9,9 +9,9 @@
 
 ## 事件
 
-| 名称                                       | 支持冒泡 | 功能描述                                     |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onAreaChange(event:&nbsp;(oldValue:&nbsp;[Area](ts-types.md#area8),&nbsp;newValue:&nbsp;[Area](ts-types.md#area8))&nbsp;=&gt;&nbsp;void) | 否    | 组件区域变化时触发该回调。 |
+| 名称                                                         | 支持冒泡 | 功能描述                                                     |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onAreaChange(event:&nbsp;(oldValue:&nbsp;[Area](ts-types.md#area8),&nbsp;newValue:&nbsp;[Area](ts-types.md#area8))&nbsp;=&gt;&nbsp;void) | 否       | 组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如translate、offset。<br/>-&nbsp;[Area](ts-types.md#area8)：返回目标元素的宽高以及目标元素相对父元素和页面左上角的坐标位置。 |
 
 
 ## 示例

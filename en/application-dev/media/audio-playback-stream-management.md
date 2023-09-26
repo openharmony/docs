@@ -9,14 +9,14 @@ Create an AudioRenderer by referring to [Using AudioRenderer for Audio Playback]
 - Check the [state](../reference/apis/js-apis-audio.md#attributes) of the AudioRenderer.
     
   ```ts
-  let audioRendererState = audioRenderer.state;
+  let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
 
 - Register **stateChange** to listen for state changes of the AudioRenderer.
     
   ```ts
-  audioRenderer.on('stateChange', (rendererState) => {
+  audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
   ```
@@ -47,6 +47,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -54,7 +55,8 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 2. Use **on('audioRendererChange')** to listen for audio playback stream changes. If the application needs to receive a notification when the audio playback stream state or device changes, it can subscribe to this event.
      
    ```ts
-   audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+   import audio from '@ohos.multimedia.audio';
+   audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
        console.info(`## RendererChange on is called for ${i} ##`);
@@ -91,8 +93,9 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
    > Before listening for state changes of all audio streams, the application must request the **ohos.permission.USE_BLUETOOTH** [permission](../security/accesstoken-guidelines.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.
    
    ```ts
-   async function getCurrentAudioRendererInfoArray(){
-     await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+   import audio from '@ohos.multimedia.audio';
+   async function getCurrentAudioRendererInfoArray(): Promise<void> {
+     await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
        console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);
        if (AudioRendererChangeInfoArray != null) {
          for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -113,7 +116,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
            }
          }
        }
-     }).catch((err) => {
+     }).catch((err: BusinessError ) => {
        console.error(`Invoke getCurrentAudioRendererInfoArray failed, code is ${err.code}, message is ${err.message}`);
      });
    }

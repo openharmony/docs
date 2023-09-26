@@ -134,7 +134,7 @@ The trace data of **StartAsyncTrace** and **FinishAsyncTrace** is matched based 
 1. Add the build dependencies to the build configuration file **base\hiviewdfx\hitrace\cmd\BUILD.gn**.
    
    ```
-   external_deps = [ "hitrace_native:hitrace_meter"]
+   external_deps = [ "hitrace:hitrace_meter"]
    ```
 
 2. Add the header file dependencies.
@@ -220,7 +220,7 @@ The following is a demo debugging process, where the **StartTrace** and **Finish
    ohos_executable("hitrace_example") {
      sources = [ "example/hitrace_example.cpp" ]
    
-     external_deps = [ "hitrace_native:hitrace_meter" ]
+     external_deps = [ "hitrace:hitrace_meter" ]
    
      subsystem_name = "hiviewdfx"
      part_name = "hitrace_native"

@@ -44,16 +44,16 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false <br/>**说明：** <br/> 若未设置trackShadow属性，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。<br/> 若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。|
-| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 是 | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
-| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
-| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10对象说明) | 是 | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。|
+| 名称          | 参数类型 | 描述 |
+| ------------- | ------- | -------- |
+| closeEffect | boolean | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false <br/>**说明：** <br/> 若未设置trackShadow属性，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。<br/> 若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。|
+| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
+| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 底板颜色。<br/>默认值：'#08182431'，格式为十六进制ARGB值，前俩位代表透明度。 |
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
+| trackShadow<sup>10+</sup> | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。|
 
 
-## DataPanelShadowOption<sup>10+</sup>对象说明
+## DataPanelShadowOptions<sup>10+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：5<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|

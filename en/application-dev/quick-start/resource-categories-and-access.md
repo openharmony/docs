@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: Configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions.
+- System resources: Use the preset resource definitions (that is, [layered parameters](../../design/ux-design/design-resources.md), with which a resource with the same ID has different values under different configurations, including device types and color modes).
 
 ## Resource Categories
 
@@ -240,6 +240,8 @@ To reference an application resource in a project, use the **"$r('app.type.name'
 
 When referencing resources in the **rawfile** subdirectory, use the **"$rawfile('filename')"** format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
+To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
+
 > **NOTE**
 > 
 > Resource descriptors accept only strings, such as **'app.type.name'**, and cannot be combined.
@@ -263,7 +265,7 @@ Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
 
-// Reference plural resources. The first parameter of $r indicates the plural resource, the second parameter indicates the number of plural resources (for English, **one** indicates singular and is represented by **1**, and **other** indicates plural and is represented by an integer greater than or equal to 1; for Chinese, **other** indicates both singular and plural), and the third parameter is used to replace %d.
+// Reference plural resources. The first parameter of $r indicates the plural resource, the second parameter indicates the number of plural resources (for English, one indicates singular and is represented by 1, and other indicates plural and is represented by an integer greater than or equal to 1; for Chinese, other indicates both singular and plural), and the third parameter is used to replace %d.
 // In this example, the resultant value is "5 apples".
 Text($r('app.plural.eat_apple', 5, 5))
   .fontColor($r('app.color.color_world'))
@@ -282,11 +284,14 @@ System resources include colors, rounded corners, fonts, spacing, character stri
 
 To reference a system resource, use the **"$r('sys.type.resource_id')"** format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
 
+For details about the supported system resource IDs and their values under different configurations, see [Resources in Application UX Design](../../design/ux-design/design-resources.md).
+
 > **NOTE**
 >
-> - Use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
+> - The use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
 >
 > - For details about the implementation of preconfigured resources, visit the [OpenHarmony/resources repository](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources). The directory structure there is similar to that of the **resources** directory in the project. Resource qualifiers are used to match resources with different devices and device states.
+> - For details about the use cases, IDs, and parameters of system resources, see [OpenHarmony System Resource Layer Design V1.0.xlsm](../../design/ux-design/design-resources.md).
 
 ```ts
 Text('Hello')
@@ -307,3 +312,4 @@ Image($r('sys.media.ohos_app_icon'))
   .height(200)
   .width(300)
 ```
+<!--no_check-->

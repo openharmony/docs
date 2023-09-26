@@ -31,6 +31,8 @@ import config from '@ohos.accessibility.config';
 | shortkeyTarget | [Config](#config)\<string>| Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.|
 | captions | [Config](#config)\<boolean>| Yes| Yes| Whether to enable captions.|
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
+| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| Yes| Yes| Whether to enable mono audio. The value **True** means to enable mono audio, and **False** means the opposite.|
+| audioBalance<sup>10+</sup>| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0.|
 
 ## enableAbility
 
@@ -66,12 +68,14 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 let capability : accessibility.Capability[] = ['retrieve'];
 try {
     config.enableAbility(name, capability).then(() => {
       console.info('enable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to enable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -108,10 +112,13 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
-let capability : accessibility.Capability[] = ['retrieve'];
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
+let capability: accessibility.Capability[] = ['retrieve'];
 try {
-    config.enableAbility(name, capability, (err) => {
+    config.enableAbility(name, capability, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -154,11 +161,14 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
     config.disableAbility(name).then(() => {
       console.info('disable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to disable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -192,9 +202,13 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 **Example**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
-    config.disableAbility(name, (err, data) => {
+    config.disableAbility(name, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -224,6 +238,8 @@ Adds a listener for changes in the list of enabled accessibility extension abili
 **Example**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.on('enabledAccessibilityExtensionListChange', () => {
         console.info('subscribe enabled accessibility extension list change state success');
@@ -252,6 +268,8 @@ Cancels the listener for changes in the list of enabled accessibility extension 
 **Example**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.off('enabledAccessibilityExtensionListChange', () => {
         console.info('Unsubscribe enabled accessibility extension list change state success');
@@ -289,11 +307,13 @@ Sets the attribute value. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+
+let value: boolean = true;
 try {
     config.highContrastText.set(value).then(() => {
         console.info('set highContrastText succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
         console.error('failed to set highContrastText, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -319,9 +339,12 @@ Sets the attribute value. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean = true;
 try {
-    config.highContrastText.set(value, (err, data) => {
+    config.highContrastText.set(value, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to set highContrastText, because ' + JSON.stringify(err));
             return;
@@ -350,11 +373,14 @@ Obtains the attribute value. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let value;
-config.highContrastText.get().then((data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get().then((data: boolean) => {
     value = data;
     console.info('get highContrastText success');
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to get highContrastText, because ' + JSON.stringify(err));
 });
 ```
@@ -376,8 +402,11 @@ Obtains the attribute value. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-let value;
-config.highContrastText.get((err, data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to get highContrastText, because ' + JSON.stringify(err));
         return;
@@ -404,8 +433,10 @@ Adds a listener for attribute changes. This API uses an asynchronous callback to
 **Example**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
-    config.highContrastText.on((data) => {
+    config.highContrastText.on((data: boolean) => {
         console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -430,7 +461,9 @@ Cancels the listener for attribute changes. This API uses an asynchronous callba
 **Example**
 
 ```ts
-config.highContrastText.off((data) => {
+import config from '@ohos.accessibility.config';
+
+config.highContrastText.off((data: boolean) => {
     console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
 });
 ```

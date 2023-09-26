@@ -19,13 +19,13 @@
 
 | 名称                            | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [context.h](context_8h.md)      | 提供了Context相关的接口，可以配置运行时信息。<br>引用文件：\<mindspore/context.h> |
-| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。<br>引用文件：\<mindspore/data_type.h> |
-| [format.h](format_8h.md)        | 提供张量数据的排列格式。<br>引用文件：\<mindspore/format.h>  |
-| [model.h](model_8h.md)          | 提供了模型相关接口，可以用于模型创建、模型推理等。<br>引用文件：\<mindspore/model.h> |
-| [status.h](status_8h.md)        | 提供了Mindspore Lite运行时的状态码。<br>引用文件：\<mindspore/status.h> |
-| [tensor.h](tensor_8h.md)        | 提供了张量相关的接口，可用于创建和修改张量信息。<br>引用文件：\<mindspore/tensor.h> |
-| [types.h](types_8h.md)          | 提供了MindSpore Lite支持的模型文件类型和设备类型。<br>引用文件：\<mindspore/types.h> |
+| [context.h](context_8h.md)      | 提供了Context相关的接口，可以配置运行时信息。<br>引用文件：\<mindspore/context.h><br>库：libmindspore_lite_ndk.so |
+| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。<br>引用文件：\<mindspore/data_type.h><br>库：libmindspore_lite_ndk.so |
+| [format.h](format_8h.md)        | 提供张量数据的排列格式。<br>引用文件：\<mindspore/format.h><br>库：libmindspore_lite_ndk.so |
+| [model.h](model_8h.md)          | 提供了模型相关接口，可以用于模型创建、模型推理等。<br>引用文件：\<mindspore/model.h><br>库：libmindspore_lite_ndk.so |
+| [status.h](status_8h.md)        | 提供了Mindspore Lite运行时的状态码。<br>引用文件：\<mindspore/status.h><br>库：libmindspore_lite_ndk.so |
+| [tensor.h](tensor_8h.md)        | 提供了张量相关的接口，可用于创建和修改张量信息。<br>引用文件：\<mindspore/tensor.h><br>库：libmindspore_lite_ndk.so |
+| [types.h](types_8h.md)          | 提供了MindSpore Lite支持的模型文件类型和设备类型。<br>引用文件：\<mindspore/types.h><br>库：libmindspore_lite_ndk.so |
 
 
 ### 结构体
@@ -109,6 +109,7 @@
 | [OH_AI_DeviceInfoSetFrequency](#oh_ai_deviceinfosetfrequency) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, int frequency) | 设置NPU的频率，仅NPU设备可用。                               |
 | [OH_AI_DeviceInfoGetFrequency](#oh_ai_deviceinfogetfrequency) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NPU的频率类型，仅NPU设备可用。                           |
 | [OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRT硬件设备的描述信息。                       |
+| [OH_AI_GetElementOfNNRTDeviceDescs](#oh_ai_getelementofnnrtdevicedescs) (NNRTDeviceDesc \*descs, size_t index) | 获取NNRT设备描述信息数组中的元素指针。 |
 | [OH_AI_DestroyAllNNRTDeviceDescs](#oh_ai_destroyallnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*\*desc) | 销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRT描写信息实例数组。 |
 | [OH_AI_GetDeviceIdFromNNRTDeviceDesc](#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备ID。注意，此ID只对NNRT有效。 |
 | [OH_AI_GetNameFromNNRTDeviceDesc](#oh_ai_getnamefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备名称。               |
@@ -131,6 +132,7 @@
 | [OH_AI_ModelGetOutputs](#oh_ai_modelgetoutputs) (const [OH_AI_ModelHandle](#oh_ai_modelhandle) model) | 获取模型的输出张量数组结构体。                               |
 | [OH_AI_ModelGetInputByTensorName](#oh_ai_modelgetinputbytensorname) (const [OH_AI_ModelHandle](#oh_ai_modelhandle) model, const char \*tensor_name) | 通过张量名获取模型的输入张量。                               |
 | [OH_AI_ModelGetOutputByTensorName](#oh_ai_modelgetoutputbytensorname) (const [OH_AI_ModelHandle](#oh_ai_modelhandle) model, const char \*tensor_name) | 通过张量名获取模型的输出张量。                               |
+| [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 |
 | [OH_AI_TensorCreate](#oh_ai_tensorcreate) (const char \*name, [OH_AI_DataType](#oh_ai_datatype) type, const int64_t \*shape, size_t shape_num, const void \*data, size_t data_len) | 创建一个张量对象。                                           |
 | [OH_AI_TensorDestroy](#oh_ai_tensordestroy) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) \*tensor) | 释放张量对象。                                               |
 | [OH_AI_TensorClone](#oh_ai_tensorclone) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 深拷贝一个张量。                                             |
@@ -147,7 +149,7 @@
 | [OH_AI_TensorGetMutableData](#oh_ai_tensorgetmutabledata) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取可变的张量数据指针。如果数据为空则会开辟内存。           |
 | [OH_AI_TensorGetElementNum](#oh_ai_tensorgetelementnum) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取张量元素数量。                                           |
 | [OH_AI_TensorGetDataSize](#oh_ai_tensorgetdatasize) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取张量中的数据的字节数大小。                               |
-
+| [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | 设置张量为用户自行管理的数据。此接口常用于复用用户数据作为模型输入，可减少一次数据拷贝。 |
 
 ## 宏定义说明
 
@@ -1951,3 +1953,90 @@ OH_AI_API void OH_AI_TensorSetShape (OH_AI_TensorHandle tensor, const int64_t * 
 | tensor    | 张量对象句柄。     |
 | shape     | 形状数组。         |
 | shape_num | 张量形状数组长度。 |
+
+
+### OH_AI_TensorSetUserData()
+
+```
+OH_AI_API OH_AI_Status OH_AI_TensorSetUserData (OH_AI_TensorHandle tensor, void * data, size_t data_size )
+```
+
+**描述:**
+
+设置张量为用户自行管理的数据。
+
+此接口常用于复用用户数据作为模型输入，可减少一次数据拷贝。
+
+注意：此数据对于张量来说是外部数据，张量销毁时不会主动释放，由调用者负责释放。另外，在此张量使用过程中，调用者须确保此数据有效。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| tensor | 张量对象句柄。 |
+| data | 用户数据首地址。 |
+| data_size | 用户数据长度。 |
+
+**返回:**
+
+执行状态码。若成功返回OH_AI_STATUS_SUCCESS，否则返回具体错误码。
+
+**起始版本:**
+
+10
+
+
+### OH_AI_DeviceInfoAddExtension()
+
+```
+OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle device_info, const char * name, const char * value, size_t value_size )
+```
+
+**描述:**
+
+向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 
+
+注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}， {"QuantParam": "YourQuantConfig"} 三种键值对配置，用户根据使用情况替换具体的值。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| name | 单个扩展项的键，格式为C字符串。 |
+| value | 单个扩展项的值内容首地址。 |
+| value_size | 单个扩展项的值内容长度。 |
+
+**返回:**
+
+**OH_AI_Status** 执行状态码，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
+
+**起始版本:**
+
+10
+
+
+### OH_AI_GetElementOfNNRTDeviceDescs()
+
+```
+OH_AI_API NNRTDeviceDesc* OH_AI_GetElementOfNNRTDeviceDescs (NNRTDeviceDesc * descs, size_t index )
+```
+
+**描述:**
+
+获取NNRT设备描述信息数组中的元素指针。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| descs | NNRT设备描述信息数组。 |
+| index | 数组元素索引。 |
+
+**返回:**
+
+NNRT设备描述信息类型指针。
+
+**起始版本:**
+
+10

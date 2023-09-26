@@ -41,12 +41,13 @@ Called when this Window Extension ability is connected to an ability for the fir
 **Example**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onConnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onConnect(want: Want) {
     console.info('WindowExtAbility onConnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -68,12 +69,13 @@ Called when this Window Extension ability is disconnected from all connected abi
 **Example**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import Want from '@ohos.app.ability.Want';
 
-  onDisconnect(want) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onDisconnect(want: Want) {
     console.info('WindowExtAbility onDisconnect, abilityName: ${want.abilityName}');
   }
-
 }
 ```
 
@@ -95,16 +97,17 @@ Called when a window is ready.
 **Example**
 
 ```ts
-export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
+import window from '@ohos.window';
 
-  onWindowReady(window) {
+export default class MyWindowExtensionAbility extends WindowExtensionAbility {
+  onWindowReady(window: window.Window) {
     window.loadContent('WindowExtAbility/pages/index1').then(() => {
-      window.getProperties().then((pro) => {
+      window.getProperties().then((pro: window.WindowProperties) => {
         console.log('WindowExtension pro: ${JSON.stringify(pro)}');
       });
       window.show();
     });
   }
-
 }
 ```

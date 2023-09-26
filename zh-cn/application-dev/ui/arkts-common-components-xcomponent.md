@@ -221,7 +221,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 
 XComponent所持有的Surface符合“生产者-消费者”模型
 
-OpenHarmony上Camera、VideoPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的surface并通过XComponent显示。
+OpenHarmony上Camera、AVPlayer等符合生产者设计的部件都可以将数据写入XComponent持有的surface并通过XComponent显示。
 
 ![图片1](figures/图片1.png)
 
@@ -229,11 +229,19 @@ OpenHarmony上Camera、VideoPlayer等符合生产者设计的部件都可以将�
 
 
 ```ts
+class suf{
+  surfaceId:string = "";
+  mXComponentController: XComponentController = new XComponentController();
+  set(){
+    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+  }
+}
 @State surfaceId:string = "";
-mXComponentController: XComponentController = new XComponentController();
+mXComponentController: object = new XComponentController();
 XComponent({ id: '', type: 'surface', controller: this.mXComponentController })
   .onLoad(() => {
-    this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+    let sufset = new suf()
+    sufset.set()
   })
 ```
 

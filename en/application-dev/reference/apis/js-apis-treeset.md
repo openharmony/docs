@@ -44,7 +44,7 @@ A constructor used to create a **TreeSet** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator.|
+| comparator | function | No| Custom comparator. The default value is **hole** (a blank placeholder), indicating that no comparator. is provided.|
 
 **Error codes**
 
@@ -57,7 +57,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
 ```
 
 
@@ -86,7 +86,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const treeSet = new TreeSet();
+const treeSet : TreeSet<string | number | boolean | Object>  = new TreeSet();
 let result = treeSet.isEmpty();
 ```
 
@@ -122,11 +122,10 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<number> = new TreeSet();
 treeSet.add(123);
 let result = treeSet.has(123);
 ```
-
 
 ### getFirstValue
 
@@ -153,7 +152,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
@@ -185,7 +184,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
@@ -223,7 +222,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 let result = treeSet.add("squirrel");
 ```
 
@@ -259,7 +258,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
@@ -297,7 +296,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
@@ -336,7 +335,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
@@ -369,7 +368,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
@@ -401,7 +400,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
@@ -427,7 +426,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
@@ -459,14 +458,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let iter = treeSet.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let it = treeSet.values();
+let t: IteratorResult<string> = it.next();
+while(!t.done) {
+  console.log("TreeSet: " + t.value);
+  t = it.next()
 }
 ```
 
@@ -484,14 +483,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed.|
-| key | T | No| Key of the element that is currently traversed.|
-| set | TreeSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key | T | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
@@ -504,11 +503,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
-treeSet.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+treeSet.forEach((value ?: string, key ?: string) :void => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -538,15 +537,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let iter = treeSet.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let it = treeSet.entries();
+let t: IteratorResult<Object[]> = it.next();
+while(!t.done) {
+  console.log("TreeSet: " + t.value);
+  t = it.next()
 }
 ```
 
@@ -576,18 +574,18 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeSet = new TreeSet();
+
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-  
+let numbers = Array.from(treeSet.values())
 // Method 1:
-for (let item of treeSet) { 
+for (let item of numbers) {
   console.log("value:" + item);
 }
-
 // Method 2:
 let iter = treeSet[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

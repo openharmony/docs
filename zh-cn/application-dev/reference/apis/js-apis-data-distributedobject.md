@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅支持在JS文件中使用。
 
 
 ## 导入模块
@@ -55,7 +57,7 @@ Stage模型示例：
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let g_object = null;
+let g_object;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
@@ -179,7 +181,7 @@ g_object.setSessionId(distributedObject.genSessionId(), ()=>{
 });
 // 退出分布式组网
 g_object.setSessionId(() => {
-    console.info("leave all lession.");
+    console.info("leave all session.");
 });
 ```
 
@@ -224,7 +226,7 @@ g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
-    console.info("leave all lession.");
+    console.info("leave all session.");
     }).catch((error)=>{
         console.info("error:" + error.code + error.message);
 });

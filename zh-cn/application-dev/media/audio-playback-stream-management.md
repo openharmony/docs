@@ -9,14 +9,14 @@
 - 方法1：直接查看AudioRenderer的[state](../reference/apis/js-apis-audio.md#属性)：
     
   ```ts
-  let audioRendererState = audioRenderer.state;
+  let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
 
 - 方法2：注册stateChange监听AudioRenderer的状态变化：
     
   ```ts
-  audioRenderer.on('stateChange', (rendererState) => {
+  audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
   ```
@@ -46,6 +46,7 @@
 
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -53,7 +54,8 @@
 2. 使用on('audioRendererChange')监听音频播放流的变化。 如果音频流监听应用需要在音频播放流状态变化、设备变化时获取通知，可以订阅该事件。
      
    ```ts
-   audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+   import audio from '@ohos.multimedia.audio';
+   audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
        console.info(`## RendererChange on is called for ${i} ##`);
@@ -89,8 +91,9 @@
    > 对所有音频流状态进行监听的应用需要[申请权限](../security/accesstoken-guidelines.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
    
    ```ts
-   async function getCurrentAudioRendererInfoArray(){
-     await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+   import audio from '@ohos.multimedia.audio';
+   async function getCurrentAudioRendererInfoArray(): Promise<void> {
+     await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
        console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);
        if (AudioRendererChangeInfoArray != null) {
          for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -111,7 +114,7 @@
            }
          }
        }
-     }).catch((err) => {
+     }).catch((err: BusinessError ) => {
        console.error(`Invoke getCurrentAudioRendererInfoArray failed, code is ${err.code}, message is ${err.message}`);
      });
    }

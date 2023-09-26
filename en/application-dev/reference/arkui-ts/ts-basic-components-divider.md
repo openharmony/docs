@@ -26,7 +26,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ----------- | ---------- | ------------------ |
 | vertical    | boolean | Whether a vertical divider is used. **false**: A horizontal divider is used.<br>**true**: A vertical divider is used.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | color       | [ResourceColor](ts-types.md#resourcecolor) | Color of the divider.<br>Default value: **'\#33182431'**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | number \| string | Width of the divider.<br>Default value: **1**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md). If the value of this attribute is greater than that of the universal attribute, cropping is performed based on the universal attribute settings.|
+| strokeWidth | number \| string | Width of the divider.<br>Default value: **1px**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute cannot be set to a percentage. The priority of this attribute is lower than that of the universal attribute [height](ts-universal-attributes-size.md). If the value of this attribute is greater than that of the universal attribute, cropping is performed based on the universal attribute settings.|
 | lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | Cap style of the divider.<br>Default value: **LineCapStyle.Butt**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
@@ -42,20 +42,20 @@ struct DividerExample {
       // Use horizontal dividers.
       Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC)
       List() {
-        ForEach([1, 2, 3], (item) => {
+        ForEach([1, 2, 3], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, bottom: 8 })
 
       Divider().strokeWidth(8).color('#F1F3F5')
       List() {
-        ForEach([4, 5], (item) => {
+        ForEach([4, 5], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, top: 8 })
 
       // Use vertical dividers.

@@ -18,7 +18,7 @@ To integrate Rust code and maximize the interaction between the C/C++ code used 
 
 
 
-## Configure Rules
+## Configuration Rules
 OpenHarmony provides a variety of GN templates for compiling Rust executables, dynamic libraries, and static libraries. The following table describes the templates.
 
 | GN Template                  | Description             | Output                                           |
@@ -104,7 +104,10 @@ The procedure is as follows:
    ![test_rlib_crate](./figures/test_rlib_crate.png)
 
 ### Configuring a Third-Party Library
-The following example shows how to use the **ohos_rust_executable** and **ohos_rust_cargo_crate** templates to build a third-party static rlib library whose code contains a prebuilt file **build.rs**. 
+
+The **BUILD.gn** file of the rust third-party library can be automatically generated using the cargo2gn tool. For details, see [Using Cargo2gn](subsys-build-cargo2gn-guide.md).
+
+The following example shows how to use the **ohos_rust_executable** and **ohos_rust_cargo_crate** templates to compile a third-party static library rlib file that contains a prebuilt file **build.rs**. 
 
 The procedure is as follows:
 
@@ -307,18 +310,18 @@ The procedure is as follows:
 You can find the Rust module configuration examples in the **build/rust/tests** directory.
 | Directory                                    | Description                                                  |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| build/rust/tests/test_bin_crate              | Tests the build of an executable file on the host platform and running of the executable file on the target platform. |
-| build/rust/tests/test_static_link            | Tests the static linking of an executable file to a standard library. |
-| build/rust/tests/test_dylib_crate            | Tests the build of a dynamic library and dynamic linking.    |
-| build/rust/tests/test_rlib_crate             | Tests the build of a static library and static linking.      |
-| build/rust/tests/test_proc_macro_crate       | Tests the build of Rust process macros and the linking function. Test cases are provided for different types of macros. |
-| build/rust/tests/test_cdylib_crate           | Tests the generation of Rust FFI bindings to a C/C++ dynamic library. |
-| build/rust/tests/test_staticlib_crate        | Tests the generation of Rust FFI bindings to a C/C++ static library. |
-| build/rust/tests/test_rust_ut                | Tests the Rust code unit test template.                      |
-| build/rust/tests/test_rust_st                | Tests the Rust code system test template.                    |
-| build/rust/tests/test_bin_cargo_crate        | Tests the build and running of a Rust third-party executable file. The third-party code contains the **build.rs**. |
-| build/rust/tests/test_rlib_cargo_crate       | Tests the build of a Rust third-party static library and static linking. The third-party code contains the **build.rs**. |
-| build/rust/tests/test_proc_macro_cargo_crate | Tests the build of Rust third-party process macros and linking. The third-party code contains the **build.rs**. |
+| build/rust/tests/test_bin_crate              | Tests the build of an executable file on the host platform and running of the executable file on the target platform.|
+| build/rust/tests/test_static_link            | Tests the static linking of an executable file to a standard library.                          |
+| build/rust/tests/test_dylib_crate            | Tests the build of a dynamic library and dynamic linking.                            |
+| build/rust/tests/test_rlib_crate             | Tests the build of a static library and static linking.                            |
+| build/rust/tests/test_proc_macro_crate       | Tests the build of Rust process macros and the linking function. Test cases are provided for different types of macros.|
+| build/rust/tests/test_cdylib_crate           | Tests the generation of Rust FFI bindings to a C/C++ dynamic library.                           |
+| build/rust/tests/test_staticlib_crate        | Tests the generation of Rust FFI bindings to a C/C++ static library.                           |
+| build/rust/tests/test_rust_ut                | Tests the Rust code unit test template.                   |
+| build/rust/tests/test_rust_st                | Tests the Rust code system test template.                   |
+| build/rust/tests/test_bin_cargo_crate        | Tests the build and running of a Rust third-party executable file. The third-party source code contains **build.rs**.|
+| build/rust/tests/test_rlib_cargo_crate       | Tests the build of a Rust third-party static library and static linking. The third-party source code contains **build.rs**.|
+| build/rust/tests/test_proc_macro_cargo_crate | Tests the build of Rust third-party process macros and linking. The third-party source code contains **build.rs**.    |
 
 ## Reference
 
@@ -347,6 +350,7 @@ executable("foo") {
 The OpenHarmony framework supports two types of lints: rustc lints and Clippy lints. Each type of lint has three levels: openharmony (highest), vendor, and none (lowest).
 
 When configuring the Rust module, you can specify the lint level in **rustc_lints** or **clippy_lints**.
+
 If **rustc_lints** or **clippy_lints** is not configured in the module, the lint level is matched based on the module path. Different restrictions apply to the syntax specifications of Rust code in different directories. Therefore, you need to pay attention to the path of the module when configuring the Rust module to build in OpenHarmony.
 
 #### Levels of rustc Lints and Clippy Lints
@@ -367,3 +371,6 @@ If **rustc_lints** or **clippy_lints** is not configured in the module, the lint
 | vendor     | vendor      |
 | device     | vendor      |
 | others     | openharmony |
+
+### [Interactive Tool User Guide](subsys-build-bindgen-cxx-guide.md)
+### [Using Cargo2gn](subsys-build-cargo2gn-guide.md)

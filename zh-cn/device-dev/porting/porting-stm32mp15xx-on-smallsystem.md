@@ -547,13 +547,13 @@ vendor
 `graphic`配置文件见 `//vendor/bearpi/bearpi_hm_micro/graphic_config/product_graphic_lite_config.h`。
 
 
-#### ACE开发框架子系统适配
+#### ArkUI开发框架子系统适配
 
-进行`ACE`开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
+进行ArkUI开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
 
 ```
     {
-        "subsystem": "ace",
+        "subsystem": "arkui",
         "components": [
         {
             "component": "ace_engine_lite",

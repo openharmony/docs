@@ -20,11 +20,15 @@
 
 ## 接口
 
-**方法1：** NavRouter()
+### NavRouter
 
-**方法2：** NavRouter(value: RouteInfo)<sup>10+</sup>
+NavRouter()
 
-  提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
+### NavRouter<sup>10+</sup>
+
+NavRouter(value: RouteInfo)
+
+提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
 
 
 **参数：**
@@ -77,7 +81,7 @@ struct NavRouterExample {
     Column() {
       Navigation() {
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item: number, index: number) => {
+          ForEach(this.arr, (item: number, index: number = 0) => {
             ListItem() {
               NavRouter() {
                 Row() {
@@ -106,7 +110,7 @@ struct NavRouterExample {
                 this.dex = index
               })
             }
-          }, item => item)
+          }, (item:number) => item.toString())
         }
         .height('100%')
         .margin({ top: 12, left: 12 })

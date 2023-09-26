@@ -39,7 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                         |
 | font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                      |
 | itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **24.0**<br>Unit: vp|
-| alignStyle              | value: [IndexerAlign](#indexeralign),<br>offset<sup>10+</sup>?: [Length](ts-types.md#length) | Alignment style of the alphabetic index bar.<br>**value**: alignment of the alphabetic index bar with the pop-up window, which can be left-aligned or right-aligned.<br>Default value: **IndexerAlign.Right**<br>**offset**: spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to 0 is valid. If this attribute is set to a value less than 0 or is not set, the spacing is the same as **popupPosition.x**.|
+| alignStyle              | value: [IndexerAlign](#indexeralign),<br>offset<sup>10+</sup>?: [Length](ts-types.md#length) | Alignment style of the alphabetic index bar.<br>**value**: alignment of the alphabetic index bar with the pop-up window, which can be left-aligned or right-aligned.<br>Default value: **IndexerAlign.Right**<br>**offset**: spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to 0 is valid. If this parameter is set to a value less than 0 or is not set, the spacing is the same as **popupPosition.x**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction.|
 | selected | number | Index of the selected item.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:96.0, y:48.0}**|
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected text excluding the initial letter in the pop-up window.<br>Default value: **#FF182431**|
@@ -86,7 +86,7 @@ struct AlphabetIndexerSample {
     Stack({ alignContent: Alignment.Start }) {
       Row() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arrayA, (item) => {
+          ForEach(this.arrayA, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -94,9 +94,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayB, (item) => {
+          ForEach(this.arrayB, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -104,9 +104,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayC, (item) => {
+          ForEach(this.arrayC, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -114,9 +114,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayL, (item) => {
+          ForEach(this.arrayL, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -124,7 +124,7 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
         }
         .width('50%')
         .height('100%')
@@ -139,6 +139,10 @@ struct AlphabetIndexerSample {
           .popupFont({ size: 30, weight: FontWeight.Bolder}) // Font style of the pop-up text.
           .itemSize(28) // Size of an item in the alphabetic index bar.
           .alignStyle(IndexerAlign.Left) // The pop-up window is displayed on the right of the alphabetic index bar.
+          .popupSelectedColor(0x00FF00)
+          .popupUnselectedColor(0x0000FF)
+          .popupItemFont({ size: 30, style: FontStyle.Normal })
+          .popupItemBackgroundColor(0xCCCCCC)
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })

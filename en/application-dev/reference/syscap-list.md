@@ -1,12 +1,12 @@
 # SystemCapability List
 
-SystemCapability (SysCap) is a standalone feature in the OpenHarmony system.
+SystemCapability (SysCap) is a standalone feature in the operating system.
 
 Before using an API for development, you are advised to familiarize yourself with [SysCap](syscap.md), and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
 
 > **NOTE**
->
-> The **default** device type represents an OpenHarmony device with comprehensive functions and most common capabilities. When you are not sure about the capability set of the target device, you can use the **default** type for development.
+> 
+> The **default** device type represents an OpenHarmony device with comprehensive functions and most common capabilities. If you are not sure about the capability set of the target device, you can use the **default** type for development.
 
 ## SystemCapability.ArkUI.ArkUI.Full
 
@@ -273,7 +273,7 @@ GNSS hardware capabilities
 
 ## SystemCapability.Location.Location.Lite
 
-Lite device capabilities of the location service
+Location service for mini-, small- and standard-system devices
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -359,6 +359,14 @@ Power management display
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
 
+## SystemCapability.PowerManager.DisplayPowerManager.Lite
+
+Power management display for mini-, small- and standard-system devices
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | Yes    | No          | No    |
+
 ## SystemCapability.PowerManager.ThermalManager
 
 Temperature control
@@ -377,7 +385,7 @@ Core capabilities of the system power management service
 
 ## SystemCapability.PowerManager.PowerManager.Lite
 
-Lite device capabilities of the system power management service
+System power management service for mini-, small- and standard-system devices
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -393,7 +401,7 @@ Core capabilities of the battery service
 
 ## SystemCapability.PowerManager.BatteryManager.Lite
 
-Lite device capabilities of the battery service
+Battery service for mini-, small- and standard-system devices
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -518,6 +526,14 @@ Media session management capability
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Multimedia.AVSession.AVCast
+
+Casting capability
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
 
 ## SystemCapability.Multimedia.Audio.Core
 
@@ -935,10 +951,15 @@ Device security level management
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
 
-## SystemCapability.Security.Huks
 
-Hardware Unique Key (HUK) management
+## SystemCapability.Security.Huks.Core
+Device key management - core capabilities
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | Yes    | No          | No    |
 
+## SystemCapability.Security.Huks.Extension
+Device key management - extended capabilities
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
@@ -1095,6 +1116,14 @@ Basic file I/O interfaces
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
 
+## SystemCapability.FileManagement.File.FileIO.Lite
+
+Basic file I/O interfaces for mini-, small- and standard-system devices
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
+
 ## SystemCapability.FileManagement.File.Environment
 
 Environment-related interfaces
@@ -1143,6 +1172,14 @@ Sensor service subscription
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | No    | No          | No    |
 
+## SystemCapability.Sensors.Sensor.Lite
+
+Sensor service subscription for mini-, small- and standard-system devices
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | No    | No          | No    |
+
 ## SystemCapability.Sensors.MiscDevice
 
 Miscellaneous devices- sensors
@@ -1151,9 +1188,25 @@ Miscellaneous devices- sensors
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | No    | No          | No    |
 
+## SystemCapability.Sensors.MiscDevice.Lite
+
+Miscellaneous mini-, small- and standard-system devices- sensors
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | No    | No          | No    |
+
 ## SystemCapability.Startup.SystemInfo
 
 Basic system information
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
+
+## SystemCapability.Startup.SystemInfo.Lite
+
+Basic system information for mini-, small- and standard-system devices
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1222,6 +1275,14 @@ Core capabilities of preferences data storage
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.DistributedDataManager.Preferences.Core.Lite
+
+Core device capabilities of preferences data storage for mini-, small- and standard-system devices
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | No          | No    |
 
 ## SystemCapability.DistributedDataManager.DataShare.Core
 

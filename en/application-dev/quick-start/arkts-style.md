@@ -1,4 +1,4 @@
-# \@Styles: Definition of Resusable Styles
+# \@Styles Decorator: Definition of Resusable Styles
 
 
 If the style of each component needs to be set separately, this will result in a large amount of repeated code during development. Though copy and paste is available, it is inefficient and error-prone. To maximize code efficiency and maintainability, the \@Styles decorator is introduced.
@@ -45,12 +45,12 @@ If the style of each component needs to be set separately, this will result in a
   ```ts
   @Component
   struct FancyUse {
-    @State heightVlaue: number = 100
+    @State heightValue: number = 100
     @Styles fancy() {
-      .height(this.heightVlaue)
+      .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightVlaue = 200
+        this.heightValue = 200
       })
     }
   }
@@ -77,14 +77,14 @@ The following example demonstrates the usage of \@Styles inside and outside a co
 @Entry
 @Component
 struct FancyUse {
-  @State heightVlaue: number = 100
+  @State heightValue: number = 100
   // Define a \@Styles decorated method inside a component declaration.
   @Styles fancy() {
     .width(200)
-    .height(this.heightVlaue)
+    .height(this.heightValue)
     .backgroundColor(Color.Yellow)
     .onClick(() => {
-      this.heightVlaue = 200
+      this.heightValue = 200
     })
   }
 

@@ -10,22 +10,23 @@ Image effects include blur, shadow, spherical effect, and much more.
 ## Attributes
 
 
-| Name                            | Type                                                    | Default Value| Description                                                        |
-| -------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| blur                             | number                                                       | -      | Content blur radius of the component. A greater value indicates a higher blur degree. If the value is **0**, the content is not blurred.<br>Value range: [0, +∞)<br>Since API version 9, this API is supported in ArkTS widgets.|
-| backdropBlur                     | number                                                       | -      | Background blur radius of the component. A greater value indicates a higher blur degree. If the value is **0**, the background is not blurred.<br>Value range: [0, +∞)<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name                              | Type                                    | Default Value   | Description                                      |
+| -------------------------------- | ---------------------------------------- | ------ | ---------------------------------------- |
+| blur                             | number                                   | -      | Foreground blur radius of the component. A greater value indicates a higher blur degree. If the value is **0**, the content is not blurred.<br>Value range: [0, +∞)<br>Since API version 9, this API is supported in ArkTS widgets.|
+| backdropBlur                     | number                                   | -      | Background blur radius of the component. A greater value indicates a higher blur degree. If the value is **0**, the background is not blurred.<br>Value range: [0, +∞)<br>Since API version 9, this API is supported in ArkTS widgets.|
 | shadow                           | [ShadowOptions](#shadowoptions) \| [ShadowStyle](#shadowstyle10)<sup>10+</sup> | -      | Shadow of the component.<br>When the value type is **ShadowOptions**, the blur radius, shadow color, and offset along the x-axis and y-axis can be specified.<br>When the value type is **ShadowStyle**, the shadow style can be specified.<br>Since API version 9, this API is supported in ArkTS widgets, except that the [ShadowStyle](#shadowstyle10) type is not supported.|
-| grayscale                        | number                                                       | 0.0    | Grayscale conversion ratio of the component. If the value is **1.0**, the component is completely converted to grayscale. If the value is **0.0**, the component remains unchanged. Between 0 and 1, the value applies a linear multiplier on the grayscale effect. The unit is percentage.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| brightness                       | number                                                       | 1.0    | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A greater value indicates a higher brightness.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| saturate                         | number                                                       | 1.0    | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the source image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| contrast                         | number                                                       | 1.0    | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| invert                           | number                                                       | 0      | Inversion ratio of the component. If the value is **1**, the component is completely inverted. If the value is **0**, the component remains unchanged. The unit is percentage.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| sepia                            | number                                                       | 0      | Sepia conversion ratio of the component. If the value is **1**, the image is completely sepia. If the value is **0**, the component remains unchanged. The unit is percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| hueRotate                        | number \| string                                   | '0deg' | Hue rotation angle of the component.<br>Value range: (-∞, +∞)<br>**NOTE**<br>A rotation of 360 degrees leaves the color unchanged. A rotation of 180 degrees and then -180 degrees also leaves the color unchanged. When the data type is number, the value 90 is equivalent to **'90deg'**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| grayscale                        | number                                   | 0.0    | Grayscale conversion ratio of the component. If the value is **1.0**, the component is completely converted to grayscale. If the value is **0.0**, the component remains unchanged. Between 0 and 1, the value applies a linear multiplier on the grayscale effect. The unit is percentage.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| brightness                       | number                                   | 1.0    | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than **1**, the brightness decreases. If the value is greater than **1**, the brightness increases. A greater value indicates a higher brightness.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| saturate                         | number                                   | 1.0    | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the source image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| contrast                         | number                                   | 1.0    | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| invert                           | number                                   | 0      | Inversion ratio of the component. If the value is **1**, the component is completely inverted. If the value is **0**, the component remains unchanged. The unit is percentage.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| sepia                            | number                                   | 0      | Sepia conversion ratio of the component. If the value is **1**, the image is completely sepia. If the value is **0**, the component remains unchanged. The unit is percentage.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| hueRotate                        | number \| string               | '0deg' | Hue rotation angle of the component.<br>Value range: (-∞, +∞)<br>**NOTE**<br>A rotation of 360 degrees leaves the color unchanged. A rotation of 180 degrees and then -180 degrees also leaves the color unchanged. When the data type is number, the value 90 is equivalent to **'90deg'**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | colorBlend <sup>8+</sup>    | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | -      | Color to blend with the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| sphericalEffect<sup>10+</sup>    | [number]                                                     | -      | Spherical degree of the component.<br>The value ranges from 0 to 1.<br>**NOTE**<br>1. If the value is **0**, the component remains unchanged. If the value is **1**, the component is completely spherical. Between 0 and 1, a greater value indicates a higher spherical degree.<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br> 2. If a component image is loaded asynchronously, the spherical effect is not supported. For example, the **\<Image>** component uses asynchronous loading by default, which means that **syncLoad** must be set to **true** to apply the spherical effect. However, this setting is not recommended. Asynchronous loading is also used for **backgroundImage**. Therefore, if **backgroundImage** is set, the spherical effect is not supported.<br>3. If the shadow effect is set for a component, the spherical effect is not supported.|
-| lightUpEffect<sup>10+</sup>      | [number]                                                     | -      | Light up degree of the component.<br>The value ranges from 0 to 1.<br>If the value is **0**, the component is dark. If the value is **1**, the component is fully illuminated. Between 0 and 1, a greater value indicates higher luminance. A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
-| pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | Pixel stretch effect options.<br>The **options** parameter includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. 2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image. |
+| sphericalEffect<sup>10+</sup>    | number                                   | -      | Spherical degree of the component.<br>The value ranges from 0 to 1.<br>**NOTE**<br>1. If the value is **0**, the component remains unchanged. If the value is **1**, the component is completely spherical. Between 0 and 1, a greater value indicates a higher spherical degree.<br>A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br> 2. If a component image is loaded asynchronously, the spherical effect is not supported. For example, the **\<Image>** component uses asynchronous loading by default, which means that **syncLoad** must be set to **true** to apply the spherical effect. However, this setting is not recommended. Asynchronous loading is also used for **backgroundImage**. Therefore, if **backgroundImage** is set, the spherical effect is not supported.<br>3. If the shadow effect is set for a component, the spherical effect is not supported.<br>This is a system API.|
+| lightUpEffect<sup>10+</sup>      | number                                   | -      | Light up degree of the component.<br>The value ranges from 0 to 1.<br>If the value is **0**, the component is dark. If the value is **1**, the component is fully illuminated. Between 0 and 1, a greater value indicates higher luminance. A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>This is a system API.|
+| pixelStretchEffect<sup>10+</sup> | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | -      | Pixel stretch effect options.<br>The **options** parameter includes the length by which a pixel is stretched toward the four edges.<br>**NOTE**<br>1. If the length is a positive value, the original image is stretched, and the image size increases. The edge pixels grow by the set length toward the top, bottom, left, and right edges.<br>2. 2. If the length is a negative value, the original image shrinks as follows, but the image size remains unchanged:<br> <br>(1) The image shrinks from the four edges by the absolute value of length set through **options**.<br>(2) The image is stretched back to the original size with edge pixels.<br>3. Constraints on **options**:<br>(1) The length values for the four edges must be all positive or all negative. That is, the four edges are stretched or shrink at the same time in the same direction.<br>(2) The length values must all be a percentage or a specific value. Combined use of the percentage and specific value is not allowed.<br>(3) If the input value is invalid, the image is displayed as {0, 0, 0, 0}, that is, the image is the same as the original image.<br>This is a system API.|
+| linearGradientBlur<sup>10+</sup> | <br>value: number,<br>{<br>fractionStops:Array\<FractionStop>,<br>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br>} <br> | -      | Linear gradient blur for the component.<br>- **value**: blur radius. A greater value indicates a higher blur degree. If the value is 0, the content is not blurred. Value range: [0, 60]<br>Linear gradient blur consists of two parts: **fractionStops** and **direction**.<br>- **fractionStops**: gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.<br> - **direction**: gradient blur direction. The default value is **[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom**.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 ## ShadowOptions
 
@@ -33,28 +34,28 @@ Provides the shadow attributes, including the blur radius, color, and offset alo
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name    | Type    | Mandatory  | Description             |
-| ------ | ------ | ---- | --------------- |
-| radius    | number \| [Resource](ts-types.md#resource)  | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
-| color  | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)  | No   | Color of the shadow.<br>The default color is black.|
-| offsetX | number \| [Resource](ts-types.md#resource)  | No   | Offset of the shadow along the x-axis.<br>The default value is **0**. |
-| offsetY   | number \| [Resource](ts-types.md#resource)  | No   | Offset of the shadow along the y-axis.<br>The default value is **0**.|
+| Name     | Type                                      | Mandatory  | Description                                      |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | No   | Color of the shadow.<br>The default color is black.                       |
+| offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>The default value is **0**.                     |
+| offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>The default value is **0**.                     |
 
 ## ShadowStyle<sup>10+</sup>
 
-| Name  | Description                                  |
-| ------ | -------------------------------------- |
-| OUTER_DEFAULT_XS  | Mini shadow.|
-| OUTER_DEFAULT_SM | Small shadow.|
-| OUTER_DEFAULT_MD    | Medium shadow.|
-| OUTER_DEFAULT_LG    | Large shadow.|
-| OUTER_FLOATING_SM    | Floating small shadow.|
-| OUTER_FLOATING_MD    | Floating medium shadow.|
+| Name               | Description    |
+| ----------------- | ------ |
+| OUTER_DEFAULT_XS  | Mini shadow. |
+| OUTER_DEFAULT_SM  | Small shadow.  |
+| OUTER_DEFAULT_MD  | Medium shadow.  |
+| OUTER_DEFAULT_LG  | Large shadow.  |
+| OUTER_FLOATING_SM | Floating small shadow.|
+| OUTER_FLOATING_MD | Floating medium shadow.|
 
 ## Example
 
 ### Example 1
-Use **blur** to add the content blur effect and **backdropBlur** to add the background blur effect.
+Use **blur** to apply a foreground blur effect and **backdropBlur** to apply a background blur effect.
 ```ts
 // xxx.ets
 @Entry
@@ -153,7 +154,7 @@ struct ImageEffectsExample {
 
 ### Example 3
 
-You can apply a spherical effect to a component to make it appear spherized.
+Apply a spherical effect to a component to make it appear spherized.
 
 ```ts
 // xxx.ets
@@ -191,7 +192,7 @@ Below is how the component looks without the spherical effect applied:
 
 ### Example 4
 
-You can apply a light up effect to a component.
+Apply a light up effect to a component.
 
 ```ts
 // xxx.ets
@@ -243,7 +244,7 @@ struct LightUpExample {
       })
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {
-          this.selectedDate.setFullYear(value.year, value.month, value.day)
+          this.selectedDate.setFullYear(value.year as number, value.month, value.day)
           console.info('select current date is: ' + JSON.stringify(value))
         })
         .lightUpEffect(0.6)
@@ -261,7 +262,7 @@ Below is how the component looks without the light up effect applied:
 
 ### Example 6
 
-You can apply a pixel stretch effect to a component.
+Apply a pixel stretch effect to a component.
 
 ```ts
 // xxx.ets
@@ -324,3 +325,30 @@ Compared with the original image, the effect drawing is implemented in two steps
 the lengths by which the pixels shrink. For example, if the original image size is 100 x 100 and **pixelStretchEffect({top:-10,left:-10,**
 **right:-10,bottom:-10})** is set, the resultant size is (100-10-10) x (100-10-10), that is, 8080.
 2. Edge pixels are stretched to restore the image to its original size.
+
+### Example 8
+
+Apply a linear gradient blur effect to a component.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ImageExample1 {
+  private_resource1:Resource = $r('app.media.1')
+  @State image_src: Resource = this.private_resource1
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Image(this.image_src)
+            .linearGradientBlur(60, { fractionStops: [[0,0],[0,0.33],[1,0.66],[1,1]], direction: GradientDirection.Bottom })
+        }
+      }
+    }
+  }
+}
+
+```
+
+![testlinearGradientBlur](figures/testlinearGradientBlur.png)

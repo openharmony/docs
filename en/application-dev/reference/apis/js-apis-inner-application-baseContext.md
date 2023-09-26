@@ -12,6 +12,8 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Type  | Readable  | Writable  | Description     |
@@ -24,9 +26,11 @@ Take the stage model as an example. You can access the **stageMode** field throu
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         // EntryAbility onCreate, isStageMode: true
         console.log('EntryAbility onCreate, isStageMode: ${this.context.stageMode}');
     }

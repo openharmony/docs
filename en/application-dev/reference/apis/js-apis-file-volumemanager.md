@@ -9,7 +9,7 @@ The **volumeManager** module provides APIs for volume and disk management, inclu
 
 ## Modules to Import
 
-```js
+```ts
 import volumemanager from "@ohos.file.volumeManager";
 ```
 
@@ -39,14 +39,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  volumemanager.getAllVolumes().then(function(volumes){
-      // Do something.
-  }).catch(function(error){
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  volumemanager.getAllVolumes().then((volumes: volumemanager.Volume) => {
+    // Do something.
+  }).catch((error: BusinessError) => {
     console.info("getAllVolumes failed");
   });
   ```
@@ -77,14 +78,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  volumemanager.getAllVolumes(function(error, volumes){
-      // Do something
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  volumemanager.getAllVolumes((error: BusinessError, volumes: volumemanager.Volume) => {
+    // Do something.
   });
   ```
 
@@ -124,15 +125,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.mount(volumeId).then(function(){
-      // Do something.
-  }).catch(function(error){
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.mount(volumeId).then(() => {
+    // Do something.
+  }).catch((error: BusinessError) => {
     console.info("mount failed");
   });
   ```
@@ -168,14 +170,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.mount(volumeId, function(error){
-      // Do something.
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.mount(volumeId, (error: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -215,15 +218,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.unmount(volumeId).then(function(){
-      // Do something.
-  }).catch(function(error){
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.unmount(volumeId).then(() => {
+    // Do something.
+  }).catch((error: BusinessError) => {
     console.info("mount failed");
   });
   ```
@@ -259,14 +263,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.unmount(volumeId, function(error){
-      // Do something.
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.unmount(volumeId, (error: BusinessError) => {
+    // Do something.
   });
   ```
 
@@ -303,16 +308,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  volumemanager.getVolumeByUuid(uuid).then(function(volume) {
-      console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
-  }).catch(function(error){
-      console.info("getVolumeByUuid failed with error:"+ error);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
+    console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
+  }).catch((error: BusinessError) => {
+    console.info("getVolumeByUuid failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -344,14 +350,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  volumemanager.getVolumeByUuid(uuid, (error, volume) => {
-      // Do something.   
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  volumemanager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
+    // Do something.   
   });
   ```
 
@@ -388,16 +395,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.getVolumeById(volumeId).then(function(volume) {
-      console.info("getVolumeById successfully:" + JSON.stringify(volume));
-  }).catch(function(error){
-      console.info("getVolumeById failed with error:"+ error);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
+    console.info("getVolumeById successfully:" + JSON.stringify(volume));
+  }).catch((error: BusinessError) => {
+    console.info("getVolumeById failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -429,14 +437,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  volumemanager.getVolumeById(volumeId, (error, volume) => {
-      // Do something.   
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  volumemanager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
+    // Do something.   
   });
   ```
 
@@ -476,17 +485,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  let description = "";
-  volumemanager.setVolumeDescription(uuid, description).then(function() {
-      console.info("setVolumeDescription successfully");
-  }).catch(function(error){
-      console.info("setVolumeDescription failed with error:"+ error);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  let description: string = "";
+  volumemanager.setVolumeDescription(uuid, description).then(() => {
+    console.info("setVolumeDescription successfully");
+  }).catch((error: BusinessError) => {
+    console.info("setVolumeDescription failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -521,15 +531,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  let description = "";
-  volumemanager.setVolumeDescription(uuid, description, (error) => {
-      // Do something.   
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  let description: string = "";
+  volumemanager.setVolumeDescription(uuid, description, (error: BusinessError) => {
+    // Do something.   
   });
   ```
 
@@ -569,17 +580,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  let fsType = "";
-  volumemanager.format(volumeId, fsType).then(function() {
-      console.info("format successfully");
-  }).catch(function(error){
-      console.info("format failed with error:"+ error);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  let fsType: string = "";
+  volumemanager.format(volumeId, fsType).then(() => {
+    console.info("format successfully");
+  }).catch((error: BusinessError) => {
+    console.info("format failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -614,15 +626,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let volumeId = "";
-  let fsType = "";
-  volumemanager.format(volumeId, fsType, (error) => {
-      // Do something.   
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let volumeId: string = "";
+  let fsType: string = "";
+  volumemanager.format(volumeId, fsType, (error: BusinessError) => {
+    // Do something.   
   });
   ```
 
@@ -647,7 +660,7 @@ Partitions a disk. This API uses a promise to return the result. The system supp
 
   | Type                     | Description                      |
    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | Promise used to return the result.             |
+  | Promise&lt;void&gt;   | Promise that returns no value.             |
 
 **Error codes**
 
@@ -660,17 +673,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let diskId = "";
-  let type = 0;
-  volumemanager.partition(diskId, type).then(function() {
-      console.info("partition successfully");
-  }).catch(function(error){
-      console.info("partition failed with error:"+ error);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let diskId: string = "";
+  let type: number = 0;
+  volumemanager.partition(diskId, type).then(() => {
+    console.info("partition successfully");
+  }).catch((error: BusinessError) => {
+    console.info("partition failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -703,15 +717,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let diskId = "";
-  let type = 0;
-  volumemanager.partition(diskId, type, (error) => {
-      // Do something.   
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let diskId: string = "";
+  let type: number = 0;
+  volumemanager.partition(diskId, type, (error: BusinessError) => {
+    // Do something.   
   });
   ```
 
@@ -729,4 +744,4 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | description | string  | Yes| No| Description of the volume.          |
 | removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported.|
 | state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
-| path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/external/{uuid}**.        |
+| path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |

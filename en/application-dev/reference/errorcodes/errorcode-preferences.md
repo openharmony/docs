@@ -23,3 +23,57 @@ The possible causes are as follows:
 
 1. Check that the file name is correct.
 2. Check that the file path is correct.
+
+## 15500019 Failed to Obtain the Subscription Service
+
+**Error Message**
+
+Failed to obtain subscription service.
+
+**Description**
+
+Failed to obtain the subscription service in inter-process event subscription.
+
+**Possible Causes**
+
+The platform does not support service subscription.
+
+**Solution**
+
+Deploy the subscription service on the platform.
+
+## 14801001 Stage Model Required
+
+**Error Message**
+
+ Only supported in stage mode.
+
+**Description**
+
+This operation can be performed only on the stage model.
+
+**Possible Causes**
+
+The context is not a stage model.
+
+**Solution**
+
+Perform the operation on the stage model.
+
+## 15501002 The dataGroupId parameter in Options is invalid.
+
+**Error Message**
+
+The data group id is not valid.
+
+**Description**
+
+The **dataGroupId** parameter is invalid.
+
+**Possible Causes**
+
+The **dataGroupId** is not obtained from the AppGallery.
+
+**Solution**
+
+Obtain **dataGroupId** from the AppGallery and pass it correctly.

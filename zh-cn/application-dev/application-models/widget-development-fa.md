@@ -110,61 +110,85 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 1. 在form.ts中，导入相关模块
    
-   ```ts
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import formInfo from '@ohos.app.form.formInfo';
-   import formProvider from '@ohos.app.form.formProvider';
-   import dataPreferences from '@ohos.data.preferences';
-   ```
+  ```ts
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import formInfo from '@ohos.app.form.formInfo';
+  import formProvider from '@ohos.app.form.formProvider';
+  import dataPreferences from '@ohos.data.preferences';
+  import Want from '@ohos.app.ability.Want';
+  ```
 
 2. 在form.ts中，实现卡片生命周期接口
    
-   ```ts
-   export default {
-     onCreate(want) {
-       console.info('FormAbility onCreate');
-       // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-       let obj = {
-         "title": "titleOnCreate",
-         "detail": "detailOnCreate"
-       };
-       let formData = formBindingData.createFormBindingData(obj);
-       return formData;
-     },
-     onCastToNormal(formId) {
-       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-       console.info('FormAbility onCastToNormal');
-     },
-     onUpdate(formId) {
-       // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-       console.info('FormAbility onUpdate');
-       let obj = {
-         "title": "titleOnUpdate",
-         "detail": "detailOnUpdate"
-       };
-       let formData = formBindingData.createFormBindingData(obj);
-       formProvider.updateForm(formId, formData).catch((error) => {
-         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-       });
-     },
-     onVisibilityChange(newStatus) {
-       // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-       console.info('FormAbility onVisibilityChange');
-     },
-     onEvent(formId, message) {
-       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-       console.info('FormAbility onEvent');
-     },
-     onDestroy(formId) {
-       // 删除卡片实例数据
-       console.info('FormAbility onDestroy');
-     },
-     onAcquireFormState(want) {
-       console.info('FormAbility onAcquireFormState');
-       return formInfo.FormState.READY;
-     },
-   }
-   ```
+  ```ts
+  class lifeCycle {
+    onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' })
+    onCastToNormal: (formId: string) => void = (formId) => {}
+    onUpdate: (formId: string) => void = (formId) => {}
+    onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
+      let obj: Record<string, number> = {
+        'test': 1
+      };
+      return obj;
+    }
+    onEvent: (formId: string, message: string) => void = (formId, message) => {}
+    onDestroy: (formId: string) => void = (formId) => {}
+    onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0)
+    onShare?: (formId: string) => Record<string, number | string | boolean | object | undefined | null> = (formId) => {
+      let obj: Record<string, number> = {
+        'test': 1
+      };
+      return obj;
+    }
+  }
+
+  let obj: lifeCycle = {
+    onCreate(want: Want) {
+      console.info('FormAbility onCreate');
+      // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+      let obj: Record<string, string> = {
+        "title": "titleOnCreate",
+        "detail": "detailOnCreate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      return formData;
+    },
+    onCastToNormal(formId: string) {
+      // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+      console.info('FormAbility onCastToNormal');
+    },
+    onUpdate(formId: string) {
+      // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+      console.info('FormAbility onUpdate');
+      let obj: Record<string, string> = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      formProvider.updateForm(formId, formData).catch((error: Error) => {
+        console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+      });
+    },
+    onVisibilityChange(newStatus: Record<string, number>) {
+      // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+      console.info('FormAbility onVisibilityChange');
+    },
+    onEvent(formId: string, message: string) {
+      // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+      console.info('FormAbility onEvent');
+    },
+    onDestroy(formId: string) {
+      // 删除卡片实例数据
+      console.info('FormAbility onDestroy');
+    },
+    onAcquireFormState(want: Want) {
+      console.info('FormAbility onAcquireFormState');
+      return formInfo.FormState.READY;
+    },
+  }
+
+  export default obj;
+```
 
 > **说明：**
 > FormAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
@@ -254,42 +278,44 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function storeFormInfo(formId: string, formName: string, tempFlag: boolean) {
-    // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
-    let formInfo = {
-        "formName": formName,
-        "tempFlag": tempFlag,
-        "updateCount": 0
-    };
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // put form info
-        await storage.put(formId, JSON.stringify(formInfo));
-        console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`failed to storeFormInfo, err: ${JSON.stringify(err)}`);
-    }
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: Context) => {
+  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+  let formInfo: Record<string, string | number | boolean> = {
+    "formName": formName,
+    "tempFlag": tempFlag,
+    "updateCount": 0
+  };
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // put form info
+    await storage.put(formId, JSON.stringify(formInfo));
+    console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
+  }
 }
 
 ...
-    onCreate(want) {
-        console.info('FormAbility onCreate');
+    onCreate(want: Want) {
+      console.info('FormAbility onCreate');
 
-        let formId = want.parameters["ohos.extra.param.key.form_identity"];
-        let formName = want.parameters["ohos.extra.param.key.form_name"];
-        let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
+      if (want.parameters) {
+        let formId = String(want.parameters["ohos.extra.param.key.form_identity"]);
+        let formName = String(want.parameters["ohos.extra.param.key.form_name"]);
+        let tempFlag = Boolean(want.parameters["ohos.extra.param.key.form_temporary"]);
         // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
         // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        storeFormInfo(formId, formName, tempFlag);
+        storeFormInfo(formId, formName, tempFlag, this.context);
+      }
 
-        let obj = {
-            "title": "titleOnCreate",
-            "detail": "detailOnCreate"
-        };
-        let formData = formBindingData.createFormBindingData(obj);
-        return formData;
+      let obj: Record<string, string> = {
+        "title": "titleOnCreate",
+        "detail": "detailOnCreate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      return formData;
     }
 ...
 ```
@@ -298,25 +324,25 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
 
 
 ```ts
-const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
-async function deleteFormInfo(formId: string) {
-    try {
-        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
-        // del form info
-        await storage.delete(formId);
-        console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
-        await storage.flush();
-    } catch (err) {
-        console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-    }
+const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
+let deleteFormInfo = async (formId: string, context: Context) => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // del form info
+    await storage.delete(formId);
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
 }
 
 ...
-    onDestroy(formId) {
-        console.info('FormAbility onDestroy');
-        // 删除之前持久化的卡片实例数据
-        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        deleteFormInfo(formId);
+    onDestroy(formId: string) {
+      console.info('FormAbility onDestroy');
+      // 删除之前持久化的卡片实例数据
+      // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+      deleteFormInfo(formId, this.context);
     }
 ...
 ```
@@ -325,9 +351,11 @@ async function deleteFormInfo(formId: string) {
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
-- 常态卡片：卡片使用方会持久化的卡片；
+- 常态卡片：卡片使用方会持久化的卡片。如添加到桌面的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片；
+- 临时卡片：卡片使用方不会持久化的卡片。如上划卡片应用时显示的卡片。
+
+临时卡片转常态卡片：上划卡片应用后，此时会显示的卡片为临时卡片；点击卡片上的“图钉”按钮后添加到桌面，此时卡片转为常态卡片。
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景例如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
@@ -338,18 +366,18 @@ async function deleteFormInfo(formId: string) {
 
 
 ```ts
-onUpdate(formId) {
-    // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-    console.info('FormAbility onUpdate');
-    let obj = {
-        "title": "titleOnUpdate",
-        "detail": "detailOnUpdate"
-    };
-    let formData = formBindingData.createFormBindingData(obj);
-    // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
-    formProvider.updateForm(formId, formData).catch((error) => {
-        console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-    });
+onUpdate(formId: string) {
+  // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+  console.info('FormAbility onUpdate');
+  let obj: Record<string, string> = {
+    "title": "titleOnUpdate",
+    "detail": "detailOnUpdate"
+  };
+  let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+  // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
+  formProvider.updateForm(formId, formData).catch((error: Error) => {
+    console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+  });
 }
 ```
 

@@ -1,4 +1,4 @@
-# \@Provide和\@Consume：与后代组件双向同步
+# \@Provide装饰器和\@Consume装饰器：与后代组件双向同步
 
 
 \@Provide和\@Consume，应用于与后代组件的双向数据同步，应用于状态数据在多个层级之间传递的场景。不同于上文提到的父子组件之间通过命名参数机制传递，\@Provide和\@Consume摆脱参数传递机制的束缚，实现跨层级传递。
@@ -20,7 +20,7 @@
 
 - 后代通过使用\@Consume去获取\@Provide提供的变量，建立在\@Provide和\@Consume之间的双向数据同步，与\@State/\@Link不同的是，前者可以在多层级的父子组件之间传递。
 
-- \@Provide和\@Consume可以通过相同的变量名或者相同的变量别名绑定，变量类型必须相同。
+- \@Provide和\@Consume可以通过相同的变量名或者相同的变量别名绑定，建议类型相同，否则会发生类型隐式转换，从而导致应用行为异常。
 
 
 ```ts
@@ -34,7 +34,7 @@
 ```
 
 
-\@Provide和\@Consume通过相同的变量名或者相同的变量别名绑定时，\@Provide修饰的变量和\@Consume修饰的变量是一对多的关系。不允许在同一个自定义组件内，包括其子组件中声明多个同名或者同别名的\@Provide装饰的变量。
+\@Provide和\@Consume通过相同的变量名或者相同的变量别名绑定时，\@Provide修饰的变量和\@Consume修饰的变量是一对多的关系。不允许在同一个自定义组件内，包括其子组件中声明多个同名或者同别名的\@Provide装饰的变量，@Provide的属性名或别名需要唯一且确定，如果声明多个同名或者同别名的@Provide装饰的变量，会发生运行时报错。
 
 
 ## 装饰器说明
@@ -45,14 +45,14 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
 | 被装饰变量的初始值      | 必须指定。                                    |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父节点或者祖先节点上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父节点或者祖先节点上，必须有对应的属性和别名的\@Provide装饰的变量。 |
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -61,7 +61,7 @@
 
 | \@Provide传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
-| 从父组件初始化和更新     | 可选，允许父组件中常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
+| 从父组件初始化和更新     | 可选，允许父组件中常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量装饰变量初始化子组件\@Provide。 |
 | 用于初始化子组件       | 允许，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 和父组件同步         | 否。                                       |
 | 和后代组件同步        | 和\@Consume双向同步。                          |
@@ -99,6 +99,62 @@
 
 - 当装饰的对象是array的时候，可以观察到数组的添加、删除、更新数组单元。
 
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+
+```ts
+@Component
+struct CompD {
+
+  @Consume selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the day by 1`)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+        })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct CompA {
+
+  @Provide selectedDate: Date = new Date('2021-08-08')
+
+  build() {
+    Column() {
+      Button('parent increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+        })
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-07-07')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+      CompD()
+    }
+  }
+}
+```
 
 ### 框架行为
 

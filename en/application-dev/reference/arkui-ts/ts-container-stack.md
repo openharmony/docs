@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name        | Type                                   | Description                                                        |
 | ------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | Alignment of child components in the container.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When this attribute and the universal attribute [align](ts-universal-attributes-location.md) are both set, only the **align** setting takes effect.|
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | Alignment of child components in the container.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.|
 
 
 ## Example

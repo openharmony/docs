@@ -110,11 +110,11 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。取值范围为大于0。 |
-| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，取值范围为大于0。 |
-| maxAccuracy | number | 是 | 是 | 表示精度信息。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。 |
+| distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。 |
+| maxAccuracy | number | 是 | 是 | 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。默认值为0，取值范围为大于等于0。 |
 
 
 ## CurrentLocationRequest
@@ -125,9 +125,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。 |
-| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
-| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。取值范围为大于0。 |
+| priority | [LocationRequestPriority](#locationrequestpriority) | 是 | 是 | 表示优先级信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestPriority](#locationrequestpriority)的定义。|
+| scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
+| maxAccuracy | number | 是 | 是| 表示精度信息，单位是米。仅在精确位置功能场景下有效，模糊位置功能生效场景下该字段无意义。默认值为0，取值范围为大于等于0。 |
 | timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
 
@@ -224,7 +224,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -238,7 +238,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 类型 | 可读|可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -256,6 +256,69 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | -------- | -------- | -------- | -------- | -------- |
 | country | string | 是 | 否 | 表示国家码字符串。 |
 | type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
+
+
+## LocatingRequiredDataConfig<sup>10+</sup>
+
+获取定位所需数据时的配置参数。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 是 | 是 | 表示请求获取数据的类型。 |
+| needStartScan |  boolean | 是 | 是 | 表示是否需要发起扫描。 |
+| scanInterval |  number | 是 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
+| scanTimeout |  number | 是 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
+
+
+## LocatingRequiredData<sup>10+</sup>
+
+表示定位业务所需的数据，包含WiFi或蓝牙扫描结果，APP拿到这些数据之后可以用于网络定位等业务。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | 是 | 否 | 表示WiFi扫描结果。 |
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 是 | 否 | 表示蓝牙扫描结果。 |
+
+
+## WifiScanInfo<sup>10+</sup>
+
+WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| ssid | string | 是 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 是 | 否 | WiFi热点的BSSID。 |
+| rssi | number | 是 | 否 | WiFi热点的信号强度(dBm)。 |
+| frequency | number | 是 | 否 | WiFi热点的频率。 |
+| timestamp | number | 是 | 否 | 时间戳。 |
+
+
+## BluetoothScanInfo<sup>10+</sup>
+
+蓝牙扫描信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 类型 | 可读|可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 否 | 蓝牙设备名称。 |
+| macAddress | string | 是 | 否 | 蓝牙设备的MAC地址。 |
+| rssi | number | 是 | 否 | 蓝牙设备的信号强度(dBm)。 |
+| timestamp | number | 是 | 否 | 时间戳。 |
 
 
 ## LocationRequestPriority
@@ -294,7 +357,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -315,6 +378,20 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |
 | COUNTRY_CODE_FROM_LOCATION | 3 | 基于用户的位置信息，通过逆地理编码查询到的国家码。 |
 | COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |
+
+
+## LocatingRequiredDataType<sup>10+</sup>
+
+定位业务所需数据的类型。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| WIFI  | 1 | 表示WiFi扫描信息。 |
+| BLUETOOTH | 2 | 表示蓝牙扫描信息。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -349,14 +426,15 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geoLocationManager.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   
   ```
@@ -393,15 +471,16 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
-  let locationChange = (location) => {
-      console.log('locationChanger: data: ' + JSON.stringify(location));
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geoLocationManager.Location):void => {
+    console.log('locationChanger: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
       geoLocationManager.off('locationChange', locationChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -433,13 +512,14 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let locationEnabledChange = (state) => {
+  import BusinessError from "@ohos.base";
+  let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -471,14 +551,15 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let locationEnabledChange = (state) => {
+  import BusinessError from "@ohos.base";
+  let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: state: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
       geoLocationManager.off('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -487,7 +568,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-订阅缓存GNSS定位结果上报事件。
+订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -515,14 +596,15 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let cachedLocationsCb = (locations) => {
+  import BusinessError from "@ohos.base";
+  let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -531,7 +613,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-取消订阅缓存GNSS定位结果上报事件。
+取消订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -558,15 +640,16 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let cachedLocationsCb = (locations) => {
+  import BusinessError from "@ohos.base";
+  let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
-  let requestInfo = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
+  let requestInfo:geoLocationManager.CachedGnssLocationsRequest = {'reportingPeriodSec': 10, 'wakeUpCacheQueueFull': true};
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -601,14 +684,15 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  import BusinessError from "@ohos.base";
+  let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
 
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -644,14 +728,15 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let gnssStatusCb = (satelliteStatusInfo) => {
+  import BusinessError from "@ohos.base";
+  let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
       geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -687,14 +772,15 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let nmeaCb = (str) => {
+  import BusinessError from "@ohos.base";
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
 
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb );
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -730,7 +816,8 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let nmeaCb = (str) => {
+  import BusinessError from "@ohos.base";
+  let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
 
@@ -738,7 +825,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
       geoLocationManager.on('nmeaMessage', nmeaCb);
       geoLocationManager.off('nmeaMessage', nmeaCb);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -747,7 +834,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-添加一个围栏，并订阅地理围栏事件。
+添加一个围栏，并订阅地理围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -776,8 +863,9 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   import wantAgent from '@ohos.app.ability.wantAgent';
-  
-  let wantAgentInfo = {
+  import BusinessError from "@ohos.base";
+
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -791,11 +879,11 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
     }
   });
   ```
@@ -805,7 +893,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-删除一个围栏，并取消订阅该围栏事件。
+删除一个围栏，并取消订阅该围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -834,8 +922,9 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   import wantAgent from '@ohos.app.ability.wantAgent';
+  import BusinessError from "@ohos.base";
   
-  let wantAgentInfo = {
+  let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
           {
               bundleName: "com.example.myapplication",
@@ -849,12 +938,12 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};;
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
     }
   });
   ```
@@ -889,14 +978,15 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let callback = (code) => {
+  import BusinessError from "@ohos.base";
+  let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
 
   try {
       geoLocationManager.on('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -929,7 +1019,8 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let callback = (code) => {
+  import BusinessError from "@ohos.base";
+  let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
 
@@ -937,10 +1028,95 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
+
+## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
+
+on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+
+订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示订阅定位业务所需数据的变化。 |
+  | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | 是 | 表示获取定位所需数据时的配置参数。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 是 | 接收定位业务所需数据的上报。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301800 | Failed to start WiFi or Bluetooth scanning.                            |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
+      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+  }
+  let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.on('locatingRequiredDataChange', config, callback);
+  } catch (err) {
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+  }
+  ```
+
+
+## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
+
+off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+
+取消订阅定位业务所需数据的变化，并停止WiFi和蓝牙扫描。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示取消订阅定位业务所需数据的变化。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+
+**错误码**：
+
+错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
+      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+  }
+  let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.on('locatingRequiredDataChange', config, callback);
+      geoLocationManager.off('locatingRequiredDataChange', callback);
+  } catch (err) {
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+  }
+  ```
 
 
 ## geoLocationManager.getCurrentLocation
@@ -974,8 +1150,9 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
+  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -987,7 +1164,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   try {
       geoLocationManager.getCurrentLocation(requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1021,7 +1198,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let locationChange = (err, location) => {
+  import BusinessError from "@ohos.base";
+  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
       if (err) {
           console.log('locationChanger: err=' + JSON.stringify(err));
       }
@@ -1033,7 +1211,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
   try {
       geoLocationManager.getCurrentLocation(locationChange);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1073,16 +1251,17 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0};
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
       })  
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1117,10 +1296,11 @@ getLastLocation(): Location
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       let location = geoLocationManager.getLastLocation();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1151,10 +1331,11 @@ isLocationEnabled(): boolean
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1165,7 +1346,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
 打开位置服务，使用callback回调异步返回结果。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1189,6 +1370,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.enableLocation((err, data) => {
           if (err) {
@@ -1196,7 +1378,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1207,7 +1389,7 @@ enableLocation(): Promise&lt;void&gt;
 
 打开位置服务，使用Promise方式异步返回结果。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1231,15 +1413,16 @@ enableLocation(): Promise&lt;void&gt;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.enableLocation().then((result) => {
           console.log('promise, enableLocation succeed');
       })
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1249,7 +1432,7 @@ disableLocation(): void;
 
 关闭位置服务。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -1267,13 +1450,13 @@ disableLocation(): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.disableLocation();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
-
 
 
 ## geoLocationManager.getAddressesFromLocation
@@ -1304,7 +1487,8 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  import BusinessError from "@ohos.base";
+  let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
           if (err) {
@@ -1315,7 +1499,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1353,16 +1537,17 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
+  import BusinessError from "@ohos.base";
+  let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1395,7 +1580,8 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  import BusinessError from "@ohos.base";
+  let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
           if (err) {
@@ -1406,7 +1592,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1444,16 +1630,17 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
+  import BusinessError from "@ohos.base";
+  let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1483,10 +1670,11 @@ isGeocoderAvailable(): boolean;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1495,7 +1683,7 @@ isGeocoderAvailable(): boolean;
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1520,6 +1708,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
@@ -1530,7 +1719,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1539,7 +1728,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1564,15 +1753,16 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1581,7 +1771,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1607,6 +1797,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.flushCachedGnssLocations((err, result) => {
           if (err) {
@@ -1614,7 +1805,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1623,7 +1814,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1649,15 +1840,16 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.flushCachedGnssLocations().then((result) => {
           console.log('promise, flushCachedGnssLocations success');
       })
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1689,7 +1881,8 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err, result) => {
           if (err) {
@@ -1697,7 +1890,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1734,16 +1927,17 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let requestInfo = {'scenario': 0x301, 'command': "command_1"};
+  import BusinessError from "@ohos.base";
+  let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then((result) => {
           console.log('promise, sendCommand success');
       })  
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1775,6 +1969,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
@@ -1785,7 +1980,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1817,16 +2012,17 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.getCountryCode()
       .then((result) => {
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
-      .catch((error) => {
+      .catch((error:number) => {
           console.log('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1839,7 +2035,7 @@ enableLocationMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1854,10 +2050,11 @@ enableLocationMock(): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.enableLocationMock();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1870,7 +2067,7 @@ disableLocationMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1885,10 +2082,11 @@ disableLocationMock(): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.disableLocationMock();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1903,7 +2101,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1924,19 +2122,20 @@ setMockedLocations(config: LocationMockConfig): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let locations = [
+  import BusinessError from "@ohos.base";
+  let locations:Array<geoLocationManager.Location> = [
       {"latitude": 30.12, "longitude": 120.11, "altitude": 123, "accuracy": 1, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 1000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 31.13, "longitude": 121.11, "altitude": 123, "accuracy": 2, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 2000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 32.14, "longitude": 122.11, "altitude": 123, "accuracy": 3, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 3000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 33.15, "longitude": 123.11, "altitude": 123, "accuracy": 4, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 4000000000, "additionSize": 0, "isFromMock": true},
       {"latitude": 34.16, "longitude": 124.11, "altitude": 123, "accuracy": 5, "speed": 5.2, "timeStamp": 16594326109, "direction": 123.11, "timeSinceBoot": 5000000000, "additionSize": 0, "isFromMock": true}
   ];
-  let config = {"timeInterval": 5, "locations": locations};
+  let config:geoLocationManager.LocationMockConfig = {"timeInterval": 5, "locations": locations};
   try {
       geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1949,7 +2148,7 @@ enableReverseGeocodingMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1963,10 +2162,11 @@ enableReverseGeocodingMock(): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.enableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -1979,7 +2179,7 @@ disableReverseGeocodingMock(): void;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **错误码**：
 
@@ -1993,10 +2193,11 @@ disableReverseGeocodingMock(): void;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.disableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -2011,7 +2212,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -2031,18 +2232,19 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
-  let mockInfos = [
-      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+  import BusinessError from "@ohos.base";
+  let mockInfos:Array<geoLocationManager.ReverseGeocodingMockInfo> = [
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "isFromMock": true}},
   ];
   try {
       geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -2053,7 +2255,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -2081,10 +2283,11 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```
 
@@ -2095,7 +2298,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -2120,9 +2323,61 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
 
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
   } catch (err) {
-      console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+  }
+  ```
+
+
+## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
+
+getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;;
+
+单次获取定位业务所需数据，包含WiFi蓝牙扫描信息，使用Promise方式异步返回结果。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | 是 | 表示获取定位所需数据时的配置参数。 |
+
+**返回值**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | Promise&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt;  | [LocatingRequiredData](#locatingrequireddata10) | NA | 用来接收定位业务所需数据，包含WiFi蓝牙扫描信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301800  | Failed to start WiFi or Bluetooth scanning.                    |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
+  try {
+      geoLocationManager.getLocatingRequiredData(config).then((result) => {
+          console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
+      })  
+      .catch((error:number) => {
+          console.log('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
   }
   ```

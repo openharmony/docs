@@ -22,7 +22,6 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 - 应用在首次启动时，避免频繁弹窗申请多个权限；权限须在用户使用对应业务功能时动态申请。
 - 用户拒绝授予某个权限时，与此权限无关的其他业务功能应能正常使用，不能影响应用的正常注册或登录。
 - 业务功能所需要的权限被用户拒绝且禁止后不再提示，当用户主动触发使用此业务功能或为实现业务功能所必须时，应用程序可通过界面内文字引导，让用户主动到“系统设置”中授权。
-
 - 当前不允许应用自行定义权限，应用申请的权限应该从[已有的权限列表](permission-list.md)中选择。
 
 ## 权限的工作流程
@@ -39,9 +38,13 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 ![](figures/permission-workflow.jpg)
 
+上图的数字标注，请参考以下说明：
+
 1：开发者可以参考下图，判断应用能否申请目标权限。
 
 ![](figures/permission-application-process.png)
+
+上图的数字标注，请参考以下说明：
 
 1：应用APL等级与权限等级的匹配关系请参考[权限等级说明](#权限等级说明)。
 
@@ -50,6 +53,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 3：应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制列表（ACL）说明](#访问控制列表acl说明)。
 
 ### 权限校验的工作流程
+
 应用在提供对外功能服务接口时，可以根据接口涉数据的敏感程度或所涉能力的安全威胁影响，在[权限定义列表](permission-list.md)选择合适的权限保护当前接口，对访问者进行权限校验。
 
 当且仅当访问者获取当前接口所需权限后，才能通过当前接口的权限校验，并正常使用当前应用提供的目标功能。
@@ -58,13 +62,15 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 ![](figures/permission-verify-process.png)
 
+上图的数字标注，请参考以下说明：
+
 1：根据应用当前提供的接口是否涉及敏感的数据或者功能，使用应用权限对当前接口进行访问控制。
 
 2：应用可以在系统已经存在的权限中[访问控制列表（ACL）说明](#访问控制列表acl说明)选择适合的权限。比如应用提供的接口会涉及到联系人信息的话，推荐使用联系人相关的权限对接口进行保护。
 
 3：应用可以使用权限校验接口对访问者进行鉴权，可参考[权限校验说明](permission-verify-guidelines.md)。
 
-## 权限等级说明
+## 权限等级
 
 根据接口所涉数据的敏感程度或所涉能力的安全威胁影响，ATM模块定义了不同开放范围的权限等级来保护用户隐私。
 
@@ -124,7 +130,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 - **system_core权限**
 
     system_core权限涉及到开放操作系统核心资源的访问操作。这部分系统资源是系统最核心的底层服务，如果遭受破坏，操作系统将无法正常运行。
-    
+
     鉴于该类型权限对系统的影响程度非常大，目前暂不向任何三方应用开放。
 
 ## 权限类型说明
@@ -147,6 +153,14 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
     应用需要在应用商店的详情页面，向用户展示所申请的user_grant权限列表。
 
+### 权限组和子权限
+
+为了仅可能减少系统弹出的权限弹窗数量，优化交互体验，系统将逻辑紧密相关的user_grant权限组合在一起，形成多个权限组。
+
+当应用请求权限时，同一个权限组的权限将会在一个弹窗内一起请求用户授权。权限组中的某个权限，称之为该权限组的子权限。
+
+权限组和权限的归属关系并不是固定不变的，一个权限所属的权限组有可能发生变化。当前系统支持权限组请查阅[应用权限组列表](permission-group-list.md)。
+
 ### 不同权限类型的授权流程
 
 如[权限的工作流程](#权限的工作流程)所示，如果应用需要获取目标权限，那么需要先进行权限申请。
@@ -157,14 +171,14 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 - 权限授权
 
-   - 如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
-   - 如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
+  - 如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
+  - 如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
 
 ### user_grant权限请求授权的步骤详解
 
 在应用需要获取user_grant权限时，请完成以下步骤：
 
-1. 在配置文件中，声明应用需要请求的权限，详见[访问控制开发指导](accesstoken-guidelines.md)。
+1. 在配置文件中，声明应用需要请求的权限，详见[访问控制开发指导-配置文件权限声明](accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 将应用中需要申请权限的目标对象与对应目标权限进行关联，让用户明确地知道，哪些操作需要用户向应用授予指定的权限。
 
@@ -172,10 +186,10 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 4. 检查用户的授权结果，确认用户已授权才可以进行下一步操作。
 
-**注意事项：** 
+**注意事项：**
 
 - 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
-- 如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md)。
+- 如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md#向用户申请授权)。
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 - 即使用户向应用授予过请求的权限，应用在调用受此权限管控的接口前，也应该先检查自己有无此权限，而不能把之前授予的状态持久化，因为用户在动态授予后还可以通过设置取消应用的权限。
 

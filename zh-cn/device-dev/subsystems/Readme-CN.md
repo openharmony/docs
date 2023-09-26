@@ -1,4 +1,4 @@
-# subsystems
+# 子系统开发
 
 - 编译构建
     - [编译构建指导](subsys-build-all.md)
@@ -24,15 +24,16 @@
         - [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
-- [分布式远程启动](subsys-remote-start.md)
+- ArkUI
+    - [窗口标题栏定制](subsys-arkui-customize_titlebar.md)
 - 小型系统图形图像
     - [小型系统图形图像概述](subsys-graphics-overview.md)
-      - [普通组件开发指导](subsys-graphics-common-guide.md)
-      - [容器类组件开发指导](subsys-graphics-container-guide.md)
-      - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
-      - [动画开发指导](subsys-graphics-animation-guide.md)
-      - [Windows QT 模拟器使用指导](subsys-graphics-simulator-guide.md)
-      - [如何对接图形框架](subsys-graphics-porting-guide.md)
+    - [普通组件开发指导](subsys-graphics-common-guide.md)
+    - [容器类组件开发指导](subsys-graphics-container-guide.md)
+    - [布局容器类组件开发指导](subsys-graphics-layout-guide.md)
+    - [动画开发指导](subsys-graphics-animation-guide.md)
+    - [Windows QT 模拟器使用指导](subsys-graphics-simulator-guide.md)
+    - [如何对接图形框架](subsys-graphics-porting-guide.md)
 - 媒体
     - 相机
         - [相机开发概述](subsys-multimedia-camera-overview.md)

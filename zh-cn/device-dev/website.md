@@ -57,103 +57,57 @@
     - [RK3568开发板介绍](quick-start/quickstart-appendix-rk3568.md)
     - [编译形态整体说明](quick-start/quickstart-appendix-compiledform.md)
     - [Hi3516标准系统入门（IDE方式）](quick-start/quickstart-appendix-hi3516-ide.md)
-    - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
-  
+    - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md) 
   - [获取源码](get-code/sourcecode-acquire.md)
 - 隐私和安全
   - [隐私保护](security/security-privacy-protection.md)
   - [安全指南](security/security-guidelines-overall.md)
-
 - 移植
-
   - 轻量系统芯片移植指导
-
     - [概述](porting/porting-minichip-overview.md)
-
     - [移植准备](porting/porting-minichip-prepare.md)
-
     - [移植内核](porting/porting-minichip-kernel.md)
-
     - 移植子系统
-
       - [移植子系统概述](porting/porting-minichip-subsys-overview.md)
-
       - [移植启动恢复子系统](porting/porting-minichip-subsys-startup.md)
-
       - [移植文件子系统](porting/porting-minichip-subsys-filesystem.md)
-
       - [移植安全子系统](porting/porting-minichip-subsys-security.md)
-
       - [移植通信子系统](porting/porting-minichip-subsys-communication.md)
-
       - [移植外设驱动子系统](porting/porting-minichip-subsys-driver.md)
-
       - [配置其他子系统](porting/porting-minichip-subsys-others.md)
-
     - [移植验证](porting/porting-minichip-verification.md)
-
     - [常见问题](porting/porting-chip-faqs.md)
-
   - 小型系统芯片移植指导
-
     - 移植准备
-
       - [移植须知](porting/porting-smallchip-prepare-needs.md)
-
       - [编译构建](porting/porting-smallchip-prepare-building.md)
-
     - 移植内核
-
       - [LiteOS-A内核](porting/porting-smallchip-kernel-a.md)
-
       - [Linux内核](porting/porting-smallchip-kernel-linux.md)
-
     - 驱动移植
-
       - [移植概述](porting/porting-smallchip-driver-overview.md)
-
       - [平台驱动移植](porting/porting-smallchip-driver-plat.md)
-
       - [器件驱动移植](porting/porting-smallchip-driver-oom.md)
-
   - 标准系统芯片移植指导
-
     - [标准系统移植指南](porting/standard-system-porting-guide.md)
-
     - [一种快速移植OpenHarmony Linux内核的方法](porting/porting-linux-kernel.md)
-
   - 轻量和小型系统三方库移植指导
-
     - [概述](porting/porting-thirdparty-overview.md)
-
     - [CMake方式组织编译的库移植](porting/porting-thirdparty-cmake.md)
-
     - [Makefile方式组织编译的库移植](porting/porting-thirdparty-makefile.md)
-
   - 轻量系统芯片移植案例
-
       - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)
-
       - [Combo解决方案之ASR芯片移植案例](porting/porting-asr582x-combo-demo.md)
-
       - [物联网解决方案之芯海cst85芯片移植案例](porting/porting-cst85f01-combo-demo.md)
-
       - [轻量系统STM32F407芯片移植案例](porting/porting-stm32f407-on-minisystem-eth.md)
-
       - [Combo解决方案之W800芯片移植案例](porting/porting-w800-combo-demo.md)
-
   - 小型系统芯片移植案例
-
       - [小型设备STM32MP1芯片移植案例](porting/porting-stm32mp15xx-on-smallsystem.md)
-
   - 标准系统芯片移植案例
-
       - [标准系统方案之瑞芯微RK3568移植案例](porting/porting-dayu200-on_standard-demo.md)
       - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
       - [标准系统方案之扬帆移植案例](porting/porting-yangfan-on_standard-demo.md)
-
 - 子系统开发
-
   -  内核
      - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核（LiteOS-M）
@@ -320,14 +274,7 @@
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   -  驱动
      - [驱动概述](driver/driver-overview-foundation.md)
-     - HDF驱动框架
-       - [HDF开发概述](driver/driver-hdf-overview.md)
-       - [驱动开发](driver/driver-hdf-development.md)
-       - [驱动加载](driver/driver-hdf-load.md)
-       - [驱动服务管理](driver/driver-hdf-servicemanage.md)
-       - [驱动消息机制管理](driver/driver-hdf-message-management.md)
-       - [配置管理](driver/driver-hdf-manage.md)
-       - [HDF开发实例](driver/driver-hdf-sample.md)
+     - [HDF驱动开发流程](driver/driver-hdf-manage.md)
      - 平台驱动开发
        - [ADC](driver/driver-platform-adc-develop.md)
        - [DAC](driver/driver-platform-dac-develop.md)
@@ -384,7 +331,6 @@
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - 编译构建参考
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
        - [产品配置规则](subsystems/subsys-build-product.md)
        - [子系统配置规则](subsystems/subsys-build-subsystem.md)
        - [部件配置规则](subsystems/subsys-build-component.md)
@@ -398,15 +344,22 @@
        - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
        - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
+       - Rust编译构建指导
+         - [Rust模块配置规则和指导](subsystems/subsys-build-rust-compilation.md)
+         - [交互工具使用指导](subsystems/subsys-build-bindgen-cxx-guide.md)
+         - [Cargo2gn工具操作指导](subsystems/subsys-build-cargo2gn-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler](subsystems/subsys-arkcompiler-guide.md)
-  -  [分布式远程启动](subsystems/subsys-remote-start.md)
+  -  ArkUI
+     - [窗口标题栏定制](subsystems/subsys-arkui-customize_titlebar.md) 
   -  图形图像
      - [图形图像概述](subsystems/subsys-graphics-overview.md)
+     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
      - [容器类组件开发指导](subsystems/subsys-graphics-container-guide.md)
      - [布局容器类组件开发指导](subsystems/subsys-graphics-layout-guide.md)
-     - [普通组件开发指导](subsystems/subsys-graphics-common-guide.md)
      - [动画开发指导](subsystems/subsys-graphics-animation-guide.md)
+     - [Windows QT 模拟器使用指导](subsystems/subsys-graphics-simulator-guide.md)
+     - [如何对接图形框架](subsystems/subsys-graphics-porting-guide.md)
   -  媒体
      - 相机
        - [相机开发概述](subsystems/subsys-multimedia-camera-overview.md)
@@ -505,13 +458,9 @@
 - 专题
   - HPM Part
     - [HPM Part介绍](hpm-part/hpm-part-about.md)
-
     - [HPM Part开发指导](hpm-part/hpm-part-development.md)
-
     - [HPM Part参考](hpm-part/hpm-part-reference.md)
-
 - 设备开发示例
-
   - 轻量和小型系统设备
     - WLAN连接类产品
       - [LED外设控制](guide/device-wlan-led-control.md)
@@ -537,15 +486,14 @@
     - [时钟应用开发指导](guide/device-clock-guide.md)
     - [平台驱动开发示例](guide/device-driver-demo.md)
     - [外设驱动开发示例](guide/device-outerdriver-demo.md)
-
-
 - 调测
   - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
   - [xdevice测试调度框架使用指导](device-test/xdevice.md)
+  - [Smartperf-Host调优工具使用指导](device-test/smartperf-host.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsystems/subsys-toolchain-hdc-guide.md)
-    - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
+    - [hiperf使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具
   - [工具概述](get-code/gettools-overview.md)

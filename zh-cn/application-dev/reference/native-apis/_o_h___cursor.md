@@ -25,7 +25,7 @@
 | -------- | -------- |
 | [id](_r_d_b.md) | OH_Cursor结构体的唯一标识符。 |
 | [getColumnCount](_r_d_b.md#getcolumncount) | 函数指针，获取结果集中的列数。 |
-| [getColumnType](_r_d_b.md#getcolumntype) | 函数指针，根据指定的列索引获取列名。 |
+| [getColumnType](_r_d_b.md#getcolumntype) | 函数指针，根据指定的列索引获取列类型。 |
 | [getColumnIndex](_r_d_b.md#getcolumnindex) | 函数指针，根据指定的列名获取列索引。 |
 | [getColumnName](_r_d_b.md#getcolumnname) | 函数指针，根据指定的列索引获取列名。 |
 | [getRowCount](_r_d_b.md#getrowcount) | 函数指针，获取结果集中的行数。 |
@@ -36,4 +36,4 @@
 | [getReal](_r_d_b.md#getreal) | 函数指针，以double形式获取当前行中指定列的值。 |
 | [getBlob](_r_d_b.md#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。 |
 | [isNull](_r_d_b.md#isnull-12) | 函数指针，检查当前行中指定列的值是否为null。 |
-| [close](_r_d_b.md#close) | 函数指针，关闭结果集。 |
+| [destroy](_r_d_b.md#destroy-14) | 函数指针，关闭结果集。 |

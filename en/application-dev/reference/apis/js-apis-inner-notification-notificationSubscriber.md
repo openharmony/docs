@@ -1,6 +1,6 @@
 # NotificationSubscriber
 
-Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](js-apis-notificationSubscribe.md).
+The **NotificationSubscriber** module provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](js-apis-notificationSubscribe.md).
 
 > **NOTE**
 >
@@ -32,23 +32,25 @@ Called when a new notification is received.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onConsumeCallback(data) {
-    console.info('===> onConsume in test');
-    let req = data.request;
-    console.info('===> onConsume callback req.id:' + req.id);
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info('===> onConsume in test');
+  let req = data.request;
+  console.info('===> onConsume callback req.id:' + req.id);
 };
 
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -72,23 +74,25 @@ Called when a notification is canceled.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onCancelCallback(data) {
-    console.info('===> onCancel in test');
-    let req = data.request;
-    console.info('===> onCancel callback req.id:' + req.id);
+function onCancelCallback(data: notificationSubscribe.SubscribeCallbackData) {
+  console.info('===> onCancel in test');
+  let req = data.request;
+  console.info('===> onCancel callback req.id:' + req.id);
 }
 
-let subscriber = {
-    onCancel: onCancelCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onCancel: onCancelCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -112,21 +116,21 @@ Called when notification sorting is updated.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onUpdateCallback(map) {
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onUpdate: (map) => {
     console.info('===> onUpdateCallback map:' + JSON.stringify(map));
-}
-
-let subscriber = {
-    onUpdate: onUpdateCallback
+  }
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -144,21 +148,23 @@ Called when the subscription is complete.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onConnectCallback() {
-    console.info('===> onConnect in test');
+let onConnectCallback = () => {
+  console.info('===> onConnect in test');
 }
 
-let subscriber = {
-    onConnect: onConnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConnect: onConnectCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -176,32 +182,34 @@ Called when unsubscription is complete.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribeCallback");
-    }
+let unsubscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribeCallback");
+  }
 };
 
-function onConnectCallback() {
-    console.info('===> onConnect in test');
+let onConnectCallback = () => {
+  console.info('===> onConnect in test');
 }
-function onDisconnectCallback() {
-    console.info('===> onDisconnect in test');
+let onDisconnectCallback = () => {
+  console.info('===> onDisconnect in test');
 }
 
-let subscriber = {
-    onConnect: onConnectCallback,
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConnect: onConnectCallback,
+  onDisconnect: onDisconnectCallback
 };
 
 // The onConnect callback is invoked when subscription to the notification is complete.
@@ -222,21 +230,23 @@ Called when the service is disconnected.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onDestroyCallback() {
-    console.info('===> onDestroy in test');
+let onDestroyCallback = () => {
+  console.info('===> onDestroy in test');
 }
 
-let subscriber = {
-    onDestroy: onDestroyCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDestroy: onDestroyCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -260,21 +270,23 @@ Called when the DND time settings are changed.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onDoNotDisturbDateChangeCallback(mode) {
-    console.info('===> onDoNotDisturbDateChange:' + mode);
+let onDoNotDisturbDateChangeCallback = (mode: NotificationManager.DoNotDisturbDate) => {
+  console.info('===> onDoNotDisturbDateChange:' + mode);
 }
 
-let subscriber = {
-    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -283,7 +295,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
 
 Listens for the notification enabled status changes.
 
@@ -295,27 +307,29 @@ Listens for the notification enabled status changes.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: ", callbackData.bundle);
-    console.info("uid: ", callbackData.uid);
-    console.info("enable: ", callbackData.enable);
+let onEnabledNotificationChangedCallback = (callbackData: notificationSubscribe.EnabledNotificationCallbackData) => {
+  console.info("bundle: ", callbackData.bundle);
+  console.info("uid: ", callbackData.uid);
+  console.info("enable: ", callbackData.enable);
 };
 
-let subscriber = {
-    onEnabledNotificationChanged: onEnabledNotificationChangedCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onEnabledNotificationChanged: onEnabledNotificationChangedCallback
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -339,23 +353,23 @@ Listens for the change of the notification badge number.
 
 **Example**
 
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribeCallback");
+  }
 };
 
-function onBadgeChangedCallback(data) {
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onBadgeChanged: (data) => {
     console.info("bundle: ", data.bundle);
     console.info("uid: ", data.uid);
     console.info("badgeNumber: ", data.badgeNumber);
-};
-
-let subscriber = {
-    onBadgeChanged: onBadgeChangedCallback
+  }
 };
 
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
@@ -367,9 +381,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Type                                             | Read-only| Mandatory| Description    |
+| Name           | Type                                             | Readable| Writable| Description    |
 | --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | Yes | Notification content.|
+| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | No | Notification content.|
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | Yes | No | Notification sorting information.|
 | reason          | number                                            | Yes | No | Reason for deletion.|
 | sound           | string                                            | Yes | No | Sound used for notification.|
@@ -382,11 +396,11 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name  | Type   | Read-only| Mandatory| Description            |
+| Name  | Type   | Readable| Writable| Description            |
 | ------ | ------- | ---- | --- | ---------------- |
-| bundle | string  | Yes | Yes | Bundle name of the application.      |
-| uid    | number  | Yes | Yes | UID of the application.       |
-| enable | boolean | Yes | Yes | Notification enabled status of the application.|
+| bundle | string  | Yes | No | Bundle name of the application.      |
+| uid    | number  | Yes | No | UID of the application.       |
+| enable | boolean | Yes | No | Notification enabled status of the application.|
 
 
 ## BadgeNumberCallbackData<sup>10+</sup>
@@ -395,8 +409,8 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name       | Type  | Read-only| Mandatory| Description        |
+| Name       | Type  | Readable| Writable| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundle      | string | Yes  | Yes  | Bundle name of the application.|
-| uid         | number | Yes  | Yes  | UID of the application. |
-| badgeNumber | number | Yes  | Yes  | Number of notifications displayed on the application icon.  |
+| bundle      | string | Yes  | No  | Bundle name of the application.|
+| uid         | number | Yes  | No  | UID of the application. |
+| badgeNumber | number | Yes  | No  | Number of notifications displayed on the application icon.  |

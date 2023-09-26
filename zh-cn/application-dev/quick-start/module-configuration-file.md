@@ -61,8 +61,7 @@
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50,
-  "isolationMode": "nonisolationFirst"
+  "targetPriority": 50
 }
 ```
 
@@ -74,7 +73,7 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一，不支持中文。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一，不支持中文。在应用升级时，该名称允许修改，但需要应用适配Module相关数据目录的迁移，可使用[文件操作接口](../reference/apis/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。类型有4种，分别：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，标签值为字符串（最长为127字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，标签值是字符串类型（最长255字节）或对描述内容的字符串资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -94,9 +93,11 @@ module.json5配置文件包含以下标签。
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 | targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
-| [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
+| [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
-| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
+| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
+| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
+| libIsolation | 用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
 
 ## deviceTypes标签
 
@@ -180,7 +181,7 @@ deviceTypes示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 该标签标识数据项的键名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| name | 该标签标识数据项的名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | value | 该标签标识数据项的值，标签值为字符串（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 该标签标识定义用户自定义数据格式，标签值为标识该数据的资源的索引值。该标签最大字节长度为255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
@@ -240,7 +241,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否可以[迁移](../application-models/hop-cross-device-migration.md)。<br/>-&nbsp;true：表示可以被迁移。<br/>-&nbsp;false：表示不可以被迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [skills](#skills标签) | 标识当前UIAbility组件或ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，OpenHarmony应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有OpenHarmony应用可以配置具有入口能力的skills标签，OpenHarmony服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合。指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>-&nbsp;audioPlayback：音频输出业务。<br/>-&nbsp;audioRecording：音频输入业务。<br/>-&nbsp;location：定位、导航业务。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输业务（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联业务。<br/>-&nbsp;wifiInteraction：Wi-Fi扫描、连接、传输业务（克隆多屏）。<br/>-&nbsp;voip：音视频电话，VoIP业务。<br/>-&nbsp;taskKeeping：计算业务。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
@@ -256,7 +257,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | minWindowWidth | 标识当前UIAbility组件支持的最小的窗口宽度,&nbsp;宽度单位为vp。该标签最小取值为0，但不能小于平台支持的最小窗口宽度；最大取值不能大于maxWindowWidth。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口宽度。 |
 | maxWindowHeight | 标识当前UIAbility组件支持的最大的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0，但不能小于minWindowHeight；最大取值不能超过平台支持的最大窗口高度。 窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口高度。 |
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度,&nbsp;高度单位为vp。该标签最小取值为0，但不能小于平台支持的最小窗口高度；最大取值不能大于maxWindowHeight。窗口尺寸可以参考：[约束与限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
-| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，三方应用配置不生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions，三方应用配置不生效。[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)| 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | unclearableMission | 标识当前UIAbility组件是否在最近任务列表中不可以移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
@@ -377,11 +378,11 @@ skills示例：
 | icon | 标识当前ExtensionAbility组件的图标，标签值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>**说明：**<br/>如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>**说明：**<br/>其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
-| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/permission-list.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，为字符数组类型（最大长度255），用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
 |skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>**说明：**<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前ExtensionAbility组件是否可以被其他应用调用，为布尔类型。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前ExtensionAbility组件是否可以被其他应用调用，为布尔类型。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 extensionAbilities示例：
 
@@ -420,7 +421,7 @@ extensionAbilities示例：
 
 ## requestPermissions标签
 
-该标签标识应用运行时需向系统申请的权限集合。
+该标签标识应用运行时需向系统申请的权限集合，权限设置方式参见[指导](../security/accesstoken-guidelines.md)。
 
 > **说明：**
 >
@@ -737,24 +738,24 @@ dependencies标签示例：
 }
 ```
 
-## proxyDatas标签
+## proxyData标签
 
 此标签标识模块提供的数据代理列表，仅限entry和feature配置。
 
-**表21** **proxyDatas标签说明**
+**表21** **proxyData标签说明**
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
 | uri | 标识用于访问该数据代理的uri，不同的数据代理配置的uri不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 不可缺省。 |
-| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
-| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中写入数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 可缺省，缺省值为空。 |
 
-proxyDatas标签示例：
+proxyData标签示例：
 
 ```json
 {
   "module": {
-    "proxyDatas": [
+    "proxyData": [
       {
         "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
         "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",

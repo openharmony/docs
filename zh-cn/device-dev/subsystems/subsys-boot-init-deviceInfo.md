@@ -35,7 +35,7 @@
 
 - 适配说明：
 
-  OHOS 固定值参数由OHOS系统填充，厂商不能也不需适配，目前这部分参数主要定义在/base/startup/init/services/etc/param/ohos_const/ohos.para文件中。
+  OHOS 固定值参数由OHOS系统填充，厂商不能也不需适配，目前这部分参数主要定义在`/base/startup/init/services/etc/param/ohos_const/ohos.para`文件中。
 
 ### 厂商固定值参数的适配:
 
@@ -63,18 +63,18 @@
 
   由各产品根据自身情况在vendor目录下适配。
 
-   （1）L2以RK3568为例，在/vendor/hihope/rk3568/etc/para/hardware_rk3568.para中适配，并安装到指定目录。
+  - 标准系统以RK3568为例，在`/vendor/hihope/rk3568/etc/para/hardware_rk3568.para`中适配，并安装到指定目录。
 
-   ```
-   ohos_prebuilt_etc("para_for_chip_prod") {
-    source = "./para/hardware_rk3568.para"
-    install_images = [ chip_prod_base_dir ]
-    relative_install_dir = "para"
-    part_name = "product_rk3568"
-   }
-   ```
+    ```
+    ohos_prebuilt_etc("para_for_chip_prod") {
+        source = "./para/hardware_rk3568.para"
+        install_images = [ chip_prod_base_dir ]
+        relative_install_dir = "para"
+        part_name = "product_rk3568"
+    }
+    ```
 
-   （2）L0与L1 在产品对应的 hals/utils/sys_param/vendor.para文件中配置。例如:
+  - 轻量系统与小型系统在产品对应的`hals/utils/sys_param/vendor.para`文件中配置。例如：
 
     ```
     const.product.manufacturer=Talkweb
@@ -97,62 +97,63 @@
 
 ### 厂商动态参数的适配
 
-- 厂商动态值参数，目前有三种获取形式：cmdline 读取，编译宏定义，在BUILD.gn中定义。
+厂商动态值参数，目前有三种获取形式：cmdline读取，编译宏定义，在BUILD.gn中定义。
 
-  1、cmdline 中读取的值有：ohos.boot.hardware, ohos.boot.bootslots, ohos.boot.sn等，其中ohos.boot.sn的获取略有不同，具体如下：
+1. cmdline中读取的值有：ohos.boot.hardware、ohos.boot.bootslots、ohos.boot.sn等，其中ohos.boot.sn的获取略有不同，具体如下：
 
-  （1）L2 Serial从参数ohos.boot.sn读取，ohos.boot.sn 参数值的获取方式：首先从cmdline （由uboot生成）获取，如果获取到的是sn值则直接读取，若获取的是文件路径，则从文件中读取；当获取不到时从默认的Sn文件读取，默认文件为：/sys/block/mmcblk0/device/cid；/proc/bootdevice/cid。
+   - 标准系统的Serial从参数ohos.boot.sn读取。
+     
+     ohos.boot.sn参数值的获取方式：首先从cmdline（由uboot生成）获取，如果获取到的是sn值则直接读取，若获取的是文件路径，则从文件中读取；当获取不到时从默认的Sn文件读取，默认文件为：`/sys/block/mmcblk0/device/cid；/proc/bootdevice/cid`。
 
-  （2）L0 和 L1的 Serial各产品在实现过程中可能有自己特殊的算法，因此我们支持在hals/utils/sys_param目录下hal_sys_param.c文件中通过HalGetSerial()接口自定算法来获取Serial。
+   - 轻量系统与小型系统的Serial各产品在实现过程中可能有自己特殊的算法，因此OpenHarmony支持在`hals/utils/sys_param`目录下hal_sys_param.c文件中通过HalGetSerial()接口自定算法来获取Serial。
 
-  2、编译宏定义的形式获取参数，目前主要在L0 和 L1中用到，例如：
+2. 编译宏定义的形式获取参数，目前主要在轻量系统与小型系统中用到，例如：
 
-  ```
-    defines = [
-    "INCREMENTAL_VERSION=\"${ohos_version}\"",
-    "BUILD_TYPE=\"${ohos_build_type}\"",
-    "BUILD_USER=\"${ohos_build_user}\"",
-    "BUILD_TIME=\"${ohos_build_time}\"",
-    "BUILD_HOST=\"${ohos_build_host}\"",
-    "BUILD_ROOTHASH=\"${ohos_build_roothash}\"",
-  ]
-  ```
+     ```
+     defines = [
+         "INCREMENTAL_VERSION=\"${ohos_version}\"",
+         "BUILD_TYPE=\"${ohos_build_type}\"",
+         "BUILD_USER=\"${ohos_build_user}\"",
+         "BUILD_TIME=\"${ohos_build_time}\"",
+         "BUILD_HOST=\"${ohos_build_host}\"",
+         "BUILD_ROOTHASH=\"${ohos_build_roothash}\"",
+     ]
+     ```
+3. 在BUILD.gn中定义，可参考文件`/base/startup/init/services/etc/BUILD.gn`，例如：
 
-  3、在BUILD.gn中定义,可参考文件/base/startup/init/services/etc/BUILD.gn,例如：
-
-  ```
-    if (target_cpu == "arm64") {
-      extra_paras += [ "const.product.cpu.abilist=arm64-v8a" ]
-    }
-    if (build_variant == "user") {
-      extra_paras += [
-        "const.secure=1",
-        "const.debuggable=0",
-      ]
-    } else if (build_variant == "root") {
-      extra_paras += [
-        "const.secure=0",
-        "const.debuggable=1",
-      ]
-    }
-    if (device_type != "default") {
-      extra_paras += [
-        "const.product.devicetype=${device_type}",
-        "const.build.characteristics=${device_type}",
-      ]
-    }
-    module_install_dir = "etc/param"
-  }
-  ```
+     ```
+     if (target_cpu == "arm64") {
+         extra_paras += [ "const.product.cpu.abilist=arm64-v8a" ]
+     }
+     if (build_variant == "user") {
+         extra_paras += [
+             "const.secure=1",
+             "const.debuggable=0",
+         ]
+     } else if (build_variant == "root") {
+         extra_paras += [
+             "const.secure=0",
+             "const.debuggable=1",
+         ]
+     }
+     if (device_type != "default") {
+         extra_paras += [
+             "const.product.devicetype=${device_type}",
+             "const.build.characteristics=${device_type}",
+         ]
+     }
+     module_install_dir = "etc/param"
+  
+     ```
 #### 特别说明：
 
-  (1) L1的产品需要在hals/utils/sys_param/BUILD.gn中添加vendor.para的编译，具体如下：
+1. 小型系统的产品需要在`hals/utils/sys_param/BUILD.gn`中添加vendor.para的编译，具体如下：
 
-  ```
-  copy("vendor.para") {
-    sources = [ "./vendor.para" ]
-    outputs = [ "$root_out_dir/vendor/etc/param/vendor.para" ]
-  }
-  ```
+      ```
+      copy("vendor.para") {
+          sources = [ "./vendor.para" ]
+          outputs = [ "$root_out_dir/vendor/etc/param/vendor.para" ]
+      }
+      ```
 
-  (2) L0的由于没有文件系统，在编译时会把hal_sys_param.c和vendor.para文件转化为头文件，编译时直接编译到系统中。
+2. 轻量系统的产品由于没有文件系统，在编译时会把hal_sys_param.c和vendor.para文件转化为头文件，编译时直接编译到系统中。

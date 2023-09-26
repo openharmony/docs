@@ -100,7 +100,7 @@ Worker不支持某API。
 
 **错误信息**
 
-Serializing an uncaught exception failed.
+An exception occurred during serialization.
 
 **错误描述**
 
@@ -246,7 +246,7 @@ Function未被标记为concurrent。
 
 **错误信息**
 
-The task is not exist when cancel it.
+The task does not exist when it is canceled.
 
 **错误描述**
 
@@ -258,17 +258,17 @@ The task is not exist when cancel it.
 
 **处理步骤**
 
-取消任务前，确保任务已被taskpool.execute调用进入任务池。
+取消任务前，确保任务已被taskpool.execute调用进入任务池且任务未执行完成。无法保证时，需要捕获异常。
 
-## 10200016 取消已执行的任务错误
+## 10200016 取消正在执行的任务错误
 
 **错误信息**
 
-The task is running when cancel it.
+The task is executing when it is canceled.
 
 **错误描述**
 
-取消已经执行的任务。
+取消正在执行的任务。
 
 **可能原因**
 
@@ -276,7 +276,7 @@ The task is running when cancel it.
 
 **处理步骤**
 
-取消任务前，确保任务已被执行完毕。
+取消任务前，确保任务已被taskpool.execute调用进入任务池且任务未开始执行。无法保证时，需要捕获异常。
 
 ## 10200017 删除不存在的元素错误
 
@@ -295,3 +295,21 @@ The element does not exist in this container.
 **处理步骤**
 
 删除元素前，确保元素存在于此容器中。
+
+## 10200018 取消不存在的任务组错误
+
+**错误信息**
+
+The task group does not exist when it is canceled.
+
+**错误描述**
+
+取消一个不存在的任务组。
+
+**可能原因**
+
+取消任务组时，该任务组并不存在于任务池中。
+
+**处理步骤**
+
+取消任务组前，确保任务组已被taskpool.execute调用进入任务池且任务组内存在任务未执行完成。无法保证时，需要捕获异常。

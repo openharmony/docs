@@ -8,6 +8,8 @@
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
 let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 ```
@@ -17,7 +19,7 @@ let audioVolumeManager = audioManager.getVolumeManager();
 通过设置监听事件，可以监听系统音量的变化：
 
 ```ts
-audioVolumeManager.on('volumeChange', (volumeEvent) => {
+audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
@@ -34,15 +36,15 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 
 ```ts
 let volume = 1.0  // 指定的音量大小，取值范围为[0.00-1.00]，1表示最大音量
-avPlayer.setVolume(volume)
+avPlayer.setVolume(volume);
 ```
 
 使用AudioRenderer设置音频流音量的示例代码如下：
 
 ```ts
-audioRenderer.setVolume(0.5).then(data=>{  // 音量范围为[0.0-1.0]
+audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]
   console.info('Invoke setVolume succeeded.');
-}).catch((err) => {  
+}).catch((err: BusinessError) => {  
   console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`);
 });
 ```

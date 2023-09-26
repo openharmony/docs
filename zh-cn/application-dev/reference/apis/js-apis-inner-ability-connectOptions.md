@@ -12,9 +12,11 @@
 import common from '@ohos.app.ability.common';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 参数名           | 类型       | 必填   | 说明                        |
+|    名称      | 类型       | 必填   | 说明                        |
 | ------------ | -------- | ---- | ------------------------- |
 | onConnect<sup>7+</sup>    | function | 是    | 建立连接时的回调函数。      |
 | onDisconnect<sup>7+</sup> | function | 是    | 断开连接时的回调函数。           |
@@ -23,7 +25,10 @@ import common from '@ohos.app.ability.common';
 **示例：**
 
   ```ts
-  let want = {
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
+  let want: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
@@ -40,5 +45,5 @@ import common from '@ohos.app.ability.common';
     }
   };
 
-  let connection = this.context.connectAbility(want, connectOptions);
+  let connection: number = this.context.connectAbility(want, connectOptions);
   ```

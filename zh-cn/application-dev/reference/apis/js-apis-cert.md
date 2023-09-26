@@ -1,16 +1,16 @@
 # @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
+证书算法库框架提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
-```javascript
-import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
+```ts
+import certFramework from '@ohos.security.cert';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 ```
 
 ## CertResult
@@ -59,6 +59,43 @@ buffer数组的列表。
 | FORMAT_DER | 0      | DER格式。 |
 | FORMAT_PEM | 1      | PEM格式。 |
 
+## CertItemType<sup>10+</sup>
+
+ 表示获取证书字段的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                             | 值   | 说明                           |
+| -------------------------------- | ---- | ------------------------------ |
+| CERT_ITEM_TYPE_TBS               | 0    | 表示获取证书的待签名信息。     |
+| CERT_ITEM_TYPE_PUBLIC_KEY        | 1    | 表示获取证书的公钥信息。       |
+| CERT_ITEM_TYPE_ISSUER_UNIQUE_ID  | 2    | 表示获取证书的颁发者唯一编号。 |
+| CERT_ITEM_TYPE_SUBJECT_UNIQUE_ID | 3    | 表示获取证书的主体唯一编号。   |
+| CERT_ITEM_TYPE_EXTENSIONS        | 4    | 表示获取证书的扩展域信息。     |
+
+## ExtensionOidType<sup>10+</sup>
+
+ 表示获取扩展域中对象标识符类型的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                          | 值   | 说明                                          |
+| ----------------------------- | ---- | --------------------------------------------- |
+| EXTENSION_OID_TYPE_ALL        | 0    | 表示获取扩展域中所有的对象标识符。            |
+| EXTENSION_OID_TYPE_CRITICAL   | 1    | 表示获取扩展域中critical为true的对象标识符。  |
+| EXTENSION_OID_TYPE_UNCRITICAL | 2    | 表示获取扩展域中critical为false的对象标识符。 |
+
+## ExtensionEntryType<sup>10+</sup>
+
+ 表示获取扩展域中对象类型的枚举。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                | 值   | 说明                         |
+| ----------------------------------- | ---- | ---------------------------- |
+| EXTENSION_ENTRY_TYPE_ENTRY          | 0    | 表示获取整个对象。           |
+| EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
+| EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
 
 ## EncodingBlob
 
@@ -93,16 +130,16 @@ buffer数组的列表。
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
 
-表示创建X509证书对象。
+表示创建X509证书对象，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数：**
 
-| 参数名   | 类型                          | 必填 | 说明                       |
-| -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<X509Cert>      | 是   | 回调函数。表示X509证书对象 |
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据         |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象 |
 
 **错误码：**
 
@@ -112,22 +149,41 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-    }
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+  }
 });
 ```
 
@@ -135,7 +191,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
-表示创建X509证书对象。
+表示创建X509证书对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -149,7 +205,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 类型     | 说明             |
 | ------- | ---------------- |
-| Promise\<X509Cert> | 表示X509证书对象 |
+| Promise\<[X509Cert](#x509cert)> | 表示X509证书对象 |
 
 **错误码：**
 
@@ -159,20 +215,40 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
-    console.log("createX509Cert success");
-}, error => {
-    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+
+certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+  console.log('createX509Cert success');
+}).catch((error: BusinessError) => {
+  console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -184,7 +260,7 @@ X509证书类。
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对证书验签。
+表示对证书验签，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -203,31 +279,59 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        // 业务需通过上级X509Cert证书对象的getPublicKey获取PubKey
-		let pubKey = null;
-        x509Cert.verify(pubKey, function (error, data) {
-            if (error != null) {
-                console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
-            } else {
-                console.log("verify success");
-            }
-        });
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
+    try {
+      let pubKey = x509Cert.getPublicKey();
+
+      // 验证证书签名
+      x509Cert.verify(pubKey, (err, data) => {
+        if (err == null) {
+          console.log('verify success');
+        } else {
+          console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+        }
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getPublicKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -235,7 +339,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对证书验签。
+表示对证书验签，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -259,27 +363,52 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
-    console.log("createX509Cert success");
-    // 业务可通过上级X509Cert证书对象的getPublicKey获取PubKey
-	let pubKey = null;
+
+certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+  console.log('createX509Cert success');
+
+  try {
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
+    let pubKey = x509Cert.getPublicKey();
     x509Cert.verify(pubKey).then(result => {
-        console.log("verify success");
-    }, error => {
-        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+      console.log('verify success');
+    }).catch((error: BusinessError) => {
+      console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     });
-}, error => {
-    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+  } catch (err) {
+    console.error('get public key failed');
+  }
+}).catch((error: BusinessError) => {
+  console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -287,7 +416,7 @@ cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取X509证书序列化数据。
+表示获取X509证书序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -307,29 +436,48 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        x509Cert.getEncoded(function (error, data) {
-           if (error != null) {
-               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-           } else {
-               console.log("getEncoded success");
-           }
-        });
-    }
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    x509Cert.getEncoded((error, data) => {
+      if (error != null) {
+        console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
+        console.log('getEncoded success');
+      }
+    });
+  }
 });
 ```
 
@@ -337,7 +485,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取X509证书序列化数据。
+表示获取X509证书序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -357,25 +505,45 @@ getEncoded() : Promise\<EncodingBlob>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
+  'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
+  'MjAxOVowGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYI\n' +
+  'KoZIzj0DAQcDQgAEHjG74yMIueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTa\n' +
+  'tUsU0i/sePnrKglj2H8Abbx9PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEA\n' +
+  '0ce/fvA4tckNZeB865aOApKXKlBjiRlaiuq5mEEqvNACIQDPD9WyC21MXqPBuRUf\n' +
+  'BetUokslUfjT6+s/X4ByaxycAA==\n' +
+  '-----END CERTIFICATE-----\n';
+
+// 证书二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
-    console.log("createX509Cert success");
-    x509Cert.getEncoded().then(result => {
-        console.log("getEncoded success");
-    }, error => {
-        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-    });
-}, error => {
-    console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
+certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+  console.log('createX509Cert success');
+  x509Cert.getEncoded().then(result => {
+    console.log('getEncoded success');
+  }).catch((error: BusinessError) => {
+    console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+}).catch((error: BusinessError) => {
+  console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -402,29 +570,48 @@ getPublicKey() : cryptoFramework.PubKey
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let pubKey = null;
-        try {
-            pubKey = x509Cert.getPublicKey();
-        } catch (error) {
-            console.log("getPublicKey failed, errCode: " + error.code + ", errMsg: " + error.message);
-        }
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let pubKey = x509Cert.getPublicKey();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getPublicKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -453,30 +640,51 @@ checkValidityWithDate(date: string) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let date = "150527000001Z";
-        
-        // 校验证书有效期
-        try {
-            x509Cert.checkValidityWithDate(date);
-        } catch (error) {
-            console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
-        }
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+
+    let date = '231001000001Z';
+    // Verify the certificate validity period.
+    try {
+      x509Cert.checkValidityWithDate(date);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('checkValidityWithDate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -496,31 +704,53 @@ getVersion() : number
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let version = x509Cert.getVersion();
-    }
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    let version = x509Cert.getVersion();
+  }
 });
 ```
 
-### getSerialNumber
+### getSerialNumber<sup>(deprecated)</sup>
 
 getSerialNumber() : number
 
 表示获取X509证书序列号。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 10开始废弃，建议使用[getCertSerialNumber](#getcertserialnumber10)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -532,23 +762,109 @@ getSerialNumber() : number
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let serialNumber = x509Cert.getSerialNumber();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    let serialNumber = x509Cert.getSerialNumber();
+  }
+});
+```
+
+### getCertSerialNumber<sup>10+</sup>
+
+getCertSerialNumber() : bigint
+
+表示获取X509证书序列号。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明               |
+| ------ | ------------------ |
+| bigint | 表示X509证书序列号 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020002 | runtime error.                                    |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 证书二进制数据，需业务自行赋值
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let serialNumber = x509Cert.getCertSerialNumber();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getCertSerialNumber failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -576,23 +892,48 @@ getIssuerName() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let issuerName = x509Cert.getIssuerName();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let issuerName = x509Cert.getIssuerName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -620,23 +961,48 @@ getSubjectName() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let subjectName = x509Cert.getSubjectName();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let subjectName = x509Cert.getSubjectName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -664,23 +1030,48 @@ getNotBeforeTime() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let notBefore = x509Cert.getNotBeforeTime();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let notBefore = x509Cert.getNotBeforeTime();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getNotBeforeTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -708,23 +1099,49 @@ getNotAfterTime() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let notAfter = x509Cert.getNotAfterTime();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let notAfter = x509Cert.getNotAfterTime();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getNotAfterTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -752,23 +1169,49 @@ getSignature() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let signature = x509Cert.getSignature();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let signature = x509Cert.getSignature();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignature failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -796,23 +1239,49 @@ getSignatureAlgName() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let sigAlgName = x509Cert.getSignatureAlgName();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let sigAlgName = x509Cert.getSignatureAlgName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -840,23 +1309,48 @@ getSignatureAlgOid() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let sigAlgOid = x509Cert.getSignatureAlgOid();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let sigAlgOid = x509Cert.getSignatureAlgOid();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgOid failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -884,23 +1378,48 @@ getSignatureAlgParams() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let sigAlgParams = x509Cert.getSignatureAlgParams();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let sigAlgParams = x509Cert.getSignatureAlgParams();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -927,23 +1446,48 @@ getKeyUsage() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let keyUsage = x509Cert.getKeyUsage();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let keyUsage = x509Cert.getKeyUsage();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getKeyUsage failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -971,23 +1515,48 @@ getExtKeyUsage() : DataArray
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let extKeyUsage = x509Cert.getExtKeyUsage();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let extKeyUsage = x509Cert.getExtKeyUsage();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getNotBeforeTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1007,23 +1576,42 @@ getBasicConstraints() : number
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let basicConstraints = x509Cert.getBasicConstraints();
-    }
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    let basicConstraints = x509Cert.getBasicConstraints();
+  }
 });
 ```
 
@@ -1051,23 +1639,48 @@ getSubjectAltNames() : DataArray
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let subjectAltNames = x509Cert.getSubjectAltNames();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let subjectAltNames = x509Cert.getSubjectAltNames();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectAltNames failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1095,40 +1708,135 @@ getIssuerAltNames() : DataArray
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 // 证书二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
-    if (error != null) {
-        console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Cert success");
-        let issuerAltNames = x509Cert.getIssuerAltNames();
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let issuerAltNames = x509Cert.getIssuerAltNames();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerAltNames failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
-## cryptoCert.createX509Crl
+### getItem<sup>10+</sup>
 
-createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
+getItem(itemType: CertItemType) : DataBlob
 
-表示创建X509证书吊销列表的对象。
+表示获取X509证书对应的字段。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [DataBlob](#datablob) | 表示X509证书对应的字段，返回值为DER格式。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 证书二进制数据，需业务自行赋值
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+  'Qw==\n' +
+  '-----END CERTIFICATE-----\n';
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error != null) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let tbs = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_TBS);
+      let pubKey = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getItem failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+## cryptoCert.createCertExtension<sup>10+</sup>
+
+createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
+
+表示创建证书扩展域段的对象，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
-| 参数名   | 类型                          | 必填 | 说明                           |
-| -------- | ----------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
+| 参数名   | 类型                                              | 必填 | 说明                       |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示证书扩展域段序列化数据 |
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数。表示扩展域段对象 |
 
 **错误码：**
 
@@ -1138,22 +1846,421 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+
+certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error != null) {
+    console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createCertExtension success');
+  }
+});
+```
+
+## cryptoCert.createCertExtension<sup>10+</sup>
+
+createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
+
+表示创建证书扩展域段的对象，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                          | 必填 | 说明                       |
+| -------- | ----------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据 |
+
+**返回值**：
+
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CertExtension](#certextension10)> | 表示证书扩展域段对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+
+certFramework.createCertExtension(encodingBlob).then(certExt => {
+  console.log('createCertExtension success');
+}).catch((error: BusinessError) => {
+  console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+});
+```
+
+## CertExtension<sup>10+</sup>
+
+证书扩展域段类。
+
+### getEncoded<sup>10+</sup>
+
+getEncoded() : EncodingBlob
+
+表示获取证书扩展域段序列化数据。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                          | 说明                         |
+| ----------------------------- | ---------------------------- |
+| [EncodingBlob](#encodingblob) | 表示证书扩展域段序列化数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+
+certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error != null) {
+    console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createCertExtension success');
+    try {
+      let extEncodedBlob = certExt.getEncoded();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('ext getEncoded failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getOidList<sup>10+</sup>
+
+getOidList(valueType : ExtensionOidType) : DataArray
+
+表示获取证书扩展域段对象标识符列表。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                                  | 必填 | 说明                           |
+| --------- | ------------------------------------- | ---- | ------------------------------ |
+| valueType | [ExtensionOidType](#extensionoidtype) | 是   | 表示证书扩展域段对象标识符类型 |
+
+**返回值**：
+
+| 类型                    | 说明                             |
+| ----------------------- | -------------------------------- |
+| [DataArray](#dataarray) | 表示证书扩展域段对象标识符列表。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+
+certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error != null) {
+    console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createCertExtension success');
+    try {
+      let oidList = certExt.getOidList(certFramework.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('ext getOidList failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getEntry<sup>10+</sup>
+
+getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
+
+表示获取证书扩展域段对象信息。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名    | 类型                                      | 必填 | 说明                             |
+| --------- | ----------------------------------------- | ---- | -------------------------------- |
+| valueType | [ExtensionEntryType](#extensionentrytype) | 是   | 表示证书扩展域段获取的类型       |
+| oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符 |
+
+**返回值**：
+
+| 类型                  | 说明                         |
+| --------------------- | ---------------------------- |
+| [DataBlob](#datablob) | 表示证书扩展域段对象的数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+
+certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error != null) {
+    console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createCertExtension success');
+    let oid = new Uint8Array([0x32, 0x2e, 0x35, 0x2e, 0x32, 0x39, 0x2e, 0x31, 0x35]);
+    let oidBlob: certFramework.DataBlob = {
+      data: oid
+    }
+    try {
+      let entry = certExt.getEntry(certFramework.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('ext getEntry failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+
+### checkCA<sup>10+</sup>
+
+checkCA() : number
+
+表示校验证书是否为CA证书。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 当证书扩展域段中密钥用途包含签名用途，并且基本约束中cA字段为true时，表示证书为CA证书。如果不是CA，则返回-1；否则返回基本约束中的路径长度。如果证书是CA证书，但是基本约束中未给定路径长度，则返回-2，表示无路径长度限制。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// 证书扩展域段二进制数据，需业务自行赋值
+let extData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55,
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55,
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86,
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: extData,
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+};
+certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+  if (error != null) {
+    console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createCertExtension success');
+    try {
+      let res = certExt.checkCA();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('ext checkCA failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+## cryptoCert.createX509Crl
+
+createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
+
+表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                | 必填 | 说明                           |
+| -------- | ----------------------------------- | ---- | ------------------------------ |
+| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据     |
+| callback | AsyncCallback\<[X509Crl](#x509crl)> | 是   | 回调函数。表示证书吊销列表对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+
+**示例：**
+
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+  }
 });
 ```
 
@@ -1161,7 +2268,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
-表示创建X509证书吊销列表的对象。
+表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1173,9 +2280,9 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 **返回值**：
 
-| 类型              | 说明                 |
-| ----------------- | -------------------- |
-| Promise\<X509Crl> | 表示证书吊销列表对象 |
+| 类型                          | 说明                 |
+| ----------------------------- | -------------------- |
+| Promise\<[X509Crl](#x509crl)> | 表示证书吊销列表对象 |
 
 **错误码：**
 
@@ -1185,20 +2292,39 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
-    console.log("createX509Crl success");
-}, error => {
-    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+
+certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+  console.log('createX509Crl success');
+}).catch((error: BusinessError) => {
+  console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -1228,29 +2354,68 @@ isRevoked(cert : X509Cert) : boolean
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
+  'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
+  'MjAxOVowGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYI\n' +
+  'KoZIzj0DAQcDQgAEHjG74yMIueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTa\n' +
+  'tUsU0i/sePnrKglj2H8Abbx9PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEA\n' +
+  '0ce/fvA4tckNZeB865aOApKXKlBjiRlaiuq5mEEqvNACIQDPD9WyC21MXqPBuRUf\n' +
+  'BetUokslUfjT6+s/X4ByaxycAA==\n' +
+  '-----END CERTIFICATE-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        // 业务需自行生成X509Cert证书对象
-        let x509Cert = null;
+
+let certEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    // Create an X509Cert instance.
+    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+      if (error == null) {
         try {
-            let revokedFlag = x509Crl.isRevoked(x509Cert);
+          let revokedFlag = x509Crl.isRevoked(x509Cert);
         } catch (error) {
-           console.log("isRevoked failed, errCode: " + error.code + ", errMsg: " + error.message);
+          let e: BusinessError = error as BusinessError;
+          console.error('isRevoked failed, errCode: ' + e.code + ', errMsg: ' + e.message);
         }
-    }
+      }
+    });
+  }
 });
 ```
 
@@ -1270,23 +2435,41 @@ getType() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let type = x509Crl.getType();
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    let type = x509Crl.getType();
+  }
 });
 ```
 
@@ -1294,7 +2477,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取X509证书吊销列表的序列化数据。
+表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1314,29 +2497,47 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        x509Crl.getEncoded(function (error, data) {
-           if (error != null) {
-               console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-           } else {
-               console.log("getEncoded success");
-           }
-        });
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    x509Crl.getEncoded((error, data) => {
+      if (error != null) {
+        console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
+        console.log('getEncoded success');
+      }
+    });
+  }
 });
 ```
 
@@ -1344,7 +2545,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取X509证书吊销列表的序列化数据。
+表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1364,25 +2565,44 @@ getEncoded() : Promise\<EncodingBlob>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
-    console.log("createX509Crl success");
-    x509Crl.getEncoded().then(result => {
-        console.log("getEncoded success");
-    }, error => {
-        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-    });
-}, error => {
-    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+
+certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+  console.log('createX509Crl success');
+  x509Crl.getEncoded().then(result => {
+    console.log('getEncoded success');
+  }).catch((error: BusinessError) => {
+    console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+}).catch((error: BusinessError) => {
+  console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -1390,7 +2610,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对X509证书吊销列表进行验签。验签支持RSA算法。
+表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1409,32 +2629,127 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
+```ts
+import certFramework from '@ohos.security.cert';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let pubKeyData = new Uint8Array([
+  0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
+  0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
+  0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67, 0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C,
+  0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20, 0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66,
+  0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4, 0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0,
+  0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23, 0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C,
+  0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22, 0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65,
+  0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14, 0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA,
+  0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91, 0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01,
+  0x00, 0x01
+]);
+
+let priKeyData = new Uint8Array([
+  0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
+  0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
+  0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE, 0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67,
+  0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C, 0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20,
+  0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66, 0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4,
+  0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0, 0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23,
+  0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C, 0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22,
+  0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65, 0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14,
+  0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA, 0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91,
+  0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01, 0x00, 0x01, 0x02, 0x81, 0x80, 0x5A, 0xCF, 0x0F,
+  0xF5, 0xA6, 0x1C, 0x19, 0x65, 0x8C, 0x94, 0x40, 0xF6, 0x84, 0x28, 0x74, 0x40, 0x42, 0x34, 0xDE,
+  0xC3, 0x00, 0x5E, 0x72, 0x4D, 0x96, 0xE9, 0x4C, 0xBD, 0xC9, 0xDB, 0x14, 0x9F, 0xD5, 0xBB, 0xA9,
+  0x0C, 0x20, 0xC2, 0xBE, 0x7A, 0x80, 0x89, 0xEC, 0x99, 0x04, 0xF0, 0xEE, 0x7B, 0x83, 0x20, 0x1D,
+  0x37, 0x19, 0x55, 0x85, 0xF6, 0x8E, 0x3B, 0xFB, 0x16, 0xF3, 0xD3, 0x6F, 0xEE, 0x73, 0x12, 0x53,
+  0xCA, 0x77, 0xD7, 0x6C, 0x29, 0xF5, 0x08, 0xA3, 0x09, 0x01, 0x0B, 0x00, 0x05, 0x57, 0xAD, 0x4D,
+  0xF0, 0x92, 0xB2, 0x5A, 0x8B, 0x19, 0x09, 0x81, 0x86, 0xFE, 0x66, 0xB9, 0x33, 0x88, 0x28, 0xF3,
+  0x37, 0x73, 0x09, 0x5F, 0xD7, 0xC9, 0xC6, 0xFA, 0x13, 0x74, 0xFE, 0xAE, 0x53, 0xA9, 0x71, 0x67,
+  0xCE, 0x3A, 0xE6, 0x8D, 0x35, 0xD1, 0xB8, 0xFD, 0x6F, 0x0D, 0x43, 0xC2, 0xD1, 0x02, 0x41, 0x00,
+  0xF7, 0x33, 0xE5, 0x6C, 0x29, 0x5A, 0x30, 0x58, 0xA4, 0x52, 0x65, 0xA0, 0x39, 0xC2, 0xE8, 0xAE,
+  0x5F, 0xA3, 0x2D, 0x0C, 0x65, 0xB1, 0x7B, 0xFD, 0x92, 0xBF, 0x47, 0x87, 0x97, 0x40, 0xCB, 0x54,
+  0xF9, 0xBB, 0x50, 0x27, 0x70, 0x51, 0xD0, 0xD8, 0x48, 0x0D, 0xC6, 0x47, 0x60, 0xF8, 0x4E, 0x0A,
+  0x32, 0x76, 0x6D, 0xA4, 0xBA, 0x40, 0xE5, 0x58, 0xF8, 0x4A, 0x39, 0x4E, 0xF8, 0x3F, 0x4E, 0x2D,
+  0x02, 0x41, 0x00, 0xE4, 0x23, 0x2A, 0x5F, 0x59, 0xCF, 0x7C, 0x91, 0x24, 0x0D, 0xA2, 0x44, 0x17,
+  0xCD, 0x37, 0xDE, 0x1F, 0x53, 0x4D, 0x33, 0x9F, 0x90, 0x4D, 0xD9, 0x72, 0x64, 0x25, 0xBA, 0xAB,
+  0x47, 0x91, 0xC4, 0x99, 0x95, 0x86, 0xB5, 0x8A, 0xEA, 0x77, 0xF7, 0x64, 0x72, 0x5E, 0xB7, 0xBB,
+  0x16, 0xA1, 0x64, 0xA4, 0xE1, 0x2D, 0x76, 0x6D, 0xEF, 0xB1, 0x5E, 0xD6, 0x17, 0xE8, 0xAA, 0xB6,
+  0xA0, 0xD9, 0x85, 0x02, 0x41, 0x00, 0xDF, 0xC8, 0x5B, 0x28, 0x4F, 0x47, 0x15, 0xFD, 0x28, 0xC4,
+  0x6E, 0xBB, 0x5D, 0x8E, 0xD4, 0x95, 0x06, 0x7E, 0xF1, 0x89, 0x07, 0x86, 0x64, 0x78, 0x69, 0x20,
+  0x3F, 0xE0, 0xBF, 0x4C, 0x28, 0xC6, 0x04, 0x4D, 0x4D, 0x82, 0x66, 0x6B, 0xAA, 0x64, 0x20, 0xD6,
+  0x57, 0x68, 0xC6, 0xA0, 0x02, 0x05, 0xB9, 0x28, 0xFC, 0x98, 0xE3, 0x03, 0x5C, 0x9B, 0xEE, 0x29,
+  0x43, 0x37, 0xFA, 0x03, 0x55, 0x01, 0x02, 0x40, 0x69, 0x5B, 0x7C, 0x24, 0x10, 0xDB, 0xEB, 0x91,
+  0x33, 0xEF, 0x3F, 0xF2, 0xE6, 0x73, 0x15, 0xCB, 0xF4, 0xF7, 0x89, 0x7D, 0xBF, 0xC0, 0xEA, 0xD2,
+  0xF3, 0x2B, 0x20, 0xE9, 0x76, 0x54, 0x55, 0x13, 0x50, 0x42, 0x67, 0xB5, 0xCB, 0x73, 0xC0, 0xF7,
+  0x75, 0x62, 0x04, 0x30, 0x21, 0xAC, 0xAF, 0xD8, 0x44, 0xF4, 0xE1, 0x04, 0x02, 0x7D, 0x61, 0x92,
+  0x84, 0x99, 0x02, 0x10, 0x64, 0xCB, 0x1F, 0xE9, 0x02, 0x41, 0x00, 0xAB, 0x4B, 0x7D, 0x90, 0x7C,
+  0x57, 0x08, 0x6B, 0xC0, 0x43, 0x72, 0x09, 0x8A, 0x18, 0x35, 0x36, 0x64, 0x9D, 0x84, 0x8D, 0xF1,
+  0x84, 0x94, 0x48, 0xC6, 0x80, 0x9D, 0xB9, 0xA2, 0x58, 0x0A, 0x4D, 0x0A, 0xCA, 0x1E, 0xD6, 0x05,
+  0x55, 0x5B, 0xFE, 0xD7, 0xAA, 0x70, 0xED, 0x76, 0xB3, 0x40, 0x2E, 0xA0, 0xB3, 0x32, 0x37, 0xB0,
+  0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
+]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        // 业务需通过AsyKeyGenerator生成PubKey
-        let pubKey = null;
-        x509Crl.verify(pubKey, function (error, data) {
-           if (error != null) {
-               console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
-           } else {
-               console.log("verify success");
-           }
-        });
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      // Generate the public key by AsyKeyGenerator.
+      let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
+      console.log('createAsyKeyGenerator success');
+      let priEncodingBlob: cryptoFramework.DataBlob = {
+        data: priKeyData,
+      };
+      let pubEncodingBlob: cryptoFramework.DataBlob = {
+        data: pubKeyData,
+      };
+      keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
+        if (e == null) {
+          console.log('convert key success');
+          x509Crl.verify(keyPair.pubKey, (err, data) => {
+            if (err == null) {
+              console.log('verify success');
+            } else {
+              console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            }
+          });
+        } else {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        }
+      })
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('get pubKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1442,7 +2757,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对X509证书吊销列表进行验签。验签支持RSA算法。
+表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1466,28 +2781,122 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
+```ts
+import certFramework from '@ohos.security.cert';
+import cryptoFramework from '@ohos.security.cryptoFramework'
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+let pubKeyData = new Uint8Array([
+  0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
+  0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
+  0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
+  0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67, 0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C,
+  0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20, 0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66,
+  0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4, 0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0,
+  0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23, 0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C,
+  0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22, 0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65,
+  0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14, 0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA,
+  0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91, 0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01,
+  0x00, 0x01
+]);
+
+let priKeyData = new Uint8Array([
+  0x30, 0x82, 0x02, 0x77, 0x02, 0x01, 0x00, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7,
+  0x0D, 0x01, 0x01, 0x01, 0x05, 0x00, 0x04, 0x82, 0x02, 0x61, 0x30, 0x82, 0x02, 0x5D, 0x02, 0x01,
+  0x00, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D, 0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED,
+  0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE, 0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67,
+  0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C, 0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20,
+  0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66, 0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4,
+  0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0, 0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23,
+  0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C, 0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22,
+  0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65, 0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14,
+  0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA, 0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91,
+  0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01, 0x00, 0x01, 0x02, 0x81, 0x80, 0x5A, 0xCF, 0x0F,
+  0xF5, 0xA6, 0x1C, 0x19, 0x65, 0x8C, 0x94, 0x40, 0xF6, 0x84, 0x28, 0x74, 0x40, 0x42, 0x34, 0xDE,
+  0xC3, 0x00, 0x5E, 0x72, 0x4D, 0x96, 0xE9, 0x4C, 0xBD, 0xC9, 0xDB, 0x14, 0x9F, 0xD5, 0xBB, 0xA9,
+  0x0C, 0x20, 0xC2, 0xBE, 0x7A, 0x80, 0x89, 0xEC, 0x99, 0x04, 0xF0, 0xEE, 0x7B, 0x83, 0x20, 0x1D,
+  0x37, 0x19, 0x55, 0x85, 0xF6, 0x8E, 0x3B, 0xFB, 0x16, 0xF3, 0xD3, 0x6F, 0xEE, 0x73, 0x12, 0x53,
+  0xCA, 0x77, 0xD7, 0x6C, 0x29, 0xF5, 0x08, 0xA3, 0x09, 0x01, 0x0B, 0x00, 0x05, 0x57, 0xAD, 0x4D,
+  0xF0, 0x92, 0xB2, 0x5A, 0x8B, 0x19, 0x09, 0x81, 0x86, 0xFE, 0x66, 0xB9, 0x33, 0x88, 0x28, 0xF3,
+  0x37, 0x73, 0x09, 0x5F, 0xD7, 0xC9, 0xC6, 0xFA, 0x13, 0x74, 0xFE, 0xAE, 0x53, 0xA9, 0x71, 0x67,
+  0xCE, 0x3A, 0xE6, 0x8D, 0x35, 0xD1, 0xB8, 0xFD, 0x6F, 0x0D, 0x43, 0xC2, 0xD1, 0x02, 0x41, 0x00,
+  0xF7, 0x33, 0xE5, 0x6C, 0x29, 0x5A, 0x30, 0x58, 0xA4, 0x52, 0x65, 0xA0, 0x39, 0xC2, 0xE8, 0xAE,
+  0x5F, 0xA3, 0x2D, 0x0C, 0x65, 0xB1, 0x7B, 0xFD, 0x92, 0xBF, 0x47, 0x87, 0x97, 0x40, 0xCB, 0x54,
+  0xF9, 0xBB, 0x50, 0x27, 0x70, 0x51, 0xD0, 0xD8, 0x48, 0x0D, 0xC6, 0x47, 0x60, 0xF8, 0x4E, 0x0A,
+  0x32, 0x76, 0x6D, 0xA4, 0xBA, 0x40, 0xE5, 0x58, 0xF8, 0x4A, 0x39, 0x4E, 0xF8, 0x3F, 0x4E, 0x2D,
+  0x02, 0x41, 0x00, 0xE4, 0x23, 0x2A, 0x5F, 0x59, 0xCF, 0x7C, 0x91, 0x24, 0x0D, 0xA2, 0x44, 0x17,
+  0xCD, 0x37, 0xDE, 0x1F, 0x53, 0x4D, 0x33, 0x9F, 0x90, 0x4D, 0xD9, 0x72, 0x64, 0x25, 0xBA, 0xAB,
+  0x47, 0x91, 0xC4, 0x99, 0x95, 0x86, 0xB5, 0x8A, 0xEA, 0x77, 0xF7, 0x64, 0x72, 0x5E, 0xB7, 0xBB,
+  0x16, 0xA1, 0x64, 0xA4, 0xE1, 0x2D, 0x76, 0x6D, 0xEF, 0xB1, 0x5E, 0xD6, 0x17, 0xE8, 0xAA, 0xB6,
+  0xA0, 0xD9, 0x85, 0x02, 0x41, 0x00, 0xDF, 0xC8, 0x5B, 0x28, 0x4F, 0x47, 0x15, 0xFD, 0x28, 0xC4,
+  0x6E, 0xBB, 0x5D, 0x8E, 0xD4, 0x95, 0x06, 0x7E, 0xF1, 0x89, 0x07, 0x86, 0x64, 0x78, 0x69, 0x20,
+  0x3F, 0xE0, 0xBF, 0x4C, 0x28, 0xC6, 0x04, 0x4D, 0x4D, 0x82, 0x66, 0x6B, 0xAA, 0x64, 0x20, 0xD6,
+  0x57, 0x68, 0xC6, 0xA0, 0x02, 0x05, 0xB9, 0x28, 0xFC, 0x98, 0xE3, 0x03, 0x5C, 0x9B, 0xEE, 0x29,
+  0x43, 0x37, 0xFA, 0x03, 0x55, 0x01, 0x02, 0x40, 0x69, 0x5B, 0x7C, 0x24, 0x10, 0xDB, 0xEB, 0x91,
+  0x33, 0xEF, 0x3F, 0xF2, 0xE6, 0x73, 0x15, 0xCB, 0xF4, 0xF7, 0x89, 0x7D, 0xBF, 0xC0, 0xEA, 0xD2,
+  0xF3, 0x2B, 0x20, 0xE9, 0x76, 0x54, 0x55, 0x13, 0x50, 0x42, 0x67, 0xB5, 0xCB, 0x73, 0xC0, 0xF7,
+  0x75, 0x62, 0x04, 0x30, 0x21, 0xAC, 0xAF, 0xD8, 0x44, 0xF4, 0xE1, 0x04, 0x02, 0x7D, 0x61, 0x92,
+  0x84, 0x99, 0x02, 0x10, 0x64, 0xCB, 0x1F, 0xE9, 0x02, 0x41, 0x00, 0xAB, 0x4B, 0x7D, 0x90, 0x7C,
+  0x57, 0x08, 0x6B, 0xC0, 0x43, 0x72, 0x09, 0x8A, 0x18, 0x35, 0x36, 0x64, 0x9D, 0x84, 0x8D, 0xF1,
+  0x84, 0x94, 0x48, 0xC6, 0x80, 0x9D, 0xB9, 0xA2, 0x58, 0x0A, 0x4D, 0x0A, 0xCA, 0x1E, 0xD6, 0x05,
+  0x55, 0x5B, 0xFE, 0xD7, 0xAA, 0x70, 0xED, 0x76, 0xB3, 0x40, 0x2E, 0xA0, 0xB3, 0x32, 0x37, 0xB0,
+  0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
+]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
-    console.log("createX509Crl success");
-    // 业务需通过AsyKeyGenerator生成PubKey
-    let pubKey = null;
-    x509Crl.verify(pubKey).then(result => {
-        console.log("verify success");
-    }, error => {
-        console.log("verify failed, errCode: " + error.code + ", errMsg: " + error.message);
+
+certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+  console.log('createX509Crl success');
+
+  try {
+    // 生成公钥对象
+    let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
+    console.log('createAsyKeyGenerator success');
+    let priEncodingBlob: cryptoFramework.DataBlob = {
+      data: priKeyData,
+    };
+    let pubEncodingBlob: cryptoFramework.DataBlob = {
+      data: pubKeyData,
+    };
+    keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
+      console.log('convert key success');
+      x509Crl.verify(keyPair.pubKey).then(result => {
+        console.log('verify success');
+      }).catch((error: BusinessError) => {
+        console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      });
+    }).catch((error: BusinessError) => {
+      console.error('convert key failed, message: ' + error.message + 'code: ' + error.code);
     });
-}, error => {
-    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('get pubKey failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}).catch((error: BusinessError) => {
+  console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -1507,23 +2916,41 @@ getVersion() : number
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let version = x509Crl.getVersion();
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    let version = x509Crl.getVersion();
+  }
 });
 ```
 
@@ -1551,23 +2978,47 @@ getIssuerName() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let issuerName = x509Crl.getIssuerName();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let issuerName = x509Crl.getIssuerName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1595,23 +3046,47 @@ getLastUpdate() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let lastUpdate = x509Crl.getLastUpdate();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let lastUpdate = x509Crl.getLastUpdate();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getLastUpdate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1639,23 +3114,47 @@ getNextUpdate() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let nextUpdate = x509Crl.getNextUpdate();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let nextUpdate = x509Crl.getNextUpdate();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getNextUpdate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1677,7 +3176,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 | 类型                   | 说明                   |
 | ---------------------- | --------------------- |
-| X509CrlEntry | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentry) | 表示被吊销X509证书对象 |
 
 **错误码：**
 
@@ -1688,29 +3187,48 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        // 业务需赋值为对应证书的序列号
-        let serialNumber = 1000;
-        try {
-            let entry = x509Crl.getRevokedCert(serialNumber);
-        } catch (error) {
-           console.log("getRevokedCert failed, errCode: " + error.code + ", errMsg: " + error.message);
-        }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    let serialNumber = 1000;
+    try {
+      let entry = x509Crl.getRevokedCert(serialNumber);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1724,15 +3242,15 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 **参数**：
 
-| 参数名 | 类型     | 必填 | 说明         |
-| ------ | -------- | ---- | ------------ |
-| cert   | X509Cert | 是   | 表示证书对象 |
+| 参数名 | 类型                  | 必填 | 说明         |
+| ------ | --------------------- | ---- | ------------ |
+| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象 |
 
 **返回值**:
 
 | 类型         | 说明                  |
 | ------------ | -------------------- |
-| X509CrlEntry | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentry) | 表示被吊销X509证书对象 |
 
 **错误码：**
 
@@ -1743,29 +3261,69 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书二进制数据，需业务自行赋值
+let certData = '-----BEGIN CERTIFICATE-----\n'
+  'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n'
+  'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n'
+  'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n'
+  'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n'
+  'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n'
+  'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n'
+  'Qw==\n'
+  '-----END CERTIFICATE-----\n';
+
+let certEncodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        // 业务需自行生成X509Cert证书对象
-        let x509Cert = null;
-        try {
-            let entry = x509Crl.getRevokedCertWithCert(x509Cert);
-        } catch (error) {
-           console.log("getRevokedCertWithCert failed, errCode: " + error.code + ", errMsg: " + error.message);
-        }
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    // 创建X509证书对象.
+    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+      try {
+        let entry = x509Crl.getRevokedCertWithCert(x509Cert);
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+      }
+    }).catch((error: BusinessError) => {
+      console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+    })
+  }
 });
 ```
 
@@ -1773,15 +3331,15 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
-表示获取被吊销X509证书列表。
+表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
-| 参数名   | 类型                                | 必填 | 说明                             |
-| -------- | ----------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
+| 参数名   | 类型                                                 | 必填 | 说明                             |
+| -------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentry)>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
 **错误码：**
 
@@ -1792,29 +3350,48 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        x509Crl.getRevokedCerts(function (error, array) {
-            if (error != null) {
-                console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
-            } else {
-                console.log("getRevokedCerts success");
-            }
-        });
-    }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    x509Crl.getRevokedCerts((error, array) => {
+      if (error != null) {
+        console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
+        console.log('getRevokedCerts success');
+      }
+    });
+  }
 });
 ```
 
@@ -1822,15 +3399,15 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
-表示获取被吊销X509证书列表。
+表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**:
 
-| 类型                          | 说明                   |
-| ----------------------------- | ---------------------- |
-| Promise<Array\<X509CrlEntry>> | 表示被吊销X509证书列表 |
+| 类型                                           | 说明                   |
+| ---------------------------------------------- | ---------------------- |
+| Promise<Array\<[X509CrlEntry](#x509crlentry)>> | 表示被吊销X509证书列表 |
 
 **错误码：**
 
@@ -1841,25 +3418,44 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
-    console.log("createX509Crl success");
-    x509Crl.getRevokedCerts().then(array => {
-        console.log("getRevokedCerts success");
-    }, error => {
-        console.log("getRevokedCerts failed, errCode: " + error.code + ", errMsg: " + error.message);
-    });
-}, error => {
-    console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
+
+certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+  console.log('createX509Crl success');
+  x509Crl.getRevokedCerts().then(array => {
+    console.log('getRevokedCerts success');
+  }).catch((error: BusinessError) => {
+    console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+}).catch((error: BusinessError) => {
+  console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
@@ -1887,27 +3483,47 @@ getTbsInfo() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        try {
-            let tbsInfo = x509Crl.getTbsInfo();
-        } catch (error) {
-           console.log("getTbsInfo failed, errCode: " + error.code + ", errMsg: " + error.message);
-        }
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let tbsInfo = x509Crl.getTbsInfo();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getTbsInfo failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1935,23 +3551,47 @@ getSignature() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let signature = x509Crl.getSignature();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let signature = x509Crl.getSignature();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignature failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -1979,23 +3619,47 @@ getSignatureAlgName() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let sigAlgName = x509Crl.getSignatureAlgName();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let sigAlgName = x509Crl.getSignatureAlgName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -2023,23 +3687,47 @@ getSignatureAlgOid() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let sigAlgOid = x509Crl.getSignatureAlgOid();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let sigAlgOid = x509Crl.getSignatureAlgOid();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSignatureAlgOid failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -2067,23 +3755,47 @@ getSignatureAlgParams() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingData = null;
-let encodingBlob = {
-    data: encodingData,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
-    if (error != null) {
-        console.log("createX509Crl failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("createX509Crl success");
-        let sigAlgParams = x509Crl.getSignatureAlgParams();
+
+certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+  if (error != null) {
+    console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Crl success');
+    try {
+      let sigAlgParams = x509Crl.getSignatureAlgParams();
+    } catch (err) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getSignatureAlgParams failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
+  }
 });
 ```
 
@@ -2117,10 +3829,16 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-let validator = cryptoCert.createCertChainValidator("PKIX");
+try {
+  let validator = certFramework.createCertChainValidator('PKIX');
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+}
 ```
 
 ## CertChainValidator
@@ -2141,7 +3859,7 @@ let validator = cryptoCert.createCertChainValidator("PKIX");
 
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
-表示校验X509证书链。
+表示校验X509证书链，使用Callback回调异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2169,34 +3887,41 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-let validator = cryptoCert.createCertChainValidator("PKIX");
 // 证书链二进制数据，需业务自行赋值
-let encodingData = null;
-// 证书链包含的证书个数，需业务自行赋值
-let certCount = 2;
-let certChainData = {
-    data: encodingData,
-    count: certCount,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM 
+let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
+
+let certChainData: certFramework.CertChainData = {
+  data: certChainBuff,
+  // 证书链包含的证书个数，需业务自行赋值
+  count: 2,
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-validator.validate(certChainData, function (error, data) {
+
+try {
+  let validator = certFramework.createCertChainValidator('PKIX');
+  validator.validate(certChainData, (error, data) => {
     if (error != null) {
-        console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
+      console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
-        console.log("validate success");
+      console.log('validate success');
     }
-});
+  });
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error('getNotBeforeTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+}
 ```
 
 ### validate
 
 validate(certChain : CertChainData) : Promise\<void>
 
-表示校验X509证书链。
+表示校验X509证书链，使用Promise方式异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2229,25 +3954,32 @@ validate(certChain : CertChainData) : Promise\<void>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-let validator = cryptoCert.createCertChainValidator("PKIX");
 // 证书链二进制数据，需业务自行赋值
-let encodingData = null;
-// 证书链包含的证书个数，需业务自行赋值
-let certCount = 2;
-let certChainData = {
-    data: encodingData,
-    count: certCount,
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM 
+let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
+
+let certChainData: certFramework.CertChainData = {
+  data: certChainBuff,
+  // 证书链包含的证书个数，需业务自行赋值
+  count: 2,
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
 };
-validator.validate(certChainData).then(result => {
-    console.log("validate success");
-}, error => {
-    console.log("validate failed, errCode: " + error.code + ", errMsg: " + error.message);
-});
+
+try {
+  let validator = certFramework.createCertChainValidator('PKIX');
+  validator.validate(certChainData).then(result => {
+    console.log('validate success');
+  }).catch((error: BusinessError) => {
+    console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  });
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error('getNotBeforeTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+}
 ```
 
 ### algorithm
@@ -2266,11 +3998,17 @@ algorithm : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-let validator = cryptoCert.createCertChainValidator("PKIX");
-let algorithm = validator.algorithm;
+try {
+  let validator = certFramework.createCertChainValidator('PKIX');
+  let algorithm = validator.algorithm;
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+}
 ```
 
 ## X509CrlEntry
@@ -2281,7 +4019,7 @@ let algorithm = validator.algorithm;
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取被吊销证书的序列化数据。
+表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2301,25 +4039,63 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-// 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
-let x509CrlEntry = null;
-x509CrlEntry.getEncoded(function (error, data) {
-    if (error != null) {
-        console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-    } else {
-        console.log("getEncoded success");
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = 1000;
+      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      crlEntry.getEncoded((error, data) => {
+        if (error != null) {
+          console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('getEncoded success');
+        }
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
-});
+  }
+})
 ```
 
 ### getEncoded
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取被吊销证书的序列化数据。
+表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2339,16 +4115,54 @@ getEncoded() : Promise\<EncodingBlob>
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-// 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
-let x509CrlEntry = null;
-x509CrlEntry.getEncoded().then(result => {
-    console.log("getEncoded success");
-}, error => {
-    console.log("getEncoded failed, errCode: " + error.code + ", errMsg: " + error.message);
-});
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = 1000;
+      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      crlEntry.getEncoded().then(result => {
+        console.log('getEncoded success');
+      }).catch((error: BusinessError) => {
+        console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
 ```
 
 ### getSerialNumber
@@ -2367,12 +4181,50 @@ getSerialNumber() : number
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-// 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
-let x509CrlEntry = null;
-let serialNumber = x509CrlEntry.getSerialNumber();
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = 1000;
+      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      serialNumber = crlEntry.getSerialNumber();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getSerialNumber failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
 ```
 
 ### getCertIssuer
@@ -2398,16 +4250,50 @@ getCertIssuer() : DataBlob
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-// 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
-let x509CrlEntry = null;
-try {
-    let issuer = x509CrlEntry.getCertIssuer();
-} catch (error) {
-    console.log("getCertIssuer failed, errCode: " + error.code + ", errMsg: " + error.message);
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
 }
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = 1000;
+      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      let issuer = crlEntry.getCertIssuer();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getCertIssuer failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
 ```
 
 ### getRevocationDate
@@ -2434,14 +4320,48 @@ getRevocationDate() : string
 
 **示例：**
 
-```js
-import cryptoCert from '@ohos.security.cert';
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
-// 业务需通过X509Crl的getRevokedCert相关方法获取X509CrlEntry
-let x509CrlEntry = null;
-try {
-    let date = x509CrlEntry.getRevocationDate();
-} catch (error) {
-    console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
 }
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  if (err != null) {
+    console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 crl success');
+
+    try {
+      let serialNumber = 1000;
+      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      let date = crlEntry.getRevocationDate();
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getRevocationDate failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
 ```

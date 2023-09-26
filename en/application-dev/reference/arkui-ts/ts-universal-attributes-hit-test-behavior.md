@@ -26,7 +26,8 @@ Hit test control allows you to configure hit testing for components. When proces
 
 ## Example
 
-Set **hitTestBehavior** to **HitTestMode.Transparent** for the **\<Text>** component, which means that the inner-layer **\<Stack>** component is also considered during hit testing. Therefore, both the **\<Text>** and **\<Stack>** components respond to the **onTouch** event. 
+Set **hitTestBehavior** to **HitTestMode.Transparent** for the **\<Text>** component, which means that the inner-layer **\<Stack>** component is also considered during hit testing. Therefore, both the **\<Text>** and **\<Stack>** components respond to the **onTouch** event.
+
 Set **hitTestBehavior** to **HitTestMode.Block** for the inner-layer **\<Stack>** component, which means that its child nodes and sibling node **\<Button>** are blocked from hit testing. Therefore, neither the inner-layer or out-layer **\<Button>** components respond to the **onTouch** event.
 
 ```ts
@@ -39,26 +40,26 @@ struct HitTestBehaviorExample {
     Stack() {
       Button('outer button')
         .onTouch((event) => {
-          console.info('outer button touched type: ' + event.type)
+          console.info('outer button touched type: ' + (event as TouchEvent).type)
         })
       // inner stack
       Stack() {
         Button('inner button')
           .onTouch((event) => {
-            console.info('inner button touched type: ' + event.type)
+            console.info('inner button touched type: ' + (event as TouchEvent).type)
           })
       }
       .width("100%").height("100%")
       .hitTestBehavior(HitTestMode.Block)
       .onTouch((event) => {
-        console.info('stack touched type: ' + event.type)
+        console.info('stack touched type: ' + (event as TouchEvent).type)
       })
 
       Text('Transparent')
         .hitTestBehavior(HitTestMode.Transparent)
         .width("100%").height("100%")
         .onTouch((event) => {
-          console.info('text touched type: ' + event.type)
+          console.info('text touched type: ' + (event as TouchEvent).type)
         })
     }.width(300).height(300)
   }

@@ -5,9 +5,8 @@ Svg组件主要作为svg画布的根节点使用，也可以在svg中嵌套使�
 
 
 > **说明：**
-> - 从API version 7开始支持。
 >
-> - svg父组件或者svg组件需要定义宽高值，否则不进行绘制。
+> svg父组件或者svg组件需要定义宽高值，否则不进行绘制。
 
 
 ## 创建Svg组件
@@ -87,4 +86,4 @@ svg{
 
 针对Svg开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

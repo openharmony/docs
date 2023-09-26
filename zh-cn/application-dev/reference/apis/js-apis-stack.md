@@ -50,7 +50,7 @@ Stack的构造函数。
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number | string | Object> = new Stack();
 ```
 
 
@@ -84,13 +84,17 @@ push(item: T): T
 
 **示例：**
 
-```ts
-let stack = new Stack();
+```
+class C1 {
+  name: string = ""
+  age: string = ""
+}
+let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
 let result2 = stack.push(b);
-let c = {name : "Dylon", age : "13"};
+let c : C1  = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 ```
 
@@ -119,7 +123,7 @@ pop(): T
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -153,7 +157,7 @@ peek(): T
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -192,7 +196,7 @@ locate(element: T): number
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -214,15 +218,15 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值。 |
-| stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
+| stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 
@@ -235,13 +239,13 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
-stack.forEach((value, index) => {
-    console.log("value:" + value, "index:" + index);
+stack.forEach((value : number, index ?: number) :void => {
+  console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -270,7 +274,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -302,20 +306,22 @@ let result = stack.isEmpty();
 
 **示例：**
 ```ts
-let stack = new Stack();
+let stack : Stack<number> = new Stack();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 
 // 使用方法一：
-for (let item of stack) { 
-  console.log("value:" + item); 
+while(!stack.isEmpty()) {
+  // 业务逻辑
+  let item = stack.pop()
+  console.log("value:" + item);
 }
 
 // 使用方法二：
 let iter = stack[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

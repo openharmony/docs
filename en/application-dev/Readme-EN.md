@@ -4,18 +4,16 @@
 - About OpenHarmony
   - [OpenHarmony Project](../OpenHarmony-Overview.md)
   - [Glossary](../glossary.md)
-  - [OpenHarmony Release Notes](../release-notes/Readme.md)
+  - [Release Notes](../release-notes/Readme.md)
 - Quick Start
   - Getting Started
     - [Before You Start](quick-start/start-overview.md)
     - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
-    - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
-    - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
   - Development Fundamentals
     - Application Package Fundamentals
       - [Application Package Overview](quick-start/application-package-overview.md)
       - Application Package Structure
-        - [Application Package Structure in Stage Model)](quick-start/application-package-structure-stage.md)
+        - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
@@ -29,7 +27,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development (for System Applications Only)](quick-start/cross-app-hsp.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
@@ -37,9 +34,9 @@
     - Application Configuration Files in FA Model
       - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
       - [Internal Structure of the app Tag](quick-start/app-structure.md)
-      - [Internal structure of deviceConfig Tag](quick-start/deviceconfig-structure.md)
+      - [Internal Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Internal Structure of the module Tag](quick-start/module-structure.md)
-    - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
+  - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - Basic Syntax
@@ -48,19 +45,20 @@
       - Custom Component
         - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
-      - [\@Builder: Custom Builder Function](quick-start/arkts-builder.md)
-      - [\@BuilderParam: @Builder Function Reference](quick-start/arkts-builderparam.md)
-      - [\@Styles: Definition of Resusable Styles](quick-start/arkts-style.md)
-      - [\@Extend: Extension of Built-in Components](quick-start/arkts-extend.md)
+      - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
+      - [\@BuilderParam Decorator: \@Builder Function Reference](quick-start/arkts-builderparam.md)
+      - [\@Styles Decorator: Definition of Resusable Styles](quick-start/arkts-style.md)
+      - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
+      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
     - State Management
       - [State Management Overview](quick-start/arkts-state-management-overview.md)
       - Component State Management
-        - [\@State: State Owned by Component](quick-start/arkts-state.md)
-        - [\@Prop: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
-        - [\@Link: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
-        - [\@Provide and \@Consume: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
-        - [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
+        - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
+        - [\@Prop Decorator: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
+        - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
+        - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
       - Application State Management
         - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
         - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
@@ -69,16 +67,17 @@
         - [Environment: Device Environment Query](quick-start/arkts-environment.md)
       - Other State Management Features
         - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
-        - [\@Watch: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
+        - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
         - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
     - Rendering Control
-      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
+      - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
 - Development
   - [Application Models](application-models/Readme-EN.md)
   - [UI Development](ui/Readme-EN.md)
+  - [ArkTS Common Library](arkts-utils/Readme-EN.md)
   - [Web](web/Readme-EN.md)
   - [Notification](notification/Readme-EN.md)
   - [Window Manager](windowmanager/Readme-EN.md)
@@ -95,28 +94,27 @@
   - [DFX](dfx/Readme-EN.md)
   - [Internationalization](internationalization/Readme-EN.md)
   - [Application Test](application-test/Readme-EN.md)
-  - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+  - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - [Native APIs](napi/Readme-EN.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [Debugging Tools](tools/Readme-EN.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
   - [SystemCapability List](reference/syscap-list.md)
   - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
   - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
-  - [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md)
-  - APIs
-    - [ArkTS and JS APIs](reference/apis/Readme-EN.md)
+  - [JavaScript Service Widget UI Component Reference](reference/js-service-widget-ui/Readme-EN.md)
+  - API Reference
+    - [ArkTS and JavaScript APIs](reference/apis/Readme-EN.md)
     - [Error Codes](reference/errorcodes/Readme-EN.md)
-    - Native APIs
+    - Native API Reference
       - [Native APIs](reference/native-apis/Readme-EN.md)
       - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
 - [FAQs](faqs/Readme-EN.md)
 - Contribution
   - [How to Contribute](../contribute/documentation-contribution.md)
-<!--no_check-->

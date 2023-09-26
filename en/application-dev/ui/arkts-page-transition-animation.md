@@ -1,4 +1,6 @@
-# Page Transition Animation
+# Page Transition Animation (Not Recommended)
+
+To achieve a better transition effect, you are advised to use the [\<Navigation>](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
 
 
 During page redirection, one page disappears and the other page appears. You can customize the [page transition effects](../reference/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** API. Specifically, **PageTransitionEnter** defines the page entrance animation, while **PageTransitionExit** defines the page exit animation.
@@ -34,7 +36,7 @@ When **type** is set to **RouteType.None** (default value), the page transition 
 
 
 ```ts
-// pageA
+// page A
 pageTransition() {
   // Configure the page entrance animation to sliding in from the left, with the duration of 1200 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.None, duration: 1200 })
@@ -48,7 +50,7 @@ pageTransition() {
 
 
 ```ts
-// pageB
+// page B
 pageTransition() {
   // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.None, duration: 1000 })
@@ -65,10 +67,10 @@ Assume that the page stack is in the multi-instance mode, that is, duplicate pag
 
 | Route Operation                        | Page A Transition Effect                           | Page B Transition Effect                           |
 | ---------------------------- | ---------------------------------- | ---------------------------------- |
-| **router.pushUrl** – redirection from page A to new page B.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
-| **router.back** – redirection from page B back to page A.      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.pushUrl** – redirection from page B to new page A.| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.back** – redirection from page A back to page B.      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.pushUrl** – redirection from page A to new page B| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.back** – redirection from page B back to page A      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.pushUrl** – redirection from page B to new page A| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.back** – redirection from page A back to page B      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
 
 
 If you want the page accessed by **router.pushUrl** to always slide in from the right and the page exited by **router.back** to always slide out from the right, the third and fourth cases in the preceding table do not meet the requirements. In this case, you need to define four page transition effects.
@@ -80,7 +82,7 @@ When **type** is set to **RouteType.Push**, the page transition animations work 
 
 
 ```ts
-// pageA
+// page A
 pageTransition() {
   // Configure the page entrance animation to sliding in from the right, with the duration of 1200 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Push, duration: 1200 })
@@ -100,7 +102,7 @@ pageTransition() {
 
 
 ```ts
-// pageB
+// page B
 pageTransition() {
   // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
@@ -175,7 +177,7 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/PageTransitionDst1' });
+            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
@@ -227,7 +229,7 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/PageTransitionSrc1' });
+            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {

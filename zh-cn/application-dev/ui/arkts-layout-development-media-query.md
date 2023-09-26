@@ -1,9 +1,9 @@
-# 媒体查询
+# 媒体查询（mediaquery）
 
 
 ## 概述
 
-[媒体查询](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md/)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
+[媒体查询](../reference/apis/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
 
 1. 针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
@@ -25,15 +25,15 @@ import mediaquery from '@ohos.mediaquery';
 
 
 ```ts
-let listener = mediaquery.matchMediaSync('(orientation: landscape)');
+let listener:mediaquery = mediaquery.matchMediaSync('(orientation: landscape)');
 ```
 
 给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
 
 
 ```ts
-onPortrait(mediaQueryResult) {
-  if (mediaQueryResult.matches) {
+onPortrait(mediaQueryResult:mediaquery) {
+  if (mediaQueryResult.matches as boolean) {
     // do something here
   } else {
     // do something here
@@ -143,19 +143,18 @@ import mediaquery from '@ohos.mediaquery';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
-let portraitFunc = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
-  listener = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
-  onPortrait(mediaQueryResult) {
-    if (mediaQueryResult.matches) { // 若设备为横屏状态，更改相应的页面布局
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
+    if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
     } else {
@@ -166,15 +165,14 @@ struct MediaQueryExample {
 
   aboutToAppear() {
     // 绑定当前应用实例
-    portraitFunc = this.onPortrait.bind(this);
     // 绑定回调函数
-    this.listener.on('change', portraitFunc);
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
   }
 
   // 改变设备横竖屏状态函数
   private changeOrientation(isLandscape: boolean) {
     // 获取UIAbility实例的上下文信息
-    let context = getContext(this) as common.UIAbilityContext;
+    let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
     // 调用该接口手动改变设备横竖屏状态
     window.getLastWindow(context).then((lastWindow) => {
       lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
@@ -205,17 +203,16 @@ FA模型下的示例：
 import mediaquery from '@ohos.mediaquery';
 import featureAbility from '@ohos.ability.featureAbility';
 
-let portraitFunc = null;
-
 @Entry
 @Component
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
+  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
+  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
 
-  onPortrait(mediaQueryResult) { // 当满足媒体查询条件时，触发回调
-    if (mediaQueryResult.matches) { // 若设备为横屏状态，更改相应的页面布局
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // 当满足媒体查询条件时，触发回调
+    if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局
       this.color = '#FFD700';
       this.text = 'Landscape';
     } else {
@@ -225,8 +222,8 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this); // 绑定当前应用实例
-    this.listener.on('change', portraitFunc); //绑定回调函数
+    // 绑定当前应用实例
+    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); //绑定回调函数
   }
 
   build() {
@@ -258,6 +255,6 @@ struct MediaQueryExample {
 
 ## 相关实例
 
-基于媒体查询，可参考以下实例：
+针对媒体查询开发，有以下相关实例可供参考：
 
-[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/MediaQuery)：使用媒体查询，完成在不同设备上显示不同的界面效果。
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)

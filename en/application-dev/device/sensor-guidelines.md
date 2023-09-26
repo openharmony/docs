@@ -15,62 +15,65 @@ For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 | ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
 | ohos.sensor | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
 | ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
+| ohos.sensor | sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.|
 
 
 ## How to Develop
 
-1. Before obtaining data from a type of sensor, check whether the required permission has been configured.<br>
-     The system provides the following sensor-related permissions:
-   - ohos.permission.ACCELEROMETER
+The acceleration sensor is used as an example.
 
-   - ohos.permission.GYROSCOPE
+1. Import the module.
 
-   - ohos.permission.ACTIVITY_MOTION
-
-   - ohos.permission.READ_HEALTH_DATA
-
-   For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
-   
-2. Subscribe to data changes of a type of sensor. The following uses the acceleration sensor as an example. 
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
-   });
+   ```ts
+   import sensor from '@ohos.sensor';
+   import { BusinessError } from '@ohos.base';
    ```
-   
-   ![171e6f30-a8d9-414c-bafa-b430340305fb](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
-3. Unsubscribe from sensor data changes.
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.off(sensor.SensorId.ACCELEROMETER);
-   ```
-   
-   ![65d69983-29f6-4381-80a3-f9ef2ec19e53](figures/65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
+2. Obtain information about all sensors on the device.
 
-4. Subscribe to only one data change of a type of sensor.
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
-   });
-   ```
-   
-   ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](figures/db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
+    ```ts    
+    sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
+        if (error) {
+            console.info('getSensorList failed');
+        } else {
+            console.info('getSensorList success');
+            for (let i = 0; i < data.length; i++) {
+                console.info(JSON.stringify(data[i]));
+            }
+        }
+    });
+    ```
 
-   If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
+    ![](figures/001.png)
 
-    ```js
-   import sensor from "@ohos.sensor";
-    try {
-      sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
-      });
-    } catch (error) {
-      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
-    }
+    The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. Therefore, the value of **interval** must be within this range.
+
+3. Check whether the corresponding permission has been configured. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+
+4. Register a listener. You can call **on()** or **once()** to listen for sensor data changes.
+
+- The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
+
+    ```ts    
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+    }, { interval: 100000000 });
+    ```
+
+    ![](figures/002.png)
+
+- The **once()** API is used to listen for only one data change of the sensor.
+
+    ```ts  
+    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+    });
+    ```
+
+    ![](figures/003.png)
+
+5. Cancel continuous listening.
+
+    ```ts
+    sensor.off(sensor.SensorId.ACCELEROMETER);
     ```

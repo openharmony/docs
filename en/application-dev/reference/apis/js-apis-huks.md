@@ -9,7 +9,7 @@ The keys managed by OpenHarmony Universal KeyStore (HUKS) can be imported by app
 
 ## Modules to Import
 
-```js
+```ts
 import huks from '@ohos.security.huks'
 ```
 
@@ -17,7 +17,7 @@ import huks from '@ohos.security.huks'
 
 Defines the **param** in the **properties** array of **options** used in the APIs.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name| Type                               | Mandatory| Description        |
 | ------ | ----------------------------------- | ---- | ------------ |
@@ -28,7 +28,7 @@ Defines the **param** in the **properties** array of **options** used in the API
 
 Defines the **options** used in the APIs. 
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name    | Type             | Mandatory| Description                    |
 | ---------- | ----------------- | ---- | ------------------------ |
@@ -39,7 +39,7 @@ Defines the **options** used in the APIs.
 
 Defines the HUKS handle structure.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name   | Type      | Mandatory| Description                                                |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
@@ -48,9 +48,9 @@ Defines the HUKS handle structure.
 
 ## HuksReturnResult<sup>9+</sup>
 
-Defines the **HuksResult** structure.
+Defines the **HuksResult** struct.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 
 
@@ -67,7 +67,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 Generates a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -98,41 +98,47 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Generate an ECC key of 256 bits. */
-let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_ECC
-};
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
-};
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-};
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-};
-let options = {
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let keyAlias: string = 'keyAlias';
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_ECC
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    },
+];
+let options: huks.HuksOptions = {
     properties: properties
 };
 try {
-    huks.generateKeyItem(keyAlias, options, function (error, data) {
+    huks.generateKeyItem(keyAlias, options, (error, data) => {
         if (error) {
-            console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: generateKeyItem failed`);
         } else {
             console.info(`callback: generateKeyItem key success`);
         }
     });
 } catch (error) {
-    console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: generateKeyItem input arg invalid`);
 }
 ```
 
@@ -142,7 +148,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 Generates a key. This API uses a promise to return the result. Because the key is always protected in an trusted environment (such as a TEE), the promise does not return the key content. It returns only the information indicating whether the API is successfully called.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -172,29 +178,36 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
 /* Generate an ECC key of 256 bits. */
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_ECC
-};
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
-};
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-};
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-};
-let options = {
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_ECC
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    },
+];
+let options: huks.HuksOptions = {
     properties: properties
 };
 try {
@@ -202,11 +215,11 @@ try {
         .then((data) => {
             console.info(`promise: generateKeyItem success`);
         })
-        .catch(error => {
-            console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        .catch((error: BusinessError) => {
+            console.error(`promise: generateKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: generateKeyItem input arg invalid`);
 }
 ```
 
@@ -216,7 +229,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 Deletes a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -242,22 +255,23 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
-    huks.deleteKeyItem(keyAlias, emptyOptions, function (error, data) {
+    huks.deleteKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: deleteKeyItem failed`);
         } else {
             console.info(`callback: deleteKeyItem key success`);
         }
     });
 } catch (error) {
-    console.error(`callback: deleteKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: deleteKeyItem input arg invalid`);
 }
 ```
 
@@ -267,7 +281,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 Deletes a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -292,10 +306,12 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
@@ -303,11 +319,11 @@ try {
         .then ((data) => {
             console.info(`promise: deleteKeyItem key success`);
         })
-        .catch(error => {
-            console.error(`promise: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        .catch((error: BusinessError) => {
+            console.error(`promise: deleteKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: deleteKeyItem input arg invalid`);
 }
 ```
 
@@ -317,7 +333,7 @@ getSdkVersion(options: HuksOptions) : string
 
 Obtains the SDK version of the current system.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -333,10 +349,11 @@ Obtains the SDK version of the current system.
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
 let result = huks.getSdkVersion(emptyOptions);
 ```
@@ -347,7 +364,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 Imports a key in plaintext. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -379,10 +396,16 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Import an AES key of 256 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let plainTextSize32 = makeRandomArr(32);
-function makeRandomArr(size) {
+function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
     for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
@@ -390,42 +413,43 @@ function makeRandomArr(size) {
     return arr;
 };
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-};
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-};
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-};
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-let options = {
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_ECB
+    }
+];
+let options: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
 try {
-    huks.importKeyItem(keyAlias, options, function (error, data) {
+    huks.importKeyItem(keyAlias, options, (error, data) => {
         if (error) {
-            console.error(`callback: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: importKeyItem failed`);
         } else {
             console.info(`callback: importKeyItem success`);
         }
     });
 } catch (error) {
-    console.error(`callback: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: importKeyItem input arg invalid`);
 }
 ```
 
@@ -435,7 +459,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 Imports a key in plaintext. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -466,55 +490,61 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* Import an AES key of 128 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let plainTextSize32 = makeRandomArr(32);
-
-function makeRandomArr(size) {
+function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
     for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
-
 /* Step 1 Generate a key. */
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-};
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-};
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-};
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-let huksoptions = {
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_ECB
+    }
+];
+let huksoptions: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
 try {
     huks.importKeyItem(keyAlias, huksoptions)
-        .then ((data) => {
+        .then((data) => {
             console.info(`promise: importKeyItem success`);
         })
-        .catch(error => {
-            console.error(`promise: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        .catch((error: BusinessError) => {
+            console.error(`promise: importKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: importKeyItem input arg invalid`);
 }
 ```
 
@@ -524,7 +554,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 Obtains the certificate used to verify a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -555,14 +585,20 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
 let keyAliasString = "key attest";
-
-function stringToUint8Array(str) {
-    let arr = [];
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
@@ -570,91 +606,88 @@ function stringToUint8Array(str) {
     return tmpUint8Array;
 }
 
-async function generateKey(alias) {
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_RSA
-    };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-        value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-    };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-    };
-    properties[4] = {
-        tag: huks.HuksTag.HUKS_TAG_DIGEST,
-        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-    };
-    properties[5] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PSS
-    };
-    properties[6] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
-        value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
-    };
-    properties[7] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_ECB
-    };
-    let options = {
-        properties: properties
-    };
-
-    try {
-        huks.generateKeyItem(alias, options, function (error, data) {
-            if (error) {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-            } else {
-                console.info(`callback: generateKeyItem success`);
-            }
-        });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-async function attestKey() {
+async function generateKeyThenattestKey(alias: string) {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
-        value: securityLevel
+    let generateProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let generateOptions: huks.HuksOptions = {
+        properties: generateProperties
     };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
-        value: challenge
+    let attestProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let attestOptions: huks.HuksOptions = {
+        properties: attestProperties
     };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
-        value: versionInfo
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
-        value: aliasUint8
-    };
-    let options = {
-        properties: properties
-    };
-    await generateKey(aliasString);
     try {
-        huks.attestKeyItem(aliasString, options, function (error, data) {
+        huks.generateKeyItem(alias, generateOptions, (error, data) => {
             if (error) {
-                console.error(`callback: attestKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: generateKeyItem failed`);
             } else {
-                console.info(`callback: attestKeyItem success`);
+                console.info(`callback: generateKeyItem success`);
+                try {
+                    huks.attestKeyItem(aliasString, attestOptions, (error, data) => {
+                        if (error) {
+                            console.error(`callback: attestKeyItem failed`);
+                        } else {
+                            console.info(`callback: attestKeyItem success`);
+                        }
+                    });
+                } catch (error) {
+                    console.error(`callback: attestKeyItem input arg invalid`);
+                }
             }
         });
     } catch (error) {
-        console.error(`callback: attestKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
 ```
@@ -665,7 +698,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 Obtains the certificate used to verify a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -701,106 +734,112 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
 let keyAliasString = "key attest";
-
-function stringToUint8Array(str) {
-    let arr = [];
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
-
-async function generateKey(alias) {
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_RSA
-    };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-        value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
-    };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-    };
-    properties[4] = {
-        tag: huks.HuksTag.HUKS_TAG_DIGEST,
-        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-    };
-    properties[5] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_PSS
-    };
-    properties[6] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
-        value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
-    };
-    properties[7] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_ECB
-    };
-    let options = {
+async function generateKey(alias: string) {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let options: huks.HuksOptions = {
         properties: properties
     };
-
     try {
         await huks.generateKeyItem(alias, options)
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch(error => {
-                console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: generateKeyItem input arg invalid`);
     }
 }
-
 async function attestKey() {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
-        value: securityLevel
-    };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
-        value: challenge
-    };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
-        value: versionInfo
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
-        value: aliasUint8
-    };
-    let options = {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let options: huks.HuksOptions = {
         properties: properties
     };
     await generateKey(aliasString);
     try {
         await huks.attestKeyItem(aliasString, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`promise: attestKeyItem success`);
             })
-            .catch(error => {
-                console.error(`promise: attestKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: attestKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: attestKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: attestKeyItem input arg invalid`);
     }
 }
 ```
@@ -811,7 +850,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 Imports a wrapped key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -844,31 +883,34 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
 import huks from '@ohos.security.huks';
-
-let exportWrappingKey;
+import { BusinessError } from '@ohos.base';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyDigest | huks.HuksKeyPadding | huks.HuksUnwrapSuite |
+    huks.HuksCipherMode | huks.HuksImportKeyType = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let alias1 = "importAlias";
 let alias2 = "wrappingKeyAlias";
-
-async function TestGenFunc(alias, options) {
+async function TestGenFunc(alias: string, options: huks.HuksOptions) {
     try {
         await genKey(alias, options)
             .then((data) => {
                 console.info(`callback: generateKeyItem success`);
             })
-            .catch(error => {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`callback: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
-
-function genKey(alias, options) {
-    return new Promise((resolve, reject) => {
+function genKey(alias: string, options: huks.HuksOptions) {
+    return new Promise<void>((resolve, reject) => {
         try {
-            huks.generateKeyItem(alias, options, function (error, data) {
+            huks.generateKeyItem(alias, options, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -876,30 +918,27 @@ function genKey(alias, options) {
                 }
             });
         } catch (error) {
-            throw(error);
+            throw (new Error(error));
         }
     });
 }
-
-async function TestExportFunc(alias, options) {
+async function TestExportFunc(alias: string, options: huks.HuksOptions) {
     try {
         await exportKey(alias, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
-                exportWrappingKey = data.outData;
             })
-            .catch(error => {
-                console.error(`callback: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`callback: exportKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: exportKeyItem input arg invalid`);
     }
 }
-
-function exportKey(alias, options) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
+function exportKey(alias: string, options: huks.HuksOptions) {
+    return new Promise<huks.HuksReturnResult>((resolve, reject) => {
         try {
-            huks.exportKeyItem(alias, options, function (error, data) {
+            huks.exportKeyItem(alias, options, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -907,29 +946,27 @@ function exportKey(alias, options) : Promise<huks.HuksReturnResult> {
                 }
             });
         } catch (error) {
-            throw(error);
+            throw (new Error(error));
         }
     });
 }
-
-async function TestImportWrappedFunc(alias, wrappingAlias, options) {
+async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
     try {
         await importWrappedKey(alias, wrappingAlias, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`callback: importWrappedKeyItem success`);
             })
-            .catch(error => {
-                console.error(`callback: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`callback: importWrappedKeyItem failed`);
             });
     } catch (error) {
-        console.error(`callback: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: importWrappedKeyItem input arg invalid`);
     }
 }
-
-function importWrappedKey(alias, wrappingAlias, options) {
-    return new Promise((resolve, reject) => {
+function importWrappedKey(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
+    return new Promise<void>((resolve, reject) => {
         try {
-            huks.importWrappedKeyItem(alias, wrappingAlias, options, function (error, data) {
+            huks.importWrappedKeyItem(alias, wrappingAlias, options, (error, data) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -937,16 +974,15 @@ function importWrappedKey(alias, wrappingAlias, options) {
                 }
             });
         } catch (error) {
-            throw(error);
+            throw (new Error(error));
         }
     });
 }
-
 async function TestImportWrappedKeyFunc(
-        alias,
-        wrappingAlias,
-        genOptions,
-        importOptions
+        alias: string,
+        wrappingAlias: string,
+        genOptions: huks.HuksOptions,
+        importOptions: huks.HuksOptions
 ) {
     await TestGenFunc(wrappingAlias, genOptions);
     await TestExportFunc(wrappingAlias, genOptions);
@@ -964,71 +1000,71 @@ async function TestImportWrappedKeyFunc(
      * nonce1 length (4 bytes) + nonce1 + tag1 length (4 bytes) + tag1 +
      * Memory occupied by the keyA length (4 bytes) + keyA length + keyA_enc length (4 bytes) + keyA_enc
      */
+    /* The key data imported vary with the sample code given below. The data structure is described in the preceding comments. */
     let inputKey = new Uint8Array([0x02, 0x00, 0x00, 0x00]);
     importOptions.inData = inputKey;
     await TestImportWrappedFunc(alias, wrappingAlias, importOptions);
 }
-
 function makeGenerateOptions() {
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_ECC
-    };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
-    };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_DIGEST,
-        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-    };
-    properties[4] = {
-        tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-        value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR,
-    };
-    let options = {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_ECC
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_UNWRAP
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+            value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR,
+        }
+    ];
+    let options: huks.HuksOptions = {
         properties: properties
     };
     return options;
 };
-
 function makeImportOptions() {
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES
-    };
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-    };
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    };
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC
-    };
-    properties[4] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-    };
-    properties[5] = {
-        tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
-        value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
-    };
-    let options = {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_AES
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_CBC
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
+            value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
+        }
+    ];
+    let options: huks.HuksOptions = {
         properties: properties
     };
     return options;
 };
-
 function huksImportWrappedKey() {
     let genOptions = makeGenerateOptions();
     let importOptions = makeImportOptions();
@@ -1047,7 +1083,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 Imports a wrapped key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1079,19 +1115,22 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* The process is similar as if a callback is used, except the following:*/
-async function TestImportWrappedFunc(alias, wrappingAlias, options) {
+/* The key data imported vary with the sample code given below. The data structure is described in the preceding comments. */
+async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
     try {
         await huks.importWrappedKeyItem(alias, wrappingAlias, options)
             .then ((data) => {
                 console.info(`promise: importWrappedKeyItem success`);
             })
-            .catch(error => {
-                console.error(`promise: importWrappedKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: importWrappedKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: importWrappedKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: importWrappedKeyItem input arg invalid`);
     }
 }
 ```
@@ -1102,7 +1141,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 Exports a key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1110,7 +1149,7 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. **outData** contains the public key exported.|
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1132,22 +1171,23 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
-    huks.exportKeyItem(keyAlias, emptyOptions, function (error, data) {
+    huks.exportKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: exportKeyItem failed`);
         } else {
             console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
-    console.error(`callback: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: exportKeyItem input arg invalid`);
 }
 ```
 
@@ -1157,7 +1197,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 Exports a key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1192,10 +1232,12 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
@@ -1203,11 +1245,11 @@ try {
         .then ((data) => {
             console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch(error => {
-            console.error(`promise: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+        .catch((error: BusinessError) => {
+            console.error(`promise: exportKeyItem failed`);
         });
 } catch (error) {
-    console.error(`promise: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: exportKeyItem input arg invalid`);
 }
 ```
 
@@ -1217,7 +1259,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 Obtains key properties. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1225,7 +1267,7 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1247,22 +1289,23 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
-    huks.getKeyItemProperties(keyAlias, emptyOptions, function (error, data) {
+    huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
         if (error) {
-            console.error(`callback: getKeyItemProperties failed, code: ${error.code}, msg: ${error.message}`);
+            console.error(`callback: getKeyItemProperties failed`);
         } else {
             console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         }
     });
 } catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`callback: getKeyItemProperties input arg invalid`);
 }
 ```
 
@@ -1272,7 +1315,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 Obtains key properties. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1307,10 +1350,12 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 try {
@@ -1318,11 +1363,11 @@ try {
         .then ((data) => {
             console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         })
-        .catch(error => {
-            console.error(`promise: getKeyItemProperties failed, code: ${error.code}, msg: ${error.message}`);
+        .catch((error: BusinessError) => {
+            console.error(`promise: getKeyItemProperties failed`);
         });
 } catch (error) {
-    console.error(`promise: getKeyItemProperties input arg invalid, code: ${error.code}, msg: ${error.message}`);
+    console.error(`promise: getKeyItemProperties input arg invalid`);
 }
 ```
 
@@ -1332,7 +1377,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 Checks whether a key exists. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1360,26 +1405,25 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
 import huks from '@ohos.security.huks';
 import promptAction from '@ohos.promptAction';
-
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
+huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
     if (data) {
-      promptAction.showToast({
-        message: "keyAlias: " + keyAlias +"is existed! ",
-        duration: 2500,
-      })
+        promptAction.showToast({
+            message: "keyAlias: " + keyAlias +"is existed! ",
+            duration: 2500,
+        })
     } else {
-      promptAction.showToast({
-        message: "find key failed, error code: " + error.code + " error msg: " + error.message,
-        duration: 2500,
-      })
+        promptAction.showToast({
+            message: "find key failed",
+            duration: 2500,
+        })
     }
 });
 ```
@@ -1390,7 +1434,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 Checks whether a key exists. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1423,26 +1467,27 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
 import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 import promptAction from '@ohos.promptAction';
 
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
+let emptyOptions: huks.HuksOptions = {
     properties: []
 };
-await huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
+huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     promptAction.showToast({
-      message: "keyAlias: " + keyAlias +"is existed! ",
-      duration: 500,
+        message: "keyAlias: " + keyAlias +"is existed! ",
+        duration: 500,
     })
-  }).catch((err)=>{
+}).catch((error: BusinessError)=>{
     promptAction.showToast({
-      message: "find key failed, error code: " + err.code + " error message: " + err.message,
-      duration: 6500,
+        message: "find key failed",
+        duration: 6500,
     })
-  })
+})
 ```
 
 ## huks.initSession<sup>9+</sup>
@@ -1451,7 +1496,7 @@ initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Initializes the data for a key operation. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1486,7 +1531,7 @@ initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle
 
 Initializes the data for a key operation. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1526,7 +1571,7 @@ updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1563,7 +1608,7 @@ updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1601,7 +1646,7 @@ updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promis
 
 Updates the key operation by segment. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1644,7 +1689,7 @@ finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1652,7 +1697,6 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | Yes  | Handle for the **finishSession** operation.                        |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **finishSession** operation.                          |
-| token    | Uint8Array                                           | Yes  | Token of the **finishSession** operation.                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
 
 **Error codes**
@@ -1682,7 +1726,7 @@ finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1720,7 +1764,7 @@ finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promis
 
 Completes the key operation and releases resources. This API uses a promise to return the result. **huks.initSession**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1763,7 +1807,7 @@ abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void
 
 Aborts a key operation. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 **Parameters**
 
@@ -1771,7 +1815,7 @@ Aborts a key operation. This API uses an asynchronous callback to return the res
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | handle   | number                      | Yes  | Handle for the **abortSession** operation.                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set used for the **abortSession** operation.                      |
-| callback | AsyncCallback\<void>        | Yes  | Callback that returns no value. |
+| callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the **abortSession** operation result.|
 
 **Error codes**
 
@@ -1789,7 +1833,8 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* huks.initSession, huks.updateSession, and huks.finishSession must be used together.
  * If an error occurs in any of huks.initSession, huks.updateSession,
  * and huks.finishSession operations,
@@ -1797,22 +1842,26 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
  *
  * The following uses the callback of an RSA1024 key as an example.
  */
-function stringToUint8Array(str) {
-    let arr = [];
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
-
 let keyAlias = "HuksDemoRSA";
-let properties = new Array();
-let options = {
+let properties: HuksProperties[] = []
+let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
 };
-let handle;
+let handle: number = 0;
 async function generateKey() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -1838,80 +1887,75 @@ async function generateKey() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
-
     try {
-        await huks.generateKeyItem(keyAlias, options, function (error, data) {
+        await huks.generateKeyItem(keyAlias, options, (error, data) => {
             if (error) {
-                console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: generateKeyItem failed`);
             } else {
                 console.info(`callback: generateKeyItem success`);
             }
         });
     } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: generateKeyItem input arg invalid`);
     }
 }
-
 async function huksInit() {
     console.log('enter huksInit');
     try {
-        huks.initSession(keyAlias, options, function (error, data) {
+        huks.initSession(keyAlias, options, (error, data) => {
             if (error) {
-                console.error(`callback: initSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: initSession failed`);
             } else {
                 console.info(`callback: initSession success, data = ${JSON.stringify(data)}`);
                 handle = data.handle;
             }
         });
     } catch (error) {
-        console.error(`callback: initSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: initSession input arg invalid`);
     }
 }
-
 async function huksUpdate() {
     console.log('enter huksUpdate');
     options.inData = stringToUint8Array("huksHmacTest");
     try {
-        huks.updateSession(handle, options, function (error, data) {
+        huks.updateSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: updateSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: updateSession failed`);
             } else {
                 console.info(`callback: updateSession success, data = ${JSON.stringify(data)}`);
             }
         });
     } catch (error) {
-        console.error(`callback: updateSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: updateSession input arg invalid`);
     }
 }
-
 async function huksFinish() {
     console.log('enter huksFinish');
     options.inData = new Uint8Array(0);
     try {
-        huks.finishSession(handle, options, function (error, data) {
+        huks.finishSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: finishSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: finishSession failed`);
             } else {
                 console.info(`callback: finishSession success, data = ${JSON.stringify(data)}`);
             }
         });
     } catch (error) {
-        console.error(`callback: finishSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: finishSession input arg invalid`);
     }
 }
-
 async function huksAbort() {
     console.log('enter huksAbort');
     try {
-        huks.abortSession(handle, options, function (error, data) {
+        huks.abortSession(handle, options, (error, data) => {
             if (error) {
-                console.error(`callback: abortSession failed, code: ${error.code}, msg: ${error.message}`);
+                console.error(`callback: abortSession failed`);
             } else {
                 console.info(`callback: abortSession success`);
             }
         });
     } catch (error) {
-        console.error(`callback: abortSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`callback: abortSession input arg invalid`);
     }
 }
 ```
@@ -1922,7 +1966,7 @@ abortSession(handle: number, options: HuksOptions) : Promise\<void>;
 
 Aborts a key operation. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -1953,7 +1997,9 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* huks.initSession, huks.updateSession, and huks.finishSession must be used together.
  * If an error occurs in any of huks.initSession, huks.updateSession,
  * and huks.finishSession operations,
@@ -1961,8 +2007,15 @@ For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcod
  *
  * The following uses the callback of an RSA1024 key as an example.
  */
-function stringToUint8Array(str) {
-    let arr = [];
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyDigest | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
@@ -1971,12 +2024,13 @@ function stringToUint8Array(str) {
 }
 
 let keyAlias = "HuksDemoRSA";
-let properties = new Array();
-let options = {
+let properties: HuksProperties[] = []
+let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
 };
-let handle;
+let handle: number = 0;
+
 async function generateKey() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -2008,11 +2062,11 @@ async function generateKey() {
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch(error => {
-                console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: generateKeyItem input arg invalid`);
     }
 }
 
@@ -2020,15 +2074,15 @@ async function huksInit() {
     console.log('enter huksInit');
     try {
         await huks.initSession(keyAlias, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`promise: initSession success, data = ${JSON.stringify(data)}`);
-                    handle = data.handle;
+                handle = data.handle;
             })
-            .catch(error => {
-                console.error(`promise: initSession key failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: initSession key failed`);
             });
     } catch (error) {
-        console.error(`promise: initSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: initSession input arg invalid`);
     }
 }
 
@@ -2037,14 +2091,14 @@ async function huksUpdate() {
     options.inData = stringToUint8Array("huksHmacTest");
     try {
         await huks.updateSession(handle, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch(error => {
-                console.error(`promise: updateSession failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: updateSession failed`);
             });
     } catch (error) {
-        console.error(`promise: updateSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: updateSession input arg invalid`);
     }
 }
 
@@ -2053,14 +2107,14 @@ async function huksFinish() {
     options.inData = new Uint8Array(0);
     try {
         await huks.finishSession(handle, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch(error => {
-                console.error(`promise: finishSession failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: finishSession failed`);
             });
     } catch (error) {
-        console.error(`promise: finishSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: finishSession input arg invalid`);
     }
 }
 
@@ -2068,14 +2122,14 @@ async function huksAbort() {
     console.log('enter huksAbort');
     try {
         await huks.abortSession(handle, options)
-            .then ((data) => {
+            .then((data) => {
                 console.info(`promise: abortSession success`);
             })
-            .catch(error => {
-                console.error(`promise: abortSession failed, code: ${error.code}, msg: ${error.message}`);
+            .catch((error: BusinessError) => {
+                console.error(`promise: abortSession failed`);
             });
     } catch (error) {
-        console.error(`promise: abortSession input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        console.error(`promise: abortSession input arg invalid`);
     }
 }
 ```
@@ -2087,7 +2141,7 @@ Enumerates the error codes.
 
 For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcode-huks.md).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                                          | Value|  Description                       |
 | ---------------------------------------------- | -------- |--------------------------- |
@@ -2114,25 +2168,25 @@ For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcod
 
 Enumerates the key purposes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt the plaintext.|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text.|
-| HUKS_KEY_PURPOSE_SIGN    | 4    | Used for signing.    |
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signature.  |
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | Used for an encrypted export.          |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for an encrypted import.              |
-| HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC). |
-| HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.      |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt the plaintext.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_SIGN    | 4    | Used for signing.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signature.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_WRAP    | 32   | Used for an encrypted export.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for an encrypted import.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyDigest
 
 Enumerates the digest algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
@@ -2149,89 +2203,89 @@ Enumerates the digest algorithms.
 
 Enumerates the padding algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_PADDING_NONE | 0    | No padding algorithm|
-| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP)|
-| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS)|
-| HUKS_PADDING_PKCS1_V1_5 | 3    | Public Key Cryptography Standards (PKCS) #1 v1.5|
-| HUKS_PADDING_PKCS5 | 4   | PKCS #5|
-| HUKS_PADDING_PKCS7 | 5   | PKCS #7|
+| HUKS_PADDING_NONE | 0    | No padding algorithm<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP)<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS)<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS1_V1_5 | 3    | Public Key Cryptography Standards (PKCS) #1 v1.5<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS5 | 4   | PKCS #5<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS7 | 5   | PKCS #7<br>**System capability**: SystemCapability.Security.Huks.Core|
 
 ## HuksCipherMode
 
 Enumerates the cipher modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name         | Value  | Description                 |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode|
-| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode|
-| HUKS_MODE_CTR | 3    | Counter (CTR) mode|
-| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode|
-| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode|
-| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode|
+| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CTR | 3    | Counter (CTR) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode<br>**System capability**: SystemCapability.Security.Huks.Core|
 
 ## HuksKeySize
 
 Enumerates the key sizes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                              | Value  | Description                                      |
 | ---------------------------------- | ---- | ------------------------------------------ |
-| HUKS_RSA_KEY_SIZE_512              | 512  | Rivest-Shamir-Adleman (RSA) key of 512 bits       |
-| HUKS_RSA_KEY_SIZE_768              | 768  | RSA key of 768 bits       |
-| HUKS_RSA_KEY_SIZE_1024             | 1024 | RSA key of 1024 bits      |
-| HUKS_RSA_KEY_SIZE_2048             | 2048 | RSA key of 2048 bits      |
-| HUKS_RSA_KEY_SIZE_3072             | 3072 | RSA key of 3072 bits      |
-| HUKS_RSA_KEY_SIZE_4096             | 4096 | RSA key of 4096 bits      |
-| HUKS_ECC_KEY_SIZE_224              | 224  | Elliptic Curve Cryptography (ECC) key of 224 bits       |
-| HUKS_ECC_KEY_SIZE_256              | 256  | ECC key of 256 bits       |
-| HUKS_ECC_KEY_SIZE_384              | 384  | ECC key of 384 bits       |
-| HUKS_ECC_KEY_SIZE_521              | 521  | ECC key of 521 bits       |
-| HUKS_AES_KEY_SIZE_128              | 128  | Advanced Encryption Standard (AES) key of 128 bits       |
-| HUKS_AES_KEY_SIZE_192              | 192  | AES key of 192 bits       |
-| HUKS_AES_KEY_SIZE_256              | 256  | AES key of 256 bits       |
-| HUKS_AES_KEY_SIZE_512              | 512  | AES key of 512 bits       |
-| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits|
-| HUKS_DH_KEY_SIZE_2048              | 2048 | Diffie-Hellman (DH) key of 2048 bits       |
-| HUKS_DH_KEY_SIZE_3072              | 3072 | DH key of 3072 bits       |
-| HUKS_DH_KEY_SIZE_4096              | 4096 | DH key of 4096 bits       |
-| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | ShangMi2 (SM2) key of 256 bits           |
-| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | ShangMi4 (SM4) key of 128 bits           |
+| HUKS_RSA_KEY_SIZE_512              | 512  | Rivest-Shamir-Adleman (RSA) key of 512 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_768              | 768  | RSA key of 768 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_1024             | 1024 | RSA key of 1024 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_2048             | 2048 | RSA key of 2048 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_3072             | 3072 | RSA key of 3072 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_4096             | 4096 | RSA key of 4096 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_224              | 224  | Elliptic Curve Cryptography (ECC) key of 224 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_256              | 256  | ECC key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_384              | 384  | ECC key of 384 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_521              | 521  | ECC key of 521 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_AES_KEY_SIZE_128              | 128  | Advanced Encryption Standard (AES) key of 128 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_192              | 192  | AES key of 192 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_256              | 256  | AES key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_512              | 512  | AES key of 512 bits<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_2048              | 2048 | Diffie-Hellman (DH) key of 2048 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_3072              | 3072 | DH key of 3072 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_4096              | 4096 | DH key of 4096 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | ShangMi2 (SM2) key of 256 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | ShangMi4 (SM4) key of 128 bits<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyAlg
 
 Enumerates the key algorithms.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                     | Value  | Description                 |
 | ------------------------- | ---- | --------------------- |
-| HUKS_ALG_RSA              | 1    | RSA    |
-| HUKS_ALG_ECC              | 2    | ECC    |
-| HUKS_ALG_DSA              | 3    | DSA    |
-| HUKS_ALG_AES              | 20   | AES    |
-| HUKS_ALG_HMAC             | 50   | HMAC   |
-| HUKS_ALG_HKDF             | 51   | HKDF   |
-| HUKS_ALG_PBKDF2           | 52   | PBKDF2 |
-| HUKS_ALG_ECDH             | 100  | ECDH   |
-| HUKS_ALG_X25519           | 101  | X25519  |
-| HUKS_ALG_ED25519          | 102  | ED25519|
-| HUKS_ALG_DH               | 103  | DH     |
-| HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2    |
-| HUKS_ALG_SM3<sup>9+</sup> | 151  | SM3    |
-| HUKS_ALG_SM4<sup>9+</sup> | 152  | SM4    |
+| HUKS_ALG_RSA              | 1    | RSA<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECC              | 2    | ECC<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DSA              | 3    | DSA<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_AES              | 20   | AES<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_ALG_HMAC             | 50   | HMAC<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_HKDF             | 51   | HKDF<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_PBKDF2           | 52   | PBKDF2<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECDH             | 100  | ECDH<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_X25519           | 101  | X25519 <br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ED25519          | 102  | ED25519<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DH               | 103  | DH<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM3<sup>9+</sup> | 151  | SM3<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM4<sup>9+</sup> | 152  | SM4<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyGenerateType
 
 Enumerates the key generation types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                          | Value  | Description            |
 | ------------------------------ | ---- | ---------------- |
@@ -2243,7 +2297,7 @@ Enumerates the key generation types.
 
 Enumerates the key generation modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                      | Value  | Description                                |
 | -------------------------- | ---- | ------------------------------------ |
@@ -2256,20 +2310,20 @@ Enumerates the key generation modes.
 
 Enumerates the key storage modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                                         | Value  | Description                          |
 | --------------------------------------------  | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP                             | 0    | The key is managed locally.    |
-| HUKS_STORAGE_PERSISTENT                       | 1    | The key is managed by the HUKS service.|
-| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key is stored only in the HUKS.      |
-| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key is exported from the HUKS and is not stored.|
+| HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | The key is managed locally.<br>**NOTE**: This tag is deprecated since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | The key is managed by the HUKS service.<br>**NOTE**: This tag is deprecated since API version 10. No substitute is provided because this tag is not used in key management. In key derivation scenarios, use **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED**.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key derived from the master key is stored in the HUKS and managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key derived from the master key is exported to the service, and not managed by the HUKS.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## HuksSendType
 
 Enumerates the tag transfer modes.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                | Value  | Description             |
 | -------------------- | ---- | ----------------- |
@@ -2278,9 +2332,9 @@ Enumerates the tag transfer modes.
 
 ## HuksUnwrapSuite<sup>9+</sup>
 
-Enumerates the algorithm suites used for importing an encrypted key.
+Enumerates the algorithm suites used for importing a wrapped key.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                                          | Value  | Description                                                 |
 | ---------------------------------------------- | ---- | ----------------------------------------------------- |
@@ -2291,7 +2345,7 @@ Enumerates the algorithm suites used for importing an encrypted key.
 
 Enumerates the types of keys to import. By default, a public key is imported. This field is not required when a symmetric key is imported.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                     | Value  | Description                          |
 | ------------------------- | ---- | ------------------------------ |
@@ -2303,7 +2357,7 @@ Enumerates the types of keys to import. By default, a public key is imported. Th
 
 Enumerates the **salt_len** types to set when PSS padding is used in RSA signing or signature verification.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                                      | Value  | Description                        |
 | ------------------------------------------ | ---- | ---------------------------- |
@@ -2314,7 +2368,7 @@ Enumerates the **salt_len** types to set when PSS padding is used in RSA signing
 
 Enumerates the user authentication types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                     |
 | ------------------------------- | ---- | ------------------------- |
@@ -2326,7 +2380,7 @@ Enumerates the user authentication types.
 
 Enumerates the access control types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                                   | Value  | Description                                            |
 | --------------------------------------- | ---- | ------------------------------------------------ |
@@ -2337,7 +2391,7 @@ Enumerates the access control types.
 
 Enumerates the types of the challenges generated when a key is used.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                          |
 | ------------------------------- | ---- | ------------------------------ |
@@ -2349,7 +2403,7 @@ Enumerates the types of the challenges generated when a key is used.
 
 Enumerates the positions of the 8-byte valid value in a custom challenge generated.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                           | Value  | Description                          |
 | ------------------------------- | ---- | ------------------------------ |
@@ -2362,7 +2416,7 @@ Enumerates the positions of the 8-byte valid value in a custom challenge generat
 
 Defines the signature type of the key generated or imported.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 | Name                          | Value  | Description                                                        |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
@@ -2372,7 +2426,7 @@ Defines the signature type of the key generated or imported.
 
 Enumerates the tag data types.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                 | Value     | Description                                   |
 | --------------------- | ------- | --------------------------------------- |
@@ -2387,95 +2441,95 @@ Enumerates the tag data types.
 
 Enumerates the tags used to invoke parameters.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Core
 
 | Name                                        | Value                                      | Description                                  |
 | -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
-| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                       |
-| HUKS_TAG_ALGORITHM                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.                       |
-| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of the key.                   |
-| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.                   |
-| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.                   |
-| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.                   |
-| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.                   |
-| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.                   |
-| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.           |
-| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.                |
-| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.                |
-| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.                |
-| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.                |
-| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.            |
-| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.            |
-| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.               |
-| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.              |
-| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.            |
-| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.            |
-| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.            |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.            |
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.            |
-| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                |
-| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                        |
-| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                  |
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.                    |
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite required for encrypted imports.                |
-| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | Storage type of the derived key or agreed key.|
-| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | Type of the **rsa_pss_salt_length**.|
-| HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
-| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
-| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
-| HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                        |
-| HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.                                |
-| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.                                |
-| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.                                |
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT |
-| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.                                |
-| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.                                |
-| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).|
-| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | Signature type of the key generated or imported.|
-| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).|
-| HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).|
-| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | Key authentication purpose.|
-| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.           |
-| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.   |
-| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.                     |
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | ID of the device.                    |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.                   |
-| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | SN of the device.                      |
-| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | International mobile equipment identity (IMEI) of the device.                    |
-| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Mobile equipment identity (MEID) of the device.                    |
-| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Manufacturer of the device.                    |
-| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.                      |
-| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.         |
-| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | System-on-a-chip (SoCID) of the device.                     |
-| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Unique device identifier (UDID) of the device.                      |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security level used in the attestation.         |
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.           |
-| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.|
-| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.               |
-| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                |
-| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                |
-| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.                                |
-| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.                                |
-| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.                   |
-| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.                                |
-| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.                                |
-| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.                                |
-| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.                                |
-| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.                   |
-| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.                                |
-| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.                                |
-| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.                                |
-| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.                                |
-| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.                                |
-| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.                   |
-| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.                                |
-| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Used to pass in the AEAD in GCM mode.                                |
-| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.                                |
-| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.               |
-| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.           |
-| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.                                |
-| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.                                |
-| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.                                |
+| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ALGORITHM                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of the key.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite required for encrypted imports.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | Storage type of the derived key or agreed key.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | Type of the **rsa_pss_salt_length**.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | ID of the user to which the key belongs.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE\**.| HKS_USER_AUTH_TYPE_FINGERPRINT<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Timeout period of an authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Used to pass in the authentication token.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | Signature type of the key generated or imported.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | Key authentication purpose.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | ID of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | SN of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | International mobile equipment identity (IMEI) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Mobile equipment identity (MEID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Manufacturer of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | System-on-a-chip (SoCID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Unique device identifier (UDID) of the device.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security level used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Used to pass in the AEAD in GCM mode.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 
 ## huks.generateKey<sup>(deprecated)</sup>
 
@@ -2483,9 +2537,11 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 Generates a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2493,40 +2549,48 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | Yes  | Alias of the key.                                                       |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Tags required for generating the key.                                    |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code defined in **HuksResult** is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code defined in **HuksResult** is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Generate an RSA key of 512 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyDigest | huks.HuksKeyPadding = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_RSA
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_RSA
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    }
+];
+let options: huks.HuksOptions = {
+    properties: properties
 };
-properties[1] = {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512
-};
-properties[2] = {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value:
-huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
-};
-properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-};
-let options = {
-  properties: properties
-};
-huks.generateKey(keyAlias, options, function (err, data){}); 
+huks.generateKey(keyAlias, options, (err, data) => {
+});
 ```
 
 ## huks.generateKey<sup>(deprecated)</sup>
@@ -2535,9 +2599,11 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Generates a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2550,34 +2616,42 @@ Generates a key. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Generate an ECC key of 256 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_ECC
-};
-properties[1] = {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
-};
-properties[2] = {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value:
-huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
-huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-};
-properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-};
-let options = {
-  properties: properties
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_ECC
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    }
+];
+let options: huks.HuksOptions = {
+    properties: properties
 };
 let result = huks.generateKey(keyAlias, options);
 ```
@@ -2588,9 +2662,11 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Deletes a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2598,17 +2674,19 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.               |
 | options  | [HuksOptions](#huksoptions)               | Yes  | Empty object (leave this parameter empty).                          |
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
-huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
+huks.deleteKey(keyAlias, emptyOptions, (err, data) => {
+});
 ```
 
 ## huks.deleteKey<sup>(deprecated)</sup>
@@ -2617,9 +2695,11 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Deletes a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2632,15 +2712,16 @@ Deletes a key. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
 let result = huks.deleteKey(keyAlias, emptyOptions);
 ```
@@ -2651,9 +2732,11 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Imports a key in plaintext. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2661,14 +2744,20 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | Yes  | Alias of the key.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import.|
-| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Import an AES key of 256 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let plainTextSize32 = makeRandomArr(32);
-function makeRandomArr(size) {
+function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
     for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
@@ -2676,33 +2765,35 @@ function makeRandomArr(size) {
     return arr;
 };
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_AES
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_ECB
+    }
+];
+let options: huks.HuksOptions = {
+    properties: properties,
+    inData: plainTextSize32
 };
-properties[1] = {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-};
-properties[2] = {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value:
-huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-};
-properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-let options = {
-  properties: properties,
-  inData: plainTextSize32
-};
-huks.importKey(keyAlias, options, function (err, data){});
+huks.importKey(keyAlias, options, (err, data) => {
+});
 ```
 
 ## huks.importKey<sup>(deprecated)</sup>
@@ -2711,9 +2802,11 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Imports a key in plaintext. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2726,48 +2819,53 @@ Imports a key in plaintext. This API uses a promise to return the result.
 
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned; otherwise, an error code is returned.|
+| Promise\<[HuksResult](#huksresultdeprecated)> | Promise used to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Import an AES key of 128 bits. */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let plainTextSize32 = makeRandomArr(32);
-
-function makeRandomArr(size) {
+function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
     for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
-
 /* Step 1 Generate a key. */
 let keyAlias = 'keyAlias';
-let properties = new Array();
-properties[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_AES
-};
-properties[1] = {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-};
-properties[2] = {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-};
-properties[3] = {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value:huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-};
-properties[4] = {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB
-};
-let huksoptions = {
-  properties: properties,
-  inData: plainTextSize32
+let properties: HuksProperties[] = [
+    {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+    },
+    {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_ECB
+    }
+];
+let huksoptions: huks.HuksOptions = {
+    properties: properties,
+    inData: plainTextSize32
 };
 let result = huks.importKey(keyAlias, huksoptions);
 ```
@@ -2778,9 +2876,11 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 Exports a key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2792,13 +2892,15 @@ Exports a key. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
-huks.exportKey(keyAlias, emptyOptions, function (err, data){});
+huks.exportKey(keyAlias, emptyOptions, (err, data) => {
+});
 ```
 
 ## huks.exportKey<sup>(deprecated)</sup>
@@ -2807,9 +2909,11 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Exports a key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2826,11 +2930,12 @@ Exports a key. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
 let result = huks.exportKey(keyAlias, emptyOptions);
 ```
@@ -2841,9 +2946,11 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 
 Obtains key properties. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2855,13 +2962,15 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
-huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
+huks.getKeyProperties(keyAlias, emptyOptions, (err, data) => {
+});
 ```
 
 ## huks.getKeyProperties<sup>(deprecated)</sup>
@@ -2870,9 +2979,11 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 Obtains key properties. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2885,15 +2996,16 @@ Obtains key properties. This API uses a promise to return the result.
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+| Promise\<[HuksResult](#huksoptions)> | Promise used to return the result. If the operation is successful, **errorCode** is **HUKS_SUCCESS** and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned.|
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
 let result = huks.getKeyProperties(keyAlias, emptyOptions);
 ```
@@ -2904,9 +3016,11 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 Checks whether a key exists. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2918,13 +3032,15 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
-huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
+huks.isKeyExist(keyAlias, emptyOptions, (err, data) => {
+});
 ```
 
 ## huks.isKeyExist<sup>(deprecated)</sup>
@@ -2933,9 +3049,11 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 Checks whether a key exists. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2952,11 +3070,12 @@ Checks whether a key exists. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
-let emptyOptions = {
-  properties: []
+let emptyOptions: huks.HuksOptions = {
+    properties: []
 };
 let result = huks.isKeyExist(keyAlias, emptyOptions);
 ```
@@ -2967,9 +3086,11 @@ init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle
 
 Initializes the data for a key operation. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -2985,9 +3106,11 @@ init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
 Initializes the data for a key operation. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.initSession<sup>9+</sup>](#huksinitsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3008,9 +3131,11 @@ update(handle: number, token?: Uint8Array, options: HuksOptions, callback: Async
 
 Updates the key operation by segment. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3027,9 +3152,11 @@ update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<Huks
 
 Updates the key operation by segment. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-2).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.updateSession<sup>9+</sup>](#huksupdatesession9-2).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3051,9 +3178,11 @@ finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult
 
 Completes the key operation and releases resources. This API uses an asynchronous callback to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3069,9 +3198,11 @@ finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
 Completes the key operation and releases resources. This API uses a promise to return the result. **huks.init**, **huks.update**, and **huks.finish** must be used together.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.finishSession<sup>9+</sup>](#huksfinishsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3092,9 +3223,11 @@ abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>
 
 Aborts the use of the key. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3106,94 +3239,101 @@ Aborts the use of the key. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, and huks.finish must be used together.
  * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
  *
  * The following uses the callback of an RSA 1024 key as an example.
  */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyDigest | huks.HuksKeyPadding = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let keyalias = "HuksDemoRSA";
-let properties = new Array();
-let options = {
-  properties: properties,
-  inData: new Uint8Array(0)
+let properties: HuksProperties[] = [];
+let options: huks.HuksOptions = {
+    properties: properties,
+    inData: new Uint8Array(0)
 };
-let handle;
+let handle: number = 0;
 let resultMessage = "";
 async function generateKey() {
-  properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA
-  };
-  properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
-  };
-  properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-  };
-  properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
-  };
-  properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  };
-  huks.generateKey(keyalias, options);
+    properties[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_RSA
+    };
+    properties[1] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+    };
+    properties[2] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+    };
+    properties[3] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+    };
+    properties[4] = {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    };
+    huks.generateKey(keyalias, options);
 }
-function stringToUint8Array(str) {
-  let arr = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  let tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
 }
 async function huksInit() {
-  await huks.init(keyalias, options).then((data) => {
-    console.log(`test init data: ${JSON.stringify(data)}`);
-    handle = data.handle;
-  }).catch((err) => {
-    console.log("test init err information: " + JSON.stringify(err))
-  })
+    await huks.init(keyalias, options).then((data) => {
+        console.log(`test init data: ${JSON.stringify(data)}`);
+        handle = data.handle;
+    }).catch((err: BusinessError) => {
+        console.log("test init err information: " + JSON.stringify(err))
+    })
 }
 async function huksUpdate() {
     options.inData = stringToUint8Array("huksHmacTest");
-    await huks.update(handle, options).then((data) => {
-      if (data.errorCode === 0) {
-        resultMessage += "update success!";
-      } else {
-        resultMessage += "update fail!";
-      }
+    await huks.update(handle, options.inData, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage += "update success!";
+        } else {
+            resultMessage += "update fail!";
+        }
     });
     console.log(resultMessage);
 }
 function huksFinish() {
-  options.inData = stringToUint8Array("HuksDemoHMAC");
-  huks.finish(handle, options).then((data) => {
-    if (data.errorCode === 0) {
-      resultMessage = "finish success!";
-    } else {
-      resultMessage = "finish fail errorCode: " + data.errorCode;
-    }
-  }).catch((err) => {
-    resultMessage = "Failed to complete the key operation. catch errorMessage:" + JSON.stringify(err)
-  });
-  console.log(resultMessage);
+    options.inData = stringToUint8Array("HuksDemoHMAC");
+    huks.finish(handle, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage = "finish success!";
+        } else {
+            resultMessage = "finish fail errorCode: " + data.errorCode;
+        }
+    }).catch((err: BusinessError) => {
+        resultMessage = "Failed to complete the key operation. catch errorMessage:" + JSON.stringify(err)
+    });
+    console.log(resultMessage);
 }
 async function huksAbort() {
-  huks.abort(handle, options).then((data) => {
-    if (data.errorCode === 0) {
-      resultMessage = "abort success!";
-    } else {
-      resultMessage = "abort fail errorCode: " + data.errorCode;
-    }
-  }).catch((err) => {
-    resultMessage = "Failed to abort the use of the key. catch errorMessage:" + JSON.stringify(err)
-  });
-  console.log(resultMessage);
+    huks.abort(handle, options).then((data) => {
+        if (data.errorCode === 0) {
+            resultMessage = "abort success!";
+        } else {
+            resultMessage = "abort fail errorCode: " + data.errorCode;
+        }
+    }).catch((err: BusinessError) => {
+        resultMessage = "Failed to abort the use of the key. catch errorMessage:" + JSON.stringify(err)
+    });
+    console.log(resultMessage);
 }
 ```
 
@@ -3203,9 +3343,11 @@ abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
 Aborts the use of the key. This API uses a promise to return the result.
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9-1).
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [huks.abortSession<sup>9+</sup>](#huksabortsession9-1).
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
 **Parameters**
 
@@ -3222,100 +3364,110 @@ Aborts the use of the key. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
 /* huks.init, huks.update, and huks.finish must be used together.
  * If an error occurs in any of them, huks.abort must be called to terminate the use of the key.
  *
  * The following uses the promise of an RSA 1024-bit key as an example.
  */
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
+    huks.HuksKeyPadding | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
 let keyalias = "HuksDemoRSA";
-let properties = new Array();
-let options = {
-  properties: properties,
-  inData: new Uint8Array(0)
+let properties: HuksProperties[] = [];
+let options: huks.HuksOptions = {
+    properties: properties,
+    inData: new Uint8Array(0)
 };
-let handle;
+let handle: number = 0;
 let resultMessage = "";
-function stringToUint8Array(str) {
-  let arr = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  let tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+
+function stringToUint8Array(str: string) {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
 }
 
 async function generateKey() {
-  properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA
-  };
-  properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
-  };
-  properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-  };
-  properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
-  };
-  properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  };
-  huks.generateKey(keyalias, options, function (err, data) { });
-}
-async function huksInit() {
-  return new Promise((resolve, reject) => {
-    huks.init(keyalias, options, async function (err, data) {
-      if (data.errorCode === 0) {
-        resultMessage = "init success!"
-        handle = data.handle;
-      } else {
-        resultMessage = "init fail errorCode: " + data.errorCode
-      }
+    properties[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_RSA
+    };
+    properties[1] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_1024
+    };
+    properties[2] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+    };
+    properties[3] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_OAEP
+    };
+    properties[4] = {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+    };
+    huks.generateKey(keyalias, options, (err, data) => {
     });
-  });
+}
+
+async function huksInit() {
+    return new Promise<huks.HuksHandle>((resolve, reject) => {
+        huks.init(keyalias, options, async (err, data) => {
+            if (data.errorCode === 0) {
+                resultMessage = "init success!"
+                handle = data.handle;
+            } else {
+                resultMessage = "init fail errorCode: " + data.errorCode
+            }
+        });
+    });
 }
 
 async function huksUpdate() {
     options.inData = stringToUint8Array("huksHmacTest");
-    new Promise((resolve, reject) => {
-      huks.update(handle, options, function (err, data) {
-        if (data.errorCode === 0) {
-          resultMessage += "update success!";
-        } else {
-          resultMessage += "update fail!";
-        }
-      });
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.update(handle, options.inData, options, (err, data) => {
+            if (data.errorCode === 0) {
+                resultMessage += "update success!";
+            } else {
+                resultMessage += "update fail!";
+            }
+        });
     });
     console.log(resultMessage);
 
 }
 
 async function huksFinish() {
-  options.inData = stringToUint8Array("0");
-  new Promise((resolve, reject) => {
-    huks.finish(handle, options, function (err, data) {
-      if (data.errorCode === 0) {
-        resultMessage = "finish success!";
-      } else {
-        resultMessage =  "finish fail errorCode: " + data.errorCode;
-      }
+    options.inData = stringToUint8Array("0");
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.finish(handle, options, (err, data) => {
+            if (data.errorCode === 0) {
+                resultMessage = "finish success!";
+            } else {
+                resultMessage = "finish fail errorCode: " + data.errorCode;
+            }
+        });
     });
-  });
 }
 
 function huksAbort() {
-  new Promise((resolve, reject) => {
-    huks.abort(handle, options, function (err, data) {
-      console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
-      console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+    new Promise<huks.HuksResult>((resolve, reject) => {
+        huks.abort(handle, options, (err, data) => {
+            console.log(`Huks_Demo hmac huksAbort1 data ${JSON.stringify(data)}`);
+            console.log(`Huks_Demo hmac huksAbort1 err ${JSON.stringify(err)}`);
+        });
     });
-  });
 }
 ```
 
@@ -3323,8 +3475,10 @@ function huksAbort() {
 
 Defines the HUKS handle structure.
 
-**System capability**: SystemCapability.Security.Huks
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9).
+**System capability**: SystemCapability.Security.Huks.Extension
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9).
 
 | Name    | Type            | Mandatory| Description    |
 | ---------- | ---------------- | ---- | -------- |
@@ -3336,9 +3490,12 @@ Defines the HUKS handle structure.
 
 Defines the **HuksResult** structure.
 
-**System capability**: SystemCapability.Security.Huks
+**System capability**: SystemCapability.Security.Huks.Extension
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [HuksReturnResult<sup>9+</sup>](#huksreturnresult9).
+> **NOTE**
+>
+> - This API is deprecated since API version 9. You are advised to use [HuksReturnResult<sup>9+</sup>](#huksreturnresult9).
+> - For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
 
 | Name    | Type                           | Mandatory| Description            |
 | ---------- | ------------------------------- | ---- | ---------------- |
@@ -3347,13 +3504,14 @@ Defines the **HuksResult** structure.
 | properties | Array\<[HuksParam](#huksparam)> | No  | Property information.  |
 | certChains | Array\<string>                  | No  | Certificate chain information.|
 
-
 ## HuksErrorCode<sup>(deprecated)</sup>
 
 Enumerates the error codes.
 
-**System capability**: SystemCapability.Security.Huks
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9).
+**System capability**: SystemCapability.Security.Huks.Extension
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9).
 
 | Name                      | Value   | Description|
 | -------------------------- | ----- | ---- |

@@ -1,13 +1,11 @@
 # 平台驱动移植
 
 
-在这一步，我们会在源码目录//device/vendor_name/soc_name/drivers 目录下创建平台驱动，如果你要移植的SOC的厂商还没有创建仓库的话，请联系[sig_devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)创建。
+在这一步，我们会在源码目录`//device/vendor_name/soc_name/drivers`目录下创建平台驱动，如果你要移植的SOC的厂商还没有创建仓库的话，请联系[sig_devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)创建。
 
 
 建议的目录结构：
 
-
-  
 ```
 device
 ├── vendor_name
@@ -33,17 +31,15 @@ device
 │   ├── board_name
 ```
 
-
-
-HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主要工作是向模型注入实例。 这些模型你可以在源码目录//drivers/framework/support/platform/include中找到定义。
+HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主要工作是向模型注入实例。 这些模型你可以在源码目录`//drivers/hdf_core/framework/support/platform/include`中找到定义。
 
 
 本节我们会以GPIO为例，讲解如何移植平台驱动，移植过程包含以下步骤：
 
 
 1. 创建GPIO驱动
-   在源码目录//device/vendor_name/soc_name/drivers/gpio中创建文件soc_name_gpio.c 内容模板如下：
 
+   在源码目录`//device/vendor_name/soc_name/drivers/gpio`中创建文件`soc_name_gpio.c`。内容模板如下：
      
    ```
    #include "gpio_core.h"
@@ -92,7 +88,8 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
    ```
 
 2. 创建厂商驱动构建入口
-   如前所述device/vendor_name/drivers/lite.mk是厂商驱动的构建的入口。我们需要从这个入口开始，进行构建
+
+   如前所述`device/vendor_name/drivers/lite.mk`是厂商驱动的构建的入口。我们需要从这个入口开始，进行构建。
 
      
    ```
@@ -147,7 +144,8 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
    ```
 
 5. 配置产品加载驱动
-   产品的所有设备信息被定义在源码文件//vendor/vendor_name/product_name/config/device_info/device_info.hcs中。
+   
+   产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/config/device_info/device_info.hcs`中。
 
    平台驱动请添加到platform的host中。
 

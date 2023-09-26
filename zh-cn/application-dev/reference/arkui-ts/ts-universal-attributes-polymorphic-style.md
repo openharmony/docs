@@ -24,6 +24,7 @@
 | disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
 | focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
 | clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
+| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。 |
 
 
 ## 示例
@@ -35,37 +36,37 @@
 struct StyleExample {
   @State isEnable: boolean = true
 
-  @Styles pressedStyles() {
-        .backgroundColor("#ED6F21")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Dashed)
-        .borderWidth(2)
-        .borderColor("#33000000")
-        .width(120)
-        .height(30)
-        .opacity(1)
+  @Styles pressedStyles():void {
+    .backgroundColor("#ED6F21")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Dashed)
+    .borderWidth(2)
+    .borderColor("#33000000")
+    .width(120)
+    .height(30)
+    .opacity(1)
   }
 
-  @Styles disabledStyles() {
-        .backgroundColor("#E5E5E5")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Solid)
-        .borderWidth(2)
-        .borderColor("#2a4c1919")
-        .width(90)
-        .height(25)
-        .opacity(1)
+  @Styles disabledStyles():void {
+    .backgroundColor("#E5E5E5")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Solid)
+    .borderWidth(2)
+    .borderColor("#2a4c1919")
+    .width(90)
+    .height(25)
+    .opacity(1)
   }
 
-  @Styles normalStyles() {
-        .backgroundColor("#0A59F7")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Solid)
-        .borderWidth(2)
-        .borderColor("#33000000")
-        .width(100)
-        .height(25)
-        .opacity(1)
+  @Styles normalStyles():void {
+    .backgroundColor("#0A59F7")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Solid)
+    .borderWidth(2)
+    .borderColor("#33000000")
+    .width(100)
+    .height(25)
+    .opacity(1)
   }
 
   build() {

@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines the options used for creating a pixel map.
+The **OhosPixelMapCreateOps** struct defines the options used for creating a pixel map.
 
-**Since:**
-9
+**Since**
 
-**Related Modules:**
+10
+
+**Related Modules**
 
 [Image](image.md)
 
@@ -18,74 +19,80 @@ Defines the options used for creating a pixel map.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| [width](#width) | Image width, in pixels.  | 
-| [height](#height) | Image height, in pixels.  | 
-| [pixelFormat](#pixelformat) | Image format.  | 
-| [editable](#editable) | Editing type of the image.  | 
-| [alphaType](#alphatype) | Alpha type of the image.  | 
-| [scaleMode](#scalemode) | Scale mode of the image.  | 
+| [width](#width) | Image width, in pixels.| 
+| [height](#height) | Image height, in pixels.| 
+| [pixelFormat](#pixelformat) | Image format.| 
+| [editable](#editable) | Editing type of the image.| 
+| [alphaType](#alphatype) | Alpha type of the image.| 
+| [scaleMode](#scalemode) | Scale mode of the image.| 
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### alphaType
 
-  
 ```
 uint32_t OhosPixelMapCreateOps::alphaType
 ```
-**Description**<br>
+
+**Description**
+
 Alpha type of the image.
 
 
 ### editable
 
-  
 ```
 uint32_t OhosPixelMapCreateOps::editable
 ```
-**Description**<br>
+
+**Description**
+
 Editing type of the image.
 
 
 ### height
 
-  
 ```
 uint32_t OhosPixelMapCreateOps::height
 ```
-**Description**<br>
+
+**Description**
+
 Image height, in pixels.
 
 
 ### pixelFormat
 
-  
 ```
 int32_t OhosPixelMapCreateOps::pixelFormat
 ```
-**Description**<br>
+
+**Description**
+
 Image format.
 
 
 ### scaleMode
 
-  
 ```
 uint32_t OhosPixelMapCreateOps::scaleMode
 ```
-**Description**<br>
+
+**Description**
+
 Scale mode of the image.
 
 
 ### width
 
-  
 ```
 uint32_t OhosPixelMapCreateOps::width
 ```
-**Description**<br>
+
+**Description**
+
 Image width, in pixels.

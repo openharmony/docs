@@ -26,9 +26,9 @@ Enables the WLAN hotspot.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifiext.disableHotspot
@@ -43,9 +43,9 @@ Disables the WLAN hotspot.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifiext.getSupportedPowerModel
@@ -60,9 +60,9 @@ Obtains the supported power models. This API uses a promise to return the result
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise used to return the power models obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise used to return the power models obtained.|
 
 
 ## PowerModel
@@ -90,9 +90,9 @@ Obtains the supported power models. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifiext.getPowerModel
@@ -107,9 +107,9 @@ Obtains the power model. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[PowerModel](#powermodel)&gt; | Promise used to return the power model obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[PowerModel](#powermodel)&gt; | Promise used to return the power model obtained.|
 
 
 ## wifiext.getPowerModel
@@ -124,16 +124,16 @@ Obtains the power model. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifiext.setPowerModel
 
 setPowerModel(model: PowerModel) : boolean;
 
-Sets the power model.
+ Sets the power model.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -141,12 +141,12 @@ Sets the power model.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| model | [PowerModel](#powermodel) | Yes| Power model to set.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | model | [PowerModel](#powermodel) | Yes| Power model to set.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|

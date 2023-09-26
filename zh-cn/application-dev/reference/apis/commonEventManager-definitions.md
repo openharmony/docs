@@ -204,8 +204,8 @@
 - 值： usual.event.USER_STARTING
 - 订阅者所需权限： ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-## COMMON_EVENT_USER_UNLOCKED
-（预留事件，暂未支持）设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
+## [COMMON_EVENT_USER_UNLOCKED](./common_event/commonEvent-account.md)
+设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
 - 值： usual.event.USER_UNLOCKED
 - 订阅者所需权限： 无
 
@@ -476,6 +476,9 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_CHARGE_TYPE_CHANGED](./common_event/commonEvent-powermgr.md)
 表示系统充电类型改变的公共事件的动作。仅限系统应用使用。
 
+## [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](./common_event/commonEvent-powermgr.md)
+表示设备进入充电空闲模式的公共事件的动作。
+
 ## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
 表示系统待机空闲模式已更改的公共事件的动作。
 ## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
@@ -738,3 +741,21 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_AUDIO_QUALITY_CHANGE](./common_event/commonEvent-telephony.md)
 
 提示音频质量发生变化。
+
+## [COMMON_EVENT_NET_QUOTA_WARNING<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的告警阈值。
+
+## [COMMON_EVENT_NET_QUOTA_LIMIT_REMINDED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的上限阈值，仍能继续使用。
+
+## [OMMON_EVENT_NET_QUOTA_LIMIT<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的上限阈值，不能继续使用。
+
+## [COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络Http代理配置信息更新。
+
+## [COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示飞行模式状态变化。
+
+## [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络连接状态变化。

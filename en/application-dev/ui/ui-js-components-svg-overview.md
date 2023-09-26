@@ -5,9 +5,8 @@ The **&lt;svg&gt;** component is used as the root node of the SVG canvas and can
 
 
 > **NOTE**
-> - The APIs of this component are supported since API version 7.
 > 
-> - The width and height must be defined for the **&lt;svg&gt;** parent component or **&lt;svg&gt;** component. Otherwise, the component is not drawn.
+> The width and height must be defined for the **&lt;svg&gt;** parent component or **&lt;svg&gt;** component. Otherwise, the component is not drawn.
 
 
 ## Creating an &lt;svg&gt; Component

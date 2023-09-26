@@ -13,7 +13,7 @@
 ## 导入模块
 
 
-```js
+```ts
 import router from '@system.router';
 ```
 
@@ -33,9 +33,10 @@ push(options: RouterOptions): void
 
 **示例：**
 
-```js
+```ts
 // 在当前页面中
-export default {
+import router from '@system.router';
+class A{
   pushPage() {
     router.push({
       uri: 'pages/routerpage2/routerpage2',
@@ -48,23 +49,21 @@ export default {
     });
   }
 }
+export default new A()
 ```
 
 
-```js
+```ts
 // 在routerpage2页面中
-export default {
-  data: {
-    data1: 'default',
-    data2: {
-      data3: [1, 2, 3]
-    }
-  },
+class B{
+  data:Record<string,string> = {'data1': 'default'}
+  data2:Record<string,number[]> = {'data3': [1, 2, 3]}
   onInit() {
-    console.info('showData1:' + this.data1);
+    console.info('showData1:' + this.data.data1);
     console.info('showData3:' + this.data2.data3);
   }
 }
+export default new B()
 ```
 
 > **说明：**
@@ -87,9 +86,10 @@ replace(options: RouterOptions): void
 
 **示例：**
 
-```js
+```ts
 // 在当前页面中
-export default {
+import router from '@system.router';
+class C{
   replacePage() {
     router.replace({
       uri: 'pages/detail/detail',
@@ -99,19 +99,19 @@ export default {
     });
   }
 }
+export default new C()
 ```
 
 
-```js
+```ts
 // 在detail页面中
-export default {
-  data: {
-    data1: 'default'
-  },
+class Area {
+  data:Record<string,string> = {'data1': 'default'}
   onInit() {
-    console.info('showData1:' + this.data1)
+    console.info('showData1:' + this.data)
   }
 }
+export default new Area()
 ```
 
 ## router.back
@@ -130,57 +130,67 @@ back(options?: BackRouterOptions): void
 
 **示例：**
 
-```js
+```ts
 // index页面
-export default {    
-  indexPushPage() {        
-    router.push({            
-      uri: 'pages/detail/detail'     
-    });        
+import router from '@system.router';
+class D{
+  indexPushPage() {
+    router.push({
+      uri: 'pages/detail/detail'
+    });
   }
 }
+export default new D()
 ```
 
 
-```js
+```ts
 // detail页面
-export default {    
-  detailPushPage() {        
-    router.push({            
+import router from '@system.router';
+class E{
+  detailPushPage() {
+    router.push({
       uri: 'pages/mall/mall'
-    });    
+    });
   }
 }
+export default new E()
 ```
 
 
-```js
+```ts
 // mall页面通过back，将返回detail页面
-export default {    
-  mallBackPage() {        
-    router.back();    
+import router from '@system.router';
+class F{
+  mallBackPage() {
+    router.back();
   }
 }
+export default new F()
 ```
 
 
-```js
+```ts
 // detail页面通过back，将返回index页面
-export default {    
-  defaultBack() {        
-    router.back();    
+import router from '@system.router';
+class G{
+  defaultBack() {
+    router.back();
   }
 }
+export default new G()
 ```
 
 
-```js
+```ts
 // 通过back，返回到detail页面
-export default {    
-  backToDetail() {        
-    router.back({uri:'pages/detail/detail'});    
+import router from '@system.router';
+class H{
+  backToDetail() {
+    router.back({uri:'pages/detail/detail'});
   }
 }
+export default new H()
 ```
 
 > **说明：**
@@ -210,12 +220,14 @@ clear(): void
 
 **示例：**
 
-```js
-export default {    
-  clearPage() {        
-    router.clear();    
+```ts
+import router from '@system.router';
+class I{
+  clearPage() {
+    router.clear();
   }
 }
+export default new I()
 ```
 
 ## router.getLength
@@ -234,13 +246,15 @@ getLength(): string
 
 **示例：**
 
-```js
-export default {     
-  getLength() {        
-    let size = router.getLength();        
-    console.log('pages stack size = ' + size);    
+```ts
+import router from '@system.router';
+class J{
+  getLength() {
+    let size = router.getLength();
+    console.log('pages stack size = ' + size);
   }
 }
+export default new J()
 ```
 
 ## router.getState
@@ -259,15 +273,17 @@ getState(): RouterState
 
 **示例：**
 
-```js
-export default {     
-  getState() {        
+```ts
+import router from '@system.router';
+class K{
+  getState() {
     let page = router.getState();
     console.log('current index = ' + page.index);
     console.log('current name = ' + page.name);
     console.log('current path = ' + page.path);
   }
 }
+export default new K()
 ```
 
 ## router.enableAlertBeforeBackPage<sup>6+</sup>
@@ -286,20 +302,22 @@ enableAlertBeforeBackPage(options: EnableAlertBeforeBackPageOptions): void
 
 **示例：**
 
-```js
-export default {    
-  enableAlertBeforeBackPage() {        
-    router.enableAlertBeforeBackPage({            
-      message: 'Message Info',            
-      success: function() {                
-        console.log('success');            
-      },            
-      cancel: function() {                
-        console.log('cancel');            
-      }     
-    });    
+```ts
+import router from '@system.router';
+class L{
+  enableAlertBeforeBackPage() {
+    router.enableAlertBeforeBackPage({
+      message: 'Message Info',
+      success: ()=> {
+        console.log('success');
+      },
+      cancel: ()=> {
+        console.log('cancel');
+      }
+    });
   }
 }
+export default new L()
 ```
 
 ## router.disableAlertBeforeBackPage<sup>6+</sup>
@@ -318,19 +336,21 @@ disableAlertBeforeBackPage(options?: DisableAlertBeforeBackPageOptions): void
 
 **示例：**
 
-```js
-export default {    
-  disableAlertBeforeBackPage() {        
-    router.disableAlertBeforeBackPage({            
-      success: function() {                
-        console.log('success');            
-      },            
-      cancel: function() {                
-        console.log('cancel');            
-      }       
-    });    
+```ts
+import router from '@system.router';
+class Z{
+  disableAlertBeforeBackPage() {
+    router.disableAlertBeforeBackPage({
+      success: ()=> {
+        console.log('success');
+      },
+      cancel: ()=> {
+        console.log('cancel');
+      }
+    });
   }
 }
+export default new Z()
 ```
 
 ## RouterOptions
@@ -341,8 +361,8 @@ export default {
 
 | 名称   | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| uri<sup>7+</sup> | string   | 是   | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
-| params<sup>7+</sup> | object   | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| uri | string   | 是   | 目标页面的uri，可以是以下的两种格式：<br/>1. 页面的绝对路径，由config.json文件中的页面列表提供。例如：<br/>- pages/index/index<br/> -pages/detail/detail<br/>2. 特定路径。如果URI为斜杠（/），则显示主页。 |
+| params | object   | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
 ## BackRouterOptions

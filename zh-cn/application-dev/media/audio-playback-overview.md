@@ -8,11 +8,13 @@
 
 - [AudioRenderer](using-audiorenderer-for-playback.md)：用于音频输出的的ArkTS/JS API，仅支持PCM格式，需要应用需要持续写入音频数据进行工作。应用可以在输入前添加数据预处理，如设定音频文件的采样率、位宽等，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体播放应用开发。
 
-- [OpenSL ES](using-opensl-es-for-playback.md)：一套跨平台标准化的音频Native API，目前阶段唯一的音频类Native API，同样提供音频输出能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输出功能的播放应用使用。
+- [OpenSL ES](using-opensl-es-for-playback.md)：一套跨平台标准化的音频Native API，同样提供音频输出能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输出功能的播放应用使用。
+
+- [OHAudio](using-ohaudio-for-playback.md)：用于音频输出的Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。适用于依赖Native层实现音频输出功能的场景。
 
 - [TonePlayer](using-toneplayer-for-playback.md)：拨号和回铃音播放ArkTS/JS API，只能在固定的类型范围内选择播放内容，无需输入媒体资源或音频数据，适用于拨号盘按键和通话回铃音的特定场景。该功能当前仅对系统应用开放。
 
-- 在音频播放中，应用时常需要用到一些急促简短的音效，如相机快门音效、按键音效、游戏射击音效等，当前只能使用AVPlayer播放音频文件替代实现，在OpenHarmony后续版本将会推出相关接口来支持该场景。
+- [SoundPool](using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
 
 ## 开发音频播放应用须知
 
@@ -20,6 +22,6 @@
 
 1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[媒体会话开发指导](avsession-overview.md)。
 
-2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../task-management/continuous-task-dev-guide.md)。
+2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../task-management/continuous-task.md)。
 
 当应用进入后台，播放被中断，如果被媒体会话管控，将打印日志“pause id”；如果没有该日志，则说明被长时任务管控。

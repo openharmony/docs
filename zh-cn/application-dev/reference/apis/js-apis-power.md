@@ -104,7 +104,7 @@ isActive(): boolean
 
 ```js
 try {
-    var isActive = power.isActive();
+    let isActive = power.isActive();
     console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
@@ -206,7 +206,7 @@ getPowerMode(): DevicePowerMode
 
 ```js
 try {
-    var mode = power.getPowerMode();
+    let mode = power.getPowerMode();
     console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
@@ -243,7 +243,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: BusinessError<void>) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -296,6 +296,39 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 });
 ```
 
+## power.isStandby<sup>10+</sup>
+
+isStandby(): boolean
+
+检测当前设备是否进入待机低功耗续航模式。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| boolean | 进入待机模式返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](../errorcodes/errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+
+**示例：**
+
+```js
+try {
+    let isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
+```
+
 ## power.rebootDevice<sup>(deprecated)</sup>
 
 rebootDevice(reason: string): void
@@ -339,7 +372,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-power.isScreenOn((err, data) => {
+power.isScreenOn((err: BusinessError<void>, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('screen on status is ' + data);
     } else {
@@ -367,10 +400,10 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 ```js
 power.isScreenOn()
-.then(data => {
+.then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```

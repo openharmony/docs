@@ -23,12 +23,11 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 |
-| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 |
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 |
-| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 |
-| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 |
-
+| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -36,21 +35,20 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值不会绘制边框。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| strokeWidth | Length | 1 | 设置边框宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
-| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>该属性的合法值范围应当大于等于1.0，当取值范围在[0,1)时按1.0处理，其余异常值按默认值处理。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。 |
+| strokeWidth | Length | 1 | 设置边框宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。<br/>异常值按照默认值处理。 |
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 
 ## 示例
 

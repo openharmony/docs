@@ -21,6 +21,10 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [path](_r_d_b.md#path) | 数据库文件路径。 |
+| [selfSize](_r_d_b.md#selfsize) | 该结构体的大小。 |
+| [dataBaseDir](_r_d_b.md#databasedir) | 数据库文件路径。 |
+| [storeName](_r_d_b.md#storename) | 数据库名称。 |
+| [bundleName](_r_d_b.md#bundlename) | 应用包名。 |
+| [moduleName](_r_d_b.md#modulename) | 应用模块名。 |
 | [isEncrypt](_r_d_b.md#isencrypt) | 指定数据库是否加密。 |
-| [securityLevel](_r_d_b.md#securitylevel) | 设置数据库安全级别&nbsp;[OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel)。 |
+| [securityLevel](_r_d_b.md#securitylevel) | 数据库安全级别。 |

@@ -51,26 +51,56 @@
 
 与这个公共事件相关的接口：setOsAccountName、setOsAccountProfilePhoto, 这些为系统API，setOsAccountDistributedInfon为公共API，具体参看[系统帐号接口文档](../js-apis-osAccount.md)、[分布式帐号接口文档](../js-apis-distributed-account.md)。
 
-## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-（预留事件，暂未支持）表示分布式帐号登录成功的动作。
+## COMMON_EVENT_USER_UNLOCKED
+表示设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
 
-- 值： usual.event.DISTRIBUTED_ACCOUNT_LOGIN
+- 值： usual.event.USER_UNLOCKED
 - 订阅者所需权限： 无
+
+切换到带有锁屏密码的用户，并且首次解锁会发出触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+
+与这个公共事件相关的接口：auth, 为系统API, 具体参看[系统帐号接口文档](../js-apis-osAccount.md)
+
+## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
+表示分布式帐号登录成功的动作。
+
+- 值： common.event.DISTRIBUTED_ACCOUNT_LOGIN
+- 订阅者所需权限： 无
+
+分布式帐号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
+具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
-（预留事件，暂未支持）表示分布式帐号登出成功的动作。
+表示分布式帐号登出成功的动作。
 
-- 值： usual.event.DISTRIBUTED_ACCOUNT_LOGOUT
+- 值： common.event.DISTRIBUTED_ACCOUNT_LOGOUT
 - 订阅者所需权限： 无
+
+分布式帐号登出时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
+具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
-（预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
+表示分布式帐号token令牌无效的动作。
 
-- 值： usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
+- 值： common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID
 - 订阅者所需权限： 无
+
+分布式帐号的token令牌无效时会触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API, 
+具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。
 
 ## COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF
-（预留事件，暂未支持）表示分布式帐号注销的动作。
+表示分布式帐号注销的动作。
 
-- 值： usual.event.DISTRIBUTED_ACCOUNT_LOGOFF
+- 值： common.event.DISTRIBUTED_ACCOUNT_LOGOFF
 - 订阅者所需权限： 无
+
+分布式帐号注销成功会时触发事件通知服务发布该系统公共事件，事件携带系统帐号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
+具体参看[分布式帐号接口文档](../js-apis-distributed-account.md)。

@@ -39,7 +39,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                         |
 | font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
 | itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：24.0<br/>单位：vp |
-| alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。 |
+| alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
 | selected | number | 设置选中项索引值。<br/>默认值：0。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:96.0, y:48.0}。 |
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
@@ -86,7 +86,7 @@ struct AlphabetIndexerSample {
     Stack({ alignContent: Alignment.Start }) {
       Row() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arrayA, (item) => {
+          ForEach(this.arrayA, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -94,9 +94,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayB, (item) => {
+          ForEach(this.arrayB, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -104,9 +104,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayC, (item) => {
+          ForEach(this.arrayC, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -114,9 +114,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayL, (item) => {
+          ForEach(this.arrayL, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -124,7 +124,7 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
         }
         .width('50%')
         .height('100%')
@@ -139,6 +139,10 @@ struct AlphabetIndexerSample {
           .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
           .itemSize(28) // 每一项的尺寸大小
           .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
+          .popupSelectedColor(0x00FF00)
+          .popupUnselectedColor(0x0000FF)
+          .popupItemFont({ size: 30, style: FontStyle.Normal })
+          .popupItemBackgroundColor(0xCCCCCC)
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })

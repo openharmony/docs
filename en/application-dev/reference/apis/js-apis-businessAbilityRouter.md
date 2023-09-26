@@ -26,7 +26,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 Enumerates the types of business abilities.
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -39,7 +39,7 @@ Enumerates the types of business abilities.
 
 Describes the criteria for filtering business abilities.
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -57,7 +57,7 @@ Obtains the business ability information based on the specified filter criteria.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -72,17 +72,20 @@ Obtains the business ability information based on the specified filter criteria.
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter)
         .then(() => {
             console.info('queryBusinessAbilityInfo success');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error('queryBusinessAbilityInfo failed ' + error.message);
         });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```
 
@@ -94,7 +97,7 @@ Obtains the business ability information based on the specified filter criteria.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
@@ -114,7 +117,9 @@ Obtains the business ability information based on the specified filter criteria.
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
@@ -125,6 +130,7 @@ try {
         console.info('queryBusinessAbilityInfo success');
     });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```

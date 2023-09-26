@@ -58,9 +58,162 @@ struct Index {
   }
 }
 ```
+```typescript
+//核心代码 SettingList.ets
+import { MainItem } from '../components/MainItem'
+import { ItemGroup } from '../components/ItemGroup'
+import { SearchBox } from '../components/SearchBox'
+import { MoreConnectionsItem } from '../moreconnections/MoreConnectionsItem'
+import { WlanSettingItem } from '../wlan/WlanSettingItem'
+        
+class  ItemObj {
+  title?: Resource
+  tag?: Resource
+  icon?:Resource
+}
+let bluetoothTab:ItemObj={
+  title: $r('app.string.bluetoothTab'),
+  tag: $r('app.string.enabled'),
+  icon: $r('app.media.blueTooth'),
+}
+let mobileData:ItemObj={
+  title: $r('app.string.mobileData'),
+  icon: $r('app.media.mobileData'),
+}
+let brightnessTab:ItemObj={
+  title: $r('app.string.brightnessTab'),
+  icon: $r('app.media.displayAndBrightness'),
+}
+let volumeControlTab:ItemObj={
+  title: $r('app.string.volumeControlTab'),
+  icon: $r('app.media.volume'),
+}
+let biometricsAndPassword:ItemObj={
+  title: $r('app.string.biometricsAndPassword'),
+  icon: $r('app.media.biometricsAndPassword'),
+}
+let applyTab:ItemObj={
+  title: $r('app.string.applyTab'),
+  icon: $r('app.media.application'),
+}
+let storageTab:ItemObj={
+  title: $r('app.string.storageTab'),
+  icon: $r('app.media.storage'),
+}
+let security:ItemObj={
+  title: $r('app.string.security'),
+  icon: $r('app.media.security'),
+}
+let privacy:ItemObj={
+  title: $r('app.string.privacy'),
+  icon: $r('app.media.privacy'),
+}
+let usersAccountsTab:ItemObj={
+  title: $r('app.string.usersAccountsTab'),
+  icon: $r('app.media.userAccounts'),
+}
+let systemTab:ItemObj={
+  title: $r('app.string.systemTab'),
+  icon: $r('app.media.system'),
+}
+let aboutTab:ItemObj={
+  title: $r('app.string.aboutTab'),
+  icon: $r('app.media.aboutDevice'),
+}
+        
+@Component
+export struct SettingList {
+  @Builder
+  CustomDivider() {
+    Divider()
+      .strokeWidth('1px')
+      .color($r('sys.color.ohos_id_color_list_separator'))
+      .margin({ left: 48, right: 8 })
+  }
 
+   build() {
+     List({ space: 12 }) {
+       ListItem() {
+        SearchBox()
+       }
+       .padding({ top: 8, bottom: 8 })
+       .width('100%')
 
+      ListItem() {
+        ItemGroup() {
+          WlanSettingItem()
 
+          this.CustomDivider()
+
+          MainItem(bluetoothTab)
+
+          this.CustomDivider()
+
+          MainItem(mobileData)
+
+          this.CustomDivider()
+          MoreConnectionsItem()
+        }
+      }
+
+      ListItem() {
+        ItemGroup() {
+          MainItem(brightnessTab)
+        }
+      }
+
+      ListItem() {
+        ItemGroup() {
+          MainItem(volumeControlTab)
+        }
+      }
+
+      ListItem() {
+        ItemGroup() {
+          MainItem(biometricsAndPassword)
+
+          this.CustomDivider()
+
+          MainItem(applyTab)
+
+          this.CustomDivider()
+
+          MainItem(storageTab)
+
+          this.CustomDivider()
+
+          MainItem(security)
+
+          this.CustomDivider()
+
+          MainItem(privacy)
+        }
+      }
+
+      ListItem() {
+        ItemGroup() {
+          MainItem(usersAccountsTab)
+
+          this.CustomDivider()
+
+          MainItem(systemTab)
+
+          this.CustomDivider()
+
+          MainItem(aboutTab)
+        }
+      }
+
+    }
+    .padding({ left: 12, right: 12 })
+    .width('100%')
+    .height('100%')
+    .backgroundColor($r('sys.color.ohos_id_color_sub_background'))
+   }
+}        
+  
+
+```
 ## 如何实现点击跳转或刷新
 
 Navigation组件通常搭配[NavRouter组件](../../reference/arkui-ts/ts-basic-components-navrouter.md)以及[NavDestination组件](../../reference/arkui-ts/ts-basic-components-navdestination.md)一起使用：
@@ -84,6 +237,18 @@ NavRouter组件默认提供了点击响应处理，不需要开发者自定义�
 结合设置应用的具体场景来看，上图1号小红框是NavRouter的第一个孩子节点，2号红框是NavRouter的第二个孩子节点，相应的核心代码实现如下。
 
 ```typescript
+class  MainItemObj {
+  title?: Resource
+  tag?: string
+  icon?:Resource
+  label?: string
+}
+let mainItem:MainItemObj={
+  title: $r('app.string.wifiTab'),
+  tag: 'UX',
+  icon: $r('app.media.wlan'),
+  label: 'WLAN'
+}
 @Component
 export struct WlanSettingItem {
   @LocalStorageLink('selectedLabel') selectedLabel: string  = ''
@@ -91,12 +256,7 @@ export struct WlanSettingItem {
   build() {
     Column() {
       NavRouter() {
-        MainItem({
-          title: $r('app.string.wifiTab'),
-          tag: 'UX',
-          icon: $r('app.media.wlan'),
-          label: 'WLAN'
-        })
+        MainItem(mainItem)
 
         NavDestination() {
           WlanSetting()
@@ -135,13 +295,19 @@ NavDestination组件用于实际刷新Navigation组件Content区域的显示。�
 结合具体场景，红框3是一个NavRouter组件，点击后可以控制Navigation组件中的Content区域刷新为红框4对应的NavDestination组件吗，其核心代码实现如下所示。
 
 ```typescript
+class SubItemArrowObj{
+  title?: Resource
+}
+let subItemArrow:SubItemArrowObj={
+  title: $r('app.string.moreWlanSettings')
+}
 @Component
 export struct WlanMoreSettingItem {
   @LocalStorageLink('selectedLabel') selectedLabel: string = ''
 
   build() {
     NavRouter() {
-      SubItemArrow({ title: $r('app.string.moreWlanSettings') })
+      SubItemArrow(subItemArrow)
 
       NavDestination() {
         WlanMoreSetting()
@@ -168,4 +334,4 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 针对“设置”应用页面，有以下相关实例可以参考：
 
-设置：[设置应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+- [典型页面场景：设置应用页面（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)

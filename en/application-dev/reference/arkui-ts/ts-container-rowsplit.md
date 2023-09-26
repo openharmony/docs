@@ -1,6 +1,6 @@
 # RowSplit
 
-The **\<RowSplit>** lays out child components horizontally and inserts a vertical divider between child components.
+The **\<RowSplit>** lays out child components horizontally and inserts a vertical divider between every two child components.
 
 >  **NOTE**
 >
@@ -19,15 +19,13 @@ RowSplit()
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged.<br>Default value: **false** |
+| resizeable | boolean | Whether the divider can be dragged.<br/>Default value: **false** |
 
 >  **NOTE**
 >
-> Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
-> 
-> Dragging is not supported in the Previewer. Check the drag effect on a real device.
+> The divider of **\<RowSplit>** can change the width of the left and right child components, but only to the extent that the resultant width falls within the maximum and minimum widths of the child components.
 >
-> The universal attributes **clip** and **margin** are not supported.
+> Universal attributes such as **clip** and **margin** are supported. If **clip** is not set, the default value **true** is used.
 
 
 ## Example
@@ -54,4 +52,4 @@ struct RowSplitExample {
 }
 ```
 
-![en-us_image_0000001212058482](figures/en-us_image_0000001212058482.gif)
+![en-us_image_0000001219982729](figures/en-us_image_0000001219982729.gif)

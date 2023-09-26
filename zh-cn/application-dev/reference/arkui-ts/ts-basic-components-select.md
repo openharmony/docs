@@ -88,10 +88,13 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .onSelect((index:number, text: string)=>{
+        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
-          this.text = text;
+          if(text){
+            this.text = text;
+          }
         })
     }.width('100%')
   }

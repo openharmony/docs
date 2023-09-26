@@ -16,14 +16,16 @@ The following sample code enables the PageAbility to create connection callback 
 
 ```ts
 import rpc from "@ohos.rpc"
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 import featureAbility from '@ohos.ability.featureAbility'
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
-let option = {
-  onConnect: function onConnectCallback(element, proxy) {
+let option: common.ConnectOptions = {
+  onConnect: (element, proxy) => {
     console.info(`onConnectLocalService onConnectDone`)
     if (proxy === null) {
-      prompt.showToast({
+      promptAction.showToast({
         message: "Connect service failed"
       })
       return
@@ -33,25 +35,25 @@ let option = {
     let option = new rpc.MessageOption()
     data.writeInterfaceToken("connect.test.token")
     proxy.sendRequest(0, data, reply, option)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Connect service success"
     })
   },
-  onDisconnect: function onDisconnectCallback(element) {
+  onDisconnect: (element) => {
     console.info(`onConnectLocalService onDisconnectDone element:${element}`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Disconnect service success"
     })
   },
-  onFailed: function onFailedCallback(code) {
+  onFailed: (code) => {
     console.info(`onConnectLocalService onFailed errCode:${code}`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "Connect local service onFailed"
     })
   }
-}
+};
 
-let request = {
+let request: Want = {
   bundleName: "com.example.myapplication",
   abilityName: "com.example.myapplication.ServiceAbility",
 }
@@ -59,7 +61,7 @@ let connId = featureAbility.connectAbility(request, option)
 ```
 
 
-When the ServiceAbility is connected, the **onConnect()** callback is invoked and returns an **IRemoteObject** defining the proxy used for communicating with the ServiceAbility. OpenHarmony provides a default implementation of **IRemoteObject**. You can extend **rpc.RemoteObject** to implement your own class of **IRemoteObject**.
+When the ServiceAbility is connected, the **onConnect()** callback is invoked and returns an **IRemoteObject** defining the proxy used for communicating with the ServiceAbility.  OpenHarmony provides a default implementation of **IRemoteObject**. You can extend **rpc.RemoteObject** to implement your own class of **IRemoteObject**.
 
 
 The following sample code shows how the ServiceAbility returns itself to the caller:
@@ -68,7 +70,7 @@ The following sample code shows how the ServiceAbility returns itself to the cal
 import rpc from "@ohos.rpc"
 
 class FirstServiceAbilityStub extends rpc.RemoteObject {
-  constructor(des: any) {
+  constructor(des: Object) {
     if (typeof des === 'string') {
       super(des)
     } else {
@@ -76,7 +78,7 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
     }
   }
 
-  onRemoteRequest(code: number, data: any, reply: any, option: any) {
+  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
     console.info(`onRemoteRequest called`)
     if (code === 1) {
       let string = data.readString()

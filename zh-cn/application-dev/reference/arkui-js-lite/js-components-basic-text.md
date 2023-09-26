@@ -96,4 +96,4 @@ export default {
 }
 ```
 
-![text](figures/text.png)
+![text](figures/text-lite.png)

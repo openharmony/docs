@@ -127,7 +127,7 @@ Obtains a **dataAbilityHelper** object.
 
 Observe the following when using this API:
  - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when accessing the DataAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
@@ -161,7 +161,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -214,7 +214,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible to an ability after it is started:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
@@ -563,7 +563,7 @@ Connects this ability to a ServiceAbility.
 
 Observe the following when using this API:
  - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when connecting to the ServiceAbility.)
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
@@ -587,15 +587,7 @@ Observe the following when using this API:
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
-}
+
 let connectId = featureAbility.connectAbility(
     {
         deviceId: '',
@@ -603,9 +595,15 @@ let connectId = featureAbility.connectAbility(
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+        },
     },
 );
 ```
@@ -630,24 +628,22 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
@@ -685,30 +681,29 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
-function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
-}
-function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
-}
-function onFailedCallback(code){
-    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
-}
+import { BusinessError } from '@ohos.base';
+
 let connectId = featureAbility.connectAbility(
     {
         bundleName: 'com.ix.ServiceAbility',
         abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
-        onConnect: onConnectCallback,
-        onDisconnect: onDisconnectCallback,
-        onFailed: onFailedCallback,
+        onConnect: (element, remote) => {
+            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+        },
+        onDisconnect: (element) => {
+            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+        },
+        onFailed: (code) => {
+            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+        },
     },
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}';
-}).catch((error)=>{
+    console.log('data: ${data)}')
+}).catch((error: BusinessError)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
@@ -731,7 +726,11 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 **Example**
 
 ```ts
-featureAbility.getWindow((error, data) => {
+import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
+
+featureAbility.getWindow((error: BusinessError, data: window.Window) => {
     if (error && error.code !== 0) {
         console.error('getWindow fail, error: ${JSON.stringify(error)}');
     } else {
@@ -757,6 +756,8 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 **Example**
 
 ```ts
+import featureAbility from '@ohos.ability.featureAbility';
+
 featureAbility.getWindow().then((data) => {
     console.info('getWindow data: ${typeof(data)}');
 });

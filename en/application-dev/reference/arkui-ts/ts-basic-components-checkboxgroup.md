@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| group | string | No| Group name.|
+| group | string | No| Group name.<br>**NOTE**<br>If there are multiple check box groups with the same group name, only the first check box group takes effect.|
 
 ## Attributes
 
@@ -71,6 +71,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | strokeWidth | number \| string                 | No  | 2           | Stroke width of the internal mark, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -124,4 +126,77 @@ struct CheckboxExample {
   }
 }
 ```
-![checkboxgroup](figures/checkboxgroup.gif)
+![checkboxGroup](figures/checkboxGroup.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          CheckboxGroup({ group: 'checkboxGroup' })
+            .selectedColor(Color.Orange)
+            .onChange((itemName: CheckboxGroupResult) => {
+              console.info("checkbox group content" + JSON.stringify(itemName))
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 40,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Select All').fontSize(20)
+        }.margin({right:15})
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox1 change is'+ value)
+            })
+            .mark({
+              strokeColor:Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .unselectedColor(Color.Red)
+            .width(30)
+            .height(30)
+          Text('Checkbox1').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox2 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox2').fontSize(20)
+        }
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
+            .selectedColor(0x39a2db)
+            .onChange((value: boolean) => {
+              console.info('Checkbox3 change is' + value)
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox3').fontSize(20)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![checkboxGroup](figures/checkboxGroup2.gif)

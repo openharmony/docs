@@ -27,8 +27,8 @@
 | hap_profile | HAP的config.json，Stage模型对应module.json。 |
 | raw_assets | 原始assets，这些assets会直接拷贝到HAP的assets目录下。 |
 | resources | 资源文件，编译后放置在assets/entry/resources目录下 |
-| js_assets | js资源，ace编译后放置在assets/js/default目录下。|
-| ets_assets | ets资源，ace编译后放置在assets/js/default目录下 |
+| js_assets | js资源，编译后放置在assets/js/default目录下。|
+| ets_assets | ets资源，编译后放置在assets/js/default目录下 |
 | deps | 当前目标的依赖 |
 | shared_libraries | 当前目标依赖的native库 |
 | hap_name | HAP的名字，可选，默认为目标名 |
@@ -55,7 +55,7 @@
 | sources | HAP的AppScope中的资源resources，只在Stage模型下使用。|
 
 #### ohos_js_assets
-js或ets代码，ace编译后放置在assets/js/default目录下，stage模型根据代码分别放置到js或ets目录。
+js或ets代码，编译后放置在assets/js/default目录下，stage模型根据代码分别放置到js或ets目录。
 
 | 支持的变量 | 说明 |
 | --------- | ---- |

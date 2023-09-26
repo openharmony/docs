@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileio from '@ohos.fileio';
 ```
 
@@ -19,29 +19,30 @@ import fileio from '@ohos.fileio';
 
 **Stage模型**
 
- ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+ ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        let context = this.context;
-        let pathDir = context.filesDir;
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage) {
+      let context = this.context;
+      let pathDir = context.filesDir;
     }
-}
- ```
+  }
+  ```
 
  Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
 
 **FA模型**
 
- ```js
- import featureAbility from '@ohos.ability.featureAbility';
- 
- let context = featureAbility.getContext();
- context.getFilesDir().then((data) => {
-      let pathDir = data;
- })
- ```
+  ```ts
+  import featureAbility from '@ohos.ability.featureAbility';
+
+  let context = featureAbility.getContext();
+  context.getFilesDir().then((data) => {
+    let pathDir = data;
+  })
+  ```
 
  FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
@@ -50,6 +51,10 @@ export default class EntryAbility extends UIAbility {
 stat(path: string): Promise&lt;Stat&gt;
 
 获取文件信息，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.stat](js-apis-file-fs.md#stat)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -67,12 +72,13 @@ stat(path: string): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "test.txt";
-  fileio.stat(filePath).then(function (stat) {
-      console.info("getFileInfo succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("getFileInfo failed with error:" + err);
+  fileio.stat(filePath).then((stat: fileio.Stat) => {
+    console.info("getFileInfo succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -82,6 +88,10 @@ stat(path: string): Promise&lt;Stat&gt;
 stat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 获取文件信息，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.stat](js-apis-file-fs.md#fsstat-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -94,9 +104,10 @@ stat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.stat(pathDir, function (err, stat) {
-      // example code in Stat
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.stat(pathDir, (err: BusinessError, stat: fileio.Stat) => {
+    // example code in Stat
   });
   ```
 
@@ -106,6 +117,10 @@ stat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 statSync(path: string): Stat
 
 以同步方法获取文件的信息。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.statSync](js-apis-file-fs.md#fsstatsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -124,7 +139,7 @@ statSync(path: string): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let stat = fileio.statSync(pathDir);
   // example code in Stat
   ```
@@ -135,6 +150,10 @@ statSync(path: string): Stat
 opendir(path: string): Promise&lt;Dir&gt;
 
 打开文件目录，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -152,21 +171,26 @@ opendir(path: string): Promise&lt;Dir&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + "/testDir";
-  fileio.opendir(dirPath).then(function (dir) {
-      console.info("opendir succeed");
-  }).catch(function (err) {
-      console.info("opendir failed with error:" + err);
+  fileio.opendir(dirPath).then((dir: fileio.Dir) => {
+    console.info("opendir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("opendir failed with error:" + err);
   });
   ```
 
-
+   
 ## fileio.opendir
 
 opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 打开文件目录，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -179,10 +203,11 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.opendir(pathDir, function (err, dir) { 
-      // example code in Dir struct
-      // use read/readSync/close
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.opendir(pathDir, (err: BusinessError, dir: fileio.Dir) => {
+    // example code in Dir struct
+    // use read/readSync/close
   });
   ```
 
@@ -193,8 +218,11 @@ opendirSync(path: string): Dir
 
 以同步方法打开文件目录。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFileSync](js-apis-file-fs.md#fslistfilesync)替代。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
@@ -210,7 +238,7 @@ opendirSync(path: string): Dir
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   // example code in Dir struct
   // use read/readSync/close
@@ -222,6 +250,10 @@ opendirSync(path: string): Dir
 access(path: string, mode?: number): Promise&lt;void&gt;
 
 检查当前进程是否可访问某文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.access](js-apis-file-fs.md#fsaccess)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -240,12 +272,13 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath).then(function () {
-      console.info("access succeed");
-  }).catch(function (err) {
-      console.info("access failed with error:" + err);
+  fileio.access(filePath).then(() => {
+    console.info("access succeed");
+  }).catch((err: BusinessError) => {
+    console.info("access failed with error:" + err);
   });
   ```
 
@@ -255,6 +288,10 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 
 检查当前进程是否可访问某文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.access](js-apis-file-fs.md#fsaccess-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -268,10 +305,11 @@ access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath, function (err) {
-      // do something
+  fileio.access(filePath, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -281,6 +319,10 @@ access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 accessSync(path: string, mode?: number): void
 
 以同步方法检查当前进程是否可访问某文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.accessSync](js-apis-file-fs.md#fsaccesssync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -293,12 +335,13 @@ accessSync(path: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   try {
-      fileio.accessSync(filePath);
-  } catch(err) {
-      console.info("accessSync failed with error:" + err);
+    fileio.accessSync(filePath);
+  } catch(err: BusinessError) {
+    console.info("accessSync failed with error:" + err);
   }
   ```
 
@@ -308,6 +351,10 @@ accessSync(path: string, mode?: number): void
 close(fd: number): Promise&lt;void&gt;
 
 关闭文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.close](js-apis-file-fs.md#fsclose)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -325,13 +372,14 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd).then(function () {
-      console.info("close file succeed");
-  }).catch(function (err) {
-      console.info("close file failed with error:" + err);
+  fileio.close(fd).then(() => {
+    console.info("close file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("close file failed with error:" + err);
   });
   ```
 
@@ -341,6 +389,10 @@ close(fd: number): Promise&lt;void&gt;
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.close](js-apis-file-fs.md#fsclose-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -353,11 +405,12 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd, function (err) {
-      // do something
+  fileio.close(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -367,6 +420,10 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 closeSync(fd: number): void
 
 以同步方法关闭文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.closeSync](js-apis-file-fs.md#fsclosesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -378,7 +435,7 @@ closeSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.closeSync(fd);
@@ -390,6 +447,10 @@ closeSync(fd: number): void
 copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;void&gt;
 
 复制文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.copyFile](js-apis-file-fs.md#fscopyfile)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -409,13 +470,14 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath).then(function () {
-      console.info("copyFile succeed");
-  }).catch(function (err) {
-      console.info("copyFile failed with error:" + err);
+  fileio.copyFile(srcPath, dstPath).then(() => {
+    console.info("copyFile succeed");
+  }).catch((err: BusinessError) => {
+    console.info("copyFile failed with error:" + err);
   });
   ```
 
@@ -425,6 +487,10 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
 copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 复制文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.copyFile](js-apis-file-fs.md#fscopyfile-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -439,11 +505,12 @@ copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncC
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath, function (err) {
-      // do something
+  fileio.copyFile(srcPath, dstPath, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -453,6 +520,10 @@ copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncC
 copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 以同步方法复制文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.copyFileSync](js-apis-file-fs.md#fscopyfilesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -466,7 +537,7 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
   fileio.copyFileSync(srcPath, dstPath);
@@ -478,6 +549,10 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
 mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
 创建目录，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdir](js-apis-file-fs.md#fsmkdir)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -496,12 +571,13 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath).then(function () {
-      console.info("mkdir succeed");
-  }).catch(function (error) {
-      console.info("mkdir failed with error:" + error);
+  fileio.mkdir(dirPath).then(() => {
+    console.info("mkdir succeed");
+  }).catch((error: BusinessError) => {
+    console.info("mkdir failed with error:" + error);
   });
   ```
 
@@ -511,6 +587,10 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
 mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 创建目录，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdir](js-apis-file-fs.md#fsmkdir-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -524,9 +604,10 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath, function (err) {
+  fileio.mkdir(dirPath, (err: BusinessError) => {
     console.info("mkdir succeed");
   });
   ```
@@ -537,6 +618,10 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 mkdirSync(path: string, mode?: number): void
 
 以同步方法创建目录。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdirSync](js-apis-file-fs.md#fsmkdirsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -549,7 +634,7 @@ mkdirSync(path: string, mode?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = path + '/testDir';
   fileio.mkdirSync(dirPath);
   ```
@@ -560,6 +645,10 @@ mkdirSync(path: string, mode?: number): void
 open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 打开文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.open](js-apis-file-fs.md#fsopen)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -579,12 +668,13 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0o1, 0o0200).then(function (number) {
-      console.info("open file succeed");
-  }).catch(function (err) {
-      console.info("open file failed with error:" + err);
+  fileio.open(filePath, 0o1, 0o0200).then((number: number) => {
+    console.info("open file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("open file failed with error:" + err);
   });
   ```
 
@@ -594,6 +684,10 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;number&gt;): void
 
 打开文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.open](js-apis-file-fs.md#fsopen-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -608,10 +702,11 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0, function (err, fd) {
-      // do something
+  fileio.open(filePath, 0, (err: BusinessError, fd: number) => {
+    // do something
   });
   ```
 
@@ -621,6 +716,10 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 openSync(path: string, flags?: number, mode?: number): number
 
 以同步方法打开文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.openSync](js-apis-file-fs.md#fsopensync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -640,11 +739,11 @@ openSync(path: string, flags?: number, mode?: number): number
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o640);
   ```
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o102, 0o666);
   fileio.writeSync(fd, 'hello world');
@@ -660,6 +759,10 @@ openSync(path: string, flags?: number, mode?: number): number
 read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): Promise&lt;ReadOut&gt;
 
 从文件读取数据，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.read](js-apis-file-fs.md#fsread)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -679,15 +782,18 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function (readOut) {
-      console.info("read file data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read file data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer).then((readLen: number) => {
+    console.info("read file data succeed");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.log(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read file data failed with error:" + err);
   });
   ```
 
@@ -697,6 +803,10 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: number; position?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从文件读取数据，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.read](js-apis-file-fs.md#fsread-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -711,15 +821,18 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
-  let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf, function (err, readOut) {
-      if (readOut) {
-          console.info("read file data succeed");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  fileio.read(fd, arrayBuffer, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("read file data succeed");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -729,6 +842,10 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
 readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number
 
 以同步方法从文件读取数据。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.readSync](js-apis-file-fs.md#fsreadsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -748,7 +865,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -762,6 +879,10 @@ rmdir(path: string): Promise&lt;void&gt;
 
 删除目录，使用Promise异步回调。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.rmdir](js-apis-file-fs.md#fsrmdir)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -778,12 +899,13 @@ rmdir(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath).then(function () {
-      console.info("rmdir succeed");
-  }).catch(function (err) {
-      console.info("rmdir failed with error:" + err);
+  fileio.rmdir(dirPath).then(() => {
+    console.info("rmdir succeed");
+  }).catch((err: BusinessError) => {
+    console.info("rmdir failed with error:" + err);
   });
   ```
 
@@ -793,6 +915,10 @@ rmdir(path: string): Promise&lt;void&gt;
 rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除目录，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.rmdir](js-apis-file-fs.md#fsrmdir-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -805,11 +931,12 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath, function (err) {
-      // do something
-      console.info("rmdir succeed");
+  fileio.rmdir(dirPath, (err: BusinessError) => {
+    // do something
+    console.info("rmdir succeed");
   });
   ```
 
@@ -819,6 +946,10 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 rmdirSync(path: string): void
 
 以同步方法删除目录。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.rmdirSync](js-apis-file-fs.md#fsrmdirsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -830,7 +961,7 @@ rmdirSync(path: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = pathDir + '/testDir';
   fileio.rmdirSync(dirPath);
   ```
@@ -841,6 +972,10 @@ rmdirSync(path: string): void
 unlink(path: string): Promise&lt;void&gt;
 
 删除文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.unlink](js-apis-file-fs.md#fsunlink)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -858,12 +993,13 @@ unlink(path: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath).then(function () {
-      console.info("remove file succeed");
-  }).catch(function (error) {
-      console.info("remove file failed with error:" + error);
+  fileio.unlink(filePath).then(() => {
+    console.info("remove file succeed");
+  }).catch((error: BusinessError) => {
+    console.info("remove file failed with error:" + error);
   });
   ```
 
@@ -873,6 +1009,10 @@ unlink(path: string): Promise&lt;void&gt;
 unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.unlink](js-apis-file-fs.md#fsunlink-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -885,10 +1025,11 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath, function (err) {
-      console.info("remove file succeed");
+  fileio.unlink(filePath, (err: BusinessError) => {
+    console.info("remove file succeed");
   });
   ```
 
@@ -898,6 +1039,10 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 unlinkSync(path: string): void
 
 以同步方法删除文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.unlinkSync](js-apis-file-fs.md#fsunlinksync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -909,7 +1054,7 @@ unlinkSync(path: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.unlinkSync(filePath);
   ```
@@ -920,6 +1065,10 @@ unlinkSync(path: string): void
 write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.write](js-apis-file-fs.md#fswrite)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -939,13 +1088,14 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world").then(function (number) {
-       console.info("write data to file succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write data to file failed with error:" + err);
+  fileio.write(fd, "hello, world").then((number: number) => {
+    console.info("write data to file succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write data to file failed with error:" + err);
   });
   ```
 
@@ -955,6 +1105,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
 write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.write](js-apis-file-fs.md#fswrite-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -969,13 +1123,14 @@ write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world", function (err, bytesWritten) {
-      if (bytesWritten) {
-         console.info("write data to file succeed and size is:" + bytesWritten);
-      }
+  fileio.write(fd, "hello, world", (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      console.info("write data to file succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -985,6 +1140,10 @@ write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length
 writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.writeSync](js-apis-file-fs.md#fswritesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1004,7 +1163,7 @@ writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; l
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   let num = fileio.writeSync(fd, "hello, world");
@@ -1016,6 +1175,10 @@ writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; l
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 计算文件的哈希值，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[hash.write](js-apis-file-hash.md#hashhash)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1034,12 +1197,13 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256").then(function (str) {
-      console.info("calculate file hash succeed:" + str);
-  }).catch(function (err) {
-      console.info("calculate file hash failed with error:" + err);
+  fileio.hash(filePath, "sha256").then((str: string) => {
+    console.info("calculate file hash succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1049,6 +1213,10 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
 计算文件的哈希值，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[hash.write](js-apis-file-hash.md#hashhash-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1062,12 +1230,13 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256", function (err, hashStr) {
-      if (hashStr) {
-          console.info("calculate file hash succeed:" + hashStr);
-      }
+  fileio.hash(filePath, "sha256", (err: BusinessError, hashStr: string) => {
+    if (hashStr) {
+      console.info("calculate file hash succeed:" + hashStr);
+    }
   });
   ```
 
@@ -1077,6 +1246,10 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 chmod(path: string, mode: number): Promise&lt;void&gt;
 
 改变文件权限，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1095,12 +1268,13 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700).then(function () {
-      console.info("chmod succeed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  fileio.chmod(filePath, 0o700).then(() => {
+    console.info("chmod succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -1110,6 +1284,10 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
 chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变文件权限，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1123,10 +1301,11 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700, function (err) {
-      // do something
+  fileio.chmod(filePath, 0o700, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1136,6 +1315,10 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 chmodSync(path: string, mode: number): void
 
 以同步方法改变文件权限。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1148,7 +1331,7 @@ chmodSync(path: string, mode: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   fileio.chmodSync(filePath, 0o700);
   ```
@@ -1159,6 +1342,10 @@ chmodSync(path: string, mode: number): void
 fstat(fd: number): Promise&lt;Stat&gt;
 
 基于文件描述符获取文件状态信息，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.stat](js-apis-file-fs.md#fsstat)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1176,13 +1363,14 @@ fstat(fd: number): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd).then(function (stat) {
-      console.info("fstat succeed, the size of file is " + stat.size);
-  }).catch(function (err) {
-      console.info("fstat failed with error:" + err);
+  fileio.fstat(fd).then((stat: fileio.Stat) => {
+    console.info("fstat succeed, the size of file is " + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("fstat failed with error:" + err);
   });
   ```
 
@@ -1192,6 +1380,10 @@ fstat(fd: number): Promise&lt;Stat&gt;
 fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 基于文件描述符获取文件状态信息，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.stat](js-apis-file-fs.md#fsstat-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1204,11 +1396,12 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd, function (err) {
-      // do something
+  fileio.fstat(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1218,6 +1411,10 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 fstatSync(fd: number): Stat
 
 以同步方法基于文件描述符获取文件状态信息。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.statSync](js-apis-file-fs.md#fsstatsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1235,7 +1432,7 @@ fstatSync(fd: number): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fstatSync(fd);
@@ -1247,6 +1444,10 @@ fstatSync(fd: number): Stat
 ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 基于文件描述符截断文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncate](js-apis-file-fs.md#fstruncate)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1265,13 +1466,14 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then(function (err) {    
-      console.info("truncate file succeed");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.ftruncate(fd, 5).then((err: BusinessError) => {
+    console.info("truncate file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1281,6 +1483,10 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符截断文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncate](js-apis-file-fs.md#fstruncate-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1294,12 +1500,13 @@ ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
-  fileio.ftruncate(fd, 5, function (err) {
-      // do something
+  fileio.ftruncate(fd, 5, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1309,6 +1516,10 @@ ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 ftruncateSync(fd: number, len?: number): void
 
 以同步方法基于文件描述符截断文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncateSync](js-apis-file-fs.md#fstruncatesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1321,7 +1532,7 @@ ftruncateSync(fd: number, len?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
@@ -1334,6 +1545,10 @@ ftruncateSync(fd: number, len?: number): void
 truncate(path: string, len?: number): Promise&lt;void&gt;
 
 基于文件路径截断文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncate](js-apis-file-fs.md#fstruncate)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1352,13 +1567,14 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len).then(function () {
-      console.info("truncate file succeed");
-  }).catch(function (err) {
-      console.info("truncate file failed with error:" + err);
+  fileio.truncate(filePath, len).then(() => {
+    console.info("truncate file succeed");
+  }).catch((err: BusinessError) => {
+    console.info("truncate file failed with error:" + err);
   });
   ```
 
@@ -1368,6 +1584,10 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径截断文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncate](js-apis-file-fs.md#fstruncate-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1381,11 +1601,12 @@ truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len, function (err) {
-      // do something
+  fileio.truncate(filePath, len, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1395,6 +1616,10 @@ truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 truncateSync(path: string, len?: number): void
 
 以同步方法基于文件路径截断文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.truncateSync](js-apis-file-fs.md#fstruncatesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1407,7 +1632,7 @@ truncateSync(path: string, len?: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let len = 5;
   fileio.truncateSync(filePath, len);
@@ -1419,6 +1644,10 @@ truncateSync(path: string, len?: number): void
 readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.readText](js-apis-file-fs.md#fsreadtext)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1437,12 +1666,13 @@ readText(filePath: string, options?: { position?: number; length?: number; encod
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath).then(function (str) {
-      console.info("readText succeed:" + str);
-  }).catch(function (err) {
-      console.info("readText failed with error:" + err);
+  fileio.readText(filePath).then((str: string) => {
+    console.info("readText succeed:" + str);
+  }).catch((err: BusinessError) => {
+    console.info("readText failed with error:" + err);
   });
   ```
 
@@ -1452,6 +1682,10 @@ readText(filePath: string, options?: { position?: number; length?: number; encod
 readText(filePath: string, options: { position?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;string&gt;): void
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.readText](js-apis-file-fs.md#fsreadtext-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1465,10 +1699,11 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function (err, str) {
-      // do something
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, (err: BusinessError, str: string) => {
+    // do something
   });
   ```
 
@@ -1478,6 +1713,10 @@ readText(filePath: string, options: { position?: number; length?: number; encodi
 readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.readTextSync](js-apis-file-fs.md#fsreadtextsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1496,7 +1735,7 @@ readTextSync(filePath: string, options?: { position?: number; length?: number; e
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let str = fileio.readTextSync(filePath, {position: 1, length: 3});
   ```
@@ -1507,6 +1746,10 @@ readTextSync(filePath: string, options?: { position?: number; length?: number; e
 lstat(path: string): Promise&lt;Stat&gt;
 
 获取链接信息，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.lstat](js-apis-file-fs.md#fslstat)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1524,12 +1767,13 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath).then(function (stat) {
-      console.info("get link status succeed, the size of file is" + stat.size);
-  }).catch(function (err) {
-      console.info("get link status failed with error:" + err);
+  fileio.lstat(filePath).then((stat: fileio.Stat) => {
+    console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch((err: BusinessError) => {
+    console.info("get link status failed with error:" + err);
   });
   ```
 
@@ -1539,6 +1783,10 @@ lstat(path: string): Promise&lt;Stat&gt;
 lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 获取链接信息，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.lstat](js-apis-file-fs.md#fslstat-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1551,10 +1799,11 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath, function (err, stat) {
-      // do something
+  fileio.lstat(filePath, (err: BusinessError, stat: fileio.Stat) => {
+    // do something
   });
   ```
 
@@ -1564,6 +1813,10 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 lstatSync(path: string): Stat
 
 以同步方法获取链接信息。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.lstatSync](js-apis-file-fs.md#fslstatsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1581,7 +1834,7 @@ lstatSync(path: string): Stat
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.lstatSync(filePath);
   ```
@@ -1592,6 +1845,10 @@ lstatSync(path: string): Stat
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 重命名文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.rename](js-apis-file-fs.md#fsrename)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1610,13 +1867,14 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile).then(function () {
-      console.info("rename succeed");
-  }).catch(function (err) {
-      console.info("rename failed with error:" + err);
+  fileio.rename(srcFile, dstFile).then(() => {
+    console.info("rename succeed");
+  }).catch((err: BusinessError) => {
+    console.info("rename failed with error:" + err);
   });
   ```
 
@@ -1626,6 +1884,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
 重命名文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.rename](js-apis-file-fs.md#fsrename-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1639,19 +1901,23 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile, function (err) {
+  fileio.rename(srcFile, dstFile, (err: BusinessError) => {
   });
   ```
-
 
 ## fileio.renameSync<sup>7+</sup>
 
 renameSync(oldPath: string, newPath: string): void
 
 以同步方法重命名文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.renameSync](js-apis-file-fs.md#fsrenamesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1664,7 +1930,7 @@ renameSync(oldPath: string, newPath: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
   fileio.renameSync(srcFile, dstFile);
@@ -1677,6 +1943,10 @@ fsync(fd: number): Promise&lt;void&gt;
 
 同步文件数据，使用Promise异步回调。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fsync](js-apis-file-fs.md#fsfsync)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -1693,13 +1963,14 @@ fsync(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd).then(function () {
-      console.info("sync data succeed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fsync(fd).then(() => {
+    console.info("sync data succeed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1709,6 +1980,10 @@ fsync(fd: number): Promise&lt;void&gt;
 fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 同步文件数据，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fsync](js-apis-file-fs.md#fsfsync-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1721,11 +1996,12 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd, function (err) {
-      // do something
+  fileio.fsync(fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1735,6 +2011,10 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 fsyncSync(fd: number): void
 
 以同步方法同步文件数据。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fsyncSync](js-apis-file-fs.md#fsfsyncsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1746,7 +2026,7 @@ fsyncSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   fileio.fsyncSync(fd);
@@ -1758,6 +2038,10 @@ fsyncSync(fd: number): void
 fdatasync(fd: number): Promise&lt;void&gt;
 
 实现文件内容数据同步，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdatasync](js-apis-file-fs.md#fsfdatasync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1775,13 +2059,14 @@ fdatasync(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then(function (err) {
-      console.info("sync data succeed");
-  }).catch(function (err) {
-      console.info("sync data failed with error:" + err);
+  fileio.fdatasync(fd).then((err: BusinessError) => {
+    console.info("sync data succeed");
+  }).catch((err: BusinessError) => {
+    console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1791,6 +2076,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
 fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 实现文件内容数据同步，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdatasync](js-apis-file-fs.md#fsfdatasync-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1803,11 +2092,12 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync (fd, function (err) {
-      // do something
+  fileio.fdatasync (fd, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1817,6 +2107,10 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 fdatasyncSync(fd: number): void
 
 以同步方法实现文件内容数据同步。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdatasyncSync](js-apis-file-fs.md#fsfdatasyncsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1828,7 +2122,7 @@ fdatasyncSync(fd: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.fdatasyncSync(fd);
@@ -1840,6 +2134,10 @@ fdatasyncSync(fd: number): void
 symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 基于文件路径创建符号链接，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.symlink](js-apis-file-fs.md#fssymlink)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1858,13 +2156,14 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile).then(function () {
-      console.info("symlink succeed");
-  }).catch(function (err) {
-      console.info("symlink failed with error:" + err);
+  fileio.symlink(srcFile, dstFile).then(() => {
+    console.info("symlink succeed");
+  }).catch((err: BusinessError) => {
+    console.info("symlink failed with error:" + err);
   });
   ```
 
@@ -1874,6 +2173,10 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径创建符号链接，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.symlink](js-apis-file-fs.md#fssymlink-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1887,11 +2190,12 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile, function (err) {
-      // do something
+  fileio.symlink(srcFile, dstFile, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -1901,6 +2205,10 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 symlinkSync(target: string, srcPath: string): void
 
 以同步的方法基于文件路径创建符号链接。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.symlinkSync](js-apis-file-fs.md#fssymlinksync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1913,7 +2221,7 @@ symlinkSync(target: string, srcPath: string): void
 
 **示例：**
 
-  ```js
+  ```ts
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
   fileio.symlinkSync(srcFile, dstFile);
@@ -1925,6 +2233,10 @@ symlinkSync(target: string, srcPath: string): void
 chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 基于文件路径改变文件所有者，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1944,13 +2256,14 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.chown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.chown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -1960,6 +2273,10 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径改变文件所有者，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1974,20 +2291,24 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
-  fileio.chown(filePath, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.chown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
-
 
 ## fileio.chownSync<sup>7+</sup>
 
 chownSync(path: string, uid: number, gid: number): void
 
 以同步的方法基于文件路径改变文件所有者。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2001,7 +2322,7 @@ chownSync(path: string, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
   fileio.chownSync(filePath, stat.uid, stat.gid);
@@ -2013,6 +2334,10 @@ chownSync(path: string, uid: number, gid: number): void
 mkdtemp(prefix: string): Promise&lt;string&gt;
 
 创建临时目录，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdtemp](js-apis-file-fs.md#fsmkdtemp)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2030,11 +2355,12 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
 **示例：**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
-      console.info("mkdtemp succeed:" + pathDir);
-  }).catch(function (err) {
-      console.info("mkdtemp failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX").then((pathDir: string) => {
+    console.info("mkdtemp succeed:" + pathDir);
+  }).catch((err: BusinessError) => {
+    console.info("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2044,6 +2370,10 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 创建临时目录，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdtemp](js-apis-file-fs.md#fsmkdtemp-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2056,9 +2386,10 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX", function (err, res) {
-      // do something
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  fileio.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) {
+    // do something
   });
   ```
 
@@ -2068,6 +2399,10 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 mkdtempSync(prefix: string): string
 
 以同步的方法创建临时目录。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.mkdtempSync](js-apis-file-fs.md#fsmkdtempsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2085,7 +2420,7 @@ mkdtempSync(prefix: string): string
 
 **示例：**
 
-  ```js
+  ```ts
   let res = fileio.mkdtempSync(pathDir + "/XXXXXX");
   ```
 
@@ -2095,6 +2430,10 @@ mkdtempSync(prefix: string): string
 fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 基于文件描述符改变文件权限，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2113,14 +2452,15 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode).then(function () {
-      console.info("chmod succeed");
-  }).catch(function (err) {
-      console.info("chmod failed with error:" + err);
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode).then(() => {
+    console.info("chmod succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -2130,6 +2470,10 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符改变文件权限，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2143,12 +2487,13 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-  fileio.fchmod(fd, mode, function (err) {
-      // do something
+  let mode: number = 0o700;
+  fileio.fchmod(fd, mode, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2158,6 +2503,10 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 fchmodSync(fd: number, mode: number): void
 
 以同步方法基于文件描述符改变文件权限。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2170,11 +2519,11 @@ fchmodSync(fd: number, mode: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  let mode = 0o700;
-   fileio.fchmodSync(fd, mode);
+  let mode: number = 0o700;
+  fileio.fchmodSync(fd, mode);
   ```
 
 
@@ -2183,6 +2532,10 @@ fchmodSync(fd: number, mode: number): void
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 基于文件路径打开文件流，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.createStream](js-apis-file-fs.md#fscreatestream)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2201,12 +2554,13 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+").then(function (stream) {
-      console.info("createStream succeed");
-  }).catch(function (err) {
-      console.info("createStream failed with error:" + err);
+  fileio.createStream(filePath, "r+").then((stream: fileio.Stream) => {
+    console.info("createStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("createStream failed with error:" + err);
   });
   ```
 
@@ -2216,6 +2570,10 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
 基于文件路径打开文件流，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.createStream](js-apis-file-fs.md#fscreatestream-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2229,10 +2587,11 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", function (err, stream) {
-      // do something
+  fileio.createStream(filePath, "r+", (err: BusinessError, stream: fileio.Stream) {
+    // do something
   });
   ```
 
@@ -2242,6 +2601,10 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 createStreamSync(path: string, mode: string): Stream
 
 以同步方法基于文件路径打开文件流。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.createStreamSync](js-apis-file-fs.md#fscreatestreamsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2260,7 +2623,7 @@ createStreamSync(path: string, mode: string): Stream
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
   ```
@@ -2271,6 +2634,10 @@ createStreamSync(path: string, mode: string): Stream
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 基于文件描述符打开文件流，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdopenStream](js-apis-file-fs.md#fsfdopenstream)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2289,13 +2656,14 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+").then(function (stream) {
-      console.info("openStream succeed");
-  }).catch(function (err) {
-      console.info("openStream failed with error:" + err);
+  fileio.fdopenStream(fd, "r+").then((stream: fileio.Stream) => {
+    console.info("openStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("openStream failed with error:" + err);
   });
   ```
 
@@ -2305,6 +2673,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
 基于文件描述符打开文件流，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdopenStream](js-apis-file-fs.md#fsfdopenstream-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2318,11 +2690,12 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+", function (err, stream) {
-      // do something
+  fileio.fdopenStream(fd, "r+", (err: BusinessError, stream: fileio.Stream) => {
+    // do something
   });
   ```
 
@@ -2332,6 +2705,10 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 fdopenStreamSync(fd: number, mode: string): Stream
 
 以同步方法基于文件描述符打开文件流。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.fdopenStreamSync](js-apis-file-fs.md#fsfdopenstreamsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2350,7 +2727,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let ss = fileio.fdopenStreamSync(fd, "r+");
@@ -2362,6 +2739,10 @@ fdopenStreamSync(fd: number, mode: string): Stream
 fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 基于文件描述符改变文件所有者，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2381,14 +2762,15 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.fchown(fd, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2398,6 +2780,10 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符改变文件所有者，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2412,12 +2798,13 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.fchown(fd, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2427,6 +2814,10 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 fchownSync(fd: number, uid: number, gid: number): void
 
 以同步方法基于文件描述符改变文件所有者。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2440,7 +2831,7 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
@@ -2453,6 +2844,10 @@ fchownSync(fd: number, uid: number, gid: number): void
 lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是符号链接所指向的实际文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2472,13 +2867,14 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid).then(function () {
-      console.info("chown succeed");
-  }).catch(function (err) {
-      console.info("chown failed with error:" + err);
+  fileio.lchown(filePath, stat.uid, stat.gid).then(() => {
+    console.info("chown succeed");
+  }).catch((err: BusinessError) => {
+    console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2488,6 +2884,10 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2502,11 +2902,12 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid, function (err) {
-      // do something
+  fileio.lchown(filePath, stat.uid, stat.gid, (err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2516,6 +2917,10 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 lchownSync(path: string, uid: number, gid: number): void
 
 以同步方法基于文件路径改变文件所有者，更改符号链接本身的所有者，而不是更改符号链接所指向的实际文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2529,7 +2934,7 @@ lchownSync(path: string, uid: number, gid: number): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
   fileio.lchownSync(filePath, stat.uid, stat.gid);
@@ -2560,10 +2965,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, function (number) {
-     console.info("Monitoring times: " +number);
+  fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
   
   ```
@@ -2572,6 +2977,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 ## Readout
 
 仅用于read方法，获取文件的读取结果。
+
+> **说明**： 
+>
+> 从API version 9开始废弃。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
@@ -2585,6 +2994,10 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 ## Stat
 
 文件具体信息，在调用Stat的方法前，需要先通过[stat()](#fileiostat)方法（同步或异步）来构建一个Stat实例。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat](js-apis-file-fs.md#stat)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
@@ -2612,6 +3025,10 @@ isBlockDevice(): boolean
 
 用于判断文件是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isBlockDevice](js-apis-file-fs.md#isblockdevice)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2622,7 +3039,7 @@ isBlockDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isBLockDevice = fileio.statSync(filePath).isBlockDevice();
   ```
@@ -2634,6 +3051,10 @@ isCharacterDevice(): boolean
 
 用于判断文件是否是字符特殊文件。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isCharacterDevice](js-apis-file-fs.md#ischaracterdevice)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2644,7 +3065,7 @@ isCharacterDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fileio.statSync(filePath).isCharacterDevice();
   ```
@@ -2656,6 +3077,10 @@ isDirectory(): boolean
 
 用于判断文件是否是目录。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isDirectory](js-apis-file-fs.md#isdirectory)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2666,7 +3091,7 @@ isDirectory(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dirPath = pathDir + "/test";
   let isDirectory = fileio.statSync(dirPath).isDirectory(); 
   ```
@@ -2678,6 +3103,10 @@ isFIFO(): boolean
 
 用于判断文件是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isFIFO](js-apis-file-fs.md#isfifo)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2688,7 +3117,7 @@ isFIFO(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFIFO = fileio.statSync(filePath).isFIFO(); 
   ```
@@ -2700,6 +3129,10 @@ isFile(): boolean
 
 用于判断文件是否是普通文件。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isFile](js-apis-file-fs.md#isfile)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2710,7 +3143,7 @@ isFile(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isFile = fileio.statSync(filePath).isFile();
   ```
@@ -2722,6 +3155,10 @@ isSocket(): boolean
 
 用于判断文件是否是套接字。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isSocket](js-apis-file-fs.md#issocket)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2732,7 +3169,7 @@ isSocket(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let isSocket = fileio.statSync(filePath).isSocket(); 
   ```
@@ -2744,6 +3181,10 @@ isSymbolicLink(): boolean
 
 用于判断文件是否是符号链接。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stat.isSymbolicLink](js-apis-file-fs.md#issymboliclink)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -2754,7 +3195,7 @@ isSymbolicLink(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test";
   let isSymbolicLink = fileio.statSync(filePath).isSymbolicLink(); 
   ```
@@ -2775,13 +3216,13 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop().then(function () {
-       console.info("close watcher succeed");
+  watcher.stop().then(() => {
+    console.info("close watcher succeed");
   });
   ```
 
@@ -2802,13 +3243,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function (number) {
-      console.info("Monitoring times: " +number);
+  let watcher = fileio.createWatcher(filePath, 1, (number: number) => {
+    console.info("Monitoring times: " + number);
   });
-  watcher.stop(function () {
-      console.info("close watcher succeed");
+  watcher.stop(() => {
+    console.info("close watcher succeed");
   })
   ```
 
@@ -2817,12 +3258,19 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 文件流，在调用Stream的方法前，需要先通过createStream()方法（同步或异步）来构建一个Stream实例。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream](js-apis-file-fs.md#stream)替代。
 
 ### close<sup>7+</sup>
 
 close(): Promise&lt;void&gt;
 
 关闭文件流，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.close](js-apis-file-fs.md#close)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2834,13 +3282,14 @@ close(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close().then(function () {
-      console.info("close fileStream succeed");
-  }).catch(function (err) {
-      console.info("close fileStream  failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close().then(() => {
+    console.info("close fileStream succeed");
+  }).catch((err: BusinessError) => {
+    console.info("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -2850,6 +3299,10 @@ close(): Promise&lt;void&gt;
 close(callback: AsyncCallback&lt;void&gt;): void
 
 异步关闭文件流，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.close](js-apis-file-fs.md#close-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2861,11 +3314,12 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close(function (err) {
-      // do something
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.close((err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2876,13 +3330,17 @@ closeSync(): void
 
 同步关闭文件流。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.closeSync](js-apis-file-fs.md#closesync)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -2892,6 +3350,10 @@ closeSync(): void
 flush(): Promise&lt;void&gt;
 
 刷新文件流，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.flush](js-apis-file-fs.md#flush)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2903,13 +3365,14 @@ flush(): Promise&lt;void&gt;
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush().then(function () {
-      console.info("flush succeed");
-  }).catch(function (err) {
-      console.info("flush failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush().then(() => {
+    console.info("flush succeed");
+  }).catch((err: BusinessError) => {
+    console.info("flush failed with error:" + err);
   });
   ```
 
@@ -2919,6 +3382,10 @@ flush(): Promise&lt;void&gt;
 flush(callback: AsyncCallback&lt;void&gt;): void
 
 异步刷新文件流，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.flush](js-apis-file-fs.md#flush-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2930,11 +3397,12 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush(function (err) {
-      // do something
+  let ss = fileio.createStreamSync(filePath, "r+");
+  ss.flush((err: BusinessError) => {
+    // do something
   });
   ```
 
@@ -2945,13 +3413,17 @@ flushSync(): void
 
 同步刷新文件流。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.flushSync](js-apis-file-fs.md#flushsync)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -2961,6 +3433,10 @@ flushSync(): void
 write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.write](js-apis-file-fs.md#write)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2979,13 +3455,24 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number) {
-      console.info("write succeed and size is:" + number);
-  }).catch(function (err) {
-      console.info("write failed with error:" + err);
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option).then((number: number) => {
+    console.info("write succeed and size is:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("write failed with error:" + err);
   });
   ```
 
@@ -2995,6 +3482,10 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
 write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.write](js-apis-file-fs.md#write-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3008,14 +3499,25 @@ write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; p
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
-      if (bytesWritten) {
-         // do something
-         console.info("write succeed and size is:" + bytesWritten);
-      }
+  let ss = fileio.createStreamSync(filePath, "r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
+    if (bytesWritten) {
+      // do something
+      console.info("write succeed and size is:" + bytesWritten);
+    }
   });
   ```
 
@@ -3025,6 +3527,10 @@ write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; p
 writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入流文件。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.writeSync](js-apis-file-fs.md#writesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3043,10 +3549,20 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
-  let ss= fileio.createStreamSync(filePath,"r+");
-  let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
+  let ss = fileio.createStreamSync(filePath,"r+");
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+    encoding: string = 'utf-8';
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.writeSync("hello, world", option);
   ```
 
 
@@ -3055,6 +3571,10 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
 read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): Promise&lt;ReadOut&gt;
 
 从流文件读取数据，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.read](js-apis-file-fs.md#read)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3073,14 +3593,27 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut) {
-      console.info("read data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function (err) {
-      console.info("read data failed with error:" + err);
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option).then((readLen: number) => {
+    console.info("read data succeed");
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+  }).catch((err: BusinessError) => {
+    console.info("read data failed with error:" + err);
   });
   ```
 
@@ -3090,6 +3623,10 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
 read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从流文件读取数据，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.read](js-apis-file-fs.md#read-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3103,14 +3640,27 @@ read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?
 
 **示例：**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import buffer from '@ohos.buffer';
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
-      if (readOut) {
-          console.info("read data succeed");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
+  let arrayBuffer = new ArrayBuffer(4096);
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  ss.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
+    if (readLen) {
+      console.info("read data succeed");
+      let buf = buffer.from(arrayBuffer, 0, readLen);
+      console.info(`The content of file: ${buf.toString()}`);
+    }
   });
   ```
 
@@ -3120,6 +3670,10 @@ read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?
 readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): number
 
 以同步方法从流文件读取数据。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.Stream.readSync](js-apis-file-fs.md#readsync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3138,10 +3692,19 @@ readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; le
 
 **示例：**
 
-  ```js
+  ```ts
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
+  class Option {
+    offset: number = 0;
+    length: number = 4096;
+    position: number = 0;
+  }
+  let option = new Option();
+  option.offset = 1;
+  option.length = 5;
+  option.position = 5;
+  let num = ss.readSync(new ArrayBuffer(4096), option);
   ```
 
 
@@ -3149,12 +3712,19 @@ readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; le
 
 管理目录，在调用Dir的方法前，需要先通过opendir方法（同步或异步）来构建一个Dir实例。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
 
 ### read
 
 read(): Promise&lt;Dirent&gt;
 
 读取下一个目录项，使用Promise异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3166,11 +3736,12 @@ read(): Promise&lt;Dirent&gt;
 
 **示例：**
 
-  ```js
-  dir.read().then(function (dirent) {
-      console.log("read succeed, the name of dirent is " + dirent.name);
-  }).catch(function (err) {
-      console.info("read failed with error:" + err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read().then((dirent: fileio.Dirent) => {
+    console.log("read succeed, the name of dirent is " + dirent.name);
+  }).catch((err: BusinessError) => {
+    console.info("read failed with error:" + err);
   });
   ```
 
@@ -3180,6 +3751,10 @@ read(): Promise&lt;Dirent&gt;
 read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 读取下一个目录项，使用callback异步回调。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile-1)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3191,12 +3766,13 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 
 **示例：**
 
-  ```js
-  dir.read(function (err, dirent) {
-      if (dirent) {
-          // do something
-          console.log("read succeed, the name of file is " + dirent.name);
-      }
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.read((err: BusinessError, dirent: fileio.Dirent) {
+    if (dirent) {
+      // do something
+      console.log("read succeed, the name of file is " + dirent.name);
+    }
   });
   ```
 
@@ -3206,6 +3782,10 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 readSync(): Dirent
 
 同步读取下一个目录项。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFileSync](js-apis-file-fs.md#fslistfilesync)替代。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3217,7 +3797,7 @@ readSync(): Dirent
 
 **示例：**
 
-  ```js
+  ```ts
   let dirent = dir.readSync();
   ```
 
@@ -3228,30 +3808,40 @@ close(): Promise&lt;void&gt;
 
 异步关闭目录，使用promise形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **示例：**
 
-  ```js
-  dir.close().then(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close().then((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
 
-  ### close<sup>7+</sup>
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback&lt;void&gt;): void
 
 异步关闭目录，使用callback形式返回结果。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile-1)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **示例：**
 
-  ```js
-  dir.close(function (err) {
-      console.info("close dir successfully");
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  dir.close((err: BusinessError) => {
+    console.info("close dir successfully");
   });
   ```
 
@@ -3262,11 +3852,15 @@ closeSync(): void
 
 用于关闭目录。目录被关闭后，Dir中持有的文件描述将被释放，后续将无法从Dir中读取目录项。
 
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFileSync](js-apis-file-fs.md#fslistfilesync)替代。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **示例：**
 
-  ```js
+  ```ts
   dir.closeSync();
   ```
 
@@ -3274,6 +3868,10 @@ closeSync(): void
 ## Dirent
 
 在调用Dirent的方法前，需要先通过[dir.read()](#read)方法（同步或异步）来构建一个Dirent实例。
+
+> **说明**： 
+>
+> 从API version 9开始废弃，请使用[fs.listFile](js-apis-file-fs.md#fslistfile)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
@@ -3290,6 +3888,10 @@ isBlockDevice(): boolean
 
 用于判断当前目录项是否是块特殊文件。一个块特殊文件只能以块为粒度进行访问，且访问的时候带缓存。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3300,7 +3902,7 @@ isBlockDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isBLockDevice = dir.readSync().isBlockDevice();
   ```
@@ -3312,6 +3914,10 @@ isCharacterDevice(): boolean
 
 用于判断当前目录项是否是字符特殊设备。一个字符特殊设备可进行随机访问，且访问的时候不带缓存。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3322,7 +3928,7 @@ isCharacterDevice(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
   ```
@@ -3334,6 +3940,10 @@ isDirectory(): boolean
 
 用于判断当前目录项是否是目录。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3344,7 +3954,7 @@ isDirectory(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isDirectory = dir.readSync().isDirectory(); 
   ```
@@ -3356,6 +3966,10 @@ isFIFO(): boolean
 
 用于判断当前目录项是否是命名管道（有时也称为FIFO）。命名管道通常用于进程间通信。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3366,7 +3980,7 @@ isFIFO(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFIFO = dir.readSync().isFIFO(); 
   ```
@@ -3378,6 +3992,10 @@ isFile(): boolean
 
 用于判断当前目录项是否是普通文件。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3388,7 +4006,7 @@ isFile(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isFile = dir.readSync().isFile(); 
   ```
@@ -3400,6 +4018,10 @@ isSocket(): boolean
 
 用于判断当前目录项是否是套接字。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3410,7 +4032,7 @@ isSocket(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSocket = dir.readSync().isSocket(); 
   ```
@@ -3422,6 +4044,10 @@ isSymbolicLink(): boolean
 
 用于判断当前目录项是否是符号链接。
 
+> **说明**： 
+>
+> 从API version 9开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
@@ -3432,7 +4058,7 @@ isSymbolicLink(): boolean
 
 **示例：**
 
-  ```js
+  ```ts
   let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```

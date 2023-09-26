@@ -45,7 +45,7 @@ createBundleContext(bundleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | bundleName | string | 是    | Bundle名称。 |
 
@@ -58,6 +58,8 @@ createBundleContext(bundleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
@@ -76,7 +78,7 @@ createModuleContext(moduleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | moduleName | string | 是    | 模块名。 |
 
@@ -89,6 +91,8 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
@@ -96,6 +100,8 @@ try {
     console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
 ```
+
+> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context。
 
 ## Context.createModuleContext
 
@@ -109,7 +115,7 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 
 **参数：**
 
-| 名称       | 类型                     | 必填   | 说明            |
+| 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
 | bundleName | string | 是    | Bundle名称。 |
 | moduleName | string | 是    | 模块名。 |
@@ -123,6 +129,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
@@ -148,11 +156,96 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
     console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(dataGroupID: string): Promise\<string>;
+
+通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<string> | 以Promise方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+
+let groupId = "1";
+let getGroupDirContext: common.Context = this.context;
+try {
+  getGroupDirContext.getGroupDir(groupId).then(data => {
+    console.log("getGroupDir result:" + data);
+  })
+} catch (error) {
+  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
+
+通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型                     | 必填   | 说明            |
+| -------- | ---------------------- | ---- | ------------- |
+| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import common from '@ohos.app.ability.common';
+
+let getGroupDirContext: common.Context = this.context;
+
+getGroupDirContext.getGroupDir("1", (err, data) => {
+  if (err) {
+    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+  } else {
+    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+  }
+});
 ```
 

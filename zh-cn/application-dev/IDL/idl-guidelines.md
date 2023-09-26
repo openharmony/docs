@@ -43,7 +43,7 @@
 IDL支持的基本数据类型及其映射到C++、TS上的数据类型的对应关系如上表所示。
 
 #### sequenceable数据类型
-sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表面该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
+sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表明该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
 
 在C++中sequenceable数据类型的声明放在文件的头部，以“sequenceable includedir..namespace.typename”的形式声明。具体而言。声明可以有如下三个形式：
 
@@ -66,7 +66,7 @@ sequenceable a.b..C.D
 using C::D;
 ```
 
-TS声明放在文件的头部，以 “sequenceable namespace.typename;”的形式声明。具体而言，声明可以有如下形式：
+TS声明放在文件的头部，以 “sequenceable namespace.typename;”的形式声明。具体而言，声明可以有如下形式（idl为对应namespace，MySequenceable为对应typename）：
 
 ```ts
 sequenceable idl.MySequenceable
@@ -156,7 +156,9 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 进入对应路径后，查看toolchains->3.x.x.x（对应版本号命名文件夹）下是否存在idl工具的可执行文件。
 
-> **注意**：请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
+> **注意**：
+> 
+> 请保证使用最新版的SDK，版本老旧可能导致部分语句报错。
 
 若不存在，可对应版本前往[docs仓版本目录](../../release-notes)下载SDK包，以[3.2Beta3版本](../../release-notes/OpenHarmony-v3.2-beta3.md)为例，可通过镜像站点获取。
 
@@ -215,53 +217,47 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
         super(des);
     }
     
-    async onRemoteMessageRequest(code: number, data, reply, option): Promise<boolean> {
+    async onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence,
+        option: rpc.MessageOption): Promise<boolean> {
         console.log("onRemoteMessageRequest called, code = " + code);
-        switch(code) {
-            case IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION: {
-                let _data = data.readInt();
-                this.testIntTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION: {
-                let _data = data.readString();
-                this.testStringTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
-            }
-            case IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION: {
-                let _data = new Map();
-                let _dataSize = data.readInt();
-                for (let i = 0; i < _dataSize; ++i) {
-                    let key = data.readInt();
-                    let value = data.readInt();
-                    _data.set(key, value);
+        if (code == IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION) {
+            let _data = data.readInt();
+            this.testIntTransaction(_data, (errCode: number, returnValue: number) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
                 }
-                this.testMapTransaction(_data, (errCode) => {
-                    reply.writeInt(errCode);
-                });
-                return true;
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_STRING_TRANSACTION) {
+            let _data = data.readString();
+            this.testStringTransaction(_data, (errCode: number) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION) {
+            let _data: Map<number, number> = new Map();
+            let _dataSize = data.readInt();
+            for (let i = 0; i < _dataSize; ++i) {
+                let key = data.readInt();
+                let value = data.readInt();
+                _data.set(key, value);
             }
-            case IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION: {
-                let _data = data.readStringArray();
-                this.testArrayTransaction(_data, (errCode, returnValue) => {
-                    reply.writeInt(errCode);
-                    if (errCode == 0) {
-                        reply.writeInt(returnValue);
-                    }
-                });
-                return true;
-            }
-            default: {
-                console.log("invalid request code" + code);
-                break;
-            }
+            this.testMapTransaction(_data, (errCode: number) => {
+                reply.writeInt(errCode);
+            });
+            return true;
+        } else if (code == IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION) {
+            let _data = data.readStringArray();
+            this.testArrayTransaction(_data, (errCode: number, returnValue: number) => {
+                reply.writeInt(errCode);
+                if (errCode == 0) {
+                    reply.writeInt(returnValue);
+                }
+            });
+            return true;
+        } else {
+            console.log("invalid request code" + code);
         }
         return false;
     }
@@ -312,42 +308,48 @@ class IdlTestImp extends IdlTestServiceStub {
 在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。如果开发者的服务要公开该接口，请扩展Ability并实现onConnect()从而返回IRemoteObject，以便客户端能与服务进程交互。服务端向客户端公开IRemoteAbility接口的代码示例如下:
 
 ```ts
-export default {
-    onStart() {
-        console.info('ServiceAbility onStart');
-    },
-    onStop() {
-        console.info('ServiceAbility onStop');
-    },
-    onCommand(want, startId) {
-        console.info('ServiceAbility onCommand');
-    },
-    onConnect(want) {
-        console.info('ServiceAbility onConnect');
-        try {
-            console.log('ServiceAbility want:' + typeof(want));
-            console.log('ServiceAbility want:' + JSON.stringify(want));
-            console.log('ServiceAbility want name:' + want.bundleName)
-        } catch(err) {
-            console.log('ServiceAbility error:' + err)
-        }
-        console.info('ServiceAbility onConnect end');
-        return new IdlTestImp('connect');
-    },
-    onDisconnect(want) {
-        console.info('ServiceAbility onDisconnect');
-        console.info('ServiceAbility want:' + JSON.stringify(want));
+import Want from '@ohos.app.ability.Want';
+import rpc from "@ohos.rpc";
+
+class ServiceAbility {
+  onStart() {
+    console.info('ServiceAbility onStart');
+  }
+  onStop() {
+    console.info('ServiceAbility onStop');
+  }
+  onCommand(want: Want, startId: number) {
+    console.info('ServiceAbility onCommand');
+  }
+  onConnect(want: Want) {
+    console.info('ServiceAbility onConnect');
+    try {
+      console.log('ServiceAbility want:' + typeof(want));
+      console.log('ServiceAbility want:' + JSON.stringify(want));
+      console.log('ServiceAbility want name:' + want.bundleName)
+    } catch(err) {
+      console.log('ServiceAbility error:' + err)
     }
-};
+    console.info('ServiceAbility onConnect end');
+    return new IdlTestImp('connect') as rpc.RemoteObject;
+  }
+  onDisconnect(want: Want) {
+    console.info('ServiceAbility onDisconnect');
+    console.info('ServiceAbility want:' + JSON.stringify(want));
+  }
+}
+
+export default new ServiceAbility()
 ```
 
 #### 客户端调用IPC方法
 
-客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
+客户端调用connectServiceExtensionAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
 ```ts
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 import IdlTestServiceProxy from './idl_test_service_proxy'
-import featureAbility from '@ohos.ability.featureAbility';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
@@ -373,10 +375,10 @@ function callbackTestArrayTransaction(result: number, ret: number): void {
   }
 }
 
-var onAbilityConnectDone = {
-  onConnect:function (elementName, proxy) {
-    let testProxy = new IdlTestServiceProxy(proxy);
-    let testMap = new Map();
+let onAbilityConnectDone: common.ConnectOptions = {
+  onConnect: (elementName, proxy) => {
+    let testProxy: IdlTestServiceProxy = new IdlTestServiceProxy(proxy);
+    let testMap: Map<number, number> = new Map();
     testMap.set(1, 1);
     testMap.set(1, 2);
     testProxy.testIntTransaction(123, callbackTestIntTransaction);
@@ -384,21 +386,23 @@ var onAbilityConnectDone = {
     testProxy.testMapTransaction(testMap, callbackTestMapTransaction);
     testProxy.testArrayTransaction(['1','2'], callbackTestMapTransaction);
   },
-  onDisconnect:function (elementName) {
+  onDisconnect: (elementName) => {
     console.log('onDisconnectService onDisconnect');
   },
-  onFailed:function (code) {
+  onFailed: (code) => {
     console.log('onDisconnectService onFailed');
   }
 };
 
-function connectAbility: void {
-    let want = {
+let context: common.UIAbilityContext = this.context;
+
+function connectAbility(): void {
+    let want: Want = {
         bundleName: 'com.example.myapplicationidl',
         abilityName: 'com.example.myapplicationidl.ServiceAbility'
     };
     let connectionId = -1;
-    connectionId = featureAbility.connectAbility(want, onAbilityConnectDone);
+    connectionId = context.connectServiceExtensionAbility(want, onAbilityConnectDone);
 }
 
 
@@ -417,7 +421,7 @@ MySequenceable类的代码示例如下：
 
 ```ts
 import rpc from '@ohos.rpc';
-export default class MySequenceable {
+export default class MySequenceable implements rpc.Sequenceable {
     constructor(num: number, str: string) {
         this.num = num;
         this.str = str;
@@ -428,17 +432,23 @@ export default class MySequenceable {
     getString() : string {
         return this.str;
     }
-    marshalling(messageParcel) {
+    marshalling(messageParcel: rpc.MessageParcel) {
         messageParcel.writeInt(this.num);
         messageParcel.writeString(this.str);
         return true;
     }
-    unmarshalling(messageParcel) {
+    unmarshalling(messageParcel: rpc.MessageParcel) {
         this.num = messageParcel.readInt();
         this.str = messageParcel.readString();
         return true;
     }
-    private num;
-    private str;
+    private num: number;
+    private str: string;
 }
 ```
+
+## 相关实例
+
+针对IDL的使用，有以下相关实例可供参考：
+
+- [Ability与ServiceExtensionAbility通信（ArkTS）(Full SDK)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)

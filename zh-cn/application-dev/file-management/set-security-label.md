@@ -26,16 +26,18 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis/js-apis-file
   
 ```ts
 import securityLabel from '@ohos.file.securityLabel';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 // 获取需要设备数据等级的文件沙箱路径
-let context = ...; // 获取UIAbilityContext信息
+let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
 // 设置文件的数据等级为s0
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {
   console.info('Succeeded in setSecurityLabeling.');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to setSecurityLabel. Code: ${err.code}, message: ${err.message}`);
 });
 ```

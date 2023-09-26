@@ -16,7 +16,7 @@ C++ HiSysEvent查询开发能力如下：HiSysEventManager类，具体API详见�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
-> HiSysEventQueryCallback查询回调对象OnQuery方法中的形参类型HiSysEventRecord请参考[HiSysEvent订阅](subsys-dfx-hisysevent-listening.md)中的“表5 HiSysEventRecord系统事件对象”说明。
+> HiSysEventQueryCallback查询回调对象OnQuery方法中的形参类型HiSysEventRecord请参考[HiSysEvent订阅](subsys-dfx-hisysevent-listening.md)中的“表4 HiSysEventRecord系统事件对象”说明。
 
   **表1** HiSysEvent查询接口
 
@@ -32,13 +32,54 @@ C++ HiSysEvent查询开发能力如下：HiSysEventManager类，具体API详见�
 | endTime | long long | 用于指定查询事件的结束时间，格式为Unix毫秒级时间戳。 |
 | maxEvents | int | 用于指定查询返回事件的最多条数。 |
 
-  **表3** QueryRule查询规则对象
+  **表3** EventType事件类型枚举
+
+| 事件类型 | 值 | 描述 |
+| ------------ | ---- | ------------------ |
+| FAULT        | 1    | 故障类型。     |
+| STATISTIC    | 2    | 统计类型。     |
+| SECURITY     | 3    | 安全类型。     |
+| BEHAVIOR     | 4    | 用户行为类型。 |
+
+  **表4** RuleType匹配规则类型枚举
+
+| 查询规则类型 | 值 | 描述 |
+| ------------ | ---- | ------------------ |
+| WHOLE_WORD   | 1    | 全词匹配类型。     |
+| PREFIX       | 2    | 前缀匹配类型。     |
+| REGULAR      | 3    | 正则匹配类型。     |
+
+  **表5** QueryRule查询规则对象
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| QueryRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>const&nbsp;std::vector&lt;std::string&gt;&amp;&nbsp;eventList) | 接口功能：查询规则构造函数，创建查询规则对象。<br/>输入参数：<br/>-&nbsp;domain：string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。<br/>-&nbsp;eventList：std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。 |
+| QueryRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>const&nbsp;std::vector&lt;std::string&gt;&amp;&nbsp;eventList,<br/>RuleType&nbsp;ruleType,<br/>uint32_t&nbsp;eventType,<br/>const&nbsp;std::string&&nbsp;cond) | 接口功能：查询规则构造函数，创建查询规则对象。<br/>输入参数：<br/>-&nbsp;domain：string类型，用来标识查询规则对象的事件所属领域，如果传入的是空字符串，则默认事件领域字段匹配成功。<br/>-&nbsp;eventList：std::vector&lt;std::string&gt;类型，事件名称的列表，如果传入的是空字符串，则默认事件名称字段匹配成功。<br/>-&nbsp;ruleType：RuleType类型，请参考表4。<br/>-&nbsp;eventType：uint32_t类型，查询的系统事件类型，系统事件类型请参考表3，当eventType取值为0时，表示查询所有事件类型。<br/>-&nbsp;cond：string类型，设置的系统事件查询条件。 |
 
-  **表4** HiSysEventQueryCallback查询回调对象
+对于condition参数需要按照指定的JSON字符串格式传入，使用实例如下：
+
+    ```json
+    {
+        "version":"V1",
+        "condition":{
+            "and":[
+                {"param":"type_","op":">","value":0},
+                {"param":"uid_","op":"=","value":1201}
+            ]
+        }
+    }
+    ```
+- version字段是必选字段，表示传入条件的支持版本，当前只支持V1版本。
+- condition字段是必选字段，表示传入条件的具体内容。
+  - and字段是可选字段，表示条件之间是与的关系。
+    - param字段是必选字段，表示条件匹配的参数名称，必须为字符串类型。
+    - op字段是必选字段，表示条件匹配的参数比较符，必须为字符串类型，支持的比较符包括=、>、<、>=、<=。
+    - value字段是必选字段，表示条件匹配的参数值，必须为字符串类型或整型。
+
+
+
+
+
+**表6** HiSysEventQueryCallback查询回调对象
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -49,13 +90,13 @@ C++ HiSysEvent查询开发能力如下：HiSysEventManager类，具体API详见�
 
 C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hiviewdfx/hisysevent/interfaces/native/innerkits/hisysevent_manager/include/）。
 
- **表5** HiSysEvent查询接口
+  **表7** HiSysEvent查询接口
 
 | 接口名称                                                     | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | int OH_HiSysEvent_Query(const HiSysEventQueryArg& arg, HiSysEventQueryRule rules[], size_t ruleSize, HiSysEventQueryCallback& callback); | 接口功能：支持根据时间段、事件领域、事件名称、事件参数等条件，查询满足条件的HiSysEvent事件。<br/>输入参数：<br/>-&nbsp;arg：查询参数。<br/>-&nbsp;rules：事件过滤规则。<br/>- ruleSize：事件过滤规则数量。<br/>-&nbsp;callback：查询接口回调。<br/>返回值：<br/>-&nbsp;0：查询成功。<br/>-&nbsp;负值：查询失败。 |
 
- **表6** HiSysEventQueryArg查询参数结构体
+  **表8** HiSysEventQueryArg查询参数结构体
 
 | 属性名称  | 属性类型 | 描述                                                 |
 | --------- | -------- | ---------------------------------------------------- |
@@ -63,7 +104,7 @@ C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hivie
 | endTime   | int64_t  | 用于指定查询事件的结束时间，格式为Unix毫秒级时间戳。 |
 | maxEvents | int32_t  | 用于指定查询返回事件的最多条数。                     |
 
-**表7** HiSysEventQueryRule查询规则结构体
+  **表9** HiSysEventQueryRule查询规则结构体
 
 | 属性名称      | 属性类型  | 描述                               |
 | ------------- | --------- | ---------------------------------- |
@@ -72,35 +113,14 @@ C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hivie
 | eventListSize | size_t    | 用于指定查询的事件名称列表大小。   |
 | condition     | char*     | 用于指定查询的自定义事件参数条件。 |
 
-对于condition参数需要按照指定的JSON字符串格式传入，使用实例如下：
-
-```json
-{
-    "version":"V1",
-    "condition":{
-        "and":[
-            {"param":"type_","op":">","value":0},
-            {"param":"uid_","op":"=","value":1201}
-        ]
-    }
-}
-```
-
-- version字段是必选字段，表示传入条件的支持版本，当前只支持V1版本。
-- condition字段是必选字段，表示传入条件的具体内容。
-  - and字段是可选字段，表示条件之间是与的关系。
-    - param字段是必选字段，表示条件匹配的参数名称，必须为字符串类型。
-    - op字段是必选字段，表示条件匹配的参数比较符，必须为字符串类型，支持的比较符包括=、>、<、>=、<=。
-    - value字段是必选字段，表示条件匹配的参数值，必须为字符串类型或整型。
-
-**表8** HiSysEventQueryCallback查询回调结构体
+  **表10** HiSysEventQueryCallback查询回调结构体
 
 | 属性名称   | 属性类型                                           | 描述                                                         |
 | ---------- | -------------------------------------------------- | ------------------------------------------------------------ |
 | OnQuery    | void (*)(HiSysEventRecord records[], size_t size); | 接口功能：事件查询的回调。<br/>输入参数：<br/>-&nbsp;records：返回的事件集合。<br/>- size：返回的事件集合大小。 |
 | OnComplete | void (*)(int32_t reason, int32_t total);           | 接口功能：事件查询完成的回调。<br/>输入参数：<br/>-&nbsp;reason：查询结束的返回原因，0表示查询正常结束，其他值表示查询异常结束。<br/>-&nbsp;total：本次查询返回的事件的总数量。 |
 
-**表9** HiSysEventRecord事件结构体
+  **表11** HiSysEventRecord事件结构体
 
 | 属性名称  | 属性类型            | 描述                       |
 | --------- | ------------------- | -------------------------- |
@@ -120,7 +140,7 @@ C HiSysEvent查询开发能力如下：具体API详见接口目录（/base/hivie
 | tag       | char*               | 事件的标签。               |
 | jsonStr   | char*               | 事件的内容。               |
 
-**表10** HiSysEventRecord解析接口
+  **表12** HiSysEventRecord解析接口
 
 | 接口名称                                                     |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -145,106 +165,106 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 #### C++ HiSysEvent查询开发步骤
 
-1. 首先，需要引入对应的头文件。
+1. 引入对应的头文件。
 
-   ```c++
-   #include "hisysevent_manager.h"
-   ```
+    ```c++
+    #include "hisysevent_manager.h"
+    ```     
 
-2. 然后，业务领域需要实现对应的查询回调接口。
+2. 业务领域实现对应的查询回调接口。
 
-   ```c++
-   class TestQueryCallback : public HiSysEventQueryCallback {
-   public:
-       void OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents) override
-       {
-           if (sysEvents == nullptr) {
-           	return;
-           }
-           for_each((*sysEvents).cbegin(), (*sysEvents).cend(), [](const HiSysEventRecord& event) {
-               std::cout << event.AsJson() << std::endl;
-           });
-       }
-   
-       void OnComplete(int32_t reason, int32_t total) override
-       {
-           std::cout << "Query completed" << std::endl;
-           return;
-       }
-   };
-   ```
+    ```c++
+    class TestQueryCallback : public HiSysEventQueryCallback {
+    public:
+        void OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents) override
+        {
+            if (sysEvents == nullptr) {
+                return;
+            }
+            for_each((*sysEvents).cbegin(), (*sysEvents).cend(), [](const HiSysEventRecord& event) {
+                std::cout << event.AsJson() << std::endl;
+            });
+        }
 
-3. 最后，在需要查询的地方调用查询接口，并传入相应的查询参数、查询规则、查询回调参数。
+        void OnComplete(int32_t reason, int32_t total) override
+        {
+            std::cout << "Query completed" << std::endl;
+            return;
+        }
+    };
+    ```
 
-   ```c++
-   // 创建查询参数对象
-   long long startTime = 0;
-   long long endTime = 1668245644000; //2022-11-12 09:34:04
-   int queryCount = 10;
-   QueryArg arg(startTime, endTime, queryCount);
-   
-   // 创建查询规则对象
-   QueryRule rule("HIVIEWDFX", { "PLUGIN_LOAD" });
-   std::vector<QueryRule> queryRules = { rule };
-   
-   // 创建查询回调对象
-   auto queryCallback = std::make_shared<TestQueryCallback>();
-   
-   // 调用查询接口
-   HiSysEventManager::Query(arg, queryRules, queryCallback);
-   ```
+3. 在查询的地方调用查询接口，并传入相应的查询参数、查询规则、查询回调参数。
+
+    ```c++
+    // 创建查询参数对象
+    long long startTime = 0;
+    long long endTime = 1668245644000; //2022-11-12 09:34:04
+    int queryCount = 10;
+    QueryArg arg(startTime, endTime, queryCount);
+
+    // 创建查询规则对象
+    QueryRule rule("HIVIEWDFX", { "PLUGIN_LOAD" });
+    std::vector<QueryRule> queryRules = { rule };
+
+    // 创建查询回调对象
+    auto queryCallback = std::make_shared<TestQueryCallback>();
+
+    // 调用查询接口
+    HiSysEventManager::Query(arg, queryRules, queryCallback);
+    ```
 
 #### C HiSysEvent查询开发步骤
 
-1. 首先，需要引入对应的头文件。
+1. 引入对应的头文件。
 
-   ```c++
-   #include "hisysevent_manager_c.h"
-   ```
+    ```c++
+    #include "hisysevent_manager_c.h"
+    ```
 
-2. 然后，业务领域需要实现对应的查询回调接口。
+2. 业务领域实现对应的查询回调接口。
 
-   ```c++
-   void OnQueryTest(HiSysEventRecord records[], size_t size)
-   {
-       for (size_t i = 0; i < size; i++) {
-           printf("OnQuery: event=%s", records[i].jsonStr);
-       }
-   }
-   
-   void OnCompleteTest(int32_t reason, int32_t total)
-   {
-       printf("OnCompleted, res=%d, total=%d\n", reason, total);
-   }
-   ```
+    ```c++
+    void OnQueryTest(HiSysEventRecord records[], size_t size)
+    {
+        for (size_t i = 0; i < size; i++) {
+            printf("OnQuery: event=%s", records[i].jsonStr);
+        }
+    }
 
-3. 最后，在需要查询的地方调用查询接口，并传入相应的查询参数、查询规则、查询回调参数。
+    void OnCompleteTest(int32_t reason, int32_t total)
+    {
+        printf("OnCompleted, res=%d, total=%d\n", reason, total);
+    }
+    ```
 
-   ```c++
-   // 创建查询参数对象
-   HiSysEventQueryArg arg;
-   arg.beginTime = 0;
-   arg.endTime = 1668245644000; //2022-11-12 09:34:04
-   arg.maxEvents = 10;
-   
-   // 创建查询规则对象
-   constexpr char TEST_DOMAIN[] = "HIVIEWDFX";
-   constexpr char TEST_NAME[] = "PLUGIN_LOAD";
-   HiSysEventQueryRule rule;
-   (void)strcpy_s(rule.domain, strlen(TEST_DOMAIN) + 1, TEST_DOMAIN);
-   (void)strcpy_s(rule.eventList[0], strlen(TEST_NAME) + 1, TEST_NAME);
-   rule.eventListSize = 1;
-   rule.condition = nullptr;
-   HiSysEventQueryRule rules[] = { rule };
-   
-   // 创建查询回调对象
-   HiSysEventQueryCallback callback;
-   callback.OnQuery = OnQueryTest;
-   callback.OnComplete = OnCompleteTest;
-   
-   // 调用查询接口
-   OH_HiSysEvent_Query(arg, rules, sizeof(rules) / sizeof(HiSysEventQueryRule), callback);
-   ```
+3. 在查询的地方调用查询接口，并传入相应的查询参数、查询规则、查询回调参数。
+
+    ```c++
+    // 创建查询参数对象
+    HiSysEventQueryArg arg;
+    arg.beginTime = 0;
+    arg.endTime = 1668245644000; //2022-11-12 09:34:04
+    arg.maxEvents = 10;
+
+    // 创建查询规则对象
+    constexpr char TEST_DOMAIN[] = "HIVIEWDFX";
+    constexpr char TEST_NAME[] = "PLUGIN_LOAD";
+    HiSysEventQueryRule rule;
+    (void)strcpy_s(rule.domain, strlen(TEST_DOMAIN) + 1, TEST_DOMAIN);
+    (void)strcpy_s(rule.eventList[0], strlen(TEST_NAME) + 1, TEST_NAME);
+    rule.eventListSize = 1;
+    rule.condition = nullptr;
+    HiSysEventQueryRule rules[] = { rule };
+
+    // 创建查询回调对象
+    HiSysEventQueryCallback callback;
+    callback.OnQuery = OnQueryTest;
+    callback.OnComplete = OnCompleteTest;
+
+    // 调用查询接口
+    OH_HiSysEvent_Query(arg, rules, sizeof(rules) / sizeof(HiSysEventQueryRule), callback);
+    ```
 
 ### 开发实例
 
@@ -252,131 +272,117 @@ HiSysEventRecord解析接口的返回值说明如下：
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisysevent及libhisyseventmanager依赖。
+1. 在业务模块的在BUILD.gn里增加hisysevent部件的libhisysevent及libhisyseventmanager依赖。
 
-   ```c++
-   external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
-   ]
-   ```
+    ```c++
+    external_deps = [
+      "hisysevent:libhisysevent",
+      "hisysevent:libhisyseventmanager",
+    ]
+    ```
 
 2. 在业务模块的TestQuery()函数中，调用查询接口去查询事件。
-   
-   ```c++
-   #include "hisysevent_manager.h"
-   #include <iostream>
-   #include <unistd.h>
-   
-   using namespace OHOS::HiviewDFX;
-   
-   class TestQueryCallback : public HiSysEventQueryCallback {
-   public:
-       void OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents) override
-       {
-           if (sysEvents == nullptr) {
-           	return;
-           }
-           for_each((*sysEvents).cbegin(), (*sysEvents).cend(), [](const HiSysEventRecord& event) {
-               std::cout << event.AsJson() << std::endl;
-           });
-       }
-   
-       void OnComplete(int32_t reason, int32_t total) override
-       {
-           std::cout << "Query completed" << std::endl;
-           return;
-       }
-   };
-   
-   int64_t GetMilliseconds()
-   {
-       auto now = std::chrono::system_clock::now();
-       auto millisecs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
-       return millisecs.count();
-   }
-   
-   void TestQuery()
-   {
-       // 创建查询参数对象
-       long long startTime = 0;
-       long long endTime = GetMilliseconds();
-       int maxEvents = 100;
-       QueryArg arg(startTime, endTime, maxEvents);
-   
-       // 创建查询规则对象
-       QueryRule rule("HIVIEWDFX", { "PLUGIN_LOAD" });
-       std::vector<QueryRule> queryRules = { rule };
-   
-       // 创建查询回调对象
-       auto queryCallback = std::make_shared<TestQueryCallback>();
-   
-       // 调用查询接口
-       int ret = HiSysEventManager::Query(arg, queryRules, queryCallback);
-   }
-   ```
+
+    ```c++
+    #include "hisysevent_manager.h"
+    #include <iostream>
+    #include <unistd.h>
+
+    using namespace OHOS::HiviewDFX;
+
+    class TestQueryCallback : public HiSysEventQueryCallback {
+    public:
+        void OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents) override
+        {
+            if (sysEvents == nullptr) {
+                return;
+            }
+            for_each((*sysEvents).cbegin(), (*sysEvents).cend(), [](const HiSysEventRecord& event) {
+                std::cout << event.AsJson() << std::endl;
+            });
+        }
+
+        void OnComplete(int32_t reason, int32_t total) override
+        {
+            std::cout << "Query completed" << std::endl;
+            return;
+        }
+    };
+
+    int64_t GetMilliseconds()
+    {
+        auto now = std::chrono::system_clock::now();
+        auto millisecs = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+        return millisecs.count();
+    }
+
+    void TestQuery()
+    {
+        long long startTime = 0;
+        long long endTime = GetMilliseconds();
+        int maxEvents = 100;
+        QueryArg arg(startTime, endTime, maxEvents);
+        QueryRule rule("HIVIEWDFX", { "PLUGIN_LOAD" });
+        std::vector<QueryRule> queryRules = { rule };
+        auto queryCallback = std::make_shared<TestQueryCallback>();
+        int ret = HiSysEventManager::Query(arg, queryRules, queryCallback);
+    }
+    ```
 
 #### C HiSysEvent查询开发实例
 
 假设业务模块需要查询截止至当前时间、事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
 
-1. 首先，需要在业务模块的在BUILD.gn里增加hisysevent_native部件的libhisyseventmanager依赖。
+1. 在业务模块的在BUILD.gn里增加hisysevent部件的libhisyseventmanager依赖。
 
-   ```c++
-   external_deps = [ "hisysevent_native:libhisyseventmanager" ]
-   
-   // for strcpy_s
-   deps = [ "//third_party/bounds_checking_function:libsec_shared" ]
-   ```
+```c++
+    external_deps = [ "hisysevent:libhisyseventmanager" ]
+
+    // for strcpy_s
+    deps = [ "//third_party/bounds_checking_function:libsec_shared" ]
+```
 
 2. 在业务模块的TestQuery()函数中，调用查询接口去查询事件。
 
-   ```c++
-   #include "hisysevent_manager_c.h"
-   #include <securec.h>
-   #include <time.h>
+    ```c++
+    #include "hisysevent_manager_c.h"
+    #include <securec.h>
+    #include <time.h>
      
-   void OnQueryTest(HiSysEventRecord records[], size_t size)
-   {
-       for (size_t i = 0; i < size; i++) {
-           printf("OnQuery: event=%s", records[i].jsonStr);
-       }
-   }
-   
-   void OnCompleteTest(int32_t reason, int32_t total)
-   {
-       printf("OnCompleted, res=%d, total=%d\n", reason, total);
-   }
-   
-   int64_t GetMilliseconds()
-   {
-       return time(NULL);
-   }
-   
-   void TestQuery()
-   {
-       // 创建查询参数对象
-       HiSysEventQueryArg arg;
-       arg.beginTime = 0;
-       arg.endTime = GetMilliseconds();
-       arg.maxEvents = 100;
-   
-       // 创建查询规则对象
-       constexpr char TEST_DOMAIN[] = "HIVIEWDFX";
-       constexpr char TEST_NAME[] = "PLUGIN_LOAD";
-       HiSysEventQueryRule rule;
-       (void)strcpy_s(rule.domain, strlen(TEST_DOMAIN) + 1, TEST_DOMAIN);
-       (void)strcpy_s(rule.eventList[0], strlen(TEST_NAME) + 1, TEST_NAME);
-       rule.eventListSize = 1;
-       rule.condition = nullptr;
-       HiSysEventQueryRule rules[] = { rule };
-   
-       // 创建查询回调对象
-       HiSysEventQueryCallback callback;
-       callback.OnQuery = OnQueryTest;
-       callback.OnComplete = OnCompleteTest;
-   
-       // 调用查询接口
-       int ret = OH_HiSysEvent_Query(arg, rules, sizeof(rules) / sizeof(HiSysEventQueryRule), callback);
-   }
-   ```
+    void OnQueryTest(HiSysEventRecord records[], size_t size)
+    {
+        for (size_t i = 0; i < size; i++) {
+            printf("OnQuery: event=%s", records[i].jsonStr);
+        }
+    }
+
+    void OnCompleteTest(int32_t reason, int32_t total)
+    {
+        printf("OnCompleted, res=%d, total=%d\n", reason, total);
+    }
+
+    int64_t GetMilliseconds()
+    {
+        return time(NULL);
+    }
+
+    void TestQuery()
+    {
+        HiSysEventQueryArg arg;
+        arg.beginTime = 0;
+        arg.endTime = GetMilliseconds();
+        arg.maxEvents = 100;
+        constexpr char TEST_DOMAIN[] = "HIVIEWDFX";
+        constexpr char TEST_NAME[] = "PLUGIN_LOAD";
+        HiSysEventQueryRule rule;
+        (void)strcpy_s(rule.domain, strlen(TEST_DOMAIN) + 1, TEST_DOMAIN);
+        (void)strcpy_s(rule.eventList[0], strlen(TEST_NAME) + 1, TEST_NAME);
+        rule.eventListSize = 1;
+        rule.condition = nullptr;
+        HiSysEventQueryRule rules[] = { rule };
+        HiSysEventQueryCallback callback;
+        callback.OnQuery = OnQueryTest;
+        callback.OnComplete = OnCompleteTest;
+        int ret = OH_HiSysEvent_Query(arg, rules, sizeof(rules) / sizeof(HiSysEventQueryRule), callback);
+    }
+    ```

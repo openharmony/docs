@@ -22,9 +22,7 @@
 1. 准备烧录相关文件。
    1. 在客户端新建用于保存烧录文件的文件夹，例如“D:\liteos”或“D:\linux”。
    2. 将烧录所需烧写配置文件和启动引导文件保存到新建的文件夹中。
-       - 其L1_LiteOS烧写配置文件为L1_3516_liteos.xml，其启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”。
-          其中L1_3516_liteos.xml文件需要开发者自行准备，模板如下：
-
+      - Hi3516DV300对应的LiteOS内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_liteos.xml），模板如下：
           
           ```
           <?xml version="1.0" encoding="GB2312" ?>
@@ -35,9 +33,7 @@
           <Part Sel="1" PartitionName="" FlashType="emmc" FileSystem="none" Start="60M" Length="50M" SelectFile="D:\liteos\userfs_vfat.img"/>
           </Partition_Info>
           ```
-       - 其L1_Linux烧写配置文件为L1_3516_linux.xml，其启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”。
-          其中L1_3516_linux.xml文件需要开发者自行准备，模板如下：
-
+      - Hi3516DV300对应的Linux内核小型系统的启动引导文件为“[u-boot-hi3516dv300.bin](https://gitee.com/openharmony/device_board_hisilicon/tree/master/hispark_taurus/uboot/out/boot)”，烧写配置文件需要开发者自行准备（可自行命名，例如LS_3516_linux.xml），模板如下
           
           ```
           <?xml version="1.0" encoding="GB2312" ?>
@@ -51,17 +47,17 @@
           ```
    3. 将编译完成的源码包下载至客户端并解压，将烧录相关文件拷贝至步骤1中新建的文件夹。
       
-      针对Hi3516开发板（轻量级系统使用LiteOS内核或Linux内核根据业务实际需要选择）：
+      针对Hi3516DV300开发板（系统使用LiteOS内核或Linux内核根据业务实际需要选择）：
 
-       - 其L1_LiteOS烧写所需文件为：OHOS_Image.bin、rootfs_vfat.img、userfs_vfat.img
-       - 其L1_Linux烧写所需文件为：uImage_hi3516dv300_smp、rootfs_ext4.img、userfs_ext4.img、userdata_ext4.img
+       - LiteOS内核小型系统对应的烧写所需文件为：OHOS_Image.bin、rootfs_vfat.img、userfs_vfat.img
+       - Linux内核小型系统对应的烧写所需文件为：uImage_hi3516dv300_smp、rootfs_ext4.img、userfs_ext4.img、userdata_ext4.img
 
 2. 使用HiTool烧录。
    1. 打开HiTool。
    2. 设置HiTool参数。
       
       传输方式选择USB口，烧写方式选择烧写eMMC（单板的存储介质为eMMC）。
-   3. 单击浏览在步骤1创建的文件夹中选择烧写配置文件（例如L1_3516_linux.xml）。
+   3. 单击浏览在步骤1创建的文件夹中选择烧写配置文件（例如LS_3516_linux.xml）。
       
        ![zh-cn_image_0000001249937195](figures/zh-cn_image_0000001249937195.png)
    4. 单击烧写后，按住开发板上串口旁的按钮（Update键），并拔插USB线（上下电）。
@@ -77,7 +73,7 @@
       
       终端界面中出现“hisilicon \#”表示已连接开发板串口。
    3. 在串口终端拷贝如下启动参数后，按回车完成配置。
-       - 其L1_LiteOS对应的启动参数为：
+       - LiteOS内核小型系统对应的启动参数为：
          
           ```
           setenv bootcmd "mmc read 0x0 0x80000000 0x800 0x4800;go 0x80000000";
@@ -85,7 +81,7 @@
           saveenv
           sa;reset
           ```
-       - 其L1_Linux对应的启动参数为：
+       - Linux内核小型系统对应的启动参数为：
          
           ```
           setenv bootargs "mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),9M(kernel),50M(rootfs),50M(userfs),1024M(userdata)"

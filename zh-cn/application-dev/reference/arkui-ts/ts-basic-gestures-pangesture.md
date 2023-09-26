@@ -47,7 +47,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | --------- | ------------ | ---- | ------------------------------------------------------------ |
 | fingers   | number       | 否   | 触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | direction | PanDirection | 否   | 设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：All |
-| distance  | number       | 否   | 最小滑动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>> [Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
+| distance  | number       | 否   | 最小滑动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
 
 **接口**
 
@@ -91,16 +91,18 @@ struct PanGestureExample {
       .padding(20)
       .border({ width: 3 })
       .margin(50)
-      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 }) // 以组件左上角为坐标原点进行移动
       // 左右拖动触发该手势事件
       .gesture(
       PanGesture(this.panOption)
-        .onActionStart((event: GestureEvent) => {
+        .onActionStart((event?: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event: GestureEvent) => {
-          this.offsetX = this.positionX + event.offsetX
-          this.offsetY = this.positionY + event.offsetY
+        .onActionUpdate((event?: GestureEvent) => {
+          if (event) {
+            this.offsetX = this.positionX + event.offsetX
+            this.offsetY = this.positionY + event.offsetY
+          }
         })
         .onActionEnd(() => {
           this.positionX = this.offsetX

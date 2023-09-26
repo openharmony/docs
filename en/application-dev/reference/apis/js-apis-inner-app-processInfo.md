@@ -12,6 +12,8 @@ The **ProcessInfo** module defines process information. You can use [getProcessI
 import featureAbility from '@ohos.ability.featureAbility';
 ```
 
+## Attributes
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Readable| Writable| Description|

@@ -57,27 +57,19 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9).
 
 | ID| Error Message|
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
-
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -88,6 +80,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
@@ -116,43 +110,38 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9).
 
 | ID| Error Message|
 | ------- | -------- |
 | 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500003 | Deploy hqf failed. |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500006 | Load patch failed. |
-| 18500007 | Unload patch failed. |
-
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
   try {
     quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
       console.info('applyQuickFix success');
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`applyQuickFix err: ${error}`);
     });
   } catch (paramError) {
@@ -191,6 +180,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
@@ -225,9 +216,9 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
 
 **Error codes**
 
@@ -241,11 +232,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   try {
     let bundleName = 'bundleName';
     quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
       console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error(`getApplicationQuickFixInfo err: ${error}`);
     });
   } catch (paramError) {
@@ -259,7 +253,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 Revokes quick fix. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INSTALL_BUNDLE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -267,10 +261,10 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -281,17 +275,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
-
-| ID| Error Message|
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName, (err) => {
     console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
@@ -304,7 +294,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 Revokes quick fix. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INSTALL_BUNDLE
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
@@ -312,15 +302,15 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Name of the bundle for which the patch needs to be revoked.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
@@ -333,21 +323,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
-| ID| Error Message|
-| ------- | -------- |
-| 18500004 | Switch hqf failed. |
-| 18500005 | Delete hqf failed. |
-| 18500007 | Unload patch failed. |
-
 **Example**
 
 ```ts
+import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { BusinessError } from '@ohos.base';
+
   let bundleName = "com.example.myapplication";
   quickFixManager.revokeQuickFix(bundleName).then(() => {
     console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
   });
 ```
-
- <!--no_check--> 

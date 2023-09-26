@@ -40,7 +40,7 @@ AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发
 在已创建工程的ets文件夹下创建AccessibilityExtAbility文件夹，在该文件夹下创建AccessibilityExtAbility.ts文件，在新增的文件中加入以下代码：
 
 ```typescript
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
@@ -51,7 +51,7 @@ class AccessibilityExtAbility extends AccessibilityExtensionAbility {
         console.info('AccessibilityExtAbility onDisconnect');
     }
 
-    onAccessibilityEvent(accessibilityEvent) {
+    onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
         console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
@@ -72,7 +72,7 @@ export default AccessibilityExtAbility;
 相关无障碍事件可以在`onAccessibilityEvent()`方法中进行业务逻辑处理，具体事件可参考[AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent)。此处以事件`pageStateUpdate`为例：
 
 ```typescript
-onAccessibilityEvent(accessibilityEvent) {
+onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
         console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
@@ -116,7 +116,10 @@ onAccessibilityEvent(accessibilityEvent) {
 ```
 ## 如何开启自定义的无障碍扩展服务
 
-目前设置中尚未开放无障碍扩展服务开启关闭功能，需要使用命令行进行开启关闭。
+当前提供命令行和设备设置中的扩展服务管理页的开关两种方式来开启设备的无障碍扩展能力：  
+
+ **方式一：**  使用命令行进行开启关闭。  
+通过hdc shell命令，输入以下设备系统命令，对扩展服务进行开启/关闭：
 - 开启命令：`accessibility enable -a AccessibilityExtAbility -b com.example.demo -c rg`
 - 关闭命令：`accessibility disable -a AccessibilityExtAbility -b com.example.demo`
 
@@ -124,9 +127,15 @@ onAccessibilityEvent(accessibilityEvent) {
 
 若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
 
+
+ **方式二：** 在设备设置中的扩展服务管理页开启无障碍扩展服务
+- 打开设备设置页面，进入“辅助功能”，“扩展服务”小标题下的“已安装的服务”显示当前安装的扩展服务个数，点击进入，展示安装的扩展服务列表；  
+未安装扩展服务时，“已安装的扩展服务”不可点击，并显示“无服务”；<br>
+- 选择需要开启/关闭的扩展服务，通过开关按钮进行扩展服务的开启/关闭；  
+- 开启时，弹出安全提醒，在倒计时结束后，勾选“我已知晓如上风险，并自愿承担可能导致的后果。”后，可选择“开启”/“不开启”按钮；  关闭时，将开启的开关关闭，即可关闭已开启的扩展服务。
+
 ## 相关实例
 
 针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-[AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
-
+- [无障碍扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)

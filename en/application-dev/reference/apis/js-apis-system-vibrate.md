@@ -26,7 +26,7 @@ Triggers device vibration.
 
 **Required permissions**: ohos.permission.VIBRATE
 
-**System capability**: SystemCapability.Sensors.MiscDevice
+**System capability**: SystemCapability.Sensors.MiscDevice.Lite
 
 **Parameters**
 
@@ -36,19 +36,23 @@ Triggers device vibration.
 
 **Example**
 
-```js
-vibrator.vibrate({
+```ts
+import vibrator from '@system.vibrator';
+import { VibrateOptions } from '@system.vibrator';
+
+let vibrateOptions: VibrateOptions = {
   mode: 'short',
-  success: function() {
-    console.log('vibrate is successful');
+  success: () => {
+    console.info('Succeed in vibrating');
   },
-  fail: function(data, code) {
-    console.log("vibrate is failed, data: " + data + ", code: " + code);
+  fail: (data: string, code: number) => {
+    console.info(`Failed to vibrate. Data: ${data}, code: ${code}`);
   },
-  complete: function() {
-    console.log('vibrate is completed');
+  complete: () => {
+    console.info('completed in vibrating');
   }
-});
+};
+vibrator.vibrate(vibrateOptions);
 ```
 
 ## VibrateOptions
@@ -57,7 +61,7 @@ Defines the vibration options.
 
 **Required permissions**: ohos.permission.VIBRATE
 
-**System capability**: SystemCapability.Sensors.MiscDevice
+**System capability**: SystemCapability.Sensors.MiscDevice.Lite
 
 | Name    | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |

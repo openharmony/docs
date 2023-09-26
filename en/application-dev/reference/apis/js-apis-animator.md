@@ -5,12 +5,17 @@ The **Animator** module provides APIs for applying animation effects, including 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+>
+> This module cannot be used in the file declaration of the [UIAbility](./js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [createAnimator](./js-apis-arkui-UIContext.md#createanimator) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## Modules to Import
 
-```js
-import animator from '@ohos.animator';
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
 ```
 ## create<sup>9+</sup>
 
@@ -34,18 +39,19 @@ Creates an **Animator** object.
 
 **Example**
 
-  ```js
-  let options = {
-    duration: 1500,
-    easing: "friction",
-    delay: 0,
-    fill: "forwards",
-    direction: "normal",
-    iterations: 3,
-    begin: 200.0,
-    end: 400.0
-  };
-  animator.create(options);
+  ```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+let options: AnimatorOptions = {
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0
+};
+animator.create(options);
   ```
 
 ## AnimatorResult
@@ -77,8 +83,10 @@ For details about the error codes, see [Animator Error Codes](../errorcodes/erro
 
 **Example**
 
-```js
-let options = {
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { BusinessError } from '@ohos.base';
+let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
   delay: 0,
@@ -91,7 +99,9 @@ let options = {
 try {
   animator.reset(options);
 } catch(error) {
-  console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
 }
 ```
 
@@ -105,7 +115,7 @@ Plays this animation. The animation retains the previous playback state. For exa
 
 **Example**
 
-```js
+```ts
 animator.play();
 ```
 
@@ -119,7 +129,7 @@ Ends this animation.
 
 **Example**
 
-```js
+```ts
 animator.finish();
 ```
 
@@ -133,7 +143,7 @@ Pauses this animation.
 
 **Example**
 
-```js
+```ts
 animator.pause();
 ```
 
@@ -147,7 +157,7 @@ Cancels this animation.
 
 **Example**
 
-```js
+```ts
 animator.cancel();
 ```
 
@@ -161,7 +171,7 @@ Plays this animation in reverse order.
 
 **Example**
 
-```js
+```ts
 animator.reverse();
 ```
 
@@ -181,9 +191,10 @@ Called when a frame is received.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onframe = function(value) {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onframe = (value)=> {
   console.info("onframe callback")
 }
 ```
@@ -198,9 +209,10 @@ Called when this animation is finished.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onfinish = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onfinish = ()=> {
   console.info("onfinish callback")
 }
 ```
@@ -215,9 +227,10 @@ Called when this animation is canceled.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.oncancel = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.oncancel = ()=> {
   console.info("oncancel callback")
 }
 ```
@@ -232,9 +245,10 @@ Called when this animation repeats.
 
 **Example**
 
-```js
-let animatorResult = animator.create(options)
-animatorResult.onrepeat = function() {
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
+animatorResult.onrepeat = ()=> {
   console.info("onrepeat callback")
 }
 ```
@@ -250,7 +264,7 @@ Defines animator options.
 | Name      | Type                                                       | Mandatory| Description                                                        |
 | ---------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | duration   | number                                                      | Yes  | Duration for playing the animation, in milliseconds.                                  |
-| easing     | string                                                      | Yes  | Animation interpolation curve. Only the following values are supported:<br>**"linear"**: The animation speed keeps unchanged.<br>**"ease"**: The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.<br>**"ease-in"**: The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.<br>**"ease-out"**: The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.<br>**"ease-in-out"**: The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.<br>**"fast-out-slow-in"**: The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0).<br>**"linear-out-slow-in"**: The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0).<br>**"friction"**: The animation uses the damping cubic-bezier curve (0.2, 0.0, 0.2, 1.0).<br>**"extreme-deceleration"**: The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).<br>**"rhythm"**: The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).<br>**"sharp"**: The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).<br>**"smooth"**: The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0).<br>**cubic-bezier(x1, y1, x2, y2)**: The animation uses the defined cubic-bezier curve, where the value of the input parameters must range from 0 to 1.<br>**steps(number, step-position)**: The animation uses a step curve. The **number** must be set and only an integer is supported. **step-position** is optional. It can be set to **start** or **end**. The default value is **end**.|
+| easing     | string                                                      | Yes  | Animation interpolation curve. Only the following values are supported:<br>**"linear"**: The animation speed keeps unchanged.<br>**"ease"**: The animation starts slowly, accelerates, and then slows down towards the end. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used.<br>**"ease-in"**: The animation starts at a low speed and then picks up speed until the end. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used.<br>**"ease-out"**: The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used.<br>**"ease-in-out"**: The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used.<br>**"fast-out-slow-in"**: The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0).<br>**"linear-out-slow-in"**: The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0).<br>**"friction"**: The animation uses the damping cubic-bezier curve (0.2, 0.0, 0.2, 1.0).<br>**"extreme-deceleration"**: The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0).<br>**"rhythm"**: The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0).<br>**"sharp"**: The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0).<br>**"smooth"**: The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0).<br>**"cubic-bezier(x1,y1,x2,y2)"**: The animation uses the defined cubic bezier curve, where the value of **x1** and **x2** must range from 0 to 1. For example, **"cubic-bezier(0.42,0.0,0.58,1.0)"**.<br>**"steps(number,step-position)"**: The animation uses a step curve. The **number** parameter is mandatory and must be set to a positive integer. The **step-position** parameter is optional and can be set to **start** or **end** (default value). For example, **"steps(3,start)"**.|
 | delay      | number                                                      | Yes  | Animation delay duration, in milliseconds. Value **0** means that there is no delay.         |
 | fill       | "none" \| "forwards" \| "backwards" \| "both"               | Yes  | State of the animated target after the animation is executed.<br>**"none"**: No style is applied to the target before or after the animation is executed.<br>**"forwards"**: The target keeps the state at the end of the animation (defined in the last key frame) after the animation is executed.<br>**"backwards"**: The animation uses the value defined in the first key frame during the **animation-delay**. When **animation-direction** is set to **normal** or **alternate**, the value in the **from** key frame is used. When **animation-direction** is set to **reverse** or **alternate-reverse**, the value in the **to** key frame is used.<br>**"both"**: The animation follows the **forwards** and **backwards** rules.|
 | direction  | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | Yes  | Animation playback mode.<br>**"normal"**: plays the animation in forward loop mode.<br>**"reverse"**: plays the animation in reverse loop mode.<br>**"alternate"**: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.<br>**"alternate-reverse"**: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.|
@@ -270,15 +284,28 @@ Defines animator options.
 </div>
 ```
 
-```js
-export default {
-  data: {
-    divWidth: 200,
-    divHeight: 200,
-    animator: null
-  },
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { BusinessError } from '@ohos.base';
+let DataTmp:Record<string,animator> = {
+  'divWidth': 200,
+  'divHeight': 200,
+  'animator': animator
+}
+class Tmp{
+  data:animator = DataTmp
+  onInit:Function = ()=>{}
+  Show:Function = ()=>{}
+}
+class DateT{
+  divWidth:number = 0
+  divHeight:number = 0
+  animator:AnimatorResult | null = null
+}
+(Fn:(v:Tmp) => void) => {Fn({
+  data: DataTmp,
   onInit() {
-    let options = {
+    let options:AnimatorOptions = {
       duration: 1500,
       easing: "friction",
       delay: 0,
@@ -288,10 +315,15 @@ export default {
       begin: 200.0,
       end: 400.0
     };
-    this.animator = animator.create(options);
+    let DataTmp:DateT = {
+      divWidth: 200,
+      divHeight: 200,
+      animator: null
+    }
+    DataTmp.animator = animator.create(options);
   },
   Show() {
-    let options1 = {
+    let options1:AnimatorOptions = {
       duration: 1500,
       easing: "friction",
       delay: 0,
@@ -301,19 +333,29 @@ export default {
       begin: 0,
       end: 400.0,
     };
-    try {
-      this.animator.reset(options1);
-    } catch(error) {
-      console.error(`Animator reset failed, error code: ${error.code}, message: ${error.message}.`);
+    let DataTmp:DateT = {
+      divWidth: 200,
+      divHeight: 200,
+      animator: null
     }
-    let _this = this;
-    this.animator.onframe = function(value) {
-      _this.divWidth = value;
-      _this.divHeight = value;
-    };
-    this.animator.play();
+    try {
+      DataTmp.animator = animator.create(options1);
+      DataTmp.animator.reset(options1);
+    } catch(error) {
+      let message = (error as BusinessError).message
+      let code = (error as BusinessError).code
+      console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
+    }
+    let _this = DataTmp;
+    if(DataTmp.animator){
+      DataTmp.animator.onframe = (value:number)=> {
+        _this.divWidth = value;
+        _this.divHeight = value;
+      };
+      DataTmp.animator.play();
+    }
   }
-}
+})}
 ```
 
   ![en-us_image_00007](figures/en-us_image_00007.gif)
@@ -321,13 +363,13 @@ export default {
 ### ArkTS-based Declarative Development Paradigm
 
 ```ts
-import animator from '@ohos.animator';
+import animator, { AnimatorResult } from '@ohos.animator';
 
 @Entry
 @Component
 struct AnimatorTest {
   private TAG: string = '[AnimatorTest]'
-  private backAnimator: any = undefined
+  private backAnimator: AnimatorResult | undefined = undefined
   private flag: boolean = false
   @State wid: number = 100
   @State hei: number = 100
@@ -344,17 +386,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onfinish = function () {
+    this.backAnimator.onfinish = ()=> {
       _this.flag = true
       console.info(_this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onrepeat = function () {
+    this.backAnimator.onrepeat = ()=> {
       console.info(_this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.oncancel = function () {
+    this.backAnimator.oncancel = ()=> {
       console.info(_this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onframe = function (value) {
+    this.backAnimator.onframe = (value:number)=> {
       _this.wid = value
       _this.hei = value
     }
@@ -388,7 +430,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.play()
+              if(this.backAnimator){
+                this.backAnimator.play()
+              }
             })
         }
         .padding(10)
@@ -398,7 +442,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.pause()
+              if(this.backAnimator){
+                this.backAnimator.pause()
+              }
             })
         }
         .padding(10)
@@ -409,7 +455,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = true
-              this.backAnimator.finish()
+              if(this.backAnimator){
+                this.backAnimator.finish()
+              }
             })
         }
         .padding(10)
@@ -420,7 +468,9 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              this.backAnimator.reverse()
+              if(this.backAnimator){
+                this.backAnimator.reverse()
+              }
             })
         }
         .padding(10)
@@ -430,7 +480,9 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              this.backAnimator.cancel()
+              if(this.backAnimator){
+                this.backAnimator.cancel()
+              }
             })
         }
         .padding(10)
@@ -442,16 +494,18 @@ struct AnimatorTest {
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
-                this.backAnimator.reset({
-                  duration: 5000,
-                  easing: "ease-in",
-                  delay: 0,
-                  fill: "none",
-                  direction: "normal",
-                  iterations: 4,
-                  begin: 100,
-                  end: 300
-                })
+                if(this.backAnimator){
+                  this.backAnimator.reset({
+                    duration: 5000,
+                    easing: "ease-in",
+                    delay: 0,
+                    fill: "none",
+                    direction: "normal",
+                    iterations: 4,
+                    begin: 100,
+                    end: 300
+                  })
+                }
               } else {
                 console.info(this.TAG, 'Animation not ended')
               }
@@ -482,7 +536,7 @@ This API is deprecated since API version 9. You are advised to use [reset<sup>9+
 
 **Example**
 
-```js
+```ts
 animator.update(options);
 ```
 
@@ -510,8 +564,9 @@ This API is deprecated since API version 9. You are advised to use [create<sup>9
 
 **Example**
 
-```js
-let options = {
+```ts
+import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+let options: AnimatorOptions = { // The explicit type AnimatorOptions does not need to be emphasized in the xxx.js file.
   duration: 1500,
   easing: "friction",
   delay: 0,

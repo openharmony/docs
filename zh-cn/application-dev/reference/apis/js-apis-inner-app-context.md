@@ -174,8 +174,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context: featureAbility.Context = featureAbility.getContext();
-let Permission = {pid:1};
-context.verifyPermission('com.context.permission',Permission).then((data) => {
+context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
     console.info('verifyPermission data: ${JSON.stringify(data)}');
 });
 ```
@@ -494,7 +493,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation, (error) => {
@@ -521,7 +520,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import bundle from '@ohos.bundle';
+import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 let orientation = bundle.DisplayOrientation.UNSPECIFIED;
 context.setDisplayOrientation(orientation).then((data) => {
@@ -708,7 +707,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-获取当前ability的ohos.bundle.ElementName对象（callback形式）。
+获取当前ability的ohos.bundleManager.ElementName对象（callback形式）。
 
 此方法仅适用于页面功能。
 
@@ -718,7 +717,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 | 参数名       | 类型                          | 必填   | 说明                                     |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundle.ElementName对象。 |
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -740,7 +739,7 @@ context.getElementName((error, data) => {
 
 getElementName(): Promise\<ElementName>
 
-获取当前能力的ohos.bundle.ElementName对象（Promise形式）。
+获取当前能力的ohos.bundleManager.ElementName对象（Promise形式）。
 
 此方法仅适用于页面功能。
 
@@ -750,7 +749,7 @@ getElementName(): Promise\<ElementName>
 
 | 类型                    | 说明                                   |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundle.ElementName对象。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -1366,17 +1365,17 @@ context.printDrawnCompleted().then((data) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称   | 读写属性 | 类型     | 必填   | 说明    |
-| ---- | ---- | ------ | ---- | ----- |
-| pid  | 只读   | number | 否    | 进程id。 |
-| uid  | 只读   | number | 否    | 用户id。 |
+| 名称   | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| pid  |number | 否    | 进程id。 |
+| uid  |number | 否    | 用户id。 |
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称          | 读写属性 | 类型             | 必填   | 说明         |
-| ----------- | ---- | -------------- | ---- | ---------- |
-| requestCode | 只读   | number         | 是    | 用户传入的请求代码。 |
-| permissions | 只读   | Array\<string> | 是    | 用户传入的权限。   |
-| authResults | 只读   | Array\<number> | 是    | 请求权限的结果。   |
+| 名称         | 类型             | 必填   | 说明         |
+| ----------- |-------------- | ---- | ---------- |
+| requestCode | number         | 是    | 用户传入的请求代码。 |
+| permissions | Array\<string> | 是    | 用户传入的权限。   |
+| authResults | Array\<number> | 是    | 请求权限的结果。   |

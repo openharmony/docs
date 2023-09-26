@@ -12,6 +12,21 @@
 import formBindingData from '@ohos.app.form.formBindingData';
 ```
 
+
+## ProxyData<sup>10+</sup>
+
+卡片代理刷新订阅数据信息。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key<sup>10+</sup> | string | 是 | 卡片代理刷新的订阅标识，与数据发布者保持一致。|
+| subscriberId<sup>10+</sup> | string | 否 | 卡片代理刷新的订阅条件，默认值为当前卡片的formId。|
+
+
 ## FormBindingData
 
 FormBindingData相关描述。
@@ -21,7 +36,7 @@ FormBindingData相关描述。
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | data | Object | 是 | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。|
-
+| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata)> | 否 | 卡片代理刷新的订阅信息，默认为空数组。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>|
 
 ## createFormBindingData
 
@@ -50,15 +65,21 @@ createFormBindingData(obj?: Object | string): FormBindingData
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
 import fs from '@ohos.file.fs';
+import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-  let obj = {
-    'temperature': '21°',
-    'formImages': { 'image': fd }
-  };
-  formBindingData.createFormBindingData(obj);
+
+  let createFormBindingDataParam = new Map<string, string | Object>();
+  let formImagesParam = new Map<string, Object>();
+  formImagesParam.set('image', fd);
+  createFormBindingDataParam.set("name", '21°');
+  createFormBindingDataParam.set('formImages', formImagesParam);
+
+  formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+  let code = (error as Base.BusinessError).code;
+  let message = (error as Base.BusinessError).message;
+  console.error(`catch error, code: ${code}, message: ${message}`);
 }
 ```

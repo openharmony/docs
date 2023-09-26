@@ -37,6 +37,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 跨任务链启动时，如果需要跨任务链进行返回，需要参考[Want](js-apis-app-ability-want.md)中的parameter参数用法。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -44,7 +45,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
@@ -58,8 +59,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -70,13 +73,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 
 try {
-  this.context.startAbility(want, (err) => {
+  this.context.startAbility(want, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -87,7 +93,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -123,8 +131,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -135,17 +145,21 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
-  this.context.startAbility(want, options, (err) => {
+  this.context.startAbility(want, options, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -156,7 +170,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -197,8 +213,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
-| 16000011 | The context does not exist. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -209,11 +227,15 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0,
 };
 
@@ -223,13 +245,15 @@ try {
       // 执行正常业务
       console.info('startAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -269,6 +293,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -279,25 +305,32 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 
 try {
-  this.context.startAbilityForResult(want, (err, result) => {
+  this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
       return;
-    }
     // 执行正常业务
     console.info('startAbilityForResult succeed');
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -338,6 +371,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -348,20 +383,27 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0,
 };
 
 try {
-  this.context.startAbilityForResult(want, options, (err, result) => {
+  this.context.startAbilityForResult(want, options, (err: BusinessError, result: common.AbilityResult) => {
     if (err.code) {
       // 处理业务逻辑错误
-      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);  
       return;
     }
     // 执行正常业务
@@ -369,7 +411,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -417,6 +461,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -427,27 +473,36 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0,
 };
 
 try {
   this.context.startAbilityForResult(want, options)
-    .then((result) => {
+    .then((result: common.AbilityResult) => {
       // 执行正常业务
       console.info('startAbilityForResult succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResult failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -462,7 +517,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -489,6 +548,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -499,7 +560,13 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
@@ -507,7 +574,7 @@ let want = {
 let accountId = 100;
 
 try {
-  this.context.startAbilityForResultWithAccount(want, accountId, (err, result) => {
+  this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -518,7 +585,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -534,7 +603,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -562,6 +635,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -572,18 +647,22 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let accountId = 100;
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
-  this.context.startAbilityForResultWithAccount(want, accountId, options, (err) => {
+  this.context.startAbilityForResultWithAccount(want, accountId, options, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -594,7 +673,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -610,7 +691,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -643,6 +728,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -653,29 +740,38 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let accountId = 100;
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
   this.context.startAbilityForResultWithAccount(want, accountId, options)
-    .then((result) => {
+    .then((result: common.AbilityResult) => {
       // 执行正常业务
       console.info('startAbilityForResultWithAccount succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityForResultWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 ## UIAbilityContext.startServiceExtensionAbility
@@ -701,10 +797,13 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -713,7 +812,10 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -725,13 +827,15 @@ try {
       // 执行正常业务
       console.info('startServiceExtensionAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -757,10 +861,13 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -769,7 +876,10 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -781,13 +891,15 @@ try {
       // 执行正常业务
       console.info('startServiceExtensionAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -797,7 +909,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 启动一个新的ServiceExtensionAbility（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -817,10 +933,13 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -829,7 +948,10 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -837,7 +959,7 @@ let want = {
 let accountId = 100;
 
 try {
-  this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err) => {
+  this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -848,7 +970,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -858,7 +982,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 启动一个新的ServiceExtensionAbility（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -877,10 +1005,13 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -889,7 +1020,10 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -902,13 +1036,15 @@ try {
       // 执行正常业务
       console.info('startServiceExtensionAbilityWithAccount succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 ## UIAbilityContext.stopServiceExtensionAbility
@@ -934,9 +1070,12 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -945,14 +1084,17 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
 
 try {
-  this.context.stopServiceExtensionAbility(want, (err) => {
+  this.context.stopServiceExtensionAbility(want, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -963,7 +1105,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -989,6 +1133,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -1000,7 +1145,10 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -1012,13 +1160,15 @@ try {
       // 执行正常业务
       console.info('stopServiceExtensionAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`stopServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1028,7 +1178,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 停止同一应用程序内指定账户的服务（callback形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1048,6 +1202,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -1059,7 +1214,10 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -1067,7 +1225,7 @@ let want = {
 let accountId = 100;
 
 try {
-  this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err) => {
+  this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -1078,7 +1236,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1088,7 +1248,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 停止同一应用程序内指定账户的服务（Promise形式）。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1107,6 +1271,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -1118,7 +1283,10 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
@@ -1131,13 +1299,15 @@ try {
       // 执行正常业务
       console.info('stopServiceExtensionAbilityWithAccount succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1171,8 +1341,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    this.context.terminateSelf((err) => {
+    this.context.terminateSelf((err: BusinessError) => {
       if (err.code) {
         // 处理业务逻辑错误
         console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
@@ -1183,7 +1355,9 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (err) {
     // 捕获同步的参数错误
-    console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
   }
   ```
 
@@ -1218,19 +1392,23 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     this.context.terminateSelf()
       .then(() => {
         // 执行正常业务
         console.info('terminateSelf succeed');
       })
-      .catch((err) => {
+      .catch((err: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
       });
-  } catch (error) {
+  } catch (err) {
     // 捕获同步的参数错误
-    console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
   }
   ```
 
@@ -1266,19 +1444,24 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common'; 
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let resultCode = 100;
 // 返回给接口调用方AbilityResult信息
-let abilityResult = {
+let abilityResult: common.AbilityResult = {
   want,
   resultCode
 };
 
 try {
-  this.context.terminateSelfWithResult(abilityResult, (err) => {
+  this.context.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
@@ -1289,7 +1472,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1330,13 +1515,18 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let resultCode = 100;
 // 返回给接口调用方AbilityResult信息
-let abilityResult = {
+let abilityResult: common.AbilityResult = {
   want,
   resultCode
 };
@@ -1347,13 +1537,15 @@ try {
       // 执行正常业务
       console.info('terminateSelfWithResult succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`terminateSelfWithResult failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1383,8 +1575,14 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -1392,13 +1590,19 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
-let commRemote;
-let options = {
+let commRemote: rpc.IRemoteObject;
+let options: common.ConnectOptions = {
   onConnect(elementName, remote) {
     commRemote = remote;
     console.info('onConnect...')
@@ -1410,13 +1614,14 @@ let options = {
     console.info('onFailed...')
   }
 };
-
-let connection = null;
+let connection: number;
 try {
   connection = this.context.connectServiceExtensionAbility(want, options);
 } catch (err) {
   // 处理入参错误异常
-  console.error(`connectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1427,7 +1632,11 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1452,8 +1661,14 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
-| 16000011 | The context does not exist. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
 错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
@@ -1461,14 +1676,20 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-let want = {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import rpc from '@ohos.rpc';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
 let accountId = 100;
-let commRemote;
-let options = {
+let commRemote: rpc.IRemoteObject;
+let options: common.ConnectOptions = {
   onConnect(elementName, remote) {
     commRemote = remote;
     console.info('onConnect...')
@@ -1480,13 +1701,14 @@ let options = {
     console.info('onFailed...')
   }
 };
-
-let connection = null;
+let connection: number;
 try {
   connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
 } catch (err) {
   // 处理入参错误异常
-  console.error(`connectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`connectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1522,25 +1744,27 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 **示例：**
 
   ```ts
+import { BusinessError } from '@ohos.base';
+
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
-let commRemote;
+let commRemote: rpc.IRemoteObject | null;
 
 try {
-  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+  this.context.disconnectServiceExtensionAbility(connection).then(() => {
     commRemote = null;
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
     // 执行正常业务
     console.info('disconnectServiceExtensionAbility succeed');
-  });
+  }).catch((err: BusinessError) => {
+    // 处理业务逻辑错误
+    console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  })
 } catch (err) {
   commRemote = null;
   // 处理入参错误异常
-  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1571,12 +1795,14 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 **示例：**
 
   ```ts
+import { BusinessError } from '@ohos.base';
+
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
-let commRemote;
+let commRemote: rpc.IRemoteObject | null;
 
 try {
-  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+  this.context.disconnectServiceExtensionAbility(connection, (err: BusinessError) => {
     commRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
@@ -1589,24 +1815,9 @@ try {
 } catch (err) {
   commRemote = null;
   // 处理入参错误异常
-  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-}
-
-try {
-  this.context.disconnectServiceExtensionAbility(connection, (err) => {
-    commRemote = null;
-    if (err.code) {
-      // 处理业务逻辑错误
-      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      return;
-    }
-    // 执行正常业务
-    console.info('disconnectServiceExtensionAbility succeed');
-  });
-} catch (err) {
-  commRemote = null;
-  // 处理入参错误异常
-  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`disconnectServiceExtensionAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1620,6 +1831,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限：** ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1646,6 +1859,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1656,10 +1871,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-let caller;
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let caller: Caller;
 
 // 后台启动Ability，不配置parameters
-let wantBackground = {
+let wantBackground: Want = {
   bundleName: 'com.example.myapplication',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
@@ -1668,27 +1887,33 @@ let wantBackground = {
 
 try {
   this.context.startAbilityByCall(wantBackground)
-    .then((obj) => {
+    .then((obj: Caller) => {
       // 执行正常业务
       caller = obj;
       console.info('startAbilityByCall succeed');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
     // 处理业务逻辑错误
     console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
 }
   ```
 
 前台启动：
 
   ```ts
-let caller;
+import { Caller } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let caller: Caller;
 
 // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
-let wantForeground = {
+let wantForeground: Want = {
   bundleName: 'com.example.myapplication',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
@@ -1700,17 +1925,19 @@ let wantForeground = {
 
 try {
   this.context.startAbilityByCall(wantForeground)
-    .then((obj) => {
+    .then((obj: Caller) => {
       // 执行正常业务
       caller = obj;
       console.info('startAbilityByCall succeed');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
     // 处理业务逻辑错误
     console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityByCall failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1725,7 +1952,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1752,6 +1983,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1762,7 +1995,10 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
@@ -1770,7 +2006,7 @@ let want = {
 let accountId = 100;
 
 try {
-  this.context.startAbilityWithAccount(want, accountId, (err) => {
+  this.context.startAbilityWithAccount(want, accountId, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -1781,7 +2017,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1797,7 +2035,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1825,6 +2067,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1835,18 +2079,22 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let accountId = 100;
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
-  this.context.startAbilityWithAccount(want, accountId, options, (err) => {
+  this.context.startAbilityWithAccount(want, accountId, options, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
@@ -1857,7 +2105,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1873,7 +2123,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
+> **说明：**
+> 
+> 当accountId为当前用户时，不需要校验该权限。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1900,6 +2154,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1910,13 +2166,17 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 let accountId = 100;
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
@@ -1926,13 +2186,15 @@ try {
       // 执行正常业务
       console.info('startAbilityWithAccount succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startAbilityWithAccount failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -1963,7 +2225,9 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  this.context.setMissionLabel('test', (result) => {
+  import { BusinessError } from '@ohos.base';
+
+  this.context.setMissionLabel('test', (result: BusinessError) => {
     console.info(`setMissionLabel: ${JSON.stringify(result)}`);
   });
   ```
@@ -2000,10 +2264,14 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   this.context.setMissionLabel('test').then(() => {
     console.info('success');
-  }).catch((err) => {
-    console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  }).catch((err: BusinessError) => {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`setMissionLabel failed, code is ${code}, message is ${message}`);
   });
   ```
 ## UIAbilityContext.setMissionIcon
@@ -2035,26 +2303,30 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import { BusinessError } from '@ohos.base';
   import image from '@ohos.multimedia.image';
   
-  let imagePixelMap;
-  let color = new ArrayBuffer(0);
-  let initializationOptions = {
-    size: {
-      height: 100,
-      width: 100
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let imagePixelMap: image.PixelMap;
+      let color = new ArrayBuffer(0);
+      image.createPixelMap(color, {
+        size: {
+          height: 100,
+          width: 100
+        }
+      }).then((data) => {
+        imagePixelMap = data;
+        this.context.setMissionIcon(imagePixelMap, (err: BusinessError) => {
+          console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+        })
+      })
+        .catch((err: BusinessError) => {
+          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+        });
     }
-  };
-  image.createPixelMap(color, initializationOptions)
-    .then((data) => {
-      imagePixelMap = data;
-    })
-    .catch((err) => {
-      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-    });
-  this.context.setMissionIcon(imagePixelMap, (err) => {
-    console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-  })
+  }
   ```
 
 
@@ -2092,31 +2364,113 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import { BusinessError } from '@ohos.base';
   import image from '@ohos.multimedia.image';
 
-  let imagePixelMap;
-  let color = new ArrayBuffer(0);
-  let initializationOptions = {
-    size: {
-      height: 100,
-      width: 100
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let imagePixelMap: image.PixelMap;
+      let color = new ArrayBuffer(0);
+      image.createPixelMap(color, {
+        size: {
+          height: 100,
+          width: 100
+        }
+      }).then((data) => {
+          imagePixelMap = data;
+          this.context.setMissionIcon(imagePixelMap)
+            .then(() => {
+              console.info('setMissionIcon succeed');
+            })
+            .catch((err: BusinessError) => {
+              console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+            });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
+        });
     }
-  };
-  image.createPixelMap(color, initializationOptions)
-    .then((data) => {
-      imagePixelMap = data;
-    })
-    .catch((err) => {
-      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
-    });
-  this.context.setMissionIcon(imagePixelMap)
-    .then(() => {
-      console.info('setMissionIcon succeed');
-    })
-    .catch((err) => {
-      console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
-    });
+  }
   ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState, callback:AsyncCallback&lt;void&gt;): void;
+
+设置UIAbility任务中流转状态（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@ohos.base';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
+  ```
+
+## UIAbilityContext.setMissionContinueState<sup>10+</sup>
+
+setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;;
+
+设置UIAbility任务中流转状态（promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@ohos.base';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE).then(() => {
+    console.info('success');
+  }).catch((err: BusinessError) => {
+    console.error(`setMissionContinueState failed, code is ${err.code}, message is ${err.message}`);
+  });
+  ```
+
 ## UIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage) : void;
@@ -2129,7 +2483,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
+| localStorage | LocalStorage | 是 | 用于恢复window stage的存储数据。 |
 
 **错误码：**
 
@@ -2172,7 +2526,7 @@ isTerminating(): boolean;
 **示例：**
 
   ```ts
-  let isTerminating = this.context.isTerminating();
+  let isTerminating: boolean = this.context.isTerminating();
   console.info(`ability state is ${isTerminating}`);
   ```
 
@@ -2209,6 +2563,8 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -2220,15 +2576,17 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
   ```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-let want = {
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'AuthAccountServiceExtension'
 };
 
 try {
-  this.context.requestDialogService(want, (err, result) => {
+  this.context.requestDialogService(want, (err: BusinessError, result: dialogRequest.RequestResult) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
@@ -2239,7 +2597,9 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
 }
   ```
 
@@ -2282,6 +2642,8 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -2293,30 +2655,34 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 
   ```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-let want = {
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'AuthAccountServiceExtension'
 };
 
 try {
   this.context.requestDialogService(want)
-    .then((result) => {
+    .then((result: dialogRequest.RequestResult) => {
       // 执行正常业务
       console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`requestDialogService failed, code is ${code}, message is ${message}`);
 }
   ```
   ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
 
@@ -2351,6 +2717,8 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -2359,13 +2727,16 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
 
 try {
-  this.context.startRecentAbility(want, (err) => {
+  this.context.startRecentAbility(want, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -2376,12 +2747,14 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
 当开发者需要携带启动参数时可以选择此API。
@@ -2418,6 +2791,8 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -2426,17 +2801,21 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   deviceId: '',
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0
 };
 
 try {
-  this.context.startRecentAbility(want, options, (err) => {
+  this.context.startRecentAbility(want, options, (err: BusinessError) => {
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -2447,12 +2826,14 @@ try {
   });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 ## UIAbilityContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
 当开发者期望启动结果以Promise形式返回时可以选择此API。
@@ -2488,6 +2869,8 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -2496,11 +2879,15 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
 **示例：**
 
   ```ts
-let want = {
+import Want from '@ohos.app.ability.Want';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let options = {
+let options: StartOptions = {
   windowMode: 0,
 };
 
@@ -2510,17 +2897,19 @@ try {
       // 执行正常业务
       console.info('startRecentAbility succeed');
     })
-    .catch((err) => {
+    .catch((err: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
     });
 } catch (err) {
   // 处理入参错误异常
-  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`startRecentAbility failed, code is ${code}, message is ${message}`);
 }
   ```
 
-## UIAbilityContext.startAbilityByCallWithAccount
+## UIAbilityContext.startAbilityByCallWithAccount<sup>10+</sup>
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
 
@@ -2531,6 +2920,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2553,14 +2944,16 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | Input error. The specified ability name does not exist. |
+| 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Visibility verification failed. |
+| 16000004 | Can not start invisible component. |
 | 16000005 | Static permission denied. The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
-| 16000008 | Crowdtest App Expiration. |
+| 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
-| 16000050 | Internal Error. |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -2568,17 +2961,21 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 **示例：**
 
   ```ts
-  let caller;
+  import { Caller } from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let caller: Caller;
 
   // 系统账号的账号ID, -1表示当前激活用户
   let accountId = -1;
 
   // 指定启动的Ability
-  let want = {
+  let want: Want = {
       bundleName: 'com.acts.actscalleeabilityrely',
       moduleName: 'entry',
-      abilityName: 'EntryAbility'
-      deviceId: ''
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
         // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
         'ohos.aafwk.param.callAbilityToForeground': true
@@ -2587,11 +2984,11 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
   try {
     this.context.startAbilityByCallWithAccount(want, accountId)
-      .then((obj) => {
+      .then((obj: Caller) => {
         // 执行正常业务
         caller = obj;
         console.log('startAbilityByCallWithAccount succeed');
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
@@ -2599,4 +2996,293 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
     // 处理入参错误异常
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
+  ```
+
+## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // want包含启动该应用的Caller信息
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    // 使用启动方的Caller身份信息启动新Ability
+    this.context.startAbilityAsCaller(localWant, (err) => {
+      if (err && err.code != 0) {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      } else {
+        console.log('startAbilityAsCaller success.');
+      }
+    })
+  }
+}
+
+```
+
+## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // want包含启动该应用的Caller信息
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let option: StartOptions = {
+      displayId: 0
+    }
+
+    // 使用启动方的Caller身份信息启动新Ability
+    this.context.startAbilityAsCaller(localWant, option, (err) => {
+      if (err && err.code != 0) {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      } else {
+        console.log('startAbilityAsCaller success.');
+      }
+    })
+  }
+}
+
+```
+
+## UIAbilityContext.startAbilityAsCaller<sup>10+<sup>
+
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)  | 是 | 启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // want包含启动该应用的Caller信息
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let option: StartOptions = {
+      displayId: 0
+    }
+
+    // 使用启动方的Caller身份信息启动新Ability
+    this.context.startAbilityAsCaller(localWant, option)
+      .then(() => {
+        console.log('startAbilityAsCaller success.');
+      })
+      .catch((err: BusinessError) => {
+        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+      })
+  }
+}
+
+```
+
+## UIAbilityContext.reportDrawnCompleted<sup>10+</sup>
+
+reportDrawnCompleted(callback: AsyncCallback\<void>): void;
+
+当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
+ **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 页面加载完成打点的回调函数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      try {
+        this.context.reportDrawnCompleted((err) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`reportDrawnCompleted failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('reportDrawnCompleted succeed');
+        });
+      } catch (err) {
+        // 捕获同步的参数错误
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
+      }
+    });
+    console.log("MainAbility onWindowStageCreate")
+  }
+};
   ```

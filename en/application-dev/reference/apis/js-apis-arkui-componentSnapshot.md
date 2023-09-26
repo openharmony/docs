@@ -11,7 +11,7 @@ The **componentSnapshot** module provides APIs for obtaining component snapshots
 
 ## Modules to Import
 
-```js
+```ts
 import componentSnapshot from "@ohos.arkui.componentSnapshot";
 ```
 
@@ -34,16 +34,22 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | id       | string                              | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
 
+**Error codes**
+
+| ID| Error Message           |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
 **Example**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -102,14 +108,14 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 **Example**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -159,6 +165,12 @@ Renders a custom component in the application background and outputs its snapsho
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
 | callback | AsyncCallback&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
 **Example**
 
 ```ts
@@ -168,7 +180,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -191,7 +203,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
+          componentSnapshot.createFromBuilder(this.RandomBuilder(),
             (error: Error, pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
@@ -245,7 +257,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -268,7 +280,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this))
+          componentSnapshot.createFromBuilder(this.RandomBuilder())
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file

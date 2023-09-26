@@ -10,6 +10,7 @@ The error codes of the file management subsystem include the following:
 - [User Data Management Error Codes](#user-data-management-error-code)
 - [User File Access Error Codes](#user-file-access-error-codes)
 - [Space Statistics Error Codes](#space-statistics-error-codes)
+- [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
 
 ## Basic File IO Error Codes
 
@@ -155,7 +156,7 @@ The resources are blocked.
 
 **Solution**
 
-Request resources.
+Request the resource again.
 
 ### 13900011 Memory Overflow
 
@@ -273,7 +274,7 @@ The specified directory is invalid.
 
 **Solution**
 
-Check that the directory is correct.
+Check that the specified directory is correct.
 
 ### 13900019 The Specified Object Is a Directory
 
@@ -297,7 +298,7 @@ Invalid argument
 
 **Possible Causes**
 
-Invalid input parameter is detected.
+The input parameter is invalid.
 
 **Solution**
 
@@ -477,7 +478,7 @@ The specified directory is not empty.
 
 **Error Message**
 
-Too many symbolic links
+Too many symbolic links encountered
 
 **Possible Causes**
 
@@ -593,7 +594,7 @@ Quota exceeded
 
 **Possible Causes**
 
-The disk space is insufficient.
+The storage space is insufficient.
 
 **Solution**
 
@@ -926,3 +927,51 @@ Fail to notify agent
 **Solution**
 
 Check whether the client is normal.
+
+## Device-Cloud Synchronization Error Codes
+
+### 22400001 Cloud Unavailable
+
+**Error Message**
+
+Cloud status not ready
+
+**Possible Causes**
+
+1. The cloud is not enabled.
+
+2. The cloud synchronization switch is not enabled for the application.
+
+**Solution**
+
+1. Check that the user has logged in with a cloud account.
+
+2. Check that the cloud synchronization switch is enabled.
+
+### 22400002 Network Unavailable
+
+**Error Message**
+
+Network unavailable
+
+**Possible Causes**
+
+The device is not connected to the network or the network is unavailable.
+
+**Solution**
+
+Check the network status.
+
+### 22400003 Low Battery Level
+
+**Error Message**
+
+Battery level warning
+
+**Possible Causes**
+
+The battery level is low.
+
+**Solution**
+
+Perform the operation after the battery is being charged or the battery level is restored.

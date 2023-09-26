@@ -10,7 +10,7 @@ The **Screen** module implements basic screen management. You can use the APIs o
 
 ## Modules to Import
 
-```js
+```ts
 import screen from '@ohos.screen';
 ```
 
@@ -38,15 +38,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenClass = null;
-screen.getAllScreens((err, data) => {
-    if (err.code) {
-        console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-    screenClass = data[0];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+screen.getAllScreens((err: BusinessError, data: AsyncCallback<Array<Screen>>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+  screenClass = data[0];
 });
 ```
 
@@ -74,14 +77,16 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenClass = null;
-let promise = screen.getAllScreens();
-promise.then((data) => {
-    screenClass = data[0];
-    console.log('Succeeded in getting all screens. Data:'+ JSON.stringify(data));
-}).catch((err) => {
-    console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
+let promise: Promise<Array<Screen>> = screen.getAllScreens();
+promise.then((data: Array<Screen>) => {
+  screenClass = data[0];
+  console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -95,21 +100,21 @@ Subscribes to events related to the screen state.
 
 **Parameters**
 
-| Name   | Type                  | Mandatory| Description                                                        |
-| --------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| Name   | Type                  | Mandatory| Description                                                       |
+| --------- | ---------------------- | ---- | ----------------------------------------------------------- |
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
-| callback  | Callback&lt;number&gt; | Yes  | Callback used to return the screen ID.                                    |
+| callback  | Callback&lt;number&gt; | Yes  | Callback used to return the screen ID, which is an integer.                                   |
 
 **Example**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.on('connect', callback);
+  let callback: Callback<number> = (data: Callback<number>) => {
+    console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.on('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -126,18 +131,18 @@ Unsubscribes from events related to the screen state.
 | Name   | Type                  | Mandatory| Description                                                        |
 | --------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
-| callback  | Callback&lt;number&gt; | No  | Callback used to return the screen ID.                                    |
+| callback  | Callback&lt;number&gt; | No  | Callback used to return the screen ID, which is an integer.                                    |
 
 **Example**
 
-```js
+```ts
 try {
-    let callback = (data) => {
-        console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
-    };
-    screen.off('connect', callback);
+  let callback: Callback<number> = (data: Callback<number>) => {
+    console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
+  };
+  screen.off('connect', callback);
 } catch (exception) {
-    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -151,10 +156,10 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                                      | Mandatory| Description                            |
-| -------- | ------------------------------------------ | ---- | -------------------------------- |
-| options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.        |
-| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens.|
+| Name  | Type                                      | Mandatory| Description                        |
+| -------- | ------------------------------------------ | ---- |----------------------------|
+| options  | Array&lt;[ExpandOption](#expandoption)&gt; | Yes  | Parameters for expanding the screen.              |
+| callback | AsyncCallback&lt;number&gt;                     | Yes  | Callback used to return the group ID of the expanded screens, which is an integer.|
 
 **Error codes**
 
@@ -166,19 +171,30 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let groupId = null;
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
-      if (err.code) {
-        console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-        return;
-      }
-      groupId = data;
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    });
+  let groupId: number | null = null;
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray, (err: BusinessError, data: AsyncCallback<number>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+      return;
+    }
+    groupId = data;
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -198,9 +214,9 @@ Sets the screen to the expanded mode. This API uses a promise to return the resu
 
 **Return value**
 
-| Type                 | Description                               |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group ID of the expanded screens.|
+| Type                 | Description                             |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise used to return the group ID of the expanded screens, which is an integer.|
 
 **Error codes**
 
@@ -212,15 +228,26 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-      console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-    });
+  class ExpandOption {
+    screenId: number = 0;
+    startX: number = 0;
+    startY: number = 0;
+  }
+  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+  screen.makeExpand(expandOptionArray).then((
+    data: Promise<number>) => {
+    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -234,9 +261,9 @@ Stops the expanded mode. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
-| expandScreen | Array&lt;number&gt;         | Yes  | IDs of the expanded screens.                                              |
+| Name| Type| Mandatory| Description                                     |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| expandScreen | Array&lt;number&gt;         | Yes  |  IDs of the expanded screens. Each ID must be an integer.                     |
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the expanded mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -249,18 +276,21 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping expand screens.');
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping expand screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -274,9 +304,9 @@ Stops the expanded mode. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------- | --- | --------------- |
-| expandScreen | Array&lt;number&gt; | Yes  | IDs of the expanded screens.|
+| Name| Type| Mandatory| Description                |
+| ------------ | ------------------- | --- |--------------------|
+| expandScreen | Array&lt;number&gt; | Yes  |  IDs of the expanded screens. Each ID must be an integer.|
 
 **Return value**
 
@@ -294,16 +324,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let expandScreenIds = [1, 2, 3];
-    screen.stopExpand(expandScreenIds).then(() => {
-      console.info('Succeeded in stopping expand screens.');
-    }).catch((err) => {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-    });
+  let expandScreenIds: Array<number> = [1, 2, 3];
+  screen.stopExpand(expandScreenIds).then(() => {
+    console.info('Succeeded in stopping expand screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -317,11 +349,11 @@ Sets screen mirroring. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name      | Type                       | Mandatory| Description             |
-| ------------ | --------------------------- | ---- |-----------------|
-| mainScreen   | number                      | Yes  | ID of the primary screen.         |
-| mirrorScreen | Array&lt;number&gt;         | Yes  | IDs of secondary screens.      |
-| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens.|
+| Name      | Type                       | Mandatory| Description                |
+| ------------ | --------------------------- | ---- |--------------------|
+| mainScreen   | number                      | Yes  | ID of the primary screen. The value must be an integer. |
+| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer.|
+| callback     | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the group ID of the secondary screens, which is an integer. |
 
 **Error codes**
 
@@ -333,19 +365,22 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
-      if (err.code) {
-        console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: AsyncCallback<number>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -359,16 +394,16 @@ Sets screen mirroring. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name      | Type               | Mandatory| Description       |
-| ------------ | ------------------- | ---- |-----------|
-| mainScreen   | number              | Yes  | ID of the primary screen.   |
-| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens.|
+| Name      | Type               | Mandatory| Description                |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreen   | number              | Yes  | ID of the primary screen. The value must be an integer. |
+| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens. Each ID must be an integer.|
 
 **Return value**
 
-| Type                 | Description                               |
-| --------------------- | ----------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens.|
+| Type                 | Description                             |
+| --------------------- |---------------------------------|
+| Promise&lt;number&gt; | Promise used to return the group ID of the secondary screens, which is an integer.|
 
 **Error codes**
 
@@ -380,17 +415,19 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let mainScreenId = 0;
-let mirrorScreenIds = [1, 2, 3];
+```ts
+import { BusinessError } from '@ohos.base';
+
+let mainScreenId: number = 0;
+let mirrorScreenIds: Array<number> = [1, 2, 3];
 try {
-    screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-      console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-    });
+  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: Promise<number>) => {
+    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -404,10 +441,10 @@ Stops screen mirroring. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
-| mirrorScreen | Array&lt;number&gt;         | Yes  | IDs of secondary screens.                                              |
-| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If screen mirroring is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+| Name| Type| Mandatory| Description                                     |
+| ------------ | --------------------------- | --- |-----------------------------------------|
+| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer.                     |
+| callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If screen mirroring is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -419,18 +456,21 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds, (err) => {
-      if (err.code) {
-        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in stopping mirror screens.');
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in stopping mirror screens.');
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -444,9 +484,9 @@ Stops screen mirroring. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------- | --- | --------------- |
-| mirrorScreen | Array&lt;number&gt; | Yes  | IDs of secondary screens.|
+| Name| Type| Mandatory| Description                |
+| ------------ | ------------------- | --- |--------------------|
+| mirrorScreen | Array&lt;number&gt; | Yes  |  IDs of secondary screens. Each ID must be an integer.|
 
 **Return value**
 
@@ -464,16 +504,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let mirrorScreenIds = [1, 2, 3];
-    screen.stopMirror(mirrorScreenIds).then(() => {
-      console.info('Succeeded in stopping mirror screens.');
-    }).catch((err) => {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-    });
+  let mirrorScreenIds: Array<number> = [1, 2, 3];
+  screen.stopMirror(mirrorScreenIds).then(() => {
+    console.info('Succeeded in stopping mirror screens.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
+  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -504,25 +546,37 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }, (err, data) => {
-      if (err.code) {
-        console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    });
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+  screen.createVirtualScreen(option, (err: BusinessError, data: AsyncCallback<Screen>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -558,23 +612,35 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenClass = null;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenClass: screen.Screen | null = null;
 try {
-    screen.createVirtualScreen({
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    }).then((data) => {
-      screenClass = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  class VirtualScreenOption {
+    name : string = '';
+    width : number =  0;
+    height : number = 0;
+    density : number = 0;
+    surfaceId : string = '';
+  }
+
+  let option : VirtualScreenOption = { 
+    name: 'screen01',
+    width: 1080,
+    height: 2340,
+    density: 2,
+    surfaceId: ''
+  };
+
+  screen.createVirtualScreen(option).then((data: Promise<Screen>) => {
+    screenClass = data;
+    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -590,7 +656,7 @@ Destroys a virtual screen. This API uses an asynchronous callback to return the 
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId | number                    | Yes  | Screen ID.                                                  |
+| screenId | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen is destroyed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -603,18 +669,21 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId, (err,data) => {
-      if (err.code) {
-        console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in destroying the virtual screen.');
-    });
+  screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in destroying the virtual screen.');
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -630,7 +699,7 @@ Destroys a virtual screen. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description      |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | Yes  | Screen ID.|
+| screenId | number | Yes  | Screen ID. The value must be an integer.|
 
 **Return value**
 
@@ -648,16 +717,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenId = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
 try {
-    screen.destroyVirtualScreen(screenId).then((data) => {
-      console.info('Succeeded in destroying the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.destroyVirtualScreen(screenId).then(() => {
+    console.info('Succeeded in destroying the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -675,7 +746,7 @@ Sets the surface for a virtual screen. This API uses an asynchronous callback to
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| screenId  | number                    | Yes  | Screen ID.                                                  |
+| screenId  | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
 | surfaceId | string                    | Yes  | Surface ID.                                               |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen surface is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
@@ -689,19 +760,22 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-  screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
-    if (err.code) {
+  screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
       console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in setting the surface for the virtual screen.');
   });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -719,7 +793,7 @@ Sets the surface for a virtual screen. This API uses a promise to return the res
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | Yes  | Screen ID.   |
+| screenId  | number | Yes  | Screen ID. The value must be an integer.   |
 | surfaceId | string | Yes  | Surface ID.|
 
 **Return value**
@@ -738,17 +812,19 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let screenId = 1;
-let surfaceId = '2048';
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
 try {
-    screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-      console.info('Succeeded in setting the surface for the virtual screen.');
-    }).catch((err) => {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-    });
+  screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+    console.info('Succeeded in setting the surface for the virtual screen.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -768,10 +844,12 @@ Checks whether auto rotate is locked. This API uses a promise to return the resu
 
 **Example**
 
-```js
-screen.isScreenRotationLocked().then((isLocked) => {
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
-}).catch((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+screen.isScreenRotationLocked().then((isLocked: Promise<boolean>) => {
+  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+}).catch((err: BusinessError) => {
   console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
 });
 ```
@@ -792,9 +870,12 @@ Checks whether auto rotate is locked. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-screen.isScreenRotationLocked((err, isLocked) => {
-  if (err.code) {
+```ts
+import { BusinessError } from '@ohos.base';
+
+screen.isScreenRotationLocked((err: BusinessError, isLocked: AsyncCallback<boolean>) => {
+  const errCode: number = err.code;
+  if (errCode) {
     console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
     return;
   }
@@ -824,16 +905,18 @@ Sets whether to lock auto rotate. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked).then((data) => {
-      console.info('Succeeded in unlocking auto rotate');
-    }).catch((err) => {
-      console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
-    });
+  screen.setScreenRotationLocked(isLocked).then(() => {
+    console.info('Succeeded in unlocking auto rotate');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -854,18 +937,21 @@ Sets whether to lock auto rotate. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-let isLocked = false;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let isLocked: boolean = false;
 try {
-    screen.setScreenRotationLocked(isLocked, (err, data) => {
-      if (err.code) {
-        console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in unlocking auto rotate.');
-    });
+  screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in unlocking auto rotate.');
+  });
 } catch (exception) {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -877,9 +963,9 @@ Defines the parameters for expanding a screen.
 
 | Name    | Type| Readable| Writable| Description               |
 | -------- | -------- | ---- | ---- | ------------------- |
-| screenId | number   | Yes  | Yes  | Screen ID.         |
-| startX   | number   | Yes  | Yes  | Start X coordinate of the screen.|
-| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen.|
+| screenId | number   | Yes  | Yes  | Screen ID. The value must be an integer.         |
+| startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The value must be an integer.|
+| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The value must be an integer.|
 
 ## VirtualScreenOption
 
@@ -887,13 +973,13 @@ Defines virtual screen parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name     | Type| Readable| Writable| Description                     |
-| --------- | -------- | ---- | ---- | ------------------------- |
-| name      | string   | Yes  | Yes  | Name of a virtual screen.     |
-| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels.|
-| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels.|
-| density   | number   | Yes  | Yes  | Density of the virtual screen.     |
-| surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.|
+| Name     | Type| Readable| Writable| Description                      |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | Yes  | Yes  | Name of a virtual screen.              |
+| width     | number   | Yes  | Yes  | Width of the virtual screen, in pixels. The value must be an integer.|
+| height    | number   | Yes  | Yes  | Height of the virtual screen, in pixels. The value must be an integer.|
+| density   | number   | Yes  | Yes  | Density of the virtual screen. The value must be a floating point number.      |
+| surfaceId | string   | Yes  | Yes  | Surface ID of the virtual screen.       |
 
 ## Screen
 
@@ -905,14 +991,14 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name             | Type                                      | Readable| Writable| Description                  |
-| ----------------- | ---------------------------------------------- | ---- | ---- | ---------------------- |
-| id                | number                                         | Yes  | No  | Screen ID.            |
-| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs.    |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.  |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
-| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.            |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.            |
+| Name             | Type                                      | Readable| Writable| Description                                                         |
+| ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
+| id                | number                                         | Yes  | No  | Screen ID. The value must be an integer.                                             |
+| parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs. The value must be an integer.                                         |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.                                                 |
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
+| orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.                                                      |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | Yes  | No  | Source mode of the screen.                                                    |
 
 ### setOrientation
 
@@ -937,17 +1023,20 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting the vertical orientation. data: ' + JSON.stringify(data));
-    });
+  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -979,16 +1068,18 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-    let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
-    promise.then((data) => {
-        console.info('Succeeded in setting the vertical orientation. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-    });
+  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  promise.then(() => {
+    console.info('Succeeded in setting the vertical orientation.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1002,7 +1093,7 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
+| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the active mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1015,18 +1106,21 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let modeIndex: number = 0;
 try {
-    screenClass.setScreenActiveMode(modeIndex, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in setting screen active mode 0. data: ' + JSON.stringify(data));
-    });
+  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1040,7 +1134,7 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 | Name   | Type  | Mandatory| Description      |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
+| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware. The value must be an integer.|
 
 **Return value**
 
@@ -1058,17 +1152,19 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let modeIndex = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let modeIndex: number = 0;
 try {
-    let promise = screenClass.setScreenActiveMode(modeIndex);
-      promise.then((data) => {
-          console.info('Succeeded in setting screen active mode 0. Data: ' + JSON.stringify(data));
-      }).catch((err) => {
-          console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-      });
+  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
+  promise.then(() => {
+    console.info('Succeeded in setting screen active mode 0.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1080,9 +1176,9 @@ Sets the pixel density of the screen. This API uses an asynchronous callback to 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type                     | Mandatory| Description                                                        |
-| ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | Yes  | Pixel density. The value ranges from 80 to 640.                          |
+| Name    | Type                     | Mandatory| Description                                      |
+| ---------- | ------------------------- | ---- |------------------------------------------|
+| densityDpi | number                    | Yes  | Pixel density. The value must be an integer in the range [80, 640].      |
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the pixel density is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1095,18 +1191,21 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let densityDpi: number = 320;
 try {
-    screenClass.setDensityDpi(densityDpi, (err, data) => {
-        if (err.code) {
-            console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeed in setting the pixel density of the screen to 320. data: ' + JSON.stringify(data));
-    });
+  screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1118,9 +1217,9 @@ Sets the pixel density of the screen. This API uses a promise to return the resu
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type  | Mandatory| Description                              |
-| ---------- | ------ | ---- | ---------------------------------- |
-| densityDpi | number | Yes  | Pixel density. The value ranges from 80 to 640.|
+| Name    | Type  | Mandatory| Description                                |
+| ---------- | ------ | ---- |------------------------------------|
+| densityDpi | number | Yes  | Pixel density. The value must be an integer in the range [80, 640].|
 
 **Return value**
 
@@ -1138,17 +1237,19 @@ For details about the error codes, see [Display Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-let densityDpi = 320;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let densityDpi: number = 320;
 try {
-    let promise = screenClass.setDensityDpi(densityDpi);
-    promise.then((data) => {
-        console.info('Succeeded in setting the pixel density of the screen to 320. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-    });
+  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
+  promise.then(() => {
+    console.info('Succeeded in setting the pixel density of the screen to 320.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
+  console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(exception));
 };
 ```
 
@@ -1187,7 +1288,7 @@ Defines the screen mode information.
 
 | Name       | Type| Readable| Writable| Description                                              |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate.|
-| width       | number   | Yes  | Yes  | Width of the screen, in pixels.                               |
-| height      | number   | Yes  | Yes  | Height of the screen, in pixels.                               |
-| refreshRate | number   | Yes  | Yes  | Screen refresh rate.                                    |
+| id          | number   | Yes  | Yes  | Mode ID. The supported mode is determined by the device resolution and refresh rate. The value must be an integer.| 
+| width       | number   | Yes  | Yes  | Width of the screen, in pixels. The value must be an integer.                               |
+| height      | number   | Yes  | Yes  | Height of the screen, in pixels. The value must be an integer.                               |
+| refreshRate | number   | Yes  | Yes  | Refresh rate of the screen. The value must be an integer.                                    |

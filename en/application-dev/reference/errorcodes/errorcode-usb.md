@@ -21,3 +21,21 @@ The permission to access the USB device is not granted.
 **Solution**
 
 Call **requestRight** to request for the permission to access the USB device.
+
+## 14400002 HDC Disabled
+
+**Error Message**
+
+Permission denied.The HDC is disabled by the system.
+
+**Description**
+
+This error code is reported if HDC is disabled by the system.
+
+**Possible Causes**
+
+The USB debugging permission is not available.
+
+**Solution**
+
+Apply for the USB debugging permission.

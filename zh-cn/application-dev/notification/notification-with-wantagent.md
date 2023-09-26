@@ -30,6 +30,8 @@
    ```typescript
    import notificationManager from '@ohos.notificationManager';
    import wantAgent from '@ohos.app.ability.wantAgent';
+   import { WantAgent } from '@ohos.app.ability.wantAgent';
+   import Base from '@ohos.base';
    ```
 
 3. 创建WantAgentInfo信息。
@@ -37,10 +39,10 @@
    场景一：创建拉起UIAbility的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
-   let wantAgentObj = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:WantAgent; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
      wants: [
        {
          deviceId: '',
@@ -61,10 +63,10 @@
    场景二：创建发布[公共事件](../application-models/common-event-overview.md)的WantAgent的[WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md)信息。
 
    ```typescript
-   let wantAgentObj = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
+   let wantAgentObj:WantAgent; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
    
    // 通过WantAgentInfo的operationType设置动作类型
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
      wants: [
        {
          action: 'event_name', // 设置事件名
@@ -81,7 +83,7 @@
 
    ```typescript
    // 创建WantAgent
-   wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
+   wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
        console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -109,7 +111,7 @@
      wantAgent: wantAgentObj,
    }
    
-   notificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;

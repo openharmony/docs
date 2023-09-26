@@ -6,3 +6,9 @@
 - 方便开发者将多HAP合理地组合并部署到不同的设备上。例如应用程序包含一个Entry包和两个Featrue包（Feature1和Feature2）。其中Entry包可以部署到设备A和设备B，Feature1只能部署到设备A，Feature2包只部署到设备B上，那么开发者就可以方便的组合Entry和Feature1部署到设备A上，组合Entry和Feature2部署到设备B上。
 
 - 方便开发者按需加载所需模块，减少包大小。开发者可以将一个应用的某些HAP配置成按需加载。应用在启动阶段初始用不到的特性，可以配置暂不加载，当用户用到这些特性的时候，可由应用自动下载这些特性HAP，一定程度上减少应用包的大小。
+
+## 相关实例
+
+针对多HAP开发，有以下相关实例可供参考：
+
+- [多HAP（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/ApplicationHap/MultiHap)

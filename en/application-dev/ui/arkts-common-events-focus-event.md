@@ -37,32 +37,33 @@ Focus navigation follows the set rules regardless of whether it is active or pas
 
 - Linear navigation: used in components where child components are arranged linearly, such as the **\<Flex>**, **\<Row>**, **\<Column>**, and **\<List>** components. The focus navigation direction is the same as the direction of the arrow keys.
 
-    **Figure 1** Linear navigation 
+  **Figure 1** Linear navigation 
 
-      ![en-us_image_0000001562700537](figures/en-us_image_0000001562700537.png)
+  ![en-us_image_0000001562700537](figures/en-us_image_0000001562700537.png)
 
   For example, in the **\<Row>** container, you can use the left and right arrow keys (←/→) to move focus between two adjacent focusable components.
 
 - Cross navigation: used when the up (↑), down (↓), left (←), and right (→) arrow keys are pressed to move focus. The following figure shows a **\<Grid>** container where cross focus navigation is frequently seen.
 
-    **Figure 2** Cross focus navigation in the \<Grid> component 
+  **Figure 2** Cross focus navigation in the \<Grid> component 
 
-      ![en-us_image_0000001511740580](figures/en-us_image_0000001511740580.png)
+  ![en-us_image_0000001511740580](figures/en-us_image_0000001511740580.png)
 
   >**NOTE**
+  >
   > - With the previous focus navigation rules, the functions of the Tab/Shift+Tab keys are the same as those of the arrow keys. Pressing the Tab key is equivalent to pressing the right arrow key and then, if the focus cannot be moved, the down arrow key. Pressing the Shift+Tab key is equivalent to pressing the left arrow key and then, if the focus cannot be moved, the up arrow key.
   >
   > - The key that triggers focus navigation is the press event (Down event).
   >
   > - After a component is deleted or set to be unfocusable, the linear navigation rule is followed. The focus automatically moves to the sibling component in front of the deleted or unfocusable component. If that component cannot receive focus, the focus is then moved to the sibling component on the rear.
 
-- tabIndex-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md) attribute is set for the components.
+- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/arkui-ts/ts-universal-attributes-focus.md) attribute is set for the components.
 
 - Area-based focus: You can define the order of sequential focus navigation and the default focused component, by setting the **tabIndex** attribute for a container component and the [groupDefaultFocus](#groupdefaultfocus) attribute.
 
-- Rule for focusing on a container component: When a container component (for which **groupDefaultFocus** is not set) receives focus for the first time, the positions of its child components are calculated to identify the child component closest to the center of the container. The focus moves to this identified child component. If the container is not focused for the first time, the focus automatically moves to the child component that is focused last time in the container.
+- Rules for focusing on a container component: When a container component (for which **groupDefaultFocus** is not set) is focused for the first time, the positions of its child components are calculated to identify the child component closest to the center of the container, and the focus automatically moves this child component. If the container is not focused for the first time, the focus automatically moves to the child component that is focused last time in the container.
 
-- Focus interaction: When a component is focused, the inherent click task of the component or the **onClick** callback task bound is automatically mounted to the space or carriage return key. When the key is pressed, the task is executed, just as in the case of a finger or mouse click.
+- Focus interaction: When a component is focused, the inherent click task of the component or its bound **onClick** callback task is automatically mounted to the Spacebar or Enter key. This means that pressing the key is equivalent to clicking and touching in terms of executing the task.
 
 
 >**NOTE**
@@ -74,6 +75,8 @@ Focus navigation follows the set rules regardless of whether it is active or pas
 
 
 ```ts
+import List from '@ohos.util.List';
+import promptAction from '@ohos.promptAction';
 onFocus(event: () => void)
 ```
 
@@ -171,7 +174,7 @@ The preceding example includes four steps:
 4. When the Tab key (or the down arrow key) is pressed, the **Third Button** component is focused, its **onFocus** callback is triggered, and its background color turns green. **Second Button** loses focus, its **onBlur** callback is triggered, and its background color turns gray.
 
 
-## Setting Whether a Component Is focusable
+## Setting Whether a Component Is Focusable
 
 Use the **focusable** API to set whether a component is focusable.
 
@@ -344,8 +347,10 @@ struct FocusableExample {
       Divider()
     }.width('100%').justifyContent(FlexAlign.Center)
     .onKeyEvent((e) => {    // Bind onKeyEvent. When the <Column> component is focused, pressing F can reverse the focusable attribute of the second <Text> component.
-      if (e.keyCode === 2022 && e.type === KeyType.Down) {
-        this.textFocusable = !this.textFocusable;
+      if(e){
+        if (e.keyCode === 2022 && e.type === KeyType.Down) {
+          this.textFocusable = !this.textFocusable;
+        }
       }
     })
   }
@@ -400,7 +405,7 @@ import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener;
+  private listener: DataChangeListener|undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -410,7 +415,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): any {
+  getData(index: number): object {
     return this.list[index];
   }
 
@@ -422,16 +427,22 @@ class MyDataSource implements IDataSource {
   }
 }
 
+class TmpM{
+  left:number = 20
+  bottom:number = 20
+  right:number = 20
+}
+let MarginTmp:TmpM = new TmpM()
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: object = new SwiperController()
+  private data: object = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
+    let list:number[] = []
     for (let i = 1; i <= 4; i++) {
-      list.push(i.toString());
+      list.push(i);
     }
     this.data = new MyDataSource(list);
   }
@@ -506,7 +517,7 @@ struct SwiperExample {
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, item => item)
+        }, ((item:string):string => item))
       }
       .cachedCount(2)
       .index(0)
@@ -521,6 +532,18 @@ struct SwiperExample {
       })
       .margin({ left: 20, top: 20, right: 20 })
 
+      class swcf{
+        swiperController:SwiperController|undefined
+        fun(index:number){
+          if(this.swiperController){
+            if(index==0){
+              this.swiperController.showPrevious();
+            }else{
+              this.swiperController.showNext();
+            }
+          }
+        }
+      }
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -528,7 +551,8 @@ struct SwiperExample {
           .fontColor(Color.Black)
           .backgroundColor(Color.Transparent)
           .onClick(() => {
-            this.swiperController.showPrevious();
+            let swf = new swcf()
+            swf.fun(0)
           })
         Button('→')
           .fontSize(40)
@@ -536,7 +560,8 @@ struct SwiperExample {
           .fontColor(Color.Black)
           .backgroundColor(Color.Transparent)
           .onClick(() => {
-            this.swiperController.showNext();
+            let swf = new swcf()
+            swf.fun(1)
           })
       }
       .width(480)
@@ -555,6 +580,7 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
         
+        let tmp:Record<string,string> = {'message':'Button OK on clicked'}
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -563,7 +589,7 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
           .onClick(() => {
-            promptAction.showToast({ message: 'Button OK on clicked' });
+            promptAction.showToast(tmp);
           })
       }
       .width(480)
@@ -572,7 +598,7 @@ struct SwiperExample {
       .borderWidth(2)
       .borderColor(Color.Gray)
       .backgroundColor('#dff2e4')
-      .margin({ left: 20, bottom: 20, right: 20 })
+      .margin(MarginTmp)
     }.backgroundColor('#f2f2f2')
     .margin({ left: 50, top: 50, right: 20 })
   }
@@ -591,6 +617,8 @@ Assume that you want to perform the **onClick** callback of the **OK** button wi
 
 
 ```ts
+import promptAction from '@ohos.promptAction';
+let Tmp:Record<string,string> = {'message':'Button OK on clicked'}
 Button('OK')
   .defaultFocus(true)    // Bind defaultFocus to the OK button.
   .fontSize(30)
@@ -598,7 +626,7 @@ Button('OK')
   .type(ButtonType.Normal)
   .width(140).height(50).backgroundColor('#dadbd9')
   .onClick(() => {
-    promptAction.showToast({ message: 'Button OK on clicked' });
+    promptAction.showToast(Tmp);
   })
 ```
 
@@ -645,13 +673,22 @@ For example, take the white area, the yellow area, and the green area each as a 
 
 
 ```ts
+class swcf{
+  swiperController:SwiperController|undefined
+  fun(){
+    if(this.swiperController){
+      this.swiperController.showPrevious();
+    }
+  }
+}
   Button('←')
     .fontSize(40)
     .fontWeight(FontWeight.Bold)
     .fontColor(Color.Black)
     .backgroundColor(Color.Transparent)
     .onClick(() => {
-      this.swiperController.showPrevious();
+      let swf = new swcf()
+      swf.fun()
     })
     .tabIndex(2)    // Set Button-left arrow as the second tabIndex node.
 ```
@@ -659,13 +696,15 @@ For example, take the white area, the yellow area, and the green area each as a 
 
 
 ```ts
+import promptAction from '@ohos.promptAction';
+let Tmp:Record<string,string> = {'message':'Button OK on clicked'}
 Button('OK')
   .fontSize(30)
   .fontColor('#787878')
   .type(ButtonType.Normal)
   .width(140).height(50).backgroundColor('#dadbd9')
   .onClick(() => {
-    promptAction.showToast({ message: 'Button OK on clicked' });
+    promptAction.showToast(Tmp);
   })
   .tabIndex(3)    // Set Button-OK as the third tabIndex node.
 ```
@@ -691,11 +730,11 @@ groupDefaultFocus(value: boolean)
 
 Using **tabIndex** to [set the order for sequential Tab navigation](#setting-the-order-for-sequential-tab-navigation) has the following issues:
 
-While a component is set as a tabIndex node (white-Button1, yellow-left arrow, and green-ButtonOK) in each area (white, yellow, and green), focus moves quicly only within these components in Tab navigation.
+While a component is set as a tabIndex node (white-Button1, yellow-left arrow, and green-ButtonOK) in each area (white, yellow, and green), focus moves quickly only within these components in Tab navigation.
 
-The solution is to set **tabIndex** for the container of each area. However, when a container receives focus for the first time, the focused child component is the first focusable component by default, not the desired component (Button1, left arrow, and ButtonOK).
+As a workaround, you can set **tabIndex** for the container of each area. However, under this setting, when a container receives focus for the first time, the focused child component is the first focusable component by default, rather than the desired component (Button1, left arrow, and ButtonOK).
 
-To address this issue, the **groupDefaultFocus** attribute is introduced, whose value type is boolean and default value is **false**.
+This is where the **groupDefaultFocus** attribute comes into play, whose value type is boolean and default value is **false**.
 
 This attribute must be used together with **tabIndex**. Use **tabIndex** to bind the focus sequence to the areas (containers), and then bind **groupDefaultFocus(true)** to Button1, left arrow, and ButtonOK. In this way, when the target area (container) is focused for the first time, its child components bound to **groupDefaultFocus(true)** get the focus at the same time.
 
@@ -706,7 +745,7 @@ import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener;
+  private listener: DataChangeListener|undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -716,7 +755,7 @@ class MyDataSource implements IDataSource {
     return this.list.length;
   }
 
-  getData(index: number): any {
+  getData(index: number): number[] {
     return this.list[index];
   }
 
@@ -735,9 +774,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
+    let list: number[] = []
     for (let i = 1; i <= 4; i++) {
-      list.push(i.toString());
+      list.push(i);
     }
     this.data = new MyDataSource(list);
   }
@@ -814,7 +853,7 @@ struct SwiperExample {
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
           .tabIndex(1)
-        }, item => item)
+        }, ((item:string):string => item))
       }
       .cachedCount(2)
       .index(0)
@@ -865,6 +904,7 @@ struct SwiperExample {
           .height(50)
           .backgroundColor('#dadbd9')
 
+        let tmp:Record<string,string> = {'message':'Button OK on clicked'}
         Button('OK')
           .fontSize(30)
           .fontColor('#787878')
@@ -874,7 +914,7 @@ struct SwiperExample {
           .backgroundColor('#dadbd9')
           .defaultFocus(true)
           .onClick(() => {
-            promptAction.showToast({ message: 'Button OK on clicked' });
+            promptAction.showToast(tmp);
           })
           .groupDefaultFocus(true)    // Set Button-OK as the default focus of the third tabIndex node.
       }
@@ -1016,21 +1056,25 @@ struct RequestFocusExample {
       }
     }.width('100%').margin({ top:20 })
     .onKeyEvent((e) => {
-      if (e.keyCode >= 2017 && e.keyCode <= 2022) {
-        this.requestId = e.keyCode - 2017;
-      } else if (e.keyCode === 2030) {
-        this.requestId = 6;
-      } else {
-        return;
-      }
-      if (e.type !== KeyType.Down) {
-        return;
+      if(e){
+        if (e.keyCode >= 2017 && e.keyCode <= 2022) {
+          this.requestId = e.keyCode - 2017;
+        } else if (e.keyCode === 2030) {
+          this.requestId = 6;
+        } else {
+          return;
+        }
+        if (e.type !== KeyType.Down) {
+          return;
+        }
       }
       let res = focusControl.requestFocus(this.idList[this.requestId]);
+      let tmps:Record<string,string> = {'message':'Request success'}
+      let tmpf:Record<string,string> = {'message':'Request failed'}
       if (res) {
-        promptAction.showToast({message: 'Request success'});
+        promptAction.showToast(tmps);
       } else {
-        promptAction.showToast({message: 'Request failed'});
+        promptAction.showToast(tmpf);
       }
     })
   }

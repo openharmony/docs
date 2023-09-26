@@ -60,35 +60,35 @@
 3. 在DataShareExtAbility.ts文件中，导入
 `@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块。
    
-   ```js
+   ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility';
-   import rdb from '@ohos.data.relationalStore';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import relationalStore from '@ohos.data.relationalStore';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base'
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
    
-   ```js
+   ```ts
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
    const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
-   + TBL_NAME
-   + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
-   
-   let rdbStore;
-   let result;
-   
+     + TBL_NAME
+     + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)';
+
+   let rdbStore: relationalStore.RdbStore;
+   let result: string;
+
    export default class DataShareExtAbility extends Extension {
-     private rdbStore_;
-   
      // 重写onCreate接口
-     onCreate(want, callback) {
+     onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
        // 业务实现使用RDB
-       rdb.getRdbStore(this.context, {
+       relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: rdb.SecurityLevel.S1
-       }, function (err, data) {
+         securityLevel: relationalStore.SecurityLevel.S1
+       }, (err, data) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
            console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
@@ -98,9 +98,9 @@
          }
        });
      }
-   
+
      // 重写query接口
-     query(uri, predicates, columns, callback) {
+     query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
          console.info('invalid predicates');
        }
@@ -114,7 +114,9 @@
            }
          });
        } catch (err) {
-         console.error(`Failed to query. Code:${err.code},message:${err.message}`);
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message
+         console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
      // 可根据应用需求，选择性重写各个接口
@@ -145,7 +147,7 @@
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "uri": "datashareproxy://com.samples.datasharetest.DataShare",
        "exported": true,
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
@@ -154,11 +156,11 @@
    
    **表2** data_share_config.json对应属性字段
 
-   | 属性名称 | 备注说明                                                     | 必填 |
-   | ------------ | ------------------------------------------------------------ | --- |
-   | tableConfig       | 配置标签。 | 是 |
-   | uri               | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是 |
-   | crossUserMode     | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。                | 是 |
+   | 属性名称          | 备注说明                                     | 必填   |
+   | ------------- | ---------------------------------------- | ---- |
+   | tableConfig   | 配置标签。                                    | 是    |
+   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashareproxy://{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
+   | crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
 
    **data_share_config.json配置样例**
 
@@ -169,11 +171,11 @@
       "crossUserMode": 1
     },
     {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
+      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00",
       "crossUserMode": 1
     },
     {
-      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
+      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00/TBL00",
       "crossUserMode": 2
     }
    ]
@@ -184,27 +186,29 @@
 
 1. 导入基础依赖包。
    
-   ```js
+   ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import { ValuesBucket } from '@ohos.data.ValuesBucket'
+   import window from '@ohos.window';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
    
-   ```js
+   ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
-   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
+   let dseUri = ('datashareproxy://com.samples.datasharetest.DataShare');
    ```
 
 3. 创建工具接口类对象。
    
-   ```js
-   let dsHelper;
-   let abilityContext;
-   
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
+   let abilityContext: Context;
+
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, dseUri, (err, data) => {
          dsHelper = data;
@@ -215,32 +219,45 @@
 
 4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
    
-   ```js
+   ```ts
    // 构建一条数据
-   let valuesBucket = { 'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3]) };
-   let updateBucket = { 'name': 'LiSi', 'age': 18, 'isStudent': true, 'Binary': new Uint8Array([1, 2, 3]) };
+   let key1 = 'name';
+   let key2 = 'age';
+   let key3 = 'isStudent';
+   let key4 = 'Binary';
+   let valueName1 = 'ZhangSan';
+   let valueName2 = 'LiSi';
+   let valueAge1 = 21;
+   let valueAge2 = 18;
+   let valueIsStudent1 = false;
+   let valueIsStudent2 = true;
+   let valueBinary = new Uint8Array([1, 2, 3]);
+   let valuesBucket: ValuesBucket = { key1: valueName1, key2: valueAge1, key3: valueIsStudent1, key4: valueBinary };
+   let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
-   // 插入一条数据
-   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
-     console.info(`dsHelper insert result:${data}`);
-   });
-   // 更新数据
-   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
-     console.info(`dsHelper update result:${data}`);
-   });
-   // 查询数据
-   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
-     console.info(`dsHelper query result:${data}`);
-   });
-   // 删除指定的数据
-   dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.info(`dsHelper delete result:${data}`);
-   });
+   if (dsHelper != undefined) {
+     // 插入一条数据
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+       console.info(`dsHelper insert result:${data}`);
+     });
+     // 更新数据
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+       console.info(`dsHelper update result:${data}`);
+     });
+     // 查询数据
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+       console.info(`dsHelper query result:${data}`);
+     });
+     // 删除指定的数据
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+       console.info(`dsHelper delete result:${data}`);
+     });
+   }
    ```
 
 ## 相关实例
 
 针对数据共享开发，有以下相关实例可供参考：
 
-- [`CrossAppDataShare`：系统应用跨应用数据共享（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)
+- [系统应用跨应用数据共享（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)

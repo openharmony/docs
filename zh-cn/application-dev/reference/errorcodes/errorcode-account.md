@@ -230,6 +230,27 @@ The event listener has not been registered.
 
 请使用注册的监听器执行解注册操作
 
+## 12300013 网络异常
+
+**错误信息**
+
+The network exception.
+
+**可能原因**
+
+该错误码表示网络异常，可能原因如下:
+1. 未连接网络；
+2. 联网异常；
+3. 应用无联网权限；
+4. 未知的网络错误；
+
+**处理步骤**
+
+1. 连接网络；
+2. 确保网络可以正常联网；
+3. 确保应用具有联网权限；
+4. 重试相关操作；
+
 ## 12300101 凭据不正确
 
 **错误信息**
@@ -241,7 +262,7 @@ The credential is incorrect.
 该错误码表示凭据不正确，可能原因如下:
 1. 密码输入错误；
 2. 生物特征不匹配；
-2. 令牌失效；
+3. 令牌失效；
 
 **处理步骤**
 
@@ -268,7 +289,7 @@ The credential does not exist.
 
 **错误信息**
 
-The crdential inputer already exists.
+The credential inputer already exists.
 
 **可能原因**
 
@@ -283,7 +304,7 @@ PIN码输入器已注册，解注册之前无法重复注册。
 
 **错误信息**
 
-The crdential inputer not found.
+The credential inputer not found.
 
 **可能原因**
 
@@ -355,16 +376,18 @@ The authentication session does not exist.
 
 请使用已成功打开的会话标识查询会话回调。
 
-## 12300109 认证被取消
+## 12300109 认证、凭据录入、更新等操作被取消
 
 **错误信息**
 
-The authentication is canceled.
+The authentication, enrollment, update operation is canceled.
 
 **可能原因**
 
-该错误码表示认证被取消，可能原因如下:
+该错误码表示认证、凭据录入、更新等操作被取消，可能原因如下:
 认证过程中，用户取消认证操作。
+录入凭据过程中，用户取消录入操作。
+录入凭据过程中，用户取消更新操作。
 
 **处理步骤**
 

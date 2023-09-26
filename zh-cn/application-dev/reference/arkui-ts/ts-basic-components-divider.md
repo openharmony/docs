@@ -26,7 +26,7 @@ Divider()
 | ----------- | ---------- | ------------------ |
 | vertical    | boolean | 使用水平分割线还是垂直分割线。false：水平分割线；true：垂直分割线。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 分割线颜色。<br/>默认值：'\#33182431'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md)，超过通用属性设置大小时，按照通用属性进行裁切。 |
+| strokeWidth | number&nbsp;\|&nbsp;string | 分割线宽度。<br/>默认值：1px<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br>分割线的宽度不支持百分比设置。优先级低于[通用属性height](ts-universal-attributes-size.md)，超过通用属性设置大小时，按照通用属性进行裁切。 |
 | lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 分割线的端点样式。<br/>默认值：LineCapStyle.Butt<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
@@ -42,20 +42,20 @@ struct DividerExample {
       // 使用横向分割线场景
       Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC)
       List() {
-        ForEach([1, 2, 3], (item) => {
+        ForEach([1, 2, 3], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, bottom: 8 })
 
       Divider().strokeWidth(8).color('#F1F3F5')
       List() {
-        ForEach([4, 5], (item) => {
+        ForEach([4, 5], (item: number) => {
           ListItem() {
             Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: number) => item.toString())
       }.padding({ left: 24, top: 8 })
 
       // 使用纵向分割线场景

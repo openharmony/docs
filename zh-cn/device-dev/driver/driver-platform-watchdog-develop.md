@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-看门狗（Watchdog），又称看门狗计时器（Watchdog timer），是一种硬件计时设备。一般有一个输入，叫做喂狗，一个输出到系统的复位端。当系统主程序发生错误导致未及时清除看门狗计时器的计时值时，看门狗计时器就会对系统发出复位信号，使系统从悬停状态恢复到正常运作状态。
+看门狗（Watchdog），又称看门狗计时器（Watchdog timer），是一种硬件计时设备。一般有一个输入、一个输出，输入叫做喂狗，输出连接到系统的复位端。当系统主程序发生错误导致未及时清除看门狗计时器的计时值时，看门狗计时器就会对系统发出复位信号，使系统从悬停状态恢复到正常运作状态。
 
 ### 基本概念
 
@@ -84,7 +84,7 @@ Watchdog模块适配包含以下四个步骤：
 
 ### 开发实例
 
-下方将基于Hi3516DV300开发板以//device_soc_hisilicon/common/platform/watchdog/watchdog_hi35xx.c驱动为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
+下方将基于Hi3516DV300开发板以//device/soc/hisilicon/common/platform/watchdog/watchdog_hi35xx.c驱动为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
 
 1. 实例化驱动入口
 
@@ -220,7 +220,7 @@ Watchdog模块适配包含以下四个步骤：
 
         返回值：
 
-        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS的定义）。
+        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS的定义）。
 
         **表 3** HDF_STATUS相关状态说明
 

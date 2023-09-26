@@ -8,7 +8,7 @@ The **hidebug** module provides APIs for you to obtain the memory usage of an ap
 
 ## Modules to Import
 
-```js
+```ts
 import hidebug from '@ohos.hidebug';
 ```
 
@@ -28,8 +28,8 @@ Obtains the total heap memory size of this application.
 | bigint | Total heap memory size of the application, in KB.|
 
 **Example**
-  ```js
-  let nativeHeapSize = hidebug.getNativeHeapSize();
+  ```ts
+  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
   ```
 
 ## hidebug.getNativeHeapAllocatedSize
@@ -48,8 +48,8 @@ Obtains the allocated heap memory size of this application.
 
 
 **Example**
-  ```js
-  let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
+  ```ts
+  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
   ```
 
 ## hidebug.getNativeHeapFreeSize
@@ -67,8 +67,8 @@ Obtains the free heap memory size of this application.
 | bigint | Free heap memory size of the application, in KB.|
 
 **Example**
-  ```js
-  let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
+  ```ts
+  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
   ```
 
 ## hidebug.getPss
@@ -86,8 +86,8 @@ Obtains the size of the physical memory actually used by the application process
 | bigint | Size of the physical memory actually used by the application process, in KB.|
 
 **Example**
-  ```js
-  let pss = hidebug.getPss();
+  ```ts
+  let pss: bigint = hidebug.getPss();
   ```
 
 ## hidebug.getSharedDirty
@@ -106,8 +106,8 @@ Obtains the size of the shared dirty memory of a process.
 
 
 **Example**
-  ```js
-  let sharedDirty = hidebug.getSharedDirty();
+  ```ts
+  let sharedDirty: bigint = hidebug.getSharedDirty();
   ```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
@@ -125,8 +125,8 @@ Obtains the size of the private dirty memory of a process.
 | bigint | Size of the private dirty memory of the process, in KB.|
 
 **Example**
-  ```js
-  let privateDirty = hidebug.getPrivateDirty();
+  ```ts
+  let privateDirty: bigint = hidebug.getPrivateDirty();
   ```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
@@ -147,8 +147,8 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 
 
 **Example**
-  ```js
-  let cpuUsage = hidebug.getCpuUsage();
+  ```ts
+  let cpuUsage: number = hidebug.getCpuUsage();
   ```
 
 ## hidebug.getServiceDump<sup>9+<sup>
@@ -169,29 +169,47 @@ Obtains system service information.
 | fd | number | Yes  | File descriptor to which data is written by the API.|
 | args | Array\<string> | Yes  | Parameter list corresponding to the **Dump** API of the system service.|
 
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 11400101 | the service id is invalid                                           |
+| 401 | the parameter check failed                                            |
 
 **Example**
 
-```js
+```ts
 import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
-import featureAbility from '@ohos.ability.featureAbility'
+import common from '@ohos.app.ability.common'
+import { BusinessError } from '@ohos.base'
 
-let context = featureAbility.getContext();
-context.getFilesDir().then((data) => {
-  var path = data + "/serviceInfo.txt"
-  console.info("output path: " + path)
-  let fd = fs.openSync(path, 0o102, 0o666)
-  var serviceId = 10
-  var args = new Array("allInfo")
-  try {
-    hidebug.getServiceDump(serviceId, fd, args)
-  } catch (error) {
-    console.info(error.code)
-    console.info(error.message)
-  }
-  fs.closeSync(fd);
-})
+let applicationContext: common.Context | null = null;
+try {
+  applicationContext = this.context.getApplicationContext();
+} catch (error) {
+  console.info((error as BusinessError).code);
+  console.info((error as BusinessError).message);
+}
+
+if (applicationContext) {
+  let filesDir: string = applicationContext.filesDir;
+}
+let path: string = filesDir + "/serviceInfo.txt";
+console.info("output path: " + path);
+let file: file.fs = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let serviceId: number = 10;
+let args: Array = new Array("allInfo");
+
+try {
+  hidebug.getServiceDump(serviceId, file.fd, args);
+} catch (error) {
+  console.info((error as BusinessError).code);
+  console.info((error as BusinessError).message);
+}
+fs.closeSync(file);
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -208,18 +226,27 @@ Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` 
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
 
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
+
 **Example**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -239,16 +266,17 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 
 **Example**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -266,16 +294,25 @@ Exports the heap data.
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
 
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed                                            |
+
 **Example**
 
-```js
+```ts
 import hidebug from '@ohos.hidebug'
+import { BusinessError } from '@ohos.base'
 
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info(error.code)
-  console.info(error.message)
+  console.info((error as BusinessError).code)
+  console.info((error as BusinessError).message)
 }
 ```
 
@@ -297,7 +334,7 @@ Starts the profiling method. `startProfiling()` and `stopProfiling()` are called
 
 **Example**
 
-```js
+```ts
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -317,7 +354,7 @@ Stops the profiling method. `startProfiling()` and `stopProfiling()` are called 
 
 **Example**
 
-```js
+```ts
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -343,6 +380,6 @@ Exports the heap data.
 
 **Example**
 
-```js
+```ts
 hidebug.dumpHeapData("heap-20220216");
 ```

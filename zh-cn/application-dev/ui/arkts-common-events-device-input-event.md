@@ -70,8 +70,10 @@ struct MouseExample {
       Button(this.isHovered ? 'Hovered!' : 'Not Hover')
         .width(200).height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-        .onHover((isHover: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
-          this.isHovered = isHover;
+        .onHover((isHover?: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
+          if(isHover){
+            this.isHovered = isHover;
+          }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
@@ -102,7 +104,7 @@ onMouse(event: (event?: MouseEvent) => void)
 鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常见用于开发者自定义的鼠标行为逻辑处理。
 
 
-开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（screenX/screenY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
+开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
 
 
 >**说明：**
@@ -126,15 +128,19 @@ struct MouseExample {
         .width(200)
         .height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-        .onHover((isHover: boolean) => {
-          this.isHovered = isHover
+        .onHover((isHover?: boolean) => {
+          if(isHover){
+            this.isHovered = isHover
+          }
         })
-        .onMouse((event: MouseEvent) => {    // 给Button组件设置onMouse回调
-          this.buttonText = 'Button onMouse:\n' + '' +
-          'button = ' + event.button + '\n' +
-          'action = ' + event.action + '\n' +
-          'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-          'screenXY=(' + event.screenX + ',' + event.screenY + ')';
+       .onMouse((event?: MouseEvent) => {    // 设置Button的onMouse回调
+          if(event){
+            this.buttonText = 'Button onMouse:\n' + '' +
+            'button = ' + event.button + '\n' +
+            'action = ' + event.action + '\n' +
+            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+          }
         })
       Divider()
       Text(this.buttonText).fontColor(Color.Green)
@@ -146,12 +152,14 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event: MouseEvent) => {    // 给Column组件设置onMouse回调
-      this.columnText = 'Column onMouse:\n' + '' +
-      'button = ' + event.button + '\n' +
-      'action = ' + event.action + '\n' +
-      'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-      'screenXY=(' + event.screenX + ',' + event.screenY + ')';
+    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
+      if(event){
+        this.columnText = 'Column onMouse:\n' + '' +
+          'button = ' + event.button + '\n' +
+          'action = ' + event.action + '\n' +
+          'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+          'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+      }
     })
   }
 }
@@ -177,21 +185,50 @@ struct MouseExample {
 
 
 ```ts
-Button(this.isHovered ? 'Hovered!' : 'Not Hover')
-  .width(200)
-  .height(100)
-  .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-  .onHover((isHover: boolean) => {
-    this.isHovered = isHover;
-  })
-  .onMouse((event: MouseEvent) => {
-    event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
-    this.buttonText = 'Button onMouse:\n' + '' +
-    'button = ' + event.button + '\n' +
-    'action = ' + event.action + '\n' +
-    'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-    'screenXY=(' + event.screenX + ',' + event.screenY + ')';
-  })
+class ish{
+  isHovered:boolean = false
+  set(val:boolean){
+    this.isHovered = val;
+  }
+}
+class butf{
+  buttonText:string = ''
+  set(val:string){
+    this.buttonText = val
+  }
+}
+@Entry
+@Component
+struct MouseExample {
+  @State isHovered:ish = new ish()
+  build(){
+    Column(){
+      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+        .width(200)
+        .height(100)
+        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .onHover((isHover?: boolean) => {
+          if(isHover) {
+            let ishset = new ish()
+            ishset.set(isHover)
+          }
+        })
+        .onMouse((event?: MouseEvent) => {
+          if (event) {
+            if (event.stopPropagation) {
+              event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
+            }
+            let butset = new butf()
+            butset.set('Button onMouse:\n' + '' +
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')');
+          }
+        })
+    }
+  }
+}
 ```
 
 
@@ -298,17 +335,19 @@ struct KeyEventExample {
     Column() {
       Button('onKeyEvent')
         .width(140).height(70)
-        .onKeyEvent((event: KeyEvent) => { // 给Button设置onKeyEvent事件
-          if (event.type === KeyType.Down) {
-            this.buttonType = 'Down';
+        .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
+          if(event){
+            if (event.type === KeyType.Down) {
+              this.buttonType = 'Down';
+            }
+            if (event.type === KeyType.Up) {
+              this.buttonType = 'Up';
+            }
+            this.buttonText = 'Button: \n' +
+            'KeyType:' + this.buttonType + '\n' +
+            'KeyCode:' + event.keyCode + '\n' +
+            'KeyText:' + event.keyText;
           }
-          if (event.type === KeyType.Up) {
-            this.buttonType = 'Up';
-          }
-          this.buttonText = 'Button: \n' +
-          'KeyType:' + this.buttonType + '\n' +
-          'KeyCode:' + event.keyCode + '\n' +
-          'KeyText:' + event.keyText;
         })
 
       Divider()
@@ -317,17 +356,19 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
-      if (event.type === KeyType.Down) {
-        this.columnType = 'Down';
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+        'KeyType:' + this.buttonType + '\n' +
+        'KeyCode:' + event.keyCode + '\n' +
+        'KeyText:' + event.keyText;
       }
-      if (event.type === KeyType.Up) {
-        this.columnType = 'Up';
-      }
-      this.columnText = 'Column: \n' +
-      'KeyType:' + this.buttonType + '\n' +
-      'KeyCode:' + event.keyCode + '\n' +
-      'KeyText:' + event.keyText;
     })
   }
 }
@@ -353,22 +394,47 @@ struct KeyEventExample {
 
 
 ```ts
-Button('onKeyEvent')
-  .width(140).height(70)
-  .onKeyEvent((event: KeyEvent) => {
-    // 通过stopPropagation阻止事件冒泡
-    event.stopPropagation();
-    if (event.type === KeyType.Down) {
-      this.buttonType = 'Down';
+class butypef{
+  buttonType:string = ''
+  set(val:string){
+    this.buttonType = val
+  }
+  get(){
+    return this.buttonType
+  }
+}
+@Entry
+@Component
+struct MouseExample {
+  build() {
+    Column() {
+      Button('onKeyEvent')
+        .width(140).height(70)
+        .onKeyEvent((event?: KeyEvent) => {
+          // 通过stopPropagation阻止事件冒泡
+          if(event){
+            if(event.stopPropagation) {
+              event.stopPropagation();
+            }
+            if (event.type === KeyType.Down) {
+              let butset = new butypef()
+              butset.set('Down')
+            }
+            if (event.type === KeyType.Up) {
+              let butset = new butypef()
+              butset.set('Up')
+            }
+            let butfset = new butypef()
+            let butset = new butypef()
+            butfset.set('Button: \n' +
+              'KeyType:' + butset.get() + '\n' +
+              'KeyCode:' + event.keyCode + '\n' +
+              'KeyText:' + event.keyText)
+          }
+        })
     }
-    if (event.type === KeyType.Up) {
-       this.buttonType = 'Up';
-    }
-     this.buttonText = 'Button: \n' +
-     'KeyType:' + this.buttonType + '\n' +
-     'KeyCode:' + event.keyCode + '\n' +
-     'KeyText:' + event.keyText;
-})
+  }
+}
 ```
 
 

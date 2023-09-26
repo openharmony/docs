@@ -1,8 +1,8 @@
 # @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
 
-The **EnterpriseAdminExtensionAbility** module provides Extension abilities for enterprise administrators.
+The **EnterpriseAdminExtensionAbility** module provides extended enterprise device management capabilities.
 
-To have the capabilities provided by the module, for example, receiving the application activation or deactivation notification sent by the system, an enterprise administrator application must have an **EnterpriseAdminExtensionAbility** instance and override the APIs in it.
+To have the capabilities provided by this module, for example, to receive a notification when a device administrator application is enabled or disabled, you need to create an **EnterpriseAdminExtensionAbility** instance for the enterprise administrator application and overload related APIs.
 
 > **NOTE**
 > 
@@ -20,7 +20,7 @@ import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExt
 
 onAdminEnabled(): void
 
-Called when an enterprise administrator is enabled.
+Called when a device administrator application is enabled.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -39,7 +39,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAdminDisabled(): void
 
-Called when an enterprise administrator is disabled.
+Called when a device administrator application is disabled.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -66,7 +66,7 @@ Called when a bundle is added.
 
 **Parameters**
 
-| Parameter  | Type                                 | Mandatory  | Description     |
+| Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | string | Yes   | Name of the bundle added.|
 
@@ -75,7 +75,7 @@ Called when a bundle is added.
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
-    console.log("added bundle name: " + bundleName);
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
   }
 };
 ```
@@ -92,7 +92,7 @@ Called when a bundle is removed.
 
 **Parameters**
 
-| Parameter  | Type                                 | Mandatory  | Description     |
+| Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | string | Yes   | Name of the bundle removed.|
 
@@ -100,8 +100,8 @@ Called when a bundle is removed.
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string) {
-    console.log("removed bundle name: " + bundleName);
+  onBundleRemoved(bundleName: string) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
   }
 };
 ```
@@ -118,7 +118,7 @@ Called when an application is started.
 
 **Parameters**
 
-| Parameter  | Type                                 | Mandatory  | Description     |
+| Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | string | Yes   | Bundle name of the application started.|
 
@@ -127,7 +127,7 @@ Called when an application is started.
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
-    console.log("started bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
   }
 };
 ```
@@ -144,7 +144,7 @@ Called when an application is stopped.
 
 **Parameters**
 
-| Parameter  | Type                                 | Mandatory  | Description     |
+| Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | bundleName | string | Yes   | Bundle name of the application stopped.|
 
@@ -153,7 +153,7 @@ Called when an application is stopped.
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
-    console.log("stopped bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
   }
 };
 ```

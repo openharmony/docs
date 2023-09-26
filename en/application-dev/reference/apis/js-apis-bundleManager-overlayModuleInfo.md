@@ -8,7 +8,7 @@ The **OverlayModuleInfo** module provides information about a module with the ov
 
 ## OverlayModuleInfo
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                 | Type                                               | Readable| Writable| Description                                           |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |

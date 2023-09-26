@@ -1,27 +1,26 @@
 # @system.app (应用上下文)
 
-> **说明：**
+> **说明：** 
 >
-> - 从API Version 7 开始，该接口不再维护，推荐使用新接口。
-> 
-> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 
 ```ts
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 ```
 
+## App
 
-## app.getInfo
+### getInfo
 
-getInfo(): AppResponse
+static getInfo(): AppResponse
 
 获取当前应用配置文件中声明的信息。
 
-从API Version 7开始，推荐使用[`@ohos.bundle`](js-apis-Bundle.md)。
+从API Version9开始，推荐使用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -34,17 +33,18 @@ getInfo(): AppResponse
 **示例：**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class Info {
   getInfo() {
-    let info = app.getInfo()
+    let info:AppResponse = app.getInfo()
     console.log(JSON.stringify(info))
   }
 }
 ```
 
-## app.terminate
+### terminate
 
-terminate(): void
+static terminate(): void
 
 退出当前Ability。
 
@@ -55,43 +55,16 @@ terminate(): void
 **示例：**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class TerM {
   terminate() {
     app.terminate()
   }
 }
 ```
-## app.requestFullWindow
+### setImageCacheCount<sup>7+</sup>
 
-requestFullWindow(options?: RequestFullWindowOptions): void
-
-请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
-
-从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [RequestFullWindowOptions](#requestfullwindowoptions) | 否 | 请求全屏时，设定非全屏到全屏的过渡时间，单位为毫秒，默认时间与非全屏到全屏的距离成正比。 |
-
-**示例：**
-
-```ts
-export default {
-  requestFullWindow() {
-    app.requestFullWindow({
-      duration: 200
-    })
-  }
-}
-```
-
-## app.setImageCacheCount<sup>7+</sup>
-
-setImageCacheCount(value: number): void
+static setImageCacheCount(value: number): void
 
 设置内存中缓存解码后图片的数量上限，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果超过缓存上限，会删除最久未再次加载的缓存。建议根据应用内存需求，设置合理缓存数量，数字过大可能导致内存使用过高。
 
@@ -107,9 +80,9 @@ setImageCacheCount(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
     console.info('Application onCreate')
@@ -120,9 +93,9 @@ export default {
 }
 ```
 
-## app.setImageRawDataCacheSize<sup>7+</sup>
+### setImageRawDataCacheSize<sup>7+</sup>
 
-setImageRawDataCacheSize(value: number): void
+static setImageRawDataCacheSize(value: number): void
 
 设置内存中缓存解码前图片数据的大小上限，单位为字节，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果解码前数据超过缓存上限，会删除最久未再次加载的图片数据缓存。建议根据应用内存需求，设置合理缓存上限，过大可能导致应用内存使用过高。
 
@@ -138,9 +111,9 @@ setImageRawDataCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageRawDataCacheSize(104857600)
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
@@ -152,9 +125,9 @@ export default {
 }
 ```
 
-## app.setImageFileCacheSize<sup>7+</sup>
+### setImageFileCacheSize<sup>7+</sup>
 
-setImageFileCacheSize(value: number): void
+static setImageFileCacheSize(value: number): void
 
 设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源、缩略图会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。
 
@@ -170,9 +143,9 @@ setImageFileCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageFileCacheSize(209715200)
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
@@ -182,6 +155,49 @@ export default {
     console.info('Application onDestroy')
   },
 }
+```
+
+### ScreenOnVisible<sup>(deprecated)</sup>
+
+static screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
+
+定义屏幕唤醒时是否保持应用可见。
+
+该接口从API Version 8 开始废弃。
+
+**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                              | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ScreenOnVisibleOptions](#screenonvisibleoptions) | 否   | 当启动保活时，锁屏时将阻止系统返回桌面显示，以保持屏幕唤醒时应用可见。 |
+
+### requestFullWindow<sup>(deprecated)</sup>
+
+static requestFullWindow(options?: RequestFullWindowOptions): void
+
+请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
+
+从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                  | 必填 | 说明                                                         |
+| ------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [RequestFullWindowOptions](#requestfullwindowoptions) | 否   | 请求全屏时，设定非全屏到全屏的过渡时间，单位为毫秒，默认时间与非全屏到全屏的距离成正比。 |
+
+**示例：**
+
+```ts
+import app, { AppResponse } from '@system.app'
+export default class Req {
+  requestFullWindow() {
+    app.requestFullWindow({
+      duration: 200
+    })
+  }
+} 
 ```
 
 ## AppResponse
@@ -196,20 +212,6 @@ export default {
 | appName | string | 是 | 表示应用的名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionName | string | 是 | 表示应用的版本名称。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
 | versionCode | number | 是 | 表示应用的版本号。 <br> **系统能力：** SystemCapability.ArkUI.ArkUI.Lite|
-
-## ScreenOnVisible<sup>(deprecated)</sup>
-
-screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
-
-定义屏幕唤醒时是否保持应用可见。
-
-该接口从API Version 8 开始废弃。
-
-**系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- |-------- |
-| options | ScreenOnVisibleOptions | 否 |  当启动保活时，锁屏时将阻止系统返回桌面显示，以保持屏幕唤醒时应用可见。  |
 
 ## ScreenOnVisibleOptions
 

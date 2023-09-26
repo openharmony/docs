@@ -1,8 +1,6 @@
-# @ohos.reminderAgentManager (reminderAgentManager)
+# @ohos.reminderAgentManager (Agent-Powered Reminders)
 
-The **reminderAgentManager** module provides APIs for publishing scheduled reminders through the reminder agent.
-
-You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. When the created reminders are published, the timing and pop-up notification functions of your application will be taken over by the reminder agent in the background when your application is frozen or exits.
+The **reminderAgentManager** module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
 > **NOTE**
 >
@@ -15,12 +13,15 @@ You can use the APIs to create scheduled reminders for countdown timers, calenda
 import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
-
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 
-Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API can be called only after the [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -30,7 +31,7 @@ Publishes a reminder through the reminder agent. This API uses an asynchronous c
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Request used for publishing the reminder.|
   | callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
 
 **Error codes**
@@ -44,30 +45,29 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 ```ts
-let timer = {
-    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
-    triggerTimeInSeconds: 10
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
 }
 
-try {
-    reminderAgentManager.publishReminder(timer, (err, reminderId) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("callback, reminderId = " + reminderId);
-        }
-    });
-} catch (error) {
-    console.log("publishReminder code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: number) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("callback, reminderId = " + reminderId);
+  }
+});
 ```
-
 
 ## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
-Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8).
+Publishes a reminder. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only after the [Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -76,7 +76,7 @@ Publishes a reminder through the reminder agent. This API uses a promise to retu
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Request used for publishing the reminder.|
 
 **Return value**
   | Type| Description|
@@ -94,20 +94,16 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 
 **Example**
 ```ts
-let timer = {
-    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
-    triggerTimeInSeconds: 10
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
 }
 
-try {
-    reminderAgentManager.publishReminder(timer).then((reminderId) => {
-        console.log("promise, reminderId = " + reminderId);
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("publishReminder code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
+  console.log("promise, reminderId = " + reminderId);
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -115,7 +111,7 @@ try {
 
 cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
-Cancels the reminder with the specified ID. This API uses an asynchronous callback to return the cancellation result.
+Cancels a reminder published. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -124,7 +120,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the reminder is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -138,25 +134,21 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.cancelReminder(1, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("cancelReminder callback");
-        }
-    });
-} catch (error) {
-    console.log("cancelReminder code:" + error.code + " message:" + error.message);
-};
+let reminderId: number = 1;
+reminderAgentManager.cancelReminder(reminderId, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("cancelReminder callback");
+  }
+});
 ```
-
 
 ## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number): Promise\<void>
 
-Cancels the reminder with the specified ID. This API uses a promise to return the cancellation result.
+Cancels a reminder published. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -170,7 +162,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void>	 | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -184,23 +176,19 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.cancelReminder(1).then(() => {
-        console.log("cancelReminder promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("cancelReminder code:" + error.code + " message:" + error.message);
-};
+let reminderId: number = 1;
+reminderAgentManager.cancelReminder(reminderId).then(() => {
+  console.log("cancelReminder promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 ## reminderAgentManager.getValidReminders
 
 getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
-
-Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the reminders.
+Obtains all valid (not yet expired) reminders set by the current application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -208,7 +196,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes| Asynchronous callback used to return an array of all valid reminders set by the current application.|
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes| Callback used to return all the valid reminders.|
 
 **Error codes**
 
@@ -221,45 +209,41 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.getValidReminders((err, reminders) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("callback, getValidReminders length = " + reminders.length);
-            for (let i = 0; i < reminders.length; i++) {
-                console.log("getValidReminders = " + reminders[i]);
-                console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-                for (let j = 0; j < reminders[i].actionButton.length; j++) {
-                    console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-                    console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-                }
-                console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-                console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-                console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-                console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-                console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-                console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-                console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-                console.log("getValidReminders, title = " + reminders[i].title);
-                console.log("getValidReminders, content = " + reminders[i].content);
-                console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-                console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-                console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-                console.log("getValidReminders, slotType = " + reminders[i].slotType);
-            }
-        }
-    })
-} catch (error) {
-    console.log("getValidReminders code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("callback, getValidReminders length = " + reminders.length);
+    for (let i = 0; i < reminders.length; i++) {
+      console.log("getValidReminders = " + reminders[i]);
+      console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+      for (let j = 0; j < reminders[i].actionButton.length; j++) {
+        console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+        console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+      }
+      console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+      console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+      console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+      console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+      console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+      console.log("getValidReminders, title = " + reminders[i].title);
+      console.log("getValidReminders, content = " + reminders[i].content);
+      console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+      console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+      console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+      console.log("getValidReminders, slotType = " + reminders[i].slotType);
+    }
+  }
+});
 ```
 
 ## reminderAgentManager.getValidReminders
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the reminders.
+Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -267,7 +251,7 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return an array of all valid reminders set by the current application.|
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return all the valid reminders.|
 
 **Error codes**
 
@@ -280,44 +264,39 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.getValidReminders().then((reminders) => {
-        console.log("promise, getValidReminders length = " + reminders.length);
-        for (let i = 0; i < reminders.length; i++) {
-            console.log("getValidReminders = " + reminders[i]);
-            console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-            for (let j = 0; j < reminders[i].actionButton.length; j++) {
-                console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-                console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-            }
-            console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-            console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-            console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-            console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-            console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-            console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-            console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-            console.log("getValidReminders, title = " + reminders[i].title);
-            console.log("getValidReminders, content = " + reminders[i].content);
-            console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-            console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-            console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-            console.log("getValidReminders, slotType = " + reminders[i].slotType);
-        }
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("getValidReminders code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentManager.ReminderRequest>) => {
+  console.log("promise, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+    }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
-
 
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback\<void>): void
 
-Cancels all reminders set by the current application. This API uses an asynchronous callback to return the cancellation result.
+Cancels all reminders set by the current application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -325,7 +304,7 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If all the reminders are canceled, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -338,25 +317,20 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.cancelAllReminders((err, data) =>{
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("cancelAllReminders callback")
-        }
-    })
-} catch (error) {
-    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.cancelAllReminders((err: BusinessError, data: void) =>{
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("cancelAllReminders callback")
+  }
+});
 ```
-
 
 ## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(): Promise\<void>
 
-Cancels all reminders set by the current application. This API uses a promise to return the cancellation result.
+Cancels all reminders set by the current application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -364,7 +338,7 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -377,15 +351,11 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 **Example**
 
 ```ts
-try {
-    reminderAgentManager.cancelAllReminders().then(() => {
-        console.log("cancelAllReminders promise")
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.cancelAllReminders().then(() => {
+  console.log("cancelAllReminders promise")
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -401,28 +371,25 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-try {
-    reminderAgentManager.addNotificationSlot(mySlot, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("addNotificationSlot callback");
-        }
-    });
-} catch (error) {
-    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
-};
+
+reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("addNotificationSlot callback");
+  }
+});
 ```
 
 
@@ -438,31 +405,27 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. Only the type can be set.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot: notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-try {
-    reminderAgentManager.addNotificationSlot(mySlot).then(() => {
-        console.log("addNotificationSlot promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.addNotificationSlot(mySlot).then(() => {
+  console.log("addNotificationSlot promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 
@@ -470,7 +433,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
-Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Removes a notification slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -479,24 +442,21 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is removed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-try {
-    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-        if (err) {
-            console.log("callback err code:" + err.code + " message:" + err.message);
-        } else {
-            console.log("removeNotificationSlot callback");
-        }
-    });
-} catch (error) {
-    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
+  (err: BusinessError, data: void) => {
+  if (err) {
+    console.log("callback err code:" + err.code + " message:" + err.message);
+  } else {
+    console.log("removeNotificationSlot callback");
+  }
+});
 ```
 
 
@@ -504,7 +464,7 @@ try {
 
 removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
-Removes a notification slot of a specified type. This API uses a promise to return the result.
+Removes a notification slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -518,27 +478,23 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-try {
-    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-        console.log("removeNotificationSlot promise");
-    }).catch(err => {
-        console.log("promise err code:" + err.code + " message:" + err.message);
-    });
-} catch (error) {
-    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
-};
+reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+  console.log("removeNotificationSlot promise");
+}).catch((err: BusinessError) => {
+  console.log("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 ## ActionButtonType
 
-Enumerates button types.
+Enumerates the button types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -551,7 +507,7 @@ Enumerates button types.
 
 ## ReminderType
 
-Enumerates reminder types.
+Enumerates the reminder types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -564,8 +520,7 @@ Enumerates reminder types.
 
 ## ActionButton
 
-Defines a button displayed for the reminder in the notification panel.
-
+Defines the button on the reminder displayed.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -573,7 +528,7 @@ Defines a button displayed for the reminder in the notification panel.
 | -------- | -------- | -------- | -------- |
 | title | string | Yes| Text on the button.|
 | type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
-| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | No| Ability information that is displayed after the button is clicked.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | No| Information about the ability that is displayed after the button is clicked.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 
 
 ## WantAgent
@@ -592,28 +547,28 @@ Defines the information about the redirected-to ability.
 
 ## MaxScreenWantAgent
 
-Provides the information about the target package and ability to start automatically when the reminder is displayed in full-screen mode. This API is reserved.
+Provides the information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. This API is reserved.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the package that is automatically started when the reminder arrives and the device is not in use.|
-| abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
+| pkgName | string | Yes| Name of the target package. (If the device is in use, only a notification banner is displayed.)|
+| abilityName | string | Yes| Name of the target ability. (If the device is in use, only a notification banner is displayed.)|
 
 
 ## ReminderRequest
 
-Defines the reminder to publish.
+Defines the request for publishing a reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | No| Button displayed for the reminder in the notification panel. For common applications, a maximum of two buttons are supported. For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| actionButton<sup></sup> | [ActionButton](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
 | snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
 | timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes.|
@@ -623,8 +578,8 @@ Defines the reminder to publish.
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
-| tapDismissed<sup>10+</sup> | boolean | No| Whether the notification is automatically cleared. The value is the same as that of [NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
-| autoDeletedTime<sup>10+</sup> | number | No| Time when the notification is automatically cleared. The value is the same as that of [NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
+| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest). |
+| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
 
 
 ## ReminderRequestCalendar

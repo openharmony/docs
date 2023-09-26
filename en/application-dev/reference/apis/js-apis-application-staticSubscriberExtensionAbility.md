@@ -4,7 +4,7 @@ The **StaticSubscriberExtensionAbility** module provides Extension abilities for
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
 ## Modules to Import
@@ -15,11 +15,13 @@ import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriber
 
 ## Attributes
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                                        | Readable| Writable| Description    |
 | ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
-| context | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | Yes  | No  | Context.|
+| context<sup>10+</sup> | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | Yes  | No  | Context.|
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 

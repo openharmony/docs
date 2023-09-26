@@ -5,6 +5,8 @@
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [卡片错误码](errorcode-form.md)
+- AI业务
+  - [智能语音错误码](errorcode-intelligentVoice.md)
 - 包管理
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [zlib子系统错误码](errorcode-zlib.md)
@@ -16,6 +18,8 @@
   - [动画错误码](errorcode-animator.md)
   - [弹窗错误码](errorcode-promptAction.md)
   - [页面路由错误码](errorcode-router.md)
+  - [用户界面外观服务错误码](errorcode-uiappearance.md)
+  - [拖拽事件错误码](errorcode-drag-event.md)
 - 图形图像
   - [色彩管理错误码](errorcode-colorspace-manager.md)
   - [屏幕错误码](errorcode-display.md)
@@ -24,6 +28,8 @@
   - [Audio错误码](errorcode-audio.md)
   - [Media错误码](errorcode-media.md)
   - [媒体会话管理错误码](errorcode-avsession.md)
+  - [Camera错误码](errorcode-camera.md)
+  - [Image错误码](errorcode-image.md)
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
@@ -38,6 +44,7 @@
   - [crypto framework错误码](errorcode-crypto-framework.md)
   - [cert错误码](errorcode-cert.md)
   - [用户认证错误码](errorcode-useriam.md)
+  - [DLP服务错误码](errorcode-dlp.md)
 - 数据管理
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
@@ -55,11 +62,15 @@
   - [网络连接管理错误码](errorcode-net-connection.md)
   - [以太网连接错误码](errorcode-net-ethernet.md)
   - [网络共享错误码](errorcode-net-sharing.md)
+  - [策略管理错误码](errorcode-net-policy.md)
   - [MDNS错误码](errorcode-net-mdns.md)
+  - [流量管理错误码](errorcode-net-statistics.md)
+  - [VPN错误码](errorcode-net-vpn.md)
 - 通信与连接
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
+  - [SE(secureElement)错误码](errorcode-se.md)
   - [RPC错误码](errorcode-rpc.md)
 - 系统基础能力
   - [无障碍子系统错误码](errorcode-accessibility.md)

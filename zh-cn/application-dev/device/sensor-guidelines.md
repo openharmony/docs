@@ -15,67 +15,65 @@
 | ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化 |
 | ohos.sensor | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | 获取一次传感器数据变化 |
 | ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听 |
+| ohos.sensor | sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| 获取设备上的所有传感器信息 |
 
 
 ## 开发步骤
 
-1. 获取设备上传感器的数据前，需要检查是否已经配置请求相应的权限。 <br>
-     系统提供的传感器权限有：
-   - ohos.permission.ACCELEROMETER
+开发步骤以加速度传感器ACCELEROMETER为例。
 
-   - ohos.permission.GYROSCOPE
+1. 导入模块。
 
-   - ohos.permission.ACTIVITY_MOTION
-
-   - ohos.permission.READ_HEALTH_DATA
-
-   具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
-   
-2. 以下场景以加速度传感器ACCELEROMETER为例。展示持续监听传感器接口的调用结果。
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
-   });
+   ```ts
+   import sensor from '@ohos.sensor';
+   import { BusinessError } from '@ohos.base';
    ```
-   
-   ![171e6f30-a8d9-414c-bafa-b430340305fb](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
-3. 注销传感器数据监听。
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.off(sensor.SensorId.ACCELEROMETER);
-   ```
-   
-   ![65d69983-29f6-4381-80a3-f9ef2ec19e53](figures/65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
+2. 查询设备支持的所有传感器的参数。
 
-4. 获取一次传感器数据变化。
-  
-   ```js
-   import sensor from "@ohos.sensor";
-   sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
-   });
-   ```
-   
-   ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](figures/db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
-
-   若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
-
-    ```js
-   import sensor from "@ohos.sensor";
-    try {
-      sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
-          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // 获取数据成功
-      });
-    } catch (error) {
-      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
-    }
+    ```ts    
+    sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
+        if (error) {
+            console.info('getSensorList failed');
+        } else {
+            console.info('getSensorList success');
+            for (let i = 0; i < data.length; i++) {
+                console.info(JSON.stringify(data[i]));
+            }
+        }
+    });
     ```
-## 相关实例
 
-针对传感器开发，有以下相关实例可供参考：
+    ![输入图片说明](figures/001.png)
 
-- [`Sensor`：传感器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Sensor)
+    可以看到该传感器支持的最小采样周期为5000000纳秒，支持的最大采样周期是200000000纳秒，传感器上报周期interval应该设置在该范围内。
+
+3. 检查是否已经配置相应权限，具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
+
+4. 注册监听。可以通过on()和once()两种接口监听传感器的调用结果。
+
+- 通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
+
+    ```ts    
+    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+    }, { interval: 100000000 });
+    ```
+
+    ![输入图片说明](figures/002.png)
+
+- 通过once()接口，实现对传感器的一次监听。
+
+    ```ts  
+    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+        console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
+    });
+    ```
+
+    ![输入图片说明](figures/003.png)
+
+5. 取消持续监听。
+
+    ```ts
+    sensor.off(sensor.SensorId.ACCELEROMETER);
+    ```

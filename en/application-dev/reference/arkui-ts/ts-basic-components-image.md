@@ -1,6 +1,6 @@
 # Image
 
-The **\<Image>** component is used to render and display local and online images.
+The **\<Image>** component is usually used to display images in applications. It supports images in PNG, JPG, BMP, SVG, or GIF format from the following data sources: [PixelMap](../apis/js-apis-image.md#pixelmap7), [ResourceStr](ts-types.md#resourcestr), or [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
 
 > **NOTE**
 >
@@ -23,294 +23,197 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 Obtains an image from the specified source for subsequent rendering and display.
 
+If the **\<Image>** component fails to obtain the image or the obtained image size is 0, the **\<Image>** component is automatically resized to 0 and does not follow the layout constraints of its parent component.
+
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name | Type                                    | Mandatory  | Description                                    |
-| ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  |  [PixelMap](../apis/js-apis-image.md#pixelmap7) \| ResourceStr\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes   | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://** prefix are supported, which are used to access the image path provided by a Data ability.<br/>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the current application. Ensure that the application has the read permission to the files in the specified path.<br/>\- [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) objects are supported.<br/>- For details, see [Displaying Images](../../ui/arkts-graphics-display.md).<br/>**NOTE**<br/>- ArkTS widgets support GIF animations, but the animations only play once on display.<br/>- ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file:///data/storage** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.|
+| Name| Type                                                    | Mandatory| Description                                                    |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http://** or **file://** prefix, or the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+For details about how to use attributes, see [Setting Attributes](../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                      | Type                                    | Description                                      |
-| ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| alt                      | string \| [Resource](ts-types.md#resource)| Placeholder image displayed during loading. Local images are supported.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectFit                | [ImageFit](ts-appendix-enums.md#imagefit) | Image scale mode.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectRepeat             | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | Whether the image is repeated.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| interpolation            | [ImageInterpolation](#imageinterpolation) | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
-| renderMode               | [ImageRenderMode](#imagerendermode)      | Rendering mode of the image.<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| sourceSize               | {<br>width: number,<br>height: number<br>} | Size of the decoded image. The original image is decoded into a **pixelMap** of the specified size, in px.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects or SVG images.|
-| matchTextDirection       | boolean                                  | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fitOriginalSize          | boolean                                  | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fillColor                | [ResourceColor](ts-types.md#resourcecolor) | Fill color. This attribute only applies to an SVG image. Once set, the fill color will replace that of the SVG image.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| autoResize               | boolean                                  | Whether to resize the image source used for drawing based on the size of the display area during image decoding. This resizing can help reduce the memory usage.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| syncLoad<sup>8+</sup>    | boolean                                  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether the image can be copied. (SVG images cannot be copied.)<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.|
-| colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)  | Color filter of the image.<br>This API is supported in ArkTS widgets.      |
-| draggable<sup>9+</sup>   | boolean                                  | Whether the image is draggable. This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>This API is supported in ArkTS widgets.|
+| Name                            | Type                                               | Description                                                        |
+| -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| alt                              | string \| [Resource](ts-types.md#resource)         | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| objectFit                        | [ImageFit](ts-appendix-enums.md#imagefit)               | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| objectRepeat                     | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| interpolation                    | [ImageInterpolation](#imageinterpolation)               | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When the image is zoomed out, high quality interpolation is not applicable. You are advised to use medium or low quality interpolation instead.<br>This attribute is not applicable to SVG images.|
+| renderMode                       | [ImageRenderMode](#imagerendermode)                     | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| sourceSize                       | {<br>width: number,<br>height: number<br>} | Decoding size of the image. This attribute can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: px<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute works only when the target size is smaller than the source size.<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
+| matchTextDirection               | boolean                                                 | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fitOriginalSize                  | boolean                                                 | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fillColor                        | [ResourceColor](ts-types.md#resourcecolor)              | Fill color to be superimposed on the image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute applies only to an SVG image. Once set, the fill color will replace that of the SVG image.|
+| autoResize                       | boolean                                                 | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>As downsampling images results in some loss of information, it may reduce the image quality, causing issues such as aliasing. To retain the original image quality, set **autoResize** to **false**.|
+| syncLoad<sup>8+</sup>            | boolean                                                 | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.|
+| copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>SVG images cannot be copied.|
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>The RGBA values are floating-point numbers between 0 and 1. When the diagonal value of the matrix is 1, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
+| draggable| boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>**NOTE**<br>This API is supported since API version 9.|
 
 >  **NOTE**
 >
->  To use shortcut keys to copy the image, the image must be in focus. To enable the image to gain focus, set both the **focusable** and **focusOnTouch** attributes to **true**.
->
->  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, and **polygon**.
+>  - To use shortcut keys to copy the **\<Image>** component, the component must be [in focus](../../ui/arkts-common-events-focus-event.md#setting-whether-a-component-is-focusable). By default, the **\<Image>** component is not focusable. To enable it to gain focus, set both the [focusable](ts-universal-attributes-focus.md) and [focusOnTouch](ts-universal-attributes-focus.md) attributes to **true**.
+>  - For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, and **polygon**.
 
-### ImageInterpolation
-
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name    | Description                       |
-| ------ | ------------------------- |
-| None   | Interpolation image data is not used.               |
-| High   | The interpolation image data is used at the high level, which may affect the image rendering speed.|
-| Medium | The interpolation image data is used at the medium level.             |
-| Low    | The interpolation image data is used at the low level.             |
-
-### ImageRenderMode
+## ImageInterpolation
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name      | Description                   |
-| -------- | --------------------- |
-| Original | The image is rendered based on the original image, including the color.       |
-| Template | The image is rendered as a template image, and its color is ignored.|
+| Name  | Description                                                |
+| ------ | ---------------------------------------------------- |
+| None   | No image interpolation.                                    |
+| High   | High quality interpolation. This mode produces scaled images of the highest possible quality, but may require more image rendering time.|
+| Medium | Medium quality interpolation.                                        |
+| Low    | Low quality interpolation.                                        |
+
+## ImageRenderMode
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name    | Description          |
+| -------- | -------------- |
+| Original | Render image pixels as they are in the original source image.|
+| Template | Render image pixels to create a monochrome template image.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onComplete(callback: (event?: { width: number, height: number, componentWidth: number,<br> componentHeight: number, loadingStatus: number }) =&gt; void) | Triggered when an image is successfully loaded. The size of the loaded image is returned.<br>- **width**: width of the image, in pixels.<br>- **height**: height of the image, in pixels.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>- **loadingStatus**: image loading status.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value **1** means that the image is successfully loaded, and **0** means the opposite.|
-| onError(callback: (event?: { componentWidth: number, componentHeight: number , message<sup>9+</sup>: string }) =&gt; void) | Triggered when an exception occurs during image loading.<br>- **componentWidth**: width of the container component, in pixels.<br>- **componentHeight**: height of the container component, in pixels.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| onFinish(event: () =&gt; void) | Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered.<br>Since API version 9, this API is supported in ArkTS widgets.|
+### onComplete
+
+onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number,contentWidth: number, contentHeight: number, contentOffsetX: number, contentOffsetY: number}) =&gt; void) }) =&gt; void)
+
+Triggered when an image is successfully loaded or decoded. The size of the loaded image is returned.
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Parameters**
+
+| Name                      | Type  | Description                                                        |
+| ---------------------------- | ------ | ------------------------------------------------------------ |
+| width                        | number | Width of the image.<br>Unit: pixel                                   |
+| height                       | number | Height of the image.<br>Unit: pixel                                   |
+| componentWidth               | number | Width of the component.<br>Unit: pixel                                   |
+| componentHeight              | number | Height of the component.<br>Unit: pixel                                   |
+| loadingStatus                | number | Loading status of the image.<br>**NOTE**<br>If the return value is **0**, the image is successfully loaded. If the return value is **1**, the image is successfully decoded.|
+| contentWidth<sup>10+</sup>   | number | Actual rendered width of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentHeight<sup>10+</sup>  | number | Actual rendered height of the image.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentOffsetX<sup>10+</sup> | number | Offset of the rendered content relative to the component on the x-axis.<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+| contentOffsetY<sup>10+</sup> | number | Offset of the rendered content relative to the component on the y-axis<br>Unit: pixel<br>**NOTE**<br>This parameter is valid only when the return value of **loadingStatus** is **1**.|
+
+
+### onError
+
+onError(callback: (event?: { componentWidth: number, componentHeight: number , message: string }) =&gt; void)
+
+Triggered when an error occurs during image loading.
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Parameters**
+
+| Name              | Type  | Description                     |
+| -------------------- | ------ | ------------------------- |
+| componentWidth       | number | Width of the component.<br>Unit: pixel|
+| componentHeight      | number | Height of the component.<br>Unit: pixel|
+| message<sup>9+</sup> | string | Error information.               |
+
+
+### onFinish
+
+onFinish(event: () =&gt; void)
+
+Triggered when the animation playback in the loaded SVG image is complete. If the animation is an infinite loop, this callback is not triggered.
+
+Only SVG images are supported.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 ## Example
 
-### Loading Images
+### Loading Images of Basic Types
 
-Load and display different types of images and set the scale mode of the images.
-
-The **overlay** attribute sets the mask text of an image. For details, see [Overlay](ts-universal-attributes-overlay.md).
 
 ```ts
 @Entry
 @Component
 struct ImageExample1 {
-  private on: string = 'www.example.com' 
-  @State src: string = this.on
-
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('default').fontSize(16).fontColor(0xcccccc).height(30)
-        Row({ space: 5 }) {
-          Image($r('app.media.ic_png'))
-            .width(110).height(110).border({ width: 1 })
+        Row() {
+          // Load a PNG image.
+          Image($r('app.media.ic_camera_master_ai_leaf'))
+            .width(110).height(110).margin(15)
             .overlay('png', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_gif'))
-            .width(110).height(110).border({ width: 1 })
+          // Load a GIF image.
+          Image($r('app.media.loading'))
+            .width(110).height(110).margin(15)
             .overlay('gif', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.ic_svg'))
-            .width(110).height(110).border({ width: 1 })
+        }
+        Row() {
+          // Load an SVG image.
+          Image($r('app.media.ic_camera_master_ai_clouded'))
+            .width(110).height(110).margin(15)
             .overlay('svg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .width(110).height(110).border({ width: 1 })
+          // Load a JPG image.
+          Image($r('app.media.ic_public_favor_filled'))
+            .width(110).height(110).margin(15)
             .overlay('jpg', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image(this.src)
-            .width(110).height(110).border({ width: 1 })
-            .overlay('network', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25, bottom: 10 })
-      }
-
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-        Text('objectFit').fontSize(16).fontColor(0xcccccc).height(30)
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.None).width(110).height(110)
-            .overlay('None', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Fill).width(110).height(110)
-            .overlay('Fill', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Cover).width(110).height(110)
-            .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         }
-        Row({ space: 5 }) {
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.Contain).width(110).height(110)
-            .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-          Image($r('app.media.img_example_w250'))
-            .border({ width: 1 })
-            .objectFit(ImageFit.ScaleDown).width(110).height(110)
-            .overlay('ScaleDown', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        }.margin({ top: 25 })
       }
     }.height(320).width(360).padding({ right: 10, top: 10 })
   }
 }
 ```
 
-![en-us_image_0000001211898484](figures/en-us_image_0000001211898484.gif)
-
-
+![en-us_image_0000001592882500](figures/en-us_image_0000001592882500.gif)
 
 ### Loading Online Images
 
-The default network timeout period is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure the placeholder image displayed during loading. If more flexible network configuration is required, you can use the [HTTP](../../connectivity/http-request.md) tool provided in the SDK to send a network request, and then decode the returned data into **PixelMap** objects in the **\<Image>** component. For details about image development, see [Image Processing](../../media/image-overview.md). The code snippet is as follows:
+The default network timeout period is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure the placeholder image displayed during loading. If more flexible network configuration is required, you can use the [HTTP](../../connectivity/http-request.md) tool to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Image Processing](../../media/image-overview.md).
 
-```tsx
-// @ts-nocheck
-import http from '@ohos.net.http';
-import ResponseCode from '@ohos.net.http'
-import image from '@ohos.multimedia.image'
-
-
-@Entry 
-@Component 
-struct Index {
-    
-  // Create a PixelMap state variable to receive online images.
-  @State image: PixelMap = undefined
-
-  build() {
-    Column({space: 10}) {
-      Button ("Get Online Image")
-        .onClick(() => {
-          this.httpRequest()
-        })
-      Image(this.image).height(100).width(100)
-    }
-    .width('100%')
-    .height('100%')
-    .padding(10)
-  }
-
-  // Request an online image.
-  private httpRequest() {
-    let httpRequest = http.createHttp()
-	
-    httpRequest.request(
-      "https://www.example.com/xxx.png",   // Enter a specific URL of the online image.
-      (error, data) => {
-        if(error) {
-          console.log("error code: " + error.code + ", msg: " + error.message)
-        } else {
-          let code = data.responseCode
-          if(ResponseCode.ResponseCode.OK == code) {
-            let imageSource = image.createImageSource(data.result)
-            let options = {alphaType: 0,                     // Opacity
-                           editable: false,                  // Whether the image is editable
-                           pixelFormat: 3,                   // Pixel format
-                           scaleMode: 1,                     // Scale mode
-                           size: {height: 100, width: 100}} // Image size
-            imageSource.createPixelMap(options).then((pixelMap) => {
-              this.image = pixelMap
-            })
-          } else {
-            console.log("response code: " + code)
-          }
-        }
-      }
-    )
-  }
-}
-```
-
-> **NOTE**
->
-> For details about the request mode, timeout, and additional request parameters for loading online images, see [request()](../../reference/apis/js-apis-http.md) in the HTTP module.
-
-### Setting Attributes
+To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
 
 ```ts
 @Entry
 @Component
 struct ImageExample2 {
-
   build() {
     Column({ space: 10 }) {
-      Text('renderMode').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
-      Row({ space: 50 }) {
-        Image($r('app.media.img_example'))
-          .renderMode(ImageRenderMode.Original).width(100).height(100)
-          .border({ width: 1 })
-          .overlay('Original', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_example'))
-          .renderMode(ImageRenderMode.Template).width(100).height(100)
-          .border({ width: 1 })
-          .overlay('Template', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-      
-      Text('alt').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
-      Image('')
-        .alt($r('app.media.Image_none'))
-        .width(100).height(100).border({ width: 1 })
-        
-      Text('sourceSize').fontSize(12).fontColor(0xcccccc).width('96%')
-      Row({ space: 50 }) {
-        Image($r('app.media.img_example'))
-          .sourceSize({
-            width: 150,
-            height: 150
-          })
-          .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 })
-          .overlay('w:150 h:150', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.img_example'))
-          .sourceSize({
-            width: 200,
-            height: 200
-          })
-          .objectFit(ImageFit.ScaleDown).width('25%').aspectRatio(1)
-          .border({ width: 1 })
-          .overlay('w:200 h:200', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-      
-      Text('objectRepeat').fontSize(12).fontColor(0xcccccc).width('96%').height(30)
-      Row({ space: 5 }) {
-        Image($r('app.media.ic_health_heart'))
-          .width(120).height(125).border({ width: 1 })
-          .objectRepeat(ImageRepeat.XY).objectFit(ImageFit.ScaleDown)
-          .overlay('ImageRepeat.XY', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 })
-          .objectRepeat(ImageRepeat.Y).objectFit(ImageFit.ScaleDown)
-          .overlay('ImageRepeat.Y', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-        Image($r('app.media.ic_health_heart'))
-          .width(110).height(125).border({ width: 1 })
-          .objectRepeat(ImageRepeat.X).objectFit(ImageFit.ScaleDown)
-          .overlay('ImageRepeat.X', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
-      }
-    }.height(150).width('100%').padding({ right: 10 })
+      Image("https://www.example.com/xxx.png")// Enter an image URL.
+        .alt($r('app.media.icon'))// Use alt to set a placeholder image displayed during image loading.
+        .width(100)
+        .height(100)
+    }
   }
 }
 ```
 
-![en-us_image_0000001212058474](figures/en-us_image_0000001212058474.png)
 
-### Invoking Events
+### Adding Events to an Image
+
 
 ```ts
+class tmp{
+  width: number = 0
+  height: number = 0
+}
+let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0
-  @State heightValue: number = 0
-  private on: Resource = $r('app.media.image_on')
-  private off: Resource = $r('app.media.image_off')
-  private on2off: Resource = $r('app.media.image_on2off')
-  private off2on: Resource = $r('app.media.image_off2on')
-  @State src: Resource = this.on
+  @State widthValue: number = 0;
+  @State heightValue: number = 0;
+  private on: Resource = $r('app.media.image_on');
+  private off: Resource = $r('app.media.image_off');
+  private on2off: Resource = $r('app.media.image_on2off');
+  private off2on: Resource = $r('app.media.image_off2on');
+  @State src: Resource = this.on;
 
   build() {
     Column() {
@@ -325,9 +228,11 @@ struct ImageExample3 {
             .objectFit(ImageFit.Cover)
             .height(180).width(180)
             // Obtain the size of an image after the image loading is complete.
-            .onComplete((msg: { width: number,height: number }) => {
-              this.widthValue = msg.width
-              this.heightValue = msg.height
+            .onComplete(msg => {
+              if(msg){
+                this.widthValue = msg.width
+                this.heightValue = msg.height
+              }
             })
             .onError(() => {
               console.log('load image fail')
@@ -360,144 +265,4 @@ struct ImageExample3 {
 }
 ```
 
-![en-us_image_0000001256858397](figures/en-us_image_0000001256858397.gif)
-
-###  Rendering Sandbox Images
-
-```ts
-import fileio from '@ohos.fileio';
-import fs from '@ohos.file.fs';
-import context from '@ohos.app.ability.common';
-
-@Entry
-@Component
-struct LoadImageExample {
-  @State resourcesPath: string = ''
-  @State sandboxPath: string = ''
-  context: context.UIAbilityContext = getContext(this) as context.UIAbilityContext
-
-  build() {
-    Column() {
-      Button ('Read Sandbox Image')
-        .margin({ bottom: 10, top: 10 })
-        .onClick(() => {
-          this.sandboxPath = this.context.getApplicationContext().filesDir + '/icon.png'
-          console.log(`Read the sandbox image=========>${this.sandboxPath}`)
-          let fd = fs.openSync(this.sandboxPath, 0o100)
-          console.log(`create file========>${fd}`)
-          let srcPath = this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
-          console.log('mySrcpath' + srcPath)
-          fileio.copyFileSync(srcPath, this.sandboxPath) // Copy the image to the sandbox path.
-          this.sandboxPath = 'file://' + this.context.getApplicationContext().filesDir + '/icon.png'
-        })
-      Button ('Read Image')
-        .margin({ bottom: 10 })
-        .onClick(() => {
-          this.resourcesPath = 'file://' + this.context.bundleCodeDir + '/entry/resources/base/media/icon.png'
-        })
-      Text(`Image path: ${this.resourcesPath}`)
-        .fontSize(20)
-        .margin({ bottom: 10 })
-      Image(this.resourcesPath)
-        .width(100)
-        .height(100)
-        .colorFilter([
-          0.30, 0.59, 0.11, 0, 0,
-          0.30, 0.59, 0.11, 0, 0,
-          0.30, 0.59, 0.11, 0, 0,
-          0, 0, 0, 1.0, 0
-        ])
-      Text(`Sandbox image path: ${this.sandboxPath}`)
-        .fontSize(20)
-        .margin({ bottom: 10 })
-      Image(this.sandboxPath)
-        .width(100)
-        .height(100)
-    }
-    .width('100%').height('100%')
-  }
-}
-```
-
-### Applying a Filter to an Image
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct colorFilterExample {
-  @State colorFilterR: number = 0
-  @State colorFilterG: number = 0
-  @State colorFilterB: number = 0
-  @State colorFilterA: number = 0
-
-  build() {
-    Row() {
-      Column() {
-        Image($r('app.media.sky'))
-          .width(200)
-          .height(200)
-        Image($r('app.media.sky'))
-          .width(200)
-          .height(200)
-          .colorFilter([
-          this.colorFilterR, 0, this.colorFilterR, 0, 0,
-            0, this.colorFilterG, this.colorFilterG, 0, 0,
-          this.colorFilterB, 0, this.colorFilterB, 0, 0,
-            0, 0, this.colorFilterA, 0, 0
-          ])
-
-        Row() {
-          Text('R')
-          Slider({
-            min: 0,
-            max: 1,
-            step: 0.01
-          })
-            .onChange((valueR) => {
-              this.colorFilterR = valueR
-            })
-        }
-
-        Row() {
-          Text('G')
-          Slider({
-            min: 0,
-            max: 1,
-            step: 0.01
-          })
-            .onChange((valueG) => {
-              this.colorFilterG = valueG
-            })
-        }
-
-        Row() {
-          Text('B')
-          Slider({
-            min: 0,
-            max: 1,
-            step: 0.01
-          })
-            .onChange((valueB) => {
-              this.colorFilterB = valueB
-            })
-        }
-
-        Row() {
-          Text('A')
-          Slider({
-            min: 0,
-            max: 1,
-            step: 0.01
-          })
-            .onChange((valueA) => {
-              this.colorFilterA = valueA
-            })
-        }
-      }.width('90%').alignItems(HorizontalAlign.Center)
-    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
-  }
-}
-```
-
-![colorFilter](figures/colorFilter.gif)
+![en-us_image_0000001607845173](figures/en-us_image_0000001607845173.gif)

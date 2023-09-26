@@ -26,7 +26,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 此枚举值用于标识过滤条件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API：**  此接口为系统接口。
 
@@ -39,7 +39,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 
 此过滤值用于过滤查询的ability类型。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API：**  此接口为系统接口。
 
@@ -57,7 +57,7 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API：**  此接口为系统接口。
 
@@ -72,17 +72,20 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter)
         .then(() => {
             console.info('queryBusinessAbilityInfo success');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error('queryBusinessAbilityInfo failed ' + error.message);
         });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```
 
@@ -94,7 +97,7 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API：**  此接口为系统接口。
 
@@ -114,7 +117,9 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 
 ```ts
 import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
-let filter = {businessType: businessAbilityRouter.BusinessType.SHARE};
+import { BusinessError } from '@ohos.base';
+
+let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
     businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
@@ -125,6 +130,7 @@ try {
         console.info('queryBusinessAbilityInfo success');
     });
 } catch (error) {
-    console.error('queryBusinessAbilityInfo failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('queryBusinessAbilityInfo failed ' + message);
 }
 ```

@@ -2,9 +2,9 @@
 
 创建并显示文本提示框、对话框和操作菜单。
 
-> **说明：**
+> **说明：** 
 >
-> - 从API Version 8 开始，该接口不再维护，推荐使用新接口[`@ohos.prompt`](js-apis-prompt.md)。
+> - 从API Version 8 开始，该接口不再维护，推荐使用新接口[@ohos.promptAction (弹窗)](js-apis-promptAction.md)。
 >
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -13,7 +13,7 @@
 ## 导入模块
 
 
-```js
+```ts
 import prompt from '@system.prompt';
 ```
 
@@ -33,15 +33,17 @@ showToast(options: ShowToastOptions): void
 
 **示例：** 
 
-```js
-export default {    
-  showToast() {        
-    prompt.showToast({            
-      message: 'Message Info',            
+```ts
+import prompt from '@system.prompt';
+class A{
+  showToast() {
+    prompt.showToast({
+      message: 'Message Info',
       duration: 2000
-    });    
+    });
   }
 }
+export default new A()
 ```
 
 
@@ -62,27 +64,29 @@ showDialog(options: ShowDialogOptions): void
 
 **示例：**
 
-```js
-export default {    
-  showDialog() {       
-    prompt.showDialog({           
-      title: 'Title Info',            
-      message: 'Message Info',          
-      buttons: [                
-        {                    
-           text: 'button',                   
-           color: '#666666'          
-         },            
-       ],            
-       success: function(data) {                
-         console.log('dialog success callback，click button : ' + data.index);            
-       },            
-       cancel: function() {                
-         console.log('dialog cancel callback');            
-       },
-     });    
+```ts
+import prompt from '@system.prompt';
+class B{
+  showDialog() {
+    prompt.showDialog({
+      title: 'Title Info',
+      message: 'Message Info',
+      buttons: [
+        {
+          text: 'button',
+          color: '#666666'
+        },
+      ],
+      success: (data)=> {
+        console.log('dialog success callback，click button : ' + data.index);
+      },
+      cancel: ()=> {
+        console.log('dialog cancel callback');
+      },
+    });
   }
 }
+export default new B()
 ```
 
 ## prompt.showActionMenu<sup>6+</sup>
@@ -102,30 +106,32 @@ showActionMenu(options: ShowActionMenuOptions): void
 
 **示例：**
 
-```js
-export default {    
-  showActionMenu() {        
-    prompt.showActionMenu({            
-      title: 'Title Info',            
-      buttons: [                
-        {                    
-          text: 'item1',                    
-          color: '#666666'            
-        },                
-        {                    
-           text: 'item2',                    
-           color: '#000000'         
-        },           
-      ],            
-      success: function(tapIndex) {                
-        console.log('dialog success callback，click button : ' + tapIndex);            
-      },            
-      fail: function(errMsg) {                
-        console.log('dialog fail callback' + errMsg);            
-      },       
-    });    
+```ts
+import prompt from '@system.prompt';
+class C{
+  showActionMenu() {
+    prompt.showActionMenu({
+      title: 'Title Info',
+      buttons: [
+        {
+          text: 'item1',
+          color: '#666666'
+        },
+        {
+          text: 'item2',
+          color: '#000000'
+        },
+      ],
+      success: (tapIndex)=> {
+        console.log('dialog success callback，click button : ' + tapIndex);
+      },
+      fail: (errMsg)=> {
+        console.log('dialog fail callback' + errMsg);
+      },
+    });
   }
 }
+export default new C()
 ```
 ## ShowToastOptions
 

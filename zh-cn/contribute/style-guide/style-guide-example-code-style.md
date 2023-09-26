@@ -15,6 +15,75 @@
 
 API参考中，每个接口（包括方法和组件）均需要提供示例代码。如果多个API存在关联关系，则需要在一个场景化的代码示例中体现。
 
+### 【规则】每个接口提供的示例代码中无须增加`try...catch...`
+
+【描述】
+
+在接口示例代码中，为了保持示例代码的简洁性和易读性，不需要为每个接口调用添加`try...catch...`语句来捕获异常。
+
+示例代码主要用于演示如何正确地使用接口，并提供了正确的处理方式。添加异常处理代码可能会使示例代码变得冗长且难以理解。
+
+【正例】
+
+```ts
+// 正例1：
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+this.context.startAbility(want)
+  .then(() => {
+    // 执行正常业务
+    console.info('Succeeded in starting ability.');
+  })
+  .catch((err) => {
+    // 处理业务逻辑错误
+    console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+  });
+
+// 正例2：
+let pathDir = ...; // 应用文件路径
+let filePath = pathDir + '/test.txt';
+let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
+console.info(`Succeed in reading text, str is ${str}`);
+```
+
+【反例】
+
+```ts
+// 反例1：
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startAbility(want)
+    .then(() => {
+      // 执行正常业务
+      console.info('Succeeded in starting ability.');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+}
+
+// 反例2：
+let pathDir = ...; // 应用文件路径
+let filePath = pathDir + '/test.txt';
+try {
+  let str = fs.readTextSync(filePath, { offset: 1, length: 3 });
+  console.info(`Succeed in reading text, str is ${str}`);
+} catch (err) {
+  console.error(`Failed to read text. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ### 【规则】示例代码中的变量需要包含定义、使用方法或者来源链接参考或者说明
 
 【描述】
@@ -179,9 +248,9 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    // 代码未格式化
-      windowStage.loadContent('pages/Index', (err, data) => {
-    });
+  // 代码未格式化，没有缩进
+  windowStage.loadContent('pages/Index', (err, data) => {
+  });
   }
 }
 ```
@@ -226,8 +295,6 @@ export default class EntryAbility extends UIAbility {
 注释符与代码块语法保持一致，禁止自创注释符。注释符与注释内容间统一添加一个空格。例如：对于ArkTS代码块，注释写法为“// 注释内容”。
 
 当一行注释内容过长时，注意断句切分到下一行呈现。
-
-示例代码中的关键内容和逻辑需要添加注释来说明，以确保开发者理解代码的作用。
 
 代码注释应该清晰、简洁、有用，能够方便别人理解代码的含义和作用。注释应该写在代码上方或右方。
 
@@ -385,7 +452,10 @@ console.info('Succeeded in doing sthing.');
 
 // 正例：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Succeeded in publishing notification.');
 });
 ```
@@ -395,13 +465,19 @@ notificationManager.publish(notificationRequest, (err) => {
 ```ts
 // 反例1：使用console.log(...)可能会让程序员产生困惑，无法明确该日志信息是正常日志还是错误日志
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.log('Succeeded in publishing notification.');
 });
 
 // 反例2：使用了console.error(...)而不是console.info(...)来打印正常日志信息。console.error通常用于打印错误信息，而不是正常的日志信息
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.error('Succeeded in publishing notification.');
 });
 ```
@@ -420,7 +496,10 @@ console.info('Succeeded in doing sthing.');
 
 // 正例：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Succeeded in publishing.');
 });
 ```
@@ -430,19 +509,28 @@ notificationManager.publish(notificationRequest, (err) => {
 ```ts
 // 反例1：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish success.');
 });
 
 // 反例2：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish successful.');
 });
 
 // 反例3：
 notificationManager.publish(notificationRequest, (err) => {
-  ...
+  if (err) {
+    ...
+    return;
+  }
   console.info('Invoke publish successfully.');
 });
 ```
@@ -459,8 +547,11 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 notificationManager.publish(notificationRequest, (err) => {
-  ...
-  console.info('Invoke publish succeeded.');
+  if (err) {
+    ...
+    return;
+  }
+  console.info('Succeeded in publishing notification.');
 });
 ```
 
@@ -468,8 +559,11 @@ notificationManager.publish(notificationRequest, (err) => {
 
 ```ts
 notificationManager.publish(notificationRequest, function (err) {
-  ...
-  console.info('Invoke publish succeeded.');
+  if (err) {
+    ...
+    return;
+  }
+  console.info('Succeeded in publishing notification.');
 });
 ```
 
@@ -527,4 +621,3 @@ function createFile() {
   fileio.closeSync(fileFD);
 }
 ```
-

@@ -13,6 +13,8 @@
 import ability from '@ohos.ability.ability';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称               |   类型   | 必填   | 说明                                    |
@@ -22,23 +24,23 @@ import ability from '@ohos.ability.ability';
 
 **示例：**
 ```ts
+import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
+import Want from '@ohos.app.ability.Want';
 
-let Want = {
+let want: Want = {
     bundleName: 'com.example.abilityStartSettingApp2',
     abilityName: 'com.example.abilityStartSettingApp.EntryAbility',
 };
 
-let abilityStartSetting ={
-    [featureAbility.AbilityStartSetting.BOUNDS_KEY] : [100,200,300,400],
-    [featureAbility.AbilityStartSetting.WINDOW_MODE_KEY] :
-    featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,
-    [featureAbility.AbilityStartSetting.DISPLAY_ID_KEY] : 1,
-};
-
 let startAbilityParameter: ability.StartAbilityParameter = {
-    want : Want,
-    abilityStartSetting : abilityStartSetting
+    want : want,
+    abilityStartSetting : {
+        abilityBounds : [100,200,300,400],
+        windowMode :
+        featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,
+        displayId : 1,
+    }
 };
 
 try {

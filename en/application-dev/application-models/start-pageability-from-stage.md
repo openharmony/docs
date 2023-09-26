@@ -8,28 +8,36 @@ This topic describes how the two application components of the stage model start
 
 A UIAbility starts a PageAbility in the same way as it starts another UIAbility.
 
+> **NOTE**
+> 
+> In the FA model, **abilityName** consists of **bundleName** and **AbilityName**. For details, see the code snippet below.
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.info("EntryAbility onCreate")
     }
     onDestroy() {
         console.info("EntryAbility onDestroy")
     }
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            ...
+            // ...
         });
-        let want = {
+        let want: Want = {
             bundleName: "com.ohos.fa",
-            abilityName: "EntryAbility",
+            abilityName: "com.ohos.fa.EntryAbility",
         };
         this.context.startAbility(want).then(() => {
             console.info('Start Ability successfully.');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error("Ability failed: " + JSON.stringify(error));
         });
     }
@@ -55,26 +63,30 @@ A UIAbility starts a PageAbility through **startAbilityForResult()** in the same
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.info("EntryAbility onCreate")
     }
     onDestroy() {
         console.info("EntryAbility onDestroy")
     }
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            ...
+            // ...
         });
-        let want = {
+        let want: Want = {
             bundleName: "com.ohos.fa",
             abilityName: "EntryAbility",
         };
         this.context.startAbilityForResult(want).then((result) => {
             console.info('Ability verify result: ' + JSON.stringify(result));
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error("Ability failed: " + JSON.stringify(error));
         });
     }
@@ -98,23 +110,25 @@ The following uses the ServiceExtensionAbility component as an example to descri
 
 ```ts
 import Extension from '@ohos.app.ability.ServiceExtensionAbility'
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 export default class ServiceExtension extends Extension {
-    onCreate(want) {
+    onCreate(want: Want) {
         console.info("ServiceExtension onCreate")
     }
     onDestroy() {
         console.info("ServiceExtension onDestroy")
     }
-    onRequest(want, startId) {
+    onRequest(want: Want, startId: number) {
         console.info("ServiceExtension onRequest")
-        let wantFA = {
+        let wantFA: Want = {
             bundleName: "com.ohos.fa",
             abilityName: "EntryAbility",
         };
         this.context.startAbility(wantFA).then(() => {
             console.info('Start Ability successfully.');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
             console.error("Ability failed: " + JSON.stringify(error));
         });
     }

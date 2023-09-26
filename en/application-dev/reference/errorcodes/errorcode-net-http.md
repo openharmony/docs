@@ -182,11 +182,11 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the data write permission.
+The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
 
 **Solution**
 
-Check the permissions granted to the application.
+Check the application permission and the size of the file to be downloaded.
 
 ## 2300025 Failed to Upload Data
 

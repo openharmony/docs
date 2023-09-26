@@ -12,6 +12,8 @@
 import wantAgent from '@ohos.app.ability.wantAgent';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称       | 类型                 | 必填 | 说明        |

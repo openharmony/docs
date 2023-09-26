@@ -6,12 +6,9 @@
 >
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-
 ## 子组件
 
 可以包含子组件。
-
 
 ## 接口
 
@@ -20,17 +17,24 @@ ColumnSplit()
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 | 
-| -------- | -------- | -------- |
-| resizeable | boolean | 分割线是否可拖拽，默认为false。 | 
+| 名称                   | 参数类型                                                              | 描述                             | 
+|-----------------------|-------------------------------------------------------------------|---------------------------------|
+| resizeable            | boolean                                                           | 分割线是否可拖拽，默认为false。    | 
+| divider<sup>10+</sup> | [ColumnSplitDividerStyle](#columnsplitdividerstyle10对象说明) \| null | 设置分割线的margin。<br/>- DividerStyle：设置分割线与上下子节点的距离。<br/>- 默认为null：分割线上下margin为0。 | 
+
+## ColumnSplitDividerStyle<sup>10+</sup>对象说明
+
+| 名称        | 参数类型      | 必填 | 描述                       |
+| ----------- | ------------- | ---- |--------------------------|
+| startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其上方子组件的距离。<br/>默认值：0 |
+| endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 分割线与其下方子组件的距离。<br/>默认值：0 |
 
 >  **说明：**
 >
-> 与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
+> 与RowSplit相同，ColumnSplit的分割线可以改变上下两边子组件的高度，子组件可改变高度的范围取决于子组件的最大最小高度。
 >
-> 在真机中查看拖动效果，预览器中不支持拖动。
->
-> 不支持clip、margin通用属性。
+> 支持clip、margin等通用属性，clip不设置的时候默认值为true。
+
 
 ## 示例
 

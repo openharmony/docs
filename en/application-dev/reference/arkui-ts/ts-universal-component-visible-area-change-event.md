@@ -11,7 +11,7 @@ The visible area change event of a component refers to the change in the visual 
 
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | Called when the visual area of the component changes.<br>- **ratios**: threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>- **isVisible**: indicates whether the ratio of the component's visible area to its total area is greater than the threshold. The value **true** means that the ratio is greater than the threshold, and **false** means that the ratio is less than the threshold.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
+| onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | Called when the visual area of the component changes.<br>- **ratios**: threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>- **isVisible**: whether the ratio of the component's visible area to its total area is greater than the threshold. The value **true** means that the ratio is greater than the threshold, and **false** means that the ratio is less than the threshold.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.<br>**NOTE**<br>This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.|
 
 
 ## Example
@@ -81,7 +81,7 @@ struct ScrollExample {
             }
           })
 
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             Text(item.toString())
               .width('90%')
               .height(150)
@@ -90,7 +90,7 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, item => item)
+          }, (item:number) => (item.toString()))
 
         }.width('100%')
       }
@@ -98,14 +98,14 @@ struct ScrollExample {
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.On)
       .scrollBarColor(Color.Gray)
-      .scrollBarWidth(30)
+      .scrollBarWidth(10)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })
       .onScrollEdge((side: Edge) => {
         console.info('To the edge')
       })
-      .onScrollEnd(() => {
+      .onScrollStop(() => {
         console.info('Scroll Stop')
       })
 

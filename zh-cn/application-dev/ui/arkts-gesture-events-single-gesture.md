@@ -30,8 +30,10 @@ TapGesture(value?:{count?:number; fingers?:number})
           .gesture(
             // 绑定count为2的TapGesture
             TapGesture({ count: 2 })
-              .onAction((event: GestureEvent) => {
+              .onAction((event: GestureEvent|undefined) => {
+              if(event){
                 this.value = JSON.stringify(event.fingerList[0]);
+              }
               }))
         Text(this.value)
       }
@@ -82,9 +84,11 @@ struct Index {
         .gesture(
           // 绑定可以重复触发的LongPressGesture
           LongPressGesture({ repeat: true })
-            .onAction((event: GestureEvent) => {
-              if (event.repeat) {
-                this.count++;
+           .onAction((event: GestureEvent|undefined) => {
+              if(event){
+                if (event.repeat) {
+                  this.count++;
+                }
               }
             })
             .onActionEnd(() => {
@@ -109,7 +113,13 @@ struct Index {
 
 
 ```ts
-PanGestureOptions(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
+class pgotmp{
+  fingers?:number = 0
+  direction?:PanDirection|null = null
+  distance?:number = 0
+}
+let pgo:pgotmp = new pgotmp()
+new PanGestureOptions(value?:pgo)
 ```
 
 
@@ -150,13 +160,15 @@ struct Index {
         .gesture(
           // 绑定拖动手势
           PanGesture()
-            .onActionStart((event: GestureEvent) => {
+           .onActionStart((event: GestureEvent|undefined) => {
               console.info('Pan start');
             })
               // 当触发拖动手势时，根据回调函数修改组件的布局位置信息
-            .onActionUpdate((event: GestureEvent) => {
-              this.offsetX = this.positionX + event.offsetX;
-              this.offsetY = this.positionY + event.offsetY;
+            .onActionUpdate((event: GestureEvent|undefined) => {
+              if(event){
+                this.offsetX = this.positionX + event.offsetX;
+                this.offsetY = this.positionY + event.offsetY;
+              }
             })
             .onActionEnd(() => {
               this.positionX = this.offsetX;
@@ -226,14 +238,16 @@ struct Index {
       .gesture(
         // 在组件上绑定三指触发的捏合手势
         PinchGesture({ fingers: 3 })
-          .onActionStart((event: GestureEvent) => {
+          .onActionStart((event: GestureEvent|undefined) => {
             console.info('Pinch start');
           })
             // 当捏合手势触发时，可以通过回调函数获取缩放比例，从而修改组件的缩放比例
-          .onActionUpdate((event: GestureEvent) => {
-            this.scaleValue = this.pinchValue * event.scale;
-            this.pinchX = event.pinchCenterX;
-            this.pinchY = event.pinchCenterY;
+          .onActionUpdate((event: GestureEvent|undefined) => {
+            if(event){
+              this.scaleValue = this.pinchValue * event.scale;
+              this.pinchX = event.pinchCenterX;
+              this.pinchY = event.pinchCenterY;
+            }
           })
           .onActionEnd(() => {
             this.pinchValue = this.scaleValue;
@@ -284,12 +298,14 @@ struct Index {
         .rotate({ angle: this.angle })
         .gesture(
           RotationGesture()
-            .onActionStart((event: GestureEvent) => {
+           .onActionStart((event: GestureEvent|undefined) => {
               console.info('RotationGesture is onActionStart');
             })
               // 当旋转手势生效时，通过旋转手势的回调函数获取旋转角度，从而修改组件的旋转角度
-            .onActionUpdate((event: GestureEvent) => {
-              this.angle = this.rotateValue + event.angle;
+            .onActionUpdate((event: GestureEvent|undefined) => {
+              if(event){
+                this.angle = this.rotateValue + event.angle;
+              }
               console.info('RotationGesture is onActionEnd');
             })
               // 当旋转结束抬手时，固定组件在旋转结束时的角度
@@ -358,9 +374,11 @@ struct Index {
         // 绑定滑动手势且限制仅在竖直方向滑动时触发
         SwipeGesture({ direction: SwipeDirection.Vertical })
           // 当滑动手势触发时，获取滑动的速度和角度，实现对组件的布局参数的修改
-          .onAction((event: GestureEvent) => {
-            this.speed = event.speed;
-            this.rotateAngle = event.angle;
+          .onAction((event: GestureEvent|undefined) => {
+            if(event){
+              this.speed = event.speed;
+              this.rotateAngle = event.angle;
+            }
           })
       )
     }

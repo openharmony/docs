@@ -18,7 +18,7 @@ The table below describes the matching rules of explicit [Want](../reference/api
 | action | string | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 | entities | Array&lt;string&gt; | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
-| parameters | {[key:&nbsp;string]:&nbsp;any} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
+| parameters | {[key:&nbsp;string]:&nbsp;Object} | No| No| This field is not used for matching. It is passed to the target application component as a parameter.|
 
 ## Matching Rules for Implicit Want
 
@@ -35,7 +35,7 @@ The table below describes the matching rules of implicit [Want](../reference/api
 | action      | string                         | Yes    | No  |                                                              |
 | entities    | Array&lt;string&gt;            | Yes    | No  |                                                              |
 | flags       | number                         | No    | No  | This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
-| parameters  | {[key:&nbsp;string]:&nbsp;any} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
+| parameters  | {[key:&nbsp;string]:&nbsp;Object} | No    | No  | This field is not used for matching. It is passed to the target application component as a parameter.        |
 
 Get familiar with the following about implicit Want:
 
@@ -63,8 +63,7 @@ The system matches the **action** attribute in the **want** parameter passed by 
 - If **action** in the passed **want** parameter is specified, and **actions** under **skills** of an application component is specified but does not contain **action** in the passed **want** parameter, the matching fails.
 
   **Figure 1** Matching rules of action in the want parameter
-
-  ![want-action](figures/want-action.png)  
+![want-action](figures/want-action.png)
 
 
 ### Matching Rules of entities in the want Parameter
@@ -82,8 +81,7 @@ The system matches the **entities** attribute in the **want** parameter passed b
 - If **entities** in the passed **want** parameter is specified, and **entities** under **skills** of an application component is specified but does not contain **entities** in the passed **want** parameter, the matching fails.
 
   **Figure 2** Matching rules of entities in the want parameter
-
-  ![want-entities](figures/want-entities.png)  
+![want-entities](figures/want-entities.png)
 
 
 ### Matching Rules of uri and type in the want Parameter
@@ -100,6 +98,7 @@ There are four combinations of **uri** and **type** settings. The matching rules
 - Only **uri** is specified in the **want** parameter.
   - If the **uris** array under **skills** of an application component is unspecified, the matching fails.
   - If the **uris** array under **skills** of an application component contains an element whose [uri is matched](#matching-rules-of-uri) and **type** is unspecified, the matching is successful. Otherwise, the matching fails.
+  - If the matching fails for the preceding two scenarios and the input URI is a file path URI, the system obtains the MIME type of the file based on the file name extension. If the MIME type matches **type** configured under **skills**, the matching is successful.
 
 - Only **type** is specified in the **want** parameter.
   - If the **uris** array under **skills** of an application component is unspecified, the matching fails.
@@ -112,8 +111,7 @@ There are four combinations of **uri** and **type** settings. The matching rules
 Leftmost URI matching: When only **scheme**, a combination of **scheme** and **host**, or a combination of **scheme**, **host**, and **port** is configured in the **uris** array under **skills** of the application component, the matching is successful only if the leftmost URI in the passed **want** parameter matches **scheme**, the combination of **scheme** and **host**, or the combination of **scheme**, **host**, and **port**.
 
 **Figure 3** Matching rules when uri and type are specified in the want parameter
-
-![want-uri-type1](figures/want-uri-type1.png)  
+![want-uri-type1](figures/want-uri-type1.png)
 
 To simplify the description:
 
@@ -121,8 +119,7 @@ To simplify the description:
 - **type** in the **want** parameter passed in by the caller is called **w_type**; the type in the **uris** array under **skills** of the application component to match is called **s_type**.
 
 **Figure 4** Matching rules of uri and type in the want parameter
-
-![want-uri-type2](figures/want-uri-type2.png)  
+![want-uri-type2](figures/want-uri-type2.png)
 
 
 ### Matching Rules of uri

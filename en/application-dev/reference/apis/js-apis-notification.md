@@ -4,13 +4,13 @@ The **Notification** module provides notification management capabilities, cover
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. This module is deprecated since API version 9.
 >
 > Notification subscription and unsubscription APIs are available only to system applications.
 
 ## Modules to Import
 
-```js
+```ts
 import Notification from '@ohos.notification';
 ```
 
@@ -31,26 +31,29 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // publish callback
-function publishCallback(err) {
-    if (err.code) {
-        console.error(`publish failed, code is ${err.code}`);
-    } else {
-        console.info("publish success");
-    }
+let publishCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`publish failed, code is ${err}`);
+  } else {
+    console.info("publish success");
+  }
 }
 // NotificationRequest object
-let notificationRequest = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
+let notificationRequest: NotificationManager.NotificationRequest = {
+  id: 1,
+  content: {
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: {
+      title: "test_title",
+      text: "test_text",
+      additionalText: "test_additionalText"
     }
+  }
 };
 Notification.publish(notificationRequest, publishCallback);
 ```
@@ -71,23 +74,27 @@ Publishes a notification. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // NotificationRequest object
-let notificationRequest = {
-    notificationId: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
+let notificationRequest: NotificationManager.NotificationRequest = {
+  id: 1,
+  content: {
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: {
+      title: "test_title",
+      text: "test_text",
+      additionalText: "test_additionalText"
     }
+  }
 };
 Notification.publish(notificationRequest).then(() => {
-	console.info("publish success");
+  console.info("publish success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`publish failed, code is ${err}`);
 });
-
 ```
 
 ## Notification.publish<sup>8+</sup>
@@ -112,28 +119,31 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // publish callback
-function publishCallback(err) {
-    if (err.code) {
-        console.error(`publish failed, code is ${err.code}`);
-    } else {
-        console.info("publish success");
-    }
+let publishCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`publish failed, code is ${err.code}`);
+  } else {
+    console.info("publish success");
+  }
 }
 // User ID
-let userId = 1;
+let userId: number = 1;
 // NotificationRequest object
-let notificationRequest = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
+let notificationRequest: NotificationManager.NotificationRequest = {
+  id: 1,
+  content: {
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: {
+      title: "test_title",
+      text: "test_text",
+      additionalText: "test_additionalText"
     }
+  }
 };
 Notification.publish(notificationRequest, userId, publishCallback);
 ```
@@ -159,23 +169,28 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **Example**
 
-```js
-let notificationRequest = {
-    notificationId: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
+let notificationRequest: NotificationManager.NotificationRequest = {
+  id: 1,
+  content: {
+    contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: {
+      title: "test_title",
+      text: "test_text",
+      additionalText: "test_additionalText"
     }
+  }
 };
 
-let userId = 1;
+let userId: number = 1;
 
 Notification.publish(notificationRequest, userId).then(() => {
-	console.info("publish success");
+  console.info("publish success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`publish failed, code is ${err}`);
 });
 ```
 
@@ -198,14 +213,16 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelCallback(err) {
-    if (err.code) {
-        console.info("cancel failed " + JSON.stringify(err));
-    } else {
-        console.info("cancel success");
-    }
+let cancelCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("cancel failed " + JSON.stringify(err));
+  } else {
+    console.info("cancel success");
+  }
 }
 Notification.cancel(0, "label", cancelCallback);
 ```
@@ -225,13 +242,17 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
-| label | string | No  | Notification label.|
+| label | string | No  | Notification label. This parameter is left empty by default.|
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 Notification.cancel(0).then(() => {
 	console.info("cancel success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`cancel failed, code is ${err}`);
 });
 ```
 
@@ -254,14 +275,16 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelCallback(err) {
-    if (err.code) {
-        console.info("cancel failed " + JSON.stringify(err));
-    } else {
-        console.info("cancel success");
-    }
+let cancelCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("cancel failed " + JSON.stringify(err));
+  } else {
+    console.info("cancel success");
+  }
 }
 Notification.cancel(0, cancelCallback);
 ```
@@ -284,14 +307,16 @@ Cancels all notifications. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelAllCallback(err) {
-    if (err.code) {
-        console.info("cancelAll failed " + JSON.stringify(err));
-    } else {
-        console.info("cancelAll success");
-    }
+let cancelAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("cancelAll failed " + JSON.stringify(err));
+  } else {
+    console.info("cancelAll success");
+  }
 }
 Notification.cancelAll(cancelAllCallback);
 ```
@@ -306,9 +331,13 @@ Cancels all notifications. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 Notification.cancelAll().then(() => {
 	console.info("cancelAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`cancelAll failed, code is ${err}`);
 });
 ```
 
@@ -333,18 +362,21 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // addSlot callback
-function addSlotCallBack(err) {
-    if (err.code) {
-        console.info("addSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("addSlot success");
-    }
+let addSlotCallBack = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("addSlot failed " + JSON.stringify(err));
+  } else {
+    console.info("addSlot success");
+  }
 }
 // NotificationSlot object
-let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+let notificationSlot: NotificationManager.NotificationSlot = {
+  type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 Notification.addSlot(notificationSlot, addSlotCallBack);
 ```
@@ -369,13 +401,18 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: NotificationManager.NotificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 Notification.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`addSlot failed, code is ${err}`);
 });
 ```
 
@@ -396,14 +433,16 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // addSlot callback
-function addSlotCallBack(err) {
-    if (err.code) {
-        console.info("addSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("addSlot success");
-    }
+let addSlotCallBack = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("addSlot failed " + JSON.stringify(err));
+  } else {
+    console.info("addSlot success");
+  }
 }
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
@@ -424,9 +463,13 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+
 Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
-	console.info("addSlot success");
+  console.info("addSlot success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`addSlot failed, code is ${err}`);
 });
 ```
 
@@ -451,21 +494,24 @@ Adds an array of notification slots. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // addSlots callback
-function addSlotsCallBack(err) {
-    if (err.code) {
-        console.info("addSlots failed " + JSON.stringify(err));
-    } else {
-        console.info("addSlots success");
-    }
+let addSlotsCallBack = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("addSlots failed " + JSON.stringify(err));
+  } else {
+    console.info("addSlots success");
+  }
 }
 // NotificationSlot object
-let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+let notificationSlot: NotificationManager.NotificationSlot = {
+  type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: NotificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray, addSlotsCallBack);
@@ -491,17 +537,22 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 **Example**
 
-```js
+```ts
+import NotificationManager from '@ohos.notificationManager';
+import Base from '@ohos.base';
+
 // NotificationSlot object
-let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+let notificationSlot: NotificationManager.NotificationSlot = {
+  type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: NotificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 Notification.addSlots(notificationSlotArray).then(() => {
-	console.info("addSlots success");
+  console.info("addSlots success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`addSlot failed, code is ${err}`);
 });
 ```
 
@@ -522,16 +573,18 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // getSlot callback
-function getSlotCallback(err, data) {
-    if (err.code) {
-        console.info("getSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("getSlot success");
-    }
+let getSlotCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("getSlot failed " + JSON.stringify(err));
+  } else {
+    console.info("getSlot success");
+  }
 }
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+let slotType: Notification.SlotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType, getSlotCallback);
 ```
 
@@ -557,10 +610,14 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 **Example**
 
-```js
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+```ts
+import Base from '@ohos.base';
+
+let slotType: Notification.SlotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.getSlot(slotType).then((data) => {
-	console.info("getSlot success, data: " + JSON.stringify(data));
+  console.info("getSlot success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getSlot failed, code is ${err}`);
 });
 ```
 
@@ -580,14 +637,16 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // getSlots callback
-function getSlotsCallback(err, data) {
-    if (err.code) {
-        console.info("getSlots failed " + JSON.stringify(err));
-    } else {
-        console.info("getSlots success");
-    }
+function getSlotsCallback(err: Base.BusinessError) {
+  if (err) {
+    console.info("getSlots failed " + JSON.stringify(err));
+  } else {
+    console.info("getSlots success");
+  }
 }
 Notification.getSlots(getSlotsCallback);
 ```
@@ -608,9 +667,13 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 Notification.getSlots().then((data) => {
-	console.info("getSlots success, data: " + JSON.stringify(data));
+  console.info("getSlots success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getSlots failed, code is ${err}`);
 });
 ```
 
@@ -631,17 +694,19 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // removeSlot callback
-function removeSlotCallback(err) {
-    if (err.code) {
-        console.info("removeSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("removeSlot success");
-    }
+let removeSlotCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("removeSlot failed " + JSON.stringify(err));
+  } else {
+    console.info("removeSlot success");
+  }
 }
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType,removeSlotCallback);
+let slotType: Notification.SlotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+Notification.removeSlot(slotType, removeSlotCallback);
 ```
 
 ## Notification.removeSlot
@@ -660,10 +725,14 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 **Example**
 
-```js
-let slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
+```ts
+import Base from '@ohos.base';
+
+let slotType: Notification.SlotType = Notification.SlotType.SOCIAL_COMMUNICATION;
 Notification.removeSlot(slotType).then(() => {
-	console.info("removeSlot success");
+  console.info("removeSlot success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`removeSlot failed, code is ${err}`);
 });
 ```
 
@@ -683,13 +752,15 @@ Removes all notification slots. This API uses an asynchronous callback to return
 
 **Example**
 
-```js
-function removeAllCallBack(err) {
-    if (err.code) {
-        console.info("removeAllSlots failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAllSlots success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallBack = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("removeAllSlots failed " + JSON.stringify(err));
+  } else {
+    console.info("removeAllSlots success");
+  }
 }
 Notification.removeAllSlots(removeAllCallBack);
 ```
@@ -704,9 +775,13 @@ Removes all notification slots. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 Notification.removeAllSlots().then(() => {
-	console.info("removeAllSlots success");
+  console.info("removeAllSlots success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`removeAllSlots failed, code is ${err}`);
 });
 ```
 
@@ -732,23 +807,26 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+import NotificationSubscribe from '@ohos.notificationSubscribe';
+
 // subscribe callback
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("subscribe failed " + JSON.stringify(err));
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+let onConsumeCallback = (data: NotificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: NotificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
-let info = {
-    bundleNames: ["bundleName1", "bundleName2"]
+let info: NotificationSubscribe.NotificationSubscribeInfo = {
+  bundleNames: ["bundleName1", "bundleName2"]
 };
 Notification.subscribe(subscriber, info, subscribeCallback);
 ```
@@ -774,19 +852,22 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 **Example**
 
-```js
-function subscribeCallback(err) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("subscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationSubscribe from '@ohos.notificationSubscribe';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("subscribe failed " + JSON.stringify(err));
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+function onConsumeCallback(data: NotificationSubscribe.SubscribeCallbackData) {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: NotificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber, subscribeCallback);
 ```
@@ -808,19 +889,24 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information.  |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
 **Example**
 
-```js
-function onConsumeCallback(data) {
-    console.info("Consume callback: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+import NotificationSubscribe from '@ohos.notificationSubscribe';
+
+function onConsumeCallback(data: NotificationSubscribe.SubscribeCallbackData) {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: NotificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 Notification.subscribe(subscriber).then(() => {
-	console.info("subscribe success");
+  console.info("subscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`subscribe failed, code is ${err}`);
 });
 ```
 
@@ -845,19 +931,22 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.info("unsubscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("unsubscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationSubscribe from '@ohos.notificationSubscribe';
+
+let unsubscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("unsubscribe failed " + JSON.stringify(err));
+  } else {
+    console.info("unsubscribe success");
+  }
 }
-function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+let onDisconnectCallback = () => {
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: NotificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 Notification.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -882,15 +971,20 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+import NotificationSubscribe from '@ohos.notificationSubscribe';
+
 function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: NotificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 Notification.unsubscribe(subscriber).then(() => {
-	console.info("unsubscribe success");
+  console.info("unsubscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`unsubscribe failed, code is ${err}`);
 });
 ```
 
@@ -910,22 +1004,24 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.       |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.       |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function enableNotificationCallback(err) {
-    if (err.code) {
-        console.info("enableNotification failed " + JSON.stringify(err));
-    } else {
-        console.info("enableNotification success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let enableNotificationCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("enableNotification failed " + JSON.stringify(err));
+  } else {
+    console.info("enableNotification success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.enableNotification(bundle, false, enableNotificationCallback);
 ```
@@ -946,18 +1042,23 @@ Sets whether to enable notification for a specified application. This API uses a
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.enableNotification(bundle, false).then(() => {
-	console.info("enableNotification success");
+  console.info("enableNotification success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`enableNotification failed, code is ${err}`);
 });
+
 ```
 
 ## Notification.isNotificationEnabled
@@ -976,21 +1077,23 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.           |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function isNotificationEnabledCallback(err, data) {
-    if (err.code) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationEnabled success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("isNotificationEnabled failed " + JSON.stringify(err));
+  } else {
+    console.info("isNotificationEnabled success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
@@ -1011,7 +1114,7 @@ Checks whether notification is enabled for a specified application. This API use
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1021,12 +1124,16 @@ Checks whether notification is enabled for a specified application. This API use
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.isNotificationEnabled(bundle).then((data) => {
-	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+  console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isNotificationEnabled failed, code is ${err}`);
 });
 ```
 
@@ -1050,13 +1157,15 @@ Checks whether notification is enabled for this application. This API uses an as
 
 **Example**
 
-```js
-function isNotificationEnabledCallback(err, data) {
-    if (err.code) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationEnabled success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("isNotificationEnabled failed " + JSON.stringify(err));
+  } else {
+    console.info("isNotificationEnabled success");
+  }
 }
 
 Notification.isNotificationEnabled(isNotificationEnabledCallback);
@@ -1078,7 +1187,7 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1088,9 +1197,13 @@ Checks whether notification is enabled for this application. This API uses a pro
 
 **Example**
 
-```js
-Notification.isNotificationEnabled().then((data) => {
-	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+Notification.isNotificationEnabled().then((data: boolean) => {
+  console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isNotificationEnabled failed, code is ${err}`);
 });
 ```
 
@@ -1110,22 +1223,24 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
 | enable   | boolean               | Yes  | Whether to enable notification.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function displayBadgeCallback(err) {
-    if (err.code) {
-        console.info("displayBadge failed " + JSON.stringify(err));
-    } else {
-        console.info("displayBadge success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let displayBadgeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("displayBadge failed " + JSON.stringify(err));
+  } else {
+    console.info("displayBadge success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.displayBadge(bundle, false, displayBadgeCallback);
 ```
@@ -1146,17 +1261,21 @@ Sets whether to enable the notification badge for a specified application. This 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.displayBadge(bundle, false).then(() => {
-	console.info("displayBadge success");
+  console.info("displayBadge success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`displayBadge failed, code is ${err}`);
 });
 ```
 
@@ -1176,21 +1295,23 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.              |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function isBadgeDisplayedCallback(err, data) {
-    if (err.code) {
-        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
-    } else {
-        console.info("isBadgeDisplayed success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+  } else {
+    console.info("isBadgeDisplayed success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
@@ -1211,7 +1332,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1221,12 +1342,16 @@ Checks whether the notification badge is enabled for a specified application. Th
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.isBadgeDisplayed(bundle).then((data) => {
-	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
+  console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isBadgeDisplayed failed, code is ${err}`);
 });
 ```
 
@@ -1246,25 +1371,28 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.          |
 | slot     | [NotificationSlot](#notificationslot)      | Yes  | Notification slot.            |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function setSlotByBundleCallback(err) {
-    if (err.code) {
-        console.info("setSlotByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("setSlotByBundle success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let setSlotByBundleCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("setSlotByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("setSlotByBundle success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+let notificationSlot: NotificationManager.NotificationSlot = {
+  type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
@@ -1285,20 +1413,25 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 | slot   | [NotificationSlot](#notificationslot) | Yes  | Notification slot.|
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
+let notificationSlot: NotificationManager.NotificationSlot = {
+  type: Notification.SlotType.SOCIAL_COMMUNICATION
 };
 Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
-	console.info("setSlotByBundle success");
+  console.info("setSlotByBundle success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`setSlotByBundle failed, code is ${err}`);
 });
 ```
 
@@ -1318,21 +1451,24 @@ Obtains the notification slots of a specified application. This API uses an asyn
 
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)                             | Yes  | Bundle information of the application.          |
+| bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information of the application.          |
 | callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function getSlotsByBundleCallback(err, data) {
-    if (err.code) {
-        console.info("getSlotsByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("getSlotsByBundle success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let getSlotsByBundleCallback = (err: Base.BusinessError, data: NotificationManager.NotificationSlot[]) => {
+  if (err) {
+    console.info("getSlotsByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("getSlotsByBundle success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
@@ -1353,7 +1489,7 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1363,12 +1499,17 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-Notification.getSlotsByBundle(bundle).then((data) => {
-	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
+Notification.getSlotsByBundle(bundle).then((data: NotificationManager.NotificationSlot[]) => {
+  console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getSlotsByBundle failed, code is ${err}`);
 });
 ```
 
@@ -1388,21 +1529,24 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name    | Type                     | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)              | Yes  | Bundle information of the application.            |
+| bundle   | [BundleOption](#bundleoption)              | Yes  | Bundle information of the application.            |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function getSlotNumByBundleCallback(err, data) {
-    if (err.code) {
-        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("getSlotNumByBundle success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number) => {
+  if (err) {
+    console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("getSlotNumByBundle success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
@@ -1423,7 +1567,7 @@ Obtains the number of notification slots of a specified application. This API us
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.|
 
 **Return value**
 
@@ -1433,12 +1577,17 @@ Obtains the number of notification slots of a specified application. This API us
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-Notification.getSlotNumByBundle(bundle).then((data) => {
-	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
+Notification.getSlotNumByBundle(bundle).then((data: number) => {
+  console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getSlotNumByBundle failed, code is ${err}`);
 });
 ```
 
@@ -1458,29 +1607,31 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name           | Type                               | Mandatory| Description                |
 | --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoptiondeprecated)       | Yes  | Bundle information of the application.          |
+| bundle          | [BundleOption](#bundleoption)       | Yes  | Bundle information of the application.          |
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.            |
-| reason          | [RemoveReason](#removereason9-deprecated)      | Yes  | Indicates the reason for deleting a notification.        |
+| reason          | [RemoveReason](#removereason-deprecated)      | Yes  | Reason for deleting a notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function removeCallback(err) {
-    if (err.code) {
-        console.info("remove failed " + JSON.stringify(err));
-    } else {
-        console.info("remove success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("remove failed " + JSON.stringify(err));
+  } else {
+    console.info("remove success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: Notification.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+let reason: Notification.RemoveReason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -1500,23 +1651,27 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 | Name           | Type           | Mandatory| Description      |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoptiondeprecated)    | Yes  | Bundle information of the application.|
+| bundle          | [BundleOption](#bundleoption)    | Yes  | Bundle information of the application.|
 | notificationKey | [NotificationKey](#notificationkeydeprecated) | Yes  | Notification key.  |
-| reason          | [RemoveReason](#removereason9-deprecated) | Yes  | Reason for deleting the notification.        |
+| reason          | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: Notification.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+let reason: Notification.RemoveReason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(bundle, notificationKey, reason).then(() => {
-	console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`remove failed, code is ${err}`);
 });
 ```
 
@@ -1536,23 +1691,25 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume) callback. |
-| reason   | [RemoveReason](#removereason9-deprecated) | Yes  | Indicates the reason for deleting a notification.        |
+| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](#notificationrequest) object of [SubscribeCallbackData](#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onconsume) callback.|
+| reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting a notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-let hashCode = 'hashCode';
+```ts
+import Base from '@ohos.base';
 
-function removeCallback(err) {
-    if (err.code) {
-        console.info("remove failed " + JSON.stringify(err));
-    } else {
-        console.info("remove success");
-    }
+let hashCode: string = 'hashCode';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("remove failed " + JSON.stringify(err));
+  } else {
+    console.info("remove success");
+  }
 }
-let reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+let reason: Notification.RemoveReason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
 Notification.remove(hashCode, reason, removeCallback);
 ```
 
@@ -1573,15 +1730,19 @@ Removes a notification for a specified bundle. This API uses a promise to return
 | Name    | Type      | Mandatory| Description      |
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
-| reason   | [RemoveReason](#removereason9-deprecated) | Yes  | Reason for deleting the notification.        |
+| reason   | [RemoveReason](#removereason-deprecated) | Yes  | Reason for deleting the notification.        |
 
 **Example**
 
-```js
-let hashCode = 'hashCode';
-let reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+```ts
+import Base from '@ohos.base';
+
+let hashCode: string = 'hashCode';
+let reason: Notification.RemoveReason = Notification.RemoveReason.CLICK_REASON_REMOVE;
 Notification.remove(hashCode, reason).then(() => {
-	console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`remove failed, code is ${err}`);
 });
 ```
 
@@ -1601,21 +1762,23 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 | Name    | Type                 | Mandatory| Description                        |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("removeAll failed " + JSON.stringify(err));
+  } else {
+    console.info("removeAll success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 Notification.removeAll(bundle, removeAllCallback);
 ```
@@ -1640,13 +1803,15 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("removeAll failed " + JSON.stringify(err));
+  } else {
+    console.info("removeAll success");
+  }
 }
 
 Notification.removeAll(removeAllCallback);
@@ -1668,14 +1833,18 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoptiondeprecated) | No  | Bundle information of the application.|
+| bundle | [BundleOption](#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
 
 **Example**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // If no application is specified, notifications of all applications are deleted.
 Notification.removeAll().then(() => {
-	console.info("removeAll success");
+  console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`removeAll failed, code is ${err}`);
 });
 ```
 
@@ -1700,16 +1869,18 @@ Removes all notifications for a specified user. This API uses an asynchronous ca
 
 **Example**
 
-```js
-function removeAllCallback(err) {
-    if (err.code) {
-        console.info("removeAll failed " + JSON.stringify(err));
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+function removeAllCallback(err: Base.BusinessError) {
+  if (err) {
+    console.info("removeAll failed " + JSON.stringify(err));
+  } else {
+    console.info("removeAll success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 Notification.removeAll(userId, removeAllCallback);
 ```
 
@@ -1733,10 +1904,14 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **Example**
 
-```js
-let userId = 1;
+```ts
+import Base from '@ohos.base';
+
+let userId: number = 1;
 Notification.removeAll(userId).then(() => {
-	console.info("removeAll success");
+  console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  ar
 });
 ```
 
@@ -1761,13 +1936,16 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **Example**
 
-```js
-function getAllActiveNotificationsCallback(err, data) {
-    if (err.code) {
-        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
-    } else {
-        console.info("getAllActiveNotifications success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+function getAllActiveNotificationsCallback(err: Base.BusinessError, data: NotificationManager.NotificationRequest[]) {
+  if (err) {
+    console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+  } else {
+    console.info("getAllActiveNotifications success");
+  }
 }
 
 Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
@@ -1793,9 +1971,14 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 **Example**
 
-```js
-Notification.getAllActiveNotifications().then((data) => {
-	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+Notification.getAllActiveNotifications().then((data: NotificationManager.NotificationRequest[]) => {
+  console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getAllActiveNotifications failed, code is ${err}`);
 });
 ```
 
@@ -1815,13 +1998,15 @@ Obtains the number of active notifications of this application. This API uses an
 
 **Example**
 
-```js
-function getActiveNotificationCountCallback(err, data) {
-    if (err.code) {
-        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
-    } else {
-        console.info("getActiveNotificationCount success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number) => {
+  if (err) {
+    console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+  } else {
+    console.info("getActiveNotificationCount success");
+  }
 }
 
 Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
@@ -1843,9 +2028,13 @@ Obtains the number of active notifications of this application. This API uses a 
 
 **Example**
 
-```js
-Notification.getActiveNotificationCount().then((data) => {
-	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+Notification.getActiveNotificationCount().then((data: number) => {
+  console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getAllActiveNotifications failed, code is ${err}`);
 });
 ```
 
@@ -1865,13 +2054,16 @@ Obtains active notifications of this application. This API uses an asynchronous 
 
 **Example**
 
-```js
-function getActiveNotificationsCallback(err, data) {
-    if (err.code) {
-        console.info("getActiveNotifications failed " + JSON.stringify(err));
-    } else {
-        console.info("getActiveNotifications success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let getActiveNotificationsCallback = (err: Base.BusinessError, data: NotificationManager.NotificationRequest[]) => {
+  if (err) {
+    console.info("getActiveNotifications failed " + JSON.stringify(err));
+  } else {
+    console.info("getActiveNotifications success");
+  }
 }
 
 Notification.getActiveNotifications(getActiveNotificationsCallback);
@@ -1893,9 +2085,14 @@ Obtains active notifications of this application. This API uses a promise to ret
 
 **Example**
 
-```js
-Notification.getActiveNotifications().then((data) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+Notification.getActiveNotifications().then((data: NotificationManager.NotificationRequest[]) => {
+  console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`removeGroupByBundle failed, code is ${err}`);
 });
 ```
 
@@ -1916,16 +2113,18 @@ Cancels notifications under a notification group of this application. This API u
 
 **Example**
 
-```js
-function cancelGroupCallback(err) {
-    if (err.code) {
-        console.info("cancelGroup failed " + JSON.stringify(err));
-    } else {
-        console.info("cancelGroup success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let cancelGroupCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("cancelGroup failed " + JSON.stringify(err));
+  } else {
+    console.info("cancelGroup success");
+  }
 }
 
-let groupName = "GroupName";
+let groupName: string = "GroupName";
 
 Notification.cancelGroup(groupName, cancelGroupCallback);
 ```
@@ -1946,10 +2145,14 @@ Cancels notifications under a notification group of this application. This API u
 
 **Example**
 
-```js
-let groupName = "GroupName";
+```ts
+import Base from '@ohos.base';
+
+let groupName: string = "GroupName";
 Notification.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`cancelGroup failed, code is ${err}`);
 });
 ```
 
@@ -1969,23 +2172,25 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](#bundleoptiondeprecated)          | Yes  | Bundle information of the application.                  |
+| bundle    | [BundleOption](#bundleoption)          | Yes  | Bundle information of the application.                  |
 | groupName | string                | Yes  | Name of the notification group.              |
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function removeGroupByBundleCallback(err) {
-    if (err.code) {
-        console.info("removeGroupByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("removeGroupByBundle success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeGroupByBundleCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("removeGroupByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("removeGroupByBundle success");
+  }
 }
 
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+let bundleOption: Notification.BundleOption = {bundle: "Bundle"};
+let groupName: string = "GroupName";
 
 Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
@@ -2006,16 +2211,20 @@ Removes notifications under a notification group of a specified application. Thi
 
 | Name     | Type        | Mandatory| Description          |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](#bundleoptiondeprecated) | Yes  | Bundle information of the application.    |
+| bundle    | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
 
 **Example**
 
-```js
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: Notification.BundleOption = {bundle: "Bundle"};
+let groupName: string = "GroupName";
 Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
-	console.info("removeGroupByBundle success");
+  console.info("removeGroupByBundle success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`removeGroupByBundle failed, code is ${err}`);
 });
 ```
 
@@ -2035,24 +2244,26 @@ Sets the DND time. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8-deprecated)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function setDoNotDisturbDateCallback(err) {
-    if (err.code) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
-    } else {
-        console.info("setDoNotDisturbDate success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let setDoNotDisturbDateCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+  } else {
+    console.info("setDoNotDisturbDate success");
+  }
 }
 
-let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
-    begin: new Date(),
-    end: new Date(2021, 11, 15, 18, 0)
+let doNotDisturbDate: Notification.DoNotDisturbDate = {
+  type: Notification.DoNotDisturbType.TYPE_ONCE,
+  begin: new Date(),
+  end: new Date(2021, 11, 15, 18, 0)
 };
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
@@ -2074,18 +2285,22 @@ Sets the DND time. This API uses a promise to return the result.
 
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
-| date | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
+| date | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
 
 **Example**
 
-```js
-let doNotDisturbDate = {
+```ts
+import Base from '@ohos.base';
+
+let doNotDisturbDate: Notification.DoNotDisturbDate = {
     type: Notification.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`setDoNotDisturbDate failed, code is ${err}`);
 });
 ```
 
@@ -2106,28 +2321,30 @@ Sets the DND time for a specified user. This API uses an asynchronous callback t
 
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| date     | [DoNotDisturbDate](#donotdisturbdate8-deprecated)      | Yes  | DND time to set.        |
+| date     | [DoNotDisturbDate](#donotdisturbdate8)      | Yes  | DND time to set.        |
 | userId   | number                | Yes  | ID of the user for whom you want to set the DND time.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function setDoNotDisturbDateCallback(err) {
-    if (err.code) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
-    } else {
-        console.info("setDoNotDisturbDate success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let setDoNotDisturbDateCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+  } else {
+    console.info("setDoNotDisturbDate success");
+  }
 }
 
-let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
-    begin: new Date(),
-    end: new Date(2021, 11, 15, 18, 0)
+let doNotDisturbDate: Notification.DoNotDisturbDate = {
+  type: Notification.DoNotDisturbType.TYPE_ONCE,
+  begin: new Date(),
+  end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1
+let userId: number = 1;
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
@@ -2147,22 +2364,26 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 | Name  | Type            | Mandatory| Description          |
 | ------ | ---------------- | ---- | -------------- |
-| date   | [DoNotDisturbDate](#donotdisturbdate8-deprecated) | Yes  | DND time to set.|
+| date   | [DoNotDisturbDate](#donotdisturbdate8) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
 
 **Example**
 
-```js
-let doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
-    begin: new Date(),
-    end: new Date(2021, 11, 15, 18, 0)
+```ts
+import Base from '@ohos.base';
+
+let doNotDisturbDate: Notification.DoNotDisturbDate = {
+  type: Notification.DoNotDisturbType.TYPE_ONCE,
+  begin: new Date(),
+  end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1;
+let userId: number = 1;
 
 Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
-	console.info("setDoNotDisturbDate success");
+  console.info("setDoNotDisturbDate success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`setDoNotDisturbDate failed, code is ${err}`);
 });
 ```
 
@@ -2183,17 +2404,19 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```js
-function getDoNotDisturbDateCallback(err, data) {
-    if (err.code) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
-    } else {
-        console.info("getDoNotDisturbDate success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: Notification.DoNotDisturbDate) => {
+  if (err) {
+    console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+  } else {
+    console.info("getDoNotDisturbDate success");
+  }
 }
 
 Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
@@ -2215,13 +2438,17 @@ Obtains the DND time. This API uses a promise to return the result.
 
 | Type                                             | Description                                     |
 | ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
 
 **Example**
 
-```js
-Notification.getDoNotDisturbDate().then((data) => {
-	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+Notification.getDoNotDisturbDate().then((data: Notification.DoNotDisturbDate) => {
+  console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getDoNotDisturbDate failed, code is ${err}`);
 });
 ```
 
@@ -2242,21 +2469,23 @@ Obtains the DND time of a specified user. This API uses an asynchronous callback
 
 | Name    | Type                             | Mandatory| Description                  |
 | -------- | --------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | Yes  | Callback used to return the result.|
 | userId   | number                            | Yes  | User ID.|
 
 **Example**
 
-```js
-function getDoNotDisturbDateCallback(err,data) {
-    if (err.code) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
-    } else {
-        console.info("getDoNotDisturbDate success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: Notification.DoNotDisturbDate) => {
+  if (err) {
+    console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+  } else {
+    console.info("getDoNotDisturbDate success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
@@ -2283,15 +2512,19 @@ Obtains the DND time of a specified user. This API uses a promise to return the 
 
 | Type                                             | Description                                     |
 | ------------------------------------------------- | ----------------------------------------- |
-| Promise\<[DoNotDisturbDate](#donotdisturbdate8-deprecated)\> | Promise used to return the result.|
+| Promise\<[DoNotDisturbDate](#donotdisturbdate8)\> | Promise used to return the result.|
 
 **Example**
 
-```js
-let userId = 1;
+```ts
+import Base from '@ohos.base';
 
-Notification.getDoNotDisturbDate(userId).then((data) => {
-	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+let userId: number = 1;
+
+Notification.getDoNotDisturbDate(userId).then((data: Notification.DoNotDisturbDate) => {
+  console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getDoNotDisturbDate failed, code is ${err}`);
 });
 ```
 
@@ -2316,13 +2549,15 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-function supportDoNotDisturbModeCallback(err,data) {
-    if (err.code) {
-        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
-    } else {
-        console.info("supportDoNotDisturbMode success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let supportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+  } else {
+    console.info("supportDoNotDisturbMode success");
+  }
 }
 
 Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
@@ -2348,9 +2583,13 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 
 **Example**
 
-```js
-Notification.supportDoNotDisturbMode().then((data) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+Notification.supportDoNotDisturbMode().then((data: boolean) => {
+  console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`supportDoNotDisturbMode failed, code is ${err}`);
 });
 ```
 
@@ -2371,14 +2610,16 @@ Checks whether a specified template exists. This API uses an asynchronous callba
 
 **Example**
 
-```javascript
-let templateName = 'process';
-function isSupportTemplateCallback(err, data) {
-    if (err.code) {
-        console.info("isSupportTemplate failed " + JSON.stringify(err));
-    } else {
-        console.info("isSupportTemplate success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let templateName: string = 'process';
+function isSupportTemplateCallback(err: Base.BusinessError, data: boolean) {
+  if (err) {
+    console.info("isSupportTemplate failed " + JSON.stringify(err));
+  } else {
+    console.info("isSupportTemplate success");
+  }
 }
 
 Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
@@ -2406,11 +2647,14 @@ Checks whether a specified template exists. This API uses a promise to return th
 
 **Example**
 
-```javascript
-let templateName = 'process';
+```ts
+import Base from '@ohos.base';
 
-Notification.isSupportTemplate(templateName).then((data) => {
-    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+let templateName: string = 'process';
+Notification.isSupportTemplate(templateName).then((data: boolean) => {
+  console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isSupportTemplate failed, code is ${err}`);
 });
 ```
 
@@ -2430,13 +2674,15 @@ Requests notification to be enabled for this application. This API uses an async
 
 **Example**
 
-```javascript
-function requestEnableNotificationCallback(err) {
-    if (err.code) {
-        console.info("requestEnableNotification failed " + JSON.stringify(err));
-    } else {
-        console.info("requestEnableNotification success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let requestEnableNotificationCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("requestEnableNotification failed " + JSON.stringify(err));
+  } else {
+    console.info("requestEnableNotification success");
+  }
 };
 
 Notification.requestEnableNotification(requestEnableNotificationCallback);
@@ -2452,9 +2698,13 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **Example**
 
-```javascript
+```ts
+import Base from '@ohos.base';
+
 Notification.requestEnableNotification().then(() => {
-    console.info("requestEnableNotification success");
+  console.info("requestEnableNotification success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`requestEnableNotification failed, code is ${err}`);
 });
 ```
 
@@ -2480,16 +2730,18 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 **Example**
 
-```javascript
-function enabledNotificationCallback(err) {
-    if (err.code) {
-        console.info("enableDistributed failed " + JSON.stringify(err));
-    } else {
-        console.info("enableDistributed success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let enabledNotificationCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("enableDistributed failed " + JSON.stringify(err));
+  } else {
+    console.info("enableDistributed success");
+  }
 };
 
-let enable = true;
+let enable: boolean = true;
 
 Notification.enableDistributed(enable, enabledNotificationCallback);
 ```
@@ -2514,10 +2766,14 @@ Sets whether this device supports distributed notifications. This API uses a pro
 
 **Example**
 
-```javascript
-let enable = true;
+```ts
+import Base from '@ohos.base';
+
+let enable: boolean = true;
 Notification.enableDistributed(enable).then(() => {
-    console.info("enableDistributed success");
+  console.info("enableDistributed success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`enableDistributed failed, code is ${err}`);
 });
 ```
 
@@ -2538,13 +2794,15 @@ Checks whether this device supports distributed notifications. This API uses an 
 
 **Example**
 
-```javascript
-function isDistributedEnabledCallback(err, data) {
-    if (err.code) {
-        console.info("isDistributedEnabled failed " + JSON.stringify(err));
-    } else {
-        console.info("isDistributedEnabled success " + JSON.stringify(data));
-    }
+```ts
+import Base from '@ohos.base';
+
+let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("isDistributedEnabled failed " + JSON.stringify(err));
+  } else {
+    console.info("isDistributedEnabled success " + JSON.stringify(data));
+  }
 };
 
 Notification.isDistributedEnabled(isDistributedEnabledCallback);
@@ -2566,9 +2824,13 @@ Checks whether this device supports distributed notifications. This API uses a p
 
 **Example**
 
-```javascript
-Notification.isDistributedEnabled().then((data) => {
+```ts
+import Base from '@ohos.base';
+
+Notification.isDistributedEnabled().then((data: boolean) => {
     console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isDistributedEnabled failed, code is ${err}`);
 });
 ```
 
@@ -2589,26 +2851,28 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```javascript
-function enableDistributedByBundleCallback(err) {
-    if (err.code) {
-        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("enableDistributedByBundle success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let enableDistributedByBundleCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("enableDistributedByBundle success");
+  }
 };
 
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 
-let enable = true;
+let enable: boolean = true;
 
 Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundleCallback);
 ```
@@ -2629,20 +2893,26 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.               |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
 | enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
 
 **Example**
 
-```javascript
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let enable: boolean = true;
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 
-let enable = true;
 Notification.enableDistributedByBundle(bundle, enable).then(() => {
-    console.info("enableDistributedByBundle success");
+  console.info("enableDistributedByBundle success");
+}).catch((err: Base.BusinessError) => {
+  console.error(`enableDistributedByBundle failed, code is ${err}`);
 });
+
 ```
 
 ## Notification.isDistributedEnabledByBundle<sup>8+</sup>
@@ -2661,22 +2931,24 @@ Obtains whether an application supports distributed notifications based on the b
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.                    |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.                    |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```javascript
-function isDistributedEnabledByBundleCallback(err, data) {
-    if (err.code) {
-        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
-    }
+```ts
+import Base from '@ohos.base';
+
+let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean) => {
+  if (err) {
+    console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+  } else {
+    console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
+  }
 };
 
-let bundle = {
-    bundle: "bundleName1",
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 
 Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
@@ -2698,7 +2970,7 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoptiondeprecated)             | Yes  | Application bundle.               |
+| bundle   | [BundleOption](#bundleoption)             | Yes  | Application bundle.               |
 
 **Return value**
 
@@ -2708,13 +2980,17 @@ Checks whether a specified application supports distributed notifications. This 
 
 **Example**
 
-```javascript
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+
+let bundle: Notification.BundleOption = {
+  bundle: "bundleName1",
 };
 
-Notification.isDistributedEnabledByBundle(bundle).then((data) => {
-    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+Notification.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
+  console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`isDistributedEnabledByBundle failed, code is ${err}`);
 });
 ```
 
@@ -2735,17 +3011,19 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 | Name  | Type                              | Mandatory| Description                      |
 | -------- | --------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[DeviceRemindType](#deviceremindtype8)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
-```javascript
-function getDeviceRemindTypeCallback(err,data) {
-    if (err.code) {
-        console.info("getDeviceRemindType failed " + JSON.stringify(err));
-    } else {
-        console.info("getDeviceRemindType success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: Notification.DeviceRemindType) => {
+  if (err) {
+    console.info("getDeviceRemindType failed " + JSON.stringify(err));
+  } else {
+    console.info("getDeviceRemindType success");
+  }
 };
 
 Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
@@ -2767,13 +3045,17 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<[DeviceRemindType](#deviceremindtype8-deprecated)\> | Promise used to return the result.|
+| Promise\<[DeviceRemindType](#deviceremindtype8)\> | Promise used to return the result.|
 
 **Example**
 
-```javascript
-Notification.getDeviceRemindType().then((data) => {
-    console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) => {
+  console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+  console.error(`getDeviceRemindType failed, code is ${err}`);
 });
 ```
 
@@ -2817,7 +3099,7 @@ Notification.getDeviceRemindType().then((data) => {
 
 | Name | Type                                  | Readable| Writable| Description                  |
 | ----- | -------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype8-deprecated) | Yes  | Yes  | DND time type.|
+| type  | [DoNotDisturbType](#donotdisturbtype8) | Yes  | Yes  | DND time type.|
 | begin | Date                                   | Yes  | Yes  | DND start time.|
 | end   | Date                                   | Yes  | Yes  | DND end time.|
 
@@ -2872,10 +3154,10 @@ Notification.getDeviceRemindType().then((data) => {
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) instead.
 
-| Name  | Type  | Read-only| Mandatory| Description  |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | No | Yes | Bundle information of the application.|
-| uid    | number | No | No | User ID.|
+| Name  | Type  | Mandatory| Description  |
+| ------ | ------ | --- |  ------ |
+| bundle | string | Yes | Bundle information of the application.|
+| uid    | number | No | User ID. The default value is 0.|
 
 ## NotificationKey<sup>deprecated</sup>
 
@@ -3203,7 +3485,7 @@ Provides the notification user input.
 | TYPE_CONTINUOUS      | 1   | Continuous notification.           |
 | TYPE_TIMER           | 2   | Timed notification.           |
 
-## RemoveReason<sup>9+</sup> <sup>deprecated</sup>
+## RemoveReason <sup>deprecated</sup>
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3211,9 +3493,9 @@ Provides the notification user input.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 9. You are advised to use [notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [notificationManager.RemoveReason](js-apis-notificationSubscribe.md#removereason) instead.
 
 | Name                | Value | Description                 |
 | -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE<sup>9+</sup>  | 1   | The notification is removed after a click on it.   |
-| CANCEL_REASON_REMOVE<sup>9+</sup> | 2   | The notification is removed by the user.        |
+| CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
+| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |

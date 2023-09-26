@@ -28,10 +28,10 @@ ImageAnimator()
 | images     | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]<br/>**说明：**<br>不支持动态更新。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  默认为初始状态，用于控制播放状态。<br/>默认值：AnimationStatus.Initial <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | duration   | number  | 单位为毫秒，默认时长为1000ms；duration为0时，不播放图片；值的改变只会在下一次循环开始时生效；当images中任意一帧图片设置了单独的duration后，该属性设置无效。<br/>默认值：1000 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| reverse    | boolean | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| reverse    | boolean | 设置播放方向。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | fixedSize  | boolean | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| preDecode<sup>(deprecated)</sup>  | number  | 预解码的图片数量。例如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。<br/>从API version9开始废弃。<br/>默认值：0  |
-| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | 设置动画开始前和结束后的状态，可选值参见FillMode说明。<br/>默认值：FillMode.Forwards <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| preDecode<sup>(deprecated)</sup>  | number  | 预解码的图片数量。例如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。<br/>从API version 9开始废弃。<br/>默认值：0  |
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | 设置当前播放方向下，动画开始前和结束后的状态，可选值参见FillMode说明。动画结束后的状态由fillMode和reverse属性共同决定。例如，fillMode为Forwards表示停止时维持动画最后一个关键帧的状态，若reverse为false则维持正播的最后一帧，即最后一张图，若reverse为true则维持逆播的最后一帧，即第一张图。<br/>默认值：FillMode.Forwards <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | iterations | number  | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1  |
 
 ## ImageFrameInfo对象说明

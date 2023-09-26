@@ -9,7 +9,7 @@ You can set state-specific styles for components.
 
 ## Attributes
 
-| Style| Type| Description|
+| Name| Type| Description|
 | -------- | -------- | -------- |
 | stateStyles | StateStyles | Styles of the component for different states.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
@@ -21,9 +21,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- | -------- | -------- |
 | normal | ()=&gt;void | No| Style of the component when being stateless.|
 | pressed | ()=&gt;void | No| Style of the component in the pressed state.|
-| disabled | ()=&gt;void | No| Style of the component in disabled state.|
-| focused | ()=&gt;void | No| Style of the component in focused state.|
-| clicked | ()=&gt;void | No| Style of the component in clicked state.|
+| disabled | ()=&gt;void | No| Style of the component in the disabled state.|
+| focused | ()=&gt;void | No| Style of the component in the focused state.|
+| clicked | ()=&gt;void | No| Style of the component in the clicked state.|
+| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.|
 
 
 ## Example
@@ -35,37 +36,37 @@ Since API version 9, this API is supported in ArkTS widgets.
 struct StyleExample {
   @State isEnable: boolean = true
 
-  @Styles pressedStyles() {
-        .backgroundColor("#ED6F21")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Dashed)
-        .borderWidth(2)
-        .borderColor("#33000000")
-        .width(120)
-        .height(30)
-        .opacity(1)
+  @Styles pressedStyles():void {
+    .backgroundColor("#ED6F21")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Dashed)
+    .borderWidth(2)
+    .borderColor("#33000000")
+    .width(120)
+    .height(30)
+    .opacity(1)
   }
 
-  @Styles disabledStyles() {
-        .backgroundColor("#E5E5E5")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Solid)
-        .borderWidth(2)
-        .borderColor("#2a4c1919")
-        .width(90)
-        .height(25)
-        .opacity(1)
+  @Styles disabledStyles():void {
+    .backgroundColor("#E5E5E5")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Solid)
+    .borderWidth(2)
+    .borderColor("#2a4c1919")
+    .width(90)
+    .height(25)
+    .opacity(1)
   }
 
-  @Styles normalStyles() {
-        .backgroundColor("#0A59F7")
-        .borderRadius(10)
-        .borderStyle(BorderStyle.Solid)
-        .borderWidth(2)
-        .borderColor("#33000000")
-        .width(100)
-        .height(25)
-        .opacity(1)
+  @Styles normalStyles():void {
+    .backgroundColor("#0A59F7")
+    .borderRadius(10)
+    .borderStyle(BorderStyle.Solid)
+    .borderWidth(2)
+    .borderColor("#33000000")
+    .width(100)
+    .height(25)
+    .opacity(1)
   }
 
   build() {

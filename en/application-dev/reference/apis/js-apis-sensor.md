@@ -9,11 +9,95 @@ The **Sensor** module provides APIs for obtaining the sensor list and subscribin
 
 ## Modules to Import
 
-```js
+```ts
 import sensor from '@ohos.sensor';
 ```
+## sensor.on
 
-## sensor.on<sup>9+</sup>
+### COLOR<sup>10+</sup>
+
+on(type: SensorId.COLOR, callback: Callback\<ColorResponse>,options?: Options): void
+
+Subscribes to data of the color sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                       |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).COLOR                    | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                     |
+| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ColorResponse** object.        |
+| options  | [Options](#options)                             | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+
+**Example**
+
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+try{
+  sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
+    console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
+    console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### SAR<sup>10+</sup>
+
+on(type: SensorId.SAR, callback: Callback\<SarResponse>,options?: Options): void
+
+Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                       |
+| -------- | ---------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).SAR               | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                       |
+| callback | Callback&lt;[SarResponse](#sarresponse)> | Yes  | Callback used to report the sensor data, which is a **SarResponse** object.          |
+| options  | [Options](#options)                      | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
+
+**Example**
+
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+try {
+  sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
+    console.info('Succeeded in getting specific absorption rate : ' + data.absorptionRatio);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 ### ACCELEROMETER<sup>9+</sup>
 
@@ -31,9 +115,9 @@ Subscribes to data of the acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.             |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -43,15 +127,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -71,9 +159,9 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -83,18 +171,22 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -108,13 +200,13 @@ Subscribes to data of the ambient light sensor.
 
 **Parameters**
 
-| Name  | Type                                           | Mandatory| Description                                               |
-| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
-| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.     |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.|
-| options  | [Options](#options)                             | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.  |
+| Name  | Type                                           | Mandatory| Description                                                       |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.             |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.        |
+| options  | [Options](#options)                             | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -124,13 +216,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.AMBIENT_LIGHT, function (data) {
-        console.info('The ambient light intensity: ' + data.intensity);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
+    console.info('Succeeded in getting the ambient light intensity: ' + data.intensity);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -148,9 +244,9 @@ Subscribes to data of the ambient temperature sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AmbientTemperatureResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -160,13 +256,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
-        console.info('Temperature: ' + data.temperature);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
+    console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -180,13 +280,13 @@ Subscribes to data of the barometer sensor.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                   |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.             |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.                 |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -196,13 +296,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.BAROMETER, function (data) {
-        console.info('Atmospheric pressure: ' + data.pressure);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
+    console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -216,13 +320,13 @@ Subscribes to data of the gravity sensor.
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory| Description                                                 |
-| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.             |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.|
-| options  | [Options](#options)                                 | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.    |
+| Name  | Type                                               | Mandatory| Description                                                       |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.                   |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.      |
+| options  | [Options](#options)                                 | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -232,15 +336,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.GRAVITY, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -256,13 +364,13 @@ Subscribes to data of the gyroscope sensor.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                   |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.             |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.                 |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -272,15 +380,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.GYROSCOPE, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -301,9 +413,9 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -313,19 +425,24 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ###  HALL<sup>9+</sup>
@@ -338,13 +455,13 @@ Subscribes to data of the Hall effect sensor.
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory| Description                                              |
-| -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
-| type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.             |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.|
-| options  | [Options](#options)                           | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns. |
+| Name  | Type                                         | Mandatory| Description                                                       |
+| -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                      |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.         |
+| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -354,14 +471,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.HALL, function (data) {
-        console.info('Hall status: ' + data.status);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
+    console.info('Succeeded in invoking on. Hall status: ' + data.status);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ###   HEART_RATE<sup>9+</sup>
@@ -376,13 +498,13 @@ Subscribes to data of the heart rate sensor.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                   |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.            |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.                |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -392,13 +514,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.HEART_RATE, function (data) {
-        console.info('Heart rate: ' + data.heartRate);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
+    console.info('Succeeded in invoking on. Heart rate: ' + data.heartRate);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -412,13 +538,13 @@ Subscribes to data of the humidity sensor.
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                                  |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.             |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.|
-| options  | [Options](#options)                                   | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.     |
+| Name  | Type                                                 | Mandatory| Description                                                       |
+| -------- | ----------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.                  |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.     |
+| options  | [Options](#options)                                   | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -428,13 +554,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.HUMIDITY, function (data) {
-        console.info('Humidity: ' + data.humidity);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
+    console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -455,9 +585,9 @@ Subscribes to data of the linear acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELEROMETER**.       |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LinearAccelerometerResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -467,15 +597,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -493,9 +627,9 @@ Subscribes to data of the magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.            |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -505,15 +639,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -531,9 +669,9 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -543,18 +681,22 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -566,7 +708,7 @@ Subscribes to data of the orientation sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -576,23 +718,27 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Parameters**
 
-| Name  | Type                                                       | Mandatory| Description                                                     |
-| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.             |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.|
-| options  | [Options](#options)                                         | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.        |
+| Name  | Type                                                       | Mandatory| Description                                                       |
+| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.               |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.  |
+| options  | [Options](#options)                                         | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.ORIENTATION, function (data) {
-        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-        console.info('The device rotates at an angle around the X axis: ' + data.beta);
-        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
+    console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
+    console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
+    console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -606,7 +752,7 @@ Subscribes to data of the pedometer sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -616,21 +762,25 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                   |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.             |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.                 |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.PEDOMETER, function (data) {
-        console.info('Step count: ' + data.steps);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
+    console.info('Succeeded in invoking on. Step count: ' + data.steps);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -651,9 +801,9 @@ Subscribes to data of the pedometer detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerDetectionResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -663,13 +813,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
-        console.info('Pedometer scalar: ' + data.scalar);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
+    console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -683,13 +837,13 @@ Subscribes to data of the proximity sensor.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                                                   |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.             |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| Name  | Type                                                   | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                 |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -699,13 +853,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.PROXIMITY, function (data) {
-        console.info('Distance: ' + data.distance);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
+    console.info('Succeeded in invoking on. Distance: ' + data.distance);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -724,9 +882,9 @@ Subscribes to data of the rotation vector sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **RotationVectorResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -736,16 +894,20 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.ROTATION_VECTOR, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('Scalar quantity: ' + data.w);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
+    console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking on. Scalar quantity: ' + data.w);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -764,9 +926,9 @@ Subscribes to data of the significant motion sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **SignificantMotionResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -776,13 +938,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
-        console.info('Scalar data: ' + data.scalar);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
+    console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -801,9 +967,9 @@ Subscribes to data of the wear detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.            |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **WearDetectionResponse** object.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -813,13 +979,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.on(sensor.SensorId.WEAR_DETECTION, function (data) {
-        console.info('Wear status: ' + data.value);
-    }, { interval: 100000000 });
-} catch (err) {
-    console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
+    console.info('Succeeded in invoking on. Wear status: ' + data.value);
+  }, { interval: 100000000 });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -842,7 +1012,7 @@ Obtains data of the acceleration sensor once.
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.             |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -852,15 +1022,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.ACCELEROMETER, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -881,7 +1055,7 @@ Obtains data of the uncalibrated acceleration sensor once.
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -891,18 +1065,22 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -921,7 +1099,7 @@ Obtains data of the ambient light sensor once.
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.     |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -931,13 +1109,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.AMBIENT_LIGHT, function (data) {
-        console.info('The ambient light intensity: ' + data.intensity);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
+    console.info('Succeeded in invoking once. the ambient light intensity: ' + data.intensity);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -956,7 +1138,7 @@ Obtains data of the temperature sensor once.
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AmbientTemperatureResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -966,13 +1148,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
-        console.info('Temperature: ' + data.temperature);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
+    console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -991,7 +1177,7 @@ Obtains data of the barometer sensor once.
 | type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.             |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1001,13 +1187,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function (data) {
-        console.info('Atmospheric pressure: ' + data.pressure);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
+    console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1026,7 +1216,7 @@ Obtains data of the gravity sensor once.
 | type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.             |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1036,15 +1226,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.GRAVITY, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1065,7 +1259,7 @@ Obtains to data of the gyroscope sensor once.
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.             |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1075,15 +1269,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.GYROSCOPE, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1104,7 +1302,7 @@ Obtains data of the uncalibrated gyroscope sensor once.
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1114,18 +1312,22 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1144,7 +1346,7 @@ Obtains data of the Hall effect sensor once.
 | type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.             |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1154,13 +1356,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.HALL, function (data) {
-        console.info('Status: ' + data.status);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
+    console.info('Succeeded in invoking once. Status: ' + data.status);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1181,7 +1387,7 @@ Obtains data of the heart rate sensor once.
 | type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.            |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1191,13 +1397,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.HEART_RATE, function (data) {
-        console.info('Heart rate: ' + data.heartRate);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
+    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1216,7 +1426,7 @@ Obtains data of the humidity sensor once.
 | type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.             |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1226,13 +1436,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.HUMIDITY, function (data) {
-        console.info('Humidity: ' + data.humidity);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
+    console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1253,7 +1467,7 @@ Obtains data of the linear acceleration sensor once.
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELEROMETER**.       |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LinearAccelerometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1263,15 +1477,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1290,7 +1508,7 @@ Obtains data of the magnetic field sensor once.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.            |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1300,15 +1518,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.MAGNETIC_FIELD, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1327,7 +1549,7 @@ Obtains data of the uncalibrated magnetic field sensor once.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldUncalibratedResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1337,18 +1559,22 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('X-coordinate bias: ' + data.biasX);
-        console.info('Y-coordinate bias: ' + data.biasY);
-        console.info('Z-coordinate bias: ' + data.biasZ);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1367,9 +1593,9 @@ Obtains data of the orientation sensor once.
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.             |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.|
 
-**Error code**
+**Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
+For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).AMBIENT_LIGHT
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -1377,15 +1603,19 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.ORIENTATION, function (data) {
-        console.info('The device rotates at an angle around the X axis: ' + data.beta);
-        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
+    console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
+    console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
+    console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1406,7 +1636,7 @@ Obtains data of the pedometer sensor once.
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.             |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1416,13 +1646,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.PEDOMETER, function (data) {
-        console.info('Step count: ' + data.steps);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
+    console.info('Succeeded in invoking once. Step count: ' + data.steps);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1443,7 +1677,7 @@ Obtains data of the pedometer sensor once.
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerDetectionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1453,13 +1687,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
-        console.info('Scalar data: ' + data.scalar);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
+    console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1478,7 +1716,7 @@ Obtains data of the proximity sensor once.
 | type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.             |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1488,13 +1726,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.PROXIMITY, function (data) {
-        console.info('Distance: ' + data.distance);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
+    console.info('Succeeded in invoking once. Distance: ' + data.distance);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1513,7 +1755,7 @@ Obtains data of the rotation vector sensor once.
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **RotationVectorResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1523,16 +1765,20 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.ROTATION_VECTOR, function (data) {
-        console.info('X-coordinate component: ' + data.x);
-        console.info('Y-coordinate component: ' + data.y);
-        console.info('Z-coordinate component: ' + data.z);
-        console.info('Scalar quantity: ' + data.w);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking once. Scalar quantity: ' + data.w);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1551,7 +1797,7 @@ Obtains data of the significant motion sensor once.
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **SignificantMotionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1561,13 +1807,17 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
-        console.info('Scalar data: ' + data.scalar);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
+    console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1586,7 +1836,7 @@ Obtains data of the wear detection sensor once.
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.            |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **WearDetectionResponse** object.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
@@ -1596,17 +1846,109 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.once(sensor.SensorId.WEAR_DETECTION, function (data) {
-        console.info("Wear status: " + data.value);
-    });
-} catch (err) {
-    console.error('Once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.once(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
+    console.info('Succeeded in invoking once. Wear status: ' + data.value);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
-## sensor.off<sup>9+</sup>
+## sensor.off
+
+### COLOR<sup>10+</sup>
+
+off(type: SensorId.COLOR, callback?: Callback\<ColorResponse>): void
+
+Unsubscribes from data of the color sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                    | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
+| callback | Callback&lt;[ColorResponse](#colorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
+
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
+}
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
+}
+
+try {
+  sensor.on(sensor.SensorId.COLOR, callback1);
+  sensor.on(sensor.SensorId.COLOR, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.COLOR, callback1);
+  // Unsubscribe from all callbacks of the SensorId.COLOR type.
+  sensor.off(sensor.SensorId.COLOR);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### SAR<sup>10+</sup>
+
+off(type: SensorId.SAR, callback?: Callback\<SarResponse>): void
+
+Unsubscribes from data of the SAR sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                                                        |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).SAR               | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
+| callback | Callback&lt;[SarResponse](#sarresponse)> | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Example**
+
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
+}
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
+}
+
+try {
+  sensor.on(sensor.SensorId.SAR, callback1);
+  sensor.on(sensor.SensorId.SAR, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.SAR, callback1);
+  // Unsubscribe from all callbacks of the SensorId.SAR type.
+  sensor.off(sensor.SensorId.SAR);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
 
 ### ACCELEROMETER<sup>9+</sup> 
 
@@ -1627,22 +1969,28 @@ Unsubscribes from data of the acceleration sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER, callback1);
-    sensor.on(sensor.SensorId.ACCELEROMETER, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.ACCELEROMETER, callback1);
-    // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER type.
-    sensor.off(sensor.SensorId.ACCELEROMETER);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ACCELEROMETER, callback1);
+  sensor.on(sensor.SensorId.ACCELEROMETER, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.ACCELEROMETER, callback1);
+  // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER type.
+  sensor.off(sensor.SensorId.ACCELEROMETER);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1665,22 +2013,28 @@ Unsubscribes from data of the uncalibrated acceleration sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
-    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
-    // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER_UNCALIBRATED type.
-    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
+  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
+  // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER_UNCALIBRATED type.
+  sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1701,22 +2055,28 @@ Unsubscribes from data of the ambient light sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback1);
-    sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback1);
-    // Unsubscribe from all callbacks of the SensorId.AMBIENT_LIGHT type.
-    sensor.off(sensor.SensorId.AMBIENT_LIGHT);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback1);
+  sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback1);
+  // Unsubscribe from all callbacks of the SensorId.AMBIENT_LIGHT type.
+  sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1737,22 +2097,28 @@ Unsubscribes from data of the ambient temperature sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
-    sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
-    // Unsubscribe from all callbacks of the SensorId.AMBIENT_TEMPERATURE type.
-    sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
+  sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
+  // Unsubscribe from all callbacks of the SensorId.AMBIENT_TEMPERATURE type.
+  sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1773,13 +2139,18 @@ Unsubscribes from data of the barometer sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+    console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+    console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
     sensor.on(sensor.SensorId.BAROMETER, callback1);
     sensor.on(sensor.SensorId.BAROMETER, callback2);
@@ -1787,8 +2158,9 @@ try {
     sensor.off(sensor.SensorId.BAROMETER, callback1);
     // Unsubscribe from all callbacks of the SensorId.BAROMETER type.
     sensor.off(sensor.SensorId.BAROMETER);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+} catch (error) {
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1809,23 +2181,30 @@ Unsubscribes from data of the gravity sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.GRAVITY, callback1);
-    sensor.on(sensor.SensorId.GRAVITY, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.GRAVITY, callback1);
-    // Unsubscribe from all callbacks of the SensorId.GRAVITY type.
-    sensor.off(sensor.SensorId.GRAVITY);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GRAVITY, callback1);
+  sensor.on(sensor.SensorId.GRAVITY, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.GRAVITY, callback1);
+  // Unsubscribe from all callbacks of the SensorId.GRAVITY type.
+  sensor.off(sensor.SensorId.GRAVITY);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
+
 ```
 
 ### GYROSCOPE<sup>9+</sup> 
@@ -1847,22 +2226,28 @@ Unsubscribes from data of the gyroscope sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.GYROSCOPE, callback1);
-    sensor.on(sensor.SensorId.GYROSCOPE, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.GYROSCOPE, callback1);
-    // Unsubscribe from all callbacks of the SensorId.GYROSCOPE type.
-    sensor.off(sensor.SensorId.GYROSCOPE);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GYROSCOPE, callback1);
+  sensor.on(sensor.SensorId.GYROSCOPE, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.GYROSCOPE, callback1);
+  // Unsubscribe from all callbacks of the SensorId.GYROSCOPE type.
+  sensor.off(sensor.SensorId.GYROSCOPE);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1885,22 +2270,28 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
-    sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
-    // Unsubscribe from all callbacks of the SensorId.GYROSCOPE_UNCALIBRATED type.
-    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
+  sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
+  // Unsubscribe from all callbacks of the SensorId.GYROSCOPE_UNCALIBRATED type.
+  sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1921,22 +2312,28 @@ Unsubscribes from data of the Hall effect sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.HALL, callback1);
-    sensor.on(sensor.SensorId.HALL, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.HALL, callback1);
-    // Unsubscribe from all callbacks of the SensorId.HALL type.
-    sensor.off(sensor.SensorId.HALL);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HALL, callback1);
+  sensor.on(sensor.SensorId.HALL, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.HALL, callback1);
+  // Unsubscribe from all callbacks of the SensorId.HALL type.
+  sensor.off(sensor.SensorId.HALL);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1959,22 +2356,28 @@ Unsubscribes from data of the heart rate sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.HEART_RATE, callback1);
-    sensor.on(sensor.SensorId.HEART_RATE, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.HEART_RATE, callback1);
-    // Unsubscribe from all callbacks of the SensorId.HEART_RATE type.
-    sensor.off(sensor.SensorId.HEART_RATE);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HEART_RATE, callback1);
+  sensor.on(sensor.SensorId.HEART_RATE, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.HEART_RATE, callback1);
+  // Unsubscribe from all callbacks of the SensorId.HEART_RATE type.
+  sensor.off(sensor.SensorId.HEART_RATE);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -1995,22 +2398,28 @@ Unsubscribes from data of the humidity sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.HUMIDITY, callback1);
-    sensor.on(sensor.SensorId.HUMIDITY, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.HUMIDITY, callback1);
-    // Unsubscribe from all callbacks of the SensorId.HUMIDITY type.
-    sensor.off(sensor.SensorId.HUMIDITY);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.HUMIDITY, callback1);
+  sensor.on(sensor.SensorId.HUMIDITY, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.HUMIDITY, callback1);
+  // Unsubscribe from all callbacks of the SensorId.HUMIDITY type.
+  sensor.off(sensor.SensorId.HUMIDITY);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2033,22 +2442,28 @@ Unsubscribes from data of the linear acceleration sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
-    sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
-    // Unsubscribe from all callbacks of the SensorId.LINEAR_ACCELEROMETER type.
-    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
+  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
+  // Unsubscribe from all callbacks of the SensorId.LINEAR_ACCELEROMETER type.
+  sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2069,22 +2484,28 @@ Unsubscribes from data of the magnetic field sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback1);
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback1);
-    // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD type.
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback1);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback1);
+  // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD type.
+  sensor.off(sensor.SensorId.MAGNETIC_FIELD);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2105,22 +2526,28 @@ Unsubscribes from data of the uncalibrated magnetic field sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
-    sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
-    // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD_UNCALIBRATED type.
-    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
+  sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
+  // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD_UNCALIBRATED type.
+  sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2141,22 +2568,28 @@ Unsubscribes from data of the orientation sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.ORIENTATION, callback1);
-    sensor.on(sensor.SensorId.ORIENTATION, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.ORIENTATION, callback1);
-    // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
-    sensor.off(sensor.SensorId.ORIENTATION);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ORIENTATION, callback1);
+  sensor.on(sensor.SensorId.ORIENTATION, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.ORIENTATION, callback1);
+  // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
+  sensor.off(sensor.SensorId.ORIENTATION);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2179,22 +2612,28 @@ Unsubscribes from data of the pedometer sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.PEDOMETER, callback1);
-    sensor.on(sensor.SensorId.PEDOMETER, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.PEDOMETER, callback1);
-    // Unsubscribe from all callbacks of the SensorId.PEDOMETER type.
-    sensor.off(sensor.SensorId.PEDOMETER);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PEDOMETER, callback1);
+  sensor.on(sensor.SensorId.PEDOMETER, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.PEDOMETER, callback1);
+  // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
+  sensor.off(sensor.SensorId.PEDOMETER);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2217,22 +2656,28 @@ Unsubscribes from data of the pedometer detection sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback1);
-    sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback1);
-    // Unsubscribe from all callbacks of the SensorId.PEDOMETER_DETECTION type.
-    sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback1);
+  sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback1);
+  // Unsubscribe from all callbacks of the SensorId.PEDOMETER_DETECTION type.
+  sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2253,22 +2698,28 @@ Unsubscribes from data of the proximity sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.PROXIMITY, callback1);
-    sensor.on(sensor.SensorId.PROXIMITY, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.PROXIMITY, callback1);
-    // Unsubscribe from all callbacks of the SensorId.PROXIMITY type.
-    sensor.off(sensor.SensorId.PROXIMITY);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.PROXIMITY, callback1);
+  sensor.on(sensor.SensorId.PROXIMITY, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.PROXIMITY, callback1);
+  // Unsubscribe from all callbacks of the SensorId.PROXIMITY type.
+  sensor.off(sensor.SensorId.PROXIMITY);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2289,22 +2740,28 @@ Unsubscribes from data of the rotation vector sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.ROTATION_VECTOR, callback1);
-    sensor.on(sensor.SensorId.ROTATION_VECTOR, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.ROTATION_VECTOR, callback1);
-    // Unsubscribe from all callbacks of the SensorId.ROTATION_VECTOR type.
-    sensor.off(sensor.SensorId.ROTATION_VECTOR);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.ROTATION_VECTOR, callback1);
+  sensor.on(sensor.SensorId.ROTATION_VECTOR, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.ROTATION_VECTOR, callback1);
+  // Unsubscribe from all callbacks of the SensorId.ROTATION_VECTOR type.
+  sensor.off(sensor.SensorId.ROTATION_VECTOR);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2325,22 +2782,28 @@ Unsubscribes from data of the significant motion sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
-    sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
-    // Unsubscribe from all callbacks of the SensorId.SIGNIFICANT_MOTION type.
-    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
+  sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
+  // Unsubscribe from all callbacks of the SensorId.SIGNIFICANT_MOTION type.
+  sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2361,22 +2824,28 @@ Unsubscribes from data of the wear detection sensor.
 
 **Example**
 
-```js
-function callback1(data) {
-    console.info('Callback1 data: ' + JSON.stringify(data));
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
+function callback1(data: object) {
+  console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
 }
-function callback2(data) {
-    console.info('Callback2 data: ' + JSON.stringify(data));
+
+function callback2(data: object) {
+  console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
+
 try {
-    sensor.on(sensor.SensorId.WEAR_DETECTION, callback1);
-    sensor.on(sensor.SensorId.WEAR_DETECTION, callback2);
-    // Unsubscribe from callback1.
-    sensor.off(sensor.SensorId.WEAR_DETECTION, callback1);
-    // Unsubscribe from all callbacks of the SensorId.WEAR_DETECTION type.
-    sensor.off(sensor.SensorId.WEAR_DETECTION);
-} catch (err) {
-    console.error('Off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+  sensor.on(sensor.SensorId.WEAR_DETECTION, callback1);
+  sensor.on(sensor.SensorId.WEAR_DETECTION, callback2);
+  // Unsubscribe from callback1.
+  sensor.off(sensor.SensorId.WEAR_DETECTION, callback1);
+  // Unsubscribe from all callbacks of the SensorId.WEAR_DETECTION type.
+  sensor.off(sensor.SensorId.WEAR_DETECTION);
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2396,7 +2865,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 | timeMillis      | number                                                       | Yes  | Time when the magnetic declination is obtained. The value is a Unix timestamp, in ms.|
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
@@ -2406,23 +2875,28 @@ For details about the following error codes, see [Error Codes of sensor.getGeoma
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, function (err, data) {
-        if (err) {
-            console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        console.info("GeomagneticInfo x" + data.x);
-        console.info("GeomagneticInfo y" + data.y);
-        console.info("GeomagneticInfo z" + data.z);
-        console.info("GeomagneticInfo geomagneticDip" + data.geomagneticDip);
-        console.info("GeomagneticInfo deflectionAngle" + data.deflectionAngle);
-        console.info("GeomagneticInfo levelIntensity" + data.levelIntensity);
-        console.info("GeomagneticInfo totalIntensity" + data.totalIntensity);
-    });
-} catch (err) {
-    console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+  sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000,
+      (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+    if (err) {
+      console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info("Succeeded in getting geomagneticInfo x" + data.x);
+    console.info("Succeeded in getting geomagneticInfo y" + data.y);
+    console.info("Succeeded in getting geomagneticInfo z" + data.z);
+    console.info("Succeeded in getting geomagneticInfo geomagneticDip" + data.geomagneticDip);
+    console.info("Succeeded in getting geomagneticInfo deflectionAngle" + data.deflectionAngle);
+    console.info("Succeeded in getting geomagneticInfo levelIntensity" + data.levelIntensity);
+    console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2447,7 +2921,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 | ---------------------------------------------------------- | -------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
@@ -2457,22 +2931,26 @@ For details about the following error codes, see [Error Codes of sensor.getGeoma
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
-    promise.then((data) => {
-        console.info("GeomagneticInfo x" + data.x);
-        console.info("GeomagneticInfo y" + data.y);
-        console.info("GeomagneticInfo z" + data.z);
-        console.info("GeomagneticInfo geomagneticDip" + data.geomagneticDip);
-        console.info("GeomagneticInfo deflectionAngle" + data.deflectionAngle);
-        console.info("GeomagneticInfo levelIntensity" + data.levelIntensity);
-        console.info("GeomagneticInfo totalIntensity" + data.totalIntensity);
-    }, (err)=>{
-        console.error('Get geomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get geomagneticInfo. Error code: ' + err.code + '; message: ' + err.message);
+  const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
+  promise.then((data: sensor.GeomagneticResponse) => {
+    console.info("Succeeded in getting geomagneticInfo x" + data.x);
+    console.info("Succeeded in getting geomagneticInfo y" + data.y);
+    console.info("Succeeded in getting geomagneticInfo z" + data.z);
+    console.info("Succeeded in getting geomagneticInfo geomagneticDip" + data.geomagneticDip);
+    console.info("Succeeded in getting geomagneticInfo deflectionAngle" + data.deflectionAngle);
+    console.info("Succeeded in getting geomagneticInfo levelIntensity" + data.levelIntensity);
+    console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2492,7 +2970,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 | currentPressure | number                      | Yes  | Specified atmospheric pressure, in hPa.|
 | callback        | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the altitude, in meters.   |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
@@ -2502,19 +2980,23 @@ For details about the following error codes, see [Error Codes of sensor.getDevic
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let seaPressure = 1013.2;
-    let currentPressure = 1500.0;
-    sensor.getDeviceAltitude(seaPressure, currentPressure, function (err, data) {
-        if (err) {
-            console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        console.info('altitude: ' + data);
-    });
-} catch (err) {
-    console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
+  let seaPressure = 1013.2;
+  let currentPressure = 1500.0;
+  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError.BusinessError, data: number) => {
+    if (err) {
+      console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting altitude: ' + data);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2539,7 +3021,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 | --------------------- | ------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
@@ -2549,18 +3031,22 @@ For details about the following error codes, see [Error Codes of sensor.getDevic
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let seaPressure = 1013.2;
-    let currentPressure = 1500.0;
-    const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
-    promise.then((data) => {
-        console.info('sensor_getDeviceAltitude_Promise success', data);
-    }, (err) => {
-        console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get altitude failed. Error code: ' + err.code + '; message: ' + err.message);
+  let seaPressure = 1013.2;
+  let currentPressure = 1500.0;
+  const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
+  promise.then((data: number) => {
+    console.info('Succeeded in getting sensor_getDeviceAltitude_Promise', data);
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2579,7 +3065,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 | inclinationMatrix | Array&lt;number&gt;         | Yes  | Inclination matrix.              |
 | callback          | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the magnetic dip, in radians.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
@@ -2589,23 +3075,27 @@ For details about the following error codes, see [Error Codes of sensor.getIncli
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    // inclinationMatrix can be 3*3 or 4*4.
-    let inclinationMatrix = [
-        1, 0, 0,
-        0, 1, 0,
-        0, 0, 1
-    ]
-    sensor.getInclination(inclinationMatrix, function (err, data) {
-        if (err) {
-            console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        console.info('Inclination: ' + data);
-    })
-} catch (err) {
-    console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
+  // inclinationMatrix can be 3*3 or 4*4.
+  let inclinationMatrix = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+  ]
+  sensor.getInclination(inclinationMatrix, (err: BusinessError.BusinessError, data: number) => {
+    if (err) {
+      console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting inclination: ' + data);
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2629,7 +3119,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 | --------------------- | ---------------------------- |
 | Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
@@ -2639,22 +3129,26 @@ For details about the following error codes, see [Error Codes of sensor.getIncli
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    // inclinationMatrix can be 3*3 or 4*4.
-    let inclinationMatrix = [
-        1, 0, 0,
-        0, 1, 0,
-        0, 0, 1
-    ]
-    const promise = sensor.getInclination(inclinationMatrix);
-    promise.then((data) => {
-        console.info('Inclination: ' + data);
-    }, (err) => {
-        console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get inclination failed. Error code: ' + err.code + '; message: ' + err.message);
+  // inclinationMatrix can be 3*3 or 4*4.
+  let inclinationMatrix = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+  ]
+  const promise = sensor.getInclination(inclinationMatrix);
+  promise.then((data: number) => {
+    console.info('Succeeded in getting inclination: ' + data);
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2675,7 +3169,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                   |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
@@ -2685,33 +3179,37 @@ For details about the following error codes, see [Error Codes of sensor.getAngle
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    // The rotation matrix can be 3*3 or 4*4.
-    let currentRotationMatrix = [
-        1, 0, 0,
-        0, 1, 0,
-        0, 0, 1
-    ];
-    let preRotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, function (err, data) {
-        if (err) {
-            console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        if (data.length < 3) {
-            console.error("Get angle variation failed, length" + data.length);
-        }
-        console.info("Z: " + data[0]);
-        console.info("X: " + data[1]);
-        console.info("Y  : " + data[2]);
-    })
-} catch (err) {
-    console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
+  // The rotation matrix can be 3*3 or 4*4.
+  let currentRotationMatrix = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+  ];
+  let preRotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (data.length < 3) {
+      console.error("Failed to get angle variation, length" + data.length);
+    }
+    console.info("Z: " + data[0]);
+    console.info("X: " + data[1]);
+    console.info("Y  : " + data[2]);
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2736,7 +3234,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
@@ -2746,32 +3244,36 @@ For details about the following error codes, see [Error Codes of sensor.getAngle
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    // The rotation matrix can be 3*3 or 4*4.
-    let currentRotationMatrix = [
-        1, 0, 0,
-        0, 1, 0,
-        0, 0, 1
-    ];
-    let preRotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    const promise = sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix);
-    promise.then((data) => {
-        if (data.length < 3) {
-            console.error("Get angle variation failed, length" + data.length);
-        }
-        console.info("Z: " + data[0]);
-        console.info("X: " + data[1]);
-        console.info("Y  : " + data[2]);
-    }, (err) => {
-        console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get angle variation failed. Error code: ' + err.code + '; message: ' + err.message);
+  // The rotation matrix can be 3*3 or 4*4.
+  let currentRotationMatrix = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+  ];
+  let preRotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  const promise = sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix);
+  promise.then((data: Array<number>) => {
+    if (data.length < 3) {
+      console.error("Failed to get angle variation, length" + data.length);
+    }
+    console.info("Z: " + data[0]);
+    console.info("X: " + data[1]);
+    console.info("Y  : " + data[2]);
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2790,7 +3292,7 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -2800,20 +3302,24 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-    sensor.getRotationMatrix(rotationVector, function (err, data) {
-        if (err) {
-            console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
-        }
-    })
-} catch (err) {
-    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+  sensor.getRotationMatrix(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
+    }
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2837,7 +3343,7 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 | ---------------------------------- | -------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -2847,19 +3353,23 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-    const promise = sensor.getRotationMatrix(rotationVector);
-    promise.then((data) => {
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
-        }
-    }, (err) => {
-        console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+  const promise = sensor.getRotationMatrix(rotationVector);
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
+    }
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2890,24 +3400,28 @@ For details about the following error codes, see [Error Codes of sensor.transfor
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let rotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, function (err, data) {
-        if (err) {
-            console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + '] = ' + data[i]);
-        }
-    })
-} catch (err) {
-    console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let rotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError.BusinessError, data: Array<number>) => {
+    if (err) {
+      console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + '] = ' + data[i]);
+    }
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2932,7 +3446,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 | ---------------------------------- | ---------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being transformed.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -2942,23 +3456,27 @@ For details about the following error codes, see [Error Codes of sensor.transfor
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let rotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    const promise = sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 });
-    promise.then((data) => {
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
-        }
-    }, (err) => {
-        console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Transform rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let rotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  const promise = sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 });
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
+    }
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -2977,7 +3495,7 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 | rotationVector | Array&lt;number&gt;                      | Yes  | Rotation vector.|
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the quaternion.  |
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
@@ -2987,20 +3505,24 @@ For details about the following error codes, see [Error Codes of sensor.getQuate
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-    sensor.getQuaternion(rotationVector, function (err, data) {
-        if (err) {
-            console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
-        }
-    })
-} catch (err) {
-    console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+  let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
+  sensor.getQuaternion(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
+    }
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3024,7 +3546,7 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
@@ -3034,19 +3556,23 @@ For details about the following error codes, see [Error Codes of sensor.getQuate
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
     let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
     const promise = sensor.getQuaternion(rotationVector);
-    promise.then((data) => {
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
+    promise.then((data: Array<number>) => {
+        for (let i = 0; i < data.length; i++) {
+            console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
         }
-    }, (err) => {
-        console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+    }, (err: BusinessError.BusinessError) => {
+        console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
     });
-} catch (err) {
-    console.error('Get quaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+} catch (error) {
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3065,7 +3591,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 | rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                   |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
@@ -3075,27 +3601,31 @@ For details about the following error codes, see [Error Codes of sensor.getOrien
 
 **Example**
 
-```js
+```ts
+import sensor from "@ohos.sensor"
+import BusinessError from "@ohos.base"
+
 try {
-    let preRotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    sensor.getOrientation(preRotationMatrix, function (err, data) {
-        if (err) {
-            console.error('Get orientation failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        if (data.length < 3) {
-            console.error("Get orientation failed, length" + data.length);
-        }
-        console.info("Z: " + data[0]);
-        console.info("X: " + data[1]);
-        console.info("Y  : " + data[2]);
-    })
-} catch (err) {
-    console.error('Get orientation failed. Error code: ' + err.code + '; message: ' + err.message);
+  let preRotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  sensor.getOrientation(preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get orientation. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (data.length < 3) {
+      console.error("Failed to get orientation, length" + data.length);
+    }
+    console.info("Succeeded in getting data. Z: " + data[0]);
+    console.info("Succeeded in getting data. X: " + data[1]);
+    console.info("Succeeded in getting data. Y: " + data[2]);
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get orientation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3119,7 +3649,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 | ---------------------------------- | --------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
@@ -3129,23 +3659,27 @@ For details about the following error codes, see [Error Codes of sensor.getOrien
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    let preRotationMatrix = [
-        1, 0, 0,
-        0, 0.87, -0.50,
-        0, 0.50, 0.87
-    ];
-    const promise = sensor.getOrientation(preRotationMatrix);
-    promise.then((data) => {
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + data[i]);
-        }
-    }, (err) => {
-        console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
+  let preRotationMatrix = [
+    1, 0, 0,
+    0, 0.87, -0.50,
+    0, 0.50, 0.87
+  ];
+  const promise = sensor.getOrientation(preRotationMatrix);
+  promise.then((data: Array<number>) => {
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
+    }
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3165,7 +3699,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 | geomagnetic | Array&lt;number&gt;                                          | Yes  | Geomagnetic vector.|
 | callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes  | Callback used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3175,19 +3709,23 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    let gravity = [-0.27775216, 0.5351276, 9.788099];
-    let geomagnetic = [210.87253, -78.6096, -111.44444];
-    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
-        if (err) {
-            console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        console.info('RotationMatrix' + JSON.stringify(data));
-    })
-} catch (err) {
-    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let gravity = [-0.27775216, 0.5351276, 9.788099];
+  let geomagnetic = [210.87253, -78.6096, -111.44444];
+  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+    if (err) {
+      console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
+  })
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3212,7 +3750,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 | ------------------------------------------------------------ | -------------- |
 | Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
@@ -3222,18 +3760,22 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    let gravity = [-0.27775216, 0.5351276, 9.788099];
-    let geomagnetic = [210.87253, -78.6096, -111.44444];
-    const promise = sensor.getRotationMatrix(gravity, geomagnetic);
-    promise.then((data) => {
-        console.info('RotationMatrix' + JSON.stringify(data));
-    }, (err) => {
-        console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+  let gravity = [-0.27775216, 0.5351276, 9.788099];
+  let geomagnetic = [210.87253, -78.6096, -111.44444];
+  const promise = sensor.getRotationMatrix(gravity, geomagnetic);
+  promise.then((data: sensor.RotationMatrixResponse) => {
+    console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3251,7 +3793,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 | -------- | ---------------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Callback used to return the sensor list.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
@@ -3261,19 +3803,23 @@ For details about the following error codes, see [Error Codes of sensor.getSenso
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    sensor.getSensorList((err, data) => {
-        if (err) {
-            console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + JSON.stringify(data[i]));
-        }
-    });
-} catch (err) {
-    console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+  sensor.getSensorList((err: BusinessError.BusinessError, data: Array<sensor.Sensor>) => {
+    if (err) {
+      console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
+    }
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3291,7 +3837,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Promise used to return the sensor list.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
@@ -3301,17 +3847,21 @@ For details about the following error codes, see [Error Codes of sensor.getSenso
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    sensor.getSensorList().then((data) => {
-        for (var i = 0; i < data.length; i++) {
-            console.info('data[' + i + ']: ' + JSON.stringify(data[i]));
-        }
-    }, (err) => {
-        console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get sensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+  sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
+    }
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3330,7 +3880,7 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 | type     | [SensorId](#sensorid9)                  | Yes  | Sensor type.    |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | Yes  | Callback used to return the sensor information.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
@@ -3340,17 +3890,21 @@ For details about the following error codes, see [Error Codes of sensor.getSingl
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err, data) => {
-        if (err) {
-            console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
-            return;
-        }
-        console.info('Sensor: ' + JSON.stringify(data));
-    });
-} catch (err) {
-    console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError.BusinessError, data: sensor.Sensor) => {
+    if (err) {
+      console.error(`Failed to get singleSensor. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3374,7 +3928,7 @@ Obtains information about the sensor of a specific type. This API uses a promise
 | ------- | --------------------------------- | ---- | ---------------- |
 | promise | Promise&lt;[Sensor](#sensor9)&gt; | Yes  | Promise used to return the sensor information.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
@@ -3384,15 +3938,19 @@ For details about the following error codes, see [Error Codes of sensor.getSingl
 
 **Example**
 
-```js
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
 try {
-    sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data) => {
-        console.info('Sensor: ' + JSON.stringify(data));
-    }, (err) => {
-        console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
-    });
-} catch (err) {
-    console.error('Get singleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data: sensor.Sensor) => {
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
+  }, (err: BusinessError.BusinessError) => {
+    console.error(`Failed to get singleSensor . Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3412,6 +3970,8 @@ Enumerates the sensor types.
 | HALL                        | 10   | Hall effect sensor.          |
 | PROXIMITY                   | 12   | Proximity sensor.        |
 | HUMIDITY                    | 13   | Humidity sensor.          |
+| COLOR<sup>10+</sup>         | 14   | Color sensor.<br>System API: This is a system API.    |
+| SAR<sup>10+</sup>           | 15   | Sodium Adsorption Ratio (SAR) sensor.<br>System API: This is a system API.|
 | ORIENTATION                 | 256  | Orientation sensor.          |
 | GRAVITY                     | 257  | Gravity sensor.          |
 | LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.    |
@@ -3457,7 +4017,6 @@ Enumerates the sensor types.
 | SENSOR_TYPE_ID_WEAR_DETECTION              | 280  | Wear detection sensor.      |
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.|
 
-
 ## Response
 
 Describes the timestamp of the sensor data.
@@ -3476,16 +4035,43 @@ Describes the sensor information.
 
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | Yes | Yes | Sensor name.          |
-| vendorName      | string   | Yes | Yes | Vendor of the sensor.        |
-| firmwareVersion | string   | Yes | Yes | Firmware version of the sensor.      |
-| hardwareVersion | string   | Yes | Yes | Hardware version of the sensor.      |
-| sensorId        | number   | Yes | Yes | Sensor type ID.        |
-| maxRange        | number   | Yes | Yes | Maximum measurement range of the sensor.|
-| minSamplePeriod | number   | Yes | Yes | Minimum sampling period.  |
-| maxSamplePeriod | number   | Yes | Yes | Maximum sampling period.  |
-| precision       | number   | Yes | Yes | Precision of the sensor.          |
-| power           | number   | Yes | Yes | Power of the sensor.          |
+| sensorName      | string   | Yes | No | Sensor name.           |
+| vendorName      | string   | Yes | No | Vendor of the sensor.        |
+| firmwareVersion | string   | Yes | No | Firmware version of the sensor.      |
+| hardwareVersion | string   | Yes | No | Hardware version of the sensor.      |
+| sensorId        | number   | Yes | No | Sensor type ID.        |
+| maxRange        | number   | Yes | No | Maximum measurement range of the sensor.|
+| minSamplePeriod | number   | Yes | No | Minimum sampling period.  |
+| maxSamplePeriod | number   | Yes | No | Maximum sampling period.  |
+| precision       | number   | Yes | No | Precision of the sensor.          |
+| power           | number   | Yes | No | Estimated sensor power, in mA. |
+
+## ColorResponse<sup>10+</sup>
+
+Describes the color sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+
+| Name            | Type  | Readable| Writable| Description                         |
+| ---------------- | ------ | ---- | ---- | ----------------------------- |
+| lightIntensity   | number | Yes  | Yes  | Intensity of light, in lux.|
+| colorTemperature | number | Yes  | Yes  | Color temperature, in Kelvin.    |
+
+## SarResponse<sup>10+</sup>
+
+Describes the SAR sensor data. It extends from [Response](#response).
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**System API**: This is a system API.
+
+
+| Name           | Type  | Readable| Writable| Description                           |
+| --------------- | ------ | ---- | ---- | ------------------------------- |
+| absorptionRatio | number | Yes  | Yes  | Absorption ratio, in W/kg.|
 
 ## AccelerometerResponse
 
@@ -3851,19 +4437,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.    |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+},
+  { interval: 100000000 }
+);
+```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
@@ -3883,7 +4471,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.LI
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -3903,21 +4491,25 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+},
+  { interval: 100000000 }
+);
+
+```
 
 ### GRAVITY<sup>(deprecated)</sup>
 
@@ -3935,19 +4527,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GR
 | -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.           |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
-| options  | [Options](#options)                                 | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| options  | [Options](#options)                                 | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+},
+  { interval: 100000000 }
+);
+```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
 
@@ -3967,18 +4561,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.        |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+},
+  { interval: 100000000 }
+);
+```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -3998,21 +4595,24 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+},
+  { interval: 100000000 }
+);
+```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
 
@@ -4030,16 +4630,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.SI
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
-      console.info('Scalar data: ' + data.scalar);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
+  console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
+},
+  { interval: 100000000 }
+);
+```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
 
@@ -4059,16 +4662,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
-      console.info('Scalar data: ' + data.scalar);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
+  console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
+},
+  { interval: 100000000 }
+);
+```
 
 ### PEDOMETER<sup>(deprecated)</sup>
 
@@ -4088,16 +4694,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.          |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
-      console.info('Steps: ' + data.steps);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
+  console.info('Succeeded in invoking on. Steps: ' + data.steps);
+},
+  { interval: 100000000 }
+);
+```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
 
@@ -4115,17 +4724,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
-      console.info('Temperature: ' + data.temperature);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
+  console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
+},
+  { interval: 100000000 }
+);
+```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
@@ -4143,19 +4754,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.     |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+},
+  { interval: 100000000 }
+);
+```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4173,21 +4786,24 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking on. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking on. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking on. Z-coordinate bias: ' + data.biasZ);
+},
+  { interval: 100000000 }
+);
+```
 
 ### PROXIMITY<sup>(deprecated)</sup>
 
@@ -4205,16 +4821,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PR
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.        |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
-      console.info('Distance: ' + data.distance);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
+  console.info('Succeeded in invoking on. Distance: ' + data.distance);
+},
+  { interval: 100000000 }
+);
+```
 
 ### HUMIDITY<sup>(deprecated)</sup>
 
@@ -4232,17 +4851,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HU
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.           |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
-| options  | [Options](#options)                                   | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                   | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
-      console.info('Humidity: ' + data.humidity);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
+  console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
+},
+  { interval: 100000000 }
+);
+```
 
 ### BAROMETER<sup>(deprecated)</sup>
 
@@ -4260,17 +4881,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.BA
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.        |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
-| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
-      console.info('Atmospheric pressure: ' + data.pressure);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
+  console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
+},
+  { interval: 100000000 }
+);
+```
 
 ### HALL<sup>(deprecated)</sup>
 
@@ -4288,16 +4911,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HA
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.               |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
-| options  | [Options](#options)                           | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                           | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
-      console.info('Status: ' + data.status);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
+  console.info('Succeeded in invoking on. Status: ' + data.status);
+},
+  { interval: 100000000 }
+);
+```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
 
@@ -4315,17 +4941,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 | -------- | ------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.   |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | Yes  | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
-| options  | [Options](#options)                                    | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
+| options  | [Options](#options)                                    | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
 **Example**
 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
-      console.info(' Illumination: ' + data.intensity);
-  },
-      {interval: 100000000}
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
+  console.info('Succeeded in invoking on. Illumination: ' + data.intensity);
+},
+  { interval: 100000000 }
+);
+```
 
 ### ORIENTATION<sup>(deprecated)</sup>
 
@@ -4343,18 +4971,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.OR
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.          |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
-| options  | [Options](#options)                                         | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                         | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
-      console.info('The device rotates at an angle around the X axis: ' + data.beta);
-      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
+  console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in the device rotating at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
+},
+  { interval: 100000000 }
+);
+```
 
 ### HEART_RATE<sup>(deprecated)</sup>
 
@@ -4374,7 +5005,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HE
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.         |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                     | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
 
@@ -4392,19 +5023,22 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('Scalar quantity: ' + data.w);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
+  console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking on. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking on. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking on. Scalar quantity: ' + data.w);
+},
+  { interval: 100000000 }
+);
+```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
@@ -4422,16 +5056,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.WE
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**. |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
-| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
+| options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Example**
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
-      console.info('Wear status: ' + data.value);
-  },
-      {interval: 100000000}
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
+  console.info('Succeeded in invoking on. Wear status: ' + data.value);
+},
+  { interval: 100000000 }
+);
+```
 
 ## sensor.once<sup>(deprecated)</sup>
 
@@ -4455,14 +5092,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+});
+```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
@@ -4503,17 +5142,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
 
 **Example**
-  ```
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+});
+```
 
 ### GRAVITY<sup>(deprecated)</sup>
 
@@ -4533,14 +5174,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  });
+```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
 
@@ -4562,14 +5205,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+});
+```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4591,17 +5236,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
+    console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+    console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+    console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+    console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+    console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+    console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+});
+```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
 
@@ -4621,12 +5267,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
-      console.info('Scalar data: ' + data.scalar);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
+  console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
+});
+```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
 
@@ -4648,12 +5296,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
-      console.info('Scalar data: ' + data.scalar);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
+  console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
+});
+```
 
 ### PEDOMETER<sup>(deprecated)</sup>
 
@@ -4675,12 +5325,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
-      console.info('Steps: ' + data.steps);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
+  console.info('Succeeded in invoking once. Steps: ' + data.steps);
+});
+```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
 
@@ -4700,12 +5352,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
-      console.info('Temperature: ' + data.temperature);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
+  console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
+});
+```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
@@ -4725,14 +5379,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+});
+```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4752,17 +5408,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking once. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking once. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
+});
+```
 
 ### PROXIMITY<sup>(deprecated)</sup>
 
@@ -4782,12 +5440,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
-      console.info('Distance: ' + data.distance);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
+  console.info('Succeeded in invoking once. Distance: ' + data.distance);
+}
+);
+```
 
 ### HUMIDITY<sup>(deprecated)</sup>
 
@@ -4807,12 +5468,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
-      console.info('Humidity: ' + data.humidity);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
+  console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
+});
+```
 
 ### BAROMETER<sup>(deprecated)</sup>
 
@@ -4832,12 +5495,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
-      console.info('Atmospheric pressure: ' + data.pressure);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
+  console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
+});
+```
 
 ### HALL<sup>(deprecated)</sup>
 
@@ -4857,12 +5522,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
-      console.info('Status: ' + data.status);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
+  console.info('Succeeded in invoking once. Status: ' + data.status);
+});
+```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
 
@@ -4883,12 +5550,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Example**
 
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
-      console.info(' Illumination: ' + data.intensity);
-    }
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
+  console.info('Succeeded in invoking once. invoking once. Illumination: ' + data.intensity);
+});
+```
 
 ### ORIENTATION<sup>(deprecated)</sup>
 
@@ -4908,14 +5576,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
-      console.info('The device rotates at an angle around the X axis: ' + data.beta);
-      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
+  console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking the device rotateing at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking the device rotateing at an angle around the Z axis: ' + data.alpha);
+});
+```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
 
@@ -4935,15 +5605,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('Scalar quantity: ' + data.w);
-    }
-  );
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
+  console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking once. Scalar quantity: ' + data.w);
+});
+```
 
 ### HEART_RATE<sup>(deprecated)</sup>
 
@@ -4982,12 +5654,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 
 **Example**
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
-      console.info("Wear status: "+ data.value);
-    }
-  );
-  ```
+```ts
+import sensor from '@ohos.sensor';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
+  console.info("Succeeded in invoking once. Wear status: " + data.value);
+});
+```
 
 ## sensor.off<sup>(deprecated)</sup>
 
@@ -5012,12 +5685,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('x-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AccelerometerResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
@@ -5042,15 +5718,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('X-coordinate bias: ' + data.biasX);
-    console.info('Y-coordinate bias: ' + data.biasY);
-    console.info('Z-coordinate bias: ' + data.biasZ);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AccelerometerUncalibratedResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking off. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking off. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking off. Z-coordinate bias: ' + data.biasZ);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
@@ -5073,10 +5752,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Example**
 
-```js
-function callback(data) {
-    console.info(' Illumination: ' + data.intensity);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.LightResponse) {
+  console.info('Succeeded in invoking off. Illumination: ' + data.intensity);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
@@ -5099,10 +5781,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Example**
 
-```js
-function callback(data) {
-     console.info('Temperature: ' + data.temperature);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.AmbientTemperatureResponse) {
+  console.info('Succeeded in invoking off. Temperature: ' + data.temperature);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
@@ -5125,10 +5810,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.B
 
 **Example**
 
-```js
-function callback(data) {
-     console.info('Atmospheric pressure: ' + data.pressure);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.BarometerResponse) {
+  console.info('Succeeded in invoking off. Atmospheric pressure: ' + data.pressure);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
@@ -5151,13 +5839,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GravityResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
 }
-sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
+
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
@@ -5181,12 +5872,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GyroscopeResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
@@ -5211,12 +5905,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.GyroscopeUncalibratedResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
@@ -5239,10 +5936,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Status: ' + data.status);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HallResponse) {
+  console.info('Succeeded in invoking off. Status: ' + data.status);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
@@ -5284,10 +5984,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Humidity: ' + data.humidity);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.HumidityResponse) {
+  console.info('Succeeded in invoking off. Humidity: ' + data.humidity);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
@@ -5329,12 +6032,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.MagneticFieldResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
@@ -5357,15 +6063,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('X-coordinate bias: ' + data.biasX);
-    console.info('Y-coordinate bias: ' + data.biasY);
-    console.info('Z-coordinate bias: ' + data.biasZ);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.MagneticFieldUncalibratedResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking off. X-coordinate bias: ' + data.biasX);
+  console.info('Succeeded in invoking off. Y-coordinate bias: ' + data.biasY);
+  console.info('Succeeded in invoking off. Z-coordinate bias: ' + data.biasZ);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
@@ -5388,12 +6097,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.O
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('The device rotates at an angle around the X axis: ' + data.beta);
-    console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-    console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.OrientationResponse) {
+  console.info('Succeeded in invoking off. The device rotates at an angle around the X axis: ' + data.beta);
+  console.info('Succeeded in invoking off. The device rotates at an angle around the Y axis: ' + data.gamma);
+  console.info('Succeeded in invoking off. The device rotates at an angle around the Z axis: ' + data.alpha);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
@@ -5418,10 +6130,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Steps: ' + data.steps);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.PedometerResponse) {
+  console.info('Succeeded in invoking off. Steps: ' + data.steps);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
@@ -5446,10 +6161,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Scalar data: ' + data.scalar);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.PedometerDetectionResponse) {
+  console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
@@ -5472,10 +6190,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Distance: ' + data.distance);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.ProximityResponse) {
+  console.info('Succeeded in invoking off. Distance: ' + data.distance);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
@@ -5498,13 +6219,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.R
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('Scalar quantity: ' + data.w);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.RotationVectorResponse) {
+  console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
+  console.info('Succeeded in invoking off. Y-coordinate component: ' + data.y);
+  console.info('Succeeded in invoking off. Z-coordinate component: ' + data.z);
+  console.info('Succeeded in invoking off. Scalar quantity: ' + data.w);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
@@ -5527,10 +6251,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.S
 
 **Example**
 
-```js
-function callback(data) {
-    console.info('Scalar data: ' + data.scalar);
+```ts
+import sensor from '@ohos.sensor';
+
+function callback(data: sensor.SignificantMotionResponse) {
+  console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
@@ -5553,10 +6280,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.W
 
 **Example**
 
-```js
-function accCallback(data) {
-    console.info('Wear status: ' + data.value);
+```ts
+import sensor from '@ohos.sensor';
+
+function accCallback(data: sensor.WearDetectionResponse) {
+  console.info('Succeeded in invoking off. Wear status: ' + data.value);
 }
+
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
 ```
 
@@ -5580,17 +6310,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Example**
 
-```js
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(err, data) {
-    if (err) {
-        console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
-        return;
-    }
-    console.info("Operation succeeded. Data obtained: " + data);
-    for (var i=0; i < data.length; i++) {
-        console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
-    }
- })
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 }, 
+                                 (err: BusinessError.BusinessError, data: Array<number>) => {
+  if (err) {
+    console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info("Succeeded in starting Operation. Data obtained: " + data);
+  for (let i = 0; i < data.length; i++) {
+    console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
+  }
+})
 ```
 ## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
 
@@ -5617,15 +6351,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Example**
 
-```js
-const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
-    promise.then((data) => {
-        console.info("Operation succeeded.");
-        for (var i=0; i < data.length; i++) {
-            console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
-        }
-    }).catch((err) => {
-           console.info("Operation failed");
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 });
+promise.then((data: Array<number>) => {
+  console.info("Succeeded in starting Operation");
+  for (let i = 0; i < data.length; i++) {
+    console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
+  }
+}).catch((err: BusinessError.BusinessError) => {
+  console.error(`Failed to operate.`);
 })
 ```
 
@@ -5648,15 +6385,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
 
 **Example**
-```js
-sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
-    if (err) {
-        console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
-        return;
-    }
-    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
-	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
-		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, 
+                           (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+  if (err) {
+    console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in getting sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
+  data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+  ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
 ```
 ## sensor.getGeomagneticField<sup>(deprecated)</sup>
@@ -5682,16 +6424,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example**
-  ```js
-  const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
-      promise.then((data) => {
-          console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
-  	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
-  		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
-      }).catch((reason) => {
-          console.info('Operation failed.');
-  })
-  ```
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+const promise = sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
+promise.then((data: sensor.GeomagneticResponse) => {
+  console.info('Succeeded in getting sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+  data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+  ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+}).catch((reason: BusinessError.BusinessError) => {
+  console.error(`Failed to operate.`);
+})
+```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
 
@@ -5713,16 +6459,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Example**
 
-  ```js
-  sensor.getAltitude(0, 200, function(err, data)  {
-      if (err) {
-          console.error(
-  "Operation failed. Error code: " + err.code + ", message: " + err.message);
-          return;
-      }
-          console.info("Succeeded to get getAltitude interface get data: " + data);
-  });
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getAltitude(0, 200, (err: BusinessError.BusinessError, data: number) => {
+  if (err) {
+    console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info("Succeeded in getting getAltitude interface get data: " + data);
+});
+```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
 
@@ -5749,14 +6497,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Example**
 
-  ```js
-  const promise = sensor.getAltitude(0, 200);
-      promise.then((data) => {
-          console.info(' sensor_getAltitude_Promise success', data);
-      }).catch((err) => {
-          console.error("Operation failed");
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+const promise = sensor.getAltitude(0, 200);
+promise.then((data: number) => {
+  console.info('Succeeded in getting sensor_getAltitude_Promise success', data);
+}).catch((err: BusinessError.BusinessError) => {
+  console.error(`Failed to operate.`);
+})
+```
 
 
 ## sensor.getGeomagneticDip<sup>(deprecated)</sup>
@@ -5778,16 +6529,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Example**
 
-  ```js
-  sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
-      if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is:' + err.code + ', message: ' + 
-                        err.message);
-          return;
-      }
-          console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: number) => {
+  if (err) {
+    console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info("Succeeded in getting getGeomagneticDip interface get data: " + data);
+})
+```
 
 ## sensor.getGeomagneticDip<sup>(deprecated)</sup>
 
@@ -5813,14 +6566,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Example**
 
-  ```js
-  const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-      promise.then((data) => {
-          console.info('getGeomagneticDip_promise succeeded', data);
-      }).catch((err) => {
-           console.error("Operation failed");
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+promise.then((data: number) => {
+  console.info('Succeeded in get GeomagneticDip_promise', data);
+}).catch((err: BusinessError.BusinessError) => {
+  console.error(`Failed to operate.`);
+})
+```
 
 ## sensor. getAngleModify<sup>(deprecated)</sup>
 
@@ -5842,19 +6598,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Example**
 
-  ```js
-  sensor. getAngleModify([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
-      if (err) {
-          console.error('Failed to register data, error code is: ' + err.code + ', message: ' + 
-                        err.message);
-          return;
-      }
-      for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
-      }
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87],
+                      (err: BusinessError.BusinessError, data: Array<number>) => {
+  if (err) {
+    console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  for (let i = 0; i < data.length; i++) {
+    console.info("data[" + i + "]: " + data[i]);
+  }
+})
+```
 
 ## sensor. getAngleModify<sup>(deprecated)</sup>
 
@@ -5881,18 +6639,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Example**
 
-  ```js
-  const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
-      promise.then((data) => {
-          console.info('getAngleModify_promise success');
-          for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
-      }).catch((reason) => {
-          console.info("promise::catch", reason);
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+const promise = sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87]);
+promise.then((data: Array<number>) => {
+  console.info('Succeeded in getting AngleModify_promise.');
+  for (let i = 0; i < data.length; i++) {
+    console.info("Succeeded in getting data[" + i + "]: " + data[i]);
+  }
+}).catch((reason: BusinessError.BusinessError) => {
+  let e: BusinessError.BusinessError = reason as BusinessError.BusinessError;
+  console.info("Succeeded in getting promise::catch", e);
+})
+```
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
@@ -5913,19 +6674,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Example**
 
-  ```js
-  sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
-      if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
-                        err.message);
-          return;
-      }
-      for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
-      }
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877],
+                            (err: BusinessError.BusinessError, data: Array<number>) => {
+  if (err) {
+    console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  for (let i = 0; i < data.length; i++) {
+    console.info("Succeeded in getting data[" + i + "]: " + data[i]);
+  }
+})
+```
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
@@ -5951,18 +6714,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Example**
 
-  ```js
-  const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-      promise.then((data) => {
-          console.info('createRotationMatrix_promise success');
-          for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
-      }).catch((reason) => {
-          console.info("promise::catch", reason);
-  })	
-  ```
+ ```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+promise.then((data: Array<number>) => {
+  console.info('Succeeded in getting createRotationMatrix_promise');
+  for (let i = 0; i < data.length; i++) {
+    console.info("data[" + i + "]: " + data[i]);
+  }
+}).catch((reason: BusinessError.BusinessError) => {
+  console.info("Succeeded in getting promise::catch", reason);
+})
+ ```
 
 ## sensor.createQuaternion<sup>(deprecated)</sup>
 
@@ -5983,19 +6748,21 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Example**
 
-  ```js
-  sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data)  {
-      if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
-                        err.message);
-          return;
-      }
-      for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
-      }
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877],
+                        (err: BusinessError.BusinessError, data: Array<number>) => {
+  if (err) {
+    console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  for (let i = 0; i < data.length; i++) {
+    console.info("Succeeded in getting data[" + i + "]: " + data[i]);
+  }
+})
+```
 
 ## sensor.createQuaternion<sup>(deprecated)</sup>
 
@@ -6021,18 +6788,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Example**
 
-  ```js
-  const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
-      promise.then((data) => {
-          console.info('createQuaternion_promise succeeded');
-          for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
-      }).catch((err) => {
-          console.info('promise failed');
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+promise.then((data: Array<number>) => {
+  console.info('Succeeded in getting createQuaternion_promise');
+  for (let i = 0; i < data.length; i++) {
+    console.info("data[" + i + "]: " + data[i]);
+  }
+}).catch((err: BusinessError.BusinessError) => {
+  console.info(`Failed to get promise.`);
+})
+```
 
 ## sensor.getDirection<sup>(deprecated)</sup>
 
@@ -6048,25 +6817,26 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 | Name           | Type                                      | Mandatory  | Description                |
 | -------------- | ---------------------------------------- | ---- | ------------------ |
-| rotationMatrix | Array&lt;number&gt;                      | Yes   | Rotation matrix.           |
+| rotationMatrix | Array&lt;number&gt;                      | Yes   | The other rotation matrix.           |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
 
-  ```js
-  sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
-      if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
-                        err.message);
-          return;
-      }
-      console.info("SensorJsAPI--->Succeeded to get getDirection interface get data: " + data);
-      for (var i = 1; i < data.length; i++) {
-          console.info("sensor_getDirection_callback" + data[i]);
-      }
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: Array<number>) => {
+  if (err) {
+    console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info("Succeeded in getting getDirection interface get data: " + data);
+  for (let i = 1; i < data.length; i++) {
+    console.info("Succeeded in getting sensor_getDirection_callback" + data[i]);
+  }
+})
+```
 
 ## sensor.getDirection<sup>(deprecated)</sup>
 
@@ -6082,7 +6852,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | The other rotation matrix.|
 
 **Return value**
 
@@ -6092,18 +6862,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 **Example**
 
-  ```js
-  const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
-      promise.then((data) => {
-          console.info('sensor_getAltitude_Promise success', data);
-          for (var i = 1; i < data.length; i++) {
-              console.info("sensor_getDirection_promise" + data[i]);
-          }
-      }).catch((err) => {
-          console.info('promise failed');
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+promise.then((data: Array<number>) => {
+  console.info('Succeeded in getting sensor_getAltitude_Promise', data);
+  for (let i = 1; i < data.length; i++) {
+    console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
+  }
+}).catch((err: BusinessError.BusinessError) => {
+  console.info(`Failed to get promise.`);
+})
+```
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
@@ -6125,16 +6897,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Example**
 
-  ```js
-  sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
-      if (err) {
-          console.error('error code is: ' + err.code + ', message: ' + err.message);
-          return;
-      }
-      console.info(JSON.stringify(data));
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
 
+sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], 
+                            (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+  if (err) {
+    console.error(`Failed to get create rotationMatrix. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(JSON.stringify(data));
+})
+```
 
 ## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
@@ -6161,11 +6936,14 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Example**
 
-  ```js
-  const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
-      promise.then((data) => {
-          console.info(JSON.stringify(data));
-      }).catch((err) => {
-          console.info('promise failed');
-  })
-  ```
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
+promise.then((data: sensor.RotationMatrixResponse) => {
+  console.info(JSON.stringify(data));
+}).catch((err: BusinessError.BusinessError) => {
+  console.info(`Failed to get promise.`);
+})
+```

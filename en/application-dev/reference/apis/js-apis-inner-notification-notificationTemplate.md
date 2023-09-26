@@ -6,9 +6,11 @@ The **NotificationTemplate** module describes the notification template.
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Attributes
+
 **System capability**: SystemCapability.Notification.Notification
 
-| Name| Type                   | Read-only| Mandatory| Description      |
-| ---- | ---------------------- | ---- | ---- | ---------- |
-| name | string                 | No  | Yes  | Template name.|
-| data | {[key:string]: Object} | No  | Yes  | Template data.|
+| Name| Type                   | Mandatory| Description      |
+| ---- | ---------------------- | ---- | ---------- |
+| name | string                 | Yes  | Template name.|
+| data | {[key:string]: Object} | Yes  | Template data.|

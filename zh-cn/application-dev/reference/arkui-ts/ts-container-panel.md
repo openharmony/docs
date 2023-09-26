@@ -35,11 +35,13 @@ Panel(show: boolean)
 | type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
 | mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。<br/>Minibar类型默认值：PanelMode.Mini；其余类型默认值：PanelMode.Half<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
+| customHeight<sup>10+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[PanelHeight](#panelheight10枚举说明) | 指定PanelType.CUSTOM状态下的高度。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
-| show | boolean | 当滑动面板弹出时调用。 |
-| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。|
+| show | boolean | 当滑动面板弹出时调用。 <br/>默认值：true |
+| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。<br/>默认值：'#08182431' |
+| showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
 ## PanelType枚举说明
 
@@ -48,6 +50,7 @@ Panel(show: boolean)
 | Minibar | 提供minibar和类全屏展示切换效果。 |
 | Foldable | 内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。 |
 | Temporary | 内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。 |
+| CUSTOM<sup>10+</sup> | 配置自适应内容高度，不支持尺寸切换效果。 |
 
 ## PanelMode枚举说明
 
@@ -57,6 +60,11 @@ Panel(show: boolean)
 | Half | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
 | Full | 类全屏状态。 |
 
+## PanelHeight<sup>10+</sup>枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- | 
+| WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -78,8 +86,11 @@ struct PanelExample {
   build() {
     Column() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
-        .width('90%').height(50).borderRadius(10)
-        .backgroundColor(0xFFFFFF).padding({ left: 20 })
+        .width('90%')
+        .height(50)
+        .borderRadius(10)
+        .backgroundColor(0xFFFFFF)
+        .padding({ left: 20 })
         .onClick(() => {
           this.show = !this.show
         })
@@ -90,9 +101,11 @@ struct PanelExample {
           Text('1. afternoon 4:00 The project meeting')
         }
       }
-      .type(PanelType.Foldable).mode(PanelMode.Half)
+      .type(PanelType.Foldable)
+      .mode(PanelMode.Half)
       .dragBar(true) // 默认开启
       .halfHeight(500) // 默认一半
+      .showCloseIcon(true) // 显示关闭图标
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })

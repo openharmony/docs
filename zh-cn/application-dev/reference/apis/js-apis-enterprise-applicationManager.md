@@ -1,15 +1,18 @@
 # @ohos.enterprise.applicationManager（应用管理）
 
-本模块提供应用管理能力，包括添加应用运行黑名单、获取应用运行黑名单、移除应用运行黑名单等。仅企业设备管理员应用才能调用。
+本模块提供应用管理能力，包括添加应用运行黑名单、获取应用运行黑名单、移除应用运行黑名单等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
+>
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
-```js
+```ts
 import applicationManager from '@ohos.enterprise.applicationManager';
 ```
 
@@ -17,7 +20,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用添加应用运行黑名单接口，使用callback形式返回是否添加成功。添加至黑名单的应用不允许在当前用户下运行，否则允许运行。
+指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前用户下运行，否则允许运行。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -29,13 +32,13 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -45,17 +48,20 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
-applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed running bundles');
 });
 ```
 
@@ -63,7 +69,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用添加应用运行黑名单接口，使用callback形式返回是否添加成功。添加至黑名单的应用不允许在指定用户（通过userId指定）下运行，否则允许运行。
+指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下运行，否则允许运行。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -75,14 +81,14 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
-| userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -91,17 +97,20 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
-applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed running bundles');
 });
 ```
 
@@ -109,7 +118,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) =>
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-指定设备管理员应用添加应用运行黑名单接口，使用promise形式返回是否添加成功。如果调用接口时传入了可选参数userId，则添加至黑名单的应用不允许在指定用户下运行，如果调用接口时没有传入参数userId，则添加至黑名单的应用不允许在当前用户下运行。
+指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -121,19 +130,19 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
-| userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理员应用添加应用运行黑名单失败时会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用添加应用运行黑名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -142,17 +151,19 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in adding disallowed running bundles');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to add disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -160,7 +171,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用移除应用运行黑名单接口，使用callback形式返回移除结果。在黑名单存在的情况下，在应用运行黑名单中的应用不允许在当前用户下运行。
+指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在当前用户下运行。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -172,13 +183,13 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -187,17 +198,20 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
-applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed running bundles');
 });
 ```
 
@@ -205,7 +219,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用移除应用运行黑名单接口，使用callback形式返回移除结果。在黑名单存在的情况下，在应用运行黑名单中的应用不允许在指定用户（通过userId指定）下运行。
+指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在指定用户（通过userId指定）下运行。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -217,14 +231,14 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
-| userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -233,17 +247,20 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
-applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed running bundles');
 });
 ```
 
@@ -251,7 +268,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error)
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-指定设备管理员应用移除应用运行黑名单接口，使用promise形式返回移除结果。在黑名单存在的情况下，如果调用接口时传入参数userId，则在应用运行黑名单中的应用不允许在指定用户下运行，如果调用接口时没有传入参数userId，则在应用运行黑名单中的应用不允许在当前用户下运行。
+指定当前/指定用户下的设备管理应用在应用运行黑名单中移除应用，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -263,19 +280,19 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
-| userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理员应用移除应用运行黑名单失败时会抛出错误对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用移除应用运行黑名单失败时，会抛出错误对象。  |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -284,17 +301,19 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds: Array<string> = ['com.example.myapplication'];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in removing disallowed running bundles');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to remove disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -302,7 +321,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-指定管理员应用获取当前用户下的应用运行黑名单接口，使用callback形式返回获取应用运行黑名单。
+指定设备管理应用获取当前用户下的应用运行黑名单。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -314,12 +333,12 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -328,16 +347,19 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-applicationManager.getDisallowedRunningBundles(wantTemp, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -345,7 +367,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-指定管理员应用获取指定用户（通过userId指定）下的应用运行黑名单接口，使用callback形式返回获取应用运行黑名单。
+指定设备管理应用获取指定用户（通过userId指定）下的应用运行黑名单。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -357,13 +379,13 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                       |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -372,16 +394,19 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -389,7 +414,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-指定管理员应用获取指定用户或当前用户下应用运行黑名单接口，使用promise形式返回获取应用运行黑名单。如果调用接口时传入参数userId，表示获取指定用户下应用运行黑名单，如果调用接口没有传入参数userId，表示获取当前用户下应用运行黑名单。
+指定设备管理应用获取当前/指定用户下的应用运行黑名单，使用promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -401,8 +426,8 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
 
@@ -412,7 +437,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
 
 | 错误码ID | 错误信息                                                                     |          
 | ------- | ---------------------------------------------------------------------------- |
@@ -421,14 +446,17 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-applicationManager.getDisallowedRunningBundles(wantTemp, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
+  console.info(`Succeeded in getting disallowed running bundles, result : ${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

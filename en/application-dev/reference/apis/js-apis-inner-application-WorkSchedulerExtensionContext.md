@@ -1,6 +1,6 @@
 # WorkSchedulerExtensionContext
 
-The **WorkSchedulerExtensionContext** module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), is the context environment of the WorkSchedulerExtensionAbility.
+The **WorkSchedulerExtensionContext** module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides a context environment for the WorkSchedulerExtensionAbility.
 
 This module provides APIs for accessing the resources of a WorkSchedulerExtensionAbility.
 
@@ -15,9 +15,10 @@ The context is obtained through a WorkSchedulerExtensionAbility child class inst
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
 
 class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-    onWorkStart(workInfo) {
+    onWorkStart(workInfo: workScheduler.WorkInfo) {
         let WorkSchedulerExtensionContext = this.context; // Obtain the WorkSchedulerExtensionContext.
     }
 }

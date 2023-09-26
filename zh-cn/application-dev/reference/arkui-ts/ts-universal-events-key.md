@@ -27,6 +27,7 @@
 | metaKey                               | number                                   | 按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态，1表示按压态，0表示未按压态。 |
 | timestamp                             | number                                   | 按键发生时的时间戳。                 |
 | stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../apis/js-apis-intentioncode.md) | 按键对应的意图。        |
 
 
 ## 示例
@@ -42,14 +43,16 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('KeyEvent')
-        .onKeyEvent((event: KeyEvent) => {
-          if (event.type === KeyType.Down) {
-            this.eventType = 'Down'
+        .onKeyEvent((event?: KeyEvent) => {
+          if(event){
+            if (event.type === KeyType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.type === KeyType.Up) {
+              this.eventType = 'Up'
+            }
+            this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText + '\nintentionCode:' + event.intentionCode
           }
-          if (event.type === KeyType.Up) {
-            this.eventType = 'Up'
-          }
-          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText
         })
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
@@ -57,4 +60,4 @@ struct KeyEventExample {
 }
 ```
 
- ![keyEvent](figures/keyEvent.png) 
+ ![keyEvent](figures/keyEvent.gif) 

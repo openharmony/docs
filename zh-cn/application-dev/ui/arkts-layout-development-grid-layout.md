@@ -1,4 +1,4 @@
-# 栅格布局
+# 栅格布局（GridRow/GridCol）
 
 
 ## 概述
@@ -73,7 +73,7 @@ GridRow({
     reference: BreakpointsReference.WindowSize
   }
 }) {
-   ForEach(this.bgColors, (color, index) => {
+   ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
      GridCol({
        span: {
          xs: 2,
@@ -106,12 +106,14 @@ GridRow中通过columns设置栅格布局的总列数。
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   ...
   GridRow() {
-    ForEach(this.bgColors, (item, index) => {
-      GridCol() {
-        Row() {
-          Text(`${index + 1}`)
-        }.width('100%').height('50')
-      }.backgroundColor(item)
+    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      if(index){
+        GridCol() {
+          Row() {
+              Text(`${index + 1}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
+      }
     })
   }           
   ```
@@ -122,45 +124,58 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
   ```ts
+  class CurrTmp{
+    currentBp: string = 'unknown';
+    set(val:string){
+      this.currentBp = val
+    }
+  }
+  let BorderWH:Record<string,Color|number> = { 'color': Color.Blue, 'width': 2 }
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   @State currentBp: string = 'unknown';
   ...
   Row() {
     GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item, index) => {
-        GridCol() {
-          Row() {
-            Text(`${index + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
+      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+        if(index){
+          GridCol() {
+            Row() {
+              Text(`${index.toString() + 1}`)
+            }.width('100%').height('50')
+          }.backgroundColor(item)
+        }
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint) => {
-      this.currentBp = breakpoint
+    .onBreakpointChange((breakpoint:string) => {
+      let CurrSet:CurrTmp = new CurrTmp()
+      CurrSet.set(breakpoint)
     })
   }
   .height(160)
-  .border({ color: Color.Blue, width: 2 })
+  .border(BorderWH)
   .width('90%')
 
   Row() {
     GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item, index) => {
-        GridCol() {
-          Row() {
-            Text(`${index + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
+      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+        if(index){
+          GridCol() {
+            Row() {
+              Text(`${index.toString() + 1}`)
+            }.width('100%').height('50')
+          }.backgroundColor(item)
+        }
       })
     }
     .width('100%').height('100%')
-    .onBreakpointChange((breakpoint) => {
-      this.currentBp = breakpoint
+    .onBreakpointChange((breakpoint:string) => {
+      let CurrSet:CurrTmp = new CurrTmp()
+      CurrSet.set(breakpoint)
     })
   }
   .height(160)
-  .border({ color: Color.Blue, width: 2 })
+  .border(BorderWH)
   .width('90%')
   ```
 
@@ -172,12 +187,14 @@ GridRow中通过columns设置栅格布局的总列数。
   ```ts
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
-    ForEach(this.bgColors, (item, index) => {
-      GridCol() {
-        Row() {
-          Text(`${index + 1}`)
-        }.width('100%').height('50')
-      }.backgroundColor(item)
+    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      if(index){
+        GridCol() {
+          Row() {
+            Text(`${index.toString() + 1}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
+      }
     })
   }
   ```
@@ -241,30 +258,33 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
 
   ```ts
+  let Gspan:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ span: 2 }){}
   GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.span(2)
-  GridCol(){}.span({ xs: 1, sm: 2, md: 3, lg: 4 })
+  GridCol(){}.span(Gspan)
   ```
 
 - 设置offset。
 
 
   ```ts
+  let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
   GridCol(){}.offset(2)
-  GridCol(){}.offset({ xs: 1, sm: 2, md: 3, lg: 4 }) 
+  GridCol(){}.offset(Goffset) 
   ```
 
 - 设置order。
 
 
   ```ts
+  let Gorder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ order: 2 }){}
   GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.order(2)
-  GridCol(){}.order({ xs: 1, sm: 2, md: 3, lg: 4 })
+  GridCol(){}.order(Gorder)
   ```
 
 
@@ -279,7 +299,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   ...
   GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color, index) => {
+    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
       GridCol({ span: 2 }) {      
         Row() {
           Text(`${index}`)
@@ -299,7 +319,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   ...
   GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color, index) => {
+    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
       GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
         Row() {
           Text(`${index}`)
@@ -324,7 +344,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
   ...
   GridRow() {
-    ForEach(this.bgColors, (color, index) => {
+    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
       GridCol({ offset: 2 }) {      
         Row() {
           Text('' + index)
@@ -347,7 +367,7 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
   ...
 
   GridRow() {
-    ForEach(this.bgColors, (color, index) => {
+    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
       GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
         Row() {
           Text('' + index)

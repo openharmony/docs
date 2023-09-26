@@ -8,8 +8,8 @@
 
 ## 导入模块
 
-```js
-import screenlock from '@ohos.screenLock';
+```ts
+import screenLock from '@ohos.screenLock';
 ```
 
 ## EventType<sup>9+</sup>
@@ -50,7 +50,7 @@ import screenlock from '@ohos.screenLock';
 | eventType   | [EventType](#eventtype9) | 是   | 系统事件类型。 |
 | params | string | 是   | 系统事件参数。 |
 
-## screenlock.isLocked<sup>9+</sup>
+## screenLock.isLocked<sup>9+</sup>
 
 isLocked(): boolean
 
@@ -68,11 +68,11 @@ isLocked(): boolean
 
 **示例：** 
 
-```js
-let isLocked = screenlock.isLocked();
+```ts
+let isLocked = screenLock.isLocked();
 ```
 
-## screenlock.unlock<sup>9+</sup>
+## screenLock.unlock<sup>9+</sup>
 
 unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -98,17 +98,19 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-```js
-screenlock.unlock((err, data) => {      
-    if (err) {
-        console.error(`Failed to unlock the screen, because: ${err.message}`);
-        return;    
-    }
-    console.info(`unlock the screen successfully. result: ${data}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.unlock<sup>9+</sup>
+  screenLock.unlock((err: BusinessError, data: Boolean) => {
+    if (err) {
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
+  });
+  ```
+
+## screenLock.unlock<sup>9+</sup>
 
 unlock(): Promise&lt;boolean&gt;
 
@@ -134,15 +136,17 @@ unlock(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.unlock().then((data) => {
-    console.info(`unlock the screen successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to unlock the screen, because: ${err.message}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.lock<sup>9+</sup>
+  screenLock.unlock().then((data: Boolean) => {
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.lock<sup>9+</sup>
 
 lock(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -170,17 +174,19 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-```js
-screenlock.lock((err, data) => {      
-    if (err) {
-        console.error(`Failed to lock the screen, because: ${err.message}`);
-        return;    
-    }
-    console.info(`lock the screen successfully. result: ${data}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.lock<sup>9+</sup>
+  screenLock.lock((err: BusinessError, data: Boolean) => {
+    if (err) {
+      console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in locking the screen. result: ${data}`);
+  });
+  ```
+
+## screenLock.lock<sup>9+</sup>
 
 lock(): Promise&lt;boolean&gt;
 
@@ -208,19 +214,21 @@ lock(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.lock().then((data) => {
-    console.info(`lock the screen successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to lock the screen, because: ${err.message}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.onSystemEvent<sup>9+</sup>
+  screenLock.lock().then((data: Boolean) => {
+    console.info(`Succeeded in locking the screen. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.onSystemEvent<sup>9+</sup>
 
 onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
-注册锁屏相关的系统事件，仅系统锁屏应用可调用。
+注册锁屏相关的系统事件，仅支持锁屏应用使用。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -250,21 +258,22 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **示例：** 
 
-```js
-try {
-    let isSuccess = screenlock.onSystemEvent((event) => {
-        console.log(`Register the system event which related to screenlock successfully. eventType: ${event.eventType}`)
+  ```ts
+  try {
+    let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
+      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
     });
-} catch (err) {
-    console.error(`Failed to register the system event which related to screenlock, because: ${err.message}`)
-}
-```
+  } catch (err) {
+    let error = err as BusinessError;
+    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`)
+  }
+  ```
 
-## screenlock.sendScreenLockEvent<sup>9+</sup>
+## screenLock.sendScreenLockEvent<sup>9+</sup>
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-应用发送事件到锁屏服务。使用callback异步回调。
+应用发送事件到锁屏服务，仅支持锁屏应用使用。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -290,21 +299,23 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 **示例：** 
 
-```js
-screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
-    if (err) {
-        console.error(`Failed to send screenlock event, because: ${err.message}`);
-        return;
-    }
-    console.info(`Send screenlock event successfully. result: ${result}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.sendScreenLockEvent<sup>9+</sup>
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
+    if (err) {
+      console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
+  });
+  ```
+
+## screenLock.sendScreenLockEvent<sup>9+</sup>
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-应用发送事件到锁屏服务。使用Promise异步回调。
+应用发送事件到锁屏服务，仅支持锁屏应用使用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -335,15 +346,17 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
-    console.info(`Send screenlock event successfully. result: ${result}`);
-}).catch((err) => {
-    console.error(`Failed to send screenlock event, because: ${err.message}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.isScreenLocked<sup>(deprecated)</sup>
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -363,17 +376,19 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-screenlock.isScreenLocked((err, data)=>{      
-    if (err) {
-        console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
-        return;    
-    }
-    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.isScreenLocked<sup>(deprecated)</sup>
+  screenLock.isScreenLocked((err: BusinessError, data: Boolean)=>{      
+    if (err) {
+      console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
+      return;    
+    }
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
+  });
+  ```
+
+## screenLock.isScreenLocked<sup>(deprecated)</sup>
 
 isScreenLocked(): Promise&lt;boolean&gt;
 
@@ -393,15 +408,17 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.isScreenLocked().then((data) => {
-    console.info(`Obtain whether the screen is locked successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to obtain whether the screen is locked, because: ${err.message}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.isSecureMode<sup>(deprecated)</sup>
+  screenLock.isScreenLocked().then((data: Boolean) => {
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -421,17 +438,19 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：** 
 
-```js
-screenlock.isSecureMode((err, data)=>{
-    if (err) {
-        console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
-        return;
-    }
-    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.isSecureMode<sup>(deprecated)</sup>
+  screenLock.isSecureMode((err: BusinessError, data: Boolean)=>{
+    if (err) {
+      console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
+  });
+  ```
+
+## screenLock.isSecureMode<sup>(deprecated)</sup>
 
 isSecureMode(): Promise&lt;boolean&gt;
 
@@ -451,14 +470,17 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 **示例：** 
 
-```js
-screenlock.isSecureMode().then((data) => {
-    console.info(`Obtain whether the device is in secure mode successfully. result: ${data}`);
-}).catch((err) => {
-    console.error(`Failed to obtain whether the device is in secure mode, because: ${err.message}`);
-});
-```
-## screenlock.unlockScreen<sup>(deprecated)</sup>
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isSecureMode().then((data: Boolean) => {
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## screenLock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
@@ -478,17 +500,19 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：** 
 
-```js
-screenlock.unlockScreen((err) => {      
-    if (err) {
-        console.error(`Failed to unlock the screen, because: ${err.message}`);
-        return;    
-    }
-    console.info('unlock the screen successfully.');
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
 
-## screenlock.unlockScreen<sup>(deprecated)</sup>
+  screenLock.unlockScreen((err: BusinessError) => {      
+    if (err) {
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+      return;    
+    }
+    console.info(`Succeeded unlocking the screen.`);
+  });
+  ```
+
+## screenLock.unlockScreen<sup>(deprecated)</sup>
 
 unlockScreen(): Promise&lt;void&gt;
 
@@ -508,10 +532,12 @@ unlockScreen(): Promise&lt;void&gt;
 
 **示例：** 
 
-```js
-screenlock.unlockScreen().then(() => {
-    console.info('unlock the screen successfully.');
-}).catch((err) => {
-    console.error(`Failed to unlock the screen, because: ${err.message}`);
-});
-```
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlockScreen().then(() => {
+    console.info('Succeeded unlocking the screen.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```

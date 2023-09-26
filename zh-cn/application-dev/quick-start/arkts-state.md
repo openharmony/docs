@@ -1,4 +1,4 @@
-# \@State：组件内状态
+# \@State装饰器：组件内状态
 
 
 \@State装饰的变量，或称为状态变量，一旦变量拥有了状态属性，就和自定义组件的渲染绑定起来。当状态改变时，UI会发生对应的渲染改变。
@@ -25,21 +25,21 @@
 
 ## 装饰器使用规则说明
 
-| \@State变量装饰器 | 说明                                       |
-| ------------ | ---------------------------------------- |
-| 装饰器参数        | 无                                        |
-| 同步类型         | 不与父组件中任何类型的变量同步。                         |
-| 允许装饰的变量类型    | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>建议不要装饰Date类型，应用可能会产生异常行为。<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
-| 被装饰变量的初始值    | 必须指定。                                    |
+| \@State变量装饰器  | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| 装饰器参数         | 无                                                           |
+| 同步类型           | 不与父组件中任何类型的变量同步。                             |
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
+| 被装饰变量的初始值 | 必须本地初始化。                                               |
 
 
 ## 变量的传递/访问规则说明
 
-| 传递/访问     | 说明                                       |
-| --------- | ---------------------------------------- |
-| 从父组件初始化   | 可选，从父组件初始化或者本地初始化。<br/>支持父组件中常规变量、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
-| 用于初始化子组件  | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
-| 是否支持组件外访问 | 不支持，只能在组件内访问。                            |
+| 传递/访问          | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化将会覆盖本地初始化。<br/>支持父组件中常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、\@Link、\@Prop、\@Provide、\@Consume、\@ObjectLink、\@StorageLink、\@StorageProp、\@LocalStorageLink和\@LocalStorageProp装饰的变量，初始化子组件的\@State。 |
+| 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
+| 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
   **图1** 初始化规则图示  
 
@@ -153,6 +153,45 @@
   this.title.push(new Model(12))
   ```
 
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+
+  ```ts
+  @Entry
+  @Component
+  struct DatePickerExample {
+    @State selectedDate: Date = new Date('2021-08-08')
+  
+    build() {
+      Column() {
+        Button('set selectedDate to 2023-07-08')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08')
+          })
+        Button('increase the year by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+          })
+        Button('increase the month by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1)
+          })
+        Button('increase the day by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+          })
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        })
+      }.width('100%')
+    }
+  }
+  ```
 
 ### 框架行为
 
@@ -257,5 +296,14 @@ struct MyComponent {
 2. 对于\@State来说，命名参数机制传递的值并不是必选的，如果没有命名参数传值，则使用本地初始化的默认值：
 
    ```ts
-   MyComponent({ count: 1, increaseBy: 2 })
+   class C1 {
+      public count:number;
+      public increaseBy:number;
+      constructor(count: number, increaseBy:number) {
+      this.count = count;
+      this.increaseBy = increaseBy;
+     }
+   }
+   let obj = new C1(1, 2)
+   MyComponent(obj)
    ```

@@ -87,51 +87,80 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
   Example of loading local resource files in the sandbox:
 
-  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
-     ```ts
-     // xxx.ets
-     import web_webview from '@ohos.web.webview'
-     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+  1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
 
-     @Entry
-     @Component
-     struct WebComponent {
-       controller: web_webview.WebviewController = new web_webview.WebviewController()
-       build() {
-         Column() {
-           // Load the files in the sandbox.
-           Web({ src: url, controller: this.controller })
-         }
-       }
-     }
-     ```
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
 
-  2. Modify the **MainAbility.ts** file.
-  
-     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
-     ```ts
-     // xxx.ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import web_webview from '@ohos.web.webview';
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
 
-     export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
-             globalThis.filesDir = this.context.filesDir
-             console.log("Sandbox path is " + globalThis.filesDir)
-         }
-     }
-     ```
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
 
-     ```html
-     <!-- index.html -->
-     <!DOCTYPE html>
-     <html>
-         <body>
-             <p>Hello World</p>
-         </body>
-     </html>
-     ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import { GlobalContext } from '../GlobalContext'
+
+  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // Load the files in the sandbox.
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  2. Modify the **EntryAbility.ts** file.
+    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
+  import web_webview from '@ohos.web.webview';
+  import { GlobalContext } from '../GlobalContext'
+
+  export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+          // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
+          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+      }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 
 ## Attributes
 
@@ -251,21 +280,27 @@ Registers a JavaScript object with the window. APIs of this object can then be i
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
+  class TestObj {
+    constructor() {
+    }
+
+    test(data1: string, data2: string, data3: string): string {
+      console.log("data1:" + data1)
+      console.log("data2:" + data2)
+      console.log("data3:" + data3)
+      return "AceString"
+    }
+
+    toString(): void {
+      console.log('toString' + "interface instead.")
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    testObj = {
-      test: (data1, data2, data3) => {
-        console.log("data1:" + data1)
-        console.log("data2:" + data2)
-        console.log("data3:" + data3)
-        return "AceString"
-      },
-      toString: () => {
-        console.log('toString' + "interface instead.")
-      }
-    }
+    testObj = new TestObj();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -587,15 +622,16 @@ Sets whether to display the horizontal scrollbar, including the default system s
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .horizontalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  HTML file to be loaded:
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -640,15 +676,16 @@ Sets whether to display the vertical scrollbar, including the default system scr
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .verticalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  HTML file to be loaded:
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -669,6 +706,15 @@ Sets whether to display the vertical scrollbar, including the default system scr
   </html>
   ```
 
+### password<sup>(deprecated)</sup>
+
+password(password: boolean)
+
+Sets whether the password should be saved. This API is a void API.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
 
 ### cacheMode
 
@@ -714,7 +760,7 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
 | Name          | Type  | Mandatory  | Default Value | Description           |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set.|
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value range is (0, +∞).|
 
 **Example**
 
@@ -744,7 +790,7 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 | Name          | Type  | Mandatory  | Default Value | Description           |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set.|
+| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value range is (0, +∞).|
 
 **Example**
 
@@ -798,11 +844,15 @@ Sets the scale factor of the entire page. The default value is 100%.
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 Sets the user agent.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
 
 **Parameters**
 
@@ -984,7 +1034,6 @@ Sets the minimum logical font size for the web page.
     }
   }
   ```
-
 
 ### webFixedFont<sup>9+</sup>
 
@@ -1236,6 +1285,26 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
   }
   ```
 
+### tableData<sup>(deprecated)</sup>
+
+tableData(tableData: boolean)
+
+Sets whether form data should be saved. This API is a void API.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
+
+### wideViewModeAccess<sup>(deprecated)</sup>
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+Sets whether to support the viewport attribute of the HTML **\<meta>** tag. This API is a void API.
+
+> **NOTE**
+>
+> This API is deprecated since API version 10, and no new API is provided as a substitute.
+
 ### pinchSmooth<sup>9+</sup>
 
 pinchSmooth(isEnabled: boolean)
@@ -1299,8 +1368,8 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
   // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
-  controller: CustomDialogController
-  webviewController1: web_webview.WebviewController
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
   build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
@@ -1308,7 +1377,9 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
           .multiWindowAccess(false)
           .onWindowExit(()=> {
             console.info("NewWebViewComp onWindowExit")
-            this.controller.close()
+            if (this.controller) {
+              this.controller.close()
+            }
           })
         }
     }
@@ -1318,7 +1389,7 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController = null
+    dialogController: CustomDialogController | null = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1365,7 +1436,6 @@ Sets the web-based media playback policy, including the validity period for auto
 | options | [WebMediaOptions](#webmediaoptions10) | Yes  | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
 
 **Example**
-
 
   ```ts
   // xxx.ets
@@ -1420,29 +1490,31 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onAlert',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onAlert',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1450,8 +1522,9 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1502,29 +1575,31 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onBeforeUnload',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onBeforeUnload',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1532,8 +1607,9 @@ Called when this page is about to exit after the user refreshes or closes the pa
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1584,29 +1660,31 @@ Called when **confirm()** is invoked by the web page.
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onConfirm',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onConfirm',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1614,8 +1692,9 @@ Called when **confirm()** is invoked by the web page.
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1673,30 +1752,32 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
-            console.log("url:" + event.url)
-            console.log("message:" + event.message)
-            console.log("value:" + event.value)
-            AlertDialog.show({
-              title: 'onPrompt',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("url:" + event.url)
+              console.log("message:" + event.message)
+              console.log("value:" + event.value)
+              AlertDialog.show({
+                title: 'onPrompt',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handlePromptConfirm(event.value)
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handlePromptConfirm(event.value)
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1704,8 +1785,9 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  HTML file to be loaded:
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1761,10 +1843,12 @@ Called to notify the host application of a JavaScript console message.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onConsole((event) => {
-            console.log('getMessage:' + event.message.getMessage())
-            console.log('getSourceId:' + event.message.getSourceId())
-            console.log('getLineNumber:' + event.message.getLineNumber())
-            console.log('getMessageLevel:' + event.message.getMessageLevel())
+            if (event) {
+              console.log('getMessage:' + event.message.getMessage())
+              console.log('getSourceId:' + event.message.getSourceId())
+              console.log('getLineNumber:' + event.message.getLineNumber())
+              console.log('getMessageLevel:' + event.message.getMessageLevel())
+            }
             return false
           })
       }
@@ -1775,6 +1859,8 @@ Called to notify the host application of a JavaScript console message.
 ### onDownloadStart
 
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+
+Instructs the main application to start downloading a file.
 
 **Parameters**
 
@@ -1801,11 +1887,13 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
-            console.log('url:' + event.url)
-            console.log('userAgent:' + event.userAgent)
-            console.log('contentDisposition:' + event.contentDisposition)
-            console.log('contentLength:' + event.contentLength)
-            console.log('mimetype:' + event.mimetype)
+            if (event) {
+              console.log('url:' + event.url)
+              console.log('userAgent:' + event.userAgent)
+              console.log('contentDisposition:' + event.contentDisposition)
+              console.log('contentLength:' + event.contentLength)
+              console.log('mimetype:' + event.mimetype)
+            }
           })
       }
     }
@@ -1840,17 +1928,19 @@ Called when an error occurs during web page loading. For better results, simplif
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
-            console.log('getErrorInfo:' + event.error.getErrorInfo())
-            console.log('getErrorCode:' + event.error.getErrorCode())
-            console.log('url:' + event.request.getRequestUrl())
-            console.log('isMainFrame:' + event.request.isMainFrame())
-            console.log('isRedirect:' + event.request.isRedirect())
-            console.log('isRequestGesture:' + event.request.isRequestGesture())
-            console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
-            let result = event.request.getRequestHeader()
-            console.log('The request header result size is ' + result.length)
-            for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+            if (event) {
+              console.log('getErrorInfo:' + event.error.getErrorInfo())
+              console.log('getErrorCode:' + event.error.getErrorCode())
+              console.log('url:' + event.request.getRequestUrl())
+              console.log('isMainFrame:' + event.request.isMainFrame())
+              console.log('isRedirect:' + event.request.isRedirect())
+              console.log('isRequestGesture:' + event.request.isRequestGesture())
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
+              let result = event.request.getRequestHeader()
+              console.log('The request header result size is ' + result.length)
+              for (let i of result) {
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+              }
             }
           })
       }
@@ -1886,24 +1976,26 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
-            console.log('url:' + event.request.getRequestUrl())
-            console.log('isMainFrame:' + event.request.isMainFrame())
-            console.log('isRedirect:' + event.request.isRedirect())
-            console.log('isRequestGesture:' + event.request.isRequestGesture())
-            console.log('getResponseData:' + event.response.getResponseData())
-            console.log('getResponseEncoding:' + event.response.getResponseEncoding())
-            console.log('getResponseMimeType:' + event.response.getResponseMimeType())
-            console.log('getResponseCode:' + event.response.getResponseCode())
-            console.log('getReasonMessage:' + event.response.getReasonMessage())
-            let result = event.request.getRequestHeader()
-            console.log('The request header result size is ' + result.length)
-            for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
-            }
-            let resph = event.response.getResponseHeader()
-            console.log('The response header result size is ' + resph.length)
-            for (let i of resph) {
-              console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+            if (event) {
+              console.log('url:' + event.request.getRequestUrl())
+              console.log('isMainFrame:' + event.request.isMainFrame())
+              console.log('isRedirect:' + event.request.isRedirect())
+              console.log('isRequestGesture:' + event.request.isRequestGesture())
+              console.log('getResponseData:' + event.response.getResponseData())
+              console.log('getResponseEncoding:' + event.response.getResponseEncoding())
+              console.log('getResponseMimeType:' + event.response.getResponseMimeType())
+              console.log('getResponseCode:' + event.response.getResponseCode())
+              console.log('getReasonMessage:' + event.response.getReasonMessage())
+              let result = event.request.getRequestHeader()
+              console.log('The request header result size is ' + result.length)
+              for (let i of result) {
+                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+              }
+              let resph = event.response.getResponseHeader()
+              console.log('The response header result size is ' + resph.length)
+              for (let i of resph) {
+                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+              }
             }
           })
       }
@@ -1914,7 +2006,6 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 ### onPageBegin
 
 onPageBegin(callback: (event?: { url: string }) => void)
-
 
 Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
@@ -1939,7 +2030,9 @@ Called when the web page starts to be loaded. This API is called only for the ma
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
-            console.log('url:' + event.url)
+            if (event) {
+              console.log('url:' + event.url)
+            }
           })
       }
     }
@@ -1949,7 +2042,6 @@ Called when the web page starts to be loaded. This API is called only for the ma
 ### onPageEnd
 
 onPageEnd(callback: (event?: { url: string }) => void)
-
 
 Called when the web page loading is complete. This API takes effect only for the main frame content.
 
@@ -1974,7 +2066,9 @@ Called when the web page loading is complete. This API takes effect only for the
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
-            console.log('url:' + event.url)
+            if (event) {
+              console.log('url:' + event.url)
+            }
           })
       }
     }
@@ -2008,7 +2102,9 @@ Called when the web page loading progress changes.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
-            console.log('newProgress:' + event.newProgress)
+            if (event) {
+              console.log('newProgress:' + event.newProgress)
+            }
           })
       }
     }
@@ -2042,7 +2138,9 @@ Called when the document title of the web page is changed.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
-            console.log('title:' + event.title)
+            if (event) {
+              console.log('title:' + event.title)
+            }
           })
       }
     }
@@ -2077,12 +2175,34 @@ Called when loading of the web page is complete. This API is used by an applicat
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
-            console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+            if (event) {
+              console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+            }
           })
       }
     }
   }
   ```
+
+### onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+Called when an SSL error occurs during resource loading.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9) instead.
+
+### onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+Called to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onShowFileSelector<sup>9+</sup>](#onshowfileselector9) instead.
 
 ### onRenderExited<sup>9+</sup>
 
@@ -2111,7 +2231,9 @@ Called when the rendering process exits abnormally.
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
-            console.log('reason:' + event.renderExitReason)
+            if (event) {
+              console.log('reason:' + event.renderExitReason)
+            }
           })
       }
     }
@@ -2141,7 +2263,9 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@ohos.base';
 
   @Entry
   @Component
@@ -2150,30 +2274,39 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            AlertDialog.show({
-              title: event.fileSelector.getTitle(),
-              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-              confirm: {
-                value: 'upload',
-                action: () => {
-                  let fileList: Array<string> = [
-                    '/data/storage/el2/base/test',
-                  ]
-                  event.result.handleFileList(fileList)
-                }
-              },
-              cancel: () => {
-                let fileList: Array<string> = []
-                event.result.handleFileList(fileList)
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri: string | null = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              if (event) {
+                event.result.handleFileList([uri]);
               }
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
             return true
           })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="upload"/>
+  </body>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2279,7 +2412,9 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
-            console.log('onUrlLoadIntercept ' + event.data.toString())
+            if (event) {
+              console.log('onUrlLoadIntercept ' + event.data.toString())
+            }
             return true
           })
       }
@@ -2330,16 +2465,18 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
-            console.log('url:' + event.request.getRequestUrl())
-            var head1:Header = {
+            if (event) {
+              console.log('url:' + event.request.getRequestUrl())
+            }
+            let head1:Header = {
               headerKey:"Connection",
               headerValue:"keep-alive"
             }
-            var head2:Header = {
+            let head2:Header = {
               headerKey:"Cache-Control",
               headerValue:"no-cache"
             }
-            var length = this.heads.push(head1)
+            let length = this.heads.push(head1)
             length = this.heads.push(head2)
             this.responseweb.setResponseHeader(this.heads)
             this.responseweb.setResponseData(this.webdata)
@@ -2389,34 +2526,36 @@ Called when an HTTP authentication request is received.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpAuthRequest((event) => {
-            AlertDialog.show({
-              title: 'onHttpAuthRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel()
-                }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  this.httpAuth = event.handler.isHttpAuthInfoSaved()
-                  if (this.httpAuth == false) {
-                    web_webview.WebDataBase.saveHttpAuthCredentials(
-                      event.host,
-                      event.realm,
-                      "2222",
-                      "2222"
-                    )
+            if (event) {
+              AlertDialog.show({
+                title: 'onHttpAuthRequest',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
                     event.handler.cancel()
                   }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    this.httpAuth = event.handler.isHttpAuthInfoSaved()
+                    if (this.httpAuth == false) {
+                      web_webview.WebDataBase.saveHttpAuthCredentials(
+                        event.host,
+                        event.realm,
+                        "2222",
+                        "2222"
+                      )
+                      event.handler.cancel()
+                    }
+                  }
+                },
+                cancel: () => {
+                  event.handler.cancel()
                 }
-              },
-              cancel: () => {
-                event.handler.cancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -2492,6 +2631,7 @@ Called when an SSL client certificate request is received.
 | issuers  | Array<string>                            | Issuer of the certificate that matches the private key.|
 
   **Example**
+  This example shows two-way authentication when interconnection with certificate management is not supported.
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
@@ -2529,16 +2669,49 @@ Called when an SSL client certificate request is received.
   }
   ```
 
+  This example shows two-way authentication when interconnection with certificate management is supported.
+
+  1. Construct the singleton object **GlobalContext**.
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
+
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
+
+  2. Implement two-way authentication.
   ```ts
   // xxx.ets API10
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   import web_webview from '@ohos.web.webview'
-  import bundle from '@ohos.bundle'
+  import { BusinessError } from '@ohos.base';
+  import bundleManager from '@ohos.bundle.bundleManager'
+  import { GlobalContext } from '../GlobalContext'
 
   let uri = "";
 
   export default class CertManagerService {
     private static sInstance: CertManagerService;
     private authUri = "";
+    private appUid = "";
 
     public static getInstance(): CertManagerService {
       if (CertManagerService.sInstance == null) {
@@ -2547,26 +2720,38 @@ Called when an SSL client certificate request is received.
       return CertManagerService.sInstance;
     }
 
-    async grantAppPm(callback) {
+    async grantAppPm(callback: (message: string) => void) {
       let message = '';
+      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
       // Note: Replace com.example.myapplication with the actual application name.
-      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
-      let clientAppUid = bundleInfo.uid
-      let appUid = clientAppUid.toString()
+      try {
+        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+          this.appUid = data.appInfo.uid.toString();
+        }).catch((err: BusinessError) => {
+          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+        });
+      } catch (err) {
+        let message = (err as BusinessError).message;
+        console.error('getBundleInfoForSelf failed: %{public}s', message);
+      }
 
-      // Note: For globalThis.AbilityContext, add globalThis.AbilityContext = this.context to the onCreate function in the MainAbility.ts file.
-      await globalThis.AbilityContext.startAbilityForResult(
+      // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+      await abilityContext.startAbilityForResult(
         {
           bundleName: "com.ohos.certmanager",
           abilityName: "MainAbility",
           uri: "requestAuthorize",
           parameters: {
-            appUid: appUid, // UID of the requesting application.
+            appUid: this.appUid, // Pass the UID of the requesting application.
           }
-        })
-        .then((data) => {
-          if (!data.resultCode) {
-            this.authUri = data.want.parameters.authUri; // Value of authUri returned when authorization is successful.
+        } as Want)
+        .then((data: common.AbilityResult) => {
+          if (!data.resultCode && data.want) {
+            if (data.want.parameters) {
+              this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+            }
           }
         })
       message += "after grantAppPm authUri: " + this.authUri;
@@ -2655,25 +2840,27 @@ Called when a permission request is received.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPermissionRequest((event) => {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              primaryButton: {
-                value: 'deny',
-                action: () => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title',
+                message: 'text',
+                primaryButton: {
+                  value: 'deny',
+                  action: () => {
+                    event.request.deny()
+                  }
+                },
+                secondaryButton: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.request.grant(event.request.getAccessibleResource())
+                  }
+                },
+                cancel: () => {
                   event.request.deny()
                 }
-              },
-              secondaryButton: {
-                value: 'onConfirm',
-                action: () => {
-                  event.request.grant(event.request.getAccessibleResource())
-                }
-              },
-              cancel: () => {
-                event.request.deny()
-              }
-            })
+              })
+            }
           })
       }
     }
@@ -2713,8 +2900,10 @@ Called when a context menu is displayed after the user clicks the right mouse bu
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
-            console.info("x coord = " + event.param.x())
-            console.info("link url = " + event.param.getLinkUrl())
+            if (event) {
+              console.info("x coord = " + event.param.x())
+              console.info("link url = " + event.param.getLinkUrl())
+            }
             return true
         })
       }
@@ -2785,19 +2974,21 @@ Called when a request to obtain the geolocation information is received.
         Web({ src:'www.example.com', controller:this.controller })
         .geolocationAccess(true)
         .onGeolocationShow((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                event.geolocation.invoke(event.origin, true, true)
+          if (event) {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  event.geolocation.invoke(event.origin, true, true)
+                }
+              },
+              cancel: () => {
+                event.geolocation.invoke(event.origin, false, true)
               }
-            },
-            cancel: () => {
-              event.geolocation.invoke(event.origin, false, true)
-            }
-          })
+            })
+          }
         })
       }
     }
@@ -2860,7 +3051,7 @@ Called when the component enters full screen mode.
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler = null
+    handler: FullScreenExitHandler | null = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2895,13 +3086,15 @@ Called when the component exits full screen mode.
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler = null
+    handler: FullScreenExitHandler | null = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenExit(() => {
           console.log("onFullScreenExit...")
-          this.handler.exitFullScreen()
+          if (this.handler) {
+            this.handler.exitFullScreen()
+          }
         })
         .onFullScreenEnter((event) => {
           this.handler = event.handler
@@ -2933,12 +3126,12 @@ If opening a new window is not needed, set the parameter to **null** when callin
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  
+
   // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
-  controller: CustomDialogController
-  webviewController1: web_webview.WebviewController
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
   build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
@@ -2946,7 +3139,9 @@ If opening a new window is not needed, set the parameter to **null** when callin
           .multiWindowAccess(false)
           .onWindowExit(()=> {
             console.info("NewWebViewComp onWindowExit")
-            this.controller.close()
+            if (this.controller) {
+              this.controller.close()
+            }
           })
         }
     }
@@ -2956,7 +3151,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController = null
+    dialogController: CustomDialogController | null = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3045,9 +3240,11 @@ Called to notify the caller of the search result on the web page.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
      	  .onSearchResultReceive(ret => {
+     	    if (ret) {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
               "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
+     	    }
+     	  })
       }
     }
   }
@@ -3215,7 +3412,7 @@ Called when this web page receives a new favicon.
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State icon: image.PixelMap = undefined;
+    @State icon: image.PixelMap | undefined = undefined;
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
@@ -3289,9 +3486,11 @@ Called when the web page content is first rendered.
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
-            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
-              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+            if (event) {
+              console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs)
+            }
           })
       }
     }
@@ -3308,7 +3507,7 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 | Name | Type                                    | Description     |
 | ------- | ---------------------------------------- | --------- |
-| request | [Webresourcerequest](#webresourcerequest) | Information about the URL request.|
+| request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
 
 **Return value**
 
@@ -3369,7 +3568,162 @@ Called when the **\<Web>** component obtains the focus.
     }
   }
   ```
+### onScreenCaptureRequest<sup>10+</sup>
 
+onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+
+Called when a screen capture request is received.
+
+**Parameters**
+
+| Name    | Type                                    | Description          |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | User operation.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScreenCaptureRequest((event) => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title: ' + event.handler.getOrigin(),
+                message: 'text',
+                primaryButton: {
+                  value: 'deny',
+                  action: () => {
+                    event.handler.deny()
+                  }
+                },
+                secondaryButton: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                  }
+                },
+                cancel: () => {
+                  event.handler.deny()
+                }
+              })
+            }
+          })
+      }
+    }
+  }
+  ```
+
+### onOverScroll<sup>10+</sup>
+
+onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+Called to indicate the offset by which the  web page overscrolls.
+
+**Parameters**
+
+| Name    | Type  | Description        |
+| ------- | ------ | ------------ |
+| xOffset | number | Horizontal overscroll offset based on the leftmost edge of the web page.|
+| yOffset | number | Vertical overscroll offset based on the top edge of the web page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onOverScroll((event) => {
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
+        })
+      }
+    }
+  }
+  ```
+
+### onControllerAttached<sup>10+</sup>
+
+onControllerAttached(callback: () => void)
+
+Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
+
+As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+
+**Example**
+
+The following example uses **loadUrl** in the callback to load the web page.
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: '', controller: this.controller })
+          .onControllerAttached(() => {
+            this.controller.loadUrl($rawfile("index.html"));
+          })
+      }
+    }
+  }
+  ```
+The following example uses **getWebId** in the callback
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import { BusinessError } from '@ohos.base';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onControllerAttached(() => {
+            try {
+              let id = this.controller.getWebId();
+              console.log("id: " + id);
+            } catch (error) {
+              let code = (error as BusinessError).code;
+              let message = (error as BusinessError).message;
+              console.error(`ErrorCode: ${code},  Message: ${message}`);
+            }
+          })
+      }
+    }
+  }
+  ```
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
@@ -3424,7 +3778,7 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
 ### handleCancel
 
@@ -3588,7 +3942,6 @@ Describes the request/response header returned by the **\<Web>** component.
 | ----------- | ------ | ------------- |
 | headerKey   | string | Key of the request/response header.  |
 | headerValue | string | Value of the request/response header.|
-
 
 ## WebResourceResponse
 
@@ -3964,6 +4317,42 @@ Grants the permission for resources requested by the web page.
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
 
+## ScreenCaptureHandler<sup>10+</sup>
+
+Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
+
+### deny<sup>10+</sup>
+
+deny(): void
+
+Rejects this screen capture request.
+
+### getOrigin<sup>10+</sup>
+
+getOrigin(): string
+
+Obtains the origin of this web page.
+
+**Return value**
+
+| Type    | Description          |
+| ------ | ------------ |
+| string | Origin of the web page that requests the permission.|
+
+### grant<sup>10+</sup>
+
+grant(config: ScreenCaptureConfig): void
+
+**Required permissions**: ohos.permission.MICROPHONE, ohos.permission.CAPTURE_SCREEN
+
+Grants the screen capture permission.
+
+**Parameters**
+
+| Name      | Type           | Mandatory  | Default Value | Description         |
+| --------- | --------------- | ---- | ---- | ------------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
+
 ## ContextMenuSourceType<sup>9+</sup>
 | Name                  | Description        |
 | -------------------- | ---------- |
@@ -4280,6 +4669,8 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Name       | Description           | Remarks                        |
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera.| |
+| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.| |
 
 ## WebDarkMode<sup>9+</sup>
 | Name     | Description                                  |
@@ -4287,6 +4678,12 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Off     | The web dark mode is disabled.                    |
 | On      | The web dark mode is enabled.                    |
 | Auto    | The web dark mode setting follows the system settings.                |
+
+## WebCaptureMode<sup>10+</sup>
+
+| Name       | Description           |
+| --------- | ------------- |
+| HOME_SCREEN | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -4296,6 +4693,14 @@ Describes the web-based media playback policy.
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
 | audioExclusive |  boolean  |  Yes | Yes  |  No | Whether the audio of multiple **\<Web>** instances in an application is exclusive.   |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Provides the web screen capture configuration.
+
+| Name          | Type      | Readable| Writable| Mandatory| Description                        |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| captureMode |  [WebCaptureMode](#webcapturemode10)  |  Yes | Yes |  Yes | Web screen capture mode.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4363,8 +4768,8 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 
 ### Creating an Object
 
-```
-webController: WebController = new WebController()
+```ts
+let webController: WebController = new WebController()
 ```
 
 ### getCookieManager<sup>9+</sup>
@@ -4606,7 +5011,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
 
 deleteJavaScriptRegister(name: string)
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refreshdeprecated) API.
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister) instead.
 
@@ -4903,18 +5308,24 @@ This API is deprecated since API version 9. You are advised to use [registerJava
 
   ```ts
   // xxx.ets
+  class TestObj {
+    constructor() {
+    }
+
+    test(): string {
+      return "ArkUI Web Component"
+    }
+
+    toString(): void {
+      console.log('Web Component toString')
+    }
+  }
+
   @Entry
   @Component
   struct Index {
     controller: WebController = new WebController()
-    testObj = {
-      test: (data) => {
-        return "ArkUI Web Component"
-      },
-      toString: () => {
-        console.log('Web Component toString')
-      }
-    }
+    testObj = new TestObj();
     build() {
       Column() {
         Row() {
@@ -4933,6 +5344,7 @@ This API is deprecated since API version 9. You are advised to use [registerJava
   }
   ```
 
+  HTML file to be loaded:
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4987,13 +5399,15 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          console.info('url: ', e.url)
+          if (e) {
+            console.info('url: ', e.url)
+          }
         })
       }
     }
   }
   ```
-
+  HTML file to be loaded:
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -5009,7 +5423,6 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
     }
     </script>
   </html>
-
   ```
 
 ### stop<sup>(deprecated)</sup>
@@ -5075,17 +5488,12 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
 Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
 ### setCookie<sup>(deprecated)</sup>
-setCookie(url: string, value: string): boolean
+
+setCookie(): boolean
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
+
 This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie) instead.
-
-**Parameters**
-
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
-| value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**
 
@@ -5093,31 +5501,12 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 | ------- | ------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('setCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 ### saveCookie<sup>(deprecated)</sup>
+
 saveCookie(): boolean
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
+
 This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
 
 **Return value**
@@ -5125,25 +5514,3 @@ This API is deprecated since API version 9. You are advised to use [saveCookieAs
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Operation result.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('saveCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookie()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```

@@ -165,6 +165,7 @@ If you want to add a button in the **entry** module to jump to the menu page (**
 
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -196,7 +197,7 @@ struct Index {
               url: '@bundle:com.example.hmservice/library/ets/pages/menu'
             }).then(() => {
               console.log("push page success");
-            }).catch(err => {
+            }).catch((err: BusinessError) => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
         })

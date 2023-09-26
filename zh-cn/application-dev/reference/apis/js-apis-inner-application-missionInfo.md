@@ -12,6 +12,8 @@
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -26,6 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | 是 | 是 | 表示任务的标签。 |
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 |
 | continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 |
+| abilityState<sup>10+</sup> | number | 是 | 是 | 表示此任务的能力状态。 |
 | unclearable<sup>10+</sup> | boolean | 是 | 是 | 表示任务是否可以被用户手动删除。 |
 
 **示例：**

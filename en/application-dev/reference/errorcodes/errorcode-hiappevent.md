@@ -1,4 +1,4 @@
-#  Application Event Logging Error Codes
+# Application Event Logging Error Codes
 
 > **NOTE**
 >
@@ -22,7 +22,9 @@ The application event logging function is disabled.
 
 Invoke the **configure** API to enable the application event logging function.
 
-   ```js
+   ```ts
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+
    hiAppEvent.configure({
        disable: false
    });
@@ -43,7 +45,7 @@ The specified event domain name does not comply with the following rules:
 
 - The event domain name contains only digits, lowercase letters, and underscores (\_).
 - The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 32 characters.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
@@ -63,8 +65,8 @@ This error code is reported if the **write** API is called to perform applicatio
 
 The specified event name does not comply with the following rules:
 
-- The event name contains only digits, lowercase letters, and underscores (\_).
-- The event name starts with a lowercase letter and does not end with an underscore (\_).
+- An event name contains only digits, letters, and underscores (_).
+- An event name starts with a letter or dollar sign ($) and does not end with an underscore (_).
 - The event name is not empty and contains a maximum of 48 characters.
 
 **Solution**
@@ -119,11 +121,11 @@ This error code is reported if the **write** API is called to perform applicatio
 
 **Possible Causes**
 
-The specified event parameter name does not comply with the following rules:
+The specified event name does not comply with the following rules:
 
-- The event parameter name contains only digits, lowercase letters, and underscores (\_).
-- The event parameter name starts with a lowercase letter and does not end with an underscore (\_).
-- The event parameter name is not empty and contains a maximum of 16 characters.
+- An event name contains only digits, letters, and underscores (_).
+- An event name starts with a letter or dollar sign ($) and does not end with an underscore (_).
+- An event parameter name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 
@@ -163,7 +165,7 @@ The specified watcher name does not comply with the following rules:
 
 - The watcher name can contain only digits, lowercase letters, and underscores (\_).
 - The watcher name starts with a lowercase letter and does not end with an underscore (\_).
-- The watcher name is not empty and contains a maximum of 32 characters.
+- A watcher name is not empty and contains a maximum of 32 characters.
 
 **Solution**
 
@@ -185,7 +187,7 @@ The specified filtering event domain name does not comply with the following rul
 
 - The event domain name contains only digits, lowercase letters, and underscores (\_).
 - The event domain name starts with a lowercase letter and does not end with an underscore (\_).
-- The event domain name is not empty and contains a maximum of 32 characters.
+- The event domain name is not empty and contains a maximum of 16 characters.
 
 **Solution**
 

@@ -8,20 +8,22 @@
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置组件的背景色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundImage | src:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>repeat?:&nbsp;[ImageRepeat](ts-appendix-enums.md#imagerepeat) | src：图片地址，支持网络图片资源地址和本地图片资源地址和Base64，不支持svg类型的图片。<br/>repeat：设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundImageSize | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
-| backgroundImagePosition | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundBlurStyle<sup>9+</sup> | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br/>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 为当前组件提供一种在背景和内容之间的模糊能力。<br/>value: 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度四个参数。<br/>options: 可选参数，背景模糊选项。<br/>该接口支持在ArkTS卡片中使用。 |
+| 名称                               | 参数类型                                     | 描述                                       |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| background<sup>10+</sup>         | builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: {align?:[Alignment](ts-appendix-enums.md#alignment)} | builder：自定义背景。<br/>align：设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。<br/>**说明：** <br/>自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。|
+| backgroundColor                  | [ResourceColor](ts-types.md#resourcecolor) | 设置组件的背景色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backgroundImage                  | src:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>repeat?:&nbsp;[ImageRepeat](ts-appendix-enums.md#imagerepeat) | src：图片地址，支持网络图片资源地址和本地图片资源地址和Base64，不支持svg类型的图片。<br/>repeat：设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backgroundImageSize              | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
+| backgroundImagePosition          | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| backgroundBlurStyle<sup>9+</sup> | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br/>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 为当前组件提供一种在背景和内容之间的模糊能力。<br/>value: 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>options: 可选参数，背景模糊选项。<br/>该接口支持在ArkTS卡片中使用。 |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
-| 名称                        | 参数类型                                                | 必填 | 描述                                                         |
-| --------------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| colorMode<sup>10+</sup>     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 背景模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
-| adaptiveColor<sup>10+</sup> | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 背景模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
+| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否    | 背景模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
+| scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
 
 ## 示例
 
@@ -109,7 +111,7 @@ struct BackgroundBlurStyleDemo {
       }
       .width('50%')
       .height('50%')
-      .backgroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT })
+      .backgroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.LIGHT, adaptiveColor: AdaptiveColor.DEFAULT, scale: 1.0 })
       .position({ x: '15%', y: '30%' })
     }
     .height('100%')
@@ -121,3 +123,35 @@ struct BackgroundBlurStyleDemo {
 ```
 
 ![zh-cn_image_background_blur_style](figures/zh-cn_image_background_blur_style.png)
+
+### 示例3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BackgroundExample {
+  @Builder renderBackground() {
+    Column() {
+      Progress({value : 50})
+    }
+  }
+
+  build() {
+    Column() {
+      Text("content")
+        .width(100)
+        .height(40)
+        .fontColor("#FFF")
+        .position({x:50, y:80})
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Green)
+    }
+    .width(200).height(200)
+    .background(this.renderBackground)
+    .backgroundColor(Color.Gray)
+  }
+}
+```
+
+![zh-cn_image_background](figures/zh-cn_image_background.png)

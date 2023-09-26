@@ -17,9 +17,9 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 >本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-## 导入模块 
+## 导入模块
 
-```js
+```ts
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
 ```
 
@@ -158,7 +158,8 @@ UI事件的相关信息。
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
 On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore)和[ON.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 ON.text('123').type('button');
 ```
 
@@ -185,10 +186,10 @@ text(txt: string, pattern?: MatchPattern): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.text('123'); // 使用静态构造器ON创建On对象，指定目标控件的text属性。
 ```
-
 
 ### id<sup>9+</sup>
 
@@ -212,7 +213,8 @@ id(id: string): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
@@ -239,7 +241,8 @@ type(tp: string): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.type('button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
@@ -266,7 +269,8 @@ clickable(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.clickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可点击状态属性。
 ```
 
@@ -292,7 +296,8 @@ longClickable(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.longClickable(true); // 使用静态构造器ON创建On对象，指定目标控件的可长按点击状态属性。
 ```
 
@@ -319,7 +324,8 @@ scrollable(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.scrollable(true); // 使用静态构造器ON创建On对象，指定目标控件的可滑动状态属性。
 ```
 
@@ -345,7 +351,8 @@ enabled(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.enabled(true); // 使用静态构造器ON创建On对象，指定目标控件的使能状态属性。
 ```
 
@@ -371,7 +378,8 @@ focused(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.focused(true); // 使用静态构造器ON创建On对象，指定目标控件的获焦状态属性。
 ```
 
@@ -397,7 +405,8 @@ selected(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.selected(true); // 使用静态构造器ON创建On对象，指定目标控件的被选中状态属性。
 ```
 
@@ -423,7 +432,8 @@ checked(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.checked(true); // 使用静态构造器ON创建On对象，指定目标控件的被勾选状态属性
 ```
 
@@ -449,7 +459,8 @@ checkable(b?: boolean): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.checkable(true); // 使用静态构造器ON创建On对象，指定目标控件的能否被勾选状态属性。
 ```
 
@@ -475,7 +486,8 @@ isBefore(on: On): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.isBefore(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
@@ -501,7 +513,8 @@ isAfter(on: On): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.isAfter(ON.text('123')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
 ```
 
@@ -527,7 +540,8 @@ within(on: On): On
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.within(ON.type('List')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之内。
 ```
 
@@ -553,7 +567,8 @@ inWindow(bundleName: string): On;
 
 **示例：**
 
-```js
+```ts
+import { ON } from '@ohos.UiTest';
 let on = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
 ```
 
@@ -581,7 +596,8 @@ click(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -608,7 +624,8 @@ doubleClick(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -635,7 +652,8 @@ longClick(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -668,7 +686,8 @@ getId(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -701,7 +720,8 @@ getText(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -734,7 +754,8 @@ getType(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -767,7 +788,8 @@ getBounds(): Promise\<Rect>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -800,7 +822,8 @@ getBoundsCenter(): Promise\<Point>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -833,7 +856,8 @@ isClickable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -847,7 +871,7 @@ async function demo() {
 
 ### isLongClickable<sup>9+</sup>
 
-isLongClickable(): Promise\<boolean> 
+isLongClickable(): Promise\<boolean>
 
 获取控件对象可长按点击属性。
 
@@ -870,7 +894,8 @@ isLongClickable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -907,7 +932,8 @@ isChecked(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
@@ -944,7 +970,8 @@ isCheckable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
@@ -981,7 +1008,8 @@ isScrollable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let scrollBar = await driver.findComponent(ON.scrollable(true));
@@ -1019,7 +1047,8 @@ isEnabled(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -1057,7 +1086,8 @@ isFocused(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -1094,7 +1124,8 @@ isSelected(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -1131,7 +1162,8 @@ inputText(text: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let text = await driver.findComponent(ON.text('hello world'));
@@ -1156,7 +1188,8 @@ clearText(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let text = await driver.findComponent(ON.text('hello world'));
@@ -1195,10 +1228,11 @@ scrollSearch(on: On): Promise\<Component>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Scroll'));
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
     let button = await scrollBar.scrollSearch(ON.text('next page'));
 }
 ```
@@ -1228,7 +1262,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let scrollBar = await driver.findComponent(ON.type('Scroll'));
@@ -1261,7 +1296,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let scrollBar = await driver.findComponent(ON.type('Scroll'));
@@ -1294,7 +1330,8 @@ dragTo(target: Component): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.type('button'));
@@ -1328,7 +1365,8 @@ pinchOut(scale: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let image = await driver.findComponent(ON.type('image'));
@@ -1361,7 +1399,8 @@ pinchIn(scale: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let image = await driver.findComponent(ON.type('image'));
@@ -1398,7 +1437,8 @@ static create(): Driver
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
 }
@@ -1428,7 +1468,8 @@ Driver对象在给定的时间内延时。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.delayMs(1000);
@@ -1465,7 +1506,8 @@ findComponent(on: On): Promise\<Component>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.findComponent(ON.text('next page'));
@@ -1502,7 +1544,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let buttonList = await driver.findComponents(ON.text('next page'));
@@ -1539,7 +1582,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -1577,7 +1621,8 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let button = await driver.waitForComponent(ON.text('next page'),500);
@@ -1609,7 +1654,8 @@ assertComponentExist(on: On): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ON } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.assertComponentExist(ON.text('next page'));
@@ -1634,7 +1680,8 @@ Driver对象进行点击BACK键的操作。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.pressBack();
@@ -1665,7 +1712,8 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.triggerKey(123);
@@ -1698,7 +1746,8 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.triggerCombineKeys(2072, 2047, 2035);
@@ -1731,7 +1780,8 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.click(100,100);
@@ -1763,7 +1813,8 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.doubleClick(100,100);
@@ -1795,7 +1846,8 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.longClick(100,100);
@@ -1830,7 +1882,8 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.swipe(100,100,200,200,600);
@@ -1865,7 +1918,8 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.drag(100,100,200,200,600);
@@ -1902,7 +1956,8 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.screenCap('/data/storage/el2/base/cache/1.png');
@@ -1933,7 +1988,8 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, DisplayRotation } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.setDisplayRotation(DisplayRotation.ROTATION_180);
@@ -1964,7 +2020,8 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let rotation = await driver.getDisplayRotation();
@@ -1995,7 +2052,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.setDisplayRotationEnabled(false);
@@ -2026,7 +2084,8 @@ getDisplaySize(): Promise\<Point>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let size = await driver.getDisplaySize();
@@ -2057,7 +2116,8 @@ getDisplayDensity(): Promise\<Point>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let density = await driver.getDisplayDensity();
@@ -2082,7 +2142,8 @@ wakeUpDisplay(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.wakeUpDisplay();
@@ -2107,7 +2168,8 @@ pressHome(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.pressHome();
@@ -2145,7 +2207,8 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let idled = await driver.waitForIdle(4000,5000);
@@ -2179,7 +2242,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
@@ -2217,7 +2281,8 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 **示例：**
 
-```js
+```ts
+import { Driver, PointerMatrix } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
@@ -2256,7 +2321,8 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
+import { Driver, UiDirection } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.fling(UiDirection.DOWN, 10000);
@@ -2294,7 +2360,8 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
@@ -2328,7 +2395,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 **示例：**
 
-```js
+```ts
+import { Driver,MouseButton } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
@@ -2363,7 +2431,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
@@ -2394,7 +2463,8 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     await driver.mouseMoveTo({x:100, y:100})
@@ -2425,10 +2495,11 @@ createUIEventObserver(): UIEventObserver;
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
-    let obeserver = await driver.createUiEventObserve();
+    let observer = await driver.createUIEventObserver()
 }
 ```
 
@@ -2459,7 +2530,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 **示例：**
 
-```js
+```ts
+import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
     let pointerMatrix = PointerMatrix.create(2,3);
 }
@@ -2483,7 +2555,8 @@ setPoint(finger: number, step: number, point: Point): void
 
 **示例：**
 
-```js
+```ts
+import { PointerMatrix } from '@ohos.UiTest';
 async function demo() {
     let pointers = PointerMatrix.create(2,3);
     pointers.setPoint(0,0,{x:230,y:480});
@@ -2525,7 +2598,8 @@ getBundleName(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2558,7 +2632,8 @@ getBounds(): Promise\<Rect>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2591,7 +2666,8 @@ getTitle(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2624,7 +2700,8 @@ getWindowMode(): Promise\<WindowMode>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2657,7 +2734,8 @@ isFocused(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2690,7 +2768,8 @@ isActived(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2717,7 +2796,8 @@ focus(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2752,7 +2832,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2788,7 +2869,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver, ResizeDirection } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2816,7 +2898,8 @@ split(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2844,7 +2927,8 @@ maximize(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2872,7 +2956,8 @@ minimize(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2900,7 +2985,8 @@ resume(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2928,7 +3014,8 @@ close(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { Driver } from '@ohos.UiTest';
 async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
@@ -2957,10 +3044,12 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
 
 **示例：**
 
-```js
+```ts
+import { Driver, UIElementInfo } from '@ohos.UiTest';
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
-    let  callback = (UIElementInfo)=>{
+    let  callback = (UIElementInfo: UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
         console.info(UIElementInfo.text)
         console.info(UIElementInfo.type)
@@ -2986,10 +3075,12 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 **示例：**
 
-```js
+```ts
+import { Driver, UIElementInfo } from '@ohos.UiTest';
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
-    let  callback = (UIElementInfo)=>{
+    let  callback = (UIElementInfo: UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
         console.info(UIElementInfo.text)
         console.info(UIElementInfo.type)
@@ -3005,7 +3096,8 @@ By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 
 从API version 9开始不再维护，建议使用[On<sup>9+</sup>](#on9)。
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 BY.text('123').type('button');
 ```
 
@@ -3034,7 +3126,8 @@ text(txt: string, pattern?: MatchPattern): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.text('123'); // 使用静态构造器BY创建by对象，指定目标控件的text属性。
 ```
 
@@ -3063,7 +3156,8 @@ key(key: string): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.key('123'); // 使用静态构造器BY创建by对象，指定目标控件的key值属性。
 ```
 
@@ -3092,7 +3186,8 @@ id(id: number): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.id(123); // 使用静态构造器BY创建by对象，指定目标控件的id属性。
 ```
 
@@ -3121,7 +3216,8 @@ type(tp: string): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.type('button'); // 使用静态构造器BY创建by对象，指定目标控件的控件类型属性。
 ```
 
@@ -3150,7 +3246,8 @@ clickable(b?: boolean): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.clickable(true); // 使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
 ```
 
@@ -3179,7 +3276,8 @@ scrollable(b?: boolean): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.scrollable(true); // 使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
 ```
 
@@ -3207,7 +3305,8 @@ enabled(b?: boolean): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.enabled(true); // 使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
 ```
 
@@ -3235,7 +3334,8 @@ focused(b?: boolean): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.focused(true); // 使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
 ```
 
@@ -3263,7 +3363,8 @@ selected(b?: boolean): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.selected(true); // 使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
 ```
 
@@ -3291,7 +3392,8 @@ isBefore(by: By): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.isBefore(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
@@ -3319,7 +3421,8 @@ isAfter(by: By): By
 
 **示例：**
 
-```js
+```ts
+import { BY } from '@ohos.UiTest';
 let by = BY.isAfter(BY.text('123')); // 使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之后。
 ```
 
@@ -3342,7 +3445,8 @@ click(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3362,7 +3466,8 @@ doubleClick(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3382,7 +3487,8 @@ longClick(): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3408,7 +3514,8 @@ getId(): Promise\<number>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3434,7 +3541,8 @@ getKey(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3460,7 +3568,8 @@ getText(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3486,7 +3595,8 @@ getType(): Promise\<string>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3512,7 +3622,8 @@ isClickable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3542,7 +3653,8 @@ isScrollable(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let scrollBar = await driver.findComponent(BY.scrollable(true));
@@ -3573,7 +3685,8 @@ isEnabled(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3604,7 +3717,8 @@ isFocused(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3634,7 +3748,8 @@ isSelected(): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.type('button'));
@@ -3664,7 +3779,8 @@ inputText(text: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let text = await driver.findComponent(BY.text('hello world'));
@@ -3696,7 +3812,8 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let scrollBar = await driver.findComponent(BY.type('Scroll'));
@@ -3729,7 +3846,8 @@ static create(): UiDriver
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
 }
@@ -3753,7 +3871,8 @@ UiDriver对象在给定的时间内延时。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.delayMs(1000);
@@ -3784,7 +3903,8 @@ findComponent(by: By): Promise\<UiComponent>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let button = await driver.findComponent(BY.text('next page'));
@@ -3815,7 +3935,8 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     let buttonList = await driver.findComponents(BY.text('next page'));
@@ -3838,9 +3959,19 @@ assertComponentExist(by: By): Promise\<void>
 | ------ | ------------------- | ---- | -------------------- |
 | by     | [By](#bydeprecated) | 是   | 目标控件的属性要求。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.                         |
+
 **示例：**
 
-```js
+```ts
+import { UiDriver, BY } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.assertComponentExist(BY.text('next page'));
@@ -3859,7 +3990,8 @@ UiDriver对象进行点击BACK键的操作。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.pressBack();
@@ -3884,7 +4016,8 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.triggerKey(123);
@@ -3911,7 +4044,8 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.click(100,100);
@@ -3937,7 +4071,8 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.doubleClick(100,100);
@@ -3963,7 +4098,8 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.longClick(100,100);
@@ -3991,7 +4127,8 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.swipe(100,100,200,200);
@@ -4022,7 +4159,8 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 **示例：**
 
-```js
+```ts
+import { UiDriver } from '@ohos.UiTest';
 async function demo() {
     let driver = UiDriver.create();
     await driver.screenCap('/data/storage/el2/base/cache/1.png');

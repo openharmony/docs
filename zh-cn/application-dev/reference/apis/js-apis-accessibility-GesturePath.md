@@ -44,5 +44,7 @@ constructor(durationTime: number);
 **示例：**
 
 ```ts
+import GesturePath from '@ohos.accessibility.GesturePath';
+
 let gesturePath = new GesturePath.GesturePath(20);
 ```

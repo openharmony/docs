@@ -16,6 +16,8 @@ stateStyles is an attribute method that sets the style based on the internal sta
 
 - disabled
 
+- selected<sup>10+</sup>
+
 
 ## Application Scenarios
 

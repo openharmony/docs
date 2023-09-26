@@ -270,7 +270,7 @@ TabContent() {
 
 ## Switching to a Specified Tab
 
-Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user touches a tab, the application displays the corresponding tab page.
+Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
 
 
   **Figure 10** Switching to a specified tab in a custom navigation bar 
@@ -283,7 +283,17 @@ To switch to a specified tab page, use **TabsController**, which is the controll
 
 
 ```ts
-private tabsController : TabsController = new TabsController()
+class Tmp{
+  currentIndex:number = 0;
+  tabsController : TabsController = new TabsController()
+  foo(val:number){
+    this.currentIndex = val;
+  }
+  tabfoo(){
+    this.tabsController.changeIndex(this.currentIndex);
+  }
+}
+private tabsController : object = new TabsController()
 @State currentIndex:number = 0;
 
 @Builder TabBuilder(title: string, targetIndex: number) {
@@ -293,8 +303,9 @@ private tabsController : TabsController = new TabsController()
   }
   ...
   .onClick(() => {
-    this.currentIndex = targetIndex;
-    this.tabsController.changeIndex(this.currentIndex);
+    let Cur:Tmp = new Tmp()
+    Cur.foo(targetIndex)
+    Cur.tabfoo()
   })
 }
 ```
@@ -342,6 +353,12 @@ To manually switch between the tabs, use the **onChange** API provided by the **
 
 
 ```ts
+class Tmp{
+  currentIndex:number = 0;
+  foo(val:number){
+    this.currentIndex = val;
+  }
+}
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
@@ -359,8 +376,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
     ...
   }
   .tabBar (this.TabBuilder ('Me', 3))
-}.onChange((index) => {
-  this.currentIndex = index
+}.onChange((index:number) => {
+  let Cur:Tmp = new Tmp()
+  Cur.foo(index)
 })
 ```
 

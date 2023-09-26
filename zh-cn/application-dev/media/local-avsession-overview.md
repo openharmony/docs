@@ -38,8 +38,9 @@ import AVSessionManager from '@ohos.multimedia.avsession';
  
 ```ts
 // 创建session
-async createSession() {
-  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(this.context, 'SESSION_NAME', 'audio');
+let context: Context = this.context;
+async function createSession() {
+  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
@@ -48,9 +49,9 @@ async createSession() {
 
 ```ts
 // 创建controller
-async createController() {
+async function createController() {
   // 获取到所有存活session的描述符列表
-  let descriptorsArray: Array<Readonly<AVSessionManager.AVSessionDescriptor>> = await AVSessionManager.getAllSessionDescriptors();
+  let descriptorsArray: Array<AVSessionManager.AVSessionDescriptor> = await AVSessionManager.getAllSessionDescriptors();
   if (descriptorsArray.length > 0) {
     // 为了演示，我们简单取第一个描述符的sessionId用来创建对应的controller
     let sessionId: string = descriptorsArray[0].sessionId;

@@ -8,13 +8,13 @@
 
 ## 导入模块
 
-```js
+```ts
 import fileShare from '@ohos.fileshare';
 ```
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, callback: AsyncCallback&lt;void&gt;): void
 
 对公共目录文件URI进行授权操作，使用callback异步回调。  
 
@@ -30,7 +30,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number, callback: Asyn
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| mode   | number | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | wantConstant.Flags | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
  | callback | AsyncCallback&lt;void&gt;  | 是    | 异步授权之后的回调                             |
 
 **错误码：**
@@ -46,28 +46,29 @@ grantUriPermission(uri: string, bundleName: string, mode: number, callback: Asyn
 
 **示例：**
 
-  ```js
-import wantConstant from '@ohos.app.ability.wantConstant';
-
-
-let uri = 'file://media/image/8';
-let bundleName = 'com.demo.test';
-try {
-    fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
-        if (err) {
-            console.error("grantUriPermission failed with error: " + err);
-            return;
-        }
-        console.info("grantUriPermission success!");
+  ```ts
+  import wantConstant from '@ohos.app.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
+  let uri: string = 'file://media/image/8';
+  let bundleName: string = 'com.demo.test';
+  try {
+    fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
+      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err: BusinessError) => {
+      if (err) {
+        console.error("grantUriPermission failed with error: " + JSON.stringify(err));
+        return;
+      }
+      console.info("grantUriPermission success!");
     });
-} catch (error) {
-    console.error("grantUriPermission failed with error:" + error);
-}
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("grantUriPermission failed with error:" + JSON.stringify(error));
+  }
   ```
 
 ## fileShare.grantUriPermission
 
-grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;void&gt;
+grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): Promise&lt;void&gt;
 
 将公共目录文件URI进行授权操作，使用Promise异步回调。  
 
@@ -83,7 +84,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;vo
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| mode   | number | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | wantConstant.Flags | 是   | 授权的权限，参考[wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags)<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
 
 **返回值：**
 
@@ -104,19 +105,20 @@ grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;vo
 
 **示例：**
 
-  ```js
-import wantConstant from '@ohos.app.ability.wantConstant';
-
-let uri = 'file://media/image/8';
-let bundleName = 'com.demo.test';
-try {
+  ```ts
+  import wantConstant from '@ohos.app.ability.wantConstant';
+  import { BusinessError } from '@ohos.base';
+  let uri: string = 'file://media/image/8';
+  let bundleName: string = 'com.demo.test';
+  try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
-      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION).then(function () {
-        console.info("grantUriPermission success!");
-    }).catch(function (error) {
-        console.error("grantUriPermission failed with error:" + error);
+      wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION).then(() => {
+      console.info("grantUriPermission success!");
+    }).catch((error: BusinessError) => {
+      console.error("grantUriPermission failed with error:" + JSON.stringify(error));
     });
-} catch (error) {
-    console.error("grantUriPermission failed with error:" + error);
-}
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("grantUriPermission failed with error:" + JSON.stringify(error));
+  }
   ```

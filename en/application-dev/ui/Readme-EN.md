@@ -6,48 +6,62 @@
   - Layout Development
     - [Layout Overview](arkts-layout-development-overview.md)
     - Building a Layout
-      - [Linear Layout](arkts-layout-development-linear.md)
-      - [Stack Layout](arkts-layout-development-stack-layout.md)
-      - [Flex Layout](arkts-layout-development-flex-layout.md)
-      - [Relative Layout](arkts-layout-development-relative-layout.md)
-      - [Responsive Grid Layout](arkts-layout-development-grid-layout.md)
-      - [Media Query](arkts-layout-development-media-query.md)
-      - [Creating a List](arkts-layout-development-create-list.md)
-      - [Creating a Grid](arkts-layout-development-create-grid.md)
-      - [Creating a Swiper](arkts-layout-development-create-looping.md)
+      - [Linear Layout (Row/Column)](arkts-layout-development-linear.md)
+      - [Stack Layout (Stack)](arkts-layout-development-stack-layout.md)
+      - [Flex Layout (Flex)](arkts-layout-development-flex-layout.md)
+      - [Relative Layout (RelativeContainer)](arkts-layout-development-relative-layout.md)
+      - [Responsive Grid Layout (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
+      - [Media Query (mediaquery)](arkts-layout-development-media-query.md)
+      - [Creating a List (List)](arkts-layout-development-create-list.md)
+      - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
+      - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
     - [Improving Layout Performance](arkts-layout-development-performance-boost.md)
   - Adding a Component
     - Adding a Common Component
       - [Button](arkts-common-components-button.md)
-      - [Radio Button](arkts-common-components-radio-button.md)
+      - [Radio Button (Radio)](arkts-common-components-radio-button.md)
       - [Toggle](arkts-common-components-switch.md)
-      - [Progress Indicator](arkts-common-components-progress-indicator.md)
-      - [Text Display](arkts-common-components-text-display.md)
-      - [Text Input](arkts-common-components-text-input.md)
-      - [Custom Dialog Box](arkts-common-components-custom-dialog.md)
-      - [Video Playback](arkts-common-components-video-player.md)
+      - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
+      - [Text Display (Text/Span)](arkts-common-components-text-display.md)
+      - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
+      - [Video Playback (Video](arkts-common-components-video-player.md)
       - [XComponent](arkts-common-components-xcomponent.md)
-    - Adding a Bubble and Menu
-      - [Bubble](arkts-popup-and-menu-components-popup.md)
+    - Adding a Popup and Menu
+      - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
   - Setting Page Routing and Component Navigation
-    - [Page Routing](arkts-routing.md)
+    - [Page Routing (router)](arkts-routing.md)
     - Component Navigation
       - [Navigation](arkts-navigation-navigation.md)
       - [Tabs](arkts-navigation-tabs.md)
   - Using Graphics
-    - [Displaying Images](arkts-graphics-display.md)
-    - [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)
-    - [Drawing Custom Graphics on the Canvas](arkts-drawing-customization-on-canvas.md)
+    - [Displaying Images (Image)](arkts-graphics-display.md)
+    - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
+    - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
   - Using Animation
-    - [Animation Overview](arkts-animation-overview.md)
-    - Animation Within a Page
-      - [Layout Update Animation](arkts-layout-update-animation.md)
-      - [Transition Animation Within a Component](arkts-transition-animation-within-component.md)
-      - [Spring Curve Animation](arkts-spring-animation.md)
-    - Animation Between Pages
-      - [Zoom Animation](arkts-zoom-animation.md)
-      - [Page Transition Animation](arkts-page-transition-animation.md)
+    - [Animation Overview](arkts-animation.md)
+    - Attribute Animation
+      - [Attribute Animation Overview](arkts-attribute-animation-overview.md)
+      - [Attribute Animation APIs](arkts-attribute-animation-apis.md)
+      - [Custom Attribute Animation](arkts-custom-attribute-animation.md)
+    - Transition Animation
+      - [Transition Animation Overview](arkts-transition-overview.md)
+      - [Enter/Exit Transition](arkts-enter-exit-transition.md)
+      - [Navigation Transition](arkts-navigation-transition.md)
+      - [Modal Transition](arkts-modal-transition.md)
+      - [Shared Element Transition](arkts-shared-element-transition.md)
+      - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
+    - [Component Animation](arkts-component-animation.md)
+    - Animation Curve
+      - [Animation Curve Overview](arkts-curve-overview.md)
+      - [Traditional Curve](arkts-traditional-curve.md)
+      - [Spring Curve](arkts-spring-curve.md)
+    - [Animation Smoothing](arkts-animation-smoothing.md)
+    - Animation Effects
+      - [Blur Effect](arkts-blur-effect.md)
+      - [Shadow Effect](arkts-shadow-effect.md)
+      - [Color Effect](arkts-color-effect.md)
   - Using Interaction Events
     - [Interaction Event Overview](arkts-event-overview.md)
     - Universal Events

@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import screenshot from '@ohos.screenshot';
 ```
 
@@ -25,8 +25,8 @@ import screenshot from '@ohos.screenshot';
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
 | imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
-| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。     |
-| displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号。 |
+| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
+| displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 
 
 ## Rect
@@ -37,10 +37,10 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界，单位为像素。 |
-| top    | number | 是   | 表示截取图像区域的上边界，单位为像素。 |
-| width  | number | 是   | 表示截取图像区域的宽度，单位为像素。 |
-| height | number | 是   | 表示截取图像区域的高度，单位为像素。 |
+| left   | number | 是   | 表示截取图像区域的左边界，单位为像素，该参数应为整数。 |
+| top    | number | 是   | 表示截取图像区域的上边界，单位为像素，该参数应为整数。 |
+| width  | number | 是   | 表示截取图像区域的宽度，单位为像素，该参数应为整数。 |
+| height | number | 是   | 表示截取图像区域的高度，单位为像素，该参数应为整数。 |
 
 
 ## Size
@@ -51,8 +51,8 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度，单位为像素。 |
-| height | number | 是   | 表示截取图像的高度，单位为像素。 |
+| width  | number | 是   | 表示截取图像的宽度，单位为像素，该参数应为整数。 |
+| height | number | 是   | 表示截取图像的高度，单位为像素，该参数应为整数。 |
 
 ## screenshot.save
 
@@ -73,32 +73,34 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 **示例：**
 
-  ```js
-  let screenshotOptions = {
-    "screenRect": {
-        "left": 200,
-        "top": 100,
-        "width": 200,
-        "height": 200},
-    "imageSize": {
-        "width": 300,
-        "height": 300},
-    "rotation": 0,
-    "displayId": 0
-  };
-  try {
-    screenshot.save(screenshotOptions, (err, pixelMap) => {
-      if (err) {
-          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // PixelMap使用完后及时释放内存
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenshotOptions: screenshot.ScreenshotOptions = {
+  "screenRect": {
+    "left": 200,
+    "top": 100,
+    "width": 200,
+    "height": 200 },
+  "imageSize": {
+    "width": 300,
+    "height": 300 },
+  "rotation": 0,
+  "displayId": 0
+};
+try {
+  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap) => {
+    if (err) {
+      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```
 
 ## screenshot.save
 
@@ -118,20 +120,22 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-  ```js
-  try {
-    screenshot.save((err, pixelMap) => {
-      if (err) {
-          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // PixelMap使用完后及时释放内存
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  screenshot.save((err: BusinessError, pixelMap) => {
+    if (err) {
+      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```
 
 ## screenshot.save
 
@@ -157,28 +161,30 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-  ```js
-  let screenshotOptions = {
-  	"screenRect": {
-  		"left": 200,
-  		"top": 100,
-  		"width": 200,
-  		"height": 200},
-  	"imageSize": {
-  		"width": 300,
-  		"height": 300},
-  	"rotation": 0,
-  	"displayId": 0
-  };
-  try {
-    let promise = screenshot.save(screenshotOptions);
-    promise.then((pixelMap) => {
-        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-        pixelMap.release(); // PixelMap使用完后及时释放内存
-    }).catch((err) => {
-        console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenshotOptions: screenshot.ScreenshotOptions = {
+  "screenRect": {
+    "left": 200,
+    "top": 100,
+    "width": 200,
+    "height": 200 },
+  "imageSize": {
+    "width": 300,
+    "height": 300 },
+  "rotation": 0,
+  "displayId": 0
+};
+try {
+  let promise = screenshot.save(screenshotOptions);
+  promise.then((pixelMap) => {
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+  }).catch((err: BusinessError) => {
+    console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```

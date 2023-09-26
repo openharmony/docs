@@ -3,95 +3,96 @@
 
 > **NOTE**
 >
-> *1. This template provides the recommended development guide document framework and writing instructions for typical knowledge points. In your writing, complete the development task scenario analysis and development guide outline design based on the specific **solution/feature/function/module**, and then write the content based on this template.*
+> _1. This template provides the recommended development guide document framework and writing instructions for typical knowledge points. In your writing, complete the development task scenario analysis and development guide outline design based on the specific **solution/feature/function/module**, and then write the content based on this template._
 >
-> *2. Do not add any content between level-1 title (marked with #) and level-2 title (marked with ##).*
+> _2. Do not add any content between level-1 title (marked with #) and level-2 title (marked with ##)._
 >
-> *3. Delete all the writing instructions in italics from your formal documents.*
+> _3. Delete all the writing instructions in italics from your formal documents._
+
+
+**_[General Instructions for Writing the Development Guide]_**
+
+_**1. Target audience**: internal and external developers (including product managers). Guidelines for UX designers are usually carried by UX design specifications and are not covered in the development guide. If UX design specifications need to be mentioned in the development guide, use hyperlinks._
+
+_**2. Content positioning**: Introduce what the solution/feature/function/module is, why it is required, and how to design, develop, and release related applications/devices. The development guide aims to help developers learn necessary knowledge and achieve specified task objectives in actual development activities._
+
+_**3. User-oriented**: Always provide developer-concerned, perceptible, and useful content from the perspective of developers._
+
+_**4. Task-oriented**: Focus on actual tasks of developers, and provide complete, correct guidance that is easy to follow._
+
+_**5. Reference purposes**: This template only provides the basic document framework. You can adjust the content based on the actual requirements._
 
 
 ## *Example* Overview
 
-*Mandatory. Based on the scenario division of the solution/feature/function/module, you need to provide either "Example Overview" or "Example Task Scenario Overview", or both of them.*
+_Mandatory. Based on the scenario division of the solution/feature/function/module, you need to provide either "Example Overview" or "Example Task Scenario Overview", or both of them._
 
-*1. "Example Overview" provides an overview that is common to all task scenarios of this solution/feature/function/module and that developers need to understand. If there is nothing in common, delete it.*
+_1. "Example Overview" provides an overview that is common to all task scenarios of this solution/feature/function/module and that developers need to understand. If there is nothing in common, delete it._
 
-*2. "Example Task Scenario Overview" describes the contents directly related to a task scenario. The knowledge points and key writing points are the same as those in "Example Overview". In this section, you need to introduce this specific task scenario and describe basic concepts, working principles, constraints, and samples that are directly related to the task scenario. If there is no specific task scenario, delete it.*
-
-***[General Instructions for Writing the Development Guide]***
-
-***1. Target audience**: internal and external developers (including product managers). Guidelines for UX designers are usually carried by UX design specifications and are not covered in the development guide. If UX design specifications need to be mentioned in the development guide, use hyperlinks.*
-
-***2. Content positioning**: Introduce what the solution/feature/function/module is, why it is required, and how to design, develop, and release related applications/devices. The development guide aims to help developers learn necessary knowledge and achieve specified task objectives in actual development activities.*
-
-***3. User-oriented****: Always provide developer-concerned, perceptible, and useful content from the perspective of developers.*
-
-***4. Task-oriented****: Focus on actual tasks of developers, and provide complete, correct guidance that is easy to follow.*
-
-*5. This template only provides the basic document framework. You can adjust the content based on the actual requirements.*
+_2. "Example Task Scenario Overview" describes the contents directly related to a task scenario. The knowledge points and key writing points are the same as those in "Example Overview". In this section, you need to introduce this specific task scenario and describe basic concepts, working principles, constraints, and samples that are directly related to the task scenario. If there is no specific task scenario, delete it._
 
 
 ### Introduction
 
-*Mandatory.*
+_Mandatory._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*What is the solution/feature/function/module (definition)? What problems can it solve or what benefits can it bring (purpose/customer benefits - why)? *
+_What is the solution/feature/function/module (definition)?  What problems can it solve or what benefits can it bring (purpose/customer benefits - why)?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-- *Provide easy-to-understand and scenario-specific descriptions. Refer to the SCQA method below to introduce the scenarios and characteristics of the solution/feature/function/module.*
-  - *S: situation. Introduce a familiar scenario.*
-  - *C: complication. Describe the conflict between the situation and requirement.*
-  - *Q: question. Ask a question. What can I do in such a case?*
-  - *A: answer. Describe the solution.*
+- _Provide easy-to-understand and scenario-specific descriptions. Refer to the SCQA method below to introduce the scenarios and characteristics of the solution/feature/function/module._
+  - _S: situation. Introduce a familiar scenario._
+  - _C: complication. Describe the conflict between the situation and requirement._
+  - _Q: question. Ask a question. What can I do in such a case?_
+  - _A: answer. Describe the solution.
 
-- *Visualize abstract concepts. You can provide content from the perspective of consumers for better understanding, for example, scenario effect in UX.*
+- _Visualize abstract concepts. You can provide content from the perspective of consumers for better understanding, for example, scenario effect in UX._
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-- *Provide clear content. Avoid vague, obscure, and ambiguous expressions.*
+- _Provide clear content. Avoid vague, obscure, and ambiguous expressions._
 
-- *Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary.*
+- _Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary._
 
-- *Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document.*
+- _Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document._
 
 
 ### Basic Concepts
 
-*Optional. Describe the basic concepts that are common to all task scenarios.*
+_Optional. Describe the basic concepts that are common to all task scenarios._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*What are the unique concepts that I need to know when using the solution/feature/function/module?*
+_What are the unique concepts that I need to know when using the solution/feature/function/module?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-- *Provide only the concepts that are mandatory in development tasks.*
+- _Provide only the concepts that are mandatory in development tasks._
 
-- *Describe here concepts used in multiple chapters such as the operation mechanism, restrictions, and development process. If a concept is used only in a chapter, describe the concept in that chapter only.*
+- _Describe here concepts used in multiple chapters such as the operation mechanism, restrictions, and development process. If a concept is used only in a chapter, describe the concept in that chapter only._
 
-- *Do not describe common concepts in the industry. Use common terms in the industry instead of jargon.*
+- _Do not describe common concepts in the industry. Use common terms in the industry instead of jargon._
 
-- *If there are logical relationships between concepts, you are advised to use figures to describe the relationships.*
+- _If there are logical relationships between concepts, you are advised to use figures to describe the relationships._
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-- *Provide clear content. Avoid vague, obscure, and ambiguous expressions.*
+- _Provide clear content. Avoid vague, obscure, and ambiguous expressions._
 
-- *Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary.*
+- _Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary._
 
-- *Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document.*
+- _Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document._
 
 ***[Example]***
 
 Before developing relational databases, you must understand the following basic concepts:
 
 - **RDB**
-  
-A type of database based on the relational model of data. The RDB stores data in rows and columns. An RDB is also called RDB store.
-  
+
+  A type of database based on the relational model of data. The RDB stores data in rows and columns. An RDB is also called RDB store.
+
 - **Predicate**
 
   Property or feature of a data entity, or the relationship between data entities. It is mainly used to define operation conditions.
@@ -103,29 +104,29 @@ A type of database based on the relational model of data. The RDB stores data in
 
 ### Working Principles
 
-*Optional. Describe the working principles that are common to all task scenarios.*
+_Optional. Describe the working principles that are common to all task scenarios._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*How does the solution/feature/function/module work? What are the API calling and triggering time of key steps? I want to understand its principles for better use and debugging.*
+_How does the solution/feature/function/module work? What are the API calling and triggering time of key steps? I want to understand its principles for better use and debugging._
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-- *If the principle is simple and can be understood from the content under "Basic Concepts", do not provide this section.*
+- _If the principle is simple and can be understood from the content under "Basic Concepts", do not provide this section._
 
-- *Describe only the mechanisms and principles that are visible in the development tasks (use or access). Do not provide internal implementation that is invisible to developers.*
+- _Describe only the mechanisms and principles that are visible in the development tasks (use or access). Do not provide internal implementation that is invisible to developers._
 
-- *If necessary, use sequence diagrams and flowcharts. Ensure that the text description matches the figure description.*
+- _If necessary, use sequence diagrams and flowcharts. Ensure that the text description matches the figure description._
 
-- *Be careful not to disclose internal information.*
+- _Be careful not to disclose internal information._
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-- *Provide clear content. Avoid vague, obscure, and ambiguous expressions.*
+- _Provide clear content. Avoid vague, obscure, and ambiguous expressions._
 
-- *Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary.*
+- _Use only necessary terms, acronyms, abbreviations, and proper nouns, and provide explanations or links to the glossary._
 
-- *Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document.*
+- _Use consistent terms, acronyms, abbreviations, and proper nouns throughout the document._
 
 ***[Example]***
 
@@ -138,23 +139,23 @@ The distributed data objects are encapsulated into JS objects in distributed in-
 
 ### Constraints
 
-*Optional. Describe constraints that are common to all task scenarios.*
+_Optional. Describe constraints that are common to all task scenarios._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*What are the constraints for using the solution/feature/function/module? How well is the solution/feature/function/module implemented? Can it meet my requirements?*
+_What are the constraints for using the solution/feature/function/module? How well is the solution/feature/function/module implemented? Can it meet my requirements?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-- *Describe perceptible constraints that affect development activities, including but not limited to the following:*
-  - ***Function constraints***
-     - *Application scope of the solution/feature/function/module (Specify scenarios that are not supported.)*
-     - *Specification constraints*
-  - ***Operation constraints***
-     - *Operations on known issues*
-     - *Potentially risky operations (such as performance deterioration)*
+- _Describe perceptible constraints that affect development activities, including but not limited to the following:_
+  - _Function constraints_
+     - _Application scope of the solution/feature/function/module (Specify scenarios that are not supported.)_
+     - _Specification constraints_
+  - _**Operation constraints**_
+     - _Operations on known issues_
+     - _Potentially risky operations (such as performance deterioration)_
 
-- *Describe operations that are prone to errors in the procedure, but not in this section.*
+- _Describe operations that are prone to errors in the procedure, but not in this section._
 
 ***[Example]***
 
@@ -167,45 +168,45 @@ The distributed data objects are encapsulated into JS objects in distributed in-
 
 ### Samples
 
-*Optional. Provide samples that are common to all task scenarios.*
+_Optional. Provide samples that are common to all task scenarios._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*What sample code, codelabs, and demo projects are available?*
+_What sample code, codelabs, and demo projects are available?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-*Provide links (generally Gitee links) to the released sample code, codelabs, and demo projects. Do not include project packages into the document as an attachment.*
+_Provide links (generally Gitee links) to the released sample code, codelabs, and demo projects. Do not include project packages into the document as an attachment._
 
 ***[Example]***
 
 The following sample is provided to help you better understand how to develop abilities:
 
-- [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
+- [Intra-UIAbility and Inter-UIAbility Page Redirection (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
 
 
 ## Setting Up the Environment
 
-*Optional.*
+_Optional._
 
-*Based on the analysis and breakdown of a specific task scenario, you can place the environment setup content under "Prerequisites" or "Preparations" and close to the "How to Develop" of the specific scenario.*
+_Based on the analysis and breakdown of a specific task scenario, you can place the environment setup content under "Prerequisites" or "Preparations" and close to the "How to Develop" of the specific scenario._
 
-*Specify how to prepare the development environment, including software and hardware configuration requirements, tool requirements, and device requirements.*
+_Specify how to prepare the development environment, including software and hardware configuration requirements, tool requirements, and device requirements._
 
-*Delete this section if no special requirements are involved.*
+_Delete this section if no special requirements are involved._
 
 
 ### Environment Requirements
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-*Describe the software and hardware configurations required by the development environment so that developers can prepare the environment in advance. You can use subtitles if there is a large amount of content.*
+_Describe the software and hardware configurations required by the development environment so that developers can prepare the environment in advance. You can use subtitles if there is a large amount of content._
 
 ***[Example]***
 
 The following table describes the environment configuration requirements specific to the Hi3861 development board.
 
-  **Table 1** Hi3861 development environment-specific requirements
+**Table 1** Hi3861 development environment-specific requirements
 
 | Platform Type| Development Tool| Function| How to Obtain|
 | -------- | -------- | -------- | -------- |
@@ -215,9 +216,9 @@ The following table describes the environment configuration requirements specifi
 
 ### Setting Up the Environment
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-*Describe the procedure for setting up the development environment. If there is a large amount of content, use subtitles, for example, "Setting Up the Basic Build Environment" and "Setting Up the Compilation Tool Environment".*
+_Describe the procedure for setting up the development environment. If there is a large amount of content, use subtitles, for example, "Setting Up the Basic Build Environment" and "Setting Up the Compilation Tool Environment"._
 
 ***[Example]***
 
@@ -238,53 +239,53 @@ The following table describes the environment configuration requirements specifi
 
 ### Verifying the Environment
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-*Optional. Provide the criteria for checking whether the environment is set up successfully. You can also provide the criteria along with the environment setup procedure, as provided in the preceding example.*
+_Optional. Provide the criteria for checking whether the environment is set up successfully. You can also provide the criteria along with the environment setup procedure, as provided in the preceding example._
 
 
 ## *Example Task Scenario* Development (Use a specific scenario name. If there is only one scenario, use the solution/feature/function/module name.)
 
-*Mandatory.*
+_Mandatory._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*How do I use or access the solution/feature/function/module?*
+_How do I use or access the solution/feature/function/module?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-*Provide scenarios that are close to actual development scenarios.*
+_Provide scenarios that are close to actual development scenarios._
 
-- *Task scenarios are what developers need to use to achieve development objectives.*
+- _Task scenarios are what developers need to use to achieve development objectives._
 
-- *There can be one or more task scenarios. You can use multiple "Development Guidelines" sections. Follow the hierarchical logic when writing the guidelines, that is, a task scenario -> a subtask scenario -> task logic ("Development Process") -> operation procedure ("How to Develop").*
+- _There can be one or more task scenarios. You can use multiple "Development Guidelines" sections. Follow the hierarchical logic when writing the guidelines, that is, a task scenario -> a subtask scenario -> task logic ("Development Process") -> operation procedure ("How to Develop")._
 
 ### *Example Task Scenario* Overview
 
-*Based on the scenario division of the solution/feature/function/module, you can provide either "Example Task Scenario Overview" or "Example Overview", or both of them.*
+_Based on the scenario division of the solution/feature/function/module, you can provide either "Example Task Scenario Overview" or "Example Overview", or both of them._
 
-*1. "Example Overview" provides an overview that is common to all task scenarios of this solution/feature/function/module and that developers need to understand. If there is nothing in common, delete it.*
+_1. "Example Overview" provides an overview that is common to all task scenarios of this solution/feature/function/module and that developers need to understand. If there is nothing in common, delete it._
 
-*2. "Example Task Scenario Overview" describes the contents directly related to a task scenario. The knowledge points and key writing points are the same as those in "Example Overview". In this section, you need to introduce this specific task scenario and describe basic concepts, working principles, constraints, and samples that are directly related to the task scenario. If there is no specific task scenario, delete it.*
+_2. "Example Task Scenario Overview" describes the contents directly related to a task scenario. The knowledge points and key writing points are the same as those in "Example Overview". In this section, you need to introduce this specific task scenario and describe basic concepts, working principles, constraints, and samples that are directly related to the task scenario. If there is no specific task scenario, delete it._
 
 ### Development Process
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-- *Optional. If there are many development steps (five or more core operations) or complex logical relationships between steps, provide the development process so that developers can have a panoramic view of the operations to be performed.*
+- _Optional. If there are many development steps (five or more core operations) or complex logical relationships between steps, provide the development process so that developers can have a panoramic view of the operations to be performed._
 
-- *Provide flowcharts and tables if necessary.*
+- _Provide flowcharts and tables if necessary._
 
 
 ### Available APIs
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-- *Optional. Describe the key APIs in the development steps and provide the API introduction, so that developers can have a general understanding of development.*
+- _Optional. Describe the key APIs in the development steps and provide the API introduction, so that developers can have a general understanding of development._
 
-- *If there are more than 10 APIs, provide the main APIs only.*
+- _If there are more than 10 APIs, provide the main APIs only._
 
-- *Ensure that the APIs and their functions of the corresponding version are supported when the document is released.*
+- _Ensure that the APIs and their functions of the corresponding version are supported when the document is released._
 
 ***[Example]***
 
@@ -300,19 +301,19 @@ Certain APIs can be called only by system applications that have been granted th
 
 ### How to Develop
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-*Mandatory.*
+_Mandatory._
 
-- *Completeness and Correctness*
-  - *Describe the complete development process (for example, steps related to the code, resources, third-party libraries, and application configuration files in the HAP) so that developers can correctly complete the development. Do not omit key configuration operations.*
-  - *Ensure that the code snippet provided in the document can be built with the context in DevEco Studio.*
-  - *Ensure that the complete sample code provided in the document can be run in DevEco Studio, and the execution result is the same as that described in the document.*
+- _Completeness and Correctness_
+  - _Describe the complete development process (for example, steps related to the code, resources, third-party libraries, and application configuration files in the HAP) so that developers can correctly complete the development. Do not omit key configuration operations._
+  - _Ensure that the code snippet provided in the document can be built with the context in DevEco Studio._
+  - _Ensure that the complete sample code provided in the document can be run in DevEco Studio, and the execution result is the same as that described in the document._
 
-- *Clarity*
-  - *Provide a clear execution owner (who), operation purpose (why), operation content (what/how), and scenario (when/where) for each step. Use imperative sentence to describe steps.*
-  - *Clearly provide the APIs (if involved) in steps, as well as their usage description and sample code.*
-  - *Provide development suggestions or precautions for key steps and sample code (comments for sample code).*
+- _Clarity_
+  - _Provide a clear execution owner (who), operation purpose (why), operation content (what/how), and scenario (when/where) for each step. Use imperative sentence to describe steps._
+  - _Clearly provide the APIs (if involved) in steps, as well as their usage description and sample code._
+  - _Provide development suggestions or precautions for key steps and sample code (comments for sample code)._
        *Think about what questions may be raised when developers are performing the operations.* *These problems are obstacles to developers.* *Provide support information in the document to help them handle these obstacles.* *Examples of support information:*
      - *Branch selection principle. Provide principles or suggestions for selecting branches and parameters.*
      
@@ -322,9 +323,9 @@ Certain APIs can be called only by system applications that have been granted th
      
      - *Error prevention/correction information. Provide guidance for preventing, locating, or rectifying typical problems that may occur in the development process.* *This type of information can be provided in "How to Develop" or "FAQs", depending on the content amount.*
 
-- *Standardization*
-  - *Provide both logically and syntactically correct sample code and write it in a standard manner. Anonymize sensitive information, such as mobile numbers, ID cards, and account names, for example, 186\*\*\*\*\*\*\*\*. Use private IP addresses or a corresponding format, for example, xx.xx.xx.xx and www.example.com, rather than real IP addresses and domain names.*
-  - *Provide code that complies with the code indentation requirements. Do not use the **Tab** key to indent code. Instead, use four spaces, to avoid incorrect display.*
+- _Standardization_
+  - _Provide both logically and syntactically correct sample code and write it in a standard manner. Anonymize sensitive information, such as mobile numbers, ID cards, and account names, for example, 186\*\*\*\*\*\*\*\*. Use private IP addresses or a corresponding format, for example, xx.xx.xx.xx and www.example.com, rather than real IP addresses and domain names._
+  - _Provide code that complies with the code indentation requirements. Do not use the Tab key to indent code. Instead, use four spaces, to avoid incorrect display._
 
 **[Example (Excerpt)]**
 
@@ -360,28 +361,28 @@ Certain APIs can be called only by system applications that have been granted th
 
 ### Verification
 
-***[Writing Requirements]***
+_**[Writing Requirements]**_
 
-- *Optional. After the development is complete, provide a guide to check whether the operation is successful if there is an independent commissioning and verification operation. The operation procedure is the same as that described in "How to Develop."*
+- _Optional. After the development is complete, provide a guide to check whether the operation is successful if there is an independent commissioning and verification operation. The operation procedure is the same as that described in "How to Develop."_
 
-- *Provide only the final service commissioning. You are advised to verify the operation result of each subtask after the development is complete.*
+- _Provide only the final service commissioning. You are advised to verify the operation result of each subtask after the development is complete._
 
 
 ## FAQs
 
-*Optional.*
+_Optional._
 
-***[Developers' Concerns]***
+_**[Developers' Concerns]**_
 
-*What are the typical problems that may occur in the development process of the solution/feature/function/module? How do I locate and solve these problems?*
+_What are the typical problems that may occur in the development process of the solution/feature/function/module? How do I locate and solve these problems?_
 
-***[Key Writing Points]***
+_**[Key Writing Points]**_
 
-*Describe the problems that may occur during the development and the solutions to them.*
+_Describe the problems that may occur during the development and the solutions to them._
 
-- *Delete this section if there are no common problems.*
+- _Delete this section if there are no common problems._
 
-- *It is recommended that common problems in each task scenario be described in a separate chapter. Common problems related to a single task scenario be described in the corresponding chapter.*
+- _It is recommended that common problems in each task scenario be described in a separate chapter. Common problems related to a single task scenario be described in the corresponding chapter._
 
 
 

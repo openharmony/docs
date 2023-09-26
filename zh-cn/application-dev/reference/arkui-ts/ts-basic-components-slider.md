@@ -43,14 +43,14 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockColor`可设置默认圆形滑块颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无填充，设置`blockColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockColor`可设置自定义形状的填充颜色。 |
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
-| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。 |
-| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。 |
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，按默认值显示。 |
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
+| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderWidth`可设置默认圆形滑块描边粗细；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderWidth`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderWidth`可设置自定义形状中线的粗细。 |
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。 |
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。 |
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 |
@@ -69,7 +69,7 @@ Slider组件滑块形状参数。
 
 ## SliderBlockType<sup>10+</sup>枚举说明
 
-Slier组件滑块形状枚举。
+Slider组件滑块形状枚举。
 
 | 名称    | 描述                   |
 | ------- | ---------------------- |
@@ -79,7 +79,7 @@ Slier组件滑块形状枚举。
 
 ## 事件
 
-通用事件仅支持挂载卸载事件：OnAppear，OnDisAppear。
+支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |
@@ -96,8 +96,9 @@ Slier组件滑块形状枚举。
 | End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -253,3 +254,52 @@ struct SliderExample {
 ```
 
 ![zh-cn_image_0000001179613854](figures/zh-cn_image_0000001179613854.gif)
+
+### 示例2
+
+```ts
+@Entry
+@Component
+struct SliderExample {
+  @State tipsValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Text('block').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: 40, height: 40 })
+        .blockBorderColor(Color.Red)
+        .blockBorderWidth(5)
+      Divider()
+      Text('step').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40, step: 10 })
+        .showSteps(true)
+        .stepSize(8)
+        .stepColor(Color.Yellow)
+      Divider()
+      Text('track').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .trackBorderRadius(2)
+      Divider()
+      Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.DEFAULT })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: '60px', height: '60px' })
+        .blockColor(Color.Red)
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+      Divider()
+      Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: this.tipsValue })
+        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .onChange(value => {
+          this.tipsValue = value
+        })
+    }
+  }
+}
+```
+
+![](figures/slider_2.png)

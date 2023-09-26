@@ -18,7 +18,7 @@
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| src | string | - | 否 | 图片的路径。<br/>-&nbsp;支持本地路径，图片格式包括png,&nbsp;jpg,&nbsp;bmp,&nbsp;svg和gif。<br/>-&nbsp;支持内存图片读取，scheme格式为memory://。 |
+| src | string | - | 否 | 图片的路径。<br/>-&nbsp;支持本地路径，图片格式包括png,&nbsp;jpg,&nbsp;bmp,&nbsp;svg和gif。<br/>-&nbsp;支持内存图片读取，scheme格式为memory://。<br/>**说明：**<br/>如需显示网络图片，应自行下载后使用内存图片方式刷新，禁止使用网络URL地址。|
 | alt | string | - | 否 | 占位图，当指定图片在加载中时显示。 |
 
 

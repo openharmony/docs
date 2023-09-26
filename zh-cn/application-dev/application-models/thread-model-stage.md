@@ -9,7 +9,7 @@
 5. 处理应用代码的回调，包括事件处理和生命周期管理。
 6. 接收Worker线程发送的消息。
 
-除了主线程外，还有一类独立的Worker线程，用于执行耗时操作。Worker线程在主线程中创建，与主线程相互独立，但不能直接操作UI。最多可以创建7个Worker线程。  
+除了主线程外，还有一类独立的Worker线程，用于执行耗时操作。Worker线程在主线程中创建，与主线程相互独立，但不能直接操作UI。最多可以创建8个Worker线程。  
 ![thread-model-stage](figures/thread-model-stage.png)
 
 基于OpenHarmony的线程模型，不同的业务功能运行在不同的线程上，业务功能的交互就需要线程间通信。同一个进程内，线程间通信目前主要有Emitter和Worker两种方式，其中Emitter主要适用于线程间的事件同步，Worker主要用于新开一个线程执行耗时任务。

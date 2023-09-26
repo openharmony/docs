@@ -1,4 +1,4 @@
-# 视频播放
+# 视频播放（Video）
 
 
 Video组件用于播放视频文件并控制其播放状态，常用于为短视频应用和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/arkui-ts/ts-media-components-video.md)。
@@ -34,7 +34,7 @@ Video组件支持加载本地视频和网络视频。
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController;
+     private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
      private innerResource: Resource = $rawfile('videoTest.mp4');
      build(){
@@ -55,7 +55,7 @@ Video组件支持加载本地视频和网络视频。
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController;
+     private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
      private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
@@ -77,7 +77,7 @@ Video组件支持加载本地视频和网络视频。
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController;
+  private controller: VideoController | undefined;
   private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
@@ -100,7 +100,7 @@ export struct VideoPlayer {
 ```ts
 @Component
 export struct VideoPlayer{
-   private controller:VideoController;
+   private controller:VideoController | undefined;
    private previewUris: Resource = $r ('app.media.preview');
    private videosrc: string= 'https://www.example.com/example.mp4' // 使用时请替换为实际视频加载网址
    build(){
@@ -124,7 +124,7 @@ Video组件[属性](../reference/arkui-ts/ts-media-components-video.md#属性)�
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController;
+  private controller: VideoController | undefined;
 
   build() {
     Column() {
@@ -150,7 +150,7 @@ export struct VideoPlayer {
 @Entry
 @Component
 struct VideoPlayer{
-  private controller:VideoController;
+  private controller:VideoController | undefined;
   private previewUris: Resource = $r ('app.media.preview');
   private innerResource: Resource = $rawfile('videoTest.mp4');
   build(){
@@ -213,7 +213,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
   ```ts
   @Entry
   @Component
-  struct VideoGuide {
+  struct VideoGuide1 {
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
@@ -235,10 +235,14 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
             controller: this.controller
           }).controls(false).autoPlay(true)
           .onPrepared((event)=>{
-            this.durationTime = event.duration
+            if(event){
+              this.durationTime = event.duration
+            }
           })
           .onUpdate((event)=>{
-            this.currentTime =event.time
+            if(event){
+              this.currentTime =event.time
+            }
           })
           Row() {
             Text(JSON.stringify(this.currentTime) + 's')
@@ -266,3 +270,11 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
 ## 其他说明
 
 Video组件已经封装好了视频播放的基础能力，开发者无需进行视频实例的创建，视频信息的设置获取，只需要设置数据源以及基础信息即可播放视频，相对扩展能力较弱。如果开发者想自定义视频播放，还请参考[媒体系统播放音视频](../media/video-playback.md)。
+
+## 相关实例
+
+针对Video组件开发，有以下相关实例可供参考：
+
+- [视频播放（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
+
+- [简易视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/SimpleVideo)

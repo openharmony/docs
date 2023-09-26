@@ -25,9 +25,43 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name  | Type   | Description                                                        |
-| ------ | --------------- | ------------------------------------------------------------ |
-| format | string    | Time format.<br>The date separator is a slash (/), and the time separator is a colon (:).<br>For example, yyyyMMdd and yyyy-MM-dd are displayed as yyyy/MM/dd,<br>and hhmmss is displayed as hh:mm:ss.<br>Only one digit is required for the time format. This means that **"hhmmss"** is equivalent to **"hms"**.<br>Supported time format strings:<br>- YYYY/yyyy: four-digit year<br>- YY/yy: last two digits of year<br>- M: one-digit month (MM for two-digit month, for example, 01)<br>- d: one-digit day (dd for two-digit day, for example, 01)<br>- D: number of days that have elapsed in the year<br>- H: 24-hour format<br>- h: 12-hour format<br>- m: minute<br>- s: second<br>- SSS: millisecond<br>If the specified format does not match the supported formats, the default value is used.<br>Default value: **'hms'**|
+| Name  | Type| Description                                                        |
+| ------ | -------- | ------------------------------------------------------------ |
+| format | string   | Time format.<br>**y**: year<br>**M**: month<br>**d**: day<br>**E**: day of week (Prioritize the full name; use the abbreviation only when the space is insufficient.)<br>**H**: hour (0-23)<br>**h**: hour (1-12)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond<br>**SSS**: millisecond<br>**a**: morning/afternoon (valid only in the 12-hour system)<br>Separator: slash (/), hyphen (-), period (.), or any custom separator.<br>You can make your own combination of the time format. That is, the year, month, day, day of week, hour, minute, second, and millisecond can display on their own.<br>Default value: **hh:mm:ss**|
+
+The following table shows how different settings of **format** work out.
+
+| Input Format             | Display Effect|
+| ------------------------------------------------------------ | ------ |
+| EEEE, M, d, yyyy      | Saturday, February 4, 2023|
+| MMM d, yyyy           | February 4, 2023       |
+| EEEE, M, d            | Saturday, February 4      |
+| MMM dd                 | February 4             |
+| MM/dd/yyyy              | 02/04/2023          |
+| EEEE MM dd          | Saturday February 04    |
+| yyyy       | 2023             |
+| yy       | 23               |
+| MM         | February               |
+| M              | February|
+| dd (complete date)| 04|
+| d | 4|
+| EEEE (full name)| Saturday|
+| E, EE, EEE (abbreviation)| Sat|
+| MMM d, yyyy| February 4, 2023|
+| yyyy/M/d | 2023/2/4 |
+| yyyy-M-d | 2023-2-4 |
+| yyyy.M.d | 2023.2.4 |
+| HH:mm:ss| 17:00:04 |
+| aa hh:mm:ss| 5:00:04 AM|
+| hh:mm:ss| 5:00:04 |
+| HH:mm| 17:00 |
+| aa hh:mm| 5:00 AM|
+| hh:mm| 5:00 |
+| mm:ss| 00:04 |
+| mm:ss.SS| 00:04.91 |
+| mm:ss.SS| 00:04.536 |
+| hh:mm:ss aa | 5:00:04 AM|
+| HH | 17 |
 
 ## Events
 
@@ -74,7 +108,7 @@ struct Second {
         .fontSize(20)
       // Display the system time in 12-hour format for the UTC+8 time zone, accurate to seconds.
       TextClock({ timeZoneOffset: -8, controller: this.controller })
-        .format('hms')
+        .format('aa hh:mm:ss')
         .onDateChange((value: number) => {
           this.accumulateTime = value
         })

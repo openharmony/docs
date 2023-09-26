@@ -6,10 +6,8 @@ The **DataShare** module allows an application to manage its own data and share 
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> - The APIs provided by this module are system APIs and can be used only in the stage model.
 >
-> - The APIs provided by this module are system APIs.
->
-> - The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -17,27 +15,6 @@ The **DataShare** module allows an application to manage its own data and share 
 ```ts
 import dataShare from '@ohos.data.dataShare'
 ```
-
-## URI Naming Rule
-
-The URIs are in the following format:
-
-**Scheme://authority/path** 
-- *Scheme*: scheme name, which has a fixed value of **datashare** for the **DataShare** module.
-- *authority*: [userinfo@]host[:port]
-    - *userinfo*: login information, which can be left unspecified.
-    - *host*: server address. It is the target device ID for cross-device access and empty for local device access.
-    - *port*: port number of the server, which can be left unspecified.
-- *path*: **DataShare** identifier and the resource path. The **DataShare** identifier is mandatory, and the resource path is optional.
-
-Example:
-
-- URI without the resource path:<br>**datashare:///com.samples.datasharetest.DataShare**
-
-- URI with the resource path:<br>**datashare:///com.samples.datasharetest.DataShare/DB00/TBL00**
-
-**com.samples.datasharetest.DataShare** is the data share identifier, and **DB00/TBL00** is the resource path.
-
 
 ## dataShare.createDataShareHelper
 
@@ -47,7 +24,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
@@ -56,7 +33,7 @@ Observe the following when using this API:
 
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of an application.                                          |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
@@ -66,38 +43,90 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
-| 15700010 | The dataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper is not initialized successfully. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 try {
-    dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-        if (err != undefined) {
-            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    });
+  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+    if (err !== undefined) {
+      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      return;
+    }
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  });
 } catch (err) {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
 };
 ```
 
+## dataShare.createDataShareHelper<sup>10+</sup>
+createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void
+
+Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+
+| Name  | Type                                                | Mandatory| Description                                                        |
+| -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | [Context](js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
+| uri      | string                                                   | Yes  | URI of the server application to connect.                              |
+| options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Configuration specifying whether [DataShareHelper](#datasharehelper) is in proxy mode.|
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                                            |
+| -------- | ---------------------------------------------------- |
+| 15700010 | The DataShareHelper is not initialized successfully. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+try {
+  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+    if (err !== undefined) {
+      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      return;
+    }
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  });
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+};
+```
 ## dataShare.createDataShareHelper
 
-createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper&gt;
+createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOptions): Promise&lt;DataShareHelper&gt;
 
 Creates a **DataShareHelper** instance. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to access **DataShareExtension**, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target **DataShareExtension** is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
@@ -106,8 +135,9 @@ Observe the following when using this API:
 
 | Name | Type                                         | Mandatory| Description                          |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
-| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of an application.            |
+| context | [Context](js-apis-inner-application-context.md#context) | Yes  | Context of the application.            |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
+| options | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode. |
 
 **Return value**
 
@@ -121,27 +151,106 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
-| 15700010 | The dataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper is not initialized successfully. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 try {
-    dataShare.createDataShareHelper(this.context, uri).then((data) => {
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    }). catch((err) => {
-        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-    });
-} catch (err) {
+  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  }). catch((err: BusinessError) => {
     console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+  });
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
 };
 ```
 
+## DataShareHelperOptions<sup>10+</sup>
+
+Defines whether [DataShareHelper](#datasharehelper) is in proxy mode.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br/>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database. |
+
+## TemplateId<sup>10+</sup>
+
+Defines the **TemplateId** struct. **TemplateId** is generated by [**addTemplate**](#addtemplate10) to identify a template.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| subscriberId | string | Yes| ID of the subscriber who handles the callback. The value must the same as the **subscriberId** in [**addTemplate**](#addtemplate10). The ID of each subscriber must be unique.|
+| bundleNameOfOwner | string | Yes| Bundle name of the template owner. The value must be the same as the **bundleName** in [**addTemplate**](#addtemplate10).|
+
+## PublishedItem<sup>10+</sup>
+
+Defines the data to publish.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data to publish.|
+| data | string \| ArrayBuffer | Yes| Data to publish. If the data to publish exceeds 20 KB, you are advised to use **data** of the ArrayBuffer type. |
+| subscriberId | string | Yes| Subscriber ID.|
+
+## RdbDataChangeNode<sup>10+</sup>
+
+Defines the subscription/unsubscription result of the RDB data changes.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uri | string | Yes| URI of the callback.|
+| templateId | [TemplateId](#templateid10) | Yes| ID of the template that triggers the callback.|
+| data | Array&lt;string&gt; | Yes| Data of the callback.|
+
+## PublishedDataChangeNode<sup>10+</sup>
+
+Defines the subscription/unsubscription result of the changes in the published data.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of the callback.|
+| data | Array&lt;[PublishedItem](#publisheditem10)&gt; | Yes| Data of the callback.|
+
+## Template<sup>10+</sup>
+
+Defines the struct of the template used in a subscription.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| predicates | { [key: string]: string } | Yes| Predicates to use. When [**on**](#onrdbdatachange10) is called, the predicates are used to generate data. This parameter applies only to RDB data storage. |
+| scheduler | string | Yes| Template scheduler SQL, which is embedded with a custom function. Currently, the **remindTimer** function is embedded. The **remindTimer** triggers a subscription-based update in specified scenarios.<br>The scheduler SQL statement is triggered when:<br>1. The subscribed data is modified.<br>2. The first subscription is added to the corresponding database.|
+
+## OperationResult<sup>10+</sup>
+
+Defines the result of the operation for subscribing to or unsubscribing from the data changes or published data.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | ----- | -------- |
+| key | string | Yes| Key of the operation result.|
+| result | number | Yes| Operation result. If the operation is successful, **0** is returned; otherwise, an error code is returned. |
 ## DataShareHelper
 
 Provides a **DataShareHelper** instance to access or manage data on the server. Before calling an API provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
@@ -158,27 +267,27 @@ Subscribes to changes of the specified data. After an observer is registered, th
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Event type to subscribe to. The value is **dataChange**, which indicates data change events.|
+| type     | string               | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is changed, the value of **err** is undefined. Otherwise, this callback is not invoked or the value of **err** is an error object.|
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-function onCallback() {
-    console.info("**** Observer on callback ****");
+let onCallback: () => void = (): void => {
+  console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.on("dataChange", uri, onCallback);
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, onCallback);
+}
 ```
 
 ### off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
-Unsubscribes from the changes of the specified data. This API uses an asynchronous callback to return the result.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -186,21 +295,475 @@ Unsubscribes from the changes of the specified data. This API uses an asynchrono
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Event type to unsubscribe from. The value is **dataChange**, which indicates data change events.|
-| uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | No  | Callback for the data change event. If this parameter is left empty, all notification events of the URI are unsubscribed from.|
+| type     | string               | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
+| uri      | string               | Yes  | URI of the target data.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback for the data change. If this parameter is left empty, all notification events of the URI will be unsubscribed from. |
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-function callback() {
-    console.info("**** Observer callback ****");
+let callback: () => void = (): void => {
+  console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.on("dataChange", uri, callback);
-dataShareHelper.off("dataChange", uri, callback);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", uri, callback);
+}
+```
+
+### addTemplate<sup>10+</sup>
+
+addTemplate(uri: string, subscriberId: string, template: Template): void
+
+Adds a data template with the specified subscriber.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                   | Mandatory| Description                    |
+| -------- | ------------------------ | ---- | -------------------------|
+| uri      | string                   | Yes  | URI of the data template to add. |
+| subscriberId | string               | Yes  | Unique ID of the template subscriber.|
+| template    | [Template](#template10) | Yes  | Data template to add.       |
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 15700011 | The uri is not exist.|
+
+**Example**
+
+```ts
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let subscriberId = '11';
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
+  predicates : {
+    key1 : value1,
+    key2 : value2,
+  },
+  scheduler : "select remindTimer(time) from TBL00"
+}
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
+}
+```
+
+### delTemplate<sup>10+</sup>
+
+delTemplate(uri: string, subscriberId: string): void
+
+Deletes a data template based on the specified subscriber.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type       | Mandatory| Description                      |
+| -------- | -------------| ---- | ------------------------- |
+| uri      | string       | Yes  | URI of the data template to delete.    |
+| subscriberId | string   | Yes  | Unique ID of the subscriber.         |
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 15700011 | The uri is not exist.|
+
+**Example**
+
+```ts
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let subscriberId = '11';
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
+  predicates : {
+    key1 : value1,
+    key2 : value2,
+  },
+  scheduler : "select remindTimer(time) from TBL00"
+}
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
+  (dataShareHelper as dataShare.DataShareHelper).delTemplate(uri, subscriberId);
+}
+```
+
+### on('rdbDataChange')<sup>10+</sup>
+
+on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt;
+
+Subscribes to the changes of the data corresponding to the specified URI and template.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
+| type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the RDB data change event. If **type** is any other value, there is no response to this API. |
+| uris    | Array&lt;string&gt;                | Yes  | URIs of the data to operate.          |
+| templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the result when the specified data changes. The **err** is **undefined**, and **node** is the new data. Otherwise, this callback is not triggered or **err** is an error object. |
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
+  console.info("onCallback " + JSON.stringify(node.uri));
+  console.info("onCallback " + JSON.stringify(node.templateId));
+  console.info("onCallback " + node.data.length);
+  for (let i = 0; i < node.data.length; i++) {
+    console.info("onCallback " + typeof node.data[i] + " " + node.data[i]);
+  }
+}
+
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let templateId:dataShare.TemplateId = {subscriberId:"11", bundleNameOfOwner:"com.acts.ohos.data.datasharetest"};
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).on("rdbDataChange", [uri], templateId, onCallback);
+}
+```
+
+### off('rdbDataChange')<sup>10+</sup>
+
+off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback?: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt;
+
+Unsubscribes from the changes of the data corresponding to the specified URI and template.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                                       | Mandatory| Description                                                       |
+| -------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| type      | string                                      | Yes  | Event type. The value is **rdbDataChange**, which indicates the RDB data changes. |
+| uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
+| templateId | [TemplateId](#templateid10)                | Yes  | ID of the template that triggers the callback.       |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback for the RDB data change. If this parameter is left empty, all notification events of the URI will be unsubscribed from. |
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
+
+**Example**
+
+```ts
+let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+let templateId:dataShare.TemplateId = {subscriberId:"11", bundleNameOfOwner:"com.acts.ohos.data.datasharetest"};
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).off("rdbDataChange", [uri], templateId);
+}
+```
+
+### on('publishedDataChange')<sup>10+</sup>
+
+on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
+
+Subscribes to changes of the published data.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
+| type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the event of published data changes. |
+| uris    | Array&lt;string&gt;                | Yes  | URIs of the data to operate.          |
+| subscriberId | string                        | Yes  | Subscriber ID of the callback.          |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback invoked to return the result when the published data changes. The **err** is **undefined**, and **node** is the new data. Otherwise, this callback is not triggered or **err** is an error object. |
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
+  console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
+  console.info("onPublishCallback node data size" + node.data.length);
+  for (let i = 0; i < node.data.length; i++) {
+    console.info("onPublishCallback node " + typeof node.data[i].data);
+    if (typeof node.data[i].data != 'string') {
+      let array: ArrayBuffer = node.data[i].data as ArrayBuffer;
+      let data: Uint8Array = new Uint8Array(array);
+      console.info("onPublishCallback " + i + " " + JSON.stringify(data));
+    }
+    console.info("onPublishCallback data " + i + " " + JSON.stringify(node.data[i]));
+  }
+}
+let uris:Array<string> = ['city', 'datashareproxy://com.acts.ohos.data.datasharetest/appInfo', 'key2'];
+let subscriberId = '11';
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).on('publishedDataChange', uris, subscriberId, onPublishCallback);
+}
+```
+
+### off('publishedDataChange')<sup>10+</sup>
+
+off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback?: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
+
+Unsubscribes from the changes of the published data.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                                       | Mandatory| Description                                                      |
+| -------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| type      | string                                      | Yes  | Event type. The value is **publishedDataChange**, which indicates the published data changes. |
+| uris    | Array&lt;string&gt;                           | Yes  | URIs of the data to operate.          |
+| subscriberId | string                                   | Yes  | Subscriber ID of the callback.          |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback for the published data change. If this parameter is left empty, all callbcks of the URI will be unregistered.|
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
+  console.info("**** Observer off callback ****");
+}
+let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
+let subscriberId = '11';
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+}
+```
+
+### publish<sup>10+</sup>
+
+publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
+
+Publishes data to the database.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description     |
+| --------- | -------------------------------------------------| ---- | ------------------- |
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | Yes  | Data to publish.  |
+| bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.          |
+| version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback will not be triggered or **err** is an error object.   |
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                   |
+| -------- | -------------------------- |
+| 15700012 | The data area is not exist.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let arrayBuffer = new ArrayBuffer(1);
+let version = 1;
+let dataArray : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
+  console.info("publishCallback " + JSON.stringify(result));
+}
+try {
+  console.info("dataArray length is:", dataArray.length);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest", version, publishCallback);
+  }
+} catch (e) {
+  console.error("publish error " + JSON.stringify(e));
+}
+```
+
+### publish<sup>10+</sup>
+
+publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
+
+Publishes data to the database.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                                           | Mandatory| Description                                |
+| -------- | ------------------------------------------------- | ---- | ---------------------------------- |
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | Yes  | Data to publish.  |
+| bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.      |
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback will not be triggered or **err** is an error object.|
+
+**Example**
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                   |
+| -------- | -------------------------- |
+| 15700012 | The data area is not exist.|
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
+  console.info("publishCallback " + JSON.stringify(result));
+}
+let dataArray : Array<dataShare.PublishedItem> = [
+  {key:"city", subscriberId:"11", data:"xian"},
+  {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
+  {key:"empty", subscriberId:"11", data:"nobody sub"}];
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest", publishCallback);
+}
+```
+
+### publish<sup>10+</sup>
+
+publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number): Promise&lt;Array&lt;OperationResult&gt;&gt;
+
+Publishes data to the database.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type                       | Mandatory| Description                           |
+| -------- | ----------------------------- | ---- | ------------------------------ |
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | Yes  | Data to publish.|
+| bundleName | string                      | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data. |
+| version | number                         | No  | Version of the data to publish. A larger value indicates a later data version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.<br> If the data version is not checked, leave this parameter unspecified.|
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Returns the operation result.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                   |
+| -------- | -------------------------- |
+| 15700012 | The data area is not exist.|
+
+**Example**
+
+```ts
+let dataArray: Array<dataShare.PublishedItem> = [
+  {key:"city", subscriberId:"11", data:"xian"},
+  {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
+  {key:"empty", subscriberId:"11", data:"nobody sub"}];
+if (dataShareHelper != undefined) {
+  let result: Promise<Array<dataShare.OperationResult>> = (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest");
+}
+```
+
+### getPublishedData<sup>10+</sup>
+
+getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;PublishedItem&gt;&gt;): void
+
+Obtains the published data of an application.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name   | Type            | Mandatory| Description                          |
+| -------- | -----------------| ---- | ----------------------------- |
+| bundleName | string         | Yes  | Application to which the data belongs. |
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                   |
+| -------- | -------------------------- |
+| 15700012 | The data area is not exist.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
+  console.info("**** Observer publish callback ****");
+}
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
+}
+```
+
+### getPublishedData<sup>10+</sup>
+
+getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
+
+Obtains the published data of an application.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                                   |
+| -------- | --------------| ---- | -------------------------------------- |
+| bundleName | string      | Yes  | Application to which the data belongs.          |
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise used to return the data obtained.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](../errorcodes/errorcode-datashare.md).
+
+| ID| Error Message                   |
+| -------- | -------------------------- |
+| 15700012 | The data area is not exist.|
+
+**Example**
+
+```ts 
+if (dataShareHelper != undefined) {
+  let publishedData: Promise<Array<dataShare.PublishedItem>> = (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest");
+}
 ```
 
 ### insert
@@ -222,24 +785,35 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose",
-    "age": 22,
-    "salary": 200.5,
+let key1: string = "name";
+let value1: string = "rose";
+let key2: string = "age";
+let value2: number = 22;
+let key3: string = "salary";
+let value3: number = 200.5;
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.insert(uri, valueBucket, (err, data) => {
-        if (err != undefined) {
-            console.error(`insert error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("insert succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("insert succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -267,22 +841,33 @@ Inserts a single data record into the database. This API uses a promise to retur
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose1",
-    "age": 221,
-    "salary": 20.5,
+let key1: string = "name";
+let value1: string = "rose1";
+let key2: string = "age";
+let value2: number = 21;
+let key3: string = "salary";
+let value3: number = 20.5;
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket).then((data: number) => {
+      console.info("insert succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -305,22 +890,26 @@ Deletes one or more data records from the database. This API uses an asynchronou
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.delete(uri, da, (err, data) => {
-        if (err != undefined) {
-            console.error(`delete error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("delete succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).delete(uri, da, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("delete succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`delete error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -348,20 +937,24 @@ Deletes one or more data records from the database. This API uses a promise to r
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).delete(uri, da).then((data: number) => {
+      console.info("delete succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`delete error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -385,23 +978,28 @@ Queries data in the database. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.query(uri, da, columns, (err, data) => {
-        if (err != undefined) {
-            console.error(`query error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("query succeed, rowCount : " + data.rowCount);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns, (err: BusinessError, data: DataShareResultSet) => {
+      if (err !== undefined) {
+        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("query succeed, rowCount : " + data.rowCount);
     });
+  }
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`query error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -430,21 +1028,26 @@ Queries data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.query(uri, da, columns).then((data) =>  {
-        console.log("query succeed, rowCount : " + data.rowCount);
-    }). catch((err) => {
-        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+      console.info("query succeed, rowCount : " + data.rowCount);
+    }).catch((err: BusinessError) => {
+      console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`query error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -468,28 +1071,38 @@ Updates data in the database. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.update(uri, da, va, (err, data) => {
-        if (err != undefined) {
-            console.error(`update error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("update succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("update succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`update error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -518,26 +1131,36 @@ Updates data in the database. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.update(uri, da, va).then((data) =>  {
-        console.log("update succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
+      console.info("update succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`update error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -545,7 +1168,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Batch inserts data into the database. This API uses an asynchronous callback to return the result.
+Batch inserts data into the database. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -560,22 +1183,36 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+  key1: value11,
+  key2: value21,
+  key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
-    dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-        if (err != undefined) {
-            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("batchInsert succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs, (err, data) => {
+      if (err !== undefined) {
+        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("batchInsert succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -583,7 +1220,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-Batch inserts data into the database. This API uses a promise to return the result.
+Batch inserts data into the database. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -603,20 +1240,34 @@ Batch inserts data into the database. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+  key1: value11,
+  key2: value21,
+  key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
-    dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
-        console.log("batchInsert succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs).then((data: number) => {
+      console.info("batchInsert succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -624,7 +1275,7 @@ try {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -638,23 +1289,25 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.normalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("normalizeUri failed, error message : " + err);
-    }else{
-        console.log("normalizeUri = " + data);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri, (err: BusinessError, data: string) => {
+    if (err !== undefined) {
+      console.info("normalizeUri failed, error message : " + err);
+    } else {
+      console.info("normalizeUri = " + data);
     }
-});
+  });
+}
 ```
 
 ### normalizeUri
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -673,21 +1326,23 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.normalizeUri(uri).then((data) => {
-    console.log("normalizeUri = " + data);
-}).catch((err) => {
-    console.log("normalizeUri failed, error message : " + err);
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri).then((data: string) => {
+    console.info("normalizeUri = " + data);
+  }).catch((err: BusinessError) => {
+    console.info("normalizeUri failed, error message : " + err);
+  });
+}
 ```
 
 ### denormalizeUri
 
 denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-Denormalizes a URI. This API uses an asynchronous callback to return the result.
+Denormalizes a URI. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -701,23 +1356,25 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.denormalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("denormalizeUri failed, error message : " + err);
-    }else{
-        console.log("denormalizeUri = " + data);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).denormalizeUri(uri, (err: BusinessError, data: string) => {
+    if (err !== undefined) {
+      console.error("denormalizeUri failed, error message : " + err);
+    } else {
+      console.info("denormalizeUri = " + data);
     }
-});
+  });
+}
 ```
 
 ### denormalizeUri
 
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
-Denormalizes a URI. This API uses a promise to return the result.
+Denormalizes a URI. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -736,21 +1393,23 @@ Denormalizes a URI. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.denormalizeUri(uri).then((data) => {
-    console.log("denormalizeUri = " + data);
-}).catch((err) => {
-    console.log("denormalizeUri failed, error message : " + err);
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).denormalizeUri(uri).then((data: string) => {
+    console.info("denormalizeUri = " + data);
+  }).catch((err: BusinessError) => {
+    console.error("denormalizeUri failed, error message : " + err);
+  });
+}
 ```
 
 ### notifyChange
 
 notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-Notifies the registered observer of data changes. This API uses an asynchronous callback to return the result.
+Notifies the registered observer of data changes. This API uses an asynchronous callback to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -764,19 +1423,19 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.notifyChange(uri, () => {
-    console.log("***** notifyChange *****");
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri, () => {
+    console.info("***** notifyChange *****");
+  });
+}
 ```
 
 ### notifyChange
 
 notifyChange(uri: string): Promise&lt;void&gt;
 
-Notifies the registered observer of data changes. This API uses a promise to return the result.
+Notifies the registered observer of data changes. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -795,8 +1454,8 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.notifyChange(uri);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri);
+}
 ```

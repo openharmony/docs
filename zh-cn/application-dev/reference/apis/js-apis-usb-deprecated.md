@@ -137,7 +137,7 @@ hasRight(deviceName: string): boolean
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 let bool = usb.hasRight(devicesName);
 console.log(bool);
 ```
@@ -146,7 +146,7 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-请求软件包的临时权限以访问设备。使用Promise异步回调。
+请求软件包的临时权限以访问设备。使用Promise异步回调。系统应用默认拥有访问设备权限，无需调用此接口申请。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -165,7 +165,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${ret}`);
 });
@@ -375,7 +375,14 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -500,7 +507,7 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -529,8 +536,12 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 **示例：**
 
 ```js
-let funcs = usb.HDC;
-let ret = usb.setCurrentFunctions(funcs);
+let funcs = usb.FunctionType.HDC;
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions<sup>9+</sup>

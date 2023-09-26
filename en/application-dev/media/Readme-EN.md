@@ -10,6 +10,8 @@
     - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)
     - [Using OpenSL ES for Audio Playback](using-opensl-es-for-playback.md)
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
+    - [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)
+    - [Using SoundPool for Audio Playback](using-soundpool-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
     - [Audio Effect Management](audio-effect-management.md)
@@ -21,6 +23,7 @@
     - [Using AVRecorder for Audio Recording](using-avrecorder-for-recording.md)
     - [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md)
     - [Using OpenSL ES for Audio Recording](using-opensl-es-for-recording.md)
+    - [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md)
     - [Microphone Management](mic-management.md)
     - [Audio Recording Stream Management](audio-recording-stream-management.md)
     - [Audio Input Device Management](audio-input-device-management.md)
@@ -29,6 +32,15 @@
     - [Developing Audio Call](audio-call-development.md)
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
+  - [Screen Capture](avscreen-capture.md)
+  - Audio and Video Codecs
+    - [Obtaining Supported Codecs](obtain-supported-codecs.md)
+    - [Audio Encoding](audio-encoding.md)
+    - [Audio Decoding](audio-decoding.md)
+    - [Video Encoding](video-encoding.md)
+    - [Video Decoding](video-decoding.md)
+    - [Audio/Video Encapsulation](audio-video-encapsulation.md)
+    - [Audio/Video Decapsulation](audio-video-decapsulation.md)
 - AVSession
   - [AVSession Overview](avsession-overview.md)
   - Local AVSession
@@ -51,6 +63,9 @@
   - Best Practices
     - [Camera Photographing Sample](camera-shooting-case.md)
     - [Camera Recording Sample](camera-recording-case.md)
+    - [Taking Photos in Portrait Mode](camera-mode.md)
+    - [Dual-Channel Preview](camera-dual-channel-preview.md)
+    - [Using Performance Improvement Features (for System Applications Only)](camera-performance-improvement.md)
 - Image
   - [Image Overview](image-overview.md)
   - [Image Decoding](image-decoding.md)

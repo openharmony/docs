@@ -54,7 +54,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
 ```
 
 
@@ -83,7 +83,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const lightWeightSet = new LightWeightSet();
+const lightWeightSet: LightWeightSet<number> = new LightWeightSet();
 let result = lightWeightSet.isEmpty();
 ```
 
@@ -118,7 +118,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 let result = lightWeightSet.add("squirrel");
 ```
 
@@ -148,10 +148,10 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set = new LightWeightSet();
+let set: LightWeightSet<string> = new LightWeightSet();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
@@ -188,10 +188,10 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set = new LightWeightSet();
+let set: LightWeightSet<string> = new LightWeightSet();
 set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
 ```
@@ -228,7 +228,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
 ```
@@ -265,7 +265,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let obj = ["sparrow", "squirrel"];
@@ -299,7 +299,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.increaseCapacityTo(10);
 ```
 
@@ -335,7 +335,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
@@ -373,7 +373,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
@@ -411,7 +411,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
@@ -449,7 +449,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Parameters**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
@@ -475,7 +475,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
@@ -499,7 +499,7 @@ Obtains a string that contains all elements in this container.
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
@@ -531,7 +531,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
@@ -563,7 +563,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
@@ -588,14 +588,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed.|
-| key| T | No| Key of the element that is currently traversed (same as **value**).|
-| set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key| T | No| Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair.|
+| set | LightWeightSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
@@ -608,11 +608,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
-lightWeightSet.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+lightWeightSet.forEach((value ?: string, key ?: string) => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -642,7 +642,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
@@ -679,20 +679,21 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let lightWeightSet = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 
 // Method 1:
-for (let item of lightWeightSet) { 
+let nums: Array<string> = lightWeightSet.toArray()
+for (let item of nums) {
   console.log("value:" + item);
 }
 
 // Method 2:
 let iter = lightWeightSet[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```

@@ -6,12 +6,16 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用，需要在创建组件实例后使用。
+> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
+>
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](./js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](./js-apis-arkui-UIContext.md#promptaction)对象。
 
 ## 导入模块
 
-```js
-import promptAction from '@ohos.promptAction'
+```ts
+import promptAction from '@ohos.promptAction';
 ```
 
 ## promptAction.showToast
@@ -38,14 +42,18 @@ showToast(options: ShowToastOptions): void
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 
 ```
@@ -58,11 +66,11 @@ try {
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称       | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 显示的文本信息。                                 |
-| duration | number                                   | 否    | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
-| bottom   | string\| number                          | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
+| 名称     | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| message  | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。 |
+| duration | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
+| bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp             |
 
 ## promptAction.showDialog
 
@@ -94,7 +102,9 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -113,11 +123,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -148,7 +160,9 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -171,7 +185,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -187,7 +203,10 @@ try {
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。                                                   |
 | message | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 内容文本。                                                   |
-| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?]    | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
+| buttons  | Array&lt;[Button](#button)&gt;    | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持大于1个按钮。
+| alignment<sup>10+</sup>  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
+| offset<sup>10+</sup>     | [Offset](../arkui-ts/ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;} |
+| maskRect<sup>10+</sup>| [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 
 ## ShowDialogSuccessResponse 
 
@@ -224,7 +243,9 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -246,7 +267,9 @@ try {
     console.info('showActionMenu success callback, click button: ' + data.index);
   })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -282,7 +305,9 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 **示例：**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -300,11 +325,13 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -319,7 +346,7 @@ try {
 | 名称    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | title   | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。                                                   |
-| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。按钮数量大于6个时，仅显示前6个按钮，之后的按钮不显示。 |
 
 ## ActionMenuSuccessResponse
 

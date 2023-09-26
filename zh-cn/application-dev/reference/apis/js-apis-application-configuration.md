@@ -10,8 +10,10 @@
 ## 导入模块
 
 ```ts
-import Configuration from '@ohos.app.application.Configuration';
+import Configuration from '@ohos.application.Configuration';
 ```
+
+## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
@@ -25,17 +27,20 @@ import Configuration from '@ohos.app.application.Configuration';
 **示例：**
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     }
 
     onDestroy() {
     }
 
     onWindowStageCreate(windowStage: Window.WindowStage) {
-        let envCallback = {
+        let envCallback: EnvironmentCallback = {
             onConfigurationUpdated(config) {
                 console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
                 let language = config.language;

@@ -5,6 +5,10 @@
 
 矩形区域。
 
+**起始版本:**
+
+8
+
 **相关模块：**
 
 [NativeWindow](_native_window.md)

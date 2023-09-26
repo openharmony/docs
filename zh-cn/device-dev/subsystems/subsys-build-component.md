@@ -34,7 +34,8 @@
         ],
         "third_party": [                                                 # 部件依赖的三方开源软件
           "bounds_checking_function"
-        ]
+        ],
+        "hisysevent_config": []                                          # 部件HiSysEvent打点配置文件编译入口
       }         
         "build": {				                                         # 编译相关配置
             "sub_component": [
@@ -60,6 +61,8 @@ component
 ```
 
 部件配置中需要配置部件的名称、源码路径、功能简介、是否必选、编译目标、RAM、ROM、编译输出、已适配的内核、可配置的特性和依赖等属性定义。
+
+> **注意**：部件配置中HiSysEvent打点配置文件使用说明，请参考文档[HiSysEvent打点配置](subsys-dfx-hisysevent-logging-config.md)。
 
 新增部件时需要在对应子系统json文件中添加相应的部件定义。产品所配置的部件必须在某个子系统中被定义过，否则会校验失败。
 
@@ -139,9 +142,38 @@ component
 
    示例4：在部件的bundle.json中添加模块配置：test/examples/bundle.json。每个部件都有一个bundle.json配置文件，在部件的根目录下。示例见：[部件的bundle.json](subsys-build-component.md#部件配置规则)
 
-2. 将部件添加到产品配置中。 在产品的配置中添加部件，产品对应的配置文件：//vendor/{product_company}/{product-name}/config.json。
+2. 将部件添加到产品配置中。 在产品的配置中添加部件，产品对应的配置文件：//vendor/{product_company}/{product-name}/config.json。下面以vendor/hisilicon/hispark_taurus_standard/config.json为例：
 
-   在产品配置文件中添加 "subsystem_examples:partA"，表示该产品中会编译并打包partA到版本中。
+    ```shell
+      {
+        "product_name": "hispark_taurus_standard",
+        "device_company": "hisilicon",
+        "device_build_path": "device/board/hisilicon/hispark_taurus/linux",
+        "target_cpu": "arm",
+        "type": "standard",
+        "version": "3.0",
+        "board": "hispark_taurus",
+        "inherit": [ "productdefine/common/base/standard_system.json",
+                    "productdefine/common/inherit/ipcamera.json"
+        ],
+        "enable_ramdisk": true,
+        "subsystems": [
+          {
+            "subsystem": "subsystem_examples",                              # 部件所属子系统
+            "components": [
+              {
+                "component": "partA",                                       # 部件名称
+                "features": []                                              # 部件对外的可配置特性列表
+              }
+            ]
+          },
+        ······
+      }
+    ```
+
+    从中可以看出产品名称、芯片厂家等；inherit指出依赖的通用组件；subsystems指出通用组件以外的部件。
+
+    在产品配置文件中添加 "subsystem_examples:partA"，表示该产品中会编译并打包partA到版本中。
 
 3. 编译。 主要有两种编译方式，[命令行方式和hb方式](subsys-build-all.md#编译命令)，下面以命令行方式为例：
 

@@ -28,9 +28,13 @@ MDNS管理的典型场景有：
 | ohos.net.mdns.DiscoveryService | startSearchingMDNS(): void | 开始搜索局域网内的mDNS服务。 |
 | ohos.net.mdns.DiscoveryService | stopSearchingMDNS(): void | 停止搜索局域网内的mDNS服务。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅开启监听mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | 取消开启监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅停止监听mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | 取消停止监听mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | 订阅发现mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | 取消发现mDNS服务的通知。 |
 | ohos.net.mdns.DiscoveryService | on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | 订阅移除mDNS服务的通知。 |
+| ohos.net.mdns.DiscoveryService | off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | 取消移除mDNS服务的通知。 |
 
 ## 管理本地服务
 
@@ -43,48 +47,71 @@ MDNS管理的典型场景有：
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
 import mdns from '@ohos.net.mdns'
-
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-// Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
   }
 }
-let context = globalThis.context;
+
+// Stage模型获取context
+class EntryAbility extends UIAbility {
+  value:number = 0;
+  onWindowStageCreate(windowStage:string): void{
+    GlobalContext.getContext().setObject("value", this.value);
+  }
+}
+let context = GlobalContext.getContext().getObject("value");
+
+class ServiceAttribute {
+  key: string = "111"
+  value: Array = [1]
+}
 
 // 建立LocalService对象
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp"
+  serviceName: "servicename"
+  port: 5555
   host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
+    address: "10.14.**.***"
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
 }
 
 // addLocalService添加本地服务
-mdns.addLocalService(context, localServiceInfo, function (error, data) {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // resolveLocalService解析本地服务对象（非必要，根据需求使用）
-mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // removeLocalService移除本地服务
-mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -98,53 +125,65 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 4. 订阅mDNS服务发现相关状态变化。
 5. 启动搜索局域网内的mDNS服务。
 6. 停止搜索局域网内的mDNS服务。
+7. 取消订阅的mdns服务。
 
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
 import mdns from '@ohos.net.mdns'
-
-// FA模型获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-// Stage模型获取context
 import UIAbility from '@ohos.app.ability.UIAbility';
-class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage){
-    globalThis.context = this.context;
+import { BusinessError } from '@ohos.base';
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
+  private static instance: GlobalContext;
+  private _objects = new Map<string, Object>();
+
+  public static getContext(): GlobalContext {
+    if (!GlobalContext.instance) {
+      GlobalContext.instance = new GlobalContext();
+    }
+    return GlobalContext.instance;
+  }
+
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
+  }
+
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
   }
 }
-let context = globalThis.context;
 
-// 建立LocalService对象
-let localServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
+// Stage模型获取context
+class EntryAbility extends UIAbility {
+  value:number = 0;
+  onWindowStageCreate(windowStage:string): void{
+    GlobalContext.getContext().setObject("value", this.value);
+  }
 }
+let context = GlobalContext.getContext().getObject("value");
 
 // 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context, serviceType);
+let discoveryService: Object = mdns.createDiscoveryService(context, serviceType);
 
+class DataServiceInfo{
+  serviceInfo: mdns.LocalServiceInfo = {}
+  errorCode?: mdns.MdnsError = INTERNAL_ERROR
+}
 // 订阅mDNS服务发现相关状态变化
-discoveryService.on('discoveryStart', (data) => {
+discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('discoveryStop', (data) => {
+discoveryService.on('discoveryStop', (data: DataServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('serviceFound', (data) => {
+discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('serviceLost', (data) => {
+discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
@@ -153,4 +192,18 @@ discoveryService.startSearchingMDNS();
 
 // 停止搜索局域网内的mDNS服务
 discoveryService.stopSearchingMDNS();
+
+// 取消订阅的mdns服务
+discoveryService.off('discoveryStart', (data: DataServiceInfo) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('discoveryStop', (data: DataServiceInfo) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
+  console.log(JSON.stringify(data));
+});
+discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
+  console.log(JSON.stringify(data));
+});
 ```

@@ -3,15 +3,18 @@
 
 **ForEach** enables repeated content based on array-type data.
 
+> **NOTE**
+>
+> Since API version 9, this API is supported in ArkTS widgets.
 
 ## API Description
 
 
 ```ts
 ForEach(
-  arr: any[], 
-  itemGenerator: (item: any, index?: number) => void,
-  keyGenerator?: (item: any, index?: number) => string 
+  arr: Array,
+  itemGenerator: (item: Array, index?: number) => void,
+  keyGenerator?: (item: Array, index?: number): string => string
 )
 ```
 
@@ -19,8 +22,8 @@ ForEach(
 | Name          | Type                                    | Mandatory  | Description                                    |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | arr           | Array                                    | Yes   | An array, which can be empty, in which case no child component is created. The functions that return array-type values are also allowed, for example, **arr.slice (1, 3)**. The set functions cannot change any state variables including the array itself, such as **Array.splice**, **Array.sort**, and **Array.reverse**.|
-| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | Yes   | A lambda function used to generate one or more child components for each data item in an array. Each component and its child component list must be contained in parentheses.<br>**NOTE**<br>- The type of the child component must be the one allowed inside the parent container component of **ForEach**. For example, a **\<LitemItem>** child component is allowed only when the parent container component of **ForEach** is **\<List>**.<br>- The child build function is allowed to return an **if** or another **ForEach**. **ForEach** can be placed inside **if**.<br>- The optional **index** parameter should only be specified in the function signature if used in its body.|
-| keyGenerator  | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | No   | An anonymous function used to generate a unique and fixed key value for each data item in an array. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. For example, if no key-value generator is provided, a reverse of an array will result in rebuilding of all nodes in **ForEach**.<br>**NOTE**<br>- Two items inside the same array must never work out the same ID.<br>- If **index** is not used, an item's ID must not change when the item's position within the array changes. However, if **index** is used, then the ID must change when the item is moved within the array.<br>- When an item is replaced by a new one (with a different value), the ID of the replaced and the ID of the new item must be different.<br>- When **index** is used in the build function, it should also be used in the ID generation function.<br>- The ID generation function is not allowed to mutate any component state.|
+| itemGenerator | (item: any, index?: number) =&gt; void | Yes   | A lambda function used to generate one or more child components for each data item in an array. Each component and its child component list must be contained in parentheses.<br>**NOTE**<br>- The type of the child component must be the one allowed inside the parent container component of **ForEach**. For example, a **\<ListItem>** child component is allowed only when the parent container component of **ForEach** is **\<List>**.<br>- The child build function is allowed to return an **if** or another **ForEach**. **ForEach** can be placed inside **if**.<br>- The optional **index** parameter should only be specified in the function signature if used in its body.|
+| keyGenerator  | (item: any, index?: number) =&gt; string | No   | An anonymous function used to generate a unique and fixed key value for each data item in an array. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. For example, if no key-value generator is provided, a reverse of an array will result in rebuilding of all nodes in **ForEach**.<br>**NOTE**<br>- Two items inside the same array must never work out the same ID.<br>- If **index** is not used, an item's ID must not change when the item's position within the array changes. However, if **index** is used, then the ID must change when the item is moved within the array.<br>- When an item is replaced by a new one (with a different value), the ID of the replaced and the ID of the new item must be different.<br>- When **index** is used in the build function, it should also be used in the ID generation function.<br>- The ID generation function is not allowed to mutate any component state.|
 
 
 ## Restrictions
@@ -33,14 +36,21 @@ ForEach(
 
 - The call sequence of **itemGenerator** functions may be different from that of the data items in the array. During the development, do not assume whether or when the **itemGenerator** and **keyGenerator** functions are executed. For example, the following example may not run properly:
 
-  ```ts
-  ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
-  ```
+    ```ts
+    let obj: Object
+    ForEach(anArray.map((item1: Object, index1: number): Object => {
+        obj.i = index1 + 1
+        obj.data = item1
+        return obj;
+      }),
+    (item: string) => Text(`${item.i}. item.data.label`),
+    (item: string): string => {
+        return item.data.id.toString()
+    })
+    ```
 
 
-## Recommendations
+## Development Guidelines
 
 - Make no assumption on the order of item build functions. The execution order may not be the order of items inside the array.
 
@@ -87,7 +97,7 @@ struct MyComponent {
 ```ts
 @Component
 struct CounterView {
-  label: string;
+  @State label: string = "";
   @State count: number = 0;
 
   build() {
@@ -144,10 +154,10 @@ struct MainView {
         })
         .width(300).height(40)
       ForEach(this.arr,
-        (item) => {
+        (item: string) => {
           CounterView({ label: item.toString() })
         },
-        (item) => item.toString()
+        (item: string) => item.toString()
       )
     }
   }
@@ -172,9 +182,11 @@ If the array item value changes, the ID must be changed.
 As mentioned earlier, the ID generation function is optional. The following example shows **ForEach** without the item index function:
 
   ```ts
-  ForEach(this.arr,
-    (item) => {
-      CounterView({ label: item.toString() })
+let list: Object
+ForEach(this.arr,
+    (item: Object): string => {
+      list.label = item.toString();
+      CounterView(list)
     }
   )
   ```
@@ -225,10 +237,10 @@ struct MainView {
   build() {
     Column() {
       ForEach(this.counters.slice(this.firstIndex, this.firstIndex + 3),
-        (item) => {
+        (item: MyCounter) => {
           CounterView({ label: `Counter item #${item.id}`, counter: item })
         },
-        (item) => item.id.toString()
+        (item: MyCounter) => item.id.toString()
       )
       Button(`Counters: shift up`)
         .width(200).height(50)
@@ -263,7 +275,7 @@ class Month {
   month: number;
   days: number[];
 
-  constructor(year: number, month: number, days: number[]) {
+  constructor(year: number, month: number, ...days: number[]) {
     this.year = year;
     this.month = month;
     this.days = days;
@@ -272,13 +284,16 @@ class Month {
 @Component
 struct CalendarExample {
   // Simulate with six months.
+   arr28: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr30: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
+   arr31: Array<number> = Array(31).fill(0).map((_: number, i: number): number => i + 1);
   @State calendar : Month[] = [
-    new Month(2020, 1, [...Array(31).keys()]),
-    new Month(2020, 2, [...Array(28).keys()]),
-    new Month(2020, 3, [...Array(31).keys()]),
-    new Month(2020, 4, [...Array(30).keys()]),
-    new Month(2020, 5, [...Array(31).keys()]),
-    new Month(2020, 6, [...Array(30).keys()])
+    new Month(2020, 1, ...(this.arr31)),
+    new Month(2020, 2, ...(this.arr28)),
+    new Month(2020, 3, ...(this.arr31)),
+    new Month(2020, 4, ...(this.arr30)),
+    new Month(2020, 5, ...(this.arr31)),
+    new Month(2020, 6, ...(this.arr30))
   ]
   build() {
     Column() {
@@ -286,7 +301,7 @@ struct CalendarExample {
         Text('next month')
       }.onClick(() => {
         this.calendar.shift()
-        this.calendar.push(new Month(year: 2020, month: 7, days: [...Array(31).keys()]))
+        this.calendar.push(new Month(2020, 7, ...(this.arr31)))
       })
       ForEach(this.calendar,
         (item: Month) => {
@@ -327,11 +342,11 @@ struct ForEachWithIndex {
   build() {
     Column() {
       ForEach(this.arr,
-        (it, indx) => {
-          Text(`Item: ${indx} - ${it}`)
+        (it: number, index) => {
+          Text(`Item: ${index} - ${it}`)
         },
-        (it, indx) => {
-          return `${indx} - ${it}`
+        (it: number, index) => {
+          return `${index} - ${it}`
         }
       )
     }

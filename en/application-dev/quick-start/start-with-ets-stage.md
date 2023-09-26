@@ -1,20 +1,27 @@
-# Getting Started with ArkTS in Stage Model
+# Building the First ArkTS Application in Stage Model
 
 
 > **NOTE**
 > 
-> To use ArkTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
-> 
-> For best possible results, use [DevEco Studio 3.1 Beta2](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
-
+> In this document, DevEco Studio 4.0 Beta2 is used. You can download it [here](../../release-notes/OpenHarmony-v4.0-beta2.md#version-mapping).
 
 ## Creating an ArkTS Project
 
-1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **Empty Ability** as the template, and click **Next**.
+The procedure for creating a project varies, depending on whether the API version is later than 9 or not.
+
+The following describes how to create the OpenHarmony projects of API 10 and API 9.
+
+### Creating a Project of API Version 10
+
+1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar.
+
+2. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **Empty Ability** as the template, and click **Next**.
 
    ![createProject](figures/createProject.png)
 
-2. On the project configuration page, set **Compile SDK** to **9**, **Model** to **Stage**, and retain the default values for other parameters.
+3. On the project configuration page, set **Compile SDK** to **3.1.0(API 9)** and retain the default values for other parameters.
+
+   The **Node** parameter sets the Node.js version to use for the project. You can use an existing version or download a new one.
 
    ![chooseStageModel](figures/chooseStageModel.png)
 
@@ -25,27 +32,106 @@
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
    >
    > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
-   
-3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
 
-4. After the project is created, in the **entry** > **build-profile.json5** file, change **runtimeOS** under **targets** to **OpenHarmony**, and click **Sync Now** in the upper right corner to start development.
+4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
+
+5. After the project is created, in the project-level **build-profile.json5** file (at the same directory level as **entry**), move the **compileSdkVersion** and **compatibleSdkVersion** fields from under **app** to under the current **products**. You can identify the current **products** by clicking the ![en-us_image_0000001609333677](figures/en-us_image_0000001609333677.png) icon in the upper right corner of the editing area.
+
+   ![changeToAPI10](figures/changeToAPI10.png)
+
+6. Change the value of **targetSdkVersion** from **9** to **10** and set **runtimeOS** to **OpenHarmony**.
+
+   ![targetSdkVersion](figures/targetSdkVersion.png)
+
+7. Delete the **runtimeOS** configuration from the **targets** field in the module-level **build-profile.json5** files.
+
+   ![deleteRuntimeOS](figures/deleteRuntimeOS.png)
+
+8. Click **Sync Now** and wait until the synchronization is complete. A project of API version 10 is now created.
 
 
-## ArkTS Project Directory Structure (Stage Model)
+### Creating a Project of API Version 9
 
-![en-us_image_0000001364054489](figures/en-us_image_0000001364054489.png)
+1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar.
 
-- **AppScope** > **app.json5**: global configuration of your application.
-- **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
-- **oh_modules**: third-party library dependency information. For details about how to adapt a historical npm project to ohpm, see [Manually Migrating Historical Projects](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212).
+2. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **Empty Ability** as the template, and click **Next**.
+
+   ![createProject](figures/createProject.png)
+
+3. On the project configuration page, set **Compile SDK** to **3.1.0(API 9)** and retain the default values for other parameters.
+
+   The **Node** parameter sets the Node.js version to use for the project. You can use an existing version or download a new one.
+
+   ![chooseStageModel](figures/chooseStageModel.png)
+
+   > **NOTE**
+   >
+   > You can use the low-code development mode apart from the traditional coding approach.
+   >
+   > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
+   >
+   > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
+
+4. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
+
+5. In the module-level **entry** > **build-profile.json5** file, set **runtimeOS** in **targets** to **OpenHarmony**.
+
+6. Click **Sync Now** and wait until the synchronization is complete. A project of API version 9 is now created.
+
+
+## ArkTS Project Directory Structure (Stage Model, API Version 10)
+
+![project](figures/project.png)
+
+- **AppScope > app.json5**: application-level configuration information.
+
+- **entry**: OpenHarmony project module, which can be built into an ability package (HAP).
   - **src > main > ets**: a collection of ArkTS source code.
+  
   - **src > main > ets > entryability**: entry to your application/service.
+  
   - **src > main > ets > pages**: pages included in your application/service.
+  
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
+  
   - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [module.json5 Configuration File](module-configuration-file.md).
-  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**. Under **targets**, you can set **runtimeOS** to **HarmonyOS** (default) or **OpenHarmony**, depending on the OS of your application.
-- **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
-- **build-profile.json5**: application-level configuration information, including the signature and product configuration.
+  
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
+  
+  - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation in this file.
+
+- **oh_modules**: third-party library dependency information. For details about how to adapt a historical npm project to ohpm, see [Manually Migrating Historical Projects](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212).
+
+- **build-profile.json5**: application-level configuration information, including the **signingConfigs** and **products** configuration. The **runtimeOS** field in **products** indicates the runtime OS. Its default value is **HarmonyOS**. If you are developing an OpenHarmony application, change the value to **OpenHarmony**.
+
+- **hvigorfile.ts**: application-level build script.
+
+
+## ArkTS Project Directory Structure (Stage Model, API Version 9)
+
+![project](figures/project.png)
+
+- **AppScope > app.json5**: application-level configuration information.
+
+- **entry**: OpenHarmony project module, which can be built into an ability package (HAP).
+  - **src > main > ets**: a collection of ArkTS source code.
+  
+  - **src > main > ets > entryability**: entry to your application/service.
+  
+  - **src > main > ets > pages**: pages included in your application/service.
+  
+  - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
+  
+  - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [module.json5 Configuration File](module-configuration-file.md).
+  
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**. The **runtimeOS** field in **targets** indicates the runtime OS. Its default value is **HarmonyOS**. If you are developing an OpenHarmony application, change the value to **OpenHarmony**.
+  
+  - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation in this file.
+
+- **oh_modules**: third-party library dependency information. For details about how to adapt a historical npm project to ohpm, see [Manually Migrating Historical Projects](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212).
+
+- **build-profile.json5**: application-level configuration information, including the **signingConfigs** and **products** configuration.
+
 - **hvigorfile.ts**: application-level build script.
 
 
@@ -127,7 +213,7 @@
 
       ![secondPage](figures/secondPage.png)
 
-      > **NOTE**
+      >  **NOTE**
       >
       > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
    - Configure the route for the second page: In the **Project** window, choose **entry** > **src** > **main** > **resources** > **base** > **profile**. In the **main_pages.json** file, set **pages/Second** under **src**. The sample code is as follows:
@@ -185,12 +271,13 @@ You can implement page redirection through the [page router](../reference/apis/j
 
 1. Implement redirection from the first page to the second page.
 
-   In the **index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **Index.ets** file is shown below:
+   In the **Index.ets** file of the first page, bind the **onClick** event to the **Next** button so that clicking the button redirects the user to the second page. The sample code in the **Index.ets** file is shown below:
    
    ```ts
    // Index.ets
    // Import the router module.
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -218,7 +305,13 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.pushUrl({ url: 'pages/Second' })
+             console.info(`Succeeded in clicking the 'Next' button.`)
+            // Go to the second page.
+              router.pushUrl({ url: 'pages/Second' }).then(() => {
+                console.info('Succeeded in jumping to the second page.')
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+              })
            })
          }
          .width('100%')
@@ -236,6 +329,7 @@ You can implement page redirection through the [page router](../reference/apis/j
    // Second.ets
    // Import the router module.
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -262,7 +356,16 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Back button so that clicking the button redirects the user back to the first page.
            .onClick(() => {
-             router.back()
+             console.info(`Succeeded in clicking the 'Back' button.`)
+             try {
+               // Return to the first page.
+               router.back()
+               console.info('Succeeded in returning to the first page.')
+             } catch (err) {
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+               console.error(`Failed to return to the first page.Code is ${code}, message is ${message}`)
+             }
            })
          }
          .width('100%')

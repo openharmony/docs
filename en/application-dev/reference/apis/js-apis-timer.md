@@ -12,6 +12,8 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 Sets a timer for the system to call a function after the timer goes off.
 
+The timer is automatically deleted after the callback is executed, and can be manually deleted by calling the **clearTimeout** API.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -26,12 +28,12 @@ Sets a timer for the system to call a function after the timer goes off.
 
 | Type| Description|
 | -------- | -------- |
-| number | Timer ID.|
+| number | ID of the timer. The value is an integer.|
 
 **Example**
 
-  ```js
-  setTimeout(function() {            
+  ```ts
+  setTimeout(() => {
     console.log('delay 1s');
   }, 1000);
   ```
@@ -41,7 +43,7 @@ Sets a timer for the system to call a function after the timer goes off.
 
 clearTimeout(timeoutID?: number): void
 
-Cancels the timer created via **setTimeout()**.
+Cancels the repeating timer set via **setTimeout()**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,7 +56,7 @@ Cancels the timer created via **setTimeout()**.
 **Example**
 
   ```js    
-  let timeoutID = setTimeout(function() {            
+  let timeoutID = setTimeout(() => {
     console.log('do after 1s delay.');        
   }, 1000);        
   clearTimeout(timeoutID);
@@ -66,6 +68,8 @@ Cancels the timer created via **setTimeout()**.
 setInterval(handler: Function | string, delay: number, ...arguments: any[]): number
 
 Sets a repeating timer for the system to repeatedly call a function at a fixed interval.
+
+The timer can only be manually deleted by calling the **clearInterval** API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,12 +85,12 @@ Sets a repeating timer for the system to repeatedly call a function at a fixed i
 
 | Type| Description|
 | -------- | -------- |
-| number | Timer ID.|
+| number | ID of the timer. The value is an integer.|
 
 **Example**
 
   ```js
-  setInterval(function() {            
+  setInterval(() => {
     console.log('do every 1s.');        
   }, 1000);
   ```
@@ -109,7 +113,7 @@ Cancels the repeating timer set via **setInterval()**.
 **Example**
 
   ```js      
-  let intervalID = setInterval(function() {
+  let intervalID = setInterval(() => {
     console.log('do every 1s.');
   }, 1000);
   clearInterval(intervalID);

@@ -32,10 +32,13 @@
 2. 构建数据库相关的RDB数据。
    
    ```ts
-   let valuesBucket = {"name": "gaolu"}
+   import ohos_data_ability from '@ohos.data.dataAbility'
+   import rdb from '@ohos.data.rdb'
+
+   let valuesBucket: rdb.ValuesBucket = {"name": "gaolu"}
    let da = new ohos_data_ability.DataAbilityPredicates()
-   let valArray =new Array("value1");
-   let cars = new Array({"batchInsert1" : "value1",});
+   let valArray = new Array("value1");
+   let cars = new Array({"batchInsert1" : "value1",} as rdb.ValuesBucket);
    ```
 
    注：关于DataAbilityPredicates的详细内容，请参考[DataAbility谓词](../reference/apis/js-apis-data-ability.md)。
@@ -43,11 +46,13 @@
 3. 调用insert方法向指定的DataAbility子模块插入数据。
    
    ```ts
+   import { BusinessError } from '@ohos.base';
+
    // callback方式调用:
    DAHelper.insert(
      urivar,
      valuesBucket,
-     (error, data) => {
+     (error: BusinessError, data: number) => {
        console.info("DAHelper insert result: " + data)
      }
    );
@@ -55,10 +60,15 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+   import { BusinessError } from '@ohos.base';
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let datainsert = await DAHelper.insert(urivar, valuesBucket).then((data) => {
      console.info("insert success.");
-   }).catch((error) => {
+   }).catch((error: BusinessError) => {
      console.error("insert failed.");
    });
    ```
@@ -66,6 +76,10 @@
 4. 调用delete方法删除DataAbility子模块中指定的数据。
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // callback方式调用:
    DAHelper.delete(
      urivar,
@@ -78,6 +92,10 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let datadelete = await DAHelper.delete(
      urivar,
@@ -88,6 +106,10 @@
 5. 调用update方法更新指定DataAbility子模块中的数据。
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // callback方式调用:
    DAHelper.update(
      urivar,
@@ -101,6 +123,10 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let dataupdate = await DAHelper.update(
      urivar,
@@ -112,6 +138,10 @@
 6. 调用query方法在指定的DataAbility子模块中查找数据。
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // callback方式调用:
    DAHelper.query(
      urivar,
@@ -125,6 +155,10 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let dataquery = await DAHelper.query(
      urivar,
@@ -136,6 +170,10 @@
 7. 调用batchInsert方法向指定的DataAbility子模块批量插入数据。
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // callback方式调用:
    DAHelper.batchInsert(
      urivar,
@@ -148,6 +186,10 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let databatchInsert = await DAHelper.batchInsert(
      urivar,
@@ -158,6 +200,10 @@
 8. 调用executeBatch方法向指定的DataAbility子模块进行数据的批量处理。
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // callback方式调用:
    DAHelper.executeBatch(
      urivar,
@@ -168,7 +214,7 @@
          valuesBucket: {"executeBatch" : "value1",},
          predicates: da,
          expectedCount:0,
-         predicatesBackReferences: null,
+         predicatesBackReferences: undefined,
          interrupted:true,
        }
      ],
@@ -180,6 +226,10 @@
 
    
    ```ts
+   import featureAbility from '@ohos.ability.featureAbility'
+
+   let urivar = "dataability:///com.ix.DataAbility"
+   let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);
    // promise方式调用(await需要在async方法中使用):
    let dataexecuteBatch = await DAHelper.executeBatch(
      urivar,
@@ -193,7 +243,7 @@
          },
          predicates: da,
          expectedCount:0,
-         predicatesBackReferences: null,
+         predicatesBackReferences: undefined,
          interrupted:true,
        }
      ]

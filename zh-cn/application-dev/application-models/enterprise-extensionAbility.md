@@ -32,8 +32,6 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 
 ### 开发步骤
 
-开发者在实现EnterpriseAdminExtensionAbility的时候，需先激活设备管理员应用，并在设备管理员应用的代码目录下新建ExtensionAbility，具体步骤如下。
-
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并命名为EnterpriseExtAbility。
 2. 在EnterpriseExtAbility目录，右键选择“New > TypeScript File”，新建一个TypeScript文件并命名为EnterpriseExtAbility.ts。
 3. 打开EnterpriseExtAbility.ts文件，导入EnterpriseAdminExtensionAbility模块，自定义类继承EnterpriseAdminExtensionAbility并加上需要的应用通知回调方法，如onAdminEnabled()、onAdminDisabled()等回调方法。当设备管理员应用被激活或者去激活时，则可以在对应回调方法中接受系统发送通知。
@@ -42,28 +40,27 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAdminEnabled() {
+    console.info("onAdminEnabled");
+  }
 
-    onAdminEnabled() {
-        console.info("onAdminEnabled");
-    }
+  onAdminDisabled() {
+    console.info("onAdminDisabled");
+  }
+  
+  onBundleAdded(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName);
+  }
 
-    onAdminDisabled() {
-        console.info("onAdminDisabled");
-    }
-    
-    onBundleAdded(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName)
-    }
-
-    onBundleRemoved(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName)
-    }
+  onBundleRemoved(bundleName: string) {
+    console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName);
+  }
 };
 ```
 
 ​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
-```ts
+```json
 "extensionAbilities": [
       {
         "name": "ohos.samples.enterprise_admin_ext_ability",
@@ -79,37 +76,43 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 通过@ohos.enterprise.adminManager模块中的subscribeManagedEvent接口进行企业设备管理事件的订阅，订阅应用安装、卸载事件。当订阅成功后，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。并可以通过unsubscribeManagedEvent接口进行企业设备管理事件的去订阅。
 
 ```ts
-  @State subscribeManagedEventMsg: string = ""
-  @State unsubscribeManagedEventMsg: string = ""
+import adminManager from '@ohos.enterprise.adminManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  async subscribeManagedEventCallback() {
-    await adminManager.subscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
-        if (error) {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::errorCode: ' + error.code + ' errorMessage: ' + error.message
-        } else {
-          this.subscribeManagedEventMsg = 'subscribeManagedEvent Callback::success'
-        }
-      })
+async function subscribeManagedEventCallback() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
-
-  async unsubscribeManagedEventPromise() {
-    await adminManager.unsubscribeManagedEvent(this.admin,
-      [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
-      adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::success'
-    }).catch((error) => {
-      this.unsubscribeManagedEventMsg = 'unsubscribeManagedEvent Promise::errorCode: ' + error.code + ' errorMessage: ' + error.message
+  adminManager.subscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED], (error) => {
+      if (error) {
+        console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+      } else {
+        console.log('Succeeded in subscribing managed event');
+      }
     })
+}
+
+async function unsubscribeManagedEventPromise() {
+  let admin: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
   }
+  await adminManager.unsubscribeManagedEvent(admin,
+    [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED,
+    adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED]).then(() => {
+    console.log('Succeeded in subscribing managed event');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to subscribe managed event. Code: ${error.code}, message: ${error.message}`);
+  })
+}
 ```
-
-
 
 ## 相关实例
 
 针对EnterpriseAdminExtensionAbility开发，有以下相关示例可供参考：
 
-[EnterpriseAdminExtensionAbility：EnterpriseAdminExtensionAbility的创建与使用(ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
-
+- [企业设备管理扩展（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)

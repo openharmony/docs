@@ -5,6 +5,10 @@
 
 表示本地窗口NativeWindow需要更新内容的矩形区域（脏区）。
 
+**起始版本:**
+
+8
+
 **相关模块：**
 
 [NativeWindow](_native_window.md)

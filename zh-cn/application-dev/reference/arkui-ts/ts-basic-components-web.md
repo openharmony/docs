@@ -86,11 +86,37 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
   加载沙箱路径下的本地资源文件
 
-  1.通过[globalthis](../../application-models/uiability-data-sync-with-ui.md#uiability和page之间使用globalthis)获取沙箱路径。
+  1.通过构造的单例对象GlobalContext获取沙箱路径。
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
+
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  let url = 'file://' + globalThis.filesDir + '/index.html'
+  import { GlobalContext } from '../GlobalContext'
+
+  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
   @Entry
   @Component
@@ -110,13 +136,16 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
   import web_webview from '@ohos.web.webview';
+  import { GlobalContext } from '../GlobalContext'
 
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          // 通过在globalThis对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-          globalThis.filesDir = this.context.filesDir
-          console.log("Sandbox path is " + globalThis.filesDir)
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+          // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
       }
   }
   ```
@@ -250,21 +279,27 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   // xxx.ets
   import web_webview from '@ohos.web.webview'
 
+  class TestObj {
+    constructor() {
+    }
+
+    test(data1: string, data2: string, data3: string): string {
+      console.log("data1:" + data1)
+      console.log("data2:" + data2)
+      console.log("data3:" + data3)
+      return "AceString"
+    }
+
+    toString(): void {
+      console.log('toString' + "interface instead.")
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    testObj = {
-      test: (data1, data2, data3) => {
-        console.log("data1:" + data1)
-        console.log("data2:" + data2)
-        console.log("data3:" + data3)
-        return "AceString"
-      },
-      toString: () => {
-        console.log('toString' + "interface instead.")
-      }
-    }
+    testObj = new TestObj();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -670,11 +705,15 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </html>
   ```
 
-### password
+### password<sup>(deprecated)</sup>
 
 password(password: boolean)
 
 设置是否应保存密码。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### cacheMode
 
@@ -720,7 +759,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
 
 **示例：**
 
@@ -750,7 +789,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
 
 **示例：**
 
@@ -804,11 +843,15 @@ initialScale(percent: number)
   }
   ```
 
-### userAgent
+### userAgent<sup>(deprecated)</sup>
 
 userAgent(userAgent: string)
 
 设置用户代理。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 10开始废弃。建议使用[setCustomUserAgent](../apis/js-apis-webview.md#setcustomuseragent10)<sup>10+</sup>替代。
 
 **参数：**
 
@@ -990,7 +1033,6 @@ minLogicalFontSize(size: number)
     }
   }
   ```
-
 
 ### webFixedFont<sup>9+</sup>
 
@@ -1242,17 +1284,25 @@ forceDarkAccess(access: boolean)
   }
   ```
 
-### tableData
+### tableData<sup>(deprecated)</sup>
 
 tableData(tableData: boolean)
 
 设置是否应保存表单数据。该接口为空接口。
 
-### wideViewModeAccess
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
+
+### wideViewModeAccess<sup>(deprecated)</sup>
 
 wideViewModeAccess(wideViewModeAccess: boolean)
 
 设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
+> **说明：**
+>
+> 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 ### pinchSmooth<sup>9+</sup>
 
@@ -1317,8 +1367,8 @@ allowWindowOpenMethod(flag: boolean)
   //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller: CustomDialogController
-  webviewController1: web_webview.WebviewController
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
   build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
@@ -1326,7 +1376,9 @@ allowWindowOpenMethod(flag: boolean)
           .multiWindowAccess(false)
           .onWindowExit(()=> {
             console.info("NewWebViewComp onWindowExit")
-            this.controller.close()
+            if (this.controller) {
+              this.controller.close()
+            }
           })
         }
     }
@@ -1336,7 +1388,7 @@ allowWindowOpenMethod(flag: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController = null
+    dialogController: CustomDialogController | null = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1383,7 +1435,6 @@ mediaOptions(options: WebMediaOptions)
 | options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
 
 **示例：**
-
 
   ```ts
   // xxx.ets
@@ -1440,27 +1491,29 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onAlert',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onAlert',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1523,27 +1576,29 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onBeforeUnload',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onBeforeUnload',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1606,27 +1661,29 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
-            console.log("event.url:" + event.url)
-            console.log("event.message:" + event.message)
-            AlertDialog.show({
-              title: 'onConfirm',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("event.url:" + event.url)
+              console.log("event.message:" + event.message)
+              AlertDialog.show({
+                title: 'onConfirm',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handleConfirm()
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handleConfirm()
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1696,28 +1753,30 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
-            console.log("url:" + event.url)
-            console.log("message:" + event.message)
-            console.log("value:" + event.value)
-            AlertDialog.show({
-              title: 'onPrompt',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
+            if (event) {
+              console.log("url:" + event.url)
+              console.log("message:" + event.message)
+              console.log("value:" + event.value)
+              AlertDialog.show({
+                title: 'onPrompt',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
+                    event.result.handleCancel()
+                  }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    event.result.handlePromptConfirm(event.value)
+                  }
+                },
+                cancel: () => {
                   event.result.handleCancel()
                 }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  event.result.handlePromptConfirm(event.value)
-                }
-              },
-              cancel: () => {
-                event.result.handleCancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -1783,10 +1842,12 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onConsole((event) => {
-            console.log('getMessage:' + event.message.getMessage())
-            console.log('getSourceId:' + event.message.getSourceId())
-            console.log('getLineNumber:' + event.message.getLineNumber())
-            console.log('getMessageLevel:' + event.message.getMessageLevel())
+            if (event) {
+              console.log('getMessage:' + event.message.getMessage())
+              console.log('getSourceId:' + event.message.getSourceId())
+              console.log('getLineNumber:' + event.message.getLineNumber())
+              console.log('getMessageLevel:' + event.message.getMessageLevel())
+            }
             return false
           })
       }
@@ -1825,11 +1886,13 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
-            console.log('url:' + event.url)
-            console.log('userAgent:' + event.userAgent)
-            console.log('contentDisposition:' + event.contentDisposition)
-            console.log('contentLength:' + event.contentLength)
-            console.log('mimetype:' + event.mimetype)
+            if (event) {
+              console.log('url:' + event.url)
+              console.log('userAgent:' + event.userAgent)
+              console.log('contentDisposition:' + event.contentDisposition)
+              console.log('contentLength:' + event.contentLength)
+              console.log('mimetype:' + event.mimetype)
+            }
           })
       }
     }
@@ -1864,17 +1927,19 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
-            console.log('getErrorInfo:' + event.error.getErrorInfo())
-            console.log('getErrorCode:' + event.error.getErrorCode())
-            console.log('url:' + event.request.getRequestUrl())
-            console.log('isMainFrame:' + event.request.isMainFrame())
-            console.log('isRedirect:' + event.request.isRedirect())
-            console.log('isRequestGesture:' + event.request.isRequestGesture())
-            console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
-            let result = event.request.getRequestHeader()
-            console.log('The request header result size is ' + result.length)
-            for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+            if (event) {
+              console.log('getErrorInfo:' + event.error.getErrorInfo())
+              console.log('getErrorCode:' + event.error.getErrorCode())
+              console.log('url:' + event.request.getRequestUrl())
+              console.log('isMainFrame:' + event.request.isMainFrame())
+              console.log('isRedirect:' + event.request.isRedirect())
+              console.log('isRequestGesture:' + event.request.isRequestGesture())
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
+              let result = event.request.getRequestHeader()
+              console.log('The request header result size is ' + result.length)
+              for (let i of result) {
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+              }
             }
           })
       }
@@ -1910,24 +1975,26 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
-            console.log('url:' + event.request.getRequestUrl())
-            console.log('isMainFrame:' + event.request.isMainFrame())
-            console.log('isRedirect:' + event.request.isRedirect())
-            console.log('isRequestGesture:' + event.request.isRequestGesture())
-            console.log('getResponseData:' + event.response.getResponseData())
-            console.log('getResponseEncoding:' + event.response.getResponseEncoding())
-            console.log('getResponseMimeType:' + event.response.getResponseMimeType())
-            console.log('getResponseCode:' + event.response.getResponseCode())
-            console.log('getReasonMessage:' + event.response.getReasonMessage())
-            let result = event.request.getRequestHeader()
-            console.log('The request header result size is ' + result.length)
-            for (let i of result) {
-              console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
-            }
-            let resph = event.response.getResponseHeader()
-            console.log('The response header result size is ' + resph.length)
-            for (let i of resph) {
-              console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+            if (event) {
+              console.log('url:' + event.request.getRequestUrl())
+              console.log('isMainFrame:' + event.request.isMainFrame())
+              console.log('isRedirect:' + event.request.isRedirect())
+              console.log('isRequestGesture:' + event.request.isRequestGesture())
+              console.log('getResponseData:' + event.response.getResponseData())
+              console.log('getResponseEncoding:' + event.response.getResponseEncoding())
+              console.log('getResponseMimeType:' + event.response.getResponseMimeType())
+              console.log('getResponseCode:' + event.response.getResponseCode())
+              console.log('getReasonMessage:' + event.response.getReasonMessage())
+              let result = event.request.getRequestHeader()
+              console.log('The request header result size is ' + result.length)
+              for (let i of result) {
+                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+              }
+              let resph = event.response.getResponseHeader()
+              console.log('The response header result size is ' + resph.length)
+              for (let i of resph) {
+                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+              }
             }
           })
       }
@@ -1938,7 +2005,6 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 ### onPageBegin
 
 onPageBegin(callback: (event?: { url: string }) => void)
-
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
@@ -1963,7 +2029,9 @@ onPageBegin(callback: (event?: { url: string }) => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
-            console.log('url:' + event.url)
+            if (event) {
+              console.log('url:' + event.url)
+            }
           })
       }
     }
@@ -1973,7 +2041,6 @@ onPageBegin(callback: (event?: { url: string }) => void)
 ### onPageEnd
 
 onPageEnd(callback: (event?: { url: string }) => void)
-
 
 网页加载完成时触发该回调，且只在主frame触发。
 
@@ -1998,7 +2065,9 @@ onPageEnd(callback: (event?: { url: string }) => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
-            console.log('url:' + event.url)
+            if (event) {
+              console.log('url:' + event.url)
+            }
           })
       }
     }
@@ -2032,7 +2101,9 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
-            console.log('newProgress:' + event.newProgress)
+            if (event) {
+              console.log('newProgress:' + event.newProgress)
+            }
           })
       }
     }
@@ -2066,7 +2137,9 @@ onTitleReceive(callback: (event?: { title: string }) => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
-            console.log('title:' + event.title)
+            if (event) {
+              console.log('title:' + event.title)
+            }
           })
       }
     }
@@ -2101,7 +2174,9 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
-            console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+            if (event) {
+              console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+            }
           })
       }
     }
@@ -2155,7 +2230,9 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
-            console.log('reason:' + event.renderExitReason)
+            if (event) {
+              console.log('reason:' + event.renderExitReason)
+            }
           })
       }
     }
@@ -2185,7 +2262,9 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@ohos.base';
 
   @Entry
   @Component
@@ -2194,30 +2273,39 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            AlertDialog.show({
-              title: event.fileSelector.getTitle(),
-              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
-              confirm: {
-                value: 'upload',
-                action: () => {
-                  let fileList: Array<string> = [
-                    '/data/storage/el2/base/test',
-                  ]
-                  event.result.handleFileList(fileList)
-                }
-              },
-              cancel: () => {
-                let fileList: Array<string> = []
-                event.result.handleFileList(fileList)
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri: string | null = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              if (event) {
+                event.result.handleFileList([uri]);
               }
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
             return true
           })
       }
     }
   }
+  ```
+  
+  加载的html文件。
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="upload"/>
+  </body>
   ```
 
 ### onResourceLoad<sup>9+</sup>
@@ -2323,7 +2411,9 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
-            console.log('onUrlLoadIntercept ' + event.data.toString())
+            if (event) {
+              console.log('onUrlLoadIntercept ' + event.data.toString())
+            }
             return true
           })
       }
@@ -2374,16 +2464,18 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
-            console.log('url:' + event.request.getRequestUrl())
-            var head1:Header = {
+            if (event) {
+              console.log('url:' + event.request.getRequestUrl())
+            }
+            let head1:Header = {
               headerKey:"Connection",
               headerValue:"keep-alive"
             }
-            var head2:Header = {
+            let head2:Header = {
               headerKey:"Cache-Control",
               headerValue:"no-cache"
             }
-            var length = this.heads.push(head1)
+            let length = this.heads.push(head1)
             length = this.heads.push(head2)
             this.responseweb.setResponseHeader(this.heads)
             this.responseweb.setResponseData(this.webdata)
@@ -2433,34 +2525,36 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpAuthRequest((event) => {
-            AlertDialog.show({
-              title: 'onHttpAuthRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel()
-                }
-              },
-              secondaryButton: {
-                value: 'ok',
-                action: () => {
-                  this.httpAuth = event.handler.isHttpAuthInfoSaved()
-                  if (this.httpAuth == false) {
-                    web_webview.WebDataBase.saveHttpAuthCredentials(
-                      event.host,
-                      event.realm,
-                      "2222",
-                      "2222"
-                    )
+            if (event) {
+              AlertDialog.show({
+                title: 'onHttpAuthRequest',
+                message: 'text',
+                primaryButton: {
+                  value: 'cancel',
+                  action: () => {
                     event.handler.cancel()
                   }
+                },
+                secondaryButton: {
+                  value: 'ok',
+                  action: () => {
+                    this.httpAuth = event.handler.isHttpAuthInfoSaved()
+                    if (this.httpAuth == false) {
+                      web_webview.WebDataBase.saveHttpAuthCredentials(
+                        event.host,
+                        event.realm,
+                        "2222",
+                        "2222"
+                      )
+                      event.handler.cancel()
+                    }
+                  }
+                },
+                cancel: () => {
+                  event.handler.cancel()
                 }
-              },
-              cancel: () => {
-                event.handler.cancel()
-              }
-            })
+              })
+            }
             return true
           })
       }
@@ -2536,6 +2630,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | issuers  | Array<string>                            | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
+  未对接证书管理的双向认证
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
@@ -2573,16 +2668,49 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
+  对接证书管理的双向认证
+
+  1. 构造单例对象GlobalContext。
+  ```ts
+  // GlobalContext.ts
+  export class GlobalContext {
+    private constructor() {}
+    private static instance: GlobalContext;
+    private _objects = new Map<string, Object>();
+
+    public static getContext(): GlobalContext {
+      if (!GlobalContext.instance) {
+        GlobalContext.instance = new GlobalContext();
+      }
+      return GlobalContext.instance;
+    }
+
+    getObject(value: string): Object | undefined {
+      return this._objects.get(value);
+    }
+
+    setObject(key: string, objectClass: Object): void {
+      this._objects.set(key, objectClass);
+    }
+  }
+  ```
+
+  2. 实现双向认证。
   ```ts
   // xxx.ets API10
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
   import web_webview from '@ohos.web.webview'
-  import bundle from '@ohos.bundle'
+  import { BusinessError } from '@ohos.base';
+  import bundleManager from '@ohos.bundle.bundleManager'
+  import { GlobalContext } from '../GlobalContext'
 
   let uri = "";
 
   export default class CertManagerService {
     private static sInstance: CertManagerService;
     private authUri = "";
+    private appUid = "";
 
     public static getInstance(): CertManagerService {
       if (CertManagerService.sInstance == null) {
@@ -2591,26 +2719,38 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
       return CertManagerService.sInstance;
     }
 
-    async grantAppPm(callback) {
+    async grantAppPm(callback: (message: string) => void) {
       let message = '';
+      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
       //注：com.example.myapplication需要写实际应用名称
-      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
-      let clientAppUid = bundleInfo.uid
-      let appUid = clientAppUid.toString()
+      try {
+        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+          this.appUid = data.appInfo.uid.toString();
+        }).catch((err: BusinessError) => {
+          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+        });
+      } catch (err) {
+        let message = (err as BusinessError).message;
+        console.error('getBundleInfoForSelf failed: %{public}s', message);
+      }
 
-      //注：globalThis.AbilityContext需要在MainAbility.ts文件的onCreate函数里添加globalThis.AbilityContext = this.context
-      await globalThis.AbilityContext.startAbilityForResult(
+      //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+      await abilityContext.startAbilityForResult(
         {
           bundleName: "com.ohos.certmanager",
           abilityName: "MainAbility",
           uri: "requestAuthorize",
           parameters: {
-            appUid: appUid, //传入申请应用的appUid
+            appUid: this.appUid, //传入申请应用的appUid
           }
-        })
-        .then((data) => {
-          if (!data.resultCode) {
-            this.authUri = data.want.parameters.authUri; //授权成功后获取返回的authUri
+        } as Want)
+        .then((data: common.AbilityResult) => {
+          if (!data.resultCode && data.want) {
+            if (data.want.parameters) {
+              this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+            }
           }
         })
       message += "after grantAppPm authUri: " + this.authUri;
@@ -2699,25 +2839,27 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPermissionRequest((event) => {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              primaryButton: {
-                value: 'deny',
-                action: () => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title',
+                message: 'text',
+                primaryButton: {
+                  value: 'deny',
+                  action: () => {
+                    event.request.deny()
+                  }
+                },
+                secondaryButton: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.request.grant(event.request.getAccessibleResource())
+                  }
+                },
+                cancel: () => {
                   event.request.deny()
                 }
-              },
-              secondaryButton: {
-                value: 'onConfirm',
-                action: () => {
-                  event.request.grant(event.request.getAccessibleResource())
-                }
-              },
-              cancel: () => {
-                event.request.deny()
-              }
-            })
+              })
+            }
           })
       }
     }
@@ -2757,8 +2899,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
-            console.info("x coord = " + event.param.x())
-            console.info("link url = " + event.param.getLinkUrl())
+            if (event) {
+              console.info("x coord = " + event.param.x())
+              console.info("link url = " + event.param.getLinkUrl())
+            }
             return true
         })
       }
@@ -2829,19 +2973,21 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
         Web({ src:'www.example.com', controller:this.controller })
         .geolocationAccess(true)
         .onGeolocationShow((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                event.geolocation.invoke(event.origin, true, true)
+          if (event) {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  event.geolocation.invoke(event.origin, true, true)
+                }
+              },
+              cancel: () => {
+                event.geolocation.invoke(event.origin, false, true)
               }
-            },
-            cancel: () => {
-              event.geolocation.invoke(event.origin, false, true)
-            }
-          })
+            })
+          }
         })
       }
     }
@@ -2904,7 +3050,7 @@ onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler = null
+    handler: FullScreenExitHandler | null = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2939,13 +3085,15 @@ onFullScreenExit(callback: () => void)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler = null
+    handler: FullScreenExitHandler | null = null
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .onFullScreenExit(() => {
           console.log("onFullScreenExit...")
-          this.handler.exitFullScreen()
+          if (this.handler) {
+            this.handler.exitFullScreen()
+          }
         })
         .onFullScreenEnter((event) => {
           this.handler = event.handler
@@ -2977,12 +3125,12 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  
+
   //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller: CustomDialogController
-  webviewController1: web_webview.WebviewController
+  controller?: CustomDialogController
+  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
   build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
@@ -2990,7 +3138,9 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
           .multiWindowAccess(false)
           .onWindowExit(()=> {
             console.info("NewWebViewComp onWindowExit")
-            this.controller.close()
+            if (this.controller) {
+              this.controller.close()
+            }
           })
         }
     }
@@ -3000,7 +3150,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController = null
+    dialogController: CustomDialogController | null = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3089,9 +3239,11 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
      	  .onSearchResultReceive(ret => {
+     	    if (ret) {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
               "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-          })
+     	    }
+     	  })
       }
     }
   }
@@ -3259,7 +3411,7 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State icon: image.PixelMap = undefined;
+    @State icon: image.PixelMap | undefined = undefined;
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
@@ -3333,9 +3485,11 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
-            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
-              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+            if (event) {
+              console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" +
               event.firstContentfulPaintMs)
+            }
           })
       }
     }
@@ -3413,7 +3567,161 @@ onRequestSelected(callback: () => void)
     }
   }
   ```
+### onScreenCaptureRequest<sup>10+</sup>
 
+onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+
+通知收到屏幕捕获请求。
+
+**参数：**
+
+| 参数名     | 参数类型                                     | 参数描述           |
+| ------- | ---------------------------------------- | -------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | 通知Web组件用户操作行为。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onScreenCaptureRequest((event) => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title: ' + event.handler.getOrigin(),
+                message: 'text',
+                primaryButton: {
+                  value: 'deny',
+                  action: () => {
+                    event.handler.deny()
+                  }
+                },
+                secondaryButton: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                  }
+                },
+                cancel: () => {
+                  event.handler.deny()
+                }
+              })
+            }
+          })
+      }
+    }
+  }
+  ```
+
+### onOverScroll<sup>10+</sup>
+
+onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+通知网页过滚动偏移量。
+
+**参数：**
+
+| 参数名     | 参数类型   | 参数描述         |
+| ------- | ------ | ------------ |
+| xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
+| yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onOverScroll((event) => {
+            console.info("x = " + event.xOffset)
+            console.info("y = " + event.yOffset)
+        })
+      }
+    }
+  }
+  ```
+
+### onControllerAttached<sup>10+</sup>
+
+onControllerAttached(callback: () => void)
+
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
+
+**示例：**
+
+在该回调中使用loadUrl加载网页
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: '', controller: this.controller })
+          .onControllerAttached(() => {
+            this.controller.loadUrl($rawfile("index.html"));
+          })
+      }
+    }
+  }
+  ```
+在该回调中使用getWebId
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import { BusinessError } from '@ohos.base';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .onControllerAttached(() => {
+            try {
+              let id = this.controller.getWebId();
+              console.log("id: " + id);
+            } catch (error) {
+              let code = (error as BusinessError).code;
+              let message = (error as BusinessError).message;
+              console.error(`ErrorCode: ${code},  Message: ${message}`);
+            }
+          })
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3632,7 +3940,6 @@ Web组件返回的请求/响应头对象。
 | ----------- | ------ | ------------- |
 | headerKey   | string | 请求/响应头的key。   |
 | headerValue | string | 请求/响应头的value。 |
-
 
 ## WebResourceResponse
 
@@ -4008,6 +4315,42 @@ grant(resources: Array\<string\>): void
 | --------- | --------------- | ---- | ---- | ------------- |
 | resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
 
+## ScreenCaptureHandler<sup>10+</sup>
+
+Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
+
+### deny<sup>10+</sup>
+
+deny(): void
+
+拒绝网页所请求的屏幕捕获操作。
+
+### getOrigin<sup>10+</sup>
+
+getOrigin(): string
+
+获取网页来源。
+
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 当前请求权限网页的来源。 |
+
+### grant<sup>10+</sup>
+
+grant(config: ScreenCaptureConfig): void
+
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+
+对网页访问的屏幕捕获操作进行授权。
+
+**参数：**
+
+| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
+| --------- | --------------- | ---- | ---- | ------------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
+
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 | 名称                   | 描述         |
 | -------------------- | ---------- |
@@ -4325,6 +4668,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 | VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。 | |
+| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 | |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 | 名称      | 描述                                   |
@@ -4332,6 +4676,12 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | Off     | Web深色模式关闭。                     |
 | On      | Web深色模式开启。                     |
 | Auto    | Web深色模式跟随系统。                 |
+
+## WebCaptureMode<sup>10+</sup>枚举说明
+
+| 名称        | 描述            |
+| --------- | ------------- |
+| HOME_SCREEN | 主屏捕获模式。 |
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -4341,6 +4691,14 @@ Web媒体策略的配置。
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
 | resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
+
+## ScreenCaptureConfig<sup>10+</sup>
+
+Web屏幕捕获的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4408,8 +4766,8 @@ cancel(): void
 
 ### 创建对象
 
-```
-webController: WebController = new WebController()
+```ts
+let webController: WebController = new WebController()
 ```
 
 ### getCookieManager<sup>9+</sup>
@@ -4948,18 +5306,24 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
   ```ts
   // xxx.ets
+  class TestObj {
+    constructor() {
+    }
+
+    test(): string {
+      return "ArkUI Web Component"
+    }
+
+    toString(): void {
+      console.log('Web Component toString')
+    }
+  }
+
   @Entry
   @Component
   struct Index {
     controller: WebController = new WebController()
-    testObj = {
-      test: (data) => {
-        return "ArkUI Web Component"
-      },
-      toString: () => {
-        console.log('Web Component toString')
-      }
-    }
+    testObj = new TestObj();
     build() {
       Column() {
         Row() {
@@ -5033,7 +5397,9 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          console.info('url: ', e.url)
+          if (e) {
+            console.info('url: ', e.url)
+          }
         })
       }
     }

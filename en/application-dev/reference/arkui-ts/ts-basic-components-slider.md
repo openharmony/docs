@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: min<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| value | number | No| Current progress.<br>Default value: value of **min**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max**, whichever is closer.|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or a percentage, the default value is used.|
@@ -43,14 +43,14 @@ Except touch target attributes, the universal attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **SliderBlockType.DEFAULT** is used, **blockColor** sets the color of the round slider.<br>When **SliderBlockType.IMAGE** is used, `blockColor` does not work as the slider has no fill color.<br>When **SliderBlockType.SHAPE** is used, **blockColor** sets the color of the slider in a custom shape.|
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the bubble is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the bubble is displayed on the left of the slider.<br>The drawing area of the bubble is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the bubble will be clipped.|
-| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.|
-| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.|
+| showTips | value: boolean,<br>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | **value**: whether to display a tooltip when the user drags the slider.<br>Default value: **false**<br>**content**: text content of the tooltip. The default value is the current percentage.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider.<br>The drawing area of the tooltip is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the tooltip will be clipped.|
+| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.<br>**NOTE**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderColor** sets the border color of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderColor** does not work as the slider has no border.<br>When **SliderBlockType.SHAPE** is used, **blockBorderColor** sets the border color of the slider in a custom shape.|
+| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.<br>**NOTE**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderWidth** sets the border width of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderWidth** does not work as the slider has no border.<br>WWhen **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border width of the slider in a custom shape.|
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Step color.|
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | Radius of the rounded corner of the slider track.|
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | Size of the slider in the block direction.|
@@ -59,7 +59,7 @@ Except touch target attributes, the universal attributes are supported.
 
 ## SliderBlockStyle<sup>10+</sup>
 
-Desribes the style of the slider in the block direction.
+Describes the style of the slider in the block direction.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -79,7 +79,7 @@ Enumerates the types of the slider in the block direction.
 
 ## Events
 
-In addition to the **OnAppear** and **OnDisAppear** universal events, the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
 
 | Name| Description|
 | -------- | -------- |
@@ -96,8 +96,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse.|
 | Click    | 3    | The user moves the slider by touching the slider track.|
 
-
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -253,3 +254,52 @@ struct SliderExample {
 ```
 
 ![en-us_image_0000001179613854](figures/en-us_image_0000001179613854.gif)
+
+### Example 2
+
+```ts
+@Entry
+@Component
+struct SliderExample {
+  @State tipsValue: number = 40
+
+  build() {
+    Column({ space: 8 }) {
+      Text('block').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: 40, height: 40 })
+        .blockBorderColor(Color.Red)
+        .blockBorderWidth(5)
+      Divider()
+      Text('step').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40, step: 10 })
+        .showSteps(true)
+        .stepSize(8)
+        .stepColor(Color.Yellow)
+      Divider()
+      Text('track').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: 40 })
+        .trackBorderRadius(2)
+      Divider()
+      Text('blockStyle').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.DEFAULT })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockStyle({ type: SliderBlockType.IMAGE, image: $r('sys.media.ohos_app_icon') })
+      Slider({ style: SliderStyle.OutSet, value: 40 })
+        .blockSize({ width: '60px', height: '60px' })
+        .blockColor(Color.Red)
+        .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path({ commands: 'M30 30 L15 56 L45 56 Z' }) })
+      Divider()
+      Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Slider({ style: SliderStyle.InSet, value: this.tipsValue })
+        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .onChange(value => {
+          this.tipsValue = value
+        })
+    }
+  }
+}
+```
+
+![](figures/slider_2.png)

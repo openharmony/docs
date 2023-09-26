@@ -26,17 +26,18 @@
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 3. 查询系统是否支持进度条模板，查询结果为支持downloadTemplate模板类通知。
    
    ```ts
-   notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
+   notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
      console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
      // ...
-   }).catch((err) => {
+   }).catch((err:Base.BusinessError) => {
      console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
@@ -65,7 +66,7 @@
    }
    
    // 发布通知
-   notificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;

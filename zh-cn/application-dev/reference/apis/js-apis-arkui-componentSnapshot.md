@@ -11,7 +11,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import componentSnapshot from "@ohos.arkui.componentSnapshot";
 ```
 
@@ -34,16 +34,22 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -102,14 +108,14 @@ get(id: string): Promise<image.PixelMap>
 
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap|undefined = undefined
 
   build() {
     Column() {
@@ -159,6 +165,12 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
 | callback | AsyncCallback&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
 **示例：**
 
 ```ts
@@ -168,7 +180,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -191,7 +203,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
+          componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
@@ -245,7 +257,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   @Builder
   RandomBuilder() {
@@ -268,7 +280,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
-          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this))
+          componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file

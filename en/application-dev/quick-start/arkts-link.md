@@ -1,4 +1,4 @@
-# \@Link: Two-Way Synchronization Between Parent and Child Components
+# \@Link Decorator: Two-Way Synchronization Between Parent and Child Components
 
 
 An \@Link decorated variable can create two-way synchronization with a variable of its parent component.
@@ -20,7 +20,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported. A combination of simple and complex types is not supported. The **undefined** and **null** values are not allowed.<br>**NOTE**<br>The Length, ResourceStr, and ResourceColor types are a combination of simple and complex types and therefore not supported.|
 | Initial value for the decorated variable  | Forbidden.                              |
 
 
@@ -28,7 +28,7 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported|
+| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({ aLink: this.aState })** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink: $aState})** syntax is also supported.|
 | Subnode initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
@@ -48,6 +48,61 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. For details, see [Array Type \@Link](#array-type-link).
 
+- When the decorated variable is of the Date type, the overall value assignment of the Date object can be observed, and the following APIs can be called to update Date attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+
+```ts
+@Component
+struct DateComponent {
+  @Link selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the year by 1`).onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+        })
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({selectedDate:this.parentSelectedDate})
+    }
+  }
+}
+```
 
 ### Framework Behavior
 
@@ -172,10 +227,10 @@ struct Parent {
     Column() {
       Child({ items: $arr })
       ForEach(this.arr,
-        item => {
+        (item: void) => {
           Text(`${item}`)
         },
-        item => item.toString()
+        (item: ForEachInterface) => item.toString()
       )
     }
   }
@@ -184,4 +239,5 @@ struct Parent {
 
 
 As described above, the ArkUI framework can observe the addition, deletion, and replacement of array items. It should be noted that, in the preceding example, the type of the \@Link and \@State decorated variables is the same: number[]. It is not allowed to define the \@Link decorated variable in the child component as type number (**\@Link item: number**), and create child components for each array item in the \@State decorated array in the parent component. [\@Prop](arkts-prop.md) or \@Observed should be used depending on application semantics.
+
 <!--no_check-->

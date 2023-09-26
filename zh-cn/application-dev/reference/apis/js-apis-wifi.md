@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 ```
 
@@ -33,7 +33,7 @@ enableWifi(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -63,7 +63,7 @@ disableWifi(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -92,12 +92,12 @@ isWifiActive(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let isActivate = wifi.isActivate();
-	console.info("isActivate:" + isActivate);
+	let isWifiActive = wifi.isWifiActive();
+	console.info("isWifiActive:" + isWifiActive);
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -121,7 +121,7 @@ scan(): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -166,7 +166,7 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getScanInfos((err, result) => {
@@ -175,9 +175,9 @@ wifi.getScanInfos((err, result) => {
         return;
     }
 
-    var len = Object.keys(result).length;
+    let len = result.length;
     console.log("wifi received scan info: " + len);
-    for (var i = 0; i < len; ++i) {
+    for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
         console.info("bssid: " + result[i].bssid);
         console.info("capabilities: " + result[i].capabilities);
@@ -191,9 +191,9 @@ wifi.getScanInfos((err, result) => {
 });
 
 wifi.getScanInfos().then(result => {
-    var len = Object.keys(result).length;
+    let len = result.length;
     console.log("wifi received scan info: " + len);
-    for (var i = 0; i < len; ++i) {
+    for (let i = 0; i < len; ++i) {
         console.info("ssid: " + result[i].ssid);
         console.info("bssid: " + result[i].bssid);
         console.info("capabilities: " + result[i].capabilities);
@@ -244,23 +244,6 @@ WLAN热点信息。
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
 
 
-## wifi.getScanInfosSync<sup>9+</sup>
-
-getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
-
-获取扫描结果，使用同步方式返回结果。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 (ohos.permission.GET_WIFI_PEERS_MAC 或 ohos.permission.LOCATION)
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
-
-
 ## wifi.addDeviceConfig
 
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -287,11 +270,11 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
   **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -380,11 +363,11 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -419,11 +402,11 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
   | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -454,11 +437,11 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 0
@@ -495,7 +478,7 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -527,7 +510,7 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -566,7 +549,7 @@ connectToNetwork(networkId: number): boolean
 
 **示例：**
 
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -585,7 +568,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permissio.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
@@ -603,11 +586,11 @@ connectToDevice(config: WifiDeviceConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 3
@@ -639,7 +622,7 @@ disconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -673,14 +656,14 @@ getSignalLevel(rssi: number, band: number): number
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
 	let rssi = 0;
 	let band = 0;
 	let level = wifi.getSignalLevel(rssi,band);
-	console.info("lelvel:" + JSON.stringify(lelvel));
+	console.info("level:" + JSON.stringify(level));
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -721,7 +704,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getLinkedInfo((err, data) => {
@@ -734,7 +717,7 @@ wifi.getLinkedInfo((err, data) => {
 
 wifi.getLinkedInfo().then(data => {
     console.info("get wifi linked info: " + JSON.stringify(data));
-}).catch(error => {
+}).catch((error:number) => {
     console.info("get linked info error");
 });
 ```
@@ -882,11 +865,11 @@ isFeatureSupported(featureId: number): boolean
   | boolean | true:支持，&nbsp;false:不支持。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let featureId = 0；
+	let featureId = 0;
 	let ret = wifi.isFeatureSupported(featureId);
 	console.info("isFeatureSupported:" + ret);
 }catch(error){
@@ -914,7 +897,7 @@ getDeviceMacAddress(): string[]
   | string[] | MAC地址。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -943,7 +926,7 @@ getIpInfo(): IpInfo
   | [IpInfo](#ipinfo7) | IP信息。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -988,7 +971,7 @@ getCountryCode(): string
   | string | 国家码。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1018,7 +1001,7 @@ reassociate(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1047,7 +1030,7 @@ reconnect(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1076,7 +1059,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1112,11 +1095,11 @@ updateNetwork(config: WifiDeviceConfig): number
   | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiDeviceConfig = {
 		ssid : "****",
 		preSharedKey : "****",
 		securityType : 3
@@ -1153,7 +1136,7 @@ disableNetwork(netId: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1183,7 +1166,7 @@ removeAllNetwork(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1218,7 +1201,7 @@ removeDevice(id: number): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1248,7 +1231,7 @@ enableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1277,11 +1260,11 @@ disableHotspot(): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。|
 
 **示例：**
-```js
-import wifi from '@ohos.wifiManager';
+```ts
+import wifi from '@ohos.wifi';
 
 try {
-	wifiManager.disableHotspot();	
+	wifi.disableHotspot();	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -1306,7 +1289,7 @@ isHotspotDualBandSupported(): boolean
   | boolean | true:支持，&nbsp;false:不支持。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1336,7 +1319,7 @@ isHotspotActive(): boolean
   | boolean | true:已使能，&nbsp;false:未使能。|
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1372,11 +1355,11 @@ setHotspotConfig(config: HotspotConfig): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.HotspotConfig = {
 		ssid: "****",
 		securityType: 3,
 		band: 0,
@@ -1384,7 +1367,7 @@ try {
 		preSharedKey: "****",
 		maxConn: 0
 	}
-	let ret = wifi.setHotspotConfig();
+	let ret = wifi.setHotspotConfig(config);
 	console.info("result:" + ret);		
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
@@ -1427,7 +1410,7 @@ getHotspotConfig(): HotspotConfig
   | [HotspotConfig](#hotspotconfig7) | 热点的配置信息。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1457,7 +1440,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
   | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | 连接的设备数组。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1543,7 +1526,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getP2pLinkedInfo((err, data) => {
@@ -1593,7 +1576,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 wifi.getCurrentGroup((err, data) => {
@@ -1643,8 +1626,8 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
 
 **示例：**
-```js
-import wifi from '@ohos.wifiManager';
+```ts
+import wifi from '@ohos.wifi';
 
 wifi.getP2pPeerDevices((err, data) => {
    if (err) {
@@ -1712,11 +1695,11 @@ createGroup(config: WifiP2PConfig): boolean
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
-	let config = {
+	let config:wifi.WifiP2PConfig = {
 		deviceAddress: "****",
 		netId: 0,
 		passphrase: "*****",
@@ -1775,7 +1758,7 @@ removeGroup(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1810,10 +1793,10 @@ p2pConnect(config: WifiP2PConfig): boolean
 
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
     wifi.getP2pLinkedInfo((err, data) => {
         if (err) {
@@ -1825,12 +1808,12 @@ var recvP2pConnectionChangeFunc = result => {
 }
 wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
-var recvP2pDeviceChangeFunc = result => {
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p device change receive event: " + JSON.stringify(result));
 }
 wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
-var recvP2pPeerDeviceChangeFunc = result => {
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
     wifi.getP2pPeerDevices((err, data) => {
         if (err) {
@@ -1838,16 +1821,16 @@ var recvP2pPeerDeviceChangeFunc = result => {
             return;
         }
         console.info("get peer devices: " + JSON.stringify(data));
-        var len = Object.keys(data).length;
-        for (var i = 0; i < len; ++i) {
+        let len = data.length;
+        for (let i = 0; i < len; ++i) {
             if (data[i].deviceName === "my_test_device") {
                 console.info("p2p connect to test device: " + data[i].deviceAddress);
-                var config = {
-                    "deviceAddress":data[i].deviceAddress,
-                    "netId":-2,
-                    "passphrase":"",
-                    "groupName":"",
-                    "goBand":0,
+                let config:wifi.WifiP2PConfig = {
+                    deviceAddress:data[i].deviceAddress,
+                    netId:-2,
+                    passphrase:"",
+                    groupName:"",
+                    goBand:0,
                 }
                 wifi.p2pConnect(config);
             }
@@ -1856,7 +1839,7 @@ var recvP2pPeerDeviceChangeFunc = result => {
 }
 wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 
-var recvP2pPersistentGroupChangeFunc = () => {
+let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
     wifi.getCurrentGroup((err, data) => {
@@ -1869,10 +1852,10 @@ var recvP2pPersistentGroupChangeFunc = () => {
 }
 wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
 
-setTimeout(function() {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
-setTimeout(function() {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
+setTimeout(() => {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
 console.info("start discover devices -> " + wifi.startDiscoverDevices());
 ```
 
@@ -1893,7 +1876,7 @@ p2pCancelConnect(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1920,7 +1903,7 @@ startDiscoverDevices(): boolean
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1947,7 +1930,7 @@ stopDiscoverDevices(): boolean
   | boolean | true:操作执行成功，操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -1983,7 +1966,7 @@ deletePersistentGroup(netId: number): boolean
   | boolean | true:操作执行成功，操作执行失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
@@ -2038,12 +2021,12 @@ setDeviceName(devName: string): boolean
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
 try {
 	let name = "****";
-	wifi.setDeviceName(netId);	
+	wifi.setDeviceName(name);	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -2094,10 +2077,10 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvPowerNotifyFunc = result => {
+let recvPowerNotifyFunc = (result:number) => {
     console.info("Receive power state change event: " + result);
 }
 
@@ -2152,10 +2135,10 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiConnectionChangeFunc = result => {
+let recvWifiConnectionChangeFunc = (result:number) => {
     console.info("Receive wifi connection change event: " + result);
 }
 
@@ -2209,10 +2192,10 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiScanStateChangeFunc = result => {
+let recvWifiScanStateChangeFunc = (result:number) => {
     console.info("Receive Wifi scan state change event: " + result);
 }
 
@@ -2259,10 +2242,10 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvWifiRssiChangeFunc = result => {
+let recvWifiRssiChangeFunc = (result:number) => {
     console.info("Receive wifi rssi change event: " + result);
 }
 
@@ -2271,7 +2254,62 @@ wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
 
 // Unregister event
 wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
+
 ```
+## wifi.on('streamChange')<sup>7+</sup>
+
+on(type: "streamChange", callback: Callback&lt;number&gt;): void
+
+注册WIFI流更改事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"streamChange"字符串。 |
+  | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+## wifi.off('streamChange')<sup>7+</sup>
+
+off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+
+取消注册WIFI流更改事件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 固定填"streamChange"字符串。 |
+| callback | Callback&lt;number&gt; | 否| 状态改变回调函数，返回0:无，1：向下，2：向上，3：双向。 |
+
+**示例：**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvStreamChangeFunc = (result:number) => {
+    console.info("Receive stream change event: " + result);
+}
+
+// Register event
+wifi.on("streamChange", recvStreamChangeFunc);
+
+// Unregister event
+wifi.off("streamChange", recvStreamChangeFunc);
+
+```
+
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
@@ -2299,10 +2337,10 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 3 | 去激活中。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvHotspotStateChangeFunc = result => {
+let recvHotspotStateChangeFunc = (result:number) => {
     console.info("Receive hotspot state change event: " + result);
 }
 
@@ -2330,6 +2368,113 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
+## wifi.on('hotspotStaJoin')<sup>7+</sup>
+
+on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta加入事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+  | callback | Callback&lt;StationInfo&gt; | 是 | 状态改变回调函数。 |
+
+## wifi.off('hotspotStaJoin')<sup>7+</sup>
+
+off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta加入事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaJoin"字符串。 |
+  | callback | Callback&lt;StationInfo&gt; | 否 | 状态改变回调函数。 |
+
+  **示例：**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvHotspotStaJoinFunc = (result:wifi.StationInfo) => {
+    console.info("Receive hotspot sta join event: " + result);
+}
+
+// Register event
+wifi.on("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+// Unregister event
+wifi.off("hotspotStaJoin", recvHotspotStaJoinFunc);
+
+```
+
+## wifi.on('hotspotStaLeave')<sup>7+</sup>
+
+on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+
+注册wifi热点sta离开事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+  | callback | Callback&lt;StationInf]&gt; | 是 | 状态改变回调函数。 |
+
+## wifi.off('hotspotStaLeave')<sup>9+</sup>
+
+off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+
+取消注册wifi热点sta离开事件。
+
+**需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+  | **参数名** | **类型** | **必填** | **说明** |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 固定填"hotspotStaLeave"字符串。 |
+  | callback | Callback&lt;StationInf]&gt; | 否 | 状态改变回调函数。 |
+
+  **示例：**
+```ts
+import wifi from '@ohos.wifi';
+
+let recvHotspotStaLeaveFunc = (result:wifi.StationInfo) => {
+    console.info("Receive hotspot sta leave event: " + result);
+}
+
+// Register event
+wifi.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+// Unregister event
+wifi.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
+
+```
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
@@ -2376,10 +2521,10 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pStateChangeFunc = result => {
+let recvP2pStateChangeFunc = (result:number) => {
     console.info("Receive p2p state change event: " + result);
 }
 
@@ -2390,7 +2535,7 @@ wifi.on("p2pStateChange", recvP2pStateChangeFunc);
 wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 ```
 
-  ## wifi.on('p2pConnectionChange')<sup>8+</sup>
+## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
@@ -2426,10 +2571,10 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pConnectionChangeFunc = result => {
+let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("Receive p2p connection change event: " + result);
 }
 
@@ -2476,11 +2621,11 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pDeviceChangeFunc = result => {
-    console.info("Receive recv p2p device change event: " + result);
+let recvP2pDeviceChangeFunc = (result:wifi.WifiP2pDevice) => {
+    console.info("Receive p2p device change event: " + result);
 }
 
 // Register event
@@ -2526,11 +2671,11 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pPeerDeviceChangeFunc = result => {
-    console.info("Receive recv p2p peer device change event: " + result);
+let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
+    console.info("Receive p2p peer device change event: " + result);
 }
 
 // Register event
@@ -2576,11 +2721,11 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pPersistentGroupChangeFunc = result => {
-    console.info("Receive recv p2p persistent group change event: " + result);
+let recvP2pPersistentGroupChangeFunc = (result:void) => {
+    console.info("Receive p2p persistent group change event: " + result);
 }
 
 // Register event
@@ -2634,11 +2779,11 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
-```js
+```ts
 import wifi from '@ohos.wifi';
 
-var recvP2pDiscoveryChangeFunc = result => {
-    console.info("Receive recv p2p discovery change event: " + result);
+let recvP2pDiscoveryChangeFunc = (result:number) => {
+    console.info("Receive p2p discovery change event: " + result);
 }
 
 // Register event

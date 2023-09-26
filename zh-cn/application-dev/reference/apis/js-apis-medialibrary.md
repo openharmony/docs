@@ -2,14 +2,12 @@
 
 > **说明：**
 >
-> - 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 从API Version 9开始废弃。保留至API Version 13版本。
-> - 部分功能变更为系统接口，仅供系统应用使用，请使用[@ohos.filemanagement.userFileManager](js-apis-userFileManager.md)相应接口替代。
-> - 媒体资源选择和保存功能仍开放给普通应用，请使用[@ohos.file.picker](js-apis-file-picker.md)相应接口替代。
+> - 该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块从API version 9开始废弃。对应的替代接口请参考具体接口说明。
 
 ## 导入模块
 
-```js
+```ts
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
@@ -19,7 +17,11 @@ getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在Stage模型下使用。
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)替代。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -35,21 +37,12 @@ getMediaLibrary(context: Context): MediaLibrary
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | 媒体库实例。 |
 
-**示例：（从API Version 9开始）**
+**示例：**
 
 ```ts
 // 获取mediaLibrary实例，后续用到此实例均采用此处获取的实例。
 const context = getContext(this);
-let media = mediaLibrary.getMediaLibrary(context);
-```
-
-**示例：（API Version 8）**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();
-let media = mediaLibrary.getMediaLibrary(context);
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## mediaLibrary.getMediaLibrary
@@ -58,7 +51,11 @@ getMediaLibrary(): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在FA模型下使用。
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -70,8 +67,8 @@ getMediaLibrary(): MediaLibrary
 
 **示例：**
 
-```js
-let media = mediaLibrary.getMediaLibrary();
+```ts
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary
@@ -81,6 +78,11 @@ let media = mediaLibrary.getMediaLibrary();
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
 
 获取文件资源，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets)替代。
+> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -95,12 +97,12 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -150,6 +152,11 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 获取文件资源，使用Promise方式返回结果。
 
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets-1)替代。
+> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -168,12 +175,14 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -202,11 +211,11 @@ async function example() {
       }
       // 释放FetchFileResult实例并使其失效。无法调用其他方法。
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       // 调用getFirstObject接口失败。
       console.error('get first object failed with error: ' + error);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     // 调用getFileAssets接口失败。
     console.error('get file assets failed with error: ' + error);
   });
@@ -219,6 +228,10 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 打开媒体库变更通知，使用callback方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[registerChange](js-apis-photoAccessHelper.md#registerchange)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -230,7 +243,7 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 **示例：**
 
-```js
+```ts
 media.on('imageChange', () => {
   // image file had changed, do something.
 });
@@ -241,6 +254,10 @@ media.on('imageChange', () => {
 off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'&#124;'videoChange'&#124;'fileChange'&#124;'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
 关闭媒体库变更通知，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[unRegisterChange](js-apis-photoAccessHelper.md#unregisterchange)替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -253,7 +270,7 @@ off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange
 
 **示例：**
 
-```js
+```ts
 media.off('imageChange', () => {
   // stop listening successfully.
 });
@@ -264,6 +281,11 @@ media.off('imageChange', () => {
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 创建媒体资源，使用callback方式返回结果。
+
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[createAsset](js-apis-photoAccessHelper.md#createasset)替代。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -280,7 +302,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 使用Callback方式创建Image类型文件。
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -302,6 +324,11 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 创建媒体资源，使用Promise方式返回结果。
 
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[createAsset](js-apis-photoAccessHelper.md#createasset-1)替代。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -322,7 +349,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 使用Promise方式创建Image类型文件。
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -330,7 +359,7 @@ async function example() {
   const path = await media.getPublicDirectory(DIR_IMAGE);
   media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
     console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('createAsset failed with error: ' + error);
   });
 }
@@ -341,6 +370,12 @@ async function example() {
 deleteAsset(uri: string): Promise\<void>
 
 删除媒体文件资源。
+
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-3)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -362,11 +397,13 @@ deleteAsset(uri: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -378,7 +415,7 @@ async function example() {
   }
   media.deleteAsset(asset.uri).then(() => {
     console.info('deleteAsset successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('deleteAsset failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -390,6 +427,12 @@ async function example() {
 deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 删除媒体文件资源。
+
+调用该接口彻底删除文件前，需要先调用[FileAsset.trash](#trash8)将文件放入回收站，否则文件会删除失败。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteassets-2)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -406,11 +449,11 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -437,6 +480,10 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 获取公共目录路径，使用callback方式返回结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -448,7 +495,7 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 **示例：**
 
-```js
+```ts
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
   if (dicResult == 'Camera/') {
@@ -464,6 +511,10 @@ media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
 getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 获取公共目录路径，使用Promise方式返回结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -481,7 +532,9 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
   media.getPublicDirectory(DIR_CAMERA).then((dicResult) => {
@@ -490,7 +543,7 @@ async function example() {
     } else {
       console.error('getPublicDirectory DIR_CAMERA failed');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPublicDirectory failed with error: ' + error);
   });
 }
@@ -501,6 +554,11 @@ async function example() {
 getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&gt;&gt;): void
 
 获取相册列表，使用callback 方式返回结果。
+
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[getAlbums](js-apis-photoAccessHelper.md#getalbums)替代。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件，当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -515,14 +573,13 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 **示例：**
 
-```js
+```ts
 async function example() {
-   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['新建相册1'],
+    selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+  media.getAlbums(albumFetchOp, (error, albumList) => {
     if (albumList != undefined) {
       console.info('getAlbums successfully: ' + JSON.stringify(albumList));
     } else {
@@ -537,6 +594,11 @@ async function example() {
 getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 获取相册列表，使用 promise 方式返回结果。
+
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[getAlbums](js-apis-photoAccessHelper.md#getalbums-2)替代。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件.当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -556,16 +618,17 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
-  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
-    selectionArgs: ['新建相册1'],
+    selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+  media.getAlbums(albumFetchOp).then((albumList) => {
     console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAlbums failed with error: ' + error);
   });
 }
@@ -578,6 +641,10 @@ release(callback: AsyncCallback&lt;void&gt;): void
 释放MediaLibrary实例。
 当后续不需要使用MediaLibrary实例中的方法时调用。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[release](js-apis-photoAccessHelper.md#release)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -588,7 +655,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 media.release(() => {
   // do something.
 });
@@ -601,6 +668,10 @@ release(): Promise&lt;void&gt;
 释放MediaLibrary实例。
 当后续不需要使用MediaLibrary实例中的方法时调用。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[release](js-apis-photoAccessHelper.md#release-1)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值：**
@@ -611,7 +682,7 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 media.release();
 ```
 
@@ -621,7 +692,10 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 
 保存媒体资源，以异步方法获取保存成功的URI，使用callback形式返回结果。
 
-> **说明**：此接口为API Version 6开始支持，只支持FA模型使用。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。请使用[save](js-apis-file-picker.md#save-1)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -634,8 +708,8 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 
 **示例：**
 
-```js
-let option = {
+```ts
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
@@ -656,7 +730,10 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 保存媒体资源，以异步方法获取保存成功的URI，使用Promise形式返回结果。
 
-> **说明**：此接口为API Version 6开始支持，只支持FA模型使用。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。请使用[save](js-apis-file-picker.md#save)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -674,8 +751,10 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let option = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
@@ -683,7 +762,7 @@ let option = {
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
   console.info('Media resources stored.');
   // Obtain the URI that stores media resources.
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('storeMediaAsset failed with error: ' + error);
 });
 ```
@@ -692,11 +771,12 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**：
-> 此接口为API Version 6开始支持，只支持FA模型使用。
-> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -704,13 +784,13 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
 **示例：**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -735,11 +815,12 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-启动图片预览界面，可以预览列表中首张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
+启动图片预览界面，可以预览列表中首张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 
-> 此接口为API Version 6开始支持，只支持FA模型使用。
-> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -747,12 +828,12 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
 
 **示例：**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -776,11 +857,12 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（datashare://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
+启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（file://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**：
-> 此接口为API Version 6开始支持，只支持FA模型使用。
-> 建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -788,7 +870,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 | 参数名    | 类型                  | 必填   | 说明                                       |
 | ------ | ------------------- | ---- | ---------------------------------------- |
-| images | Array&lt;string&gt; | 是    | 预览的图片URI（'https://'，'datashare://'）列表。 |
+| images | Array&lt;string&gt; | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | index  | number              | 否    | 开始显示的图片序号，不选择时默认为0。                      |
 
 **返回值：**
@@ -799,7 +881,9 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -813,7 +897,7 @@ let images = [
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
   console.info('Succeeded in previewing the images.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startImagePreview failed with error: ' + error);
 });
 ```
@@ -824,9 +908,10 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**：
-> 此接口为API Version 6开始支持，只支持FA模型使用。
-> 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。请使用[select](js-apis-file-picker.md#select-1)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -839,7 +924,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 **示例：**
 
-```js
+```ts
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -860,9 +945,10 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**：
-> 此接口为API Version 6开始支持，只支持FA模型使用。
-> 建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
+> **说明：**
+>
+> - 此接口为API version 6开始支持，只支持FA模型使用。
+> - 此接口从API version 9开始废弃。请使用[select](js-apis-file-picker.md#select)接口替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -880,7 +966,9 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -888,7 +976,7 @@ let option : mediaLibrary.MediaSelectOption = {
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
   console.info('Media resources selected.');
   // Obtain the media selection value.
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startMediaSelect failed with error: ' + error);
 });
 ```
@@ -898,6 +986,10 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 获取在线对端设备的信息，使用Promise方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统接口**：此接口为系统接口。
 
@@ -913,7 +1005,9 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getActivePeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -921,7 +1015,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -932,6 +1026,10 @@ async function example() {
 getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 获取在线对端设备的信息，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统接口**：此接口为系统接口。
 
@@ -947,7 +1045,7 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   media.getActivePeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -965,6 +1063,10 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 获取所有对端设备的信息，使用Promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.READ_MEDIA
@@ -979,7 +1081,9 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getAllPeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -987,7 +1091,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -998,6 +1102,10 @@ async function example() {
 getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统接口**：此接口为系统接口。
 
@@ -1013,7 +1121,7 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   media.getAllPeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1031,8 +1139,9 @@ async function example() {
 
 > **说明：**
 >
-> 1. title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
-> 2. orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
+> - title字段默认为去掉后缀的文件名，音频和视频文件会尝试解析文件内容，部分设备写入后在触发扫描时会被还原。
+> - orientation字段部分设备可能不支持修改，建议使用image组件的[ModifyImageProperty](js-apis-image.md#modifyimageproperty9)接口。
+> - 此接口从API version 9开始废弃。请使用[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)替代。
 
 ### 属性
 
@@ -1047,7 +1156,7 @@ async function example() {
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
 | title                     | string                   | 是   | 是   | 文件标题。                                               |
 | relativePath<sup>8+</sup> | string                   | 是   | 是   | 相对公共目录路径。                                       |
-| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id。                                               |
+| parent<sup>8+</sup>       | number                   | 是   | 否   | 父目录id。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                        |
 | size                      | number                   | 是   | 否   | 文件大小（单位：字节）。                                 |
 | dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）。         |
 | dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。|
@@ -1058,15 +1167,19 @@ async function example() {
 | height                    | number                   | 是   | 否   | 图片高度（单位：像素）。                                 |
 | orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度）。 |
 | duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）。                                   |
-| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号。                                   |
-| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri。                                      |
-| albumName                 | string                   | 是   | 否   | 文件所归属相册名称。                                    |
+| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为0。                   |
+| albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                      |
+| albumName                 | string                   | 是   | 否   | 文件所归属相册名称。由于API version 10的SDK上Asset可以存在多个相册，该属性不兼容。获取值始终为空字符串。                     |
 
 ### isDirectory<sup>8+</sup>
 
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断fileAsset是否为目录，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1080,11 +1193,11 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1108,6 +1221,10 @@ isDirectory():Promise&lt;boolean&gt;
 
 判断fileAsset是否为目录，使用Promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1120,11 +1237,13 @@ isDirectory():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1133,7 +1252,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isDirectory().then((isDirectory) => {
     console.info('isDirectory result:' + isDirectory);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isDirectory failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1145,6 +1264,11 @@ async function example() {
 commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 修改文件的元数据，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify)替代。
+> - 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1158,11 +1282,11 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1183,6 +1307,11 @@ commitModify(): Promise&lt;void&gt;
 
 修改文件的元数据，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> - 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify-1)替代。
+> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1195,11 +1324,11 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1218,6 +1347,10 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[open](js-apis-photoAccessHelper.md#open)替代。
+
 **注意**：以 'w' 模式打开文件时，返回的fd无法进行读取。但由于不同文件系统实现上的差异，部分用户态文件系统在 'w' 模式打开时会允许用fd读取。若有针对fd的读写行为，建议使用 'rw' 模式打开文件。当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
 
 **需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
@@ -1233,7 +1366,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1255,6 +1388,10 @@ open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[open](js-apis-photoAccessHelper.md#open-1)替代。
+
 **注意**：以 'w' 模式打开文件时，返回的fd无法进行读取。但由于不同文件系统实现上的差异，部分用户态文件系统在 'w' 模式打开时会允许用fd读取。若有针对fd的读写行为，建议使用 'rw' 模式打开文件。当前写操作是互斥的操作，写操作完成后需要调用close进行释放。
 
 **需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
@@ -1275,7 +1412,9 @@ open(mode: string): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1283,7 +1422,7 @@ async function example() {
   const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
   asset.open('rw').then((fd) => {
     console.info('File open fd: ' + fd);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
 }
@@ -1294,6 +1433,10 @@ async function example() {
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#close)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1308,11 +1451,13 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1328,7 +1473,7 @@ async function example() {
         console.info('asset.close successfully');
       }
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1340,6 +1485,10 @@ async function example() {
 close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#close-1)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
@@ -1359,11 +1508,13 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1377,7 +1528,7 @@ async function example() {
     }).catch((closeErr) => {
       console.error('asset.close fail, closeErr: ' + closeErr);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('open File failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1389,6 +1540,10 @@ async function example() {
 getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1402,11 +1557,11 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1430,6 +1585,10 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail-1)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1443,16 +1602,16 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size, (error, pixelmap) => {
@@ -1472,6 +1631,10 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#getThumbnail-2)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1490,21 +1653,23 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size).then((pixelmap) => {
     console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary getThumbnail failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1516,6 +1681,10 @@ async function example() {
 favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 将文件设置为收藏文件，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[setFavorite](js-apis-photoAccessHelper.md#setfavorite)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1530,11 +1699,11 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1558,6 +1727,10 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 将文件设置为收藏文件，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[setFavorite](js-apis-photoAccessHelper.md#setfavorite-1)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1576,11 +1749,13 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1589,7 +1764,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.favorite(true).then(() => {
     console.info('mediaLibrary favorite Successful');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favorite failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1601,6 +1776,10 @@ async function example() {
 isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断该文件是否为收藏文件，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1614,11 +1793,11 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1642,6 +1821,10 @@ isFavorite():Promise&lt;boolean&gt;
 
 判断该文件是否为收藏文件，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1654,11 +1837,13 @@ isFavorite():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1667,7 +1852,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isFavorite().then((isFavorite) => {
     console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1682,6 +1867,10 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteAssets)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1695,11 +1884,11 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1725,6 +1914,10 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 放入垃圾文件夹的文件不会被真正删除，可以通过isTrash = false参数恢复成正常文件。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[deleteAssets](js-apis-photoAccessHelper.md#deleteAssets-1)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1743,11 +1936,13 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1756,7 +1951,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.trash(true).then(() => {
     console.info('trash successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('trash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1768,6 +1963,10 @@ async function example() {
 isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 当文件被定位，判断文件是否为垃圾文件，使用callback方式返回异步结果。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1781,11 +1980,11 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1809,6 +2008,10 @@ isTrash():Promise&lt;boolean&gt;
 
 当文件被定位，判断文件是否为垃圾文件，使用promise方式返回异步结果。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -1821,11 +2024,13 @@ isTrash():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1834,7 +2039,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isTrash().then((isTrash) => {
     console.info('isTrash result: ' + isTrash);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isTrash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1845,11 +2050,19 @@ async function example() {
 
 文件检索结果集。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[FetchResult](js-apis-photoAccessHelper.md#fetchresult)替代。
+
 ### getCount<sup>7+</sup>
 
 getCount(): number
 
 获取文件检索结果中的文件总数。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getCount](js-apis-photoAccessHelper.md#getcount)替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1861,11 +2074,11 @@ getCount(): number
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let getFileCountOneOp = {
+  let getFileCountOneOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1883,6 +2096,10 @@ isAfterLast(): boolean
 
 检查结果集是否指向最后一行。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[isAfterLast](js-apis-photoAccessHelper.md#isafterlast)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值：**
@@ -1893,11 +2110,11 @@ isAfterLast(): boolean
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1906,10 +2123,10 @@ async function example() {
   const fetchCount = fetchFileResult.getCount();
   console.info('mediaLibrary fetchFileResult.getCount, count:' + fetchCount);
   let fileAsset = await fetchFileResult.getFirstObject();
-  for (var i = 1; i < fetchCount; i++) {
+  for (let i = 1; i < fetchCount; i++) {
     fileAsset = await fetchFileResult.getNextObject();
     if(i == fetchCount - 1) {
-      var result = fetchFileResult.isAfterLast();
+      let result = fetchFileResult.isAfterLast();
       console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
       fetchFileResult.close();
     }
@@ -1923,15 +2140,19 @@ close(): void
 
 释放 FetchFileResult 实例并使其失效。无法调用其他方法。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[close](js-apis-photoAccessHelper.md#close)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1947,6 +2168,10 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的第一个文件资产。此方法使用回调返回FileAsset。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getFirstObject](js-apis-photoAccessHelper.md#getfirstobject)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -1957,11 +2182,11 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1984,6 +2209,10 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的第一个文件资产。此方法使用Promise方式返回FileAsset。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getFirstObject](js-apis-photoAccessHelper.md#getfirstobject-1)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值：**
@@ -1994,11 +2223,13 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2007,7 +2238,7 @@ async function example() {
   fetchFileResult.getFirstObject().then((fileAsset) => {
     console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getFirstObject failed with error: ' + error);
   });
 }
@@ -2019,7 +2250,10 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的下一个文件资产，此方法使用callback形式返回结果。
 
-> **说明**： 在使用前需要先使用[getFirstObject](#getfirstobject7)接口获取第一个文件资产，然后使用[isAfterLast](#isafterlast7)确认文件检索集当前不是指向最后一个时方可使用此接口。
+> **说明：**
+>
+> - 在使用前需要先使用[getFirstObject](#getfirstobject7)接口获取第一个文件资产，然后使用[isAfterLast](#isafterlast7)确认文件检索集当前不是指向最后一个时方可使用此接口。
+> - 此接口从API version 9开始废弃。请使用[getNextObject](js-apis-photoAccessHelper.md#getnextobject)替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2031,11 +2265,11 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2063,7 +2297,10 @@ getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
-> **说明**： 在使用前需要先使用[getFirstObject](#getfirstobject7)接口获取第一个文件资产，然后使用[isAfterLast](#isafterlast7)确认文件检索集当前不是指向最后一个时方可使用此接口。
+> **说明：**
+>
+> - 在使用前需要先使用[getFirstObject](#getfirstobject7)接口获取第一个文件资产，然后使用[isAfterLast](#isafterlast7)确认文件检索集当前不是指向最后一个时方可使用此接口。
+> - 此接口从API version 9开始废弃。请使用[getNextObject](js-apis-photoAccessHelper.md#getnextobject-1)替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2075,11 +2312,13 @@ getNextObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2091,7 +2330,7 @@ async function example() {
     fetchFileResult.getNextObject().then((fileAsset) => {
       console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error('fetchFileResult getNextObject failed with error: ' + error);
     })
   }
@@ -2104,6 +2343,10 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的最后一个文件资产。此方法使用callback回调来返回FileAsset。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getLastObject](js-apis-photoAccessHelper.md#getlastobject)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -2114,11 +2357,11 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2141,6 +2384,10 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回FileAsset。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getLastObject](js-apis-photoAccessHelper.md#getlastobject-1)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值：**
@@ -2151,11 +2398,13 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2164,7 +2413,7 @@ async function example() {
   fetchFileResult.getLastObject().then((fileAsset) => {
     console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getLastObject failed with error: ' + error);
   });
 }
@@ -2175,6 +2424,10 @@ async function example() {
 getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用回调来返回FileAsset。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getObjectByPosition](js-apis-photoAccessHelper.md#getobjectbyposition)替代。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2187,11 +2440,11 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2214,6 +2467,10 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getObjectByPosition](js-apis-photoAccessHelper.md#getobjectbyposition-1)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -2230,11 +2487,13 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2243,7 +2502,7 @@ async function example() {
   fetchFileResult.getPositionObject(0).then((fileAsset) => {
     console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPositionObject failed with error: ' + error);
   });
 }
@@ -2255,6 +2514,10 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getAllObjects](js-apis-photoAccessHelper.md#getallobjects)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：**
@@ -2265,11 +2528,11 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2294,6 +2557,10 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 获取文件检索结果中的所有文件资产。此方法使用Promise来返回FileAsset结果集。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getAllObjects](js-apis-photoAccessHelper.md#getallobjects-1)替代。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **返回值：**
@@ -2304,11 +2571,13 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2319,7 +2588,7 @@ async function example() {
       console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
     } 
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAllObject failed with error: ' + error);
   });
 }
@@ -2328,6 +2597,10 @@ async function example() {
 ## Album<sup>7+</sup>
 
 实体相册
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[Album](js-apis-photoAccessHelper.md#album)替代。
 
 ### 属性
 
@@ -2349,6 +2622,10 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 更新相册属性修改到数据库中。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify-2)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -2361,14 +2638,14 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify((error) => {
@@ -2387,6 +2664,10 @@ commitModify(): Promise&lt;void&gt;
 
 更新相册属性修改到数据库中。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify-3)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -2399,19 +2680,21 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('commitModify failed with error: ' + error);
   });
 }
@@ -2422,6 +2705,10 @@ async function example() {
 getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets)替代。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -2435,15 +2722,15 @@ getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets((error, fetchFileResult) => {
@@ -2464,6 +2751,10 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -2477,19 +2768,19 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
@@ -2510,6 +2801,10 @@ async function example() {
 
 按照检索条件获取相册中的文件。此方法使用异步Promise来返回文件结果集。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets-1)替代。
+
 **需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
@@ -2528,26 +2823,28 @@ async function example() {
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
     let count = fetchFileResult.getCount();
     console.info('album getFileAssets successfully, count: ' + count);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('album getFileAssets failed with error: ' + error);
   });
 }
@@ -2556,6 +2853,10 @@ async function example() {
 ## PeerInfo<sup>8+</sup>
 
 注册设备的信息。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统接口**：此接口为系统接口。
 
@@ -2572,6 +2873,10 @@ async function example() {
 
 枚举，媒体类型。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[PhotoType](js-apis-photoAccessHelper.md#phototype)替代。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称  |  值 |  说明 |
@@ -2586,7 +2891,9 @@ async function example() {
 枚举，文件关键信息。
 
 > **说明：**
-> bucket_id字段在文件重命名或移动后可能会发生变化，开发者使用前需要重新获取。
+>
+> - bucket_id字段在文件重命名或移动后可能会发生变化，开发者使用前需要重新获取。
+> - 此接口从API version 9开始废弃。请使用[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2616,6 +2923,10 @@ async function example() {
 
 枚举，目录类型。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称          | 值 |  说明               |
@@ -2630,6 +2941,10 @@ async function example() {
 ## DeviceType<sup>8+</sup>
 
 枚举，设备类型。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统接口**：此接口为系统接口。
 
@@ -2649,6 +2964,10 @@ async function example() {
 
 检索条件。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)替代。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                                                         |
@@ -2664,6 +2983,10 @@ async function example() {
 
 图片尺寸。
 
+> **说明：**
+>
+> 此接口从API version 9开始废弃。请使用[image.Size](js-apis-image.md#size)替代。
+
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称     | 类型     | 可读   | 可写   | 说明       |
@@ -2674,6 +2997,10 @@ async function example() {
 ## MediaAssetOption
 
 媒体资源选项。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2686,6 +3013,10 @@ async function example() {
 ## MediaSelectOption
 
 媒体资源类型选项。
+
+> **说明：**
+>
+> 此接口从API version 9开始废弃。无替代接口。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 

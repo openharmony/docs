@@ -18,8 +18,6 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
@@ -27,7 +25,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
-| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片。 |
+| descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
+| type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。               |
 | colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。                              |
@@ -39,6 +38,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | defaultDimension  | number | 是    | 否     | 表示卡片规格                                       |
 | supportDimensions    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的规格。具体可选规格参考[FormDimension](#formdimension)   |
 | customizeData    | {[key: string]: [value: string]}      | 是    | 否     | 卡片用户数据。         |
+| isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
 
 ## FormType
 
@@ -102,7 +102,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id' <br>**系统API**: 此接口为系统接口，三方应用不支持调用。  | 设备标识。   |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统API**: 此接口为系统接口，三方应用不支持调用。  |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
@@ -128,9 +128,9 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-| 名称        | 类型   | 说明         |
-| ----------- | ---- | ------------ |
-| moduleName    | string    | 选填。仅保留moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
+| 名称        | 类型   | 必填         |说明         |
+| ----------- | ---- | ------------ |------------ |
+| moduleName    | string    |否    | 选填。仅保留moduleName与提供值相符的卡片信息。<br>未填写时则不通过moduleName进行过滤。   |
 
 ## VisibilityType
 
@@ -140,7 +140,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
-| UNKNOWN | 0   | 表示卡片为未知。 |
+| UNKNOWN<sup>10+</sup> | 0   | 表示卡片为未知。 |
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
@@ -150,15 +150,17 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formId  | string               | 是    | 否     | 卡片标识。                   |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| bundleName<sup>10+</sup>  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
 | hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
 | visibilityType  | [VisibilityType](#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| moduleName<sup>10+</sup>  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName<sup>10+</sup> | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName<sup>10+</sup>        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 
 ## formProviderFilter<sup>10+</sup>
@@ -167,12 +169,14 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
-| formName        | string               | 是    | 否     | 卡片名称。                                 |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>  |
+| formName    | string               | 是    | 否     | 卡片名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>                     |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>        |
 
 ## LaunchReason<sup>10+</sup>
 

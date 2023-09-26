@@ -3,10 +3,6 @@
 当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[stepper API](../reference/arkui-js/js-components-container-stepper.md)。
 
 
-> **说明：**
-> 从API Version 5 开始支持。
-
-
 ## 创建stepper组件
 
 在pages/index目录下的hml文件中创建一个stepper组件。
@@ -410,4 +406,4 @@ export default {
 
 针对stepper开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

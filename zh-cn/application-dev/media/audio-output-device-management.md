@@ -9,6 +9,8 @@
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块
 
+import { BusinessError } from '@ohos.base'; // 导入BusinessError
+
 let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
 
 let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
@@ -33,7 +35,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输出设备的信息。
 
 ```ts
-audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
 ```
@@ -44,7 +46,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
 
 ```ts
 // 监听音频设备状态变化
-audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
   console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色
@@ -64,7 +66,8 @@ audioRoutingManager.off('deviceChange');
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备ID。
 
 ```ts
-let outputAudioDeviceDescriptor = [{
+import audio from '@ohos.multimedia.audio';
+let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.SPEAKER,
     id : 1,
@@ -76,18 +79,19 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : ""
 }];
 
-async function selectOutputDevice(){
+async function selectOutputDevice() {
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
     console.info('Invoke selectOutputDevice succeeded.');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
   });
 }
 ```
 
-## 获取最高优先级输设备信息
+## 获取最高优先级输出设备信息
 
 使用getPreferOutputDeviceForRendererInfo()方法, 可以获取当前最高优先级的输出设备。
 
@@ -96,16 +100,17 @@ async function selectOutputDevice(){
 > 最高优先级输出设备表示声音将在此设备输出的设备。
 
 ```ts
-let rendererInfo = {
+import audio from '@ohos.multimedia.audio';
+let rendererInfo: audio.AudioRendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
-async function getPreferOutputDeviceForRendererInfo() {
-  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+async function getPreferredOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
   })
 }
@@ -114,18 +119,19 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## 监听最高优先级输出设备变化
 
 ```ts
-let rendererInfo = {
+import audio from '@ohos.multimedia.audio';
+let rendererInfo: audio.AudioRendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
     rendererFlags : 0,
 }
 
 // 监听最高优先级输出设备变化
-audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
-    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceRole}`);  // 设备角色
-    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceType}`);  // 设备类型
+audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色
+    console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型
 });
 
 // 取消监听最高优先级输出设备变化
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
 ```

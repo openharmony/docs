@@ -20,7 +20,7 @@ get(options: GetStorageOptions): void
 
 Reads the value stored in the cache based on the specified key.
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **Parameters**
 
@@ -55,7 +55,7 @@ set(options: SetStorageOptions): void
 
 Sets the value in the cache based on the specified key.
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **Parameters**
 
@@ -88,7 +88,7 @@ clear(options?: ClearStorageOptions): void
 
 Clears the key-value pairs from the cache.
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **Parameters**
 
@@ -119,7 +119,7 @@ delete(options: DeleteStorageOptions): void
 
 Deletes the key-value pair based on the specified key.
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 **Parameters**
 
@@ -147,20 +147,20 @@ export default {
 
 ## GetStorageOptions
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | Name    | Type         | Mandatory| Description                    |
 | -------- | ---------------- | ---- | ------------------- |
 | key      | string                               | Yes  | Key of the target data.                                     |
-| default  | string                               | No  | Default value returned when the specified key does not exist.                |
+| default  | string                               | No  | Default value returned when the specified key does not exist.                             |
 | success  | (data: any) => void                  | No  | Called to return the result when **storage.get()** is called successfully. **data** is the value indexed by the specified key. |
 | fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.get()** fails to be called. **data** is the error information, and **code** indicates the error code. |
-| complete | () => void                           | No  | Called when **storage.get()** is complete.     |
+| complete | () => void                           | No  | Called when **storage.get()** is complete.                              |
 
 
 ## SetStorageOptions
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | Name    | Type               | Mandatory| Description                  |
 | -------- | ------------------- | ---- | -------------------- |
@@ -173,23 +173,22 @@ export default {
 
 ## ClearStorageOptions
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | Name    | Type            | Mandatory| Description                        |
 | -------- | --------------------- | ---- | -------------------- |
 | success  | () => void                           | No  | Called when **storage.clear()** is called successfully.                |
 | fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.clear()** fails to be called. **data** is the error information, and **code** indicates the error code. |
-| complete | () => void                           | No  | Called when **storage.clear()** is complete.                         |
+| complete | () => void                           | No  | Called when **storage.clear()** is complete.                              |
 
 
 ## DeleteStorageOptions
 
-**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core.Lite
 
 | Name    | Type                | Mandatory| Description                 |
 | -------- | -------------------- | ---- | ------------------ |
 | key      | string                               | Yes  | Key of the data to delete.                                            |
 | success  | () => void                           | No  | Called when **storage.delete()** is called successfully.               |
 | fail     | (data: string, code: number) => void | No  | Called to return the result when **storage.delete()** fails to be called. **data** is the error information, and **code** indicates the error code. |
-| complete | () => void                           | No  | Called when **storage.delete()** is complete.                        |
-
+| complete | () => void                           | No  | Called when **storage.delete()** is complete.                              |

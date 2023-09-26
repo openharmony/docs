@@ -30,10 +30,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | src | string | Yes| Text to scroll.|
 
 ## Attributes
-
+In addition to the universal text attributes **fontColor**, **fontSize**, **fontWeight**, and **fontFamily**, the following attributes are supported.
 | Name      | Type| Description                                                        |
 | ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | Whether to allow text to scale.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| allowScale | boolean  | Whether to allow text to scale.<br>This attribute is not supported currently.<br>Default value: **false** |
 
 ## Events
 
@@ -55,7 +55,7 @@ struct MarqueeExample {
   @State start: boolean = false
   private fromStart: boolean = true
   private step: number = 50
-  private loop: number = Infinity
+  private loop: number = Number.POSITIVE_INFINITY
   private src: string = "Running Marquee starts rolling"
 
   build() {

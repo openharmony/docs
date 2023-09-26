@@ -22,8 +22,8 @@ New IP provides at least 1% higher payload transmission efficiency than IPv4 and
 
 | Scenario       | Header Overhead (Bytes)    | Payload Transmission Efficiency<br>(Wi-Fi MTU = 1500 Bytes, BT MTU = 255 Bytes)|
 | --------------- | ------------ | ------------------------------------------- |
-| IPv4 for Wi-Fi  | 30 + 8 + 20 = 58 | (1500 - 58)/1500 = 96.13%                       |
-| IPv6 for Wi-Fi  | 30 + 8 + 40 = 78 | (1500 - 78)/1500 = 94.8%                        |
+| IPv4 for Wi-Fi   | 30 + 8 + 20 = 58 | (1500 - 58)/1500 = 96.13%                       |
+| IPv6 for Wi-Fi   | 30 + 8 + 40 = 78 | (1500 - 78)/1500 = 94.8%                        |
 | New IP for Wi-Fi | 30 + 8 + 5 = 43 | (1500 - 43)/1500 = 97.13%                       |
 
 ## Variable-Length Header Format
@@ -97,7 +97,7 @@ Only the Linux 5.10 kernel of the RK3568 development board supports the New IP k
 # kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
 CONFIG_NEWIP=y          // Enable the New IP kernel protocol stack.
 CONFIG_NEWIP_HOOKS=y    // Enable New IP stub functions to be dynamically registered non-disruptively. This feature must be enabled when New IP is enabled.
-VENDOR_HOOKS=y          // Enable the basic kernel instrumentation framework. New IP depends on this setting. It is enabled by default for the RK3568 development board.
+HCK_VENDOR_HOOKS=y      // Enable the basic kernel instrumentation framework. New IP depends on this framework. It is enabled by default on the RK3568 development board.
 ```
 
 Run the following command to check whether the New IP protocol stack is successfully enabled:
@@ -119,8 +119,18 @@ out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
 
 ```c
 /* Register the New IP ehash function with the kernel. */
-register_trace_ninet_ehashfn_hook(&ninet_ehashfn_hook, NULL);
+/* Call the newip hook function in sk_ehashfn function (net\ipv4\inet_hashtables.c):
+ */
+void nip_ninet_ehashfn(const struct sock *sk, u32 *ret)
+{
+	*ret = ninet_ehashfn(sock_net(sk), &sk->SK_NIP_RCV_SADDR,
+			     sk->sk_num, &sk->SK_NIP_DADDR, sk->sk_dport);
+}
 
+void nip_ninet_ehashfn_lhck_register(void)
+{
+	REGISTER_HCK_LITE_HOOK(nip_ninet_ehashfn_lhck, nip_ninet_ehashfn);
+}
 
 /* Add the New IP stack processing to the general entry function of IPv4/IPv6 stacks. */
 static u32 sk_ehashfn(const struct sock *sk)
@@ -134,14 +144,12 @@ static u32 sk_ehashfn(const struct sock *sk)
 				     &sk->sk_v6_daddr, sk->sk_dport);
 #endif
 
-	if (trace_vendor_ninet_ehashfn_enabled()) {
-		if (sk->sk_family == AF_NINET) {
-			u32 ret = 0;
+	if (sk->sk_family == AF_NINET) {
+		u32 ret = 0;
 
         /* Register the New IP ehash function. */
-			trace_vendor_ninet_ehashfn(sk, &ret);
-			return ret;
-		}
+		CALL_HCK_LITE_HOOK(nip_ninet_ehashfn_lhck, sk, &ret);
+		return ret;
 	}
     /* IPv4 */
 	return inet_ehashfn(sock_net(sk),
@@ -166,8 +174,8 @@ The user-mode application calls **socket()** to create a New IP socket and uses 
 
 | API    | Input                                                        | Output                                          | Return Value          | Description                                                |
 | -------- | ------------------------------------------------------------ | ---------------------------------------------- | ---------------- | ------------------------------------------------------------ |
-| socket   | int **domain**, int type, int **protocol**                   | NA                                             | Socket handle **sockfd**.| Creates a New IP socket. <br>**domain** must be **AF_NINET**, which indicates a New IP socket.<br>**protocol** can be **IPPROTO_TCP** or **IPPROTO_UDP**.<br>This API returns the handle of the **socket** instance created.|
-| bind     | int sockfd, const **struct sockaddr_nin** *myaddr, socklen_t addrlen | NA                                             | Error code, which is an integer. | Binds the **socket** instance to the specified IP address and port.<br> **myaddr->sin_family** must be **AF_NINET**.|
+| socket   | int **domain**, int type, int **protocol**                   | NA                                             | Socket handle **sockfd**.| Creates a New IP socket. <br>**domain** must be **AF_NINET**, which indicates a New IP socket.<br>**protocol** can be **IPPROTO_TCP** or **IPPROTO_UDP**.<br>This API returns the handle of the **socket** instance created. |
+| bind     | int sockfd, const **struct sockaddr_nin** *myaddr, socklen_t addrlen | NA                                             | Error code, which is an integer. | Binds the **socket** instance to the specified IP address and port.<br>**myaddr->sin_family** must be **AF_NINET**. |
 | listen   | int socket, int backlog                                      | NA                                             | Error code, which is an integer. | Listens for the New IP address and port from the server.                                |
 | connect  | int sockfd, const **struct sockaddr_nin** *addr, aocklen_t addrlen | NA                                             | Error code, which is an integer. | Sets up a connection between the client and the server.                                  |
 | accept   | int sockfd, **struct sockaddr_nin** *address, socklen_t *address_len | NA                                             | **sockfd**.  | Accepts the connection request from the client.                              |

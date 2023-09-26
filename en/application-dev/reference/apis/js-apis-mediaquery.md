@@ -5,11 +5,17 @@ The **mediaquery** module provides different styles for different media types.
 > **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This module cannot be used in the file declaration of the [UIAbility](./js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
+>
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+>
+> Since API version 10, you can use the [getMediaQuery](./js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](./js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
 
 
 ## Modules to Import
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 ```
 
@@ -24,20 +30,21 @@ Sets the media query condition. This API returns the corresponding media query l
 
 **Parameters**
 
-| Name      | Type    | Mandatory  | Description                                      |
-| --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Media query condition. For details, see [Syntax of Media Query Conditions](../../ui/arkts-layout-development-media-query.md#syntax-of-media-query-conditions).|
+| Name   | Type  | Mandatory| Description                                                        |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| condition | string | Yes  | Media query condition. For details, see [Syntax](../../ui/arkts-layout-development-media-query.md#syntax).|
 
 **Return value**
 
-| Type                | Description                    |
-| ------------------ | ---------------------- |
+| Type              | Description                                        |
+| ------------------ | -------------------------------------------- |
 | MediaQueryListener | Media query listener, which is used to register or deregister the listening callback.|
 
 **Example**
 
-```js
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+```ts
+import mediaquery from '@ohos.mediaquery'
+let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
 
@@ -65,10 +72,10 @@ Registers the media query listener. The callback is triggered when the media att
 
 **Parameters**
 
-| Name     | Type                              | Mandatory  | Description              |
-| -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Listener type. The value is fixed at **'change'**.|
-| callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
+| Name  | Type                            | Mandatory| Description                    |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| type     | string                           | Yes  | Listener type. The value is fixed at **'change'**.|
+| callback | Callback&lt;MediaQueryResult&gt; | Yes  | Callback registered with media query.    |
 
 **Example**
 
@@ -92,11 +99,11 @@ Deregisters the media query listener, so that no callback is triggered when the 
 
 **Example**
 
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
-    function onPortrait(mediaQueryResult) {
+    function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
         } else {
@@ -135,7 +142,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait'
   listener = mediaquery.matchMediaSync('(orientation: landscape)')
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       this.color = '#FFD700'
       this.text = 'Landscape'
@@ -146,7 +153,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) // Bind the current JS instance.
+    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 
@@ -158,5 +165,3 @@ struct MediaQueryExample {
   }
 }
 ```
-
- <!--no_check--> 

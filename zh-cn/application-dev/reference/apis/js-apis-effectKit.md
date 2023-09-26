@@ -14,7 +14,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import effectKit from '@ohos.effectKit';
 ```
 
@@ -39,11 +39,19 @@ createEffect(source: image.PixelMap): Filter
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
 image.createPixelMap(color, opts).then((pixelMap) => {
   let headFilter = effectKit.createEffect(pixelMap);
 })
@@ -71,15 +79,72 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap).then(colorPicker => {
     console.info("color picker=" + colorPicker);
-  }).catch(ex => console.error(".error=" + ex.toString()))
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
+})
+```
+
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<ColorPicker>
+
+通过传入的PixelMap创建选定取色区域的ColorPicker实例，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | ----------- | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。 |
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap).then(colorPicker => {
+    console.info("color picker=" + colorPicker);
+  }).catch( (reason : BusinessError) => {
+    console.error("error=" + reason.message);
+  })
 })
 ```
 
@@ -100,11 +165,61 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+    }
+  })
+})
+```
+
+## effectKit.createColorPicker<sup>10+</sup>
+
+createColorPicker(source: image.PixelMap, region:Array\<number>, callback: AsyncCallback\<ColorPicker>): void
+
+通过传入的PixelMap创建选定取色区域的ColorPicker实例，使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                | 必填 | 说明                       |
+| -------- | ------------------ | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image-overview.md)。  |
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。<br>此参数不填时，默认值为[0, 0, 1, 1]，表示取色区域为全图。 |
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
@@ -124,10 +239,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | 是   | 否   | 红色分量值。           |
-| green | number | 是   | 否   | 绿色分量值。           |
-| blue  | number | 是   | 否   | 蓝色分量值。           |
-| alpha | number | 是   | 否   | 透明通道分量值。       |
+| red   | number | 是   | 否   | 红色分量值，取值范围[0x0, 0xFF]。           |
+| green | number | 是   | 否   | 绿色分量值，取值范围[0x0, 0xFF]。           |
+| blue  | number | 是   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
+| alpha | number | 是   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
 
 ## ColorPicker
 
@@ -149,13 +264,34 @@ getMainColor(): Promise\<Color>
 
 **示例：**
 
-```js
-colorPicker.getMainColor().then(color => {
-    console.log('Succeeded in getting main color.');
-    console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-}).catch(error => {
-    console.log('Failed to get main color.');
-})
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+export function test06(): void {
+  const color = new ArrayBuffer(96);
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 3,
+    size: {
+      height: 4,
+      width: 6
+    }
+  }
+  image.createPixelMap(color, opts).then((pixelMap) => {
+    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+      if (error) {
+        console.log('Failed to create color picker.');
+      } else {
+        console.log('Succeeded in creating color picker.');
+        colorPicker.getMainColor().then(color => {
+          console.log('Succeeded in getting main color.');
+          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+        })
+      }
+    })
+  })
+}
 ```
 
 ### getMainColorSync
@@ -174,9 +310,30 @@ getMainColorSync(): Color
 
 **示例：**
 
-```js
-let color = colorPicker.getMainColorSync();
-console.log('get main color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getMainColorSync();
+      console.log('get main color =' + color);
+    }
+  })
+})
 ```
 ![zh-ch_image_Main_Color.png](figures/zh-ch_image_Main_Color.png)
 
@@ -196,9 +353,30 @@ getLargestProportionColor(): Color
 
 **示例：**
 
-```js
-let color = colorPicker.getLargestProportionColor();
-console.log('get largest proportion color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getLargestProportionColor();
+      console.log('get largest proportion color =' + color);
+    }
+  })
+})
 ```
 ![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Largest_Proportion_Color.png)
 
@@ -218,9 +396,30 @@ getHighestSaturationColor(): Color
 
 **示例：**
 
-```js
-let color = colorPicker.getHighestSaturationColor();
-console.log('get highest saturation color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getHighestSaturationColor();
+      console.log('get highest saturation color =' + color);
+    }
+  })
+})
 ```
 ![zh-ch_image_Highest_Saturation_Color.png](figures/zh-ch_image_Highest_Saturation_Color.png)
 
@@ -240,9 +439,30 @@ getAverageColor(): Color
 
 **示例：**
 
-```js
-let color = colorPicker.getAverageColor();
-console.log('get average color =' + color);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let color = colorPicker.getAverageColor();
+      console.log('get average color =' + color);
+    }
+  })
+})
 ```
 ![zh-ch_image_Average_Color.png](figures/zh-ch_image_Average_Color.png)
 
@@ -254,6 +474,12 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | ----------- | ---- | -------------------------- |
+| color| number | 是   |  需要判断是否黑白灰色的颜色值，取值范围[0x0, 0xFFFFFFFF]。 |
+
 **返回值：**
 
 | 类型           | 说明                                            |
@@ -262,9 +488,30 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 **示例：**
 
-```js
-let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
-console.log('is black or white or gray color[bool](white) =' + bJudge);
+```ts
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+      let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
+      console.log('is black or white or gray color[bool](white) =' + bJudge);
+    }
+  })
+})
 ```
 
 ## Filter
@@ -293,11 +540,19 @@ blur(radius: number): Filter
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let radius = 5;
   let headFilter = effectKit.createEffect(pixelMap);
@@ -330,11 +585,19 @@ brightness(bright: number): Filter
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let bright = 0.5;
   let headFilter = effectKit.createEffect(pixelMap);
@@ -361,11 +624,19 @@ grayscale(): Filter
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let headFilter = effectKit.createEffect(pixelMap);
   if (headFilter != null) {
@@ -391,12 +662,22 @@ getPixelMap(): [image.PixelMap](js-apis-image.md#pixelmap7)
 
 **示例：**
 
-```js
+```ts
 import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
 
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
+  console.log('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
 })
 ```
+

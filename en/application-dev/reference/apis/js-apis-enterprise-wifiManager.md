@@ -1,15 +1,18 @@
 # @ohos.enterprise.wifiManager (Wi-Fi Management)
 
-The **wifiManager** module provides APIs for Wi-Fi management of enterprise devices. Only the device administrator applications can call the APIs provided by this module.
+The **wifiManager** module provides APIs for Wi-Fi management of enterprise devices.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs of this module can be used only in the stage model.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
-```js
+```ts
 import wifiManager from '@ohos.enterprise.wifiManager';
 ```
 
@@ -29,7 +32,7 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that checks the Wi-Fi status.                 |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** indicates that Wi-Fi is active; and **false** indicates that Wi-Fi is inactive). If the operation fails, **err** is an error object.      |
 
 **Error codes**
@@ -38,22 +41,24 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-wifiManager.isWifiActive(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("result:" + result);
+
+wifiManager.isWifiActive(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
 });
 ```
 
@@ -73,7 +78,7 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that checks the Wi-Fi status.|
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 
 **Return value**
 
@@ -87,20 +92,23 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 wifiManager.isWifiActive(wantTemp).then((result) => {
-    console.log("result:" + result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -108,7 +116,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-Sets Wi-Fi to connect to the specified network. This API uses an asynchronous callback to return the result.
+Sets Wi-Fi profile through the specified device administrator application to enable the device to connect to the specified network. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -120,8 +128,8 @@ Sets Wi-Fi to connect to the specified network. This API uses an asynchronous ca
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that sets the Wi-Fi profile.                 |
-| profile    | [WifiProfile](#wifiprofile)     | Yes   | WLAN configuration.                 |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| profile    | [WifiProfile](#wifiprofile)     | Yes   | Wi-Fi profile information.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -130,27 +138,29 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+let profile: wifiManager.WifiProfile = {
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-wifiManager.setWifiProfile(wantTemp, profile, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("set wifi success");
+
+wifiManager.setWifiProfile(wantTemp, profile, (err) => {
+  if (err) {
+    console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting wifi profile');
 });
 ```
 
@@ -158,7 +168,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (error) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-Sets Wi-Fi to connect to the specified network. This API uses a promise to return the result.
+Sets Wi-Fi profile through the specified device administrator application to enable the device to connect to the specified network. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -170,8 +180,8 @@ Sets Wi-Fi to connect to the specified network. This API uses a promise to retur
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that sets the Wi-Fi profile.|
-| profile    | [WifiProfile](#wifiprofile)     | Yes   | WLAN configuration.                 |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| profile    | [WifiProfile](#wifiprofile)     | Yes   | Wi-Fi profile information.                 |
 
 **Return value**
 
@@ -185,31 +195,34 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+let profile: wifiManager.WifiProfile = {
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
+
 wifiManager.setWifiProfile(wantTemp, profile).then(() => {
-    console.log("set wifi success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting wifi profile');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
 ## WifiProfile
 
-Represents the WLAN configuration.
+Represents the Wi-Fi profile information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 

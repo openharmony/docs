@@ -31,6 +31,8 @@ import config from '@ohos.accessibility.config';
 | shortkeyTarget | [Config](#config)\<string>| 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。 |
 | captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
+| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。True表示打开单声道，False表示关闭单声道。 |
+| audioBalance<sup>10+</sup>| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
 
 ## enableAbility
 
@@ -66,12 +68,14 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 let capability : accessibility.Capability[] = ['retrieve'];
 try {
     config.enableAbility(name, capability).then(() => {
       console.info('enable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to enable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -108,10 +112,13 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;, c
 
 ```ts
 import accessibility from '@ohos.accessibility';
-let name = 'com.ohos.example/axExtension';
-let capability : accessibility.Capability[] = ['retrieve'];
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
+let capability: accessibility.Capability[] = ['retrieve'];
 try {
-    config.enableAbility(name, capability, (err) => {
+    config.enableAbility(name, capability, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -154,11 +161,14 @@ disableAbility(name: string): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
     config.disableAbility(name).then(() => {
       console.info('disable ability succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
       console.error('failed to disable ability, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -192,9 +202,13 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-let name = 'com.ohos.example/axExtension';
+import accessibility from '@ohos.accessibility';
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let name: string = 'com.ohos.example/axExtension';
 try {
-    config.disableAbility(name, (err, data) => {
+    config.disableAbility(name, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to enable ability, because ' + JSON.stringify(err));
             return;
@@ -224,6 +238,8 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.on('enabledAccessibilityExtensionListChange', () => {
         console.info('subscribe enabled accessibility extension list change state success');
@@ -247,11 +263,13 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
-| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。 |
+| callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('enabledAccessibilityExtensionListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
     config.off('enabledAccessibilityExtensionListChange', () => {
         console.info('Unsubscribe enabled accessibility extension list change state success');
@@ -289,11 +307,13 @@ set(value: T): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+
+let value: boolean = true;
 try {
     config.highContrastText.set(value).then(() => {
         console.info('set highContrastText succeed');
-    }).catch((err) => {
+    }).catch((err: object) => {
         console.error('failed to set highContrastText, because ' + JSON.stringify(err));
     });
 } catch (exception) {
@@ -319,9 +339,12 @@ set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-let value = true;
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean = true;
 try {
-    config.highContrastText.set(value, (err, data) => {
+    config.highContrastText.set(value, (err: BusinessError<void>) => {
         if (err) {
             console.error('failed to set highContrastText, because ' + JSON.stringify(err));
             return;
@@ -350,11 +373,14 @@ get(): Promise&lt;T&gt;;
 **示例：**
 
 ```ts
-let value;
-config.highContrastText.get().then((data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get().then((data: boolean) => {
     value = data;
     console.info('get highContrastText success');
-}).catch((err) => {
+}).catch((err: object) => {
     console.error('failed to get highContrastText, because ' + JSON.stringify(err));
 });
 ```
@@ -376,8 +402,11 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 **示例：**
 
 ```ts
-let value;
-config.highContrastText.get((err, data) => {
+import config from '@ohos.accessibility.config';
+import { BusinessError } from '@ohos.base';
+
+let value: boolean;
+config.highContrastText.get((err: BusinessError<void>, data: boolean) => {
     if (err) {
         console.error('failed to get highContrastText, because ' + JSON.stringify(err));
         return;
@@ -404,8 +433,10 @@ on(callback: Callback&lt;T&gt;): void;
 **示例：**
 
 ```ts
+import config from '@ohos.accessibility.config';
+
 try {
-    config.highContrastText.on((data) => {
+    config.highContrastText.on((data: boolean) => {
         console.info('subscribe highContrastText success, result: ' + JSON.stringify(data));
     });
 } catch (exception) {
@@ -425,12 +456,14 @@ off(callback?: Callback&lt;T&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。 |
+| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。需与on()的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **示例：**
 
 ```ts
-config.highContrastText.off((data) => {
+import config from '@ohos.accessibility.config';
+
+config.highContrastText.off((data: boolean) => {
     console.info('Unsubscribe highContrastText success, result: ' + JSON.stringify(data));
 });
 ```

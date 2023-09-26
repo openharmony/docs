@@ -6,7 +6,7 @@ The documents are carefully organized as follows:
 
 ## Getting Started
 
-[Here](quick-start/start-overview.md) you'll learn how to quickly get started with OpenHarmony application development.
+[Here](quick-start/start-overview.md) you can learn how to better prepare yourself for application development.
 
 Browse the documents on the instructions for quickly building your first application and the basics about OpenHarmony applications.
 
@@ -25,23 +25,25 @@ All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
 
+- [ArkTS Common Library](arkts-utils/arkts-commonlibrary-overview.md)
 - [Web](web/web-component-overview.md)
 - [Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/media-application-overview.md)
 - [Security](security/userauth-overview.md)
+- [AI](ai/ai-overview.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
 - [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/data-mgmt-overview.md)
 - [File Management](file-management/file-management-overview.md)
-- [Task Management](task-management/background-task-overview.md)
-- [Device](device/usb-overview.md)
+- [Background Task Management](task-management/background-task-overview.md)
+- [Device Management](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-guidelines.md)
 - [Internationalization](internationalization/international-overview.md)
 - [Application Test](application-test/arkxtest-guidelines.md)
-- [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+- [IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
 
 ## Tools
@@ -51,7 +53,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ## Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md).
 
 ## API References
 
@@ -59,13 +61,12 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 
 They are organized as follows:
 
+- [ArkTS API Reference](reference/apis/development-intro.md)
 - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-components-summary.md)
 - [Component Reference (JavaScript-compatible Web-like Development Paradigm-ArkUI.Full)](reference/arkui-js/js-components-common-attributes.md)
 - [Component Reference (JavaScript-compatible Web-like Development Paradigm-ArkUI.Lite)](reference/arkui-js-lite/js-framework-file.md)
-- [JS Service Widget UI Components](reference/js-service-widget-ui/js-service-widget-file.md)
-- [JS and TS APIs](reference/apis/development-intro.md)
-- Native APIs
-  - [Standard Library](reference/native-lib/third_party_libc/musl.md)
+- [JavaScript Service Widget UI Component Reference](reference/js-service-widget-ui/js-service-widget-file.md)
+- Native API Reference
+  - [Native APIs](reference/native-apis/_o_h___native_x_component.md)
+  - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
   - [Node_API](reference/native-lib/third_party_napi/napi.md)
-
- <!--no_check--> 

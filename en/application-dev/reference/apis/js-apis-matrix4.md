@@ -16,7 +16,7 @@ import matrix4 from '@ohos.matrix4'
 
 ## matrix4.init
 
-init(array: Array&lt;number&gt;): Matrix4Transit
+init(options: [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]): Matrix4Transit
 
 
 Matrix constructor, which is used to create a 4 x 4 matrix by using the input parameter. Column-major order is used.
@@ -25,17 +25,17 @@ Matrix constructor, which is used to create a 4 x 4 matrix by using the input pa
 
 **Parameters**
 
-| Name| Type               | Mandatory| Description                                                        |
-| ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| array  | Array&lt;number&gt; | Yes  | A number array whose length is 16 (4 x 4). For details, see **array** parameters.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| option | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | 4 x 4 matrix object created based on the input parameter.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameter.|
 
-**array** parameters
+**4 x 4 matrix description**
 
 | Name | Type    | Mandatory  | Description                  |
 | ---- | ------ | ---- | -------------------- |
@@ -91,9 +91,9 @@ Constructs an identity matrix.
 
 **Return value**
 
-| Type          | Description          |
-| -------------- | -------------- |
-| Matrix4Transit | Identity matrix object.|
+| Type                             | Description          |
+| --------------------------------- | -------------- |
+| [Matrix4Transit](#matrix4transit) | Identity matrix object.|
 
 **Example**
 
@@ -136,9 +136,9 @@ Copies this matrix object.
 
 **Return value**
 
-| Type          | Description                |
-| -------------- | -------------------- |
-| Matrix4Transit | Copy object of the current matrix.|
+| Type                             | Description                |
+| --------------------------------- | -------------------- |
+| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
 
 **Example**
 
@@ -150,6 +150,7 @@ import matrix4 from '@ohos.matrix4'
 @Component
 struct Test {
   private matrix1 = matrix4.identity().translate({ x: 100 })
+  // Perform the scale operation on the copy matrix of matrix1, which does not affect matrix1.
   private matrix2 = this.matrix1.copy().scale({ x: 2 })
 
   build() {
@@ -170,30 +171,156 @@ struct Test {
 
 ![en-us_image_0000001219744181](figures/en-us_image_0000001219744181.png)
 
+## matrix4.invert<sup>(deprecated)</sup>
 
-## Matrix4
+invert(): Matrix4Transit
 
+Inverts this matrix object.
 
-### combine
+This API is deprecated since API version 10.
 
-combine(matrix: Matrix4): Matrix4Transit
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.combine<sup>(deprecated)</sup>
+
+combine(options: Matrix4Transit): Matrix4Transit
 
 Combines the effects of two matrices to generate a new matrix object.
+
+This API is deprecated since API version 10.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description              |
-| ------ | ------- | ---- | ------------------ |
-| matrix | Matrix4 | Yes  | Matrix object to be combined.|
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
 
 **Return value**
 
-| Type          | Description              |
-| -------------- | ------------------ |
-| Matrix4Transit | Object after matrix combination.|
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.translate<sup>(deprecated)</sup>
+
+translate(options: TranslateOption): Matrix4Transit
+
+Translates this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.scale<sup>(deprecated)</sup>
+
+scale(options: ScaleOption): Matrix4Transit
+
+Scales this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.rotate<sup>(deprecated)</sup>
+
+rotate(options: RotateOption): Matrix4Transit
+
+Rotates this matrix object along the x, y, and z axes.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
+
+**Return value**
+
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
+
+## matrix4.transformPoint<sup>(deprecated)</sup>
+
+transformPoint(options: [number, number]): [number, number]
+
+Applies the current transformation effect to a coordinate point.
+
+This API is deprecated since API version 10.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | Yes  | Point to be transformed.|
+
+**Return value**
+
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| [number, number] | Point object after matrix transformation|
+
+
+## Matrix4Transit
+
+
+### combine
+
+combine(options: Matrix4Transit): Matrix4Transit
+
+
+Combines the effects of two matrices to generate a new matrix object. The original matrix that calls this API will be changed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| option | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
+
+**Return value**
+
+| Type                             | Description              |
+| --------------------------------- | ------------------ |
+| [Matrix4Transit](#matrix4transit) | Object after matrix combination.|
 
 **Example**
 
@@ -204,8 +331,8 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 }).copy()
-  private matrix2 = matrix4.identity().scale({ x: 2 }).copy()
+  private matrix1 = matrix4.identity().translate({ x: 200 })
+  private matrix2 = matrix4.identity().scale({ x: 2 })
 
   build() {
     Column() {
@@ -216,7 +343,7 @@ struct Test {
         .margin({ top: 50 })
       // Translate the x-axis by 200px, and then scale it twice to obtain the resultant matrix.
       Image($r("app.media.icon"))
-        .transform(this.matrix1.combine(this.matrix2))
+        .transform(this.matrix1.copy().combine(this.matrix2))
         .width("40%")
         .height(100)
         .margin({ top: 50 })
@@ -232,15 +359,15 @@ struct Test {
 
 invert(): Matrix4Transit
 
-Inverts this matrix object.
+Inverts this matrix object. The original matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
-| Type          | Description                  |
-| -------------- | ---------------------- |
-| Matrix4Transit | Inverse matrix object of the current matrix.|
+| Type                             | Description                  |
+| --------------------------------- | ---------------------- |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
 
 **Example**
 
@@ -248,7 +375,7 @@ Inverts this matrix object.
 import matrix4 from '@ohos.matrix4'
 // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
 let matrix1 = matrix4.identity().scale({ x: 2 })
-let matrix2 = matrix1.invert()
+let matrix2 = matrix1.copy().invert()
 
 @Entry
 @Component
@@ -273,25 +400,23 @@ struct Tests {
 
 ### translate
 
-translate({x?: number, y?: number, z?: number}): Matrix4Transit
+translate(options: TranslateOption): Matrix4Transit
 
-Translates this matrix object along the x, y, and z axes.
+Translates this matrix object along the x, y, and z axes. The original matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                                       |
-| ------ | ------ | ---- | ----------------------------------------------------------- |
-| x      | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| y      | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
-| z      | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| option | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the translation effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the translation.|
 
 **Example**
 
@@ -319,28 +444,24 @@ struct Test {
 
 ### scale
 
-scale({x?: number, y?: number, z?: number, centerX?: number, centerY?: number}): Matrix4Transit
+scale(options: ScaleOption): Matrix4Transit
 
 
-Scales this matrix object along the x, y, and z axes.
+Scales this matrix object along the x, y, and z axes. The original matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                        |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| x       | number | No  | Scaling multiple along the x-axis. If the value is greater than 1, the image is scaled up along the x-axis. If the value is less than 1, the image is scaled down along the x-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| y       | number | No  | Scaling multiple along the y-axis. If the value is greater than 1, the image is scaled up along the y-axis. If the value is less than 1, the image is scaled down along the y-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| z       | number | No  | Scaling multiple along the z-axis. If the value is greater than 1, the image is scaled up along the z-axis. If the value is less than 1, the image is scaled down along the z-axis.<br>Default value: **1**<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+| Name| Type                       | Mandatory| Description          |
+| ------ | --------------------------- | ---- | -------------- |
+| option | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the scaling effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the scaling.|
 
 **Example**
 
@@ -367,29 +488,24 @@ struct Test {
 
 ### rotate
 
-rotate({x?: number, y?: number, z?: number, angle?: number, centerX?: Length, centerY?: Length}): Matrix4Transit
+rotate(options: RotateOption): Matrix4Transit
 
 
-Rotates this matrix object along the x, y, and z axes.
+Rotates this matrix object along the x, y, and z axes. The original matrix that calls this API will be changed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                                                   |
-| ------- | ------ | ---- | ------------------------------------------------------- |
-| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **1**<br>Value range: (-∞, +∞)|
-| angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
-| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**                      |
-| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**                      |
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| option | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
 
 **Return value**
 
-| Type          | Description                        |
-| -------------- | ---------------------------- |
-| Matrix4Transit | Matrix object after the rotation effect is added.|
+| Type                             | Description                        |
+| --------------------------------- | ---------------------------- |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the rotation.|
 
 **Example**
 
@@ -417,7 +533,7 @@ struct Test {
 
 ### transformPoint
 
-transformPoint(point: Point): Point
+transformPoint(options: [number, number]): [number, number]
 
 
 Applies the current transformation effect to a coordinate point.
@@ -426,15 +542,15 @@ Applies the current transformation effect to a coordinate point.
 
 **Parameters**
 
-| Name| Type | Mandatory| Description              |
-| ------ | ----- | ---- | ------------------ |
-| point  | Point | Yes  | Point to be transformed.|
+| Name| Type            | Mandatory| Description              |
+| ------ | ---------------- | ---- | ------------------ |
+| option | [number, number] | Yes  | Point to be transformed.|
 
 **Return value**
 
-| Type   | Description              |
-| ----- | ---------------- |
-| Point | Point object after matrix transformation|
+| Type            | Description                       |
+| ---------------- | --------------------------- |
+| [number, number] | Point object after matrix transformation|
 
 **Example**
 
@@ -445,9 +561,9 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private originPoint: [number, number] = [50, 50]
+  private originPoint: number[] = [50, 50]
   private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
-  private transformPoint = this.matrix_1.transformPoint(this.originPoint)
+  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]])
   private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
 
   build() {
@@ -472,3 +588,38 @@ struct Test {
 ```
 
 ![en-us_image_0000001219864133](figures/en-us_image_0000001219864133.PNG)
+
+## TranslateOption
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type  | Mandatory| Description                                                       |
+| ---- | ------ | ---- | ----------------------------------------------------------- |
+| x    | number | No  | Translation distance along the x-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| y    | number | No  | Translation distance along the y-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| z    | number | No  | Translation distance along the z-axis, in px.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+
+## ScaleOption
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| x       | number | No  | Scaling multiple along the x-axis. x > 1: The image is scaled up along the x-axis.<br>0 < x < 1: The image is scaled down along the x-axis.<br>x < 0: The image is scaled in the reverse direction of the x-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| y       | number | No  | Scaling multiple along the y-axis. y > 1: The image is scaled up along the y-axis.<br>0 < y < 1: The image is scaled down along the y-axis.<br>y < 0: The image is scaled in the reverse direction of the y-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| z       | number | No  | Scaling multiple along the z-axis. z > 1: The image is scaled up along the z-axis.<br>0 < z < 1: The image is scaled down along the z-axis.<br>z < 0: The image is scaled in the reverse direction of the z-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**<br>Value range: (-∞, +∞)   |
+
+## RotateOption
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type  | Mandatory| Description                                                   |
+| ------- | ------ | ---- | ------------------------------------------------------- |
+| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)|
+| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)<br>**NOTE**<br>The rotation axis vector is valid only when at least one of **x**, **y**, and **z** is not 0.|
+| angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
+| centerX | number | No  | X coordinate of the center point.<br>Default value: **0**                      |
+| centerY | number | No  | Y coordinate of the center point.<br>Default value: **0**                      |

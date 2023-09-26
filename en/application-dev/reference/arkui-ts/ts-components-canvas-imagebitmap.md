@@ -16,7 +16,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Default Value| Description                                                    |
 | ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
-| src    | string   | Yes  | -      | Image source.<br>**NOTE**<br>ArkTS widgets do not support the **http://**, **datashare://**, or **file://data/storage** path prefixes.|
+| src    | string   | Yes  | -      | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the ets folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
 
 
 
@@ -24,8 +24,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| width | number | Pixel width of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | Pixel height of the **ImageBitmap** object.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| width | number | Pixel width of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| height | number | Pixel height of the **ImageBitmap** object. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 
@@ -65,6 +65,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 close()
 
-Releases all graphics resources associated with this **ImageBitmap** object. This API is a void API.
+Releases all graphics resources associated with this **ImageBitmap** object and sets its width and height to **0**.
 
 Since API version 9, this API is supported in ArkTS widgets.

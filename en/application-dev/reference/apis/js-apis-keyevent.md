@@ -1,8 +1,9 @@
 # @ohos.multimodalInput.keyEvent (Key Event)
 
-The **keyEvent** module provides key events reported by an input device.
+The **keyEvent** module provides key events reported by input devices.
 
-> **NOTE**<br>
+>  **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -13,13 +14,13 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Action
 
-Defines a key action.
+Key event type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name  | Value | Description    |
 | ------ | ------- | -------- |
-| CANCEL | 0    |  Cancellation of a key action.|
+| CANCEL | 0    | Cancellation of a key action.|
 | DOWN   | 1    | Pressing of a key.|
 | UP     | 2    | Release of a key.|
 
@@ -32,26 +33,26 @@ Defines a key.
 | Name       | Type| Readable| Writable| Description          |
 | ----------- | -------- | ---- | ---- | -------------- |
 | code        | KeyCode  | Yes  | No  | Keycode.        |
-| pressedTime | number   | Yes  | No  | Time when the key is pressed.|
+| pressedTime | number   | Yes  | No  | Duration for pressing a key, in μs.|
 | deviceId    | number   | Yes  | No  | ID of the device to which the key belongs.  |
 
 ## KeyEvent
 
-Defines a key event.
+Key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Type| Readable| Writable| Description                          |
 | ----------- | -------- | ---- | ---- | ------------------------------ |
-| action      | Action   | Yes  | No  | Key action.                      |
-| key         | Key      | Yes  | No  | Key for which the event is reported.            |
+| action      | [Action](#action)   | Yes  | No  | Key action.                      |
+| key         | [Key](#key)      | Yes  | No  | Key for which the event is reported.            |
 | unicodeChar | number   | Yes  | No  | Unicode character corresponding to the key.         |
 | keys        | Key[]    | Yes  | No  | List of pressed keys.    |
-| ctrlKey     | boolean  | Yes  | No  | Whether ctrlKey is being pressed.   |
+| ctrlKey     | boolean  | Yes  | No  | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.|
 | altKey      | boolean  | Yes  | No  | Whether altKey is being pressed.    |
 | shiftKey    | boolean  | Yes  | No  | Whether shiftKey is being pressed.  |
 | logoKey     | boolean  | Yes  | No  | Whether logoKey is being pressed.   |
 | fnKey       | boolean  | Yes  | No  | Whether fnKey is being pressed.     |
-| capsLock    | boolean  | Yes  | No  | Whether capsLock is active.  |
+| capsLock    | boolean  | Yes  | No  | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.  |
 | numLock     | boolean  | Yes  | No  | Whether numLock is active.   |
 | scrollLock  | boolean  | Yes  | No  | Whether scrollLock is active.|

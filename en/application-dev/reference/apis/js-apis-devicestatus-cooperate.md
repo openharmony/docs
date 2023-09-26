@@ -4,13 +4,13 @@ The **cooperate** module implements screen hopping for two or more networked dev
 
 > **NOTE**
 >
->   - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->  - The APIs provided by this module are system APIs.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
-```js
+```ts
 import cooperate from '@ohos.cooperate'
 ```
 
@@ -26,13 +26,14 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 | Name   | Type     | Mandatory | Description   |
 | -------- | ------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result.  |
+| callback | AsyncCallback&lt;void&gt;  | Yes|Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
-  cooperate.prepare((error) => {
+  cooperate.prepare((error: BusinessError) => {
     if (error) {
       console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -56,24 +57,24 @@ Prepares for screen hopping. This API uses a promise to return the result.
 
 | Parameters                | Description                    |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise used to return the result.|
+| Promise&lt;void&gt;      | Promise that returns no value.|
 
 
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.prepare().then(() => {
     console.log(`Keyboard mouse crossing prepare success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
 
 
 ## cooperate.unprepare
@@ -86,13 +87,14 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 | Name  | Type                     | Mandatory| Description                                      |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
-  cooperate.unprepare((error) => {
+  cooperate.unprepare((error: BusinessError) => {
     if (error) {
       console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -103,8 +105,6 @@ try {
   console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
-
 
 ## cooperate.unprepare
 
@@ -118,20 +118,20 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 
 | Parameters               | Description                                         |
 | ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.unprepare().then(() => {
     console.log(`Keyboard mouse crossing unprepare success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
   console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-
 
 
 ## cooperate.activate
@@ -148,7 +148,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | targetNetworkId | string                       |  Yes  | Descriptor of the target device for screen hopping.            |
 | inputDeviceId | number                       |  Yes  | Identifier of the input device for screen hopping.|
-| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the result.|
+| callback             | AsyncCallback&lt;void&gt; |  Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -156,15 +156,16 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.               |
+| 20900001 | Operation failed.|
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
-  cooperate.activate(targetNetworkId, inputDeviceId, (error) => {
+  cooperate.activate(targetNetworkId, inputDeviceId, (error: BusinessError) => {
     if (error) {
       console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -197,7 +198,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 | Name                 | Description                            |
 | ---------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.    |
+| Promise&lt;void&gt; | Promise that returns no value.    |
 
 **Error codes**
 
@@ -205,17 +206,18 @@ For details about the error codes, see [Screen Hopping Error Codes](../errorcode
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | This error code is reported if the screen hopping status is abnormal when the screen hopping API is called.              |
+| 20900001 | Operation failed.   |
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
  cooperate.activate(targetNetworkId, inputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -235,16 +237,17 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 
 | Name               | Type                         | Mandatory | Description                           |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | Yes| Whether to disable the cross-device link.|
-| callback             | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result.      |
+| isUnchained | boolean | Yes| Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
+| callback     | AsyncCallback&lt;void&gt; |  Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
-  cooperate.deactivate(false, (error) => {
+  cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
       console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -268,7 +271,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 | Name     | Type   | Mandatory| Description              |
 | ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | Yes  | Whether to disable the cross-device link.|
+| isUnchained | boolean | Yes  | Whether to disable the cross-device link.<br> The value **true** means to disable the cross-device link, and the value **false** means the opposite.|
 
 
 
@@ -276,17 +279,18 @@ Stops screen hopping. This API uses a promise to return the result.
 
 | Name               | Description                           |
 | --------             | ----------------------------   |
-| Promise&lt;void&gt; |  Promise used to return the result.     |
+| Promise&lt;void&gt; |  Promise that returns no value.     |
 
 
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 try {
   cooperate.deactivate(false).then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -307,14 +311,15 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 | Name               | Type                         | Mandatory  | Description                           |
 | --------             | ---------                    | ----  | ----------------------------    |
 | networkId | string                       |  Yes   | Descriptor of the target device for screen hopping.            |
-| callback             | AsyncCallback&lt;boolean&gt; |  Yes   | Callback used to return the result.|
+| callback             | AsyncCallback&lt;boolean&gt; |  Yes   | Callback used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor, (error, data) => {
+  cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -336,9 +341,9 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 **Parameters**
 
-| Name               | Type                         | Mandatory  | Description                           |
-| --------             | ---------                    | ----  | ----------------------------    |
-| networkId | string                       |  Yes   | Descriptor of the target device for screen hopping.           |
+| Name   | Type  | Mandatory  | Description                           |
+| --------   | ---------  | ----  | ----------------------------    |
+| networkId | string     |  Yes   | Descriptor of the target device for screen hopping.           |
 
 
 
@@ -346,18 +351,19 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 | Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the value **false** indicates the opposite.|
 
 
 
 **Example**
 
-```js
+```ts
+import BusinessError from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor).then((data) => {
+  cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
@@ -384,11 +390,13 @@ Enables listening for screen hopping status change events.
 
 **Example**
 
-```js
+```ts
+function callback(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  return false;
+}
 try {
-  cooperate.on('cooperate', (data) => {
-    console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
-  });
+  cooperate.on('cooperate', callback);
 } catch (error) {
   console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -413,28 +421,32 @@ Disables listening for screen hopping status change events.
 
 **Example**
 
-```js
+```ts
 // Unregister a single callback.
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  return false;
+}
+function callbackOff() {
+  console.log(`Keyboard mouse crossing event`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate", callback);
+  cooperate.on('cooperate', callbackOn);
+  cooperate.off('cooperate', callbackOff);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-```js
+```ts
 // Unregister all callbacks.
-function callback(event) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(event)}`);
+function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
+  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate");
+  cooperate.on('cooperate', callbackOn);
+  cooperate.off('cooperate');
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -455,3 +467,4 @@ Represents a screen hopping message notification.
 | COOPERATE_ACTIVATE_FAIL | 4 | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | Stopping screen hopping succeeds.|
 | COOPERATE_DEACTIVATE_FAIL | 6 | Stopping screen hopping fails.|
+| COOPERATE_SESSION_DISCONNECTED | 7 | The screen hopping session is disconnected.|

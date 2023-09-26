@@ -11,6 +11,7 @@
 | [网格](#网格) | Grid组件&nbsp;/&nbsp;List组件&nbsp;+&nbsp;响应式布局 |
 | [侧边栏](#侧边栏) | SiderBar组件&nbsp;+&nbsp;响应式布局 |
 | [单/双栏](#单/双栏) | Navigation组件&nbsp;+&nbsp;响应式布局 |
+| [三分栏](#三分栏) | SiderBar组件&nbsp;+&nbsp;Navigation组件&nbsp;+&nbsp;响应式布局 |
 | [自定义弹窗](#自定义弹窗) | CustomDialogController组件&nbsp;+&nbsp;响应式布局 |
 | [大图浏览](#大图浏览) | Image组件 |
 | [操作入口](#操作入口) | Scroll组件+Row组件横向均分 |
@@ -45,9 +46,9 @@
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
-type TabBar = {
+interface TabBar  {
   name: string
   icon: Resource
   selectIcon: Resource
@@ -85,10 +86,10 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType({
+        .margin(new BreakPointType<(Length|Padding)>({
           sm: { top: 4 },
           md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint))
+          lg: { top: 4 } }).getValue(this.currentBreakpoint)!)
         .fontSize(16)
     }
     .width('100%')
@@ -114,17 +115,17 @@ struct Home {
         lg: BarPosition.Start
       }).getValue(this.currentBreakpoint)
     }) {
-      ForEach(this.tabs, (item, index) => {
+      ForEach(this.tabs, (item:TabBar, index) => {
         TabContent() {
           Stack() {
             Text(item.name).fontSize(30)
           }.width('100%').height('100%')
-        }.tabBar(this.TabBarBuilder(index, item))
+        }.tabBar(this.TabBarBuilder(index!, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint))
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint))
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint))
+    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
+    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint)!)
+    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint)!)
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index
@@ -151,7 +152,7 @@ struct Home {
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
 @Entry
 @Component
@@ -177,15 +178,15 @@ export default struct Banner {
 
   build() {
     Swiper() {
-      ForEach(this.data, (item) => {
+      ForEach(this.data, (item:Resource) => {
         Image(item)
           .size({ width: '100%', height: 200 })
           .borderRadius(12)
           .padding(8)
       })
     }
-    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).getValue(this.currentBreakpoint))
-    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint))
+    .indicator(new BreakPointType({ sm: true, md: false, lg: false }).getValue(this.currentBreakpoint)!)
+    .displayCount(new BreakPointType({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint)!)
   }
 }
 ```
@@ -216,7 +217,7 @@ export default struct Banner {
 ```
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
-type GridItemInfo = {
+interface GridItemInfo {
   name: string
   image: Resource
 }
@@ -267,7 +268,7 @@ struct MultiLaneList {
       sm: '1fr 1fr',
       md: '1fr 1fr 1fr 1fr',
       lg: '1fr 1fr 1fr 1fr 1fr 1fr'
-    }).GetValue(this.currentBreakpoint))
+    }).getValue(this.currentBreakpoint)!)
   }
 }
 ```
@@ -276,9 +277,9 @@ struct MultiLaneList {
 
 
 ```
-import { BreakpointSystem, BreakPointType } from 'common/BreakpointSystem'
+import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
-type ListItemInfo = {
+interface ListItemInfo {
   name: string
   image: Resource
 }
@@ -324,7 +325,7 @@ struct MultiLaneList {
         }
       })
     }
-    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint))
+    .lanes(new BreakPointType({ sm: 2, md: 4, lg: 6 }).getValue(this.currentBreakpoint)!)
     .width('100%')
   }
 }
@@ -353,16 +354,11 @@ struct MultiLaneList {
 struct SideBarSample {
   @StorageLink('currentBreakpoint') private currentBreakpoint: string = "md";
   private breakpointSystem: BreakpointSystem = new BreakpointSystem()
-  @State showSideBar: boolean = false
   @State selectIndex: number = 0;
+  @State showSideBar:boolean=false;
 
   aboutToAppear() {
-    this.breakpointSystem.register()
-    if (this.currentBreakpoint === 'sm') {
-      this.showSideBar = false
-    } else {
-      this.showSideBar = true
-    }
+    this.breakpointSystem.register() 
   }
 
   aboutToDisappear() {
@@ -380,9 +376,9 @@ struct SideBarSample {
       .width(180)
       .height(36)
       .onClick(() => {
-        this.selectIndex = index
-        if (this.currentBreakpoint === 'sm') {
-          this.showSideBar = false
+        this.selectIndex = index;
+        if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=false
         }
       })
   }
@@ -411,9 +407,11 @@ struct SideBarSample {
     .maxSideBarWidth(this.currentBreakpoint === 'sm' ? '100%' : '33.33%')
     .showControlButton(this.currentBreakpoint === 'sm')
     .autoHide(false)
-    .showSideBar(this.showSideBar)
+    .showSideBar(this.currentBreakpoint !== 'sm'||this.showSideBar)
     .onChange((isBarShow: boolean) => {
-      this.showSideBar = isBarShow
+      if(this.currentBreakpoint === 'sm'){
+          this.showSideBar=isBarShow
+        }         
     })
   }
 }
@@ -437,7 +435,7 @@ struct SideBarSample {
 ```
 @Component
 struct Details {
-  private imageSrc: Resource
+  private imageSrc: Resource=$r('app.media.my_image_moon')
   build() {
     Column() {
       Image(this.imageSrc)
@@ -453,8 +451,8 @@ struct Details {
 
 @Component
 struct Item {
-  private imageSrc: Resource
-  private label: string
+  private imageSrc?: Resource
+  private label?: string
 
   build() {
     NavRouter() {
@@ -500,13 +498,201 @@ struct NavigationSample {
 
 
 
+## 三分栏
+
+**布局效果**
+
+| sm                                           | md                                      | lg                                      |
+| -------------------------------------------- | --------------------------------------- | --------------------------------------- |
+| 单栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击首页的选项可以进入到内容区，内容区点击返回按钮可返回首页。| 双栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。 | 三分栏显示。<br> 点击侧边栏控制按钮控制侧边栏的显示/隐藏，来回切换二分/三分栏显示。<br> 点击左侧导航区不同的选项可以刷新右侧内容区的显示。<br> 窗口宽度变化时，优先变化右侧内容区的宽度大小。 |
+| ![](figures/tripleColumn_sm.png)            | ![](figures/tripleColumn_md.png)       | ![](figures/tripleColumn_lg.png)       |
+| ![](figures/TripleColumn.gif)
+
+**场景说明**
+
+为充分利用设备的屏幕尺寸优势，应用在平板和PC等大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现B+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
+
+**实现方案**
+
+三分栏场景可以组合使用[SideBarContainer](../../reference/arkui-ts/ts-container-sidebarcontainer.md)组件与[Navigation组件](../../reference/arkui-ts/ts-basic-components-navigation.md)实现，SideBarContainer组件可以通过侧边栏控制按钮控制显示/隐藏，Navigation组件可以根据窗口宽度自动切换该组件内单/双栏显示，结合响应式布局能力，在不同断点下为SiderBarConContainer组件的minContentWidth属性配置不同的值，即可实现目标效果。设置minContentWidth属性的值可以通过[断点](../multi-device-app-dev/responsive-layout.md#断点)监听窗口尺寸变化的同时设置不同的值并储存成一个全局对象。
+
+**参考代码**
+
+```
+// MainAbility.ts
+import window from '@ohos.window'
+import display from '@ohos.display'
+import Ability from '@ohos.app.ability.Ability'
+
+export default class MainAbility extends Ability {
+  private windowObj?: window.Window
+  private curBp?: string
+  private myWidth?: number
+  // ...
+  // 根据当前窗口尺寸更新断点
+  private updateBreakpoint(windowWidth:number) :void{
+    // 将长度的单位由px换算为vp
+    let windowWidthVp = windowWidth / (display.getDefaultDisplaySync().densityDPI / 160)
+    let newBp: string = ''
+    let newWd: number
+    if (windowWidthVp < 320) {
+      newBp = 'xs'
+      newWd = 360
+    } else if (windowWidthVp < 600) {
+      newBp = 'sm'
+      newWd = 360
+    } else if (windowWidthVp < 840) {
+      newBp = 'md'
+      newWd = 600
+    } else {
+      newBp = 'lg'
+      newWd = 600
+    }
+    if (this.curBp !== newBp) {
+      this.curBp = newBp
+      this.myWidth = newWd
+      // 使用状态变量记录当前断点值
+      AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+      // 使用状态变量记录当前minContentWidth值
+      AppStorage.SetOrCreate('myWidth', this.myWidth)
+    }
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage) :void{
+    windowStage.getMainWindow().then((windowObj) => {
+      this.windowObj = windowObj
+      // 获取应用启动时的窗口尺寸
+      this.updateBreakpoint(windowObj.getWindowProperties().windowRect.width)
+      // 注册回调函数，监听窗口尺寸变化
+      windowObj.on('windowSizeChange', (windowSize)=>{
+        this.updateBreakpoint(windowSize.width)
+      })
+    });
+   // ...
+  }
+    
+  // 窗口销毁时，取消窗口尺寸变化监听
+  onWindowStageDestroy() :void {
+    if (this.windowObj) {
+      this.windowObj.off('windowSizeChange')
+    }
+  }
+  //...
+}
+
+
+// tripleColumn.ets
+@Component
+struct Details {
+  private imageSrc: Resource=$r('app.media.icon')
+  build() {
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Item {
+  private imageSrc?: Resource
+  private label?: string
+
+  build() {
+    NavRouter() {
+      Text(this.label)
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+        .backgroundColor('#66000000')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .height('30%')
+      NavDestination() {
+        Details({imageSrc: this.imageSrc})
+      }.title(this.label)
+      .hideTitleBar(false)
+      .backgroundColor('#FFFFFF')
+    }
+    .margin(10)
+  }
+}
+
+@Entry
+@Component
+struct TripleColumnSample {
+  @State arr: number[] = [1, 2, 3]
+  @StorageProp('myWidth') myWidth: number = 360
+
+  @Builder NavigationTitle() {
+    Column() {
+      Text('Sample')
+        .fontColor('#000000')
+        .fontSize(24)
+        .width('100%')
+        .height('100%')
+        .align(Alignment.BottomStart)
+        .margin({left:'5%'})
+    }.alignItems(HorizontalAlign.Start)
+  }
+
+  build() {
+    SideBarContainer() {
+      Column() {
+        List() {
+          ForEach(this.arr, (item:number, index) => {
+            ListItem() {
+              Text('A'+item)
+                .width('100%').height("20%").fontSize(24)
+                .fontWeight(FontWeight.Bold)
+                .textAlign(TextAlign.Center).backgroundColor('#66000000')
+            }
+          })
+        }.divider({ strokeWidth: 5, color: '#F1F3F5' })
+      }.width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .backgroundColor('#F1F3F5')
+
+      Column() {
+        Navigation() {
+          List(){
+            ListItem() {
+              Column() {
+                Item({ label: 'B1', imageSrc: $r('app.media.icon') })
+                Item({ label: 'B2', imageSrc: $r('app.media.icon') })
+              }
+            }.width('100%')
+          }
+        }
+        .mode(NavigationMode.Auto)
+        .minContentWidth(360)
+        .navBarWidth(240)
+        .backgroundColor('#FFFFFF')
+        .height('100%')
+        .width('100%')
+        .hideToolBar(true)
+        .title(this.NavigationTitle)
+      }.width('100%').height('100%')
+    }.sideBarWidth(240)
+    .minContentWidth(this.myWidth)
+  }
+}
+```
+
+
+
 ## 自定义弹窗
 
 **布局效果**
 
 | sm                                           | md                                      | lg                                      |
 | -------------------------------------------- | --------------------------------------- | --------------------------------------- |
-| 弹窗居中显示，<br>与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
+| 弹窗横向居中，纵向位于底部显示，与窗口左右两侧各间距24vp。 | 弹窗居中显示，其宽度约为窗口宽度的1/2。 | 弹窗居中显示，其宽度约为窗口宽度的1/3。 |
 | ![](figures/custom_dialog_sm.png)            | ![](figures/custom_dialog_md.png)       | ![](figures/custom_dialog_lg.png)       |
 
 **实现方案**
@@ -573,9 +759,9 @@ struct CustomDialogSample {
 
 @CustomDialog
 struct CustomDialogA {
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  controller?: CustomDialogController
+  cancel?: () => void
+  confirm?: () => void
 
   build() {
     Column() {
@@ -590,8 +776,10 @@ struct CustomDialogA {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(()=>{
-            this.controller.close()
-            this.cancel()
+            if(this.controller){
+                 this.controller.close()
+             }
+            this.cancel!()
           })
         Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
         Text('删除')
@@ -600,8 +788,10 @@ struct CustomDialogA {
           .layoutWeight(1)
           .textAlign(TextAlign.Center)
           .onClick(()=>{
-            this.controller.close()
-            this.confirm()
+             if(this.controller){
+                 this.controller.close()
+             }
+            this.confirm!()
           })
       }.height(40)
       .margin({left: 24, right: 24, bottom: 16})
@@ -611,9 +801,9 @@ struct CustomDialogA {
 
 @CustomDialog
 struct CustomDialogB {
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  controller?: CustomDialogController
+  cancel?: () => void
+  confirm?: () => void
 
   build() {
     GridRow({columns: {sm: 4, md: 8, lg: 12}}) {
@@ -630,8 +820,10 @@ struct CustomDialogB {
               .layoutWeight(1)
               .textAlign(TextAlign.Center)
               .onClick(()=>{
-                this.controller.close()
-                this.cancel()
+                if(this.controller){
+                 this.controller.close()
+                }
+                this.cancel!()
               })
             Line().width(1).height(24).backgroundColor('#33000000').margin({left: 4, right: 4})
             Text('删除')
@@ -640,8 +832,10 @@ struct CustomDialogB {
               .layoutWeight(1)
               .textAlign(TextAlign.Center)
               .onClick(()=>{
-                this.controller.close()
-                this.confirm()
+                 if(this.controller){
+                 this.controller.close()
+                }
+                this.confirm!()
               })
           }.height(40)
           .margin({left: 24, right: 24, bottom: 16})
@@ -705,7 +899,7 @@ Scroll（内容超出宽度时可滚动） + Row（横向均分：justifyContent
 
 
 ```
-type OperationItem = {
+interface OperationItem {
   name: string
   icon: Resource
 }
@@ -726,7 +920,7 @@ export default struct OperationEntries {
   build() {
     Scroll() {
       Row() {
-        ForEach(this.listData, item => {
+        ForEach(this.listData, (item:OperationItem) => {
           Column() {
             Image(item.icon)
               .width(48)

@@ -1,15 +1,13 @@
-# 使用ArkTS语言开发（Stage模型）
+# 构建第一个ArkTS应用（Stage模型）
 
 
->  **说明：**
->
->  请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
->
->  为确保运行效果，本文以使用**DevEco Studio 4.0 Beta1**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.0-beta1.md#配套关系)获取下载链接。
+> **说明：**
+> 
+> 为确保运行效果，本文以使用**DevEco Studio 4.0 Beta2**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.0-beta2.md#配套关系)获取下载链接。
 
 ## 创建ArkTS工程
 
-对于不同API版本，创建对应的OpenHarmony工程的步骤不同。主要分为API 9之后的工程创建、API 9及API之前的工程创建两种。
+对于不同API版本，创建对应的OpenHarmony工程的步骤不同。主要分为API 9之后的工程创建、API 9及API 9之前的工程创建两种。
 
 此处分别以创建API 10和创建API 9的OpenHarmony工程为例，给出具体的指导。
 
@@ -23,6 +21,8 @@
 
 3. 进入配置工程界面，**Compile SDK**选择“**3.1.0(API 9)**”，其他参数保持默认设置即可。
 
+   其中**Node**用来配置当前工程运行的Node.js版本，可选择使用已有的Node.js或下载新的Node.js版本。
+
    ![chooseStageModel](figures/chooseStageModel.png)
 
    > **说明：**
@@ -34,7 +34,7 @@
 
 4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
 
-5. 工程创建完成后，在应用级**build-profile.json5**文件中，将**compileSdkVersion**和**compatibleSdkVersion**字段从**app**下迁移到当前选中的products中。当前生效的products可以通过点击编辑区域右上方![zh-cn_image_0000001609333677](figures/zh-cn_image_0000001609333677.png)图标进行查看。
+5. 工程创建完成后，在应用级**build-profile.json5**（与entry同目录级别）文件中，将**compileSdkVersion**和**compatibleSdkVersion**字段从**app**下迁移到当前选中的products中。当前生效的products可以通过点击编辑区域右上方![zh-cn_image_0000001609333677](figures/zh-cn_image_0000001609333677.png)图标进行查看。
 
    ![changeToAPI10](figures/changeToAPI10.png)
 
@@ -42,11 +42,12 @@
 
    ![targetSdkVersion](figures/targetSdkVersion.png)
 
-7. 将其他各模块级别的build-profile.json5文件中targets字段下的runtimeOS配置删除。
+7. 在模块级**entry &gt; build-profile.json5**文件中，将targets字段下的runtimeOS配置删除。
 
    ![deleteRuntimeOS](figures/deleteRuntimeOS.png)
 
-8. 单击Sync Now完成同步。此时工程对应为API 10的OpenHarmony工程。
+8. 单击**Sync Now**完成同步。此时工程对应为API 10的OpenHarmony工程。
+
 
 ### 创建API 9的OpenHarmony工程
 
@@ -58,6 +59,8 @@
 
 3. 进入配置工程界面，**Compile SDK**选择“**3.1.0(API 9)**”，其他参数保持默认设置即可。
 
+   其中**Node**用来配置当前工程运行的Node.js版本，可选择使用已有的Node.js或下载新的Node.js版本。
+
    ![chooseStageModel](figures/chooseStageModel.png)
 
    > **说明：**
@@ -69,18 +72,18 @@
 
 4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
 
-5. 在模块级**entry  > build-profile.json5**文件中，将targets中的**runtimeOS**配置为“**OpenHarmony**”。
+5. 在模块级**entry > build-profile.json5**文件中，将targets中的runtimeOS配置为“OpenHarmony”。
 
-6. 单击Sync Now完成同步。此时工程对应为API 9的OpenHarmony工程。
+6. 单击**Sync Now**完成同步。此时工程对应为API 9的OpenHarmony工程。
 
 
 ## ArkTS工程目录结构（Stage模型）（API 10）
 
-![zh-cn_image_0000001364054489](figures/zh-cn_image_0000001364054489.png)
+![project](figures/project.png)
 
 - **AppScope &gt; app.json5**：应用的全局配置信息。
 
-- **entry**：OpenHarmony工程模块，编译构建生成一个[HAP](../../glossary.md#hap)包。
+- **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
   
   - **src &gt; main &gt; ets &gt; entryability**：应用/服务的入口。
@@ -101,13 +104,14 @@
 
 - **hvigorfile.ts**：应用级编译构建任务脚本。
 
+
 ## ArkTS工程目录结构（Stage模型）（API 9）
 
-![zh-cn_image_0000001364054489](figures/zh-cn_image_0000001364054489.png)
+![project](figures/project.png)
 
 - **AppScope &gt; app.json5**：应用的全局配置信息。
 
-- **entry**：OpenHarmony工程模块，编译构建生成一个[HAP](../../glossary.md#hap)包。
+- **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
   
   - **src &gt; main &gt; ets &gt; entryability**：应用/服务的入口。
@@ -271,6 +275,7 @@
    // Index.ets
    // 导入页面路由模块
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -298,7 +303,13 @@
            .height('5%')
            // 跳转按钮绑定onClick事件，点击时跳转到第二页
            .onClick(() => {
-             router.pushUrl({ url: 'pages/Second' })
+             console.info(`Succeeded in clicking the 'Next' button.`)
+            // 跳转到第二页
+              router.pushUrl({ url: 'pages/Second' }).then(() => {
+                console.info('Succeeded in jumping to the second page.')
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+              })
            })
          }
          .width('100%')
@@ -316,6 +327,7 @@
    // Second.ets
    // 导入页面路由模块
    import router from '@ohos.router';
+   import { BusinessError } from '@ohos.base';
    
    @Entry
    @Component
@@ -342,7 +354,16 @@
            .height('5%')
            // 返回按钮绑定onClick事件，点击按钮时返回到第一页
            .onClick(() => {
-             router.back()
+             console.info(`Succeeded in clicking the 'Back' button.`)
+             try {
+               // 返回第一页
+               router.back()
+               console.info('Succeeded in returning to the first page.')
+             } catch (err) {
+                let code = (err as BusinessError).code;
+                let message = (err as BusinessError).message;
+               console.error(`Failed to return to the first page.Code is ${code}, message is ${message}`)
+             }
            })
          }
          .width('100%')

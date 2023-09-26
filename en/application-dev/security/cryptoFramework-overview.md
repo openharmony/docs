@@ -1,125 +1,219 @@
 # Crypto Framework Overview
-The cryptographic (crypto for shot) framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, signing and signature verification, and operations of the message authentication code (MAC), hashes, and secure random numbers. You can use the APIs provided by this framework to implement cipher development quickly.
+The Cryptographic (Crypto for shot) Framework shields the implementation differences of third-party cryptographic algorithm libraries and implements encryption and decryption, digital signature and signature verification, message authentication code (MAC) generation, hashes, and generation of secure random numbers. You can use the APIs provided by this framework to implement cipher development quickly.
 
 > **NOTE**
 >
-> The crypto framework provides cryptographic operations on keys, but not key management. It is used when the application keeps the key securely (for example, temporary session keys are used only in the memory or the application implements secure key storage). If the system is required to provide key management (such as key storage), use the [HUKS](huks-overview.md).
+> The Crypto Framework provides cryptographic operations, but not key management. It can be used when temporary session keys are used only in the memory or the applications implement secure key storage. If the system is required to provide key management (such as key storage), use the [HUKS](huks-overview.md).
 
 ## Working Principles
-The crypto framework provides components in the following layers:
 
-- Interface layer: provides unified JS interface externally.
+The Crypto Framework provides components in the following layers:
+
+- Interface layer: provides unified JavaScript interfaces externally.
 - Plug-in layer: implements third-party algorithm libraries.
-- Framework layer: loads plug-ins at the plug-in layer to adapt to third-party algorithm libraries and shield implementation differences between these libraries.
-
+- Framework layer: flexibly loads plug-ins at the plug-in layer to adapt to third-party algorithm libraries and shield differences between these libraries.
 ## Basic Concepts
-**Symmetric Key**
+
+### Symmetric Key
 
 A symmetric key is a key used both to encrypt and decrypt data. In symmetric encryption, the sender converts information in plaintext into ciphertext using a key and certain algorithm for security purposes. The receiver converts the ciphertext into plaintext using the same key and algorithm.
 
-- AES
+- **AES key**
 
-  Advanced Encryption Standard (AES) is the most common symmetric encryption algorithm. AES is a block cipher. A block cipher divides plaintext into fixed-length groups of bits, called blocks. A block is encrypted each time until the entire plaintext is encrypted. The block size in AES is 128 bits. That is, each block contains 16 bytes (8 bits/byte). The key length can be 128 bits, 192 bits, or 256 bits.
-- 3DES
-  
-  Triple Data Encryption Standard (3DES), also called 3DESede or Triple DES, applies the DES cipher three times to each data block. It uses three 64-bit keys to encrypt a data block three times. Compared with DES, 3DES provides higher security due to longer key length, but its processing speed is lower. The AES is faster and more secure than 3DES.
+  Advanced Encryption Standard (AES) is the most common symmetric encryption algorithm. AES is a block cipher, which divides plaintext into fixed-length groups of bits, called blocks. A block is encrypted each time until the entire plaintext is encrypted. The block size in AES is 128 bits. That is, each block contains 16 bytes (8 bits/byte). The AES key length can be 128 bits, 192 bits, or 256 bits.
 
-**Asymmetric Key**
+- **3DES key**
 
-In the asymmetric cryptography, a private and public key pair is required. The private key is used to encrypt the plaintext, and the public key is used to decrypt the ciphertext. The public key is public and open to anyone in the system, while the private key is private. For signing and signature verification, the private key is used to sign the plaintext, and the public key is used to verify the signature data.
+  Triple Data Encryption Standard (3DES), also called 3DESede or Triple DES, applies the DES cipher three times to each data block. It uses three 64-bit keys to encrypt a data block three times. Compared with DES, 3DES provides higher security due to longer key length, but lower processing speed. AES is faster and more secure than 3DES.
 
-- RSA key
+- **SM4 key**
 
-  The security of RSA relies on the factoring problem, that is, the difficulty of factoring the product of two large prime numbers. The keys for the RSA algorithm are generated as follows: 
+  ShangMi 4 (SM4) is a block cipher that has a key size and a block size of 128 bits each. Both the encryption and decryption of one block of data is composed of 32 rounds. A non-linear key scheduler is used to produce the round keys. The decryption uses the same round keys as for encryption, except that they are in reversed order.
 
-  1. Generate two large prime numbers **p** and **q**. 
-  
-  2. Compute **n** = **p** x **q**. 
-  
-     **n** is used as the modulus for both the public and private keys, and is released as part of the public key. 
-  
-  3. Choose an integer **e** such that 1 < **e** < (**p** - 1) x (**q** - 1), that is, **e** and (**p** - 1) x (**q** - 1) are coprime.
-  
-  4. Compute **d**. **e** x **d** - 1 is a multiple of (**p** - 1) and (**q** - 1). 
-  
-  The public key consists of the modulus **n** and the public exponent **e**. The private key consists of **n** and the private exponent **d**.
-  
-  In addition to the default RSA key generation from two primes, the crypto framework provides key generation from multiple primes. You can set the **primes** parameter (PRIMES_2, PRIMES_3, PRIMES_4, PRIMES_5) to specify the number of primes during key generation. The keys generated from multiple primes help reduce the computation workload in decryption and signing (Chinese remainder theorem). However, such keys are weak. The algorithm library defines specifications based on the rules for using OpenSSL prime numbers. For details, see [**Constraints**](#constraints).
-  
-- ECC key
-  
-  Elliptic-Curve Cryptography (ECC) is a public-key encryption based on the algebraic structure of elliptic curve over finite fields. The crypto framework provides a variety of ECC key generation capabilities.
+### Asymmetric Key
 
-**Encryption and Decryption**
+In the asymmetric cryptography, a private and public key pair is required. The private key is used to encrypt the plaintext, and the public key is used to decrypt the ciphertext. The public key is public and open to anyone in the system, while the private key is private. For digital signature and signature verification, the private key is used to sign the plaintext, and the public key is used to verify the signature data.
 
-- Symmetric AES encryption and decryption
+- **RSA key**
+
+  Rivest-Shamir-Adleman (RSA) is an asymmetric encryption algorithm widely used for secure data transmission. The security of RSA depends on the practical difficulty of factoring the product of two large prime numbers.
+
+  The RSA key parameters include the following integers:
+
+  **n**: modulus, which is a public parameter of the private key and public key.
+
+  **sk**: private exponent, which is often written as **d** in the formula.
+
+  **pk**: public exponent, which is often written as **e** in the formula.
+
+- **ECC key**
+
+  Elliptic-curve cryptography (ECC) is a public-key encryption algorithm based on elliptic curve mathematics. It security is based on the assumption that it is infeasible to find the discrete logarithm of a random elliptic curve element with respect to a publicly known base point. The Crypto Framework provides capabilities for generating a variety of ECC keys.
+
+  The ECC algorithm can be regarded as an operation of numbers defined in a special set. Currently, the Crypto Framework supports elliptic curves in **Fp** fields, where **p** is prime. The **Fp** fields are also called the prime fields.
+
+  The ECC key parameters in the **Fp** fields include the following:
+
+  **p**: prime number used to determine **Fp**.
+
+  **a**, **b**: determine the elliptic curve equation.
+
+  **g**: base point of the elliptic curve, which can be represented as **gx** or **gy**.
+
+  **n**: order of the base point **g**.
+
+  **h**: cofactor.
+
+  **sk**: private key, which is a random integer less than **n**.
+
+  **pk**: public key, which is a point on the elliptic curve. **pk** = **sk** x **g**.
+
+- **DSA key**
+
+  Digital Signature Algorithm (DSA) is a public-key algorithm based on the modular exponentiation and discrete logarithm problem. It is used for digital signatures and signature verification, but not for encryption and decryption. The Crypto Framework provides the capability of generating DSA keys of different lengths.
+
+  The DSA key parameters include the following:
+
+  **p**: a prime modulus, whose length is an integer multiple of 64.
+
+  **q**: prime factor of p – 1. The length varies depending on the length of **p**.
+
+  **g**: g = (h ^ ((p - 1) / q)) mod p, where **h** is any integer that meets 1 < h < p -1.
+
+  **sk**: private key, which is a randomly generated integer and complies with 0 < sk < q.
+
+  **pk**: public key. pk = (g ^ sk) mod p
+
+- **SM2 key**
+
+  ShangMi 2 (SM2) is a public key cryptographic algorithm based on the ECC. The key length is 256 bits. The SM2 algorithm uses the elliptic curve in the Fp fields.
+
+  The SM2 key parameters in the **Fp** fields include the following:
+
+  **p**: a prime greater than 3, used to determine **Fp**.
+
+  **a**, **b**: determine the elliptic curve equation.
+
+  **g**: base point of the elliptic curve, which can be represented as **gx** or **gy**.
+
+  **n**: order of the base point **g**.
+
+  **h**: cofactor.
+
+  **sk**: private key, which is a random integer less than **n**.
+
+  **pk**: public key, which is a point on the elliptic curve. **pk** = **sk** x **g**.
+
+### Encryption and Decryption
+
+- **Symmetric AES encryption and decryption**
 
   The algorithm library provides the following cipher modes of operation for AES: ECB, CBC, OFB, CFB, CTR, GCM, and CCM. AES is a block cipher, with a fixed block size of 128 bits. In actual applications, the last block of plaintext may be less than 128 bits and needs to be padded. The padding options are as follows:
-	- **NoPadding**: no padding.
-	- **PKCS5**: pads a block cipher with a block size of 8 bytes
-	- **PKCS7**: The PKCS #7 padding scheme is the same as that of PKCS #5 padding except that PKCS #5 padding is defined for 8-byte block sizes, while PKCS #5 padding works for any block size from 1 to 255 bytes.
+  - **NoPadding**: no padding.
+  - **PKCS5**: pads a block cipher with a block size of 8 bytes.
+  - **PKCS7**: pads any block size from 1 to 255 bytes. The PKCS #7 padding scheme is the same as that of PKCS #5.
 
-  > **NOTE**<br>In ECB and CBC, the plaintext must be padded if its length is not an integer multiple of 128 bits. Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 16 bytes in AES encryption.
-  
-- **Symmetric 3DES Encryption and Decryption**
+  > **NOTE**
+  >
+  > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.<br>
+  > Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 16 bytes in AES encryption.
+
+- **Symmetric 3DES encryption and decryption**
 
   3DES encryption and decryption apply the DES cipher three times to each data block to obtain the ciphertext or plaintext.
 
   The algorithm library provides the following cipher modes of operation for 3DES encryption and decryption: ECB, CBC, OFB, and CFB. DES is a block cipher, with a fixed block size of 64 bits. In actual applications, the last block of plaintext may be less than 64 bits and needs to be padded. The padding options are as follows:
-	- **NoPadding**: no padding.
-	- **PKCS5**: pads a block cipher with a block size of 8 bytes
-	- **PKCS7**: The PKCS #7 padding scheme is the same as that of PKCS #5 padding except that PKCS #5 padding is defined for 8-byte block sizes, while PKCS #5 padding works for any block size from 1 to 255 bytes.
+  - **NoPadding**: no padding.
+  - **PKCS5**: pads a block cipher with a block size of 8 bytes.
+  - **PKCS7**: pads any block size from 1 to 255 bytes. The PKCS #7 padding scheme is the same as that of PKCS #5.
 
-  > **NOTE**<br>In ECB and CBC, the plaintext must be padded if its length is not an integer multiple of 64 bits. <br>Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 8 bytes in 3DES encryption.
+  > **NOTE**
+  >
+  > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 64 bits.
+  > Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 8 bytes in 3DES encryption.
 
-- **Asymmetric RSA Encryption and Decryption**
+- **Symmetric SM4 encryption and decryption**
 
-  After the RSA public key (n, e) and private key (n, d) are held, the RSA encryption process is as follows:
-	
-	Ciphertext = Plaintext ^ **e** mod **n**
-	
-	The decryption process is as follows:
-	
-	Plaintext = Ciphertext ^ **d** mod **n** 
-	
-	The algorithm library provides the following modes of operation for RSA encryption and decryption: **PKCS1**, **PKCS1_ OAEP**, and **NoPadding**. RSA is a block cipher, with fixed-length blocks. In actual applications, diverse padding modes are used. The padding options are as follows:
-	
-	- **NoPadding**: No padding is required. The length of the input or output data must be the same as that of the RSA key modulus.
-	- **PKCS1**: PKCS #1 v1.5 is the default padding mode for RSA encryption and decryption. The length of the input data must be less than or equal to the RSA key modulus minus 11, and the length of the output data must be the same as that of the RSA key modulus.
-	- **PKCS1_OAEP**: The RSA_PKCS1_OAEP_PADDING is a new padding mode provided by PKCS #1. In this mode, two digests (**md** and **mgf1_md**) must be set. The length of the input data must be less than RSA key modulus length minus the **md** length, **mgf1_md** length, and two. The length of the output data must be the same as that of the RSA key modulus.
-	
-	> **NOTE**
-	>
-	> Length of the RSA key modulus = (Number of RSA bits + 7)/8
+  The Crypto Framework provides the following SM4 encryption modes: ECB, CBC, CTR, OFB, CFB, and CFB128. SM4 is a block cipher, with a fixed block size of 128 bits. In actual applications, the last block of plaintext may be less than 128 bits and needs to be padded. The padding options are as follows:
 
-**Signing and Signature Verification**
+  - **NoPadding**: no padding.
+  - **PKCS5**: pads a block cipher with a block size of 8 bytes.
+  - **PKCS7**: pads any block size from 1 to 255 bytes. The PKCS #7 padding scheme is the same as that of PKCS #5.
 
-- RSA signing and signature verification
+  > **NOTE**
+  >
+  > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.<br>
+  > Since the plaintext is padded to the block size, the PKCS #5 and PKCS #7 used in the algorithm library use the block size as the padding length. That is, data is padded to 16 bytes in SM4 encryption.
 
-	After the RSA public key (n, e) and private key (n, d) are held, the RSA signature is generated as follows: 
+- **Asymmetric RSA encryption and decryption**
+
+  RSA is an asymmetric cipher, with fixed-length blocks. In actual applications, diverse padding modes are used. Currently, the Crypto Framework provides the following padding modes:
+  - **NoPadding**: no padding. The length of the input or output data must be the same as that of the RSA key modulus.
+
+  - **PKCS1**: RSAES-PKCS1-V1_5 mode in RFC3447 (corresponding to RSA_PKCS1_PADDING in OpenSSL). The RSA converts the source data D into an encryption block (EB). In encryption, the length of the input data must be less than or equal to the RSA key modulus minus 11. The length of the output data is the same as that of the RSA key modulus.
+
+  - **PKCS1_OAEP**: RSAES-OAEP mode in RFC 3447 (corresponding to RSA_PKCS1_OAEP_PADDING in OpenSSL). It is a new padding mode developed by PKCS#1. In this mode, two digests (**md** and **mgf1_md**) need to be set. During encryption, the length of the input data must meet the following requirements:
+
+    Input data length < RSA key modulus – **md** length (bytes) – **mgf1_md** length (bytes) – 2
+    
+    The length of the output data is the same as that of the RSA key modulus. In this mode, you can also set the **pSource** byte stream to define the encoding input **P** filled by OAEP and obtain the parameters related to PKCS1_OAEP.
+    
+    The **PKCS1_OAEP** parameters include the following:
+    
+    **md**: message digest algorithm.<br>
+    **mgf**: mask generation algorithm. Currently, only MGF1 is supported.<br>
+    **mgf1_md**: mgf1 digest algorithm.<br>
+    **pSource**: byte stream, which is the source for encoding input P in OAEP padding.
+
+  > **NOTE**
+  >
+  > RSA key modulus = (RSA bits + 7)/8
+
+- **Asymmetric SM2 encryption and decryption**
+
+  SM2 is an asymmetric encryption algorithm based on the ECC. The encryption length is fixed. Currently, the Crypto Framework supports encrypted data in C1C3C2 format and decryption of data in C1C3C2 format.
+
+### Signing and Signature Verification
+
+- **RSA signing and signature verification**
+
+  The Crypto Framework provides the following padding modes for RSA signing and signature verification:
+  - **PKCS1**: RSASSA-PKCS1-V1_5 mode in RFC3447 (corresponding to RSA_PKCS1_PADDING in OpenSSL). When this mode is used for signing and signature verification, the digest (**md**) must be set, the digest algorithm output length (bytes) must be less than the RSA key modulus.
+
+  - **PSS**: RSASSA-PSS mode in RFC 3447 (corresponding to RSA_PKCS1_PSS_PADDING in OpenSSL). In this mode, two digests (**md** and **mgf1_md**) must be set, and the total length (bytes) of **md** and **mgf1_md** must be less than the RSA key modulus. In this mode, the salt length (**saltLen**, in bytes) can also be set, and PSS-related parameters can be obtained.
+
+    The PSS parameters include the following:
+
+    **md**: message digest algorithm.<br>
+    **mgf**: mask generation algorithm. Currently, only MGF1 is supported.<br>
+    **mgf1_md**: digest algorithm used in the MGF1 algorithm.<br>
+    **saltLen**: salt length, in bytes.<br>
+    **trailer_field**: integer used for encoding. The value must be **1**.
+
+  > **NOTE**
+  >
+  > RSA key modulus = (RSA bits + 7)/8
+
+- **ECDSA**
+
+  The Elliptic Curve Digital Signature Algorithm (ECDSA) is a digital signature algorithm that uses the ECC. Compared with the ordinary Discrete Logarithm Problem (DLP) and Integer Factorization Problem (IFP), the ECC provides a higher unit bit strength than other public-key cryptographic systems. The Crypto Framework provides the ECDSA that combines multiple elliptic curves and digest algorithms.
+
+- **DSA**
+
+  The DSA security is based on the difficulty of the DLP in integer finite field. The DSA features high compatibility and applicability.
   
-  Signature = Message ^ **d** mod **n**
-  
-  The signature verification process is as follows: 
-  
-  Message = Signature ^ **d** mod **n** 
-  
-  The sender sends the message and the signature signed by the private key. The receiver decrypts the signature using the public key to verify the signature. Generally, the message sent is longer than the RSA key modulus. Therefore, the crypto framework provides two padding modes to extract the hash value of the message digest before signing the message. The crypto framework provides the following padding modes for signing and signature verification:
-  
-  - **PKCS1**: PKCS #1 v1.5 is the default padding mode for RSA encryption and decryption. When this mode is used, the digest (**md**) must be set.
-  - **PSS**: The PSS mode is a padding algorithm based on the RSA algorithm. When it is used, the digest (**md**) and mask function (**mgf1_md**) are required.
-  
-- ECDSA
+- **SM2**
 
-  The Elliptic Curve Digital Signature Algorithm (ECDSA) is a Digital Signature Algorithm (DSA) that uses the ECC. Compared with the ordinary Discrete Logarithm Problem (DLP) and Integer Factorization Problem (IFP), the ECC provides a higher unit bit strength than other public-key cryptographic systems. The crypto framework provides the ECDSA that combines multiple elliptic curve and digest algorithms.
+  SM2 is a digital signature algorithm based on the ECC.
 
-**Key Agreement**
 
-- **ECDH**
+### Key Agreement
 
-  Elliptic Curve Diffie-Hellman (ECDH) allows two parties to establish a shared secret over an insecure channel. The crypto framework provides a variety of ECDH capabilities based on the open-source algorithm library.
+**ECDH**
 
-**Digest**
+Elliptic Curve Diffie-Hellman (ECDH) allows two parties to establish a shared secret over an insecure channel. The Crypto Framework provides a variety of ECDH capabilities based on the open-source algorithm library.
+
+### Message Digest
 
 The message digest algorithm allows a fixed-length digest to be generated from data of arbitrary size by using the hash algorithm. It is used for sensitive information encryption because it is infeasible to invert or reverse the computation. The MD algorithm is also referred to as a hash algorithm or a one-way hash algorithm.
 When the same digest algorithm is used, the generated digest (hash value) has the following features:
@@ -128,48 +222,65 @@ When the same digest algorithm is used, the generated digest (hash value) has th
 - The digest generated is of the fixed length no matter the length of messages. (The digest length is determined by the algorithm used).
 - It is almost impossible to find two different messages with the same hash value. (The probability still exists, depending on the length of the digest.)
 
-There are three types of message digest algorithms: MD, SHA, and MAC. For details, see **HMAC**.
-MD algorithms include MD2, MD4, and MD5.
-Major SHA algorithms include SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512.
+### HMAC
 
-**HMAC**
+Hash-based Message Authentication Code (HMAC) is a key-based message authentication code algorithm. It provides authentication using a shared secret instead of using a digital signature. The MAC generated can be used to verify the integrity and authenticity of the message. The length of the MAC generated by HMAC is fixed. Compared with MAC, HMAC introduces the shared secret, which ensures data correctness.
 
-Hash-based Message Authentication Code (HMAC) is a key-based message authentication code algorithm. HMAC provides authentication using a shared secret instead of using a digital signature. The MAC generated can be used to verify the integrity and authenticity of the message. The length of the MAC generated by HMAC is fixed. Compared with MAC, HMAC introduces the shared secret, which ensures data correctness.
-
-**Random Number**
+### Random Number
 
 Random numbers are mainly used to generate temporary session keys or keys in asymmetric encryption. They are generated by a hardware random number generator or software-based pseudo-random number generator. In encryption and decryption, a secure random number generator must feature randomness, unrepeatability, and unpredictability. The random numbers generated by the Cryptography Secure Random Number Generator (CSPRNG) meet the requirements of cryptography security pseudo-randomness.
 
 - Internal state<br>A value in the random number generator memory. The same internal state produces the same sequence of the random number.
 - Seed<br>A number used to initialize the internal state of a pseudorandom number generator. The random number generator generates a series of random sequences based on the seeds.
 
-
 ## Constraints
 
-- The crypto framework does not support concurrent operations of multiple threads.
+- The Crypto Framework does not support concurrent operations of multiple threads.
 - Currently, the algorithm library supports only OpenSSL.
+- For a key generated based on key parameters, the bigint type must be a positive number in big-endian format.
+- The Crypto Framework algorithm library provides common algorithms. Some algorithms and specifications, such as MD5, are not applicable to security scenarios. You need to select the proper algorithms as required.
 
-### Key Generation Specifications
+## Key Generation Specifications
 
-**Symmetric Key Generation Specifications**
+A key can be generated based on either of the following specifications:
+- String parameter: provides the specifications of the key to be generated in the form of a string.
+- Key parameters: constructs a key object using the specific cryptography information.
 
-- The following parameters are supported:
+### AES Key Generation Specifications
 
-  |Symmetric Key Algorithm|Key Length (Bit)|String Parameter|
-  |---|---|---|
-  |3DES|192|3DES192|
-  |AES|128|AES128|
-  |AES|192|AES192|
-  |AES|256|AES256|
+The AES key can be generated based on a string parameter.
 
-  > **NOTE**<br>**String Parameter** is a combination of **Symmetric Key Algorithm** and **Key Length**. It specifies the key specifications when a symmetric key generator is created.
+|Symmetric Key Algorithm|Key Length (Bit)|String Parameter|
+|---|---|---|
+|AES|128|AES128|
+|AES|192|AES192|
+|AES|256|AES256|
 
-**Asymmetric Key Generation Specifications**
-- **RSA key generation**
+  > **NOTE**
+  >
+  > As a combination of the Symmetric key algorithm and the key length, the string parameter specifies the key specifications when a symmetric key generator is created.
 
-  The following parameters are supported:
+### 3DES Key Generation Specifications
 
-  |Asymmetric Key Type|Number of Primes|String Parameter|
+The 3DES key can be generated based on a string parameter.
+
+|Symmetric Key Algorithm|Key Length (Bit)|String Parameter|
+|---|---|---|
+|3DES|192|3DES192|
+
+  > **NOTE**
+  >
+  > As a combination of the symmetric key algorithm and the key length, the string parameter specifies the key specifications when a symmetric key generator is created. 
+
+### RSA Key Generation Specifications
+
+  > **NOTE**
+  >
+  > The RSA keys can be generated based on key parameters from API version 10.
+
+- The RSA key can be generated based on a string parameter.
+
+  |RSA Key Type|Number of Primes|String Parameter|
   |---|---|---|
   |RSA512|2|RSA512\|PRIMES_2|
   |RSA768|2|RSA768\|PRIMES_2|
@@ -187,26 +298,164 @@ Random numbers are mainly used to generate temporary session keys or keys in asy
   |RSA8192|4|RSA8192\|PRIMES_4|
   |RSA8192|5|RSA8192\|PRIMES_5|
 
-  > **NOTE**<br>When an RSA asymmetric key is generated, the default prime number is 2, and **PRIMES_2** is optional.
+  > **NOTE**
+  >
+  > As a combination of the RSA key type and the number of primes, the string parameter specifies the key specifications when an asymmetric key generator is created. 
+  >
+  > The default number of primes for generating the RSA asymmetric key is 2, and **PRIMES_2** can be omitted.
 
-- **ECC key generation**
+- The RSA key can also be generated based on key parameters. The following table lists the types of key parameters and cryptography specifications of each key parameter.
 
-  The following parameters are supported:
+  |   |Common Parameter|Public Key Parameter|Private Key Parameter|Public/Private Key Pair Parameter|
+  |---|---------|---|---|---|
+  |n    |x  |√    |x  |√   |
+  |pk|    |√    |    |√    |
+  |sk|    |    |x  |√    |
 
-  |Asymmetric Key Algorithm|Key Length|
-  |---|---|
-  |ECC|ECC224|
-  |ECC|ECC256|
-  |ECC|ECC384|
-  |ECC|ECC521|
+  > **NOTE**
+  >
+  > The key parameters specify the key specifications when an asymmetric key generator is created.
+  >
+  > The preceding table describes the public and private key parameters supported by the Crypto Framework algorithm library for generating RSA keys.<br>
+  >   √ indicates that properties needs to be specified to construct the key parameter.<br>x indicates that the Crypto Framework currently does not support key generation based on this parameter.
+  
+  > **CAUTION**
+  >
+  > - RSA does not support random key generation based on the public parameter (**n**).
+  > - RSA does not support generation of the private key by specifying the private key parameters (**n**, **sk**).
+### ECC Key Generation Specifications
 
-### Encryption and Decryption Specifications
+  > **NOTE**
+  >
+  > The ECC key can be generated based on key parameters from API version 10.
 
-**Symmetric Encryption and Decryption**
+- The ECC key can be generated based on a string parameter.
 
-- The following symmetric encryption algorithms are supported:
+  |Asymmetric Key Algorithm|Key Length (Bit)|Curve Name|String Parameter|
+  |---|---|---|---|
+  |ECC|224|NID_secp224r1|ECC224|
+  |ECC|256|NID_X9_62_prime256v1|ECC256|
+  |ECC|384|NID_secp384r1|ECC384|
+  |ECC|521|NID_secp521r1|ECC521|
 
-  |Algorithm|Block Cipher Mode| String Parameter                                        |
+  > **NOTE**
+  >
+  > As a combination of the asymmetric key algorithm and the key length, the string parameter specifies the key specifications when an asymmetric key generator is created.<br>
+  > Currently, only ECC Fp curves are supported.
+
+- The ECC key can also be generated based on key parameters. 
+  
+  The following table lists the types of key parameters and cryptography specifications of each key parameter.
+  
+  |   |Common Parameter|Public Key Parameter|Private Key Parameter|Public/Private Key Pair Parameter|
+  |---|---|---|---|---|
+  |fieldType|    √|    √|    √|    √|
+  |p    |    √|    √|    √|    √|
+  |a    |    √|    √|    √|    √|
+  |b    |    √|    √|    √|    √|
+  |g    |    √|    √|    √|    √|
+  |n    |    √|    √|    √|    √|
+|h    |    √|    √|    √|    √|
+  |pk    |    |    √|     |    √|
+  |sk    |    |     |    √|    √|
+  
+> **NOTE**
+>
+> The key parameters specify the key specifications when an asymmetric key generator is created.<br>
+> The preceding table describes the public and private key parameters supported by the Crypto Framework algorithm library for generating ECC keys.<br>
+> √ indicates that properties needs to be specified to construct the key parameter.
+
+  > **CAUTION**
+  >
+  > - Currently, the ECC supports only the **Fp** fields. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**. Currently, the **field** supports only [ECFieldFp](../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10).
+  > - **g** and **pk** are points on the ECC curve and belong to the [Point](../reference/apis/js-apis-cryptoFramework.md#point10) type. You need to specify the X and Y coordinates.
+
+### DSA Key Generation Specifications
+
+  > **NOTE**
+  >
+  > From API version 10, the DSA algorithm is supported for key generation, signing, and signature verification.
+
+- The DSA key can be generated based on a string parameter.
+
+  |Asymmetric Key Algorithm|Key Length (Bit)|String Parameter|
+  |---|---|---|
+  |DSA|1024|DSA1024|
+  |DSA|2048|DSA2048|
+  |DSA|3072|DSA3072|
+
+  > **NOTE**
+  >
+  > As a combination of the asymmetric key algorithm and the key length, the string parameter specifies the key specifications when an asymmetric key generator is created.
+
+- The DSA keys can also be generated based on key parameters. 
+
+  The following table lists the types of key parameters and cryptography specifications of each key parameter.
+  
+  |   |Common Parameter|Public Key Parameter|Private Key Parameter|Public/Private Key Pair Parameter|
+  |---|---------|---|---|---|
+  |p    |√    |√    |x  |√   |
+  |q    |√    |√    |x  |√   |
+  |g    |√    |√    |x  |√   |
+  |pk   |    |√    |    |√    |
+  |sk   |    |     |x  |√    |
+  
+  > **NOTE**
+  >
+  > The key parameters specify the key specifications when an asymmetric key generator is created.
+  >
+  > The preceding table describes the public and private key parameters supported by the Crypto Framework algorithm library for generating DSA keys.<br>
+  >
+  > √ indicates that properties needs to be specified to construct the key parameter.<br>
+  > x indicates that the Crypto Framework currently does not support key generation based on this parameter.
+  
+  > **CAUTION**
+  >
+  > - DSA does not support generation of the private key by specifying the private key parameters (**p**, **q**, **g**, **sk**).
+  > - When common parameters (**p**, **q**, **g**) are specified to generate a DSA key pair, the DSA key length must be at least 1024 bits.
+
+### SM2 Key Generation Specifications
+
+> **NOTE**
+>
+> SM2 keys can be randomly generated from API version 10.
+
+- The SM2 keys can be generated based on the string parameter.
+
+  |Asymmetric Key Algorithm|Key Length (Bit)|String Parameter|
+  |---|---|---|
+  |SM2|256|SM2_256|
+
+  > **NOTE**
+  >
+  > As a combination of the asymmetric key algorithm and key length with an underscore (_) in between, the string parameter specifies the key specifications when an asymmetric key generator is created.
+
+### SM4 Key Generation Specifications
+
+> **NOTE**
+>
+> SM4 keys can be randomly generated from API version 10.
+
+- The SM4 keys can be generated based on the string parameter.
+
+  |Symmetric Key Algorithm|Key Length (Bit)|String Parameter|
+  |---|---|---|
+  |SM4|128|SM4_128|
+
+  > **NOTE**
+  >
+  > As a combination of the symmetric key algorithm and key length with an underscore (_) in between, the string parameter specifies the key specifications when a symmetric key generator is created.
+
+## Encryption and Decryption Specifications
+
+### Symmetric Encryption and Decryption
+
+  > **NOTE**
+  >
+  > The APIs support specifications without the key length for symmetric encryption and decryption from API version 10.
+
+- The following symmetric encryption algorithms are supported.
+  |Symmetric Encryption and Decryption Algorithm|Block Cipher Mode|String Parameter                                        |
   |---|---|---|
   |3DES|ECB|3DES192\|ECB\|[NoPadding\|PKCS5\|PKCS7]|
   |3DES|CBC|3DES192\|CBC\|[NoPadding\|PKCS5\|PKCS7]|
@@ -219,16 +468,27 @@ Random numbers are mainly used to generate temporary session keys or keys in asy
   |AES|CFB|AES[128\|192\|256]\|CFB\|[NoPadding\|PKCS5\|PKCS7]|
   |AES|GCM|AES[128\|192\|256]\|GCM\|[NoPadding\|PKCS5\|PKCS7]|
   |AES|CCM|AES[128\|192\|256]\|CCM\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|ECB|SM4_128\|ECB\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|CBC|SM4_128\|CBC\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|CTR|SM4_128\|CTR\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|OFB|SM4_128\|OFB\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|CFB|SM4_128\|CFB\|[NoPadding\|PKCS5\|PKCS7]|
+  |SM4|CFB128|SM4_128\|CFB128\|[NoPadding\|PKCS5\|PKCS7]|
 
-> **NOTE**
-> 
-> - The options included in the square brackets ([]) are mutually exclusive.
-> - **String Parameter** is a combination of **Algorithm** (including the key length), **Block Cipher Mode**, and padding mode. It specifies the symmetric encryption/decryption algorithm specifications when a symmetric encryption/decryption instance is created.
+  > **NOTE**
+  >
+  > - The options included in the square brackets ([]) are mutually exclusive.
+  > - As a combination of the algorithm (including the key length), block cipher mode, and padding mode, the string parameter specifies the symmetric encryption/decryption algorithm specifications when a symmetric encryption/decryption instance is created. 
+  > - An underscore (_) must be added between SM4<sup>10+</sup> and the key length in **String Parameter**.
 
-**Asymmetric RSA Encryption and Decryption**
+### Asymmetric RSA Encryption and Decryption
 
-The crypto framework provides three padding modes for RSA encryption/decryption: **NoPadding**, **PKCS1**, and **PKCS1_OAEP**.
-- Parameters for **NoPadding**
+  > **NOTE**
+  >
+  > The APIs support specifications without the key length for asymmetric RSA encryption and decryption from API version 10.
+
+The Crypto Framework provides three padding modes for RSA encryption/decryption: **NoPadding**, **PKCS1**, and **PKCS1_OAEP**.
+- If **NoPadding** is used, the following parameters can be specified.
 
   |Asymmetric Key Type| Padding Mode| String Parameter|
   |---|---|---|
@@ -239,8 +499,14 @@ The crypto framework provides three padding modes for RSA encryption/decryption:
   |RSA3072|NoPadding|RSA3072\|NoPadding|
   |RSA4096|NoPadding|RSA4096\|NoPadding|
   |RSA8192|NoPadding|RSA8192\|NoPadding|
+  |RSA|NoPadding|RSA\|NoPadding|
 
-- Parameters for **PKCS1**
+  > **NOTE**
+  >
+  > - As a combination of the asymmetric key type and the padding mode, the string parameter specifies the asymmetric encryption/decryption algorithm specifications when an asymmetric encryption/decryption instance is created.
+  > - The RSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The encryption/decryption operation varies depending on the actual key length.
+
+- If **PKCS1** is used, the following parameters can be specified.
 
   |Asymmetric Key Type| Padding Mode| String Parameter|
   |---|---|---|
@@ -251,158 +517,288 @@ The crypto framework provides three padding modes for RSA encryption/decryption:
   |RSA3072|PKCS1|RSA3072\|PKCS1|
   |RSA4096|PKCS1|RSA4096\|PKCS1|
   |RSA8192|PKCS1|RSA8192\|PKCS1|
+  |RSA|PKCS1|RSA\|PKCS1|
 
-- Parameters for **PKCS1_OAEP**
   > **NOTE**
-  > 
+  >
+  > - As a combination of the asymmetric key type and the padding mode, the string parameter specifies the asymmetric encryption/decryption algorithm specifications when an asymmetric encryption/decryption instance is created.
+  > - The RSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The encryption/decryption operation varies depending on the actual key length.
+
+- If **PKCS1_OAEP** is used, the following parameters can be specified.
+
+  | Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
+  |---|---|---|---|
+  |RSA512|PKCS1_OAEP|MD5|  [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]
+  |RSA768|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+  |RSA768|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA768|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+  |RSA1024|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+  |RSA2048|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA|PKCS1_OAEP|Digest algorithm that meets the requirements for length|MGF1_ digest algorithm that meets the requirements for length|
+
+  > **NOTE**
+  >
   > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > - Combine the asymmetric key type, padding mode, digest, and mask digest, with a vertical bar (|) in between. For example, **RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA256**.
+  > - As a combination of the asymmetric key type, padding mode, digest, and mask digest with a vertical bar (|) in between, the string parameter specifies the asymmetric encryption/decryption algorithm specifications when an asymmetric encryption/decryption instance is created. For example, **RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA256**.
+  > - The RSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The encryption/decryption operation varies depending on the actual key length.
+  > - The input data must meet the following requirement:<br>Input data length < RSA key modulus - **md** length - **mgf1_md** length - 2<br>For example, if the RSA key is 512 bits, SHA-512 is not supported. For details about the definition of the RSA key modulus and digest length, see "Asymmetric RSA encryption and decryption" in [Encryption and Decryption](#encryption-and-decryption).
   
-| Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
-|---|---|---|---|
-|RSA512|PKCS1_OAEP|MD5|  [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-|RSA768|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-|RSA768|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA768|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-|RSA1024|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-|RSA2048|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512  ]|
-|RSA8192|PKCS1_OAEP|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PKCS1_OAEP|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+- If **PKCS1_OAEP** is used, you can obtain the [OAEP cipher parameter](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10) and set the encoding input P for OAEP padding.
+
+  | OAEP Parameter|Enum Value| Get()| Set()|
+  |---|---|---|---|
+  |md|OAEP_MD_NAME_STR |√|
+  |mgf|OAEP_MGF_NAME_STR|√|
+  |mgf1_md|OAEP_MGF1_MD_STR |√|
+  |pSource|OAEP_MGF1_PSRC_UINT8ARR|√|√|
+
+  > **NOTE**
+  >
+  > The preceding table presents the **Get()** and **Set()** capabilities for OAEP parameters supported by the Crypto Framework. **√** indicates that the parameter can be obtained or set.
 
 
-### Signing and Signature Verification Specifications
+### **Asymmetric SM2 Encryption and Decryption**
 
-**RSA Signing and Signature Verification**
+> **NOTE**
+>
+> The APIs support specifications without the key length for asymmetric SM2 encryption and decryption from API version 10.
 
-The crypto framework provides two padding modes for RSA signing and signature verification: **PKCS1** and **PSS**.
--  Parameters for **PKCS1**
+The SM2 encryption and decryption support only the ciphertext in C1C3C2 format. The SM2 asymmetric encryption result consists of C1, C2, and C3. C1 is the elliptic curve points calculated based on the random number generated. C2 is the ciphertext data. C3 is the value calculated using the specified digest algorithm. The new SM standard support data in C1C3C2 format. Encryption without digest is not supported.
+- The following parameters are supported.
+
+  | Asymmetric Key Type| Digest| String Parameter|
+  |---|---|---|
+  |SM2_256|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512\|SM3]|SM2_256\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512\|SM3]|
+  |SM2|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512\|SM3]|SM2_256\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512\|SM3]|
+  
+  > **NOTE**
+  >
+  >  As a combination of the asymmetric key type and the padding mode, the string parameter specifies the asymmetric encryption/decryption algorithm specifications when an asymmetric encryption/decryption instance is created. 
+
+## Signing and Signature Verification Specifications
+
+### RSA Signing and Signature Verification
+
+  > **NOTE**
+  >
+  > The APIs support specifications without the key length for RSA signing and signature verification from API version 10.
+
+The Crypto Framework provides two padding modes for RSA signing and signature verification: **PKCS1** and **PSS**.
+
+-  If **PKCS1** is used, the following parameters can be specified.
 
   | Asymmetric Key Type| Padding Mode| Digest| String Parameter|
   |---|---|---|---|
-  |RSA512|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384]|RSA512\|PKCS1\|  [MD5\|SHA1\|SHA224\|SHA256\|SHA384]|
+  |RSA512|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384]|RSA512\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384]|
   |RSA768|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA768\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |RSA1024|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA1024\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |RSA2048|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA2048\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |RSA3072|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA3072\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |RSA4096|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA4096\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |RSA8192|PKCS1|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|RSA8192\|PKCS1\|[MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |RSA|PKCS1|Digest algorithm that meets the requirements for length|RSA\|PKCS1\|Digest algorithm that meets the requirements for length|
 
-- Parameters for **PSS**
+  > **NOTE**
+  >
+  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+  > - The RSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The signing or signature verification operation varies depending on the actual key length.
+  > - During RSA signature verification, the output length of the digest algorithm must be less than the RSA key modulus. For example, if the RSA key is 512 bits, SHA-512 is not supported. For details, see "RSA signing and signature verification" in [Signing and Signature Verification](#signing-and-signature-verification).
+
+- If **PSS** is used, the following parameters can be specified.
+
+  | Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
+  |---|---|---|---|
+  |RSA512|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA512|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|RSA512\|PSS\|SHA256\|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+  |RSA768|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA768|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+  |RSA768|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
+  |RSA768|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
+  |RSA1024|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA1024|PSS|SHA512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
+  |RSA2048|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA2048|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA3072|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA4096|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA8192|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
+  |RSA|PSS|Digest algorithm that meets the requirements for length|MGF1_ digest algorithm that meets the requirements for length|
+
+  > **NOTE**
+  >
+  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+  > - As a combination of the asymmetric key type, padding mode, digest, and mask digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **RSA2048|PSS|SHA256|MGF1_SHA256**.
+  > - The RSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The signing or signature verification operation varies depending on the actual key length.
+  > - If the PSS padding mode is used in RSA signing or signature verification, the total length (in bytes) of **md** and **mgf1_md** must be less than the RSA key modulus. For example, if the RSA key is 512 bits, **md** and **mgf1_md** cannot be SHA256 at the same time. For details about the definition of the RSA key modulus and digest length, see "RSA signing and signature verification" in [Signing and Signature Verification](#signing-and-signature-verification).
+  
+- If the PSS mode is used, you can obtain the PSS [parameter](../reference/apis/js-apis-cryptoFramework.md#signspecitem10) for signing or signature verification, and set the salt length (**saltLen**, in bytes) for the PSS.
+
+  | PSS Parameter|Enum Value| Get()| Set()|
+  |---|---|---|---|
+  |md|PSS_MD_NAME_STR |√|
+  |mgf|PSS_MGF_NAME_STR|√|
+  |mgf1_md|PSS_MGF1_MD_STR |√|
+  |saltLen|PSS_SALT_LEN_NUM|√|√|
+  |trailer_field|PSS_TRAILER_FIELD_NUM|√|
+
+  > **NOTE**
+  >
+  > The preceding table presents the **Get()** and **Set()** capabilities for PSS parameters supported by the Crypto Framework. **√** indicates that the parameter can be obtained or set.
+
+### ECDSA Signing and Signature Verification
+
   > **NOTE**
   > 
+  > The APIs support specifications without the key length for ECDSA signing and signature verification from API version 10.
+- The following ECDSA parameters are supported.
+
+  |Asymmetric Key Type|Digest|String Parameter|
+  |---|---|---|
+  |ECC224|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC224\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |ECC256|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC256\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |ECC384|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC384\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |ECC521|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC521\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |ECC|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+
+  > **NOTE**
+  >
   > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
-  > - Combine the asymmetric key type, padding mode, digest, and mask digest, with a vertical bar (|) in between. For example, **RSA2048|PSS|SHA256|MGF1_SHA256**.
+  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **ECC224|SHA256**.
+  > - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDSA signing or signature verification operation varies depending on the actual key length.
+
+### DSA Signing and Signature Verification
+
+  > **NOTE**
+  >
+  > DSA signing and signature verification specifications are supported from API version 10.
+
+- The following DSA parameters are supported.
+
+  |Asymmetric Key Type|Digest|String Parameter|
+  |---|---|---|
+  |DSA1024|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA1024\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |DSA2048|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA2048\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |DSA3072|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA3072\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |DSA|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|DSA\|[NoHash\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+
+  > **NOTE**
+  >
+  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created. For example, **DSA1024|SHA256**.
+  > - The DSA key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The signing or signature verification operation varies depending on the actual key length.
+
+
+### SM2 Signature Verification
+
+> **NOTE**
+>
+> The APIs support SM2 signing and signature verification from API version 10.
+
+- The following SM2 parameters are supported.
+
+  |Asymmetric Key Type|Digest|String Parameter|
+  |---|---|---|
+  |SM2_256|SM3|SM2_256\|SM3|
+  |SM2|SM3|SM2\|SM3|
+
+  > **NOTE**
+  >
+  > - The options included in the square brackets ([]) are mutually exclusive. The options outside the square brackets are fixed values.
+  > - As a combination of the asymmetric key type and digest with a vertical bar (|) in between, the string parameter specifies the asymmetric signing or signature verification algorithm specifications when an asymmetric signing or signature verification instance is created.
+  > - SM2 digital signatures support only the SM3 digest.
+
+## Key Agreement Specifications
+
+### ECDH
+
+  > **NOTE**
+  >
+  > The APIs support specifications without the key length for ECDH from API version 10.
+
+- The following ECDH parameters are supported.
+
+  |Asymmetric Key Algorithm|String Parameter|
+  |---|---|
+  |ECC|ECC224|
+  |ECC|ECC256|
+  |ECC|ECC384|
+  |ECC|ECC521|
+  |ECC|ECC|
+
+  > **NOTE**
+  >
+  > - The string parameter specifies the key agreement algorithm specifications when a key agreement instance is created.
+  > - The ECC key type in the last row of the preceding table does not contain the key length to ensure compatibility with the key generated based on the key parameters. The ECDH key agreement operation varies depending on the actual key length.
+
+
+## MD Algorithm Specifications
+
+- The Crypto Framework supports the following MD algorithm parameters.
+
+    > **NOTE**
+    >
+    > SM3 is supported since API version 10.
   
-| Asymmetric Key Type| Padding Mode| Digest| Mask Digest|
-|---|---|---|---|
-|RSA512|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA512|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|RSA512\|PSS\|SHA256\|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-|RSA768|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA768|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-|RSA768|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256]|
-|RSA768|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224]|
-|RSA1024|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA1024|PSS|SHA512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384]|
-|RSA2048|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA2048|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA3072|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA4096|PSS|SHA512|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|MD5|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|SHA1|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|SHA224|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|SHA256|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|SHA384|[MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-|RSA8192|PSS|SHA512| [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512]|
-
-**ECDSA Signing and Signature Verification**
-
-- The following ECDSA parameters are supported:
-
-  |Asymmetric Key Algorithm|Supported Type|
-  |---|---|
-  |ECC|ECC224|
-  |ECC|ECC256|
-  |ECC|ECC384|
-  |ECC|ECC521|
-
-  |Digest Algorithm|Supported Type|
-  |---|---|
-  |HASH|SHA1|
-  |HASH|SHA224|
-  |HASH|SHA256|
-  |HASH|SHA384|
-  |HASH|SHA512|
-
-### Key Agreement Specifications
-
-**ECDH**
-
-- The following ECDH parameters are supported:
-
-  |Asymmetric Key Algorithm|Supported Type|
-  |---|---|
-  |ECC|ECC224|
-  |ECC|ECC256|
-  |ECC|ECC384|
-  |ECC|ECC521|
-
-### MD Algorithm Specifications
-- The crypto framework supports the following MD algorithm parameters:
-
   |Digest Algorithm|Supported Type|
   |---|---|
   |HASH|SHA1|
@@ -411,14 +807,37 @@ The crypto framework provides two padding modes for RSA signing and signature ve
   |HASH|SHA384|
   |HASH|SHA512|
   |HASH|MD5|
+  |HASH|SM3|
+  
+  > **NOTE**
+  >
+  > **Supported Type** specifies the MD algorithm specifications when an MD instance is created.
 
-### HMAC Algorithm Specifications
-- The crypto framework supports the following HMAC algorithm parameters:
+## HMAC Algorithm Specifications
 
-  |Digest Algorithm|Supported Type|
+- The Crypto Framework supports the following HMAC algorithm parameters.
+
+    > **NOTE**
+    >
+    > SM3 is supported from API version 10.
+  
+  |Digest  Algorithm|Supported Type|
   |---|---|
   |HASH|SHA1|
   |HASH|SHA224|
   |HASH|SHA256|
   |HASH|SHA384|
   |HASH|SHA512|
+  |HASH|SM3|
+  
+  > **NOTE**
+  >
+  > **Supported Type** specifies the HMAC algorithm specifications when an HMAC instance is created.
+
+## Random Number
+- Currently, the Crypto Framework supports only the CTR_DRBG algorithm.
+
+  > **NOTE**
+  >
+  > - Currently, only secure random numbers with length of 1 to **INT_MAX** bytes are supported.
+  > - The random number generation algorithm uses the **RAND_priv_bytes** interface of OpenSSL to generate secure random numbers.

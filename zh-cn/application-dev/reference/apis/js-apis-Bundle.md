@@ -58,13 +58,16 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base'; 
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
+let userId: number = 100;
 bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -99,9 +102,11 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
+let userId: number = 100;
 bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -141,8 +146,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 0;
 bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -185,13 +192,16 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlag = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleFlag: number = 0;
+let userId: number = 100;
 
 bundle.getAllBundleInfo(bundleFlag, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -223,7 +233,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlag = 0;
+import bundle from '@ohos.bundle';
+
+let bundleFlag: number = 0;
 bundle.getAllBundleInfo(bundleFlag, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -262,8 +274,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlag = 0;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleFlag: number = 0;
+let userId: number = 100;
 bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -309,15 +323,18 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
-let options = {
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
+let options: bundle.BundleOptions = {
     "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -351,8 +368,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
 bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -392,9 +411,11 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let bundleFlags = 1;
-let options = {
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let bundleFlags: number = 1;
+let options: bundle.BundleOptions = {
     "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
@@ -437,9 +458,12 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
 bundle.getBundleInstaller().then((data) => {
     console.info('getBundleInstaller successfully.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('getBundleInstaller failed.');
 });
 ```
@@ -473,6 +497,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
+import bundle from '@ohos.bundle';
+
 bundle.getBundleInstaller((err, data) => {
     if (err.code == 0) {
         console.error('getBundleInstaller failed.');
@@ -511,7 +537,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName, err => {
     if (err) {
@@ -557,11 +585,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName).then(()=> {
     console.info('cleanBundleCacheFiles successfully.');
-}).catch(err=> {
+}).catch((error: BusinessError) => {
     console.error('cleanBundleCacheFiles failed.');
 });
 ```
@@ -597,7 +628,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 
 bundle.setApplicationEnabled(bundleName, false, err => {
     if (err) {
@@ -644,11 +677,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
 
-bundleManager.setApplicationEnabled(bundleName, false).then(()=> {
+let bundleName: string = "com.example.myapplication";
+
+bundle.setApplicationEnabled(bundleName, false).then(()=> {
     console.info('setApplicationEnabled successfully.');
-}).catch(err=> {
+}).catch((error: BusinessError) => {
     console.error('setApplicationEnabled failed.');
 });
 ```
@@ -717,22 +753,21 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "EntryAbility"
-};
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
 
-bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
+
+bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
     console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
 
     bundle.setAbilityEnabled(abilityInfo, false).then(data => {
         console.info('setAbilityEnabled successfully.');
-    }).catch(err => {
-        console.error('setAbilityEnabled failed:' + JSON.stringify(err));
+    }).catch((error: BusinessError) => {
+        console.error('setAbilityEnabled failed:' + JSON.stringify(error));
     })
-}).catch(error => {
+}).catch((error: BusinessError) => {
     console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
 });
 ```
@@ -766,8 +801,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let permission = "ohos.permission.GET_BUNDLE_INFO";
-bundleManager.getPermissionDef(permission, (err, data) => {
+import bundle from '@ohos.bundle';
+
+let permission: string = "ohos.permission.GET_BUNDLE_INFO";
+bundle.getPermissionDef(permission, (err, data) => {
     if (err) {
         console.error('getPermissionDef failed:' + err.message);
     } else {
@@ -811,10 +848,13 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let permissionName = "ohos.permission.GET_BUNDLE_INFO";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let permissionName: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permissionName).then((data) => {
     console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
     console.error('getPermissionDef failed. Cause: ' + error.message);
 });
 ```
@@ -851,12 +891,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = 8;
-let userId = 100;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleFlags: number = 8;
+let userId: number = 100;
 bundle.getAllApplicationInfo(bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -888,8 +931,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
-let userId = 100;
+import bundle from '@ohos.bundle';
+
+let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+let userId: number = 100;
 bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -926,7 +971,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+import bundle from '@ohos.bundle';
+
+let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -963,12 +1010,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let hapFilePath = "/data/storage/el2/base/test.hap";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let hapFilePath: string = "/data/storage/el2/base/test.hap";
+let bundleFlags: number = 0;
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -996,8 +1046,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let hapFilePath = "/data/storage/el2/base/test.hap";
-let bundleFlags = 0;
+import bundle from '@ohos.bundle';
+
+let hapFilePath: string = "/data/storage/el2/base/test.hap";
+let bundleFlags: number = 0;
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1041,12 +1093,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1080,8 +1135,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1125,12 +1182,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1164,8 +1224,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1202,12 +1264,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo).then((data) => {
         console.info('Operation successful. Data: ' + JSON.stringify(data));
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
         console.error('Operation failed. Cause: ' + JSON.stringify(error));
     })
 })
@@ -1235,8 +1300,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -1275,11 +1342,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 bundle.isApplicationEnabled(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1306,7 +1376,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 bundle.isApplicationEnabled(bundleName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1351,16 +1423,20 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = 0;
-let userId = 100;
-let want = {
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let userId: number = 100;
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1397,9 +1473,12 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = 0;
-let userId = 100;
-let want = {
+import bundle from '@ohos.bundle';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let userId: number = 100;
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1441,8 +1520,11 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleFlags = 0;
-let want = {
+import bundle from '@ohos.bundle';
+import Want from '@ohos.app.ability.Want';
+
+let bundleFlags: number = 0;
+let want: Want = {
     bundleName : "com.example.myapplication",
     abilityName : "EntryAbility"
 };
@@ -1487,11 +1569,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
 bundle.getLaunchWantForBundle(bundleName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1522,7 +1607,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
 bundle.getLaunchWantForBundle(bundleName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1559,11 +1646,14 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let uid = 20010005;
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let uid: number = 20010005;
 bundle.getNameForUid(uid)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1590,7 +1680,9 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let uid = 20010005;
+import bundle from '@ohos.bundle';
+
+let uid: number = 20010005;
 bundle.getNameForUid(uid, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1634,12 +1726,15 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+}).catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
@@ -1674,8 +1769,10 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```ts
-let bundleName = "com.example.myapplication";
-let abilityName = "EntryAbility";
+import bundle from '@ohos.bundle';
+
+let bundleName: string = "com.example.myapplication";
+let abilityName: string = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

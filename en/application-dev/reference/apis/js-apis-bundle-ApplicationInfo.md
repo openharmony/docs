@@ -34,3 +34,4 @@ The **ApplicationInfo** module provides application information. Unless otherwis
 | removable<sup>8+</sup>     | boolean                                                      | Yes  | No  | Whether the application is removable.                                    |
 | accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                                   |
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                                             |
+| entityType                 | string                                                       | Yes  | No  | Type of the application, for example, gaming, social networking, movies, and news.|

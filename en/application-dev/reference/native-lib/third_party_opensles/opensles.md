@@ -1,4 +1,4 @@
-# OpenSL ES Interfaces Supported by Native APIs
+# OpenSL ES
 
 ## Introduction
 
@@ -23,7 +23,7 @@ Open Sound Library for Embedded Systems (OpenSL ES) is a set of audio accelerati
 |SLPlayItf           |SetPlayState          |SetPlayState(SLPlayItf self, SLuint32 state)                                          |Yes       |Sets the playback state.         |
 |SLPlayItf           |GetPlayState          |GetPlayState(SLPlayItf self, SLuint32 *state)                                         |Yes       |Obtains the playback state.         |
 |SLRecordItf         |SetRecordState        |SetRecordState(SLRecordItf self, SLuint32 state)                                      |Yes       |Sets the recording state.         |
-|SLRecordItf         |GetRecordState        |GetRecordState(SLRecordItf self, SLuint32 *pState)                                    |Yes       |Obtains the recording state.         |
+|SLRecordItf         |GetRecordState        |GetRecordState(SLRecordItf self, SLuint32 *pState)                                   |Yes       |Obtains the recording state.         |
 |SLVolumeItf         |SetVolumeLevel        |SetVolumeLevel(SLVolumeItf self, SLmillibel *level)                                   |Yes       |Sets the volume.             |
 |SLVolumeItf         |GetVolumeLevel        |GetVolumeLevel(SLVolumeItf self, SLmillibel level)                                    |Yes       |Obtains the volume.             |
 |SLVolumeItf         |GetMaxVolumeLevel     |GetMaxVolumeLevel(SLVolumeItf self, SLmillibel *maxLevel)                             |Yes       |Obtains the maximum volume.         |

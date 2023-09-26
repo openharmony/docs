@@ -15,7 +15,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 ## AbilityState
 
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Abiltiy的状态。
+Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -59,9 +59,10 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
@@ -117,9 +118,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
-const config = {
+const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
   colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // 浅色模式
   direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // 垂直方向
@@ -131,7 +134,7 @@ const config = {
 try {
     abilityManager.updateConfiguration(config).then(() => {
         console.log('updateConfiguration success.');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -209,11 +212,12 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
         console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -300,13 +304,14 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
         console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
@@ -376,10 +381,11 @@ getTopAbility(): Promise\<ElementName>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 abilityManager.getTopAbility().then((data) => {
     console.log('getTopAbility success, data: ${JSON.stringify(data)}');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
 });
 ```
@@ -388,15 +394,17 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-获取目标设备的分享数据（callback形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos)方法获取，callback是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| missionId | number                                   | 是 | 目标设备的missionId，最大为2<sup>31</sup>-1。 |
+| missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
 | callback  | AsyncCallback<{[key: string]: Object}>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
@@ -411,6 +419,8 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1, (err, wantParam) => { 
         if (err) {
@@ -420,7 +430,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 
 ```
@@ -429,9 +441,17 @@ try {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-获取目标设备的分享数据（Promise形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissionInfos)方法获取，Promise<{[key: string]: Object}>是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
 
 **返回值：**
 
@@ -451,13 +471,142 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
 try {
     abilityManager.acquireShareData(1).then((wantParam) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
-    }).catch((err) => {
+    }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
+
+该接口仅供DLP（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
+| callback  | AsyncCallback<void>                             | 是 | 回调函数。当另存为结果通知成功，err为undefined，否则为错误对象。         |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给另存为行为发起方AbilityResult信息
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err) => {
+    if (err && err.code != 0) {
+      console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`notifySaveAsResult success`);
+    }
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+}
+```
+
+## notifySaveAsResult<sup>10+</sup>
+
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
+
+该接口仅供DLP管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给调用startAbilityForResult&nbsp;接口调用方的相关信息。 |
+| requestCode | number                                        | 是 | DLP管理应用传入的请求代码。          |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise<void>| Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给另存为行为发起方AbilityResult信息
+let abilityResult: common.AbilityResult = {
+    want,
+    resultCode
+};
+let requestCode = 1;
+try {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
+  }).then(() => {
+    console.log(`notifySaveAsResult success`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
 }
 ```

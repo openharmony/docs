@@ -137,7 +137,7 @@ Checks whether the application has the permission to access the device.
 **Example**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 let bool = usb.hasRight(devicesName);
 console.log(bool);
 ```
@@ -146,7 +146,7 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-Requests the temporary permission for the application to access a USB device. This API uses a promise to return the result.
+Requests the temporary permission for the application to access a USB device. This API uses a promise to return the result. System applications are granted the device access permission by default, and you do not need to apply for the permission separately.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -165,7 +165,7 @@ Requests the temporary permission for the application to access a USB device. Th
 **Example**
 
 ```js
-let devicesName="1-1";
+let devicesName= "1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${ret}`);
 });
@@ -375,7 +375,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -500,7 +507,7 @@ Converts the USB function list in the numeric mask format to a string in Device 
 **Example**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -529,8 +536,12 @@ Sets the current USB function list in Device mode.
 **Example**
 
 ```js
-let funcs = usb.HDC;
-let ret = usb.setCurrentFunctions(funcs);
+let funcs = usb.FunctionType.HDC;
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions<sup>9+</sup>
@@ -848,7 +859,7 @@ Enumerates power role types.
 
 | Name  | Value  | Description      |
 | ------ | ---- | ---------- |
-| NONE   | 0    | None      |
+| NONE   | 0    | None.      |
 | SOURCE | 1    | External power supply.|
 | SINK   | 2    | Internal power supply.|
 
@@ -862,6 +873,6 @@ Enumerates data role types.
 
 | Name  | Value  | Description        |
 | ------ | ---- | ------------ |
-| NONE   | 0    | None        |
+| NONE   | 0    | None.        |
 | HOST   | 1    | USB host.|
 | DEVICE | 2    | USB device.|

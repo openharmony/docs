@@ -191,3 +191,9 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
     ```
     hidumper -t [timeout]
     ```
+
+19. 运行 hidumper --mem-smaps pid [-v] 命令获取指定进程内存信息的详细使用情况。
+     
+    ```
+    hidumper --mem-smaps pid [-v]
+    ```

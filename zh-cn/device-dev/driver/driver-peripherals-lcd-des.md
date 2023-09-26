@@ -6,7 +6,7 @@
 
 LCD（Liquid Crystal Display）驱动编程，通过对显示器上电、初始化显示器驱动IC（Integrated Circuit）内部寄存器等操作，使其可以正常工作。
 
-基于HDF（Hardware Driver Foundation）[驱动框架](../driver/driver-hdf-overview.md)构建的Display驱动模型作用如下：
+基于HDF（Hardware Driver Foundation）[驱动框架](driver-overview-foundation.md)构建的Display驱动模型作用如下：
 
 - 为LCD器件驱动开发提供了基础驱动框架，提升驱动开发效率。
 
@@ -47,7 +47,7 @@ LCD接口通常可分为MIPI DSI接口、TTL接口和LVDS接口，常用的是MI
 
     ![image](figures/TTL接口.png "TTL接口")
 
-    ​ TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
+    ​TTL（Transistor Transistor Logic）即晶体管-晶体管逻辑，TTL电平信号由TTL器件产生，TTL器件是数字集成电路的一大门类，它采用双极型工艺制造，具有高速度、低功耗和品种多等特点。
 
     TTL接口是并行方式传输数据的接口，有数据信号、时钟信号和控制信号（行同步、帧同步、数据有效信号等），在控制信号控制下完成数据传输。通常TTL接口的LCD，内部寄存器读写需要额外的外设接口，比如SPI接口、I2C接口等。
 
@@ -63,11 +63,13 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
 ### 接口说明
 
+为了能够调整液晶显示屏的各项参数，与display建立显示通道，实现显示器的显示效果，LCD驱动需要通过`display :: host`注册PanelInfo结构体、接口信息，添加描述设备；LcdResetOn读取的pin脚信息，由SampleEntryInit初始化入口函数，并注册器件驱动接口，供平台驱动调用。
+
 表1 LCD驱动适配所需接口 
 
 | 接口名                                                  | 描述                |
 | :------------------------------------------------------ | ------------------- |
-| display :: host                                         | 设备描述配置        |
+| static int32_t MipiDsiInit(struct PanelInfo *info)      | 适配对应的芯片平台驱动 |
 | static int32_t LcdResetOn(void)                         | 设置Reset Pin脚状态 |
 | int32_t SampleEntryInit(struct HdfDeviceObject *object) | 器件驱动入口函数    |
 
@@ -78,7 +80,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
 2. 在SoC平台驱动适配层中适配对应的芯片平台驱动。
 
-3. 添加器件驱动，并在驱动入口函数Init中注册Panel驱动数据，驱动数据接口主要包括如下接口：
+3. 添加器件驱动，并在驱动入口函数Init中注册Panel驱动数据，驱动数据接口主要实现下述特性：
    - LCD上下电
 
       根据LCD硬件连接，使用Platform接口层提供的GPIO操作接口操作对应LCD管脚，例如复位管脚、IOVCC管脚，上电时序参考LCD供应商提供的SPEC。
@@ -87,7 +89,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
       根据LCD硬件接口，使用Platform接口层提供的I2C、SPI、MIPI等接口，下载LCD初始化序列，初始化参数序列可以参考LCD供应商提供的SPEC。
 
-4. （可选）根据需求实现HDF框架其他接口，比如Release接口。
+4. （可选）根据需求实现HDF框架其他接口。
 
 5. （可选）根据需求使用HDF框架可创建其他设备节点，用于业务逻辑或者调试功能。
 
@@ -180,9 +182,9 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
    }
    ```
 
-3. 添加器件（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
+3. 添加器件
 
-   - 驱动定义相关接口信息
+   - 驱动定义相关接口信息（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      #define RESET_GPIO                5
@@ -204,7 +206,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      #define FRAME_RATE                60
      ```
 
-   - 定义PanelInfo结构体
+   - 定义PanelInfo结构体（drivers/hdf_core/framework/model/display/driver/hdf_disp.h）
 
      ```c++
      struct PanelInfo {
@@ -225,7 +227,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      };
      ```
 
-   - 初始化LCD屏
+   - 初始化LCD屏（drivers/hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      static uint8_t g_payLoad0[] = { 0xF0, 0x5A, 0x5A };
@@ -257,7 +259,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      static DevHandle g_pwmHandle = NULL;
      ```
 
-   - 设置Reset Pin脚状态
+   - 设置Reset Pin脚状态（/drivers_hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      static int32_t LcdResetOn(void)
@@ -281,7 +283,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      }
      ```
 
-   - 器件驱动入口函数
+   - 器件驱动入口函数（/drivers_hdf_core/framework/model/display/driver/panel/mipi_icn9700.c）
 
      ```c++
      /*初始化入口函数*/

@@ -880,10 +880,8 @@
 - 订阅者所需权限：无
 
 
-## COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>
+## [COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>](./common_event/commonEvent-window.md)
 提示分屏。
-- 值：usual.event.SPLIT_SCREEN
-- 订阅者所需权限：无
 
 
 ## COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>
@@ -907,3 +905,6 @@
 表示用户信息已更新。
 - 值：usual.event.USER_INFO_UPDATED
 - 订阅者所需权限：无
+
+## [COMMON_EVENT_SMS_RECEIVE_COMPLETED](./common_event/commonEvent-mms.md)
+表示设备接收到信息的动作

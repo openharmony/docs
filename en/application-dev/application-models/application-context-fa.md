@@ -17,6 +17,8 @@ Then, call **getContext()** to obtain the **Context** object:
 
 
 ```ts
+import featureAbility from "@ohos.ability.featureAbility";
+
 let context = featureAbility.getContext()
 ```
 
@@ -28,39 +30,44 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-inner-
 1. Query bundle information.
    
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility'
-   export default {
-     onCreate() {
-       // Obtain the context and call related APIs.
-       let context = featureAbility.getContext();
-       context.getBundleName((data, bundleName)=>{
-         console.info("ability bundleName:" + bundleName)
-       });
-       console.info('Application onCreate')
-     },
-     onDestroy() {
-       console.info('Application onDestroy')
-     },
-   }
+    import featureAbility from '@ohos.ability.featureAbility'
+
+    class Entry {
+      onCreate() {
+        // Obtain the context and call related APIs.
+        let context = featureAbility.getContext();
+        context.getBundleName((data, bundleName)=>{
+          console.info("ability bundleName:" + bundleName)
+        });
+        console.info('Application onCreate')
+      }
+      onDestroy() {
+        console.info('Application onDestroy')
+      }
+    }
+
+    export default new Entry()
    ```
 
-2. Set the display orientation of the host featureAbility.
+2. Set the display orientation of the **featureAbility**.
    
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility'
-   import bundle from '@ohos.bundle';
-   
-   export default {
-     onCreate() {
-       // Obtain the context and call related APIs.
-       let context = featureAbility.getContext();
-       context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE).then(() => {
-           console.info("Set display orientation.")
-       })
-       console.info('Application onCreate')
-     },
-     onDestroy() {
-       console.info('Application onDestroy')
-     },
-   }
+    import featureAbility from '@ohos.ability.featureAbility'
+    import bundleManager from '@ohos.bundle.bundleManager';
+
+    class Entry {
+      onCreate() {
+        // Obtain the context and call related APIs.
+        let context = featureAbility.getContext();
+        context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
+          console.info("Set display orientation.")
+        })
+        console.info('Application onCreate')
+      }
+      onDestroy() {
+        console.info('Application onDestroy')
+      }
+    }
+
+    export default new Entry();
    ```

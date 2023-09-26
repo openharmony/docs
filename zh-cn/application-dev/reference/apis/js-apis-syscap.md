@@ -29,12 +29,17 @@ canIUse(syscap: string): boolean
 **示例：**
 
   ```js
-import geolocation from '@ohos.geolocation'
+import geoLocationManager from '@ohos.geoLocationManager'
 
-const isLocationAvailable = canIUse('SystemCapability.Location.Location');
+const isLocationAvailable = canIUse('SystemCapability.Location.Location.Core');
 if (isLocationAvailable) {
-    geolocation.getCurrentLocation((location) => {
-        console.log(location.latitude, location.longitue);
+    geoLocationManager.getCurrentLocation((err, location) => {
+        if (err) {
+            console.log('err=' + JSON.stringify(err));
+        }
+        if (location) {
+            console.log('location=' + JSON.stringify(location));
+        }
     });
 } else {
     console.log('Location not by this device.');

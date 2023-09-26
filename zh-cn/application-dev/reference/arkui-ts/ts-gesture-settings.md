@@ -52,7 +52,7 @@
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
 | offsetX | number | 手势事件x轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
 | offsetY | number | 手势事件y轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
-| angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
+| angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
 | scale | number | 缩放比例，用于PinchGesture手势触发场景。 |
 | pinchCenterX | number | 捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | pinchCenterY | number | 捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
@@ -65,6 +65,9 @@
 | tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。 |
 | tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。 |
 | sourceTool<sup>9+</sup> | [SourceTool](#sourcetool枚举说明) | 事件输入源。 |
+| velocityX<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。 |
+| velocityY<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。 |
+| velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。 |
 
 ## SourceType枚举说明
 | 名称 | 描述 |
@@ -105,10 +108,10 @@ struct GestureSettingsExample {
       Column() {
         Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.priorityTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.priorityTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -117,18 +120,18 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // 设置为priorityGesture时，点击文本会忽略Text组件的TapGesture手势事件，优先识别父组件Column的TapGesture手势事件
       .priorityGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.priorityTestValue += '\nColumn'
-        }), GestureMask.IgnoreInternal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.priorityTestValue += '\nColumn'
+          }), GestureMask.IgnoreInternal)
 
       Column() {
         Text('TapGesture:' + this.parallelTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.parallelTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.parallelTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -137,14 +140,13 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // 设置为parallelGesture时，点击文本会同时触发子组件Text与父组件Column的TapGesture手势事件
       .parallelGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.parallelTestValue += '\nColumn'
-        }), GestureMask.Normal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.parallelTestValue += '\nColumn'
+          }), GestureMask.Normal)
     }
   }
 }
-
 ```
 
 ![zh-cn_image_0000001210195016](figures/zh-cn_image_0000001210195016.gif)

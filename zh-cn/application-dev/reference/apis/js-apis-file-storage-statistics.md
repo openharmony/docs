@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import storageStatistics from "@ohos.file.storageStatistics";
 ```
 
@@ -34,7 +34,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | 返回指定卷设备的总空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷设备的总空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -47,16 +47,17 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then(function(number){
-      console.info("getTotalSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+    console.info("getTotalSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -90,15 +91,16 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, function(error, number){
-      // do something
-      console.info("getTotalSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // do something
+    console.info("getTotalSizeOfVolume successfully:" + number);
   });
   ```
 
@@ -124,7 +126,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   | 类型                  | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回指定卷的可用空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷的可用空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -137,18 +139,18 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then(function(number){
-      console.info("getFreeSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+    console.info("getFreeSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
   });
-  
   ```
 
 ## storageStatistics.getFreeSizeOfVolume
@@ -181,15 +183,16 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, function(error, number){
-      // do something
-      console.info("getFreeSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // do something
+    console.info("getFreeSizeOfVolume successfully: " + number);
   });
   ```
 
@@ -215,7 +218,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存储数据（单位为Byte） |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据（单位为Byte） |
 
 **错误码：**
 
@@ -228,16 +231,17 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName).then(function(BundleStats){
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
-  }).catch(function(err){
-      console.info("getBundleStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getBundleStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -271,15 +275,16 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName, function(error, BundleStats){
-      // do something
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.Bundlestats) => {
+    // do something
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   });
   ```
 
@@ -295,7 +300,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存空间大小（单位为Byte）      |
 
 **错误码：**
 
@@ -305,13 +310,17 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let bundleStats = storageStatistics.getCurrentBundleStats();
-  console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -336,14 +345,15 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getCurrentBundleStats(function(error, bundleStats){
-      // do something
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+    // do something
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
   });
   ```
 
@@ -373,7 +383,7 @@ getTotalSize(): Promise&lt;number&gt;
 
   | 类型                   | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回内置存储的总空间大小（单位为Byte）   |
+  | Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte）   |
 
 **错误码：**
 
@@ -385,13 +395,17 @@ getTotalSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let number = storageStatistics.getTotalSize();
-  console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize().then((number: number) => {
+    console.info("getTotalSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSize failed with error:"+ JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -422,15 +436,53 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getTotalSize(function(error, number){
-      // do something
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getTotalSizeSync<sup>10+</sup>
+
+getTotalSizeSync(): number
+
+同步获取内置存储的总空间大小（单位为Byte）。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**系统接口：** 该接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let number = storageStatistics.getTotalSizeSync();
+    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getTotalSizeSync failed with error:" + JSON.stringify(err));
+  }
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -449,7 +501,7 @@ getFreeSize(): Promise&lt;number&gt;
 
   | 类型                   | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回内置存储的可用空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -461,13 +513,17 @@ getFreeSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let number = storageStatistics.getFreeSize();
-  console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize().then((number: number) => {
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSize failed with error:" + JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -498,15 +554,53 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getFreeSize(function(error, number){
-      // do something
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getFreeSizeSync<sup>10+</sup>
+
+getFreeSizeSync(): number
+
+同步获取内置存储的可用空间大小（单位为Byte）。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**系统接口：** 该接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let number = storageStatistics.getFreeSizeSync();
+    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getFreeSizeSync failed with error:" + JSON.stringify(err));
+  }
   ```
 
 ## storageStatistics.getSystemSize<sup>9+</sup>
@@ -525,7 +619,7 @@ getSystemSize(): Promise&lt;number&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | 返回系统数据的空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回系统数据的空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -537,15 +631,16 @@ getSystemSize(): Promise&lt;number&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getSystemSize().then(function(number){
-      console.info("getSystemSize successfully:"+ number);
-  }).catch(function(err){
-      console.info("getSystemSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize().then((number: number) => {
+    console.info("getSystemSize successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getSystemSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -577,14 +672,15 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getSystemSize(function(error, number){
-      // do something
-      console.info("getSystemSize successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize((error: BusinessError, number: number) => {
+    // do something
+    console.info("getSystemSize successfully:" + number);
   });
   ```
 
@@ -604,7 +700,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | 返回当前用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回当前用户各类别存储空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -616,15 +712,16 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getUserStorageStats().then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -656,14 +753,15 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  storageStatistics.getUserStorageStats(function(error, StorageStats){
-      // do something
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // do something
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 
@@ -689,7 +787,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | 返回指定用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回指定用户各类别存储空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -702,16 +800,17 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -745,15 +844,16 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **示例：**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
-      // do something
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // do something
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 

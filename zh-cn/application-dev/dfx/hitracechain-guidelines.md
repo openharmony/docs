@@ -30,6 +30,7 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
     ```ts
     import hiTraceChain from '@ohos.hiTraceChain';
     import hiSysEvent from '@ohos.hiSysEvent';
+    import { BusinessError } from '@ohos.base';
 
     @Entry
     @Component
@@ -50,26 +51,28 @@ hiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
                   // 业务开始前，开启分布式跟踪。
                   let traceId = hiTraceChain.begin("Write a new system event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
                   // 业务开始：完成一次系统事件打点。
-                  hiSysEvent.write({
+                  let customizedParams: Record<string, string | number> = {
+                    'PID': 1,
+                    'UID': 1,
+                    'PACKAGE_NAME': "com.demo.hitracechain",
+                    'PROCESS_NAME': "hitracechaindemo",
+                    'MSG': "no msg."
+                  };
+                  let eventInfo: hiSysEvent.SysEventInfo = {
                     domain: "RELIABILITY",
                     name: "STACK",
                     eventType: hiSysEvent.EventType.FAULT,
-                    params: {
-                      PID: 1,
-                      UID: 1,
-                      PACKAGE_NAME: "com.demo.hitracechain",
-                      PROCESS_NAME: "hitracechaindemo",
-                      MSG: "no msg."
-                    }
-                  }).then((val) => {
+                    params: customizedParams
+                  };
+                  hiSysEvent.write(eventInfo).then((val: number) => {
                     console.info(`write result is ${val}`);
                     // 业务结束，关闭分布式跟踪。
                     hiTraceChain.end(traceId);
-                  }).catch((err) => {
+                  }).catch((err: BusinessError) => {
                     console.error(`error message is ${err.message}`);
                   });
                 } catch (err) {
-                  console.error(`error message is ${err.message}`);
+                  console.error(`error message is ${(err as BusinessError).message}`);
                 }
               })
           }

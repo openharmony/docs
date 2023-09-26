@@ -1,7 +1,7 @@
 # API Switching Overview
 
 
-Due to the differences in the thread model and process model, certain APIs (marked with **FAModelOnly** in the SDK) can be used only in the FA model. When switching an application from the FA model to the stage model, replace the APIs marked with **FAModelOnly** in the application with the APIs supported in the stage model. This topic uses the switching of **startAbility()** as an example.
+Due to the differences in the thread model and process model, certain APIs can be used only in the FA model. They are marked with **FAModelOnly** in the SDK. When switching an application from the FA model to the stage model, replace the APIs marked with **FAModelOnly** in the application with the APIs supported in the stage model. This topic uses the switching of **startAbility()** as an example.
 
 ![api-switch-overview](figures/api-switch-overview.png)
 
@@ -11,15 +11,16 @@ Due to the differences in the thread model and process model, certain APIs (mark
 
   ```ts
   import fa from '@ohos.ability.featureAbility';
-  let parameter = {
+  import { BusinessError } from '@ohos.base';
+
+  fa.startAbility({
     "want": {
       bundleName: "com.example.myapplication",
       abilityName: "com.example.myapplication.EntryAbility"
     }
-  }
-  fa.startAbility(parameter).then((data) => {
+  }).then((data) => {
     console.info('startAbility success');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('startAbility failed.');
   })
   ```
@@ -27,15 +28,17 @@ Due to the differences in the thread model and process model, certain APIs (mark
 - Sample code of **startAbility()** in the stage model:
 
   ```ts
-  // context is a member of the ability object and is required for invoking inside a non-ability object.
+  import Want from '@ohos.app.ability.Want';
+
+  // Context is a member of the ability object and is required for invoking inside a non-ability object.
   // Pass in the Context object.
-  let wantInfo = {
+  let wantInfo: Want = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility"
   };
-  this.context.startAbility(wantInfo).then((data) => {
+  this.context.startAbility(wantInfo).then(() => {
     console.info('startAbility success.');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('startAbility failed.');
   })
   ```

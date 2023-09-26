@@ -31,8 +31,8 @@
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
 | sendMessage(options: SendMessageOptions): void               | 发送文本或数据SMS消息。                                                      |
+| createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
 | getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | 获取用于发送短信的默认SIM卡。                                                |
 | setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
 | getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
@@ -48,71 +48,31 @@
 
 2. import需要的模块。
 
-3. 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。
+3. 发送SMS消息。
 
-4. 发送SMS消息。
+```ts
+import sms from '@ohos.telephony.sms'
+import { AsyncCallback } from '@ohos.base';
+import { BusinessError } from '@ohos.base';
 
-   ```js
-    // import需要的模块
-    import sms from '@ohos.telephony.sms'
-   
-    export default class SmsModel {
-        async createMessage() {
-            const specification = '3gpp'
-            const pdu = [0x08, 0x91] // 以数组的形式显示协议数据单元（PDU），类型为number
-            const shortMessage = await sms.createMessage(pdu, specification)
-            Logger.info(`${TAG}, createMessageCallback: shortMessage = ${JSON.stringify(shortMessage)}`)
-            return shortMessage
-        }
-   
-        sendMessage(slotId, content, destinationHost, serviceCenter, destinationPort, handleSend, handleDelivery) {
-            Logger.info(`${TAG}, sendMessage start ${slotId} ${content} ${destinationHost} ${serviceCenter} ${destinationPort}`)
-            const options =
-            {
-                slotId: slotId,
-                content: content,
-                destinationHost: destinationHost,
-                serviceCenter: serviceCenter,
-                destinationPort: destinationPort,
-                sendCallback(err, data) {
-                    Logger.info(`${TAG}, sendCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleSend(err, data)
-                },
-                deliveryCallback(err, data) {
-                    Logger.info(`${TAG}, deliveryCallback: data = ${JSON.stringify(data)} err = ${JSON.stringify(err)}`)
-                    handleDelivery(err, data)
-                }
-            }
-            // 发送SMS消息
-            sms.sendMessage(options)
-            Logger.info(`${TAG}, sendMessage end`)
-        }
-   
-        // 获取用于发送短信的默认SIM卡
-        async getDefaultSmsSlotId() {
-            const defaultSmsSlotId = await sms.getDefaultSmsSlotId()
-            Logger.info(`${TAG}, getDefaultSmsSlotId: defaultSmsSlotId = ${defaultSmsSlotId}`)
-            return defaultSmsSlotId
-        }
-   
-        // 根据指定的插槽ID设置短信服务中心的地址
-        async setSmscAddr(slotId, smscAddr) {
-            const serviceCenter = await sms.setSmscAddr(slotId, smscAddr)
-            Logger.info(`${TAG}, setSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-   
-        // 根据指定的插槽ID获取短信服务中心地址
-        async getSmscAddr(slotId) {
-            const serviceCenter = await sms.getSmscAddr(slotId)
-            Logger.info(`${TAG}, getSmscAddr: serviceCenter = ${JSON.stringify(serviceCenter)}`)
-            return serviceCenter
-        }
-    }
-   ```
+let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
+    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
+    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+}
+let slotId: number = 0;
+let content: string = '短信内容';
+let destinationHost: string = '+861xxxxxxxxxx';
+let serviceCenter: string = '+861xxxxxxxxxx';
+let destinationPort: number = 1000;
+let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
+sms.sendMessage(options);
+```
 
 
 ## 相关实例
 
 针对短信的使用，有以下相关实例可供参考：
-- [短信服务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)
+
+- [短信服务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)

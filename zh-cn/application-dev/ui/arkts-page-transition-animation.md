@@ -1,4 +1,6 @@
-# 页面转场动画
+# 页面转场动画（不推荐）
+
+为了实现更好的转场效果，推荐使用[导航转场](arkts-navigation-transition.md)和[模态转场](arkts-modal-transition.md)。
 
 
 两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面转场](../reference/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过PageTransitionEnter和PageTransitionExit指定页面进入和退出的动画效果。
@@ -34,7 +36,7 @@ type为RouteType.None表示对页面栈的push、pop操作均生效，type的默
 
 
 ```ts
-// pageA
+// page A
 pageTransition() {
   // 定义页面进入时的效果，从左侧滑入，时长为1200ms，无论页面栈发生push还是pop操作均可生效
   PageTransitionEnter({ type: RouteType.None, duration: 1200 })
@@ -48,7 +50,7 @@ pageTransition() {
 
 
 ```ts
-// pageB
+// page B
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1000ms，无论页面栈发生push还是pop操作均可生效
   PageTransitionEnter({ type: RouteType.None, duration: 1000 })
@@ -60,7 +62,7 @@ pageTransition() {
 ```
 
 
-假设页面栈为多实例模式，即页面栈中允许存在重复的页面。可能会有4种场景，对应的页面转场效果如下表。
+假设页面跳转配置为多实例模式，即页面栈中允许存在重复的页面。可能会有4种场景，对应的页面转场效果如下表。
 
 
 | 路由操作                         | 页面A转场效果                            | 页面B转场效果                            |
@@ -80,7 +82,7 @@ type为RouteType.Push表示仅对页面栈的push操作生效，type为RouteType
 
 
 ```ts
-// pageA
+// page A
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1200ms，页面栈发生push操作时该效果才生效
   PageTransitionEnter({ type: RouteType.Push, duration: 1200 })
@@ -100,7 +102,7 @@ pageTransition() {
 
 
 ```ts
-// pageB
+// page B
 pageTransition() {
   // 定义页面进入时的效果，从右侧滑入，时长为1000ms，页面栈发生push操作时该效果才生效
   PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
@@ -175,7 +177,7 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一个页面，push操作
-            router.pushUrl({ url: 'pages/myTest/PageTransitionDst1' });
+            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
@@ -227,7 +229,7 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/PageTransitionSrc1' });
+            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {

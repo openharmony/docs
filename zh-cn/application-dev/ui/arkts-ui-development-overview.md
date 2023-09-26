@@ -85,11 +85,15 @@
 | 添加组件        | 介绍了几种常用的内置组件、自定义组件以及通过API方式支持的界面元素。 | -&nbsp;[常用组件](arkts-common-components-button.md)<br/>- [自定义组件](../quick-start/arkts-create-custom-components.md)<br>-&nbsp;[气泡和菜单](arkts-popup-and-menu-components-popup.md) |
 | 设置页面路由和组件导航 | 介绍了如何设置页面路由以及组件间的导航。                | -&nbsp;[页面路由](arkts-routing.md)<br/>-&nbsp;[组件导航](arkts-navigation-navigation.md) |
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[图片](arkts-graphics-display.md)<br/>-&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
-| 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | -&nbsp;[页面内的动画](arkts-layout-update-animation.md)<br/>-&nbsp;[页面间的动画](arkts-zoom-animation.md) |
+| 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
 
 ## 相关实例
 
 基于ArkTS的声明式开发范式，可参考以下实例：
 
-[ArkTS组件集](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection)：组件、通用方法、动画、全局方法的集合。
+- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+
+- [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
+
+- [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)

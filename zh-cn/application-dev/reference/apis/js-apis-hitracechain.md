@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import hiTraceChain from '@ohos.hiTraceChain';
 ```
 
@@ -93,7 +93,7 @@ begin(name: string, flags?: number): HiTraceId
 
 **示例：**
 
-```js
+```ts
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 ```
 
@@ -113,7 +113,7 @@ end(id: HiTraceId): void
 
 **示例：**
 
-```js
+```ts
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，结束跟踪。
 hiTraceChain.end(asyncTraceId);
@@ -135,7 +135,7 @@ getId(): HiTraceId
 
 **示例：**
 
-```js
+```ts
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，获取当前HiTraceId。
 let curTraceId = hiTraceChain.getId();
@@ -157,10 +157,11 @@ setId(id: HiTraceId): void
 
 **示例：**
 
-```js
-let asyncTraceId;
+```ts
+let asyncTraceId: hiTraceChain.HiTraceId;
+hiTraceChain.end(asyncTraceId);
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
-// 若干业务逻辑完成后，设置当前HiTraceId。
+// 若干业务逻辑完成后，将之前的traceId设置为当前traceId。
 hiTraceChain.setId(asyncTraceId);
 ```
 
@@ -174,7 +175,7 @@ clearId(): void
 
 **示例：**
 
-```js
+```ts
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，清除当前HiTraceId。
 hiTraceChain.clearId();
@@ -196,7 +197,7 @@ createSpan(): HiTraceId
 
 **示例：**
 
-```js
+```ts
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，创建跟踪分支。
 let spanTraceId = hiTraceChain.createSpan();
@@ -221,7 +222,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTr
 
 **示例：**
 
-```js
+```ts
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC | hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // 若干业务逻辑完成后，触发信息埋点操作。
 hiTraceChain.tracepoint(hiTraceChain.HiTraceCommunicationMode.THREAD, hiTraceChain.HiTraceTracepointType.SS, asyncTraceId, "Just a example");
@@ -249,7 +250,7 @@ isValid(id: HiTraceId): boolean
 
 **示例：**
 
-```js
+```ts
 let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
 ```
@@ -277,7 +278,7 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 **示例：**
 
-```js
+```ts
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
 // enabledDoNotCreateSpanFlag为true
 let enabledDoNotCreateSpanFlag = hiTraceChain.isFlagEnabled(asyncTraceId, hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
@@ -300,7 +301,7 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 **示例：**
 
-```js
+```ts
 let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
 hiTraceChain.enableFlag(asyncTraceId, hiTraceChain.HiTraceFlag.DONOT_CREATE_SPAN);
 // enabledDoNotCreateSpanFlag为true

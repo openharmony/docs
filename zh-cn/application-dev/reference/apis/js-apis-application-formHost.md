@@ -34,12 +34,12 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.deleteForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.deleteForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost deleteForm, error: ${JSON.stringify(error)}');
+    console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -69,12 +69,12 @@ deleteForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.deleteForm(formId).then(() => {
   console.log('formHost deleteForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost deleteForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -99,10 +99,10 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.releaseForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.releaseForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
   } else {
@@ -132,10 +132,10 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.releaseForm(formId, true, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
   } else {
@@ -159,7 +159,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 否   | 是否释放缓存。 |
+| isReleaseCache | boolean | 否   | 是否释放缓存，默认为false。 |
 
 **返回值：**
 
@@ -170,12 +170,12 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.releaseForm(formId, true).then(() => {
   console.log('formHost releaseForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost releaseForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -200,10 +200,10 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.requestForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.requestForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost requestForm, error: ${JSON.stringify(error)}');
   }
@@ -235,12 +235,12 @@ requestForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.requestForm(formId).then(() => {
   console.log('formHost requestForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost requestForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -265,10 +265,10 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.castTempForm(formId, (error, data) => {
+let formId: string = '12400633174999288';
+formHost.castTempForm(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost castTempForm, error: ${JSON.stringify(error)}');
   }
@@ -300,12 +300,12 @@ castTempForm(formId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.castTempForm(formId).then(() => {
   console.log('formHost castTempForm success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost castTempForm, error: ${JSON.stringify(error)}');
 });
 ```
@@ -330,12 +330,12 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.notifyVisibleForms(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost notifyVisibleForms, error: ${JSON.stringify(error)}');
+    console.error(`formHost notifyVisibleForms, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -365,12 +365,12 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.notifyVisibleForms(formId).then(() => {
   console.log('formHost notifyVisibleForms success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost notifyVisibleForms, error: ${JSON.stringify(error)}');
 });
 ```
@@ -395,10 +395,10 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.notifyInvisibleForms(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost notifyInvisibleForms, error: ${JSON.stringify(error)}');
   }
@@ -430,12 +430,12 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.notifyInvisibleForms(formId).then(() => {
   console.log('formHost notifyInvisibleForms success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost notifyInvisibleForms, error: ${JSON.stringify(error)}');
 });
 ```
@@ -460,10 +460,10 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.enableFormsUpdate(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost enableFormsUpdate, error: ${JSON.stringify(error)}');
   }
@@ -495,12 +495,12 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.enableFormsUpdate(formId).then(() => {
   console.log('formHost enableFormsUpdate success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost enableFormsUpdate, error: ${JSON.stringify(error)}');
 });
 ```
@@ -525,10 +525,10 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
-formHost.disableFormsUpdate(formId, (error, data) => {
+let formId: string[] = ['12400633174999288'];
+formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost disableFormsUpdate, error: ${JSON.stringify(error)}');
   }
@@ -560,12 +560,12 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = ['12400633174999288'];
+let formId: string[] = ['12400633174999288'];
 formHost.disableFormsUpdate(formId).then(() => {
   console.log('formHost disableFormsUpdate success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost disableFormsUpdate, error: ${JSON.stringify(error)}');
 });
 ```
@@ -587,10 +587,10 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
-formHost.isSystemReady((error, data) => {
+let formId: string = '12400633174999288';
+formHost.isSystemReady((error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost isSystemReady, error: ${JSON.stringify(error)}');
   }
@@ -614,12 +614,12 @@ isSystemReady(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formId = '12400633174999288';
+let formId: string = '12400633174999288';
 formHost.isSystemReady().then(() => {
   console.log('formHost isSystemReady success');
-}).catch((error) => {
+}).catch((error: Base.BusinessError) => {
   console.error('formHost isSystemReady, error: ${JSON.stringify(error)}');
 });
 ```
@@ -643,9 +643,10 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getAllFormsInfo((error, data) => {
+formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
     console.error('formHost getAllFormsInfo, error: ${JSON.stringify(error)}');
   } else {
@@ -673,11 +674,12 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 **示例：**
 
   ```ts
-  import formHost from '@ohos.application.formHost';
+  import formInfo from '@ohos.app.form.formInfo';
+  import Base from '@ohos.base';
 
-  formHost.getAllFormsInfo().then((data) => {
+  formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
     console.log('formHost getAllFormsInfo data: ${JSON.stringify(data)}');
-  }).catch((error) => {
+  }).catch((error: Base.BusinessError) => {
     console.error('formHost getAllFormsInfo, error: ${JSON.stringify(error)}');
   });
   ```
@@ -702,13 +704,14 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getFormsInfo('com.example.ohos.formjsdemo', (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
-    console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
+    console.error(`formHost getFormsInfo, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -734,9 +737,10 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error, data) => {
+formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
   if (error.code) {
     console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
   } else {
@@ -771,12 +775,13 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **示例：**
 
   ```ts
-  import formHost from '@ohos.application.formHost';
+  import Base from '@ohos.base';
 
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
-    console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
-  }).catch((error) => {
-    console.error('formHost getFormsInfo, error: ${JSON.stringify(error)}');
+
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
+    console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
+  }).catch((error: Base.BusinessError) => {
+    console.error(`formHost getFormsInfo, error: ${JSON.stringify(error)}`);
   });
   ```
 
@@ -800,14 +805,14 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.deleteInvalidForms(formIds, (error, data) => {
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
   if (error.code) {
-    console.error('formHost deleteInvalidForms, error: ${JSON.stringify(error)}');
+    console.error(`formHost deleteInvalidForms, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
+    console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -837,13 +842,13 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.deleteInvalidForms(formIds).then((data) => {
-  console.log('formHost deleteInvalidForms, data: ${JSON.stringify(data)}');
-}).catch((error) => {
-  console.error('formHost deleteInvalidForms, error: ${JSON.stringify(error)}');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.deleteInvalidForms(formIds).then((data: number) => {
+  console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost deleteInvalidForms, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -867,9 +872,11 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -879,11 +886,11 @@ let want = {
     'ohos.extra.param.key.form_dimension': 2
   }
 };
-formHost.acquireFormState(want, (error, data) => {
+formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
   if (error.code) {
-    console.error('formHost acquireFormState, error: ${JSON.stringify(error)}');
+    console.error(`formHost acquireFormState, error: ${JSON.stringify(error)}`);
   } else {
-    console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
+    console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -913,9 +920,11 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Want from '@ohos.app.ability.Want';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
-let want = {
+let want: Want = {
   'deviceId': '',
   'bundleName': 'ohos.samples.FormApplication',
   'abilityName': 'FormAbility',
@@ -925,10 +934,10 @@ let want = {
     'ohos.extra.param.key.form_dimension': 2
   }
 };
-formHost.acquireFormState(want).then((data) => {
-  console.log('formHost acquireFormState, data: ${JSON.stringify(data)}');
-}).catch((error) => {
-  console.error('formHost acquireFormState, error: ${JSON.stringify(error)}');
+formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
+  console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost acquireFormState, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -950,12 +959,11 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-};
-formHost.on('formUninstall', callback);
+formHost.on('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## off('formUninstall')
@@ -976,12 +984,11 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let callback = function(formId) {
-  console.log('formHost on formUninstall, formId: ${formId}');
-};
-formHost.off('formUninstall', callback);
+formHost.off('formUninstall', (formId: string) => {
+  console.log(`formHost on formUninstall, formId: ${formId}`);
+});
 ```
 
 ## notifyFormsVisible
@@ -1005,12 +1012,12 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.notifyFormsVisible(formIds, true, (error, data) => {
+let formIds: string[]= new Array('12400633174999288', '12400633174999289');
+formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
   if (error.code) {
-    console.error('formHost notifyFormsVisible, error: ${JSON.stringify(error)}');
+    console.error(`formHost notifyFormsVisible, error: ${JSON.stringify(error)}`);
   }
 });
 ```
@@ -1041,13 +1048,13 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsVisible(formIds, true).then(() => {
   console.log('formHost notifyFormsVisible success');
-}).catch((error) => {
-  console.error('formHost notifyFormsVisible, error: ${JSON.stringify(error)}');
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost notifyFormsVisible, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1072,10 +1079,10 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
-formHost.notifyFormsEnableUpdate(formIds, true, (error, data) => {
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
+formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
   if (error.code) {
     console.error('formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}');
   }
@@ -1108,12 +1115,12 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **示例：**
 
 ```ts
-import formHost from '@ohos.application.formHost';
+import Base from '@ohos.base';
 
-let formIds = new Array('12400633174999288', '12400633174999289');
+let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
   console.log('formHost notifyFormsEnableUpdate success');
-}).catch((error) => {
-  console.error('formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}');
+}).catch((error: Base.BusinessError) => {
+  console.error(`formHost notifyFormsEnableUpdate, error: ${JSON.stringify(error)}`);
 });
 ```

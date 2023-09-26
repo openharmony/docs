@@ -719,9 +719,8 @@ Failed to install the HAP because the isolationMode configured is not supported.
 During application installation, the value of **isolationMode** in the HAP conflicts with the isolation mode of the device.
 
 **Possible Causes**
-
-1. The device supports the isolation mode (the value of **supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
-2. The device does not support the isolation mode (the value of **supportIsolationMode** is **false**), whereas the value of **isolationMode** in the HAP is **isolationOnly**.
+1. The device supports the isolation mode (the value of **persist.bms.supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
+2. The device does not support the isolation mode (the value of **persist.bms.supportIsolationMode** is **false**), whereas the value of **isolationMode** in the HAP is **isolationOnly**.
 
 **Solution**
 
@@ -764,3 +763,80 @@ The version of the application to be updated is not later than the current versi
 
 1. Set the version number of the application to be later than the current version number.
 2. If you want to update the application without changing the version number, set **installFlag** to **REPLACE_EXISTING**.
+
+## 17700048 Code Signature Verification Failure
+**Error Message**
+
+Failed to install the HAP because the code signature verification is failed.
+
+**Description**
+
+During application installation, the code signature file of the installation package fails to be verified.
+
+**Possible Causes**
+
+1. The module corresponding to the code signature file does not exist in the installation package.
+2. The path of the code signature file is invalid.
+3. The code signature file does not match the installation package.
+
+**Solution**
+
+1. Ensure that the module corresponding to the code signature file is contained in the installation package.
+2. Provide a valid path of the code signature file.
+3. Use the code signature file that matches the installation package.
+
+## 17700049 Update Failure Because of Incorrect Bundle Name
+
+**Error Message**
+
+Failed to install the HAP because the bundleName is different from the bundleName of the caller application.
+
+**Description**
+
+During the update of an enterprise MDM application, the bundleName passed in is different from that of the caller.
+
+**Possible Causes**
+
+The HAP or HSP to be installed does not belong to the current application.
+
+**Solution**
+
+Ensure that the HAP or HSP to be installed belongs to the current application.
+
+## 17700050 Enterprise Device Verification Failure
+
+**Error Message**
+
+Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+
+**Description**
+
+Users try to install an enterprise Normal or MDM application on a non-enterprise device.
+
+**Possible Causes**
+
+The device is not an enterprise device.
+
+**Solution**
+
+1. Use an enterprise device.
+
+2. Ensure that **const.bms.allowenterprisebundle** is set to **true**.
+
+## 17700051 Update Failure Because of Incorrect Distribution Type
+
+**Error Message**
+
+Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+
+**Description**
+
+During the update of an enterprise MDM application, the distribution type of the caller is not enterprise MDM.
+
+**Possible Causes**
+
+The distribution type of the caller is not enterprise MDM.
+
+**Solution**
+
+Ensure that the signature file of the application is correctly configured.

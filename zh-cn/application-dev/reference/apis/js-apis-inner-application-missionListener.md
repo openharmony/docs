@@ -12,7 +12,11 @@
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
@@ -28,27 +32,27 @@ import missionManager from '@ohos.app.ability.missionManager';
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
 
-let listener = {
-    onMissionCreated: function (mission) {
+let listener: missionManager.MissionListener = {
+    onMissionCreated: (mission) => {
         console.log('onMissionCreated mission: ${JSON.stringify(mission)}');
     },
-    onMissionDestroyed: function (mission) {
+    onMissionDestroyed: (mission) => {
         console.log('onMissionDestroyed mission: ${JSON.stringify(mission)}');
     },
-    onMissionSnapshotChanged: function (mission) {
+    onMissionSnapshotChanged: (mission) => {
         console.log('onMissionSnapshotChanged mission: ${JSON.stringify(mission)}');
     },
-    onMissionMovedToFront: function (mission) {
+    onMissionMovedToFront: (mission) => {
         console.log('onMissionMovedToFront mission: ${JSON.stringify(mission)}');
     },
-    onMissionLabelUpdated: function (mission) {
+    onMissionLabelUpdated: (mission) => {
         console.log('onMissionLabelUpdated mission: ' + JSON.stringify(mission));
     },
-     onMissionIconUpdated: function (mission, icon) {
+     onMissionIconUpdated: (mission, icon) => {
         console.log('onMissionIconUpdated mission: ' + JSON.stringify(mission));
         console.log('onMissionIconUpdated icon: ' + JSON.stringify(icon));
      },
-    onMissionClosed: function (mission) {
+    onMissionClosed: (mission) => {
         console.log('onMissionClosed mission: ${JSON.stringify(mission)}');
     }
 };

@@ -58,77 +58,56 @@
     - [Build Form Factors](quick-start/quickstart-appendix-compiledform.md)
     - [Getting Started with the Standard System with Hi3516 (IDE Mode)](quick-start/quickstart-appendix-hi3516-ide.md)
     - [Getting Started with the Standard System with Hi3516 (CLI Mode)](quick-start/quickstart-appendix-hi3516-pkg.md)
-  
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 - Privacy and Security
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
-
 - Porting
-
   - Mini System SoC Porting Guide
-
     - [Overview](porting/porting-minichip-overview.md)
-
     - [Porting Preparation](porting/porting-minichip-prepare.md)
-
     - [Kernel Porting](porting/porting-minichip-kernel.md)
-
     - Subsystem Porting
-
       - [Subsystem Porting Overview](porting/porting-minichip-subsys-overview.md)
-
       - [Porting the Startup Subsystem](porting/porting-minichip-subsys-startup.md)
-
       - [Porting the File Subsystem](porting/porting-minichip-subsys-filesystem.md)
-
       - [Porting the Security Subsystem](porting/porting-minichip-subsys-security.md)
-
       - [Porting the Communication Subsystem](porting/porting-minichip-subsys-communication.md)
-
       - [Porting the Driver Subsystem](porting/porting-minichip-subsys-driver.md)
-
       - [Configuring Other Subsystems](porting/porting-minichip-subsys-others.md)
-
     - [Porting Verification](porting/porting-minichip-verification.md)
-
     - [FAQs](porting/porting-chip-faqs.md)
-- Small System SoC Porting Guide
-  
-  - Porting Preparation
-  
-    - [Before You Start](porting/porting-smallchip-prepare-needs.md)
-  
-    - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
-  
-  - Kernel Porting
-  
-    - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
-  
-    - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
-  
-  - Driver Porting
-  
-    - [Porting Overview](porting/porting-smallchip-driver-overview.md)
-  
-    - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
-  
-    - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+  - Small System SoC Porting Guide
+    - Porting Preparation
+      - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+      - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+    - Kernel Porting
+      - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+      - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+    - Driver Porting
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
+      - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+      - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
   - Standard System SoC Porting Guide
-
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
-
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
--  Third-Party Library Porting Guide for Mini and Small Systems
-  
-  - [Overview](porting/porting-thirdparty-overview.md)
-  - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
-  - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
-- Mini System SoC Porting Cases
-  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
-  - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+  - Third-Party Library Porting Guide for Mini and Small Systems
+    - [Overview](porting/porting-thirdparty-overview.md)
+    - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+    - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+  - Mini System SoC Porting Cases
+      - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+      - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+      - [IoT Solution - Chipsea CST85 Chip Porting Case](porting/porting-cst85f01-combo-demo.md)
+      - [Mini System STM32F407 SoC Porting Case](porting/porting-stm32f407-on-minisystem-eth.md)
+      - [Combo Solution – W800 Chip Porting Case](porting/porting-w800-combo-demo.md)
+  - Small System SoC Porting Cases
+      - [Small System STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
+  - Standard System SoC Porting Cases
+      - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md)
+      - [Standard System Solution – Rockchip RK3566 Porting Case](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+      - [Standard System Solution – Yangfan Porting Case](porting/porting-yangfan-on_standard-demo.md)
 - Subsystem Development
-
   -  Kernel
      - [Kernel Overview](kernel/kernel-overview.md)
      - Mini-System Kernel (LiteOS-M)
@@ -155,6 +134,7 @@
          - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
          - [Trace](kernel/kernel-mini-memory-trace.md)
          - [LMS](kernel/kernel-mini-memory-lms.md)
+         - [Shell](kernel/kernel-mini-debug-shell.md)
        - Appendix
          - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
          - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
@@ -190,6 +170,7 @@
          - [Dynamic Loading and Linking](kernel/kernel-small-bundles-linking.md)
          - [Virtual Dynamic Shared Object](kernel/kernel-small-bundles-share.md)
          - [LiteIPC](kernel/kernel-small-bundles-ipc.md)
+         - [Container](kernel/kernel-small-bundles-container.md)
          - File Systems
            - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
            - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
@@ -293,14 +274,7 @@
            - [Lightweight CPU Isolation](kernel/kernel-standard-sched-cpuisolation.md)
   -  Drivers
      - [Driver Overview](driver/driver-overview-foundation.md)
-     - HDF
-       - [HDF Overview](driver/driver-hdf-overview.md)
-       - [Driver Development](driver/driver-hdf-development.md)
-       - [Driver Loading](driver/driver-hdf-load.md)
-       - [Driver Service Management](driver/driver-hdf-servicemanage.md)
-       - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
-       - [Driver Configuration Management](driver/driver-hdf-manage.md)
-       - [HDF Development Example](driver/driver-hdf-sample.md)
+     - [Configuration Management](driver/driver-hdf-manage.md)
      - Platform Driver Development
        - [ADC](driver/driver-platform-adc-develop.md)
        - [DAC](driver/driver-platform-dac-develop.md)
@@ -357,7 +331,6 @@
      - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - Related Operations
-       - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Product](subsystems/subsys-build-product.md)
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
@@ -371,15 +344,22 @@
        - [Configuring Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md)
        - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
+       - Rust Compilation and Building
+         - [Rust Module Configuration Rules and Guide](subsystems/subsys-build-rust-compilation.md)
+         - [Interactive Tool User Guide](subsystems/subsys-build-bindgen-cxx-guide.md)
+         - [Using Cargo2gn](subsystems/subsys-build-cargo2gn-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
-  -  [Distributed Remote Startup](subsystems/subsys-remote-start.md)
+  -  ArkUI
+     - [Custom Window Title Bar Development](subsystems/subsys-arkui-customize_titlebar.md) 
   -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
+     - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
      - [Container Component Development](subsystems/subsys-graphics-container-guide.md)
      - [Development of Layout Container Components](subsystems/subsys-graphics-layout-guide.md)
-     - [Common Component Development](subsystems/subsys-graphics-common-guide.md)
      - [Animator Development](subsystems/subsys-graphics-animation-guide.md)
+     - [Using Qt Creator on Windows](subsystems/subsys-graphics-simulator-guide.md)
+     - [Small-System Graphics Framework Integration](subsystems/subsys-graphics-porting-guide.md)
   -  Multimedia
      - Camera
        - [Camera Overview](subsystems/subsys-multimedia-camera-overview.md)
@@ -428,6 +408,7 @@
        - [omponent-based Startup](subsystems/subsys-boot-init-sub-unit.md)
        - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
        - [Seccomp Policy Development](subsystems/subsys-boot-init-seccomp.md)
+       - [DeviceInfo Adaptation](subsystems/subsys-boot-init-deviceInfo.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
      - [FAQs](subsystems/subsys-boot-faqs.md)
@@ -471,17 +452,15 @@
        - [Thermal Policy Customization](subsystems/subsys-thermal_policy.md)
        - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)
      - Power Management
-       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)  
+       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)
+       - [Default Hibernation Behavior Customization](subsystems/subsys-power-default-sleep-behavior-customization.md) 
+       - [Wakeup Source Customization](subsystems/subsys-power-wakeup-source-customization.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
-
     - [HPM Part Development](hpm-part/hpm-part-development.md)
-
     - [HPM Part Reference](hpm-part/hpm-part-reference.md)
-
 - Device Development Examples
-
   - Mini- and Small-System Devices
     - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
@@ -507,11 +486,10 @@
     - [Development Guidelines on Clock Apps](guide/device-clock-guide.md)
     - [Development Example for Platform Drivers](guide/device-driver-demo.md)
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
-
-
 - Debugging
   - [Development Self-Test Framework User Guide](device-test/developer_test.md)
   - [xDevice User Guide](device-test/xdevice.md)
+  - [Smartperf-Host User Guide](device-test/smartperf-host.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
@@ -521,8 +499,7 @@
   - [Tool Overview](get-code/gettools-overview.md)
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
-- Hands-On Tutorials
-  
+- Hands-On Tutorials  
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 - References
   - FAQs

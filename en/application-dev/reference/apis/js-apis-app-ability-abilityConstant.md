@@ -39,15 +39,17 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 | CALL | 2    | The ability is started by calling [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall).|
 | CONTINUATION           | 3    | The ability is started by means of cross-device migration.|
 | APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
-| SHARE<sup>10+</sup>           | 5    | The ability is started by calling [acquireShareData](js-apis-app-ability-abilityManager.md#acquiresharedata).|
+| SHARE<sup>10+</sup>           | 5    | The ability is started by means of atomic service sharing.|
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
             console.log('The ability has been started by the way of startAbility.');
         }
@@ -64,16 +66,24 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | Unknown reason.|
-| ABILITY_NOT_RESPONDING          | 1    | The ability does not respond.|
-| NORMAL | 2    | The ability exits normally.|
+| ABILITY_NOT_RESPONDING | 1    | The ability does not respond. This enum is supported since API version 9 and deprecated since API version 10. You are advised to use **APP_FREEZE**.|
+| NORMAL | 2    | The ability exits normally because the user closes the application.|
+| CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.|
+| JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.|
+| APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.|
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits because the system resource usage (CPU, I/O, or memory usage) exceeds the upper limit.|
+| UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.|
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
             console.log('The ability has exit last because the ability was not responding.');
         }
@@ -89,17 +99,18 @@ Enumerates the ability continuation results. You can use it together with [onCon
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| AGREE           | 0    | Continuation agreed.|
-| REJECT           | 1    | Continuation denied.|
-| MISMATCH  | 2    | Mismatch.|
+| AGREE           | 0    | The ability continuation is accepted.|
+| REJECT           | 1    | The ability continuation is rejected. If the application is abnormal in **onContinue**, which results in abnormal display during data restoration, this error code is returned. |
+| MISMATCH  | 2    | The version does not match. The application on the initiator can obtain the version of the target application from **onContinue**. If the ability continuation cannot be performed due to version mismatch, this error code is returned. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onContinue(wantParam) {
+    onContinue(wantParam: Record<string, Object>) {
         return AbilityConstant.OnContinueResult.AGREE;
     }
 }
@@ -124,18 +135,22 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 **Example**
 
 ```ts
-let want = {
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
 };
-let option = {
+let option: StartOptions = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // Ensure that the context is obtained.
 this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
-}).catch((error)=>{
+}).catch((error: BusinessError)=>{
     console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
@@ -156,9 +171,10 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
             console.log('The memory of device is critical, please release some memory.');
         }
@@ -185,9 +201,10 @@ Enumerates the result types for the operation of saving application data. You ca
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
@@ -208,13 +225,36 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
             console.log('Save the ability data when the ability continuation.');
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
+```
+
+## AbilityConstant.ContinueState<sup>10+</sup>
+
+Enumerates the mission continuation states of the application. It is used in the [setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) API of [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name          | Value      | Description                                                        |
+| ------------- | --------- | ------------------------------------------------------------ |
+| ACTIVE        | 0         | Mission continuation is activated for the current application.                             |
+| INACTIVE      | 1         | Mission continuation is not activated for the current application.                           |
+
+**Example**
+
+```ts
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@ohos.base';
+
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
+    console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+  });
 ```

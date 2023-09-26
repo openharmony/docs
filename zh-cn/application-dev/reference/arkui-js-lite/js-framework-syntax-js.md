@@ -33,7 +33,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
 
   ```
-  import router from '@system.router';
+  import router from '@ohos.router';
   ```
 
 - 代码引用

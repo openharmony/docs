@@ -21,7 +21,8 @@ When the **compressFile()** API is called, the file to compress does not exist. 
 **Solution**
 
 1. Make sure the source file exists.
-2. Make sure the path of the source file exists and the path is the correct sandbox path.
+2. Ensure that the source file is in ZIP format.
+3. Make sure the path of the source file exists and the path is the correct sandbox path.
 
 ## 900002 Invalid Destination File
 
@@ -61,5 +62,5 @@ This error code is reported when the format of the source file is incorrect or t
 
 **Solution**
 
-1. Check whether the source file format is ZIP.
+1. Check whether the source file is in ZIP format.
 2. Check whether the source file is complete. If the file is downloaded from the network, ensure that the file download is complete before calling the **decompressFile** API.

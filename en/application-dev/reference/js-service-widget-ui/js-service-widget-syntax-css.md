@@ -23,7 +23,7 @@ CSS files can be imported using the **\@import** statement. This facilitates mod
 The **.css** file with the same name as the **.hml** file in each page directory describes the styles of components on the HML page, determining how the components will be displayed.
 
 1. Internal style: The **style** and **class** attributes can be used to specify the component style. Example:
-  
+
    ```html
    <!-- index.hml -->
    <div class="container">
@@ -31,7 +31,7 @@ The **.css** file with the same name as the **.hml** file in each page directory
    </div>
    ```
 
-   
+
    ```css
    /* index.css */
    .container {
@@ -40,7 +40,7 @@ The **.css** file with the same name as the **.hml** file in each page directory
    ```
 
 2. External style files: You need to import the files. For example, create a **style.css** file in the **common** directory and import the file at the beginning of **index.css**.
-  
+
    ```css
    /* style.css */
    .title {
@@ -48,7 +48,7 @@ The **.css** file with the same name as the **.hml** file in each page directory
    }
    ```
 
-   
+
    ```css
    /* index.css */
    @import '../../common/style.css';
@@ -62,10 +62,10 @@ The **.css** file with the same name as the **.hml** file in each page directory
 
 A CSS selector is used to select elements for which styles need to be added to. The following table lists the supported selectors.
 
-| Selector| Example| Description|
-| -------- | -------- | -------- |
+| Selector   | Example        | Description                     |
+| ------ | ---------- | ------------------------- |
 | .class | .container | Selects all components whose **class** is **container**.|
-| \#id | \#titleId | Selects all components whose **id** is **titleId**.|
+| \#id   | \#titleId  | Selects all components whose **id** is **titleId**.     |
 
 Example:
 

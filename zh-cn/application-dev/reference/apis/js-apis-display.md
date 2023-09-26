@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import display from '@ohos.display';
 ```
 
@@ -49,10 +49,10 @@ import display from '@ohos.display';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素，该参数应为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素，该参数应为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素，该参数应为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素，该参数应为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -102,12 +102,12 @@ getDefaultDisplaySync(): Display
 
 **示例：**
 
-```js
-let displayClass = null;
+```ts
+let displayClass: display.Display | null = null;
 try {
-    displayClass = display.getDefaultDisplaySync();
+  displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -135,15 +135,18 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-display.getAllDisplays((err, data) => {
-    displayClass = data;
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> = [];
+display.getAllDisplays((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+  displayClass = data;
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -171,14 +174,16 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-let promise = display.getAllDisplays();
-promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: Array<display.Display> =[];
+let promise: Promise<Array<Display>> = display.getAllDisplays();
+promise.then((data: Promise<Array<Display>>) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -196,7 +201,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | 是   | 显示设备的id。 |
+| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -214,27 +219,29 @@ hasPrivateWindow(displayId: number): boolean
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let ret = undefined;
-    try {
-        ret = display.hasPrivateWindow(displayClass.id);
-    } catch (exception) {
-        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-    }
-    if (ret == undefined) {
-        console.log("Failed to check has privateWindow or not.");
-    }
-    if (ret) {
-        console.log("There has privateWindow.");
-    } else if (!ret) {
-        console.log("There has no privateWindow.");
-    }
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let ret: boolean = true;
+  try {
+    ret = display.hasPrivateWindow(displayClass.id);
+  } catch (exception) {
+    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+  }
+  if (ret == undefined) {
+    console.log("Failed to check has privateWindow or not.");
+  }
+  if (ret) {
+    console.log("There has privateWindow.");
+  } else if (!ret) {
+    console.log("There has no privateWindow.");
+  }
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -248,21 +255,21 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
+| 参数名 | 类型 | 必填 | 说明                                                                                                                              |
+| -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
 
 **示例：**
 
-```js
-let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+```ts
+let callback: Callback<number> = (data: Callback<number>) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("add", callback);
+  display.on("add", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -279,15 +286,15 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
+| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id，该参数应为整数。 |
 
 **示例：**
 
-```js
+```ts
 try {
-    display.off("remove");
+  display.off("remove");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -310,14 +317,14 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-let callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+```ts
+let callback: Callback<boolean> = (data: Callback<boolean>) => {
+  console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
 try {
-    display.on("privateModeChange", callback);
+  display.on("privateModeChange", callback);
 } catch (exception) {
-    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -340,11 +347,11 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 try {
-    display.off("privateModeChange");
+  display.off("privateModeChange");
 } catch (exception) {
-    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
 ```
 
@@ -368,15 +375,18 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-display.getDefaultDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-    displayClass = data;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
+display.getDefaultDisplay((err: BusinessError, data: AsyncCallback<Display>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  displayClass = data;
 });
 ```
 
@@ -400,14 +410,16 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-let promise = display.getDefaultDisplay();
-promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let displayClass: display.Display | null = null;
+let promise: Promise<Display> = display.getDefaultDisplay();
+promise.then((data: Promise<Display>) => {
+  displayClass = data;
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
 });
 ```
 
@@ -431,13 +443,16 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-```js
-display.getAllDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+```ts
+import { BusinessError } from '@ohos.base';
+
+display.getAllDisplay((err: BusinessError, data: AsyncCallback<Array<Display>>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -461,12 +476,14 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-```js
-let promise = display.getAllDisplay();
-promise.then((data) => {
-    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+```ts
+import { BusinessError } from '@ohos.base';
+
+let promise: Promise<Array<Display>> = display.getAllDisplay();
+promise.then((data: Promise<Array<Display>>) => {
+  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -479,22 +496,22 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | 显示设备的id号。|
-| name | string | 是 | 否 | 显示设备的名称。|
-| alive | boolean | 是 | 否 | 显示设备是否启用。|
-| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。|
-| refreshRate | number | 是 | 否 | 显示设备的刷新率。|
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。|
-| width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
-| height | number | 是 | 否 | 显示设备的高度，单位为像素。|
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。 |
-| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
-| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
-| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
+| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                            |
+| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
+| id | number | 是 | 否 | 显示设备的id号，该参数应为整数。                                                                                             |
+| name | string | 是 | 否 | 显示设备的名称。                                                                                                      |
+| alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
+| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数。                                                                                             |
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。 |
+| width | number | 是 | 否 | 显示设备的宽度，单位为像素，该参数应为整数。                                                                                        |
+| height | number | 是 | 否 | 显示设备的高度，单位为像素，该参数应为整数。                                                                                        |
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。该参数为浮点数，一般取值160.0、480.0等。                                                                   |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
+| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。该参数为浮点数，一般取值1.0、3.0等。                                                                  |
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
+| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
+| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -519,20 +536,23 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    displayClass.getCutoutInfo((err, data) => {
-        if (err.code) {
-            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  displayClass.getCutoutInfo((err: BusinessError, data: AsyncCallback<CutoutInfo>) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -558,18 +578,20 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 **示例：**
 
-```js
-let displayClass = null;
-try {
-    displayClass = display.getDefaultDisplaySync();
+```ts
+import { BusinessError } from '@ohos.base';
 
-    let promise = displayClass.getCutoutInfo();
-    promise.then((data) => {
-        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-    });
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+
+  let promise: Promise<CutoutInfo> = displayClass.getCutoutInfo();
+  promise.then((data: Promise<CutoutInfo>) => {
+    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  });
 } catch (exception) {
-    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
 ```

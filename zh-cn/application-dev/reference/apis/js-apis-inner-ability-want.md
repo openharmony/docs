@@ -12,6 +12,8 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 import Want from '@ohos.app.ability.Want';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
@@ -25,20 +27,22 @@ import Want from '@ohos.app.ability.Want';
 | action      | string               | 否   | 表示要执行的通用操作（如：查看、分享、应用详情）。在隐式Want中，您可以定义该字段，配合uri或parameters来表示对数据要执行的操作。具体参考：[action说明](js-apis-ability-wantConstant.md#wantconstantaction)。隐式Want定义及匹配规则参考：[显式Want与隐式Want匹配规则](../../application-models/explicit-implicit-want-mappings.md)。                           |
 | parameters   | {[key: string]: Object} | 否   | 表示WantParams，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示[bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。                                       |
 | entities    | Array\<string>       | 否   | 表示目标Ability额外的类别信息（如：浏览器、视频播放器），在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。具体参考：[entity说明](js-apis-app-ability-wantConstant.md#wantconstantentity)。                                    |
-| moduleName<sup>9+</sup> | string | 否    | 表示待启动的Ability所属的模块（module）。 |
 
 **示例：**
 
 - 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-  let want = {
-      'deviceId': '', // deviceId为空表示本设备
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry' // moduleName非必选
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
+
+  let want: Want = {
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry' // moduleName非必选
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
       console.error('error.code = ${error.code}');
   });
@@ -48,24 +52,25 @@ import Want from '@ohos.app.ability.Want';
 
   ```ts
   import fs from '@ohos.file.fs';
-  
+  import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
   // ...
-  let fd;
+  let fd: number = 0;
   try {
       fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
       console.error('openSync fail: ${JSON.stringify(e)}');
   }
-  let want = {
-      'deviceId': '', // deviceId为空表示本设备
-      'bundleName': 'com.example.myapplication',
-      'abilityName': 'EntryAbility',
-      'moduleName': 'entry', // moduleName非必选
-      'parameters': {
+  let want: Want = {
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+    moduleName: 'entry', // moduleName非必选
+    parameters: {
           'keyFd':{'type':'FD', 'value':fd}
       }
   };
-  this.context.startAbility(want, (error) => {
+  this.context.startAbility(want, (error: BusinessError) => {
       // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
       console.error('error.code = ${error.code}');
   });

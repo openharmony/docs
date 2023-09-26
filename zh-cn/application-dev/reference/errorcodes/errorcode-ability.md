@@ -76,7 +76,7 @@ Visibility verification failed.
 
 **处理步骤**
 
-请检查应用是否满足被拉起应用可见性限制。
+拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的exported配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 
 ## 16000006 不允许跨用户操作
 
@@ -347,6 +347,60 @@ Cross-device installation-free is not supported.
 **处理步骤**
 
 确认为非跨设备免安装应用。
+
+## 16000058 指定的URI flag无效
+
+**错误信息**
+
+Invalid URI flag.
+
+**错误描述**
+
+指定的URI flag无效。
+
+**可能原因**
+
+传入的参数有误。
+
+**处理步骤**
+
+确认传入的参数属于Uri flag。
+
+## 16000059 指定的URI类型无效。
+
+**错误信息**
+
+Invalid URI type.
+
+**错误描述**
+
+指定的URI类型无效。
+
+**可能原因**
+
+传入的参数有误，目前URI授权管理仅支持file类型URI。
+
+**处理步骤**
+
+确认传入的参数属于支持的URI类型。
+
+## 16000060 不支持沙箱应用授权URI
+
+**错误信息**
+
+Sandbox application can not grant URI permission.
+
+**错误描述**
+
+当沙箱应用授权URI时，方法将返回该错误码。
+
+**可能原因**
+
+不支持沙箱应用授权URI
+
+**处理步骤**
+
+确认为非沙箱应用。
 
 ## 16000101 执行shell命令失败
 

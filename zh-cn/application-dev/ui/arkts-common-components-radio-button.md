@@ -1,4 +1,4 @@
-# 单选框
+# 单选框（Radio）
 
 
 Radio是单选框组件，通常用于提供相应的用户交互选择项，同一组的Radio中只有一个可以被选中。具体用法请参考[Radio](../reference/arkui-ts/ts-basic-components-radio.md)。
@@ -59,6 +59,9 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct RadioExample {
+  @State Rst:promptAction.ShowToastOptions = {'message': 'Ringing mode.'}
+  @State Vst:promptAction.ShowToastOptions = {'message': 'Vibration mode.'}
+  @State Sst:promptAction.ShowToastOptions = {'message': 'Silent mode.'}
   build() {
     Row() {
       Column() {
@@ -68,7 +71,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // 切换为响铃模式
-              promptAction.showToast({ message: 'Ringing mode.' })
+              promptAction.showToast(this.Rst)
             }
           })
         Text('Ringing')
@@ -80,7 +83,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // 切换为振动模式
-              promptAction.showToast({ message: 'Vibration mode.' })
+              promptAction.showToast(this.Vst)
             }
           })
         Text('Vibration')
@@ -92,7 +95,7 @@ struct RadioExample {
           .onChange((isChecked: boolean) => {
             if(isChecked) {
               // 切换为静音模式
-              promptAction.showToast({ message: 'Silent mode.' })
+              promptAction.showToast(this.Sst)
             }
           })
         Text('Silent')

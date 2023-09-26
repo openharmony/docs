@@ -139,7 +139,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-            let ret = entry.nativeCallArkTS((value)=>{return value * 2;});
+            let ret: number = entry.nativeCallArkTS((value: number)=>{return value * 2;});
             hilog.info(0x0000, 'testTag', 'Test NAPI nativeCallArkTS ret = %{public}d', ret);
           })
       }
@@ -156,7 +156,7 @@ struct Index {
 // Declare the N-APIs exposed to ArkTS.
 export const add: (a: number, b: number) => number;
 export const nativeCallArkTS: (a: object) => number;
-```
+``` 
 
 ## Development Guidelines
 

@@ -351,7 +351,7 @@ Driver adaptation files are stored in `device/soc/st/common/platform` and are lo
     ```
 
 2. Describe the source code adaptation of the stm32mp1xx `gpio` driver in the `//device/soc/st/common/platform/gpio/stm32mp1_gpio.c` file. 
-  First, load the basic driver adaptation framework based on the `HDF` driver framework of `OpenHarmony`, as shown below:
+    First, load the basic driver adaptation framework based on the `HDF` driver framework of `OpenHarmony`, as shown below:
 
     ```
     struct HdfDriverEntry g_GpioDriverEntry = {
@@ -546,13 +546,13 @@ To adapt the graphics subsystem, you need to add the `graphic_utils` component t
 For details about `graphic` configuration, see `//vendor/bearpi/bearpi_hm_micro/graphic_config/product_graphic_lite_config.h`.
 
 
-#### ACE Subsystem Adaptation
+####  ArkUI Subsystem Adaptation
 
-To adapt the ACE subsystem, you need to add the `ace_engine_lite` component to the `config.json` file.
+To adapt the  ArkUI subsystem, you need to add the `ace_engine_lite` component to the `config.json` file.
 
 ```
     {
-        "subsystem": "ace",
+        "subsystem": "arkui",
         "components": [
         {
             "component": "ace_engine_lite",

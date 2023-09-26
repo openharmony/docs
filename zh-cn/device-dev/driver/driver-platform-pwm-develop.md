@@ -74,7 +74,7 @@ PWM模块适配包含以下四个步骤：
 
 ### 开发实例
 
-下方将基于Hi3516DV300开发板以//device_soc_hisilicon/common/platform/pwm/pwm_hi35xx.c驱动为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
+下方将基于Hi3516DV300开发板以//device/soc/hisilicon/common/platform/pwm/pwm_hi35xx.c驱动为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
 
 1. 驱实例化驱动入口
 
@@ -240,7 +240,7 @@ PWM模块适配包含以下四个步骤：
 
         返回值：
 
-        HDF_STATUS相关状态（表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
+        HDF_STATUS相关状态（表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS定义）。
 
         **表 3** HDF_STATUS相关状态说明
 

@@ -3,10 +3,6 @@
 form是一个表单容器，支持容器内[Input](../reference/arkui-js/js-components-basic-input.md)组件内容的提交和重置。具体用法请参考[form API](../reference/arkui-js/js-components-container-form.md)。
 
 
-> **说明：**
-> 从 API Version 6 开始支持。
-
-
 ## 创建form组件
 
 在pages/index目录下的hml文件中创建一个form组件。

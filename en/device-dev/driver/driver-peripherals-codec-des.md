@@ -39,7 +39,7 @@ Before you get started, understand the following concepts:
 
 - Component
 
-    An OpenMAX IL component, which is an abstraction of modules in video streams. The components in this document refer to codec components for video encoding and decoding.
+    An OpenMAX IL component, which is an abstraction of modules in video streams. The components in this document refer to codec components used for video encoding and decoding.
 
 ### Constraints
 
@@ -54,33 +54,33 @@ The codec module implements hardware encoding and decoding of video data. It con
 
 ### Available APIs
 
-- codec_component_manager.h
+- icodec_component_manager.h
 
   | API                                                                                                                                                      | Description                     |
   | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------|
-  | int32_t (*CreateComponent)(struct CodecComponentType **component, uint32_t *componentId, char *compName, int64_t appData, struct CodecCallbackType *callbacks) | Creates a codec component instance.            |
-  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | Destroys a component instance.                 |
+  | int32_t CreateComponent(sptr<ICodecComponent>& component, uint32_t& componentId,<br>const std::string& compName, int64_t appData, const sptr<ICodecCallback>& callbacks) | Creates a codec component instance.            |
+  | int32_t DestoryComponent(uint32_t componentId)                                                                | Destroys a codec component instance.                 |
 
-- codec_component _if.h
+- icodec_component.h
 
-  | API                                                                                                                                                               | Description                     |
-  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-  | int32_t (*SendCommand)(struct CodecComponentType *self, enum OMX_COMMANDTYPE cmd, uint32_t param, int8_t *cmdData, uint32_t cmdDataLen)                                 | Sends commands to a component.               |
-  | int32_t (*GetParameter)(struct CodecComponentType *self, uint32_t paramIndex, int8_t *paramStruct, uint32_t paramStructLen)                                             | Obtains component parameter settings.             |
-  | int32_t (*SetParameter)(struct CodecComponentType *self, uint32_t index, int8_t *paramStruct, uint32_t paramStructLen)                                                  | Sets component parameters.           |
-  | int32_t (*GetState)(struct CodecComponentType *self, enum OMX_STATETYPE *state)                                                                                         | Obtains the component status.               |
-  | int32_t (*UseBuffer)(struct CodecComponentType *self, uint32_t portIndex, struct OmxCodecBuffer *buffer)                                                                | Specifies the buffer of a component port.         |
-  | int32_t (*FreeBuffer)(struct CodecComponentType *self, uint32_t portIndex, const struct OmxCodecBuffer *buffer)                                                         | Releases the buffer.                   |
-  | int32_t (*EmptyThisBuffer)(struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)                                                                        | Empties this buffer.       |
-  | int32_t (*FillThisBuffer)(struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)                                                                         | Fills this buffer.         |
+  | API                                                    | Description              |
+  | ------------------------------------------------------------ | ---------------------- |
+  | int32_t SendCommand(CodecCommandType cmd, uint32_t param, const std::vector<int8_t>& cmdData) | Sends commands to a component.        |
+  | int32_t GetParameter(uint32_t index, const std::vector<int8_t>& inParamStruct, std::vector<int8_t>& outParamStruct) | Obtains component parameter settings.      |
+  | int32_t SetParameter(uint32_t index, const std::vector<int8_t>& paramStruct) | Sets component parameters.    |
+  | int32_t GetState(CodecStateType& state)                      | Obtains the component status.        |
+  | int32_t UseBuffer(uint32_t portIndex, const OmxCodecBuffer& inBuffer, OmxCodecBuffer& outBuffer) | Requests a port buffer for the component.  |
+  | int32_t FreeBuffer(uint32_t portIndex, const OmxCodecBuffer& buffer) | Releases the buffer.            |
+  | int32_t EmptyThisBuffer(const OmxCodecBuffer& buffer)        | Empties this buffer.|
+  | int32_t FillThisBuffer(const OmxCodecBuffer& buffer)         | Fills this buffer.  |
 
-- codec_callback_if.h
+- icodec_callback.h
 
-  | API                                                                                                        | Description                          |
-  | ---------------------------------------------------------------------------------------------------------------- |----------------------------------- |
-  | int32_t (*EventHandler)(struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)        | Reports an event.                          |
-  | int32_t (*EmptyBufferDone)(struct CodecCallbackType *self, int64_t appData, const struct OmxCodecBuffer *buffer) | Reports an event indicating that the encoding or decoding in the input buffer is complete.|
-  | int32_t (*FillBufferDone)(struct CodecCallbackType *self, int64_t appData, const struct OmxCodecBuffer *buffer)  | Reports an event indicating that the output buffer is filled.            |
+  | API                                                    | Description                          |
+  | ------------------------------------------------------------ | ---------------------------------- |
+  | int32_t EventHandler(CodecEventType event, const EventInfo& info) | Called to report an event.                          |
+  | int32_t EmptyBufferDone(int64_t appData, const OmxCodecBuffer& buffer) | Called to report an event indicating that the encoding or decoding in the input buffer is complete.|
+  | int32_t FillBufferDone(int64_t appData, const OmxCodecBuffer& buffer) | Called to report an event indicating that the output buffer is filled.            |
 
 For more information, see [codec](https://gitee.com/openharmony/drivers_peripheral/tree/master/codec).
 
@@ -88,83 +88,86 @@ For more information, see [codec](https://gitee.com/openharmony/drivers_peripher
 The codec HDI driver development procedure is as follows:
 
 #### Registering and Initializing the Driver
-Define the **HdfDriverEntry** structure (which defines the driver initialization method) and fill in the **g_codecComponentDriverEntry** structure to implement the **Bind()**, **Init()**, and **Release()** pointers.
+Define the **HdfDriverEntry** struct (which defines the driver initialization method) and fill in the **g_codeccomponentmanagerDriverEntry** struct to implement the **Bind()**, **Init()**, and **Release()** pointers.
 
 ```c
-struct HdfDriverEntry g_codecComponentDriverEntry = {
+static struct HdfDriverEntry g_codeccomponentmanagerDriverEntry = {
     .moduleVersion = 1,
-    .moduleName = "codec_hdi_omx_server",
-    .Bind = HdfCodecComponentTypeDriverBind,
-    .Init = HdfCodecComponentTypeDriverInit,
-    .Release = HdfCodecComponentTypeDriverRelease,
-};
-HDF_INIT(g_codecComponentDriverEntry); // Register HdfDriverEntry of the codec HDI with the HDF.
+    .moduleName = "codec_component_manager_service",
+    .Bind = HdfCodecComponentManagerDriverBind,
+    .Init = HdfCodecComponentManagerDriverInit,
+    .Release = HdfCodecComponentManagerDriverRelease,
+}; // Register the HdfDriverEntry struct of the codec HDI with the HDF.
 ```
 
-- **HdfCodecComponentTypeDriverBind**: binds the device in the HDF to **CodecComponentTypeHost** and registers the codec service with the HDF.
+- **HdfCodecComponentManagerDriverBind**: binds the device in the HDF to the **HdfCodecComponentManagerHost** and registers the codec service with the HDF.
 
     ```c
-    int32_t HdfCodecComponentTypeDriverBind(struct HdfDeviceObject *deviceObject)
+    static int HdfCodecComponentManagerDriverBind(struct HdfDeviceObject *deviceObject)
     {
-        HDF_LOGI("HdfCodecComponentTypeDriverBind enter.");
-        struct HdfCodecComponentTypeHost *omxcomponenttypeHost =
-            (struct HdfCodecComponentTypeHost *)OsalMemAlloc(sizeof(struct HdfCodecComponentTypeHost));
-        if (omxcomponenttypeHost == NULL) {
-            HDF_LOGE("HdfCodecComponentTypeDriverBind OsalMemAlloc HdfCodecComponentTypeHost failed!");
+        CODEC_LOGI("HdfCodecComponentManagerDriverBind enter");
+    
+        auto *hdfCodecComponentManagerHost = new (std::nothrow) HdfCodecComponentManagerHost;
+        if (hdfCodecComponentManagerHost == nullptr) {
+            CODEC_LOGE("failed to create create HdfCodecComponentManagerHost object");
             return HDF_FAILURE;
         }
-        int ret = HdfDeviceObjectSetInterfaceDesc(deviceObject, COMPONENT_MANAGER_SERVICE_DESC);
-        if (ret != HDF_SUCCESS) {
-            HDF_LOGE("Failed to set interface desc");
-            return ret;
-        }
-
-        omxcomponenttypeHost->ioservice.Dispatch = CodecComponentTypeDriverDispatch;
-        omxcomponenttypeHost->ioservice.Open = NULL;
-        omxcomponenttypeHost->ioservice.Release = NULL;
-        omxcomponenttypeHost->service = CodecComponentManagerSerivceGet();
-        if (omxcomponenttypeHost->service == NULL) {
-            OsalMemFree(omxcomponenttypeHost);
+    
+        hdfCodecComponentManagerHost->ioService.Dispatch = CodecComponentManagerDriverDispatch;
+        hdfCodecComponentManagerHost->ioService.Open = NULL;
+        hdfCodecComponentManagerHost->ioService.Release = NULL;
+    
+        auto serviceImpl = ICodecComponentManager::Get(true);
+        if (serviceImpl == nullptr) {
+            CODEC_LOGE("failed to get of implement service");
+            delete hdfCodecComponentManagerHost;
             return HDF_FAILURE;
         }
-
-        deviceObject->service = &omxcomponenttypeHost->ioservice;
+    
+        hdfCodecComponentManagerHost->stub =
+            OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl, ICodecComponentManager::GetDescriptor());
+        if (hdfCodecComponentManagerHost->stub == nullptr) {
+            CODEC_LOGE("failed to get stub object");
+            delete hdfCodecComponentManagerHost;
+            return HDF_FAILURE;
+        }
+    
+        deviceObject->service = &hdfCodecComponentManagerHost->ioService;
         return HDF_SUCCESS;
     }
     ```
 
-- **HdfCodecComponentTypeDriverInit**: loads the attribute configuration from the HDF configuration source (HCS).
+- **HdfCodecComponentManagerDriverInit**: loads the attribute configuration from the HDF Configuration Source (HCS).
 
     ```c
-    int32_t HdfCodecComponentTypeDriverInit(struct HdfDeviceObject *deviceObject)
+    static int HdfCodecComponentManagerDriverInit(struct HdfDeviceObject *deviceObject)
     {
-        HDF_LOGI("HdfCodecComponentTypeDriverInit enter.");
-        if (deviceObject == NULL) {
-            return HDF_FAILURE;
-        }
-        InitDataNode(deviceObject->property);
-        if (LoadCapabilityData() != HDF_SUCCESS) {
-            ClearCapabilityData();
+        CODEC_LOGI("HdfCodecComponentManagerDriverInit enter");
+        if (DevHostRegisterDumpHost(CodecDfxService::DevCodecHostDump) != HDF_SUCCESS) {
+            CODEC_LOGE("DevHostRegisterDumpHost error!");
         }
         return HDF_SUCCESS;
     }
     ```
-
+    
 - **HdfCodecComponentTypeDriverRelease**: releases the driver instance.
 
     ```c
-    void HdfCodecComponentTypeDriverRelease(struct HdfDeviceObject *deviceObject)
+    static void HdfCodecComponentManagerDriverRelease(struct HdfDeviceObject *deviceObject)
     {
-        HDF_LOGI("HdfCodecComponentTypeDriverRelease enter.");
-        struct HdfCodecComponentTypeHost *omxcomponenttypeHost =
-            CONTAINER_OF(deviceObject->service, struct HdfCodecComponentTypeHost, ioservice);
-        OmxComponentManagerSeriveRelease(omxcomponenttypeHost->service);
-        OsalMemFree(omxcomponenttypeHost);
-        ClearCapabilityData();
+        CODEC_LOGI("HdfCodecComponentManagerDriverRelease enter");
+        if (deviceObject->service == nullptr) {
+            CODEC_LOGE("HdfCodecComponentManagerDriverRelease not initted");
+            return;
+        }
+    
+        auto *hdfCodecComponentManagerHost =
+            CONTAINER_OF(deviceObject->service, struct HdfCodecComponentManagerHost, ioService);
+        delete hdfCodecComponentManagerHost;
     }
     ```
 
-#### Driver HCS
+#### Configuring the Driver HCS
 The HCS consists of the following:
 
 - Device configuration
@@ -172,48 +175,53 @@ The HCS consists of the following:
 
 The HCS includes the driver node, loading sequence, and service name. For details about the HCS syntax, see [Configuration Management](driver-hdf-manage.md).
 
-Configuration file Path of the standard system:
-vendor/hihope/rk3568/hdf_config/uhdf/
+The following uses the RK3568 development board as an example. The configuration files of the standard system are in the **vendor/hihope/rk3568/hdf_config/uhdf/** directory.
 
-1. Device configuration
+1. Configure the device.
 
-    Add the **codec_omx_service** configuration to **codec_host** in **device_info.hcs**. The following is an example:
+    Add the **codec_component_manager_service** configuration to **codec_host** in **device_info.hcs**. 
+
+    Example:
+
     ```c
     codec :: host {
         hostName = "codec_host";
         priority = 50;
         gid = ["codec_host", "uhdf_driver", "vendor_mpp_driver"];
-        codec_omx_device :: device {
+        codec_omx_idl_device :: device {
             device0 :: deviceNode {
                 policy = 2;                                       // Automatic loading, not lazy loading.
                 priority = 100;                                   // Priority.
-                moduleName = "libcodec_hdi_omx_server.z.so";      // Dynamic library of the driver.
-                serviceName = "codec_hdi_omx_service";            // Service name of the driver.
-                deviceMatchAttr = "codec_component_capabilities"; //Attribute configuration.
+                moduleName = "libcodec_driver.z.so";              // Dynamic library of the driver.
+                serviceName = "codec_component_manager_service"; // Service name of the driver.
+                deviceMatchAttr = "media_codec_capabilities";    // Attribute configuration.
             }
         }
     }
     ```
 
-2. Configuration of supported components
+2. Configure supported components.
 
-    Add the component configuration to the **media_codec\codec_component_capabilities.hcs file**. The following is an example:
+    Add the component configuration to the **media_codec\media_codec_capabilities.hcs** file. 
+    
+    Example:
+    
     ```c
     /* node name explanation -- HDF_video_hw_enc_avc_rk:
     **
     **    HDF____________video__________________hw____________________enc____________avc_______rk
     **     |               |                    |                      |              |        |
-    ** HDF or OMX    video or audio    hardware or software    encoder or decoder    mime    vendor
+    ** HDF or OMX    video or audio    hardware or software    encoder or decoder    MIME    vendor
     */
     HDF_video_hw_enc_avc_rk {
-        role = 1;                                           // Role of the AvCodec.
+        role = 1;                                           // Role of the audio and video codec.
         type = 1;                                           // Codec type.
         name = "OMX.rk.video_encoder.avc";                  // Component name.
         supportProfiles = [1, 32768, 2, 32768, 8, 32768];   // Supported profiles.
         maxInst = 4;                                        // Maximum number of instances.
         isSoftwareCodec = false;                            // Whether it is software codec.
         processModeMask = [];                               // Codec processing mode.
-        capsMask = [0x01];                                  // Codec playback capabilities.
+        capsMask = [0x01];                                  // CodecCapsMask configuration.
         minBitRate = 1;                                     // Minimum bit rate.
         maxBitRate = 40000000;                              // Maximum bit rate.
         minWidth = 176;                                     // Minimum video width.
@@ -228,10 +236,10 @@ vendor/hihope/rk3568/hdf_config/uhdf/
         maxBlocksPerSecond = 0xFFFFFFFF;
         blockSizeWidth = 0xFFFFFFFF;
         blockSizeHeight = 0xFFFFFFFF;
-        supportPixelFmts = [28, 24, 30, 22, 7, 3, 14, 13, 20, 26, 27, 12]; // List of supported colors.
+        supportPixelFmts = [28, 24, 20, 12];                // List of colors supported by the display.
         measuredFrameRate = [320, 240, 165, 165, 720, 480, 149, 149, 1280, 720, 73, 73, 1920, 1080, 18, 18];
-        bitRateMode = [1, 2];                                // Bit rate mode.
-        minFrameRate = 0;                                    // Frame rate.
+        bitRateMode = [1, 2];                               // Bit rate mode.
+        minFrameRate = 0;                                   // Frame rate.
         maxFrameRate = 0;
     }
     ```
@@ -239,42 +247,37 @@ vendor/hihope/rk3568/hdf_config/uhdf/
 ### Development Example
 After completing codec module driver adaptation, use the HDI APIs provided by the codec module for further development. The codec HDI provides the following features:
 
-1. Provides codec HDI APIs for video services to implement encoding and decoding of video services.
-2. Provides standard interfaces for device developers to ensure that the OEM vendors comply with the HDI adapter standard. This promises a healthy evolution of the ecosystem.
+- Provides codec HDI APIs for video services to implement encoding and decoding for video services.
+- Provides standard interfaces for device developers to ensure that the OEM vendors comply with the HDI adapter standard. This promises a healthy evolution of the ecosystem.
 
 The development procedure is as follows:
 
 1. Initialize the driver, including initializing the instances, callbacks, and component.
 2. Set codec parameters and information such as the video width, height, and bit rate.
 3. Apply for input and output buffers.
-4. Flip codec buffers, enable the component to enter the **OMX_Executing** state, and process the callbacks.
-5. Deinitialize the interface instance, destroy the buffers, close the component, and releases all interface objects.
+4. Flip codec buffers, enable the component to enter the **CODEC_STATE_EXECUTING** state, and process the callbacks.
+5. Deinitialize the interface instance, destroy the buffers, close the component, and releases all interface instances.
 
 #### Initializing the Driver
 Initialize the interface instance and callbacks, and create a component.
 ```cpp
 // Initialize the codec HDI ComponentManager instance.
-omxMgr_ = GetCodecComponentManager();
-
-// Initialize the callback.
-callback_ = CodecCallbackTypeStubGetInstance();
-if (!omxMgr_ || !callback_) {
-    FUNC_EXIT_ERR();
+omxMgr_ = ICodecComponentManager::Get(false);
+if ((omxMgr_ == nullptr)) {
+    HDF_LOGE("%{public}s omxMgr_ is null", __func__);
     return false;
 }
-// Set the callback pointers.
-callback_->EventHandler    = &OMXCore::OnEvent;
-callback_->EmptyBufferDone = &OMXCore::OnEmptyBufferDone;
-callback_->FillBufferDone  = &OMXCore::OnFillBufferDone;
-
+// Initialize the callback.
+callback_ = new CodecHdiCallback(shared_from_this());
+if ((callback_ == nullptr)) {
+    HDF_LOGE("%{public}s callback_ is null", __func__);
+    return false;
+}
 // Create a component instance.
-uint32_t err = HDF_SUCCESS;
-if (codec == codecMime::AVC) {
-    err = omxMgr_->CreateComponent(&client_, &componentId_, const_cast<char *>(DECODER_AVC), (int64_t)this,
-                                   callback_);
-} else {
-    err = omxMgr_->CreateComponent(&client_, &componentId_, const_cast<char *>(DECODER_HEVC), (int64_t)this,
-                                   callback_);
+err = omxMgr_->CreateComponent(client_, componentId_, compName, reinterpret_cast<int64_t>(this), callback_);
+if (err != HDF_SUCCESS) {
+    HDF_LOGE("%{public}s failed to CreateComponent", __func__);
+    return false;
 }
 ```
 
@@ -283,64 +286,79 @@ Set the width and height of the input and output data, input data format, and ou
 ```cpp
 // Set the width and height of the input image.
 OMX_PARAM_PORTDEFINITIONTYPE param;
-InitParam(param);
-param.nPortIndex = (uint32_t)PortIndex::PORT_INDEX_INPUT;
-auto err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
-if (err != HDF_SUCCESS) {
-    HDF_LOGE("%{public}s failed PortIndex::PORT_INDEX_INPUT, index is OMX_IndexParamPortDefinition", __func__);
-    return false;
+if (util_->InitParam(param) != HDF_SUCCESS) {
+    return HDF_FAILURE;
 }
+param.nPortIndex = static_cast<uint32_t>(PortIndex::PORT_INDEX_INPUT);
+
+std::vector<int8_t> inVec, outVec;
+util_->ObjectToVector(param, inVec);
+auto err = client_->GetParameter(OMX_IndexParamPortDefinition, inVec, outVec);
+if (err != HDF_SUCCESS) {
+    HDF_LOGE("%{public}s failed  PortIndex::PORT_INDEX_INPUT, index is OMX_IndexParamPortDefinition", __func__);
+    return err;
+}
+util_->VectorToObject(outVec, param);
+
 HDF_LOGI("PortIndex::PORT_INDEX_INPUT: eCompressionFormat = %{public}d, eColorFormat = %{public}d ",
          param.format.video.eCompressionFormat, param.format.video.eColorFormat);
-param.format.video.nFrameWidth  = width_;
-param.format.video.nFrameHeight = height_;
-param.format.video.nStride      = width_;
-param.format.video.nSliceHeight = height_;
-err = client_->SetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
+util_->setParmValue(param, width_, height_, stride_);
+util_->ObjectToVector(param, inVec);
+err = client_->SetParameter(OMX_IndexParamPortDefinition, inVec);
 if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s failed with PortIndex::PORT_INDEX_INPUT, index is OMX_IndexParamPortDefinition", __func__);
-    return false;
+    return err;
 }
 // Set the output width, height, and format.
-InitParam(param);
-param.nPortIndex = (uint32_t)PortIndex::PORT_INDEX_OUTPUT;
-err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
-if (err != HDF_SUCCESS) {
-    HDF_LOGE("%{public}s failed with PortIndex::PORT_INDEX_OUTPUT, index is OMX_IndexParamPortDefinition", __func__);
-    return false;
+if (util_->InitParam(param) != HDF_SUCCESS) {
+    return HDF_FAILURE;
 }
+param.nPortIndex = static_cast<uint32_t>(PortIndex::PORT_INDEX_OUTPUT);
+util_->ObjectToVector(param, inVec);
+err = client_->GetParameter(OMX_IndexParamPortDefinition, inVec, outVec);
+if (err != HDF_SUCCESS) {
+    HDF_LOGE("%{public}s failed with PortIndex::PORT_INDEX_OUTPUT, index is OMX_IndexParamPortDefinition",
+             __func__);
+    return err;
+}
+util_->VectorToObject(outVec, param);
+
 HDF_LOGI("PortIndex::PORT_INDEX_OUTPUT eCompressionFormat = %{public}d, eColorFormat=%{public}d",
          param.format.video.eCompressionFormat, param.format.video.eColorFormat);
-param.format.video.nFrameWidth  = width_;
-param.format.video.nFrameHeight = height_;
-param.format.video.nStride      = width_;
-param.format.video.nSliceHeight = height_;
+util_->setParmValue(param, width_, height_, stride_);
 param.format.video.eColorFormat = AV_COLOR_FORMAT; // Set the output data format to YUV420SP.
-err = client_->SetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
+err = client_->SetParameter(OMX_IndexParamPortDefinition, inVec);
 if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s failed  with PortIndex::PORT_INDEX_OUTPUT, index is OMX_IndexParamPortDefinition",
              __func__);
-    return false;
+    return err;
 }
 // Set the input data format to H.264/H.265.
 OMX_VIDEO_PARAM_PORTFORMATTYPE param;
-InitParam(param);
+if (util_->InitParam(param) != HDF_SUCCESS) {
+    return false;
+}
 param.nPortIndex = (uint32_t)PortIndex::PORT_INDEX_INPUT;
-auto err = client_->GetParameter(client_, OMX_IndexParamVideoPortFormat, (int8_t *)&param, sizeof(param));
+std::vector<int8_t> inVec, outVec;
+util_->ObjectToVector(param, inVec);
+auto err = client_->GetParameter(OMX_IndexParamVideoPortFormat, inVec, outVec);
 if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s failed with PortIndex::PORT_INDEX_INPUT", __func__);
     return false;
 }
+util_->VectorToObject(outVec, param);
+
 HDF_LOGI("set Format PortIndex::PORT_INDEX_INPUT eCompressionFormat = %{public}d, eColorFormat=%{public}d",
          param.eCompressionFormat, param.eColorFormat);
-param.xFramerate = FRAME; // Set the frame rate to 30.
+param.xFramerate = FRAME // Set the frame rate to 30.
 if (codecMime_ == codecMime::AVC) {
     param.eCompressionFormat = OMX_VIDEO_CodingAVC;  // H264
 } else {
     param.eCompressionFormat = (OMX_VIDEO_CODINGTYPE)CODEC_OMX_VIDEO_CodingHEVC;  // H265
 }
 
-err = client_->SetParameter(client_, OMX_IndexParamVideoPortFormat, (int8_t *)&param, sizeof(param));
+util_->ObjectToVector(param, inVec);
+err = client_->SetParameter(OMX_IndexParamVideoPortFormat, inVec);
 if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s failed  with PortIndex::PORT_INDEX_INPUT", __func__);
     return false;
@@ -352,90 +370,97 @@ Perform the following steps:
 
 1. Use **UseBuffer()** to apply for input and output buffers and save the buffer IDs. The buffer IDs can be used for subsequent buffer flipping.
 2. Check whether the corresponding port is enabled. If not, enable the port first.
-3. Use **SendCommand()** to change the component status to OMX_StateIdle, and wait until the operation result is obtained.
+3. Use **SendCommand()** to change the component status to **CODEC_STATE_IDLE**, and wait until the operation result is obtained.
 ```cpp
 // Apply for the input buffer.
-auto ret = UseBufferOnPort(PortIndex::PORT_INDEX_INPUT);
-if (!ret) {
+auto err = UseBufferOnPort(PortIndex::PORT_INDEX_INPUT);
+if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s UseBufferOnPort PortIndex::PORT_INDEX_INPUT error", __func__);
     return false;
 }
 // Apply for the output buffer.
-ret = UseBufferOnPort(PortIndex::PORT_INDEX_OUTPUT);
-if (!ret) {
+err = UseBufferOnPort(PortIndex::PORT_INDEX_OUTPUT);
+if (err != HDF_SUCCESS) {
     HDF_LOGE("%{public}s UseBufferOnPort PortIndex::PORT_INDEX_OUTPUT error", __func__);
     return false;
 }
 // Enable the component to enter the OMX_StateIdle state.
-auto err = client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateIdle, NULL, 0);
+std::vector<int8_t> cmdData;
+auto err = client_->SendCommand(CODEC_COMMAND_STATE_SET, CODEC_STATE_IDLE, cmdData);
 if (err != HDF_SUCCESS) {
-    HDF_LOGE("%{public}s failed to SendCommand with OMX_CommandStateSet:OMX_StateIdle", __func__);
+    HDF_LOGE("%{public}s failed to SendCommand with CODEC_COMMAND_STATE_SET:CODEC_STATE_IDLE", __func__);
     return false;
 }
-HDF_LOGI("Wait for OMX_StateIdle status");
-this->WaitForStatusChanged();
 ```
 
-Implement **UseBufferOnPort** as follows:
+Implement **UseBufferOnPort()** as follows:
 
 ```cpp
-bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex)
+int32_t CodecHdiDecode::UseBufferOnPort(PortIndex portIndex)
 {
     HDF_LOGI("%{public}s enter, portIndex = %{public}d", __func__, portIndex);
     int bufferSize = 0;
     int bufferCount = 0;
-    bool bPortEnable = false;
+    bool PortEnable = false;
     // Obtain parameters of the port buffer.
     OMX_PARAM_PORTDEFINITIONTYPE param;
-    InitParam(param);
-    param.nPortIndex = (OMX_U32)portIndex;
-    auto err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
+    if (util_->InitParam(param) != HDF_SUCCESS) {
+        return HDF_FAILURE;
+    }
+    param.nPortIndex = static_cast<OMX_U32>(portIndex);
+
+    std::vector<int8_t> inVec, outVec;
+    util_->ObjectToVector(param, inVec);
+    auto err = client_->GetParameter(OMX_IndexParamPortDefinition, inVec, outVec);
     if (err != HDF_SUCCESS) {
         HDF_LOGE("%{public}s failed to GetParameter with OMX_IndexParamPortDefinition : portIndex[%{public}d]",
-                    __func__, portIndex);
-        return false;
+                 __func__, portIndex);
+        return err;
     }
+    util_->VectorToObject(outVec, param);
+
     bufferSize = param.nBufferSize;
     bufferCount = param.nBufferCountActual;
-    bPortEnable = param.bEnabled;
+    portEnable = param.bEnabled;
     HDF_LOGI("buffer index [%{public}d], buffer size [%{public}d], "
-                "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
-                portIndex, bufferSize, bufferCount, bPortEnable, err);
-    {
-        OMX_PARAM_BUFFERSUPPLIERTYPE param;
-        InitParam(param);
-        param.nPortIndex = (uint32_t)portIndex;
-        auto err = client_->GetParameter(client_, OMX_IndexParamCompBufferSupplier, (int8_t *)&param, sizeof(param));
-        HDF_LOGI("param.eBufferSupplier[%{public}d] isSupply [%{public}d], err [%{public}d]", param.eBufferSupplier,
-                    this->isSupply_, err);
-    }
+             "buffer count [%{public}d], portEnable[%{public}d], ret [%{public}d]",
+             portIndex, bufferSize, bufferCount, portEnable, err);
     // Set the port buffer.
-    UseBufferOnPort(portIndex, bufferCount, bufferSize);
+    if (useBufferHandle_ && portIndex == PortIndex::PORT_INDEX_OUTPUT) {
+        err = UseBufferHandle(bufferCount, bufferSize);
+    } else {
+        err = UseBufferOnPort(portIndex, bufferCount, bufferSize);
+    }
     // Check whether the port is available.
-    if (!bPortEnable) {
-        auto err = client_->SendCommand(client_, OMX_CommandPortEnable, (uint32_t)portIndex, NULL, 0);
+    if (!portEnable) {
+        err = client_->SendCommand(CODEC_COMMAND_PORT_ENABLE, static_cast<uint32_t>(portIndex), {});
         if (err != HDF_SUCCESS) {
             HDF_LOGE("%{public}s SendCommand OMX_CommandPortEnable::PortIndex::PORT_INDEX_INPUT error", __func__);
-            return false;
+            return err;
         }
     }
-    return true;
+    return HDF_SUCCESS;
 }
 
-bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex, int bufferCount, int bufferSize)
+int32_t CodecHdiDecode::UseBufferOnPort(PortIndex portIndex, int bufferCount, int bufferSize)
 {
+    if (bufferCount <= 0 || bufferSize <= 0) {
+        HDF_LOGE("UseBufferOnPort bufferCount <= 0 or bufferSize <= 0");
+        return HDF_ERR_INVALID_PARAM;
+    }
     for (int i = 0; i < bufferCount; i++) {
-        OmxCodecBuffer *omxBuffer = new OmxCodecBuffer();
-        memset_s(omxBuffer, sizeof(OmxCodecBuffer), 0, sizeof(OmxCodecBuffer));
+        std::shared_ptr<OmxCodecBuffer> omxBuffer = std::make_shared<OmxCodecBuffer>();
         omxBuffer->size = sizeof(OmxCodecBuffer);
         omxBuffer->version.s.nVersionMajor = 1;
-        omxBuffer->bufferType = BUFFER_TYPE_AVSHARE_MEM_FD;
+        omxBuffer->bufferType = CODEC_BUFFER_TYPE_AVSHARE_MEM_FD;
         int fd = AshmemCreate(0, bufferSize);
         shared_ptr<Ashmem> sharedMem = make_shared<Ashmem>(fd, bufferSize);
-        omxBuffer->bufferLen = FD_SIZE;
-        omxBuffer->buffer = (uint8_t *)(unsigned long)fd;
+        omxBuffer->fd = fd;
+        omxBuffer->bufferhandle = nullptr;
         omxBuffer->allocLen = bufferSize;
         omxBuffer->fenceFd = -1;
+        omxBuffer->pts = 0;
+        omxBuffer->flag = 0;
 
         if (portIndex == PortIndex::PORT_INDEX_INPUT) {
             omxBuffer->type = READ_ONLY_TYPE;  // ReadOnly
@@ -444,84 +469,75 @@ bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex, int bufferCount, 
             omxBuffer->type = READ_WRITE_TYPE;
             sharedMem->MapReadOnlyAshmem();
         }
-        auto err = client_->UseBuffer(client_, (uint32_t)portIndex, omxBuffer);
+        OmxCodecBuffer outBuffer;
+        auto err = client_->UseBuffer((uint32_t)portIndex, *omxBuffer.get(), outBuffer);
         if (err != HDF_SUCCESS) {
             HDF_LOGE("%{public}s failed to UseBuffer with  portIndex[%{public}d]", __func__, portIndex);
             sharedMem->UnmapAshmem();
             sharedMem->CloseAshmem();
             sharedMem = nullptr;
-            return false;
+            return err;
         }
-        omxBuffer->bufferLen = 0;
+        omxBuffer->bufferId = outBuffer.bufferId;
+        omxBuffer->fd = -1;
         HDF_LOGI("UseBuffer returned bufferID [%{public}d]", omxBuffer->bufferId);
 
-        BufferInfo *bufferInfo = new BufferInfo;
+        std::shared_ptr<BufferInfo> bufferInfo = std::make_shared<BufferInfo>();
         bufferInfo->omxBuffer = omxBuffer;
         bufferInfo->avSharedPtr = sharedMem;
         bufferInfo->portIndex = portIndex;
-        omxBuffers_.insert(std::make_pair<int, BufferInfo *>(omxBuffer->bufferId, std::move(bufferInfo)));
+        omxBuffers_.emplace(std::make_pair(omxBuffer->bufferId, bufferInfo));
         if (portIndex == PortIndex::PORT_INDEX_INPUT) {
             unUsedInBuffers_.push_back(omxBuffer->bufferId);
         } else {
             unUsedOutBuffers_.push_back(omxBuffer->bufferId);
         }
-        int fdret = (int)omxBuffer->buffer;
-        HDF_LOGI("{bufferID = %{public}d, srcfd = %{public}d, retfd = %{public}d}", omxBuffer->bufferId, fd, fdret);
     }
-    return true;
+
+    return HDF_SUCCESS;
 }
 ```
 
-#### Codec Buffer Flipping
-Set the component to the **OMX_StateExecuting** state, fill the input buffer, read data from the output buffer, and flip the buffers.
+#### Flipping Codec Buffers 
+Set the component to the **CODEC_STATE_EXECUTING** state, fill the input buffer, read data from the output buffer, and flip the buffers.
 
 ```cpp
 // Set the component to the OMX_StateExecuting state and start buffer flipping.
-HDF_LOGI("...command to OMX_StateExecuting....");
-auto err = client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateExecuting, NULL, 0);
+HDF_LOGI("...command to CODEC_STATE_EXECUTING....");
+auto err = client_->SendCommand(CODEC_COMMAND_STATE_SET, CODEC_STATE_EXECUTING, {});
 if (err != HDF_SUCCESS) {
-    HDF_LOGE("%{public}s failed to SendCommand with OMX_CommandStateSet:OMX_StateIdle", __func__);
+    HDF_LOGE("%{public}s failed to SendCommand with CODEC_COMMAND_STATE_SET:CODEC_STATE_IDLE", __func__);
     return;
 }
-// Set the output buffer.
-for (auto bufferId : unUsedOutBuffers_) {
-    HDF_LOGI("fill bufferid [%{public}d]", bufferId);
-    auto iter = omxBuffers_.find(bufferId);
-    if (iter != omxBuffers_.end()) {
-        BufferInfo *bufferInfo = iter->second;
-        auto err = client_->FillThisBuffer(client_, bufferInfo->pOmxBuffer);
-        if (err != HDF_SUCCESS) {
-            HDF_LOGE("FillThisBuffer error");
-            FUNC_EXIT_ERR();
-            return;
-        }
-    }
+// Set the output buffer to fill.
+if (!FillAllTheBuffer()) {
+    HDF_LOGE("%{public}s FillAllTheBuffer error", __func__);
+    return;
 }
 // Fill the input buffer.
-bool bEndOfFile = false;
-while (!bEndOfFile) {
-    int bufferID = GetFreeBufferId();
+auto t1 = std::chrono::system_clock::now();
+bool eosFlag = false;
+while (!eosFlag) {
     if (this->exit_) {
         break;
     }
+    int bufferID = GetFreeBufferId();
     if (bufferID < 0) {
-        usleep(10000);
+        usleep(10000);  // 10000 for wait 10ms
         continue;
     }
     auto iter = omxBuffers_.find(bufferID);
     if (iter == omxBuffers_.end()) {
         continue;
     }
-    BufferInfo *bufferInfo = iter->second;
-    void *sharedAddr = (void *)bufferInfo->avSharedPtr->ReadFromAshmem(0, 0);
-    bool bEOS = (size_t)this->ReadOnePacket(fpIn_, (char *)sharedAddr, bufferInfo->omxBuffer->filledLen);
-    HDF_LOGI("read data size is %{public}d", bufferInfo->omxBuffer->filledLen);
+    auto bufferInfo = iter->second;
+    void *sharedAddr = const_cast<void *>(bufferInfo->avSharedPtr->ReadFromAshmem(0, 0));
+    eosFlag = this->ReadOnePacket(fpIn_, static_cast<char *>(sharedAddr), bufferInfo->omxBuffer->filledLen);
     bufferInfo->omxBuffer->offset = 0;
-    if (bEOS) {
+    if (eosFlag) {
         bufferInfo->omxBuffer->flag = OMX_BUFFERFLAG_EOS;
-        bEndOfFile = true;
     }
-    auto err = client_->EmptyThisBuffer(client_, bufferInfo->omxBuffer);
+    err = client_->EmptyThisBuffer(*bufferInfo->omxBuffer.get());
     if (err != HDF_SUCCESS) {
         HDF_LOGE("%{public}s EmptyThisBuffer error", __func__);
         return;
@@ -529,181 +545,186 @@ while (!bEndOfFile) {
 }
 // Wait.
 while (!this->exit_) {
-    usleep(10000);
-    continue;
+    usleep(10000);  // 10000 for wait 10ms
 }
 // Enable the component to enter the OMX_StateIdle state after decoding.
-client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateIdle, NULL, 0);
+auto t2 = std::chrono::system_clock::now();
+std::chrono::duration<double> diff = t2 - t1;
+HDF_LOGI("cost %{public}f, count=%{public}d", diff.count(), count_);
+(void)client_->SendCommand(CODEC_COMMAND_STATE_SET, CODEC_STATE_IDLE, {});
+return;
+}
 ```
 
 Automatic framing is not supported in rk OMX decoding. Therefore, you need to manually divide data into frames. Currently, data is divided into frames from code 0x000001 or 0x00000001 and sent to the server for processing. The sample code is as follows:
 
 ```cpp
 // Read a file by frame.
-bool OMXCore::ReadOnePacket(FILE* fp, char* buf, uint32_t& nFilled)
+bool CodecHdiDecode::ReadOnePacket(FILE *fp, char *buf, uint32_t &filledCount)
 {
-    // Read four bytes first.
-    size_t t = fread(buf, 1, 4, fp);
-    if (t < 4) {
-        // The file reading ends.
+    // Read the start code.
+    size_t t = fread(buf, 1, START_CODE_SIZE_FRAME, fp);
+    if (t < START_CODE_SIZE_FRAME) {
         return true;
     }
-    size_t filled = 0;
-    filled = 4;
-
-    bool bRet = true;
+    char *temp = buf;
+    temp += START_CODE_SIZE_FRAME;
+    bool ret = true;
     while (!feof(fp)) {
-        fread(buf + filled, 1, 1, fp);
-        if (buf[filled] == 1) {
-            // Check the start code.
-            if ((buf[filled - 1] == 0) &&
-                (buf[filled - 2] == 0) &&
-                (buf[filled - 3] == 0)) {
-                fseek(fp, -4, SEEK_CUR);
-                filled -= 3;
-                bRet = false;
-                break;
-            } else if ((buf[filled - 1] == 0) &&
-                       (buf[filled - 2] == 0)) {
-                fseek(fp, -3, SEEK_CUR);
-                filled -= 2;
-                bRet = false;
-                break;
-            }
+        (void)fread(temp, 1, 1, fp);
+        if (*temp != START_CODE) {
+            temp++;
+            continue;
         }
-        filled++;
+        // Check the start code.
+        if ((temp[START_CODE_OFFSET_ONE] == 0) && (temp[START_CODE_OFFSET_SEC] == 0) &&
+            (temp[START_CODE_OFFSET_THIRD] == 0)) {
+            fseek(fp, -START_CODE_SIZE_FRAME, SEEK_CUR);
+            temp -= (START_CODE_SIZE_FRAME - 1);
+            ret = false;
+            break;
+            }
+        if ((temp[START_CODE_OFFSET_ONE] == 0) && (temp[START_CODE_OFFSET_SEC] == 0)) {
+            fseek(fp, -START_CODE_SIZE_SLICE, SEEK_CUR);
+            temp -= (START_CODE_SIZE_SLICE - 1);
+            ret = false;
+            break;
+        }
+        temp++;
     }
-    nFilled = filled;
-    return bRet;
+    filledCount = (temp - buf);
+    return ret;
 }
 ```
 
 The codec HDI provides the following callbacks:
 
-- **EventHandler**: Called when a command is executed. For example, when the command for changing the component state from **OMX_StateIdle** to **OMX_StateExecuting** is executed, this callback is invoked to return the result.
-- **EmptyBufferDone**: Called when the input data is consumed. If the client needs to fill in data to encode or decode, call **EmptyThisBuffer()**.
-- **FillBufferDone**: Called when the output data is filled. If the client needs to read the encoded or decoded data, call **FillThisBuffer()**.
+- **EventHandler**: Called when a command is executed. For example, when the command for changing the component state from **CODEC_STATE_IDLE** to **CODEC_STATE_EXECUTING** is executed, this callback is invoked to return the result.
+- **EmptyBufferDone**: Called when the input data is consumed. If the client needs to fill data to encode or decode, it must call **EmptyThisBuffer()** again.
+- **FillBufferDone**: Called when the output data is filled. If the client needs to read the encoded or decoded data, it must call **FillThisBuffer()** again.
 
 ```cpp
 // EmptyBufferDone example
-int32_t OMXCore::OnEmptyBufferDone(struct CodecCallbackType *self, int8_t *pAppData, uint32_t pAppDataLen,
-                                    const struct OmxCodecBuffer *pBuffer)
+int32_t CodecHdiDecode::OnEmptyBufferDone(const struct OmxCodecBuffer &buffer)
 {
-    HDF_LOGI("onEmptyBufferDone: pBuffer.bufferID [%{public}d]", pBuffer->bufferId);
-    g_core->OnEmptyBufferDone(pBuffer);
-    return HDF_SUCCESS;
-}
-int32_t OMXCore::OnEmptyBufferDone(const struct OmxCodecBuffer *pBuffer)
-{
-    unique_lock<mutex> ulk(mLockInputBuffers_);
-    unUsedInBuffers_.push_back(pBuffer->bufferId);
+    HDF_LOGI("OnEmptyBufferDone, bufferId [%{public}d]", buffer.bufferId);
+    unique_lock<mutex> ulk(lockInputBuffers_);
+    unUsedInBuffers_.push_back(buffer.bufferId);
     return HDF_SUCCESS;
 }
 // FillBufferDone example
-int32_t OMXCore::OnFillBufferDone(struct CodecCallbackType *self, int8_t *pAppData, uint32_t pAppDataLen,
-                                    struct OmxCodecBuffer *pBuffer)
+int32_t CodecHdiDecode::OnFillBufferDone(const struct OmxCodecBuffer &buffer)
 {
-    HDF_LOGI("onFillBufferDone: pBuffer.bufferID [%{public}d]", pBuffer->bufferId);
-    g_core->OnFillBufferDone(pBuffer);
-    return HDF_SUCCESS;
-}
-int32_t OMXCore::onFillBufferDone(struct OmxCodecBuffer* pBuffer)
-{
-    // Locate the buffer based on the buffer ID.
-    if (bExit_) {
+    HDF_LOGI("OnFillBufferDone, bufferId [%{public}d]", buffer.bufferId);
+    if (exit_) {
         return HDF_SUCCESS;
     }
 
-    auto iter = omxBuffers_.find(pBuffer->bufferId);
-    if (iter == omxBuffers_.end() || !iter->second) {
+    auto iter = omxBuffers_.find(buffer.bufferId);
+    if ((iter == omxBuffers_.end()) || (iter->second == nullptr)) {
         return HDF_SUCCESS;
     }
-    // Obtain the output data.
-    BufferInfo *pBufferInfo = iter->second;
-    const void *addr = pBufferInfo->avSharedPtr->ReadFromAshmem(pBuffer->filledLen, pBuffer->offset);
-    // Decode the data and save it to a file.
-    fwrite(addr, 1, pBuffer->filledLen, fpOut_.get());
-    fflush(fpOut_.get());
-    // Reset the buffer data.
-    pBuffer->offset    = 0;
-    pBuffer->filledLen = 0;
-    if (pBuffer->flag == OMX_BUFFERFLAG_EOS) {
-        // End
-        bExit_ = true;
+    count_++;
+    // read buffer
+    auto bufferInfo = iter->second;
+    if (bufferInfo->avSharedPtr != nullptr) {
+        const void *addr = bufferInfo->avSharedPtr->ReadFromAshmem(buffer.filledLen, buffer.offset);
+        (void)fwrite(addr, 1, buffer.filledLen, fpOut_);
+    } else if (bufferInfo->bufferHandle != nullptr && gralloc_ != nullptr) {
+        gralloc_->Mmap(*bufferInfo->bufferHandle);
+        (void)fwrite(bufferInfo->bufferHandle->virAddr, 1, buffer.filledLen, fpOut_);
+        gralloc_->Unmap(*bufferInfo->bufferHandle);
+    }
+
+    (void)fflush(fpOut_);
+    if (buffer.flag == OMX_BUFFERFLAG_EOS) {
+        // end
+        exit_ = true;
         HDF_LOGI("OnFillBufferDone the END coming");
         return HDF_SUCCESS;
     }
-    // Call FillThisBuffer() again.
-    auto err = client_->FillThisBuffer(client_, pBufferInfo->pOmxBuffer);
+    // call fillthisbuffer again
+    auto err = client_->FillThisBuffer(*bufferInfo->omxBuffer.get());
     if (err != HDF_SUCCESS) {
-        HDF_LOGE("FillThisBuffer error");
+        HDF_LOGE("%{public}s FillThisBuffer error", __func__);
         return HDF_SUCCESS;
     }
     return HDF_SUCCESS;
 }
-
 // EventHandler example
-int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)
+int32_t CodecHdiDecode::EventHandler(CodecEventType event, const EventInfo &info)
 {
-    HDF_LOGI("onEvent: appData[0x%{public}p], eEvent [%{public}d], "
-                "nData1[%{public}d]",
-                info->appData, event, info->data1);
     switch (event) {
-        case OMX_EventCmdComplete: {
-            OMX_COMMANDTYPE cmd = (OMX_COMMANDTYPE)info->data1;
-            if (OMX_CommandStateSet == cmd) {
-                HDF_LOGI("OMX_CommandStateSet reached, status is %{public}d", info->data2);
-                g_core->onStatusChanged();
+        case CODEC_EVENT_CMD_COMPLETE: {
+            CodecCommandType cmd = (CodecCommandType)info.data1;
+            if (CODEC_COMMAND_STATE_SET == cmd) {
+                HDF_LOGI("CODEC_COMMAND_STATE_SET reached, status is %{public}d", info.data2);
+                this->OnStatusChanged();
             }
             break;
         }
+        case OMX_EventPortSettingsChanged: {
+            HDF_LOGI("OMX_EventPortSeetingsChanged reached");
+            this->HandleEventPortSettingsChanged(info.data1, info.data2);
+        }
+
         default:
             break;
     }
+
     return HDF_SUCCESS;
 }
 ```
 
 #### Destroying a Component
-Change the component state to IDLE, release the input and output buffers, change the component state to **OMX_StateLoaded**, and call **DestoryComponent** to destroy the component.
+Change the component state to **CODEC_STATE_IDLE**, release the input and output buffers, change the component state to **CODEC_STATE_LOADED**, and call **DestoryComponent** to destroy the component.
 
-##### Example of Releasing Buffers
+##### Releasing Buffers
 
 ```cpp
 // Change the component state to OMX_StateLoaded.
-client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateLoaded, nullptr, 0);
+client_->SendCommand(CODEC_COMMAND_STATE_SET, CODEC_STATE_LOADED, {});
 
 // Release all buffers in use.
 auto iter = omxBuffers_.begin();
 while (iter != omxBuffers_.end()) {
-    BufferInfo *bufferInfo = iter->second;
-    client_->FreeBuffer(client_, (uint32_t)bufferInfo->portIndex, bufferInfo->omxBuffer);
-    delete bufferInfo;
-    iter++;
+    auto bufferInfo = iter->second;
+    iter = omxBuffers_.erase(iter);
+    (void)client_->FreeBuffer((uint32_t)bufferInfo->portIndex, *bufferInfo->omxBuffer.get());
+    bufferInfo = nullptr;
 }
-omxBuffers_.clear();
+
 unUsedInBuffers_.clear();
 unUsedOutBuffers_.clear();
 
-enum OMX_STATETYPE status;
-client_->GetState(client_, &status);
 // After the buffers are released, the component enters the OMX_StateLoaded state.
-if (status != OMX_StateLoaded) {
-    HDF_LOGI("Wait for OMX_StateLoaded status");
-    this->WaitForStatusChanged();
-} else {
-    HDF_LOGI(" status is %{public}d", status);
-}
+CodecStateType status = CODEC_STATE_INVALID;
+int32_t err = HDF_SUCCESS;
+int32_t tryCount = 3;
+do {
+    err = client_->GetState(status);
+    if (err != HDF_SUCCESS) {
+        HDF_LOGE("%s GetState error [%{public}x]", __func__, err);
+        break;
+    }
+    if (status != CODEC_STATE_LOADED) {
+        HDF_LOGI("Wait for OMX_StateLoaded status");
+        this->WaitForStatusChanged();
+    }
+    tryCount--;
+} while ((status != CODEC_STATE_LOADED) && (tryCount > 0));
 ```
 
-##### Example of Destroying a Component Instance
+##### Destroying a Component Instance
 
 ```cpp
 // Destroy a component instance.
-void OMXCore::Release() {
-    omxMgr_->DestoryComponent(client_);
+void CodecHdiDecode::Release()
+{
+    omxMgr_->DestoryComponent(componentId_);
     client_ = nullptr;
-    CodecComponentManagerRelease();
+    callback_ = nullptr;
+    omxMgr_ = nullptr;
 }
 ```
 
@@ -721,7 +742,7 @@ OpenMAX does not support framing.
 
 **Solution**
 
-Transfer data frame by frame when **EmptyThisBuffer** is called.
+When **EmptyThisBuffer** is call, only one frame can be passed in at a time.
 
 ## Only Green Screen Displayed During the Decoding Process
 
@@ -745,15 +766,12 @@ After the generated video stream (H.264 stream) is written to a file, the video 
 
 **Possible Causes**
 
-- The **xFramerate** parameter of the output port is incorrectly set.
-- The **OMX_VIDEO_PARAM_AVCTYPE** parameter is correctly set.
-
+1. The **xFramerate** parameter of the output port is incorrectly set.
+2. The **OMX_VIDEO_PARAM_AVCTYPE** parameter is correctly set.
 
 **Solution**
 
-View the **codec_host** log generated during encoding, search for "encode params init settings", and check for incorrect parameters. If **framerate** is **0**, **xFramerate** is incorrectly set. In this case, move the framerate leftwards by 16 bits. 
-
-Check the value of **OMX_VIDEO_PARAM_AVCTYPE**, and set it correctly. 
+View the **codec_host** log generated during encoding, search for "encode params init settings", and check for incorrect parameters. If **framerate** is **0**, **xFramerate** is incorrectly set. In this case, move the frame rate leftwards by 16 bits. <br>In other cases, correct the setting of **OMX_VIDEO_PARAM_AVCTYPE**. 
 
 
 # Reference

@@ -1,22 +1,15 @@
 # @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
-本模块提供后台任务管理能力。
-
-当应用或业务模块处于后台（无可见界面）时，如果有需要继续执行或者后续执行的业务，可基于业务类型，申请短时任务延迟挂起（Suspend）或者长时任务避免进入挂起状态。
-
-应用有不可中断且短时间能完成的任务时（如，用户在文件管理器上点击垃圾文件清理，若清理未完成时退到后台，文件管理器需要申请短时任务完成清理），可以使用短时任务机制。
-
-应用中存在用户能够直观感受到的且需要一直在后台运行的业务时（如，后台播放音乐），可以使用长时任务机制。
-
-对于系统特权应用，提供独立的能效资源申请接口。系统特权应用如果需要使用特定的系统资源，例如在被挂起期间仍然能够收到系统公共事件，可以使用能效资源申请接口。
+本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
+> 
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```js
+```ts
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 ```
 
@@ -24,9 +17,11 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
-后台应用申请延迟挂起。
+申请短时任务。
 
-延迟挂起时间一般情况下默认值为3分钟，低电量（依据系统低电量广播）时默认值为1分钟。
+>  **说明：**
+> 
+> 短时任务的申请时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -34,18 +29,18 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| reason   | string               | 是    | 延迟挂起申请的原因。                     |
-| callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+| reason   | string               | 是    | 申请短时任务的原因。                     |
+| callback | Callback&lt;void&gt; | 是    | 短时任务即将超时的回调函数，一般在超时前6秒，通过此回调通知应用。 |
 
 **返回值**：
 
 | 类型                                    | 说明        |
 | ------------------------------------- | --------- |
-| [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
+| [DelaySuspendInfo](#delaysuspendinfo) | 返回短时任务信息。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -58,29 +53,30 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let myReason = 'test requestSuspendDelay';
-  try {
-    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.info("Request suspension delay will time out.");
-    })
-    let id = delayInfo.requestId;
-    let time = delayInfo.actualDelayTime;
-    console.info("The requestId is: " + id);
-    console.info("The actualDelayTime is: " + time);
-  } catch (error) {
-    console.error(`requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+let myReason = 'test requestSuspendDelay';
+try {
+let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+    console.info("Request suspension delay will time out.");
+})
+let id = delayInfo.requestId;
+let time = delayInfo.actualDelayTime;
+console.info("The requestId is: " + id);
+console.info("The actualDelayTime is: " + time);
+} catch (error) {
+console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
 
 
 ## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
-获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
+获取本次短时任务的剩余时间。使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -88,12 +84,12 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 延迟挂起的请求ID。                               |
-| callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+| requestId | number                      | 是    | 短时任务的请求ID。                               |
+| callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次短时任务的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -107,31 +103,26 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let id = 1;
-  try {
-    backgroundTaskManager.getRemainingDelayTime(id, (error, res) => {
-        if(error) {
-            console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-        } else {
-            console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-        }
-    })
-  } catch (error) {
-    console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+let id = 1;
+backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
+    if(error) {
+        console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+    } else {
+        console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    }
+})
+```
 
 
 ## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
-
-
+获取本次短时任务的剩余时间。使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -139,17 +130,17 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。 |
 
 **返回值**：
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+| Promise&lt;number&gt; | Promise对象，返回本次短时任务的剩余时间，单位为毫秒。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -162,27 +153,24 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-  ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-  let id = 1;
-  try {
-    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-    }).catch( error => {
-        console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+let id = 1;
+backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+}).catch((error: BusinessError) => {
     console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
-  }
-  ```
+})
+```
 
 
 ## backgroundTaskManager.cancelSuspendDelay
 
 cancelSuspendDelay(requestId: number): void
 
-取消延迟挂起。
+取消短时任务。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -190,11 +178,11 @@ cancelSuspendDelay(requestId: number): void
 
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 短时任务的请求ID。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -209,21 +197,21 @@ cancelSuspendDelay(requestId: number): void
 
   ```js
   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+  import { BusinessError } from '@ohos.base';
 
   let id = 1;
   try {
     backgroundTaskManager.cancelSuspendDelay(id);
   } catch (error) {
-    console.error(`cancelSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+    console.error(`cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
   ```
-
 
 ## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-向系统申请长时任务，使用callback形式返回结果。
+申请长时任务。使用callback异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -234,13 +222,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
-| callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。           |
+| callback  | AsyncCallback&lt;void&gt;          | 是    | 回调函数，申请长时任务成功时，err为undefined，否则为错误对象。    |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -257,9 +245,12 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error) {
         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
@@ -268,8 +259,8 @@ function callback(error, data) {
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
@@ -282,16 +273,16 @@ export default class EntryAbility extends UIAbility {
         };
 
         try {
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
                         backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
                 } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
             });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -301,7 +292,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-向系统申请长时任务，使用promise形式返回结果。
+申请长时任务，使用promise异步回调。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -312,18 +303,18 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 长时任务模式。                              |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -340,11 +331,14 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.app.ability.wantAgent';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let wantAgentInfo = {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
@@ -357,20 +351,20 @@ export default class EntryAbility extends UIAbility {
         };
 
         try {
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
                 try {
                     backgroundTaskManager.startBackgroundRunning(this.context,
                         backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
                         console.info("Operation startBackgroundRunning succeeded");
-                    }).catch((error) => {
+                    }).catch((error: BusinessError) => {
                         console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
                     });
                 } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
                 }
             });
         } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -380,7 +374,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-向系统申请取消长时任务，使用callback形式返回结果。
+取消长时任务。使用callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -389,11 +383,11 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，取消长时任务成功时，err为undefined，否则为错误对象。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -410,8 +404,11 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
-function callback(error, data) {
+function callback(error: BusinessError, data: void) {
     if (error) {
         console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
@@ -420,11 +417,11 @@ function callback(error, data) {
 }
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
         } catch (error) {
-            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -434,9 +431,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-向系统申请取消长时任务，使用promise形式返回结果。
-
-
+取消长时任务，使用promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -450,11 +445,11 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 使用Promise形式返回结果。 |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -471,17 +466,20 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
                 console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((error) => {
+            }).catch((error: BusinessError) => {
                 console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
             });
         } catch (error) {
-            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -489,10 +487,9 @@ export default class EntryAbility extends UIAbility {
 
 ## backgroundTaskManager.applyEfficiencyResources
 
-applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest)): void
+applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
-向系统申请能效资源。
-进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
+申请能效资源。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -502,12 +499,12 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest)。 |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息，包括资源类型、超时时间等。 |
 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -521,8 +518,9 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
-let request = {
+let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
     isApply: true,
     timeOut: 0,
@@ -534,7 +532,7 @@ try {
     backgroundTaskManager.applyEfficiencyResources(request);
     console.info("applyEfficiencyResources success. ");
 } catch (error) {
-    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    console.error(`applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 
@@ -542,7 +540,7 @@ try {
 
 resetAllEfficiencyResources(): void
 
-释放所有已经申请的资源。
+释放已申请的全部能效资源。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -550,7 +548,7 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -568,23 +566,24 @@ import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
 } catch (error) {
-    console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    console.error(`resetAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 
 ## DelaySuspendInfo
 
-延迟挂起信息。
+短时任务信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| requestId       | number | 是    | 延迟挂起的请求ID。                               |
-| actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
-
+| requestId       | number | 是    | 短时任务的请求ID。                               |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/>短时任务申请时间最长为3分钟，[低电量](js-apis-battery-info.md)时最长为1分钟。 |
 
 ## BackgroundMode
+
+长时任务模式。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -596,9 +595,9 @@ try {
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
-| WIFI_INTERACTION        | 7    | WLAN相关（此接口为系统接口）。 |
-| VOIP                    | 8    | 音视频通话（此接口为系统接口）。  |
-| TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
+| WIFI_INTERACTION        | 7    | WLAN相关。<br>**系统API**: 此接口为系统接口。 |
+| VOIP                    | 8    | 音视频通话。<br>**系统API**: 此接口为系统接口。 |
+| TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
 
 ## EfficiencyResourcesRequest
 
@@ -611,11 +610,11 @@ try {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
-| isApply         | boolean | 是    | 申请资源或者是释放资源。          |
-| timeOut         | number  | 是    | 资源的使用时间，以毫秒为单位。                |
-| isPersist       | boolean | 否    | 是否永久持有资源，如果是true，那么timeOut就无效。    |
-| isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
-| reason          | string  | 是    | 申请资源的原因。                |
+| isApply         | boolean | 是    | 申请或释放资源。<br>- true表示申请资源，false表示释放部分资源。 |
+| timeOut         | number  | 是    | 资源使用时间，单位为毫秒。                |
+| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有，false表示有限时间内持有。|
+| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请，false表示应用申请。         |
+| reason          | string  | 是    | 申请资源原因。                |
 
 ## ResourceType
 
@@ -627,12 +626,12 @@ try {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 2    | 申请后挂起状态下不会代理公共事件。 |
-| TIMER                   | 4    | 计时器，申请后挂起状态不会代理SystemTimer。 |
-| WORK_SCHEDULER          | 8    | [WorkScheduler默认采用较宽松管控策略。(详见 延迟任务调度约束)](../../task-management/background-task-overview.md#延迟任务调度约束) |
-| BLUETOOTH               | 16   | 申请后挂起状态不会代理蓝牙。 |
-| GPS                     | 32   | 申请后挂起状态不会代理GPS。 |
-| AUDIO                   | 64   | 申请后挂起状态不会代理音频。 |
-| RUNNING_LOCK | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
-| SENSOR | 256 | 申请后不拦截Sensor回调。 |
+| CPU                     | 1    | CPU资源，申请后应用进程不被挂起。             |
+| COMMON_EVENT            | 2    | 公共事件资源，申请后应用进程被挂起后，可以收到公共事件。 |
+| TIMER                   | 4    | 计时器，申请后应用进程被挂起后，Timer仍然可以唤醒应用。 |
+| WORK_SCHEDULER          | 8    | 延迟任务资源，申请后延迟任务管控变宽松。 |
+| BLUETOOTH               | 16   | 蓝牙资源，申请后应用进程被挂起后，蓝牙相关事件仍然可以唤醒应用。 |
+| GPS                     | 32   | GPS资源，申请后应用进程被挂起后，GPS相关事件可以唤醒应用。 |
+| AUDIO                   | 64   | 音频资源，有音频播放时对应的应用进程不被挂起。 |
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
+| SENSOR<sup>10+</sup> | 256 | 申请后不拦截Sensor回调。 |

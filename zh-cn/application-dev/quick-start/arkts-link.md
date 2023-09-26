@@ -1,4 +1,4 @@
-# \@Link：父子双向同步
+# \@Link装饰器：父子双向同步
 
 
 子组件中被\@Link装饰的变量与其父组件中对应的数据源建立双向数据绑定。
@@ -20,7 +20,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无                                        |
 | 同步类型        | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any，不支持简单类型和复杂类型的联合类型，不允许使用undefined和null。<br/>**说明：**<br/>不支持Length、ResourceStr、ResourceColor类型，Length、ResourceStr、ResourceColor为简单类型和复杂类型的联合类型。 |
 | 被装饰变量的初始值   | 无，禁止本地初始化。                               |
 
 
@@ -48,12 +48,67 @@
 
 - 当装饰的对象是array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+
+```ts
+@Component
+struct DateComponent {
+  @Link selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the year by 1`).onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+        })
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({selectedDate:this.parentSelectedDate})
+    }
+  }
+}
+```
 
 ### 框架行为
 
 \@Link装饰的变量和其所述的自定义组件共享生命周期。
 
-为了了解\@Link变量初始化和更新机制，有必要先了解父组件和和拥有\@Link变量的子组件的关系，初始渲染和双向更新的流程（以父组件为\@State为例）。
+为了了解\@Link变量初始化和更新机制，有必要先了解父组件和拥有\@Link变量的子组件的关系，初始渲染和双向更新的流程（以父组件为\@State为例）。
 
 1. 初始渲染：执行父组件的build()函数后将创建子组件的新实例。初始化过程如下：
    1. 必须指定父组件中的\@State变量，用于初始化子组件的\@Link变量。子组件的\@Link变量值与其父组件的数据源变量保持同步（双向数据同步）。
@@ -172,10 +227,10 @@ struct Parent {
     Column() {
       Child({ items: $arr })
       ForEach(this.arr,
-        item => {
+        (item: void) => {
           Text(`${item}`)
         },
-        item => item.toString()
+        (item: ForEachInterface) => item.toString()
       )
     }
   }

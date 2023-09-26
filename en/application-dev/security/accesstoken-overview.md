@@ -22,7 +22,6 @@ Observe the following permission management principles:
 - When an application is started for the first time, avoid frequently displaying dialog boxes to request multiple permissions. Allow the application to apply for the permission only when it needs to use the corresponding service function.
 - If a user rejects to grant a permission, the user can still use functions irrelevant to this permission and can register and access the application.
 - Provide no more message if a user rejects the authorization required by a function. Provide onscreen instructions to direct the user to grant the permission in **Settings** if the user triggers this function again or needs to use this function.
-
 - All the permissions for applications must come from the [Application Permission List](permission-list.md). Custom permissions are not allowed currently.
 
 ## Permission Workflows
@@ -39,9 +38,13 @@ The figure below illustrates the process.
 
 ![](figures/permission-workflow.png)
 
+**NOTE**
+
 1. Refer to the figure below to determine whether an application can apply for a permission.
 
 ![](figures/permission-application-process.png)
+
+**NOTE**
 
 1. See [Permission Levels](#permission-levels) for details about the mapping between the application Ability Privilege Level (APL) and the permission level.
 
@@ -50,6 +53,7 @@ The figure below illustrates the process.
 3. A low-APL application can have a high-level permission by using the Access Control List (ACL). For details, see [ACL](#acl).
 
 ### Verifying a Permission
+
 To protect sensitive data and eliminate security threats on core abilities, you can use the permissions in the [Application Permission List](permission-list.md) to protect an API from unauthorized calling. Each time before the API is called, a verification is performed to check whether the caller has the required permission.
 
 The API can be called only after the permission verification is successful.
@@ -57,6 +61,8 @@ The API can be called only after the permission verification is successful.
 The figure below shows the permission verification process.
 
 ![](figures/permission-verify-process.png)
+
+**NOTE**
 
 1: An application permission can be used to control the access to an API that has sensitive data involved or security threats on core abilities.
 
@@ -124,7 +130,7 @@ The permissions available to applications vary with the APL. The permission leve
 - **system_core**
 
     The **system_core** permission allows access to core resources of the OS. These resources are underlying core services of the system. If these resources are corrupted, the OS cannot run properly.
-    
+
     The **system_core** permissions are not available to third-party applications.
 
 ## Permission Types
@@ -147,6 +153,14 @@ Permissions can be classified into the following types based on the authorizatio
 
     The user_grant permission list must also be presented on the details page of each application in the application market.
 
+### Permission Groups and Permissions
+
+To minimize the number of pop-up permission windows and optimize interaction experience, the logically related user_grant permissions are combined to form multiple permission groups.
+
+The permissions of the same permission group are displayed in the same dialog box for user authorization. A permission in a permission group is called a sub-permission of the group.
+
+The relationship between a permission group and its permissions is not fixed. The permission group to which a permission belongs may change. For details about the permission groups supported by the system, see [Application Permission Group List](permission-group-list.md).
+
 ### Authorization Processes
 
 As described in [Permission Workflows](permission-workflows), you need to first apply for the required permissions for your application.
@@ -157,14 +171,14 @@ As described in [Permission Workflows](permission-workflows), you need to first 
 
 - Authorizing a permission
 
-   - The system_grant permission is pre-granted when the application is installed.
-   - For a user_grant permission, you need to trigger user authorization through a dialog box during the running of the application. For details, see [Requesting User Authorization](#requesting-user-authorization).
+  - The system_grant permission is pre-granted when the application is installed.
+  - For a user_grant permission, you need to trigger user authorization through a dialog box during the running of the application. For details, see [Requesting User Authorization](#requesting-user-authorization).
 
 ### Requesting User Authorization
 
 The procedure is as follows:
 
-1. In the configuration file, declare the permissions required by your application. For details, see [Permission Application Guide](accesstoken-guidelines.md).
+1. In the configuration file, declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
 
 2. Associate the target object in the application with the required permission. This allows the users to know the operations that need user authorization.
 
@@ -172,10 +186,10 @@ The procedure is as follows:
 
 4. Check the user authorization result. Allow the subsequent operations only after the user has granted the permission to the application successfully.
 
-**Caution**
+**CAUTION**
 
 - Each time before the operation that requires the target permission is performed, the application must check whether the permission is available.
-- To check whether a user has granted a permission to your application, use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9). This API returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Permission Application Guide](accesstoken-guidelines.md).
+- To check whether a user has granted a permission to your application, use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9). This API returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Requesting User Authorization](accesstoken-guidelines.md#requesting-user-authorization).
 - Users must be able to understand and control the authorization of user_grant permissions. For a user_grant permission, the application must proactively call an API to dynamically request user authorization. Then, the system displays a dialog box asking the user to grant the permission. The user then determines whether to grant the permission.
 - The user may revoke the permission authorization at any time. Therefore, each time before an API associated with a user_grant permission is called, the application must check whether the permission is available.
 

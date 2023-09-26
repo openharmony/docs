@@ -1,26 +1,24 @@
-# @ohos.resourceschedule.workScheduler (Work Scheduler)
+# @ohos.resourceschedule.workScheduler (Deferred Task Scheduling)
 
-The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
-
-The system executes Work Scheduler tasks at an appropriate time, subject to the storage space, power consumption, temperature, and more.
+The **workScheduler** module provides the APIs for registering, canceling, and querying deferred tasks. You can use the APIs to register tasks that do not have high requirements on real-time performance as deferred tasks. The system schedules and executes the deferred tasks at an appropriate time, subject to the storage space, power consumption, and more.
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 >  - The APIs of this module can be used only in the stage model.
->  - For details about the restrictions, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on-using-work-scheduler-tasks).
-
 
 ## Modules to Import
 
-```js
+```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
 ## workScheduler.startWork
+
 startWork(work: WorkInfo): void
 
-Instructs the **WorkSchedulerService** to add the specified task to the execution queue.
+Starts a deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -28,7 +26,7 @@ Instructs the **WorkSchedulerService** to add the specified task to the executio
 
 | Name | Type                   | Mandatory  | Description            |
 | ---- | --------------------- | ---- | -------------- |
-| work | [WorkInfo](#workinfo) | Yes   | Task to be added to the execution queue.|
+| work | [WorkInfo](#workinfo) | Yes   | Deferred task to start.|
 
 **Error codes**
 
@@ -42,11 +40,10 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700004 | Check workInfo failed. |
 | 9700005 | StartWork failed. |
 
-
 **Example**
 
-```js
-  let workInfo = {
+```ts
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -64,14 +61,15 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
     workScheduler.startWork(workInfo);
     console.info('workschedulerLog startWork success');
   } catch (error) {
-    console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog startwork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
 ## workScheduler.stopWork
+
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
-Instructs the **WorkSchedulerService** to stop the specified task.
+Stops a deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -79,8 +77,8 @@ Instructs the **WorkSchedulerService** to stop the specified task.
 
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
-| work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | No   | Whether to cancel the task. The default value is **false**.|
+| work       | [WorkInfo](#workinfo) | Yes   | Deferred task to stop.|
+| needCancel | boolean               | No   | Whether to clear the task while stopping it.<br>The value **true** means to clear the task while stopping it, and **false** means to stop the task only. The default value is **false**.|
 
 **Error codes**
 
@@ -95,8 +93,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  let workInfo = {
+```ts
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -114,14 +112,15 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
     workScheduler.stopWork(workInfo, false);
     console.info('workschedulerLog stopWork success');
   } catch (error) {
-    console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
 ## workScheduler.getWorkStatus
+
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
-Obtains the latest task status. This API uses an asynchronous callback to return the result.
+Obtains the information a deferred task. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -129,8 +128,8 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
-| workId   | number                                | Yes   | Task ID.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
+| workId   | number                                | Yes   | ID of the deferred task.                                |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -145,26 +144,21 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.getWorkStatus(50, (error, res) => {
-      if (error) {
-        console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        for (let item in res) {
-          console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-        }
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
+    if (error) {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.getWorkStatus
+
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
-Obtains the latest task status. This API uses a promise to return the result.
+Obtains the information a deferred task. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -172,13 +166,13 @@ Obtains the latest task status. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | Task ID.|
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned.|
 
 **Error codes**
 
@@ -193,24 +187,19 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.getWorkStatus(50).then((res) => {
-      for (let item in res) {
-        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-      }
-    }).catch((error) => {
-      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
+    console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.obtainAllWorks
+
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
-Obtains all tasks associated with this application. This API uses an asynchronous callback to return the result.
+Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -218,13 +207,13 @@ Obtains all tasks associated with this application. This API uses an asynchronou
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. All tasks associated with the current application.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Return value**
 
 | Type                           | Description             |
 | ----------------------------- | --------------- |
-| Array\<[WorkInfo](#workinfo)> | All tasks associated with the current application.|
+| Array\<[WorkInfo](#workinfo)> | All the deferred tasks.|
 
 **Error codes**
 
@@ -238,24 +227,21 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.obtainAllWorks((error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
+    if (error) {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.obtainAllWorks
+
 obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
-Obtains all tasks associated with this application. This API uses a promise to return the result.
+Obtains all the deferred tasks. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -263,7 +249,7 @@ Obtains all tasks associated with this application. This API uses a promise to r
 
 | Type                                    | Description                            |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return the result. All tasks associated with the current application.|
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all the deferred tasks.|
 
 **Error codes**
 
@@ -277,22 +263,19 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-    }).catch((error) => {
-      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
+    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.stopAndClearWorks
+
 stopAndClearWorks(): void
 
-Stops and cancels all tasks associated with the current application.
+Stops and clears all the deferred tasks.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -308,19 +291,20 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
+```ts
   try{
     workScheduler.stopAndClearWorks();
     console.info(`workschedulerLog stopAndClearWorks success`);
   } catch (error) {
-    console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopAndClearWorks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
 ## workScheduler.isLastWorkTimeOut
+
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
-Checks whether the last execution of the specified task timed out. This API uses an asynchronous callback to return the result.
+Checks whether the last execution of a task timed out. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -328,14 +312,14 @@ Checks whether the last execution of the specified task timed out. This API uses
 
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| workId   | number               | Yes   | Task ID.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| workId   | number               | Yes   | ID of the deferred task.                                |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Callback used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| boolean | The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
 
 **Error codes**
 
@@ -350,24 +334,21 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500, (error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
+    if (error) {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    }
+  });
 ```
 
 ## workScheduler.isLastWorkTimeOut
+
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
-Checks whether the last execution of the specified task timed out. This API uses a promise to return the result.
+Checks whether the last execution of a task timed out. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -375,13 +356,13 @@ Checks whether the last execution of the specified task timed out. This API uses
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | Task ID.|
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. Returns **true** if the last execution of the specified task timed out; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
 
 **Error codes**
 
@@ -396,46 +377,44 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 
 **Example**
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      })
-      .catch(error =>  {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  workScheduler.isLastWorkTimeOut(500)
+    .then((res: boolean) => {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    })
+    .catch((error: BusinessError) =>  {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    });
 ```
 
 ## WorkInfo
-Provides detailed information about the task. For details about the constraints on configuring **WorkInfo**, see [Restrictions on Using Work Scheduler Tasks](../../task-management/background-task-overview.md#restrictions-on-using-work-scheduler-tasks).
+
+Defines the information about the deferred task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
-| workId          | number                            | Yes   | Task ID.         |
-| bundleName      | string                            | Yes   | Name of the Work Scheduler task bundle.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a Work Scheduler callback.|
+| workId          | number                            | Yes   | ID of the deferred task.         |
+| bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
+| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device is charging.            |
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
-| batteryLevel    | number                            | No   | Battery level.              |
+| batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.          |
-| repeatCycleTime | number                            | No   | Repeat interval.            |
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
+| repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
-| idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: number \| string \| boolean}              | No   | Carried parameters.          |
+| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
+| idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
+| parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
 
 ## NetworkType
-Enumerates the network types that can trigger the task.
+
+Enumerates the network types that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -449,7 +428,8 @@ Enumerates the network types that can trigger the task.
 | NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
 ## ChargingType
-Enumerates the charging types that can trigger the task.
+
+Enumerates the charging types that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -461,7 +441,8 @@ Enumerates the charging types that can trigger the task.
 | CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
 
 ## BatteryStatus
-Enumerates the battery states that can trigger the task.
+
+Enumerates the battery statuses that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -472,7 +453,8 @@ Enumerates the battery states that can trigger the task.
 | BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
 ## StorageRequest
-Enumerates the storage states that can trigger the task.
+
+Enumerates the storage statuses that can trigger deferred task scheduling.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -480,4 +462,4 @@ Enumerates the storage states that can trigger the task.
 | ------------------------- | ---- | ------------------------------ |
 | STORAGE_LEVEL_LOW         | 0    | The storage space is insufficient.              |
 | STORAGE_LEVEL_OKAY        | 1    | The storage space is restored from insufficient to normal.        |
-| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is restored from insufficient to normal, or the storage space is insufficient.|
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is insufficient, or the storage space is restored from insufficient to normal.|

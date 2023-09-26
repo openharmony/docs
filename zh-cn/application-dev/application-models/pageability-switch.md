@@ -11,11 +11,11 @@ FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
 
    | FA的PageAbility | Stage的UIAbility | 对应关系描述 |
    | -------- | -------- | -------- |
-   | onCreate():&nbsp;void | onCreate(want:&nbsp;Want,&nbsp;param:&nbsp;AbilityConstant.LaunchParam):&nbsp;void | 两者的意义和调用时机一致，Stage模型在回调中新增了参数，方便开发者在创建的时候获取启动相关的数据。 |
+   | onCreate():&nbsp;void | onCreate(want:&nbsp;Want,&nbsp;launchParam:&nbsp;AbilityConstant.LaunchParam):&nbsp;void | 两者的意义和调用时机一致，Stage模型在回调中新增了参数，方便开发者在创建的时候获取启动相关的数据。 |
    | NA | onWindowStageCreate(windowStage:&nbsp;window.WindowStage):&nbsp;void | Stage模型新增，窗口创建时由系统回调。 |
    | onActive():&nbsp;void | on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;<br/>WindowStageEventType.ACTIVE | 两者的意义和调用时机一致。Stage模型下移动到了窗口对象中。 |
    | onShow():&nbsp;void | onForeground():&nbsp;void | 两者的意义和调用时机一致，参数也一致。 |
-   | onNewWant(want:&nbsp;Want):&nbsp;void | onNewWant(want:&nbsp;Want,&nbsp;launchParams:&nbsp;AbilityConstant.LaunchParam):&nbsp;void | 两者的意义和调用时机一致，Stage模型多了LaunchParam参数来告知应用启动原因。 |
+   | onNewWant(want:&nbsp;Want):&nbsp;void | onNewWant(want:&nbsp;Want,&nbsp;launchParam:&nbsp;AbilityConstant.LaunchParam):&nbsp;void | 两者的意义和调用时机一致，Stage模型多了LaunchParam参数来告知应用启动原因。 |
    | onInactive():&nbsp;void | on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;<br/>WindowStageEventType.INACTIVE | 两者的意义和调用时机一致。Stage模型下移动到了窗口对象中。 |
    | onHide():&nbsp;void | onBackground():&nbsp;void | 两者的意义和调用时机一致，参数也一致。 |
    | NA | onWindowStageDestroy():&nbsp;void | Stage模型新增，窗口销毁时由系统回调。 |
@@ -31,7 +31,7 @@ FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
 
    例如，开发者希望Ability启动后加载"pages/Index"页面，在FA模型中，开发者需要在config.json中加入如下代码：
 
-   
+
    ```json
    "pages" : [
        "pages/Index"
@@ -40,17 +40,19 @@ FA模型中PageAbility对应Stage模型中的UIAbility。切换步骤如下。
 
    在Stage模型中，则在MainAbility中实现如下接口：
 
-   
+
    ```ts
-   import Window from '@ohos.window'
-   
-   onWindowStageCreate(windowStage: Window.WindowStage) {
-       // Main window is created, set main page for this ability
-       windowStage.loadContent('pages/Index', (err, data) => {
-           if (err.code) {
-               console.error("loadContent failed")
-               return;
-           }
-       });
-   }
+    import Window from '@ohos.window'
+
+    export default class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+        // Main window is created, set main page for this ability
+        windowStage.loadContent('pages/Index', (err, data) => {
+          if (err.code) {
+            console.error("loadContent failed")
+            return;
+          }
+        });
+      }
+    }
    ```

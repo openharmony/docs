@@ -4,6 +4,8 @@
 
 >  **NOTE**
 >
+>  This component is deprecated since API version 10. You are advised to use [\<UIExtensionComponent>](ts-container-ui-extension-component.md) instead.
+>
 >  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The APIs provided by this component are system APIs.
@@ -29,9 +31,9 @@ AbilityComponent(want: Want)
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | Yes| Description of the default ability to load.|
+| Name | Type                                    | Mandatory  | Description           |
+| ---- | ---------------------------------------- | ---- | --------------- |
+| want | [Want](../apis/js-apis-app-ability-want.md) | Yes   | Description of the default ability to load.|
 
 
 ## Events
@@ -74,5 +76,3 @@ struct MyComponent {
   }
 }
 ```
-
- <!--no_check--> 

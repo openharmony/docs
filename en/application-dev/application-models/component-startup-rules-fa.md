@@ -12,7 +12,7 @@ Component startup refers to the behavior of starting or connecting to an applica
 To deliver a better user experience, OpenHarmony restricts the following behavior:
 
 
-- A background application randomly displays a dialog box, such as an ads pop-up.
+- A background application randomly displays a dialog box, such as an ad pop-up.
 
 - Background applications wake up each other. This type of behavior occupies system resources and increases power consumption, or even causes system frozen.
 
@@ -28,20 +28,24 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
   - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities).
 
 - **Before starting a component of a background application, verify the BACKGROUND permission.**
+  > **NOTE**
+  > 
+  > Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when starting the ServiceAbility or DataAbility.
+
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
   - Verify the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
 
 - **Before starting the ServiceAbility or DataAbility component of an application, verify the AssociateWakeUp field of the target application.**
   - This rule applies only to cross-application scenarios.
   - This rule is valid only when the target component is ServiceAbility or DataAbility.
-  - The ServiceAbility and DataAbility of an application can be accessed by others only when **AssociateWakeUp** of the target application is set to **true**.
+  - The ServiceAbility and DataAbility of an application can be accessed by other applications only when **AssociateWakeUp** of the target application is set to **true**.
   - The **AssociateWakeUp** field can be configured only for preset applications. For other applications, this field is set to **false** by default.
 
 
 > **NOTE**
 > 1. Component startup control has been implemented since OpenHarmony v3.2 Release.
 > 
-> 2. The new component startup rules are more strict than the original ones. You must be familiar with the new startup rules to prevent service exceptions.
+> 2. The new component startup rules are more strict than the original ones. Get familiar with the new startup rules to prevent service exceptions.
 
  
 
@@ -66,4 +70,3 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 - Starting a ServiceAbility
 
 ![component-startup-rules](figures/component-startup-inter-fa.png)
-

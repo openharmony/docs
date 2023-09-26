@@ -7,7 +7,7 @@ The network connection management module provides basic network management capab
 
 ## Modules to Import
 
-```js
+```ts
 import connection from '@ohos.net.connection'
 ```
 
@@ -34,7 +34,9 @@ Creates a **NetConnection** object. **netSpecifier** specifies the network, and 
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // For the default network, you do not need to pass in parameters.
 let netConnection = connection.createNetConnection()
 
@@ -58,22 +60,24 @@ Obtains the default active data network. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If the default activated data network is obtained successfully, err is undefined and data is the default activated data network. Otherwise, err is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If the default activated data network is obtained successfully, **error** is **undefined** and **data** is the default activated data network. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getDefaultNet(function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -100,13 +104,15 @@ Obtains the default active data network. This API uses a promise to return the r
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+connection.getDefaultNet().then((data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 ```
@@ -132,12 +138,15 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 let netHandle = connection.getDefaultNetSync();
 ```
 
@@ -153,21 +162,25 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[HttpProxy](#httpproxy)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **err** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **err** is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getGlobalHttpProxy((error, data) => {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
   console.info(JSON.stringify(data));
 })
@@ -187,21 +200,24 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[HttpProxy](#httpproxy)> | Promise used to return the result.|
+| Promise\<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getGlobalHttpProxy().then((data) => {
+```ts
+import connection from '@ohos.net.connection'
+connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -220,10 +236,10 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | Yes  | Global HTTP proxy configuration of the network.|
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name   | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| httpProxy | [HttpProxy](#httpproxy10) | Yes  | Global HTTP proxy configuration of the network.                                    |
+| callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -231,21 +247,26 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base';
+
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+connection.setGlobalHttpProxy({
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
-}
-connection.setGlobalHttpProxy(httpProxy, (error) => {
+} as connection.HttpProxy).then(() => {
+  console.info("success");
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 });
 ```
@@ -266,7 +287,7 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 
 | Name   | Type                                                        | Mandatory| Description            |
 | --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| httpProxy | [HttpProxy](#httpproxy)                                      | Yes  | Global HTTP proxy configuration of the network.|
+| httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Global HTTP proxy configuration of the network.|
 
 **Return value**
 
@@ -280,23 +301,95 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+import { BusinessError } from '@ohos.base';
+
 let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+connection.setGlobalHttpProxy({
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
-}
-connection.setGlobalHttpProxy(httpProxy).then(() => {
+} as connection.HttpProxy).then(() => {
   console.info("success");
-}).catch(error => {
+}).catch((error: BusinessError) => {
+  console.info(JSON.stringify(error));
+});
+```
+
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
+
+Obtains the default HTTP proxy configuration of the network.
+If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is obtained successfully, **error** is **undefined** and **data** is the global HTTP proxy configuration. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
+  console.info(JSON.stringify(error));
+  console.info(JSON.stringify(data));
+})
+```
+
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(): Promise\<HttpProxy>;
+
+Obtains the default HTTP proxy configuration of the network.
+If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
+This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                            | Description                                     |
+| -------------------------------- | ----------------------------------------- |
+| Promise<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultHttpProxy().then((data: connection.HttpProxy) => {
+  console.info(JSON.stringify(data));
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
 ```
@@ -311,21 +404,24 @@ Obtains information about the network bound to an application. This API uses an 
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback  | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If information about the network bound to the application is successfully obtained, **err** is **undefined** and **data** is the obtained network information. Otherwise, **err** is an error object.|
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result. If information about the network bound to the application is successfully obtained, **error** is **undefined** and **data** is the obtained network information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getAppNet(function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -349,17 +445,50 @@ Obtains information about the network bound to an application. This API uses a p
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getAppNet().then((data) => {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getAppNet().then((data: connection.NetHandle) => {
   console.info(JSON.stringify(data));
-}).catch(error => {
+}).catch((error: BusinessError) => {
   console.info(JSON.stringify(error));
 })
+```
+
+## connection.getAppNetSync<sup>10+</sup>
+
+getAppNetSync(): NetHandle
+
+Obtains information about the network bound to an application. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| [NetHandle](#nethandle8) | Handle of the data network bound to the application.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let netHandle = connection.getAppNetSync();
 ```
 
 ## connection.SetAppNet<sup>9+</sup>
@@ -374,10 +503,10 @@ Binds an application to the specified network, so that the application can acces
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application is successfully bound to the specified network, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name   | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the application is successfully bound to the specified network, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -391,9 +520,11 @@ Binds an application to the specified network, so that the application can acces
 
 **Example**
 
-```js
-connection.getDefaultNet(function (error, netHandle) {
-  connection.setAppNet(netHandle, (error, data) => {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   });
@@ -434,11 +565,13 @@ Binds an application to the specified network, so that the application can acces
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success")
-  }).catch(error => {
+  }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error))
   })
 })
@@ -458,23 +591,26 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result. If the list of all connected networks is obtained successfully, **err** is **undefined** and **data** is the list of activated data networks. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result. If the list of all connected networks is obtained successfully, **error** is **undefined** and **data** is the list of activated data networks. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getAllNets(function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
-});
+}); 
 ```
 
 ## connection.getAllNets<sup>8+</sup>
@@ -498,15 +634,51 @@ Obtains the list of all connected networks. This API uses a promise to return th
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.getAllNets().then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.log(JSON.stringify(data))
 });
+```
+
+## connection.getAllNetsSync<sup>10+</sup>
+
+getAllNetsSync(): Array&lt;NetHandle&gt;
+
+Obtains the list of all connected networks. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type     | Description                              |
+| --------- | ---------------------------------- |
+| Array&lt;[NetHandle](#nethandle8)&gt; | List of all activated data networks.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.             |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let netHandle = connection.getAllNetsSync();
 ```
 
 ## connection.getConnectionProperties<sup>8+</sup>
@@ -521,10 +693,10 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Parameters**
 
-| Name   | Type                                                        | Mandatory| Description            |
-| --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | Yes  | Callback used to return the result. If the connection properties of the network corresponding to the **netHandle** is obtained successfully, **err** is **undefined** and **data** is the obtained network connection information. Otherwise, **err** is an error object.|
+| Name   | Type                                                        | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | Yes  | Callback used to return the result. If the connection properties of the network corresponding to the **netHandle** is obtained successfully, **error** is **undefined** and **data** is the obtained network connection information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -538,9 +710,11 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getConnectionProperties(netHandle, function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -581,12 +755,55 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getConnectionProperties(netHandle).then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.log(JSON.stringify(data))
   })
 })
+```
+
+## connection.getConnectionPropertiesSync<sup>10+</sup>
+
+getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
+
+Obtains network connection information based on the specified **netHandle**.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description            |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | Yes  | Handle of the data network.|
+
+**Return value**
+
+| Type                                                   | Description                             |
+| ------------------------------------------------------- | --------------------------------- |
+| [ConnectionProperties](#connectionproperties8) | Network connection information.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let netHandle = connection.getDefaultNetSync();
+let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
 ```
 
 ## connection.getNetCapabilities<sup>8+</sup>
@@ -601,10 +818,10 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Parameters**
 
-| Name   | Type                                               | Mandatory| Description            |
-| --------- | --------------------------------------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                             | Yes  | Handle of the data network.|
-| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | Yes  | Callback used to return the result. If the capability information of the network corresponding to the **netHandle** is obtained successfully, **err** is **undefined** and **data** is the obtained network capability information. Otherwise, **err** is an error object.      |
+| Name   | Type                                               | Mandatory| Description                                                        |
+| --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                             | Yes  | Handle of the data network.                                            |
+| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | Yes  | Callback used to return the result. If the capability information of the network corresponding to the **netHandle** is obtained successfully, **error** is **undefined** and **data** is the obtained network capability information. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -618,9 +835,11 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getNetCapabilities(netHandle, function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -661,12 +880,55 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.getNetCapabilities(netHandle).then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getNetCapabilities(netHandle).then((datadata: connection.NetCapabilities) => {
     console.log(JSON.stringify(data))
   })
 })
+```
+
+## connection.getNetCapabilitiesSync<sup>10+</sup>
+
+getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
+
+Obtains capability information of the network corresponding to the **netHandle**. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description            |
+| --------- | ----------------------- | ---- | ---------------- |
+| netHandle | [NetHandle](#nethandle8) | Yes  | Handle of the data network.|
+
+**Return value**
+
+| Type                                         | Description                             |
+| --------------------------------------------- | --------------------------------- |
+| [NetCapabilities](#netcapabilities8) | Network capability information.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let netHandle = connection.getDefaultNetSync();
+let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
 ```
 
 ## connection.isDefaultNetMetered<sup>9+</sup>
@@ -690,13 +952,16 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.isDefaultNetMetered(function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.isDefaultNetMetered((errorerror: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error))
   console.log('data: ' + data)
 })
@@ -723,15 +988,51 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.isDefaultNetMetered().then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.isDefaultNetMetered().then((data: boolean) => {
   console.log('data: ' + data)
 })
+```
+
+## connection.isDefaultNetMeteredSync<sup>10+</sup>
+
+isDefaultNetMeteredSync(): boolean
+
+Checks whether the data traffic usage on the current network is metered. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type             | Description                                           |
+| ----------------- | ----------------------------------------------- |
+| boolean | The value **true** indicates the data traffic usage is metered.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let isMetered = connection.isDefaultNetMeteredSync();
 ```
 
 ## connection.hasDefaultNet<sup>8+</sup>
@@ -755,13 +1056,16 @@ Checks whether the default data network is activated. This API uses an asynchron
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.hasDefaultNet(function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.hasDefaultNet((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error))
   console.log('data: ' + data)
 })
@@ -788,15 +1092,50 @@ Checks whether the default data network is activated. This API uses a promise to
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.hasDefaultNet().then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+connection.hasDefaultNet().then((data: boolean) => {
   console.log('data: ' + data)
 })
+```
+
+## connection.hasDefaultNetSync<sup>10+</sup>
+
+hasDefaultNetSync(): boolean
+
+Checks whether the default data network is activated. This API returns the result synchronously.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type             | Description                                           |
+| ----------------- | ----------------------------------------------- |
+| boolean | The value **true** indicates the default data network is activated.|
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**Example**
+
+```ts
+import connection from '@ohos.net.connection'
+
+let isDefaultNet = connection.hasDefaultNetSync();
 ```
 
 ## connection.enableAirplaneMode<sup>8+</sup>
@@ -821,14 +1160,18 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.enableAirplaneMode(function (error) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.enableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -855,14 +1198,18 @@ Enables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.enableAirplaneMode().then(function (error) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.enableAirplaneMode().then((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -883,20 +1230,24 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 
 | Name  | Type                                             | Mandatory| Description              |
 | -------- | ------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the airplane mode is disabled successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the airplane mode is disabled successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.disableAirplaneMode(function (error) {
+```ts
+import connection from '@ohos.net.connection'
+
+connection.disableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -923,14 +1274,16 @@ Disables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
-```js
-connection.disableAirplaneMode().then(function (error) {
+```ts
+connection.disableAirplaneMode().then((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -950,7 +1303,7 @@ Reports connection of the data network to the network management module. This AP
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -964,9 +1317,9 @@ Reports connection of the data network to the network management module. This AP
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetConnected(netHandle, function (error) {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetConnected(netHandle, (error: BusinessError) => {
     console.log(JSON.stringify(error))
   });
 });
@@ -1005,9 +1358,9 @@ Reports connection of the data network to the network management module. This AP
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetConnected(netHandle).then(function () {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetConnected(netHandle).then(() => {
     console.log(`report success`)
   });
 });
@@ -1028,7 +1381,7 @@ Reports disconnection of the data network to the network management module. This
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | Yes| Handle of the data network. For details, see [NetHandle](#nethandle).|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1042,10 +1395,10 @@ Reports disconnection of the data network to the network management module. This
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetDisconnected(netHandle, function (error) {
-    console.log(JSON.stringify(error))
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetDisconnected(netHandle).then( () => {
+    console.log(`report success`)
   });
 });
 ```
@@ -1083,9 +1436,9 @@ Reports disconnection of the data network to the network management module. This
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
-  connection.reportNetDisconnected(netHandle).then(function () {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`)
   });
 });
@@ -1103,10 +1456,10 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description              |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **err** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **err** is an error object.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1120,9 +1473,10 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Example**
 
-```js
-let host = "xxxx";
-connection.getAddressesByName(host, function (error, data) {
+```ts
+import connection from '@ohos.net.connection'
+import { BusinessError } from "@ohos.base"
+connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1162,9 +1516,9 @@ Resolves the host name by using the default network to obtain all IP addresses. 
 
 **Example**
 
-```js
-let host = "xxxx";
-connection.getAddressesByName(host).then(function (data) {
+```ts
+import connection from '@ohos.net.connection'
+connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.log(JSON.stringify(data))
 })
 ```
@@ -1190,9 +1544,9 @@ Registers a listener for network status changes.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is registered successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is registered successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1207,8 +1561,8 @@ Registers a listener for network status changes.
 
 **Example**
 
-```js
-netConnection.register(function (error) {
+```ts
+netConnection.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1223,9 +1577,9 @@ Unregisters the listener for network status changes.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is unregistered successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If a listener for network status changes is unregistered successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1239,8 +1593,8 @@ Unregisters the listener for network status changes.
 
 **Example**
 
-```js
-netConnection.unregister(function (error) {
+```ts
+netConnection.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1251,7 +1605,7 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 Registers a listener for **netAvailable** events.
 
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+**Model restriction**: Before you call this API, make sure tat you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1259,27 +1613,29 @@ Registers a listener for **netAvailable** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle.|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', function (data) {
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1298,34 +1654,36 @@ Registers a listener for **netBlockStatusChange** events. This API uses an async
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
 | callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | Yes  | Callback used to return the network handle (**netHandle**) and network status (**blocked**).|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
-// Subscribe to netBlockStatusChange events. Event notifications can be received only after register is called.
-netCon.on('netBlockStatusChange', function (data) {
+// Subscribe to netAvailable events. Event notifications can be received only after register is called.
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
 
 ### on('netCapabilitiesChange')<sup>8+</sup>
 
-on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
+on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo>): void
 
 Registers a listener for **netCapabilitiesChange** events.
 
@@ -1337,27 +1695,29 @@ Registers a listener for **netCapabilitiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo)> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
-// Subscribe to netCapabilitiesChange events. Event notifications can be received only after register is called.
-netCon.on('netCapabilitiesChange', function (data) {
+// Subscribe to netAvailable events. Event notifications can be received only after register is called.
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1377,27 +1737,29 @@ Registers a listener for **netConnectionPropertiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return the network handle (**netHandle**) and connection information (**connectionProperties**).|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
-// Subscribe to netConnectionPropertiesChange events. Event notifications can be received only after register is called.
-netCon.on('netConnectionPropertiesChange', function (data) {
+// Subscribe to netAvailable events. Event notifications can be received only after register is called.
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1416,27 +1778,29 @@ Registers a listener for **netLost** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
+| type     | string                             | Yes  | Event type. This field has a fixed value of **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle (**netHandle**).|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
-// Subscribe to netLost events. Event notifications can be received only after register is called.
-netCon.on('netLost', function (data) {
+// Subscribe to netAvailable events. Event notifications can be received only after register is called.
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1455,27 +1819,29 @@ Registers a listener for **netUnavailable** events.
 
 | Name  | Type           | Mandatory| Description                                                        |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | Yes  | Event type. The value is fixed to **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
+| type     | string          | Yes  | Event type. This field has a fixed value of **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
 | callback | Callback\<void> | Yes  | Callback used to return the result, which is empty.|
 
 **Example**
 
-```js
+```ts
+import connection from '@ohos.net.connection'
+
 // Create a NetConnection object.
-let netCon = connection.createNetConnection()
+let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
-netCon.register(function (error) {
+netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
-// Subscribe to netUnavailable events. Event notifications can be received only after register is called.
-netCon.on('netUnavailable', function (data) {
+// Subscribe to netAvailable events. Event notifications can be received only after register is called.
+netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 
 // Call unregister to unregister the listener.
-netCon.unregister(function (error) {
+netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1507,7 +1873,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 | Name     | Type                    | Mandatory| Description                           |
 | ----------- | ------------------------ | ---- | -------------------------------|
 | socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes| **TCPSocket** or **UDPSocket** object.|
-| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the **TCPSocket** or **UDPSocket** object is successfully bound to the current network, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the **TCPSocket** or **UDPSocket** object is successfully bound to the current network, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1520,22 +1886,25 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
-connection.getDefaultNet().then((netHandle) => {
-  var tcp = socket.constructTCPSocketInstance();
-  var udp = socket.constructUDPSocketInstance();
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  let tcp = socket.constructTCPSocketInstance();
+  let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-    tcp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    tcp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp, (error, data) => {
+      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
           console.log(JSON.stringify(error));
         } else {
@@ -1544,21 +1913,20 @@ connection.getDefaultNet().then((netHandle) => {
       })
     })
   } else {
-    let callback = value => {
+    let callback: (value: string) => void = (value: string) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
-    udp.on('message', callback);
-    udp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    udp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      udp.on('message', (data) => {
+      udp.on('message', (data: string) => {
         console.log(JSON.stringify(data))
       });
-      netHandle.bindSocket(udp, (error, data) => {
+      netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
           console.log(JSON.stringify(error));
         } else {
@@ -1601,49 +1969,54 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 **Example**
 
-```js
+```ts
 import socket from "@ohos.net.socket";
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
 
-connection.getDefaultNet().then((netHandle) => {
-  var tcp = socket.constructTCPSocketInstance();
-  var udp = socket.constructUDPSocketInstance();
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  let tcp = socket.constructTCPSocketInstance();
+  let udp = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
-    tcp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    tcp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp).then((data) => {
-        console.log(JSON.stringify(data));
-      }).catch(error => {
-        console.log(JSON.stringify(error));
+      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
+        if (error) {
+          console.log(JSON.stringify(error));
+        } else {
+          console.log(JSON.stringify(data));
+        }
       })
     })
   } else {
-    let callback = value => {
+    let callback: (value: string) => void = (value: string) => {
       console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
-    udp.on('message', callback);
-    udp.bind({
-      address: '192.168.xx.xxx', port: 8080, family: 1
-    }, error => {
+    udp.bind({address:"192.168.xxx.xxx",
+              port:8080,
+              family:1} as socket.NetAddress, (error: BusinessError) => {
+    if (error) {
+      console.log('bind fail');
+      return;
+    }
+    udp.on('message', (data: string) => {
+      console.log(JSON.stringify(data))
+    });
+    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
-        console.log('bind fail');
-        return;
-      }
-      udp.on('message', (data) => {
-        console.log(JSON.stringify(data));
-      })
-      netHandle.bindSocket(udp).then((data) => {
-        console.log(JSON.stringify(data));
-      }).catch(error => {
         console.log(JSON.stringify(error));
-      })
+      } else {
+        console.log(JSON.stringify(data));
+      }
     })
-  }
+  })
+}
 })
 ```
 
@@ -1659,10 +2032,10 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description              |
-| -------- | ------------------------------------------------- | ---- | ------------------ |
-| host     | string                                            | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **err** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **err** is an error object.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                            | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<Array\<[NetAddress](#netaddress)>> | Yes  | Callback used to return the result. If all IP addresses are successfully obtained, **error** is **undefined**, and **data** is the list of all obtained IP addresses. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1676,10 +2049,10 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressesByName(host, function (error, data) {
+  netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
@@ -1720,10 +2093,10 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressesByName(host).then(function (data) {
+  netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -1741,10 +2114,10 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description              |
-| -------- | ----------------------------------------- | ---- | ------------------ |
-| host     | string                                    | Yes  | Host name to resolve.|
-| callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the first IP address is obtained successfully, **err** is **undefined**, and **data** is the first obtained IP address. Otherwise, **err** is an error object.        |
+| Name  | Type                                     | Mandatory| Description                                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| host     | string                                    | Yes  | Host name to resolve.                                          |
+| callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the first IP address is obtained successfully, **error** is **undefined**, and **data** is the first obtained IP address. Otherwise, **error** is an error object.|
 
 **Error codes**
 
@@ -1758,14 +2131,14 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
+```ts
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
-  netHandle.getAddressByName(host, function (error, data) {
+  netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
   })
-})
+}) 
 ```
 
 ### getAddressByName<sup>8+</sup>
@@ -1802,10 +2175,11 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Example**
 
-```js
-connection.getDefaultNet().then(function (netHandle) {
+```ts
+
+connection.getDefaultNet().then((netHandle: connection.NetHandl) => {
   let host = "xxxx";
-  netHandle.getAddressByName(host).then(function (data) {
+  netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.log(JSON.stringify(data))
   })
 })
@@ -1839,7 +2213,7 @@ Enumerates network types.
 
 ## HttpProxy<sup>10+</sup>
 
-Defines the global HTTP proxy configuration of the network.
+Represents the HTTP proxy configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1847,7 +2221,7 @@ Defines the global HTTP proxy configuration of the network.
 | ------ | ------ | --- |------------------------- |
 | host  | string | No |  Host name of the proxy server.|
 | port  | number | No |  Host port.|
-| exclusionList  | Array<string> | No |  Exclusion list of hosts that do not use the proxy server. The length of the combined elements in the list cannot exceed 96 bytes.<br>For example, the length of **baidu.com,zhihu.com** is 20 bytes.|
+| exclusionList  | Array<string> | No | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.|
 
 ## NetSpecifier<sup>8+</sup>
 
@@ -1860,6 +2234,17 @@ Provides an instance that bears data network capabilities.
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  Yes | Network transmission capabilities and bearer types of the data network.                               |
 | bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
 
+## NetCapabilityInfo<sup>10+</sup>
+
+Provides an instance that bears data network capabilities.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name                    | Type                               | Mandatory | Description                                                        |
+| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle         | [NetHandle](#nethandle) |  Yes | Handle of the data network.                               |
+| netCap |  [NetCapabilities](#netcapabilities)       |  No |  Network transmission capabilities and bearer types of the data network.|
+
 ## NetCapabilities<sup>8+</sup>
 
 Defines the network capability set.
@@ -1868,8 +2253,8 @@ Defines the network capability set.
 
 | Name                 | Type                               | Mandatory| Description                    |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  No|  Uplink (from the device to the network) bandwidth. |
-| linkDownBandwidthKbps | number                             |  No|  Downlink (from the network to the device) bandwidth.  |
+| linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated. |
+| linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated.  |
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type.              |
 

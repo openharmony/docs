@@ -1,4 +1,4 @@
-# \@Extend：定义扩展组件样式
+# \@Extend装饰器：定义扩展组件样式
 
 
 在前文的示例中，可以使用\@Styles用于样式的扩展，在\@Styles的基础上，我们提供了\@Extend，用于扩展原生组件样式。
@@ -23,7 +23,7 @@
 
 - 和\@Styles不同，\@Extend仅支持定义在全局，不支持在组件内部定义。
 
-- 和\@Styles不同，\@Extend支持封装指定的组件的私有属性和私有事件和预定义相同组件的\@Extend的方法。
+- 和\@Styles不同，\@Extend支持封装指定的组件的私有属性和私有事件，以及预定义相同组件的\@Extend的方法。
 
   ```ts
   // @Extend(Text)可以支持Text的私有属性fontColor
@@ -81,7 +81,7 @@
     build() {
       Row({ space: 10 }) {
         Text(`${this.label}`)
-          .makeMeClick(this.onClickHandler.bind(this))
+          .makeMeClick(this.onClickHandler)
       }
     }
   }
@@ -169,7 +169,7 @@ struct FancyUse {
       Text(`${this.label}`)
         .fancyText(200, Color.Pink)
       Text(`${this.label}`)
-        .fancyText(200, Color.Orange)
+        .fancyText(300, Color.Orange)
     }.margin('20%')
   }
 }

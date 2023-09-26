@@ -18,7 +18,7 @@ DSI标准对应D-PHY、DSI、DCS规范，可分为四层：
 
 - PHY Layer
 
-    定义了传输媒介，输入/输出电路和和时钟和信号机制。PHY层指定传输介质(电导体)、输入/输出电路和从串行比特流中捕获“1”和“0”的时钟机制。这一部分的规范记录了传输介质的特性、信号的电气参数以及时钟与数据通道之间的时序关系。在DSI链路的发送端，并行数据、信号事件和命令按照包组织在协议层转换为包。协议层附加包协议信息和报头，然后通过Lane Management层向PHY发送完整的字节。数据由PHY进行序列化，并通过串行链路发送。DSI链路的接收端执行与发送端相反的操作，将数据包分解为并行的数据、信号事件和命令。如果有多个Lane, Lane管理层将字节分配给单独的物理层，每个Lane一个PHY。
+    PHY层指定传输介质(电导体)、输入/输出电路和从串行比特流中捕获“1”和“0”的时钟机制。这一部分的规范记录了传输介质的特性、信号的电气参数以及时钟与数据通道之间的时序关系。在DSI链路的发送端，并行数据、信号事件和命令按照包组织在协议层转换为包。协议层附加包协议信息和报头，然后通过Lane Management层向PHY发送完整的字节。数据由PHY进行序列化，并通过串行链路发送。DSI链路的接收端执行与发送端相反的操作，将数据包分解为并行的数据、信号事件和命令。如果有多个Lane, Lane管理层将字节分配给单独的物理层，每个Lane一个PHY。
 
 - Lane Management层
 
@@ -117,7 +117,7 @@ MIPI DSI模块适配包含以下四个步骤：
 
 ### 开发实例
 
-下方将基于Hi3516DV300开发板以//device_soc_hisilicon/common/platform/mipi_dsi/mipi_tx_hi35xx.c驱动为示例，展示需要厂商提供哪些内容来完整实现设备功能。
+下方将基于Hi3516DV300开发板以//device/soc/hisilicon/common/platform/mipi_dsi/mipi_tx_hi35xx.c驱动为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 1. 实例化驱动入口 
 
@@ -227,7 +227,7 @@ MIPI DSI模块适配包含以下四个步骤：
 
         返回值：
 
-        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS的定义）。
+        HDF_STATUS相关状态 （表3为部分展示，如需使用其他状态，可参考//drivers/hdf_core/interfaces/inner_api/utils/hdf_base.h中HDF_STATUS的定义）。
 
         **表 3** HDF_STATUS相关状态说明
 

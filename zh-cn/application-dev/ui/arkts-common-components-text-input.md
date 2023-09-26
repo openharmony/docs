@@ -1,4 +1,4 @@
-# 文本输入
+# 文本输入（TextInput/TextArea）
 
 
 TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法参考[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/arkui-ts/ts-basic-components-textarea.md)。
@@ -125,8 +125,6 @@ TextInput()
 
 用于表单的提交，在用户登录/注册页面，用户的登录或注册的输入操作。
 
-
-
 ```ts
 @Entry
 @Component
@@ -148,4 +146,11 @@ struct TextInputSample {
 ```
 
 
-![zh-cn_image_0000001563060653](figures/zh-cn_image_0000001563060653.png)
+![TextInputGIF](figures/TextInputGIF.gif)
+
+
+## 相关实例
+
+针对文本输入开发，有以下相关实例可供参考：
+
+- [简易计算器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleCalculator)

@@ -1,4 +1,4 @@
-# 按钮
+# 按钮（Button）
 
 
 Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button当做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/arkui-ts/ts-basic-components-button.md)。
@@ -133,9 +133,10 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   为删除操作创建一个按钮。
 
   ```ts
-  Button({ type: ButtonType.Circle, stateEffect: true }) { 
-    Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
-  }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
+  let MarLeft:Record<string,number> = {'left':20}
+  Button({ type: ButtonType.Circle, stateEffect: true }) {
+  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+  }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
 
   ![zh-cn_image_0000001511740436](figures/zh-cn_image_0000001511740436.png)
@@ -165,23 +166,26 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   @Entry
   @Component
   struct ButtonCase1 {
+    @State FurL:router.RouterOptions = {'url':'pages/first_page'}
+    @State SurL:router.RouterOptions = {'url':'pages/second_page'}
+    @State TurL:router.RouterOptions = {'url':'pages/third_page'}
     build() {
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl({ url: 'pages/first_page' })
+            router.pushUrl(this.FurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl({ url: 'pages/second_page' })
+            router.pushUrl(this.SurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl({ url: 'pages/third_page' })
+            router.pushUrl(this.TurL)
           })
             .width('100%')
         }
@@ -232,13 +236,13 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
     build() {
       Stack() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
-          }, item => item)
+          }, (item:number) => item.toString())
         }.width('90%')
         Button() {
           Image($r('app.media.ic_public_add'))

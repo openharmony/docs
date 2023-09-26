@@ -17,27 +17,6 @@
 import dataShare from '@ohos.data.dataShare'
 ```
 
-## uri命名规则
-
-标准uri定义结构如下:
-
-**Scheme://authority/path** 
-- Scheme: 协议名，对于data share统一为datashare
-- authority: [userinfo@]host[:port]
-    - userinfo: 登录信息，不需要填写。
-    - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
-    - port: 服务器端口，不需要填写。
-- path: data share的标识信息和资源的路径信息，需要包含data share的标识信息，资源的路径信息可以不填写。
-
-uri示例:
-
-- 不包含资源路径: `datashare:///com.samples.datasharetest.DataShare`
-
-- 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
-
-其中，data share的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
-
-
 ## dataShare.createDataShareHelper
 
 createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void
@@ -70,21 +49,23 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 try {
-    dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-        if (err !== undefined) {
-            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    });
+  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+    if (err !== undefined) {
+      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      return;
+    }
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  });
 } catch (err) {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -119,21 +100,23 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 try {
-    dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
-        if (err !== undefined) {
-            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    });
+  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+    if (err !== undefined) {
+      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      return;
+    }
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  });
 } catch (err) {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
 };
 ```
 ## dataShare.createDataShareHelper
@@ -174,19 +157,21 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper;
+let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 try {
-    dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data) => {
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-    }). catch((err) => {
-        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-    });
-} catch (err) {
+  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+    console.info("createDataShareHelper succeed, data : " + data);
+    dataShareHelper = data;
+  }). catch((err: BusinessError) => {
     console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+  });
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -220,7 +205,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 指定发布数据的键。 |
-| data | string \| [Ashmem](js-apis-rpc.md#ashmem8) | 是 | 指定发布的数据。如果数据很大，请使用Ashmem。 |
+| data | string \| ArrayBuffer | 是 | 指定发布的数据。如果发布数据大小超过20KB，建议使用ArrayBuffer。 |
 | subscriberId | string | 是 | 指定订阅者id。 |
 
 ## RdbDataChangeNode<sup>10+</sup>
@@ -266,7 +251,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | ----- | -------- |
 | key | string | 是 | 指定运算结果的键。 |
-| result | number | 是 | 指定运算结果。  |
+| result | number | 是 | 指定运算结果。正常情况下返回0，异常情况下返回错误码。  |
 ## DataShareHelper
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
@@ -290,11 +275,13 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-function onCallback() {
-    console.info("**** Observer on callback ****");
+let onCallback: () => void = (): void => {
+  console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.on("dataChange", uri, onCallback);
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, onCallback);
+}
 ```
 
 ### off('dataChange')
@@ -316,12 +303,14 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-function callback() {
-    console.info("**** Observer callback ****");
+let callback: () => void = (): void => {
+  console.info("**** Observer on callback ****");
 }
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.on("dataChange", uri, callback);
-dataShareHelper.off("dataChange", uri, callback);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", uri, callback);
+}
 ```
 
 ### addTemplate<sup>10+</sup>
@@ -353,14 +342,20 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 ```ts
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let subscriberId = '11';
-let template = {
-    predicates : {
-        "p1" : "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true",
-        "p2" : "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false",
-    },
-    scheduler : "select remindTimer(time) from TBL00"
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
+  predicates : {
+    key1 : value1,
+    key2 : value2,
+  },
+  scheduler : "select remindTimer(time) from TBL00"
 }
-dataShareHelper.addTemplate(uri, subscriberId, template);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
+}
 ```
 
 ### delTemplate<sup>10+</sup>
@@ -391,15 +386,21 @@ delTemplate(uri: string, subscriberId: string): void
 ```ts
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let subscriberId = '11';
-let template = {
-    predicates : {
-        "p1" : "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true",
-        "p2" : "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false",
-    },
-    scheduler : "select remindTimer(time) from TBL00"
+let key1: string = "p1";
+let value1: string = "select cityColumn as city_1, visitedCilumn as visited_1 from citys where like = true";
+let key2: string = "p2";
+let value2: string = "select cityColumn as city_2, visitedCilumn as visited_2 from citys where like = false";
+let template: dataShare.Template = {
+  predicates : {
+    key1 : value1,
+    key2 : value2,
+  },
+  scheduler : "select remindTimer(time) from TBL00"
 }
-dataShareHelper.addTemplate(uri, subscriberId, template);
-dataShareHelper.delTemplate(uri, subscriberId);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
+  (dataShareHelper as dataShare.DataShareHelper).delTemplate(uri, subscriberId);
+}
 ```
 
 ### on('rdbDataChange')<sup>10+</sup>
@@ -414,7 +415,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                           | 是   | 订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。  |
+| type      | string                           | 是   | 订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。type是固定值以外时，接口无响应。  |
 | uris    | Array&lt;string&gt;                | 是   | 要操作的数据的路径。           |
 | templateId | [TemplateId](#templateid10)       | 是   | 处理回调的templateId。           |
 | callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | 是   | 回调函数。当触发变更通知时调用，err为undefined，node为订阅数据变更结果；否则不被触发或为错误对象。  |
@@ -428,18 +429,22 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 **示例：**
 
 ```ts
-function onCallback(err, node:dataShare.RdbDataChangeNode) {
-    console.info("onCallback " + JSON.stringify(node.uri));
-    console.info("onCallback " + JSON.stringify(node.templateId));
-    console.info("onCallback " + node.data.length);
-    for (let i = 0; i < node.data.length; i++) {
-        console.info("onCallback " + typeof node.data[i] + " " + node.data[i]);
-    }
+import { BusinessError } from '@ohos.base'
+
+let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
+  console.info("onCallback " + JSON.stringify(node.uri));
+  console.info("onCallback " + JSON.stringify(node.templateId));
+  console.info("onCallback " + node.data.length);
+  for (let i = 0; i < node.data.length; i++) {
+    console.info("onCallback " + typeof node.data[i] + " " + node.data[i]);
+  }
 }
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let templateId:dataShare.TemplateId = {subscriberId:"11", bundleNameOfOwner:"com.acts.ohos.data.datasharetest"};
-let result:Array<dataShare.OperationResult> = dataShareHelper.on("rdbDataChange", [uri], templateId, onCallback);
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).on("rdbDataChange", [uri], templateId, onCallback);
+}
 ```
 
 ### off('rdbDataChange')<sup>10+</sup>
@@ -470,7 +475,9 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 ```ts
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let templateId:dataShare.TemplateId = {subscriberId:"11", bundleNameOfOwner:"com.acts.ohos.data.datasharetest"};
-let result:Array<dataShare.OperationResult> = dataShareHelper.off("rdbDataChange", [uri], templateId);
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).off("rdbDataChange", [uri], templateId);
+}
 ```
 
 ### on('publishedDataChange')<sup>10+</sup>
@@ -499,25 +506,26 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base'
 
-function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
-    console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
-    console.info("onPublishCallback node data size" + node.data.length);
-    for (let i = 0; i < node.data.length; i++) {
-        console.info("onPublishCallback node " + typeof node.data[i].data);
-        if (typeof node.data[i].data != 'string') {
-            let ash:rpc.Ashmem = node.data[i].data;
-            ash.mapReadonlyAshmem();
-            console.info("onPublishCallback " + JSON.stringify(ash.readAshmem(ash.getAshmemSize()/4, 0)));
-            ash.closeAshmem();
-        }
-        console.info("onPublishCallback data " + i + " " + JSON.stringify(node.data[i]));
+let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
+  console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
+  console.info("onPublishCallback node data size" + node.data.length);
+  for (let i = 0; i < node.data.length; i++) {
+    console.info("onPublishCallback node " + typeof node.data[i].data);
+    if (typeof node.data[i].data != 'string') {
+      let array: ArrayBuffer = node.data[i].data as ArrayBuffer;
+      let data: Uint8Array = new Uint8Array(array);
+      console.info("onPublishCallback " + i + " " + JSON.stringify(data));
     }
+    console.info("onPublishCallback data " + i + " " + JSON.stringify(node.data[i]));
+  }
 }
 let uris:Array<string> = ['city', 'datashareproxy://com.acts.ohos.data.datasharetest/appInfo', 'key2'];
 let subscriberId = '11';
-let result: Array<dataShare.OperationResult> = dataShareHelper.on('publishedDataChange', uris, subscriberId, onPublishCallback);
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).on('publishedDataChange', uris, subscriberId, onPublishCallback);
+}
 ```
 
 ### off('publishedDataChange')<sup>10+</sup>
@@ -546,12 +554,16 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 **示例：**
 
 ```ts
-function offCallback(err, node:dataShare.PublishedDataChangeNode) {
-    console.info("**** Observer off callback ****");
+import { BusinessError } from '@ohos.base'
+
+let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
+  console.info("**** Observer off callback ****");
 }
 let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
 let subscriberId = '11';
-let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+if (dataShareHelper != undefined) {
+  let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+}
 ```
 
 ### publish<sup>10+</sup>
@@ -582,33 +594,21 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { BusinessError } from '@ohos.base'
 
-let ashmem = null;
-let subscriberId = '11';
+let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
-let data : Array<dataShare.PublishedItem> = [
-    {key:"city", subscriberId:"11", data:"xian"},
-    {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
-    {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let nums:number[] = [1,2,3];
-function publishCallback(err, result: Array<dataShare.OperationResult>) {
-    console.log("publishCallback " + JSON.stringify(result));
-    ashmem.closeAshmem();
+let dataArray : Array<dataShare.PublishedItem> = [{key:"key2", subscriberId:"11", data:arrayBuffer}];
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
+  console.info("publishCallback " + JSON.stringify(result));
 }
 try {
-    ashmem = rpc.Ashmem.create("ashmem", (nums.length) * 4);
-    ashmem.mapReadWriteAshmem();
-    ashmem.writeAshmem(nums, nums.length, 0);
-    data.push({
-        "key" : "key2",
-        "data" : ashmem,
-        "subscriberId" : "11",
-    });
-    console.log("data length is:", data.length);
-    dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
+  console.info("dataArray length is:", dataArray.length);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest", version, publishCallback);
+  }
 } catch (e) {
-    console.log("publish error " + JSON.stringify(e));
+  console.error("publish error " + JSON.stringify(e));
 }
 ```
 
@@ -639,14 +639,18 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | 15700012 | The data area is not exist.|
 
 ```ts
-function publishCallback(err, result: Array<dataShare.OperationResult>) {
-    console.log("publishCallback " + JSON.stringify(result));
+import { BusinessError } from '@ohos.base'
+
+let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
+  console.info("publishCallback " + JSON.stringify(result));
 }
-let data : Array<dataShare.PublishedItem> = [
-    {key:"city", subscriberId:"11", data:"xian"},
-    {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
-    {key:"empty", subscriberId:"11", data:"nobody sub"}];
-dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallback);
+let dataArray : Array<dataShare.PublishedItem> = [
+  {key:"city", subscriberId:"11", data:"xian"},
+  {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
+  {key:"empty", subscriberId:"11", data:"nobody sub"}];
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest", publishCallback);
+}
 ```
 
 ### publish<sup>10+</sup>
@@ -682,11 +686,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 **示例：**
 
 ```ts
-let data : Array<dataShare.PublishedItem> = [
-    {key:"city", subscriberId:"11", data:"xian"},
-    {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
-    {key:"empty", subscriberId:"11", data:"nobody sub"}];
-let result: Array<dataShare.OperationResult> = dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest");
+let dataArray: Array<dataShare.PublishedItem> = [
+  {key:"city", subscriberId:"11", data:"xian"},
+  {key:"datashareproxy://com.acts.ohos.data.datasharetest/appInfo", subscriberId:"11", data:"appinfo is just a test app"},
+  {key:"empty", subscriberId:"11", data:"nobody sub"}];
+if (dataShareHelper != undefined) {
+  let result: Promise<Array<dataShare.OperationResult>> = (dataShareHelper as dataShare.DataShareHelper).publish(dataArray, "com.acts.ohos.data.datasharetest");
+}
 ```
 
 ### getPublishedData<sup>10+</sup>
@@ -715,10 +721,14 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 **示例：**
 
 ```ts
-function publishCallback(err, data: Array<dataShare.PublishedItem>) {
-    console.info("**** Observer publish callback ****");
+import { BusinessError } from '@ohos.base'
+
+let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
+  console.info("**** Observer publish callback ****");
 }
-dataShareHelper.getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
+}
 ```
 
 ### getPublishedData<sup>10+</sup>
@@ -752,7 +762,9 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 **示例：**
 
 ```ts 
-let publishedData:Array<dataShare.PublishedItem> = dataShareHelper.getPublishedData("com.acts.ohos.data.datasharetest");
+if (dataShareHelper != undefined) {
+  let publishedData: Promise<Array<dataShare.PublishedItem>> = (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest");
+}
 ```
 
 ### insert
@@ -774,22 +786,35 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose",
-    "age": 22,
-    "salary": 200.5,
+let key1: string = "name";
+let value1: string = "rose";
+let key2: string = "age";
+let value2: number = 22;
+let key3: string = "salary";
+let value3: number = 200.5;
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.insert(uri, valueBucket, (err, data) => {
-        if (err !== undefined) {
-            console.error(`insert error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("insert succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("insert succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -817,20 +842,33 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-const valueBucket = {
-    "name": "rose1",
-    "age": 221,
-    "salary": 20.5,
+let key1: string = "name";
+let value1: string = "rose1";
+let key2: string = "age";
+let value2: number = 21;
+let key3: string = "salary";
+let value3: number = 20.5;
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket).then((data: number) => {
+      console.info("insert succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -854,20 +892,25 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.delete(uri, da, (err, data) => {
-        if (err !== undefined) {
-            console.error(`delete error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.info("delete succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).delete(uri, da, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("delete succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`delete error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -896,18 +939,23 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).delete(uri, da).then((data: number) => {
+      console.info("delete succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`delete error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -932,21 +980,27 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.query(uri, da, columns, (err, data) => {
-        if (err !== undefined) {
-            console.error(`query error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("query succeed, rowCount : " + data.rowCount);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns, (err: BusinessError, data: DataShareResultSet) => {
+      if (err !== undefined) {
+        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("query succeed, rowCount : " + data.rowCount);
     });
+  }
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`query error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -976,19 +1030,25 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import DataShareResultSet from '@ohos.data.DataShareResultSet'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
-    dataShareHelper.query(uri, da, columns).then((data) =>  {
-        console.log("query succeed, rowCount : " + data.rowCount);
-    }). catch((err) => {
-        console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+      console.info("query succeed, rowCount : " + data.rowCount);
+    }).catch((err: BusinessError) => {
+      console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`query error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -1013,26 +1073,37 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.update(uri, da, va, (err, data) => {
-        if (err !== undefined) {
-            console.error(`update error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("update succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va, (err: BusinessError, data: number) => {
+      if (err !== undefined) {
+        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("update succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`update error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -1062,24 +1133,35 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
-const va = {
-    "name": "roe1",
-    "age": 21,
-    "salary": 20.5,
-   
+let key1: string = "name";
+let value1: string = "roe1"
+let key2: string = "age";
+let value2: number = 21
+let key3: string = "salary";
+let value3: number = 20.5;
+const va: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
 }
 try {
-    dataShareHelper.update(uri, da, va).then((data) =>  {
-        console.log("update succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
+      console.info("update succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`update error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -1087,7 +1169,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-将批量数据插入数据库。使用callback异步回调。
+将批量数据插入数据库。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1102,20 +1184,36 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+  key1: value11,
+  key2: value21,
+  key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
-    dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-        if (err !== undefined) {
-            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
-            return;
-        }
-        console.log("batchInsert succeed, data : " + data);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs, (err, data) => {
+      if (err !== undefined) {
+        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+        return;
+      }
+      console.info("batchInsert succeed, data : " + data);
     });
+  }
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -1123,7 +1221,7 @@ try {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-将批量数据插入数据库。使用Promise异步回调。
+将批量数据插入数据库。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1143,18 +1241,34 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
-                     {"name": "roe12", "age": 21, "salary": 20.5,},
-                     {"name": "roe13", "age": 21, "salary": 20.5,})
+let key1: string = "name";
+let value11: string = "roe11"
+let key2: string = "age";
+let value21: number = 21;
+let key3: string = "salary";
+let value31: number = 20.5;
+let valuesBucket1: ValuesBucket = {
+  key1: value11,
+  key2: value21,
+  key3: value31,
+}
+let vbs = new Array(valuesBucket1);
 try {
-    dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
-        console.log("batchInsert succeed, data : " + data);
-    }). catch((err) => {
-        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  if (dataShareHelper != undefined) {
+    (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs).then((data: number) => {
+      console.info("batchInsert succeed, data : " + data);
+    }).catch((err: BusinessError) => {
+      console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
+  }
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
 
@@ -1162,7 +1276,7 @@ try {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1176,21 +1290,25 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.normalizeUri(uri, (err, data) => {
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri, (err: BusinessError, data: string) => {
     if (err !== undefined) {
-        console.log("normalizeUri failed, error message : " + err);
-    }else{
-        console.log("normalizeUri = " + data);
+      console.info("normalizeUri failed, error message : " + err);
+    } else {
+      console.info("normalizeUri = " + data);
     }
-});
+  });
+}
 ```
 
 ### normalizeUri
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。
+将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1209,19 +1327,23 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.normalizeUri(uri).then((data) => {
-    console.log("normalizeUri = " + data);
-}).catch((err) => {
-    console.log("normalizeUri failed, error message : " + err);
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri).then((data: string) => {
+    console.info("normalizeUri = " + data);
+  }).catch((err: BusinessError) => {
+    console.info("normalizeUri failed, error message : " + err);
+  });
+}
 ```
 
 ### denormalizeUri
 
 denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-将指定的URI转换为非规范化URI。使用callback异步回调。
+将指定的URI转换为非规范化URI。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1235,21 +1357,25 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.denormalizeUri(uri, (err, data) => {
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).denormalizeUri(uri, (err: BusinessError, data: string) => {
     if (err !== undefined) {
-        console.log("denormalizeUri failed, error message : " + err);
-    }else{
-        console.log("denormalizeUri = " + data);
+      console.error("denormalizeUri failed, error message : " + err);
+    } else {
+      console.info("denormalizeUri = " + data);
     }
-});
+  });
+}
 ```
 
 ### denormalizeUri
 
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
-将指定的URI转换为非规范化URI。使用Promise异步回调。
+将指定的URI转换为非规范化URI。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1268,19 +1394,23 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base'
+
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.denormalizeUri(uri).then((data) => {
-    console.log("denormalizeUri = " + data);
-}).catch((err) => {
-    console.log("denormalizeUri failed, error message : " + err);
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).denormalizeUri(uri).then((data: string) => {
+    console.info("denormalizeUri = " + data);
+  }).catch((err: BusinessError) => {
+    console.error("denormalizeUri failed, error message : " + err);
+  });
+}
 ```
 
 ### notifyChange
 
 notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1295,16 +1425,18 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.notifyChange(uri, () => {
-    console.log("***** notifyChange *****");
-});
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri, () => {
+    console.info("***** notifyChange *****");
+  });
+}
 ```
 
 ### notifyChange
 
 notifyChange(uri: string): Promise&lt;void&gt;
 
-通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。
+通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。暂不支持静默访问。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1324,5 +1456,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.notifyChange(uri);
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri);
+}
 ```

@@ -6,7 +6,7 @@
 | ---- | ----------- | ---------------------------------------- |
 | 1    | 客户化写作基本要求   | **写作中，请变身开发者，对于开发者使用该组件时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本组件进行开发的目标。** |
 | 2    |             | **所有的写作说明，在完成写作后，都要删除。**                 |
-| 3    | 上传路径        | markdown文件：docs/zh-cn/application-dev/reference/arkui-ts<br>图片路径：docs/zh-cn/application-dev/reference/arkui-ts/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
+| 3    | 上传路径        | markdown文件：docs/zh-cn/application-dev/reference/arkui-ts<br>图片路径：docs/zh-cn/application-dev/reference/arkui-ts/figures，并在markdown文件中通过路径\![]\(figures/xxx.jpg)或\![]\(figures/xxx.png)引用。 |
 | 4    | 文件命名        | 一个d.ts对应一个组件文档，文件名称需包含组件所属类和组件名，格式为：**ts-组件所属类名-组件名.md**。<br/>示例：<br/>基础组件text，文件命名为：ts-basic-component-text.md<br/>容器组件list，文件命名为：js-container-component-list.md |
 | 5    | 目录修改        | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/arkui-ts/Readme-CN.md`。 |
 | 6    | 文档结构        | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 权限说明<br>- 接口、属性、事件、对象、枚举、自定义类型<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |

@@ -21,11 +21,11 @@ getStatus(options?: GetStatusOptions): void;
 
 获取设备当前的充电状态及剩余电量。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。可选，默认为空。 |
 
@@ -33,10 +33,10 @@ getStatus(options?: GetStatusOptions): void;
 
 ```js
 battery.getStatus({
-    success: function(data) {
+    success: (data: BatteryResponse) => {
         console.log('success get battery level:' + data.level);
     },
-    fail: function(data, code) {
+    fail: (data: string, code: number) => {
         console.error('fail to get battery level code:' + code + ', data: ' + data);
     }
 });
@@ -46,9 +46,9 @@ battery.getStatus({
 
 包含接口调用结果的对象。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
-| 名称   | 类型                                                | 必填 | 说明                                                         |
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | success  | (data: [BatteryResponse](#batteryresponse)) => void | 否   | 接口调用成功的回调函数，data为[BatteryResponse](#batteryresponse)类型的返回值。 |
 | fail     | (data: string, code: number) => void                | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
@@ -58,9 +58,9 @@ battery.getStatus({
 
 包含充电状态及剩余电量的对象。
 
-**系统能力：** SystemCapability.PowerManager.BatteryManager.Core
+**系统能力：** SystemCapability.PowerManager.BatteryManager.Lite
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | charging | boolean | 是 | 否 | 当前电池是否在充电中。 |
 | level | number | 是 | 否 | 当前电池的电量，取值范围：0.00&nbsp;-&nbsp;1.00&nbsp;。 |

@@ -18,6 +18,8 @@ import common from '@ohos.app.ability.common';
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
@@ -46,50 +48,51 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
-        let AbilityLifecycleCallback = {
+        let AbilityLifecycleCallback: AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
-                console.log('AbilityLifecycleCallback onAbilityCreate ability: ${ability}');
+                console.log(`AbilityLifecycleCallback onAbilityCreate ability: ${ability}`);
             },
             onWindowStageCreate(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageCreate ability: ${ability}');
-                console.log('AbilityLifecycleCallback onWindowStageCreate windowStage: ${windowStage}');
+                console.log(`AbilityLifecycleCallback onWindowStageCreate ability: ${ability}`);
+                console.log(`AbilityLifecycleCallback onWindowStageCreate windowStage: ${windowStage}`);
             },
             onWindowStageActive(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageActive ability: ${ability}');
-                console.log('AbilityLifecycleCallback onWindowStageActive windowStage: ${windowStage}');
+                console.log(`AbilityLifecycleCallback onWindowStageActive ability: ${ability}`);
+                console.log(`AbilityLifecycleCallback onWindowStageActive windowStage: ${windowStage}`);
             },
             onWindowStageInactive(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageInactive ability: ${ability}');
-                console.log('AbilityLifecycleCallback onWindowStageInactive windowStage: ${windowStage}');
+                console.log(`AbilityLifecycleCallback onWindowStageInactive ability: ${ability}`);
+                console.log(`AbilityLifecycleCallback onWindowStageInactive windowStage: ${windowStage}`);
             },
             onWindowStageDestroy(ability, windowStage) {
-                console.log('AbilityLifecycleCallback onWindowStageDestroy ability: ${ability}');
-                console.log('AbilityLifecycleCallback onWindowStageDestroy windowStage: ${windowStage}');
+                console.log(`AbilityLifecycleCallback onWindowStageDestroy ability: ${ability}`);
+                console.log(`AbilityLifecycleCallback onWindowStageDestroy windowStage: ${windowStage}`);
             },
             onAbilityDestroy(ability) {
-                console.log('AbilityLifecycleCallback onAbilityDestroy ability: ${ability}');
+                console.log(`AbilityLifecycleCallback onAbilityDestroy ability: ${ability}`);
             },
             onAbilityForeground(ability) {
-                console.log('AbilityLifecycleCallback onAbilityForeground ability: ${ability}');
+                console.log(`AbilityLifecycleCallback onAbilityForeground ability: ${ability}`);
             },
             onAbilityBackground(ability) {
-                console.log('AbilityLifecycleCallback onAbilityBackground ability: ${ability}');
+                console.log(`AbilityLifecycleCallback onAbilityBackground ability: ${ability}`);
             },
             onAbilityContinue(ability) {
-                console.log('AbilityLifecycleCallback onAbilityContinue ability: ${ability}');
+                console.log(`AbilityLifecycleCallback onAbilityContinue ability: ${ability}`);
             }
         }
         // 1.通过context属性获取applicationContext
         let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听应用内生命周期
         lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
-        console.log('registerAbilityLifecycleCallback lifecycleId: ${lifecycleId)}');
+        console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }
 }
 ```
@@ -115,17 +118,17 @@ off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<*
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ${applicationContext}');
+        console.log(`stage applicationContext: ${applicationContext}`);
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
             if (error) {
-                console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
+                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
             } else {
-                console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
+                console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
             }
         });
     }
@@ -134,7 +137,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
 
-off(type: 'abilityLifecycle', callbackId: **number**): **void**;
+off(type: 'abilityLifecycle', callbackId: number): Promise\<void>;
 
 取消监听应用内生命周期
 
@@ -152,12 +155,12 @@ off(type: 'abilityLifecycle', callbackId: **number**): **void**;
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let lifecycleId;
+let lifecycleId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        console.log('stage applicationContext: ${applicationContext}');
+        console.log(`stage applicationContext: ${applicationContext}`);
         applicationContext.off('abilityLifecycle', lifecycleId);
     }
 }
@@ -188,26 +191,26 @@ on(type: 'environment', callback: EnvironmentCallback): **number**;
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate')
-        globalThis.applicationContext = this.context.getApplicationContext();
-        let environmentCallback = {
+        let environmentCallback: EnvironmentCallback = {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
+                console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
             onMemoryLevel(level){
                 console.log('onMemoryLevel level: ${level}');
             }
         };
         // 1.获取applicationContext
-        let applicationContext = globalThis.applicationContext;
+        let applicationContext = this.context.getApplicationContext();
         // 2.通过applicationContext注册监听系统环境变化
         callbackId = applicationContext.on('environment', environmentCallback);
-        console.log('registerEnvironmentCallback callbackId: ${callbackId}');
+        console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
     }
 }
 ```
@@ -233,16 +236,16 @@ off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
             if (error) {
-                console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
+                console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
             } else {
-                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
             }
         });
     }
@@ -269,12 +272,82 @@ off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
 
-let callbackId;
+let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId);
+    }
+}
+```
+
+## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+
+注册对当前应用前后台变化的监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明             |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| type     | string                                     | 是   | 监听事件类型，必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+
+export default class MyAbility extends UIAbility {
+    onCreate() {
+        console.log('MyAbility onCreate');
+        let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+            onApplicationForeground() {
+                console.info('applicationStateChangeCallback onApplicationForeground');
+            },
+            onApplicationBackground() {
+                console.info('applicationStateChangeCallback onApplicationBackground');
+            }
+        }
+
+        // 1.获取applicationContext
+        let applicationContext = this.context.getApplicationContext();
+        // 2.通过applicationContext注册应用前后台状态监听
+        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        console.log('Resgiter applicationStateChangeCallback');
+    }
+}
+```
+
+## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
+
+取消当前应用注册的前后台变化的全部监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| type   | string | 是   | 取消监听事件的类型,必须为'applicationStateChange'。 |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onDestroy() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.off('applicationStateChange');
     }
 }
 ```
@@ -285,11 +358,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -309,11 +378,19 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 **示例：**
 
 ```ts
-applicationContext.getRunningProcessInformation().then((data) => {
-    console.log('The process running information is: ${JSON.stringify(data)}');
-}).catch((error) => {
-    console.error('error: ${JSON.stringify(error)}');
-});
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation().then((data) => {
+            console.log('The process running information is: ${JSON.stringify(data)}');
+        }).catch((error: BusinessError) => {
+            console.error('error: ${JSON.stringify(error)}');
+        });
+    }
+}
 ```
 
 ## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
@@ -322,11 +399,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。
 
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -346,13 +419,20 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 **示例：**
 
 ```ts
-applicationContext.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
-    } else {
-        console.log('The process running information is: ${JSON.stringify(data)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onForeground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.getRunningProcessInformation((err, data) => {
+            if (err) {
+                console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
+            } else {
+                console.log('The process running information is: ${JSON.stringify(data)}');
+            }
+        })
     }
-})
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -380,7 +460,14 @@ killAllProcesses(): Promise\<void\>;
 **示例：**
 
 ```ts
-applicationContext.killAllProcesses();
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses();
+    }
+}
 ```
 
 ## ApplicationContext.killAllProcesses<sup>9+</sup>
@@ -408,9 +495,17 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 **示例：**
 
 ```ts
-applicationContext.killAllProcesses(error => {
-    if (error) {
-        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class MyAbility extends UIAbility {
+    onBackground() {
+        let applicationContext = this.context.getApplicationContext();
+        applicationContext.killAllProcesses(error => {
+            if (error) {
+                console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+            }
+        });
     }
-});
+}
 ```
+<!--no_check-->

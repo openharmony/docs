@@ -1,15 +1,18 @@
 # @ohos.enterprise.networkManager (Network Management)
 
-The **networkManager** module provides APIs for network management of enterprise devices, including obtaining the device IP address and MAC address. Only the device administrator applications can call the APIs provided by this module.
+The **networkManager** module provides APIs for network management of enterprise devices, including obtaining the device IP address and MAC address.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+>
+> - The APIs of this module can be used only in the stage model.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
-```js
+```ts
 import networkManager from '@ohos.enterprise.networkManager';
 ```
 
@@ -17,7 +20,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all active network interfaces through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains all activated network ports through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -29,8 +32,8 @@ Obtains all active network interfaces through the specified device administrator
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that obtains the information.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of network interfaces obtained. If the operation fails, **err** is an error object.    |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of network ports obtained. If the operation fails, **err** is an error object.    |
 
 **Error codes**
 
@@ -43,17 +46,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getAllNetworkInterfaces(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(JSON.stringify(result));
+
+networkManager.getAllNetworkInterfaces(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -61,7 +66,7 @@ networkManager.getAllNetworkInterfaces(wantTemp, (error, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all active network interfaces through the specified device administrator application. This API uses a promise to return the result.
+Obtains all activated network ports through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -73,13 +78,13 @@ Obtains all active network interfaces through the specified device administrator
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return an array of network interfaces obtained. |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return an array of network ports obtained. |
 
 **Error codes**
 
@@ -92,15 +97,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
-    console.log(JSON.stringify(result));
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -108,7 +116,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device IP address based on the given network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the device IP address based on the network port through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -120,8 +128,8 @@ Obtains the device IP address based on the given network interface through the s
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that obtains the information.                 |
-| networkInterface    | string     | Yes   | Network interface.                 |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| networkInterface    | string     | Yes   | Network port.                 |
 | callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the IP address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
@@ -135,17 +143,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+networkManager.getIpAddress(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting ip address, result : ${result}`);
 });
 ```
 
@@ -153,7 +163,7 @@ networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-Obtains the device IP address based on the given network interface through the specified device administrator application. This API uses a promise to return the result.
+Obtains the device IP address based on the network port through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -165,8 +175,8 @@ Obtains the device IP address based on the given network interface through the s
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
-| networkInterface    | string     | Yes   | Network interface.                 |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| networkInterface    | string     | Yes   | Network port.                 |
 
 **Return value**
 
@@ -185,15 +195,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in getting ip address, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -201,7 +214,7 @@ networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device MAC address based on the given network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the device MAC address based on the network port through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -213,8 +226,8 @@ Obtains the device MAC address based on the given network interface through the 
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application that obtains the information.                 |
-| networkInterface    | string     | Yes   | Network interface.                 |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| networkInterface    | string     | Yes   | Network port.                 |
 | callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the MAC address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
@@ -228,25 +241,27 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getMac(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+networkManager.getMac(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting mac, result : ${result}`);
 });
 ```
 
 ## networkManager.getMac
 
-getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
+getMac(admin: Want, networkInterface: string): Promise\<string>;
 
-Obtain the device MAC address based on the given network interface through the specified device administrator application. This API uses a promise to return the result.
+Obtains the device MAC address based on the network port through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -258,8 +273,8 @@ Obtain the device MAC address based on the given network interface through the s
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
-| networkInterface    | string     | Yes   | Network interface.                 |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| networkInterface    | string     | Yes   | Network port.                 |
 
 **Return value**
 
@@ -278,15 +293,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getMac(wantTemp, "eth0").then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.getMac(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in getting mac, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -294,7 +312,7 @@ networkManager.getMac(wantTemp, "eth0").then((result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a network interface is disabled through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Checks whether a network port is disabled through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -306,9 +324,9 @@ Checks whether a network interface is disabled through the specified device admi
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application that obtains the information.                 |
-| networkInterface    | string     | Yes   | Network interface.                 |
-| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**, and **data** indicates whether the network interface is disabled. The value **true** means the network interface is disabled; and **false** means the opposite. If the operation fails, **err** is an error object.      |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| networkInterface    | string     | Yes   | Network port.                 |
+| callback | AsyncCallback&lt;boolean&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**, and **data** indicates whether the network port is disabled. The value **true** means the network port is disabled; and **false** means the opposite. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -321,17 +339,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("result:" + result);
+
+networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
 });
 ```
 
@@ -339,7 +359,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0", (error, result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;boolean&gt;
 
-Checks whether a network interface is disabled through the specified device administrator application. This API uses a promise to return the result.
+Checks whether a network port is disabled through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -351,14 +371,14 @@ Checks whether a network interface is disabled through the specified device admi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
-| networkInterface    | string     | Yes   | Network interface.                 |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| networkInterface    | string     | Yes   | Network port.                 |
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the network interface is disabled, and the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the network port is disabled, and the value **false** means the opposite. |
 
 **Error codes**
 
@@ -371,15 +391,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0").then((result) => {
-    console.log("result:" + result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -387,7 +410,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0").then((result) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Disables a network port through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -399,9 +422,9 @@ Sets a network interface through the specified device administrator application.
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application that obtains the information.                 |
-| networkInterface    | string     | Yes   | Network interface.                 |
-| isDisabled    | boolean     | Yes   | Network interface status to set. The value **true** means to disable the network interface, and **false** means to enable the network interface.                 |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| networkInterface    | string     | Yes   | Network port.                 |
+| isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
 | callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -415,17 +438,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("setNetworkInterfaceDisabled success!");
+
+networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true, (err) => {
+  if (err) {
+    console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting network interface disabled`);
 });
 ```
 
@@ -433,7 +458,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true, (error) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean): Promise&lt;void&gt;
 
-Sets a network interface through the specified device administrator application. This API uses a promise to return the result.
+Disables a network port through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -445,15 +470,15 @@ Sets a network interface through the specified device administrator application.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
-| networkInterface    | string     | Yes   | Network interface.                 |
-| isDisabled    | boolean     | Yes   | Network interface status to set. The value **true** means to disable the network interface, and **false** means to enable the network interface.                 |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| networkInterface    | string     | Yes   | Network port.                 |
+| isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown if the network interface fails to be disabled. |
+| Promise&lt;void&gt; | Promise that returns no value. An error object is thrown if the network port fails to be disabled. |
 
 **Error codes**
 
@@ -466,14 +491,658 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true).then(() => {
-    console.log("setNetworkInterfaceDisabled success!");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
+  console.info(`Succeeded in setting network interface disabled`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## networkManager.setGlobalProxy
+
+setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCallback\<void>): void
+
+Sets the global network proxy through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | Yes   | Global HTTP proxy to set.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+};
+
+networkManager.setGlobalProxy(wantTemp, httpProxy, (err) => {
+  if (err) {
+    console.error(`Failed to set network global proxy. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting network global proxy`);
+});
+```
+
+## networkManager.setGlobalProxy
+
+setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
+
+Sets the global network proxy through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | Yes   | Global HTTP proxy to set.                 |
+| isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown if the operation fails. |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+};
+
+networkManager.setGlobalProxy(wantTemp, httpProxy).then(() => {
+  console.info(`Succeeded in setting network global proxy`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set network global proxy. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## networkManager.getGlobalProxy
+
+getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): void
+
+Obtains the global network proxy through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| callback | AsyncCallback&lt;[connection.HttpProxy](js-apis-net-connection.md#httpproxy10)&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+networkManager.getGlobalProxy(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get network global proxy. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting network global proxy, result : ${JSON.stringify(result)}`);
+});
+```
+
+## networkManager.getGlobalProxy
+
+getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
+
+Obtains the global network proxy through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;[connection.HttpProxy](js-apis-net-connection.md#httpproxy10)&gt; | Promise used to return the global HTTP proxy information obtained. |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+networkManager.getGlobalProxy(wantTemp).then(() => {
+  console.info(`Succeeded in getting network global proxy`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get network global proxy. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## networkManager.addIptablesFilterRule
+
+addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
+
+Adds a network packet filtering rule through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| filterRule    | [AddFilterRule](#addfilterrule)     | Yes   | Network packet filtering rule to add.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let filterRule: networkManager.AddFilterRule = {
+  "ruleNo": 1,
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "uid": "9696",
+  "method": networkManager.AddMethod.APPEND,
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
+  if (err) {
+    console.error(`Failed to set iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting iptables filter rule`);
+});
+```
+
+## networkManager.addIptablesFilterRule
+
+addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
+
+Adds a network packet filtering rule through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| filterRule    | [AddFilterRule](#addfilterrule)     | Yes   | Network packet filtering rule to add.                 |
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let filterRule: networkManager.AddFilterRule = {
+  "ruleNo": 1,
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "uid": "9696",
+  "method": networkManager.AddMethod.APPEND,
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
+  console.info(`Succeeded in setting iptables filter rule`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## networkManager.removeIptablesFilterRule
+
+removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
+
+Removes a network packet filtering rule through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | Yes   | Network packet filtering rule to remove.                 |
+| callback | AsyncCallback&lt;void&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let filterRule: networkManager.RemoveFilterRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "uid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
+  if (err) {
+    console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in removing iptables filter rule`);
+});
+```
+
+## networkManager.removeIptablesFilterRule
+
+removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
+
+Removes a network packet filtering rule through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| filterRule    | [RemoveFilterRule](#removefilterrule)     | Yes   | Network packet filtering rule to remove.                 |
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown. |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let filterRule: networkManager.RemoveFilterRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "uid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
+  console.info(`Succeeded in removing iptables filter rule`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## networkManager.listIptablesFilterRules
+
+listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
+
+Obtains network packet filtering rules through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                      |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting iptables filter rule, result : ${result}`);
+});
+```
+
+## networkManager.listIptablesFilterRules
+
+listIptablesFilterRules(admin: Want): Promise\<string>
+
+Obtains network packet filtering rules through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Return value**
+
+| Type                  | Description                     |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise used to return the network packet filtering rules obtained. |
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+networkManager.listIptablesFilterRules(wantTemp).then((result) => {
+  console.info(`Succeeded in getting iptables filter rule, result: ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## AddFilterRule
+
+Defines the network packet filtering rule to add.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name        | Type    | Mandatory| Description                           |
+| ----------- | --------| ---- | ------------------------------- |
+| ruleNo        | number    | No  | Sequence number of the rule.|
+| srcAddr | string   | No  | Source IP address.|
+| destAddr        | string    | No  | Destination IP address.|
+| srcPort | string   | No  | Port of the source IP address.|
+| destPort        | string    | No  | Port of the destination IP address.|
+| uid | string   | No  | UID of the application.|
+| method        | [AddMethod](#addmethod)    | Yes  | Method used to add the data packets.|
+| direction | [Direction](#direction)    | Yes  | Direction for which the rule applies.|
+| action        | [Action](#action)    | Yes  | Action to take, that is, receive or discard the data packets.|
+| protocol | [Protocol](#protocol)   | No  | Network protocol.|
+
+## RemoveFilterRule
+
+Defines the network packet filtering rule to remove.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name        | Type    | Mandatory| Description                           |
+| ----------- | --------| ---- | ------------------------------- |
+| srcAddr | string   | No  | Source IP address.|
+| destAddr        | string    | No  | Destination IP address.|
+| srcPort | string   | No  | Port of the source IP address.|
+| destPort        | string    | No   | Port of the destination IP address.|
+| uid | string   | No   | UID of the application.|
+| direction | [Direction](#direction)    | Yes   | Direction for which the rule applies.|
+| action        | [Action](#action)    | No   | Action to take, that is, receive or discard the data packets.|
+| protocol | [Protocol](#protocol)   | No   | Network protocol.|
+
+## AddMethod
+
+Enumerates the methods used to add the network packets.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| APPEND | 0 | Append the packet.|
+| INSERT | 1 | Insert the packet.|
+
+## Direction
+
+Enumerates the directions to which the rule applies.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| INPUT | 0 | Input.|
+| OUTPUT | 1 | Output.|
+
+## Action
+
+Enumerates the actions that can be taken for the data packets.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| ALLOW | 0 | Receive the data packets.|
+| DENY | 1 | Discard the data packets.|
+
+## Protocol
+
+Enumerates the network protocols supported.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| ALL | 0 | All network protocols.|
+| TCP | 1 | TCP.|
+| UDP | 2 | UDP.|
+| ICMP | 3 | ICMP.|

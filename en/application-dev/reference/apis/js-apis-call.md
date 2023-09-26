@@ -2,7 +2,7 @@
 
 The **call** module provides call management functions, including making calls, redirecting to the dial screen, obtaining the call status, and formatting phone numbers.
 
-To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
+To subscribe to call status changes, use [`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange).
 
 >**NOTE**
 >
@@ -10,7 +10,7 @@ To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-
 
 ## Modules to Import
 
-```js
+```ts
 import call from '@ohos.telephony.call';
 ```
 
@@ -45,12 +45,16 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
-```js
-call.dialCall("138xxxxxxxx", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.dialCall("138xxxxxxxx", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -88,17 +92,22 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
-```js
-call.dialCall("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
     dialType: 0,
-}, (err) => {
+}
+call.dialCall("138xxxxxxxx", dialCallOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -141,20 +150,24 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
-```js
-let promise = call.dialCall("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
     dialType: 0,
-});
-promise.then(() => {
+}
+call.dialCall("138xxxxxxxx", dialCallOptions).then(() => {
     console.log(`dialCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -182,8 +195,10 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-call.dial("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.dial("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -213,10 +228,13 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 
 **Example**
 
-```js
-call.dial("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialOptions: call.DialOptions = {
     extras: false
-}, (err, data) => {
+}
+call.dial("138xxxxxxxx", dialOptions, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -250,13 +268,15 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Example**
 
-```js
-let promise = call.dial("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let dialOptions: call.DialOptions = {
     extras: false
-});
-promise.then(data => {
+}
+call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
     console.log(`dial success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -290,8 +310,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.makeCall("138xxxxxxxx", err => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     console.log(`makeCall callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -331,11 +353,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.makeCall("138xxxxxxxx");
-promise.then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`makeCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -356,8 +379,10 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-call.hasCall((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hasCall((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -379,13 +404,35 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 
 **Example**
 
-```js
-let promise = call.hasCall();
-promise.then(data => {
-    console.log(`hasCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hasCall().then(() => {
+    console.log(`hasCall success`);
+}).catch((err: BusinessError) => {
     console.error(`hasCall fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## call.hasCallSync<sup>10+</sup>
+
+hasCallSync\(\): boolean
+
+Checks whether a call is in progress.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return value**
+
+| Type                  | Description         |
+| ---------------------- |-------------|
+| boolean | Promise used to return the result.|
+
+**Example**
+
+```ts
+let hasCall: boolean = call.hasCallSync();
+console.log(`hasCallSync success, has call is ' + hasCall);
 ```
 
 
@@ -405,8 +452,10 @@ Obtains the call status. This API uses an asynchronous callback to return the re
 
 **Example**
 
-```js
-call.getCallState((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallState((err: BusinessError, data: call.CallState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -428,13 +477,35 @@ Obtains the call status. This API uses a promise to return the result.
 
 **Example**
 
-```js
-let promise = call.getCallState();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallState().then((data: call.CallState) => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallState fail, promise: err->${JSON.stringify(err)}`);
 });
+```
+
+## call.getCallStateSync<sup>10+</sup>
+
+getCallStateSync\(\): CallState
+
+Obtains the call status.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return value**
+
+| Type                                 | Description         |
+| ------------------------------------- |-------------|
+| [CallState](#callstate) | Promise used to return the result.|
+
+**Example**
+
+```ts
+let callState: call.CallState = call.getCallStateSync();
+console.log(`the call state is:` + callState);
 ```
 
 ## call.hasVoiceCapability<sup>7+</sup>
@@ -451,8 +522,8 @@ Checks whether a device supports voice calls.
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device supports voice calls.<br>- **false**: The device does not support voice calls.|
 
-```js
-let result = call.hasVoiceCapability(); 
+```ts
+let result: boolean = call.hasVoiceCapability();
 console.log(`hasVoiceCapability: ${JSON.stringify(result)}`);
 ```
 
@@ -485,8 +556,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isEmergencyPhoneNumber("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isEmergencyPhoneNumber("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -522,8 +595,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.EmergencyNumberOptions = {slotId: 1}
+call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -564,11 +640,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.isEmergencyPhoneNumber("138xxxxxxxx", {slotId: 1});
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.EmergencyNumberOptions = {slotId: 1}
+call.isEmergencyPhoneNumber("138xxxxxxxx", options).then((data: boolean) => {
     console.log(`isEmergencyPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isEmergencyPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -604,8 +682,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.formatPhoneNumber("138xxxxxxxx", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.formatPhoneNumber("138xxxxxxxx", (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -642,10 +722,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.formatPhoneNumber("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.NumberFormatOptions = {
     countryCode: "CN"
-}, (err, data) => {
+}
+call.formatPhoneNumber("138xxxxxxxx", options, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -688,13 +771,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.formatPhoneNumber("138xxxxxxxx", {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: call.NumberFormatOptions = {
     countryCode: "CN"
-});
-promise.then(data => {
+}
+call.formatPhoneNumber("138xxxxxxxx", options).then((data: string) => {
     console.log(`formatPhoneNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`formatPhoneNumber fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -731,8 +816,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -777,11 +864,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`formatPhoneNumberToE164 fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -820,8 +908,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.muteRinger((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.muteRinger((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -859,10 +949,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.muteRinger().then(() => {
     console.log(`muteRinger success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`muteRinger fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -903,8 +995,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.answerCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.answerCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -950,10 +1044,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.answerCall(1).then(() => {
     console.log(`answerCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -993,8 +1089,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.answerCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.answerCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1035,8 +1133,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.hangUpCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hangUpCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1082,10 +1182,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.hangUpCall(1).then(() => {
     console.log(`hangUpCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`hangUpCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1126,8 +1228,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.hangUpCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.hangUpCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1169,8 +1273,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.rejectCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.rejectCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1212,11 +1318,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
 }
-call.rejectCall(1, rejectMessageOptions, (err) => {
+call.rejectCall(1, rejectMessageOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1263,13 +1371,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
 }
 call.rejectCall(1, rejectMessageOptions).then(() => {
     console.log(`rejectCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1309,8 +1419,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.rejectCall((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.rejectCall((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1351,11 +1463,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let rejectMessageOptions={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
 }
-call.rejectCall(rejectMessageOptions, (err) => {
+call.rejectCall(rejectMessageOptions, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1396,8 +1510,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.holdCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.holdCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1443,10 +1559,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.holdCall(1).then(() => {
     console.log(`holdCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`holdCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1486,8 +1604,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.unHoldCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.unHoldCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1533,10 +1653,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.unHoldCall(1).then(() => {
     console.log(`unHoldCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`unHoldCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1576,8 +1698,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.switchCall(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.switchCall(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1623,10 +1747,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.switchCall(1).then(() => {
     console.log(`switchCall success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`switchCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1662,8 +1788,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.combineConference(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.combineConference(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1705,11 +1833,106 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.combineConference(1).then(() => {
     console.log(`combineConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`combineConference fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.kickOutFromConference<sup>10+</sup>
+
+kickOutFromConference\(callId: number, callback: AsyncCallback\<void\>\): void
+
+Removes a specified call from a conference call. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| callId   | number                    | Yes  | Call ID.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.kickOutFromConference(1, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.kickOutFromConference<sup>10+</sup>
+
+kickOutFromConference\(callId: number\): Promise\<void\>
+
+Removes a specified call from a conference call. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description    |
+| ------ | ------ | ---- | -------- |
+| callId | number | Yes  | Call ID.|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.kickOutFromConference(1).then(() => {
+    console.log(`kickOutFromConference success.`);
+}).catch((err: BusinessError) => {
+    console.error(`kickOutFromConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1745,8 +1968,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.getMainCallId(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getMainCallId(1, (err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1772,7 +1997,7 @@ Obtains the main call ID. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1789,11 +2014,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.getMainCallId(1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getMainCallId(1).then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getMainCallId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1829,8 +2055,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.getSubCallIdList(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getSubCallIdList(1, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1872,11 +2100,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.getSubCallIdList(1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getSubCallIdList(1).then((data: string) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1912,8 +2141,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.getCallIdListForConference(1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1955,11 +2186,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.getCallIdListForConference(1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallIdListForConference(1).then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallIdListForConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1992,14 +2224,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-call.getCallWaitingStatus(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2038,17 +2273,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let promise = call.getCallWaitingStatus(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallWaitingStatus(0).then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallWaitingStatus fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2082,14 +2319,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-call.setCallWaiting(0, true, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setCallWaiting(0, true, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2129,16 +2369,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.setCallWaiting(0, true).then(() => {
     console.log(`setCallWaiting success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallWaiting fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2175,8 +2418,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.startDTMF(1, "0", (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.startDTMF(1, "0", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2219,10 +2464,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.startDTMF(1, "0").then(() => {
     console.log(`startDTMF success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`startDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2258,8 +2505,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.stopDTMF(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.stopDTMF(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2301,10 +2550,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`stopDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2343,8 +2594,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isInEmergencyCall((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isInEmergencyCall((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2382,11 +2635,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.isInEmergencyCall();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isInEmergencyCall().then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isInEmergencyCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2426,8 +2680,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.on('callDetailsChange', data => {
+```ts
+call.on('callDetailsChange', (data: call.CallAttributeOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2467,8 +2721,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.on('callEventChange', data => {
+```ts
+call.on('callEventChange', (data: call.CallEventOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2508,8 +2762,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.on('callDisconnectedCause', data => {
+```ts
+call.on('callDisconnectedCause', (data: call.DisconnectedDetails) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2549,8 +2803,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.on('mmiCodeResult', data => {
+```ts
+call.on('mmiCodeResult', (data: call.MmiCodeResults) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2590,8 +2844,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.off('callDetailsChange', data => {
+```ts
+call.off('callDetailsChange', (data: call.CallAttributeOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2631,8 +2885,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.off('callEventChange', data => {
+```ts
+call.off('callEventChange', (data: call.CallEventOptions) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2672,8 +2926,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.off('callDisconnectedCause', data => {
+```ts
+call.off('callDisconnectedCause', (data: call.DisconnectedDetails) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2713,8 +2967,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.off('mmiCodeResult', data => {
+```ts
+call.off('mmiCodeResult', (data: call.MmiCodeResults) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2722,7 +2976,7 @@ call.off('mmiCodeResult', data => {
 
 ## call.on('audioDeviceChange')<sup>10+</sup>
 
-on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Subscribes to audio device change events. This API uses an asynchronous callback to return the result.
 
@@ -2737,7 +2991,7 @@ Subscribes to audio device change events. This API uses an asynchronous callback
 | Name  | Type                                            | Mandatory| Description                                               |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                          | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | Yes  | Callback used to return the result.                                          |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
@@ -2755,8 +3009,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.on('audioDeviceChange', data => {
+```ts
+call.on('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2764,7 +3018,7 @@ call.on('audioDeviceChange', data => {
 
 ## call.off('audioDeviceChange')<sup>10+</sup>
 
-off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceCallbackInfo\>\): void
 
 Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous callback to return the result.
 
@@ -2779,7 +3033,7 @@ Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous ca
 | Name  | Type                                                      | Mandatory |                           Description                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | string                                                     | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
-| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
+| callback | Callback<[AudioDeviceCallbackInfo](#audiodevicecallbackinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
 
 **Error codes**
 
@@ -2797,8 +3051,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.off('audioDeviceChange', data => {
+```ts
+call.off('audioDeviceChange', (data: call.AudioDeviceCallbackInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -2835,8 +3089,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isNewCallAllowed((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isNewCallAllowed((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2871,11 +3127,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.isNewCallAllowed();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isNewCallAllowed().then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isNewCallAllowed fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2912,8 +3169,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.separateConference(1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.separateConference(1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2956,10 +3215,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.separateConference(1).then(() => {
     console.log(`separateConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`separateConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2993,14 +3254,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-call.getCallRestrictionStatus(0, 1, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3040,17 +3304,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let promise = call.getCallRestrictionStatus(0, 1);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallRestrictionStatus(0, 1).then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallRestrictionStatus fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3084,19 +3350,22 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let callRestrictionInfo={
-    type: 1,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callRestrictionInfo: call.CallRestrictionInfo = {
+    type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_OUTGOING,
     password: "123456",
-    mode: 1
+    mode: call.CallRestrictionMode.RESTRICTION_MODE_ACTIVATION
 }
-call.setCallRestriction(0, callRestrictionInfo, (err) => {
+call.setCallRestriction(0, callRestrictionInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3136,22 +3405,122 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let callRestrictionInfo={
-    type: 1,
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callRestrictionInfo: call.CallRestrictionInfo = {
+    type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_INCOMING,
     password: "123456",
-    mode: 1
+    mode: call.CallRestrictionMode.RESTRICTION_MODE_ACTIVATION
 }
 call.setCallRestriction(0, callRestrictionInfo).then(() => {
     console.log(`setCallRestriction success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallRestriction fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setCallRestrictionPassword<sup>10+</sup>
+
+setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string, callback: AsyncCallback\<void\>\): void
+
+Changes the call barring password. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name         | Type                                       | Mandatory| Description                                  |
+| --------------- | ------------------------------------------- | ---- | ------------------------------------ |
+| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| oldPassword     | string                                      | Yes  | Old password for call barring.                      |
+| newPassword     | string                                      | Yes  | New password for call barring.                      |
+| callback        | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setCallRestrictionPassword<sup>10+</sup>
+
+setCallRestrictionPassword\(slotId: number, oldPassword: string, newPassword: string\): Promise\<void\>
+
+Changes the call barring password. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name         | Type                                       | Mandatory| Description                                  |
+| --------------- | ------------------------------------------- | ---- | ------------------------------------ |
+| slotId          | number                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| oldPassword     | string                                      | Yes  | Old password for call barring.                      |
+| newPassword     | string                                      | Yes  | New password for call barring.                      |
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
+    console.log(`setCallRestrictionPassword success.`);
+}).catch((err: BusinessError) => {
+    console.error(`setCallRestrictionPassword fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3184,14 +3553,17 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3231,17 +3603,19 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY).then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getCallTransferInfo fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3275,19 +3649,22 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let callTransferInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
-    type: 1,
-    settingType: 1
+    type: call.CallTransferType.TRANSFER_TYPE_BUSY,
+    settingType: call.CallTransferSettingType.CALL_TRANSFER_ENABLE
 }
-call.setCallTransfer(0, callTransferInfo, (err) => {
+call.setCallTransfer(0, callTransferInfo, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3327,21 +3704,24 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 
 **Example**
 
-```js
-let callTransferInfo={
+```ts
+import { BusinessError } from '@ohos.base';
+
+let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
-    type: 1,
-    settingType: 1
+    type: call.CallTransferType.TRANSFER_TYPE_BUSY,
+    settingType: call.CallTransferSettingType.CALL_TRANSFER_ENABLE
 }
 call.setCallTransfer(0, callTransferInfo).then(() => {
     console.log(`setCallTransfer success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setCallTransfer fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3380,8 +3760,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isRinging((err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isRinging((err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -3419,11 +3801,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.isRinging();
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isRinging().then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isRinging fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3459,8 +3842,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.setMuted((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setMuted((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3495,10 +3880,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.setMuted().then(() => {
     console.log(`setMuted success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3534,8 +3921,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.cancelMuted((err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.cancelMuted((err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3570,10 +3959,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.cancelMuted().then(() => {
     console.log(`cancelMuted success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`cancelMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3586,13 +3977,15 @@ Sets the audio device for a call. This API uses an asynchronous callback to retu
 
 **System API**: This is a system API.
 
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
 | Name  | Type                        | Mandatory| Description      |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice8) | Yes  | Audio device.|
+| device   | [AudioDevice](#audiodevice10)| Yes  | Audio device.|
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3601,6 +3994,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
@@ -3610,77 +4004,39 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.setAudioDevice(1, (err) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
-});
-```
+```ts
+import { BusinessError } from '@ohos.base';
 
-
-## call.setAudioDevice<sup>9+</sup>
-
-setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback\<void\>\): void
-
-Sets the audio device for a call. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name  | Type                                      | Mandatory| Description          |
-| -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#audiodevice8)               | Yes  | Audio device.    |
-| options  | [AudioDeviceOptions](#audiodeviceoptions9) | Yes  | Audio device parameters.|
-| callback | AsyncCallback&lt;void&gt;                  | Yes  | Callback used to return the result.    |
-
-**Error codes**
-
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
-
-| ID|                 Error Message                    |
-| -------- | -------------------------------------------- |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**Example**
-
-```js
-let audioDeviceOptions={
-    bluetoothAddress: "IEEE 802-2014"
+let audioDevice: call.AudioDevice = {
+    deviceType: call.AudioDeviceType.DEVICE_EARPIECE
 }
-call.setAudioDevice(1, audioDeviceOptions, (err) => {
+call.setAudioDevice(audioDevice, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
+## call.setAudioDevice<sup>10+</sup>
 
-## call.setAudioDevice<sup>9+</sup>
+setAudioDevice\(device: AudioDevice): Promise\<void\>
 
-setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<void\>
-
-Sets the audio device for a call based on the specified options. This API uses a promise to return the result.
+Sets the audio device for a call. This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
 **System capability**: SystemCapability.Telephony.CallManager
 
 **Parameters**
 
-| Name | Type                                      | Mandatory| Description              |
-| ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#audiodevice8)               | Yes  | Audio device.        |
-| options | [AudioDeviceOptions](#audiodeviceoptions9) | No  | Audio device parameters.|
+| Name  | Type                        | Mandatory| Description      |
+| -------- | ---------------------------- | ---- | ---------- |
+| device   | [AudioDevice](#audiodevice10)| Yes  | Audio device.|
 
 **Return value**
 
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
+| Type               | Description                       |
+| ------------------- | --------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
@@ -3689,6 +4045,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
@@ -3698,13 +4055,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let audioDeviceOptions={
-    bluetoothAddress: "IEEE 802-2014"
+```ts
+import { BusinessError } from '@ohos.base';
+
+let audioDevice: call.AudioDevice = {
+    deviceType: call.AudioDeviceType.DEVICE_EARPIECE
 }
-call.setAudioDevice(1, audioDeviceOptions).then(() => {
+call.setAudioDevice(audioDevice).then(() => {
     console.log(`setAudioDevice success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3742,11 +4101,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
-call.joinConference(1, callNumberList, (err) => {
+call.joinConference(1, callNumberList, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3789,13 +4150,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
 call.joinConference(1, callNumberList).then(() => {
     console.log(`joinConference success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`joinConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3833,8 +4196,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.updateImsCallMode(1, 1, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.updateImsCallMode(1, 1, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3877,10 +4242,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.updateImsCallMode(1, 1).then(() => {
     console.log(`updateImsCallMode success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`updateImsCallMode fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3920,8 +4287,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.enableImsSwitch(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.enableImsSwitch(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3966,10 +4335,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.enableImsSwitch(0).then(() => {
     console.log(`enableImsSwitch success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`enableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4009,8 +4380,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.disableImsSwitch(0, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.disableImsSwitch(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4055,10 +4428,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 call.disableImsSwitch(0).then(() => {
     console.log(`disableImsSwitch success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`disableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4095,8 +4470,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.isImsSwitchEnabled(0, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4121,7 +4498,7 @@ Checks whether the IMS service is enabled. This API uses a promise to return the
 
 | Type               | Description                       |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4138,11 +4515,12 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let promise = call.isImsSwitchEnabled(0);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.isImsSwitchEnabled(0).then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`isImsSwitchEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4183,9 +4561,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-call.closeUnfinishedUssd(slotId, (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4230,11 +4610,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
     console.log(`closeUnfinishedUssd success.`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`closeUnfinishedUssd fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4242,7 +4624,7 @@ call.closeUnfinishedUssd(slotId).then(() => {
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<boolean\>\): void
+setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\): void
 
 Sets the status of the VoNR switch. This API uses an asynchronous callback to return the result.
 
@@ -4258,7 +4640,7 @@ Sets the status of the VoNR switch. This API uses an asynchronous callback to re
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
 | slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2               |
 | state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                           |
-| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. Callback used to return the result. The value **true** indicates that the operation is successful, and value **false** indicates the opposite.|
+| callback    | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4276,18 +4658,20 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let state = 1;
-call.setVoNRState(slotId, state, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
+call.setVoNRState(slotId, state, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
+setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 Sets the status of the VoNR switch. This API uses a promise to return the result.
 
@@ -4308,7 +4692,7 @@ Sets the status of the VoNR switch. This API uses a promise to return the result
 
 | Type                  | Description                                         |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.    |
+| Promise&lt;void&gt; | Promise used to return the result.    |
 
 **Error codes**
 
@@ -4326,12 +4710,14 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let state = 1;
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
 call.setVoNRState(slotId, state).then(() => {
-    console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+    console.log(`setVoNRState success`);
+}).catch((err: BusinessError) => {
     console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4372,9 +4758,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-call.getVoNRState(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4420,12 +4808,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-let promise = call.getVoNRState(slotId);
-promise.then(data => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+call.getVoNRState(slotId).then((data: call.VoNRState) => {
     console.log(`getVoNRState success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
     console.error(`getVoNRState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4466,9 +4855,11 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-call.canSetCallTransferTime(slotId, (err, data) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -4514,11 +4905,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-let slotId = 0;
-call.canSetCallTransferTime(slotId).then(() => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+call.canSetCallTransferTime(slotId).then((data: boolean) => {
     console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
     console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4558,8 +4951,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
-call.inputDialerSpecialCode('2846579', (err) => {
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -4603,13 +4998,100 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
     call.inputDialerSpecialCode('2846579');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.log(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+
+## call.removeMissedIncomingCallNotification<sup>10+</sup>
+
+removeMissedIncomingCallNotification\(callback: AsyncCallback\<void\>\): void
+
+Removes missed call notifications. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE, ohos.permission.READ_CALL_LOG, and ohos.permission.WRITE_CALL_LOG
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                     |
+| ----------- | ---------------------------- | ---- | ---------------------------------------   |
+| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.                                 |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.removeMissedIncomingCallNotification((err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.removeMissedIncomingCallNotification<sup>10+</sup>
+
+removeMissedIncomingCallNotification\(\): Promise\<void\>
+
+Removes missed call notifications. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.SET_TELEPHONY_STATE, ohos.permission.READ_CALL_LOG, and ohos.permission.WRITE_CALL_LOG
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.removeMissedIncomingCallNotification().then(() => {
+    console.log(`removeMissedIncomingCallNotification success`);
+}).catch((err: BusinessError) => {
+    console.log(`removeMissedIncomingCallNotification failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 
@@ -4629,7 +5111,7 @@ Provides an option for determining whether a call is a video call.
 
 ## DialCallOptions<sup>9+</sup>
 
-Defines options for initiating a call.
+Provides an option for determining whether a call is a video call.
 
 **System API**: This is a system API.
 
@@ -4704,7 +5186,7 @@ Enumerates VoNR switch states.
 | VONR_STATE_OFF         | 0    | Disabled.          |
 | VONR_STATE_ON          | 1    | Enabled.          |
 
-## AudioDevice<sup>8+</sup>
+## AudioDevice<sup>10+</sup>
 
 Enumerates audio devices.
 
@@ -4712,13 +5194,10 @@ Enumerates audio devices.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                | Value  | Description        |
-| -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | Headset device.    |
-| DEVICE_SPEAKER       | 1    | Speaker device.|
-| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
-| DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
-| DEVICE_MIC           | 4    | Microphone device|
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| deviceType <sup>10+</sup>         | [AudioDeviceType](#audiodevicetype10) | Yes  | Audio device type.    |
+| address <sup>10+</sup>            | string                                | No  | Audio device address.    |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -4735,7 +5214,7 @@ Enumerates audio device types.
 | DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
 
-## AudioDeviceInfo<sup>10+</sup>
+## AudioDeviceCallbackInfo<sup>10+</sup>
 
 Defines the audio device information.
 
@@ -4745,8 +5224,8 @@ Defines the audio device information.
 
 |                Name              |                  Type                | Mandatory |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | Yes  | Audio device list.   |
-| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)          | Yes  | Audio device type.   |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice10) | Yes  | Audio device list.   |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | Yes  | Current audio device.   |
 | isMuted <sup>10+</sup>            | boolean                               | Yes  | Whether the audio device is muted.       |
 
 
@@ -4948,10 +5427,12 @@ Enumerates call ability event IDs.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name                    | Value  | Description           |
-| ------------------------ | ---- | --------------- |
-| EVENT_DIAL_NO_CARRIER    | 1    | No available carrier during dialing. |
-| EVENT_INVALID_FDN_NUMBER | 2    | Invalid FDN.|
+| Name                                 | Value  | Description           |
+| ------------------------------------- | ---- | --------------- |
+| EVENT_DIAL_NO_CARRIER                 | 1    | No available carrier during dialing. |
+| EVENT_INVALID_FDN_NUMBER              | 2    | Invalid FDN.|
+| EVENT_HOLD_CALL_FAILED<sup>11+</sup>  | 3    | Failed to place the call on hold.|
+| EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | Failed to place the current call on hold and answer the waiting call.|
 
 ## DialScene<sup>8+</sup>
 
@@ -5177,15 +5658,3 @@ Defines the MMI code result.
 | ---------------- | ---- | ------------- |
 | MMI_CODE_SUCCESS | 0    | Success.|
 | MMI_CODE_FAILED  | 1    | Failure.|
-
-## AudioDeviceOptions<sup>9+</sup>
-
-Defines audio device options.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-| Name            | Type  | Mandatory| Description    |
-| ---------------- | ------ | ---- | -------- |
-| bluetoothAddress | string | No  | Bluetooth address.|

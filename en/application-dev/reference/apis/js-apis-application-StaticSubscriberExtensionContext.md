@@ -9,6 +9,12 @@ You can use the APIs of this module to start StaticSubscriberExtensionAbilities.
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+```
+
 ## Usage
 
 Before using the **StaticSubscriberExtensionContext** module, you must first obtain a **StaticSubscriberExtensionAbility** instance.
@@ -30,6 +36,8 @@ Starts an ability that belongs to the same application as this StaticSubscriberE
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+
+**Required permissions**: ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -97,6 +105,8 @@ Starts an ability that belongs to the same application as this StaticSubscriberE
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
  - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+
+**Required permissions**: ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

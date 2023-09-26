@@ -6,48 +6,62 @@
   - 开发布局
     - [布局概述](arkts-layout-development-overview.md)
     - 构建布局
-      - [线性布局](arkts-layout-development-linear.md)
-      - [层叠布局](arkts-layout-development-stack-layout.md)
-      - [弹性布局](arkts-layout-development-flex-layout.md)
-      - [相对布局](arkts-layout-development-relative-layout.md)
-      - [栅格布局](arkts-layout-development-grid-layout.md)
-      - [媒体查询](arkts-layout-development-media-query.md)
-      - [创建列表](arkts-layout-development-create-list.md)
-      - [创建网格](arkts-layout-development-create-grid.md)
-      - [创建轮播](arkts-layout-development-create-looping.md)
+      - [线性布局（Row/Column）](arkts-layout-development-linear.md)
+      - [层叠布局（Stack）](arkts-layout-development-stack-layout.md)
+      - [弹性布局（Flex）](arkts-layout-development-flex-layout.md)
+      - [相对布局（RelativeContainer）](arkts-layout-development-relative-layout.md)
+      - [栅格布局（GridRow/GridCol）](arkts-layout-development-grid-layout.md)
+      - [媒体查询（mediaquery）](arkts-layout-development-media-query.md)
+      - [创建列表（List）](arkts-layout-development-create-list.md)
+      - [创建网格（Grid/GridItem）](arkts-layout-development-create-grid.md)
+      - [创建轮播（Swiper）](arkts-layout-development-create-looping.md)
     - [改善布局性能](arkts-layout-development-performance-boost.md)
   - 添加组件
     - 添加常用组件
-      - [按钮](arkts-common-components-button.md)
-      - [单选框](arkts-common-components-radio-button.md)
-      - [切换按钮](arkts-common-components-switch.md)
-      - [进度条](arkts-common-components-progress-indicator.md)
-      - [文本显示](arkts-common-components-text-display.md)
-      - [文本输入](arkts-common-components-text-input.md)
-      - [自定义弹窗](arkts-common-components-custom-dialog.md)
-      - [视频播放](arkts-common-components-video-player.md)
+      - [按钮（Button）](arkts-common-components-button.md)
+      - [单选框（Radio）](arkts-common-components-radio-button.md)
+      - [切换按钮（Toggle）](arkts-common-components-switch.md)
+      - [进度条（Progress）](arkts-common-components-progress-indicator.md)
+      - [文本显示（Text/Span）](arkts-common-components-text-display.md)
+      - [文本输入（TextInput/TextArea）](arkts-common-components-text-input.md)
+      - [自定义弹窗（CustomDialog）](arkts-common-components-custom-dialog.md)
+      - [视频播放（Video）](arkts-common-components-video-player.md)
       - [XComponent](arkts-common-components-xcomponent.md)
     - 添加气泡和菜单
-      - [气泡提示](arkts-popup-and-menu-components-popup.md)
-      - [菜单](arkts-popup-and-menu-components-menu.md)
+      - [气泡提示（Popup）](arkts-popup-and-menu-components-popup.md)
+      - [菜单（Menu）](arkts-popup-and-menu-components-menu.md)
   - 设置页面路由和组件导航
-    - [页面路由](arkts-routing.md)
+    - [页面路由（router）](arkts-routing.md)
     - 组件导航
       - [Navigation](arkts-navigation-navigation.md)
       - [Tabs](arkts-navigation-tabs.md)
   - 显示图形
-    - [显示图片](arkts-graphics-display.md)
-    - [绘制几何图形](arkts-geometric-shape-drawing.md)
-    - [使用画布绘制自定义图形](arkts-drawing-customization-on-canvas.md)
+    - [显示图片（Image）](arkts-graphics-display.md)
+    - [绘制几何图形（Shape）](arkts-geometric-shape-drawing.md)
+    - [使用画布绘制自定义图形（Canvas）](arkts-drawing-customization-on-canvas.md)
   - 使用动画
-    - [动画概述](arkts-animation-overview.md)
-    - 页面内的动画
-      - [布局更新动画](arkts-layout-update-animation.md)
-      - [组件内转场动画](arkts-transition-animation-within-component.md)
-      - [弹簧曲线动画](arkts-spring-animation.md)
-    - 页面间的动画
-      - [放大缩小视图](arkts-zoom-animation.md)
-      - [页面转场动画](arkts-page-transition-animation.md)
+    - [动画概述](arkts-animation.md)
+    - 属性动画
+      - [属性动画概述](arkts-attribute-animation-overview.md)
+      - [属性动画接口说明](arkts-attribute-animation-apis.md)
+      - [自定义属性动画](arkts-custom-attribute-animation.md)
+    - 转场动画
+      - [转场动画概述](arkts-transition-overview.md)
+      - [出现/消失转场](arkts-enter-exit-transition.md)
+      - [导航转场](arkts-navigation-transition.md)
+      - [模态转场](arkts-modal-transition.md)
+      - [共享元素转场](arkts-shared-element-transition.md)
+      - [页面转场动画（不推荐）](arkts-page-transition-animation.md)
+    - [组件动画](arkts-component-animation.md)
+    - 动画曲线
+      - [动画曲线概述](arkts-curve-overview.md)
+      - [传统曲线](arkts-traditional-curve.md)
+      - [弹簧曲线](arkts-spring-curve.md)
+    - [动画衔接](arkts-animation-smoothing.md)
+    - 动画效果
+      - [模糊](arkts-blur-effect.md)
+      - [阴影](arkts-shadow-effect.md)
+      - [色彩](arkts-color-effect.md)
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件

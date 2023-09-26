@@ -10,16 +10,18 @@
 
 ```ts
 import CommonEvent from '@ohos.commonEvent';
-let subscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import CommonEventManager from '@ohos.commonEventManager';
+import Base from '@ohos.base';
+let subscriber:CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
 
 // 订阅者信息
-let subscribeInfo = {
+let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
 	events: ["event"]
 };
 
 // 创建订阅者回调
-function createCB(err, commonEventSubscriber) {
-    if (err.code) {
+function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
         console.info("createSubscriber");
@@ -49,8 +51,8 @@ getCode(callback: AsyncCallback\<number>): void
 
 ```ts
 //获取有序公共事件代码回调
-function getCodeCB(err, code) {
-    if (err.code) {
+function getCodeCB(err:Base.BusinessError, code:number) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getCode " + JSON.stringify(code));
@@ -76,11 +78,32 @@ getCode(): Promise\<number>
 **示例：**
 
 ```ts
-subscriber.getCode().then((code) => {
+subscriber.getCode().then((code:number) => {
     console.info("getCode " + JSON.stringify(code));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getCodeSync
+
+getCodeSync(): number
+
+getCode的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| number | 公共事件代码。 |
+
+**示例：**
+
+```ts
+let code = subscriber.getCodeSync();
+console.info("getCodeSync " + JSON.stringify(code));
 ```
 
 ## setCode
@@ -102,8 +125,8 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码回调
-function setCodeCB(err) {
-    if (err.code) {
+function setCodeCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCode");
@@ -137,9 +160,36 @@ setCode(code: number): Promise\<void>
 ```ts
 subscriber.setCode(1).then(() => {
     console.info("setCode");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## setCodeSync
+
+setCodeSync(code: number): void
+
+setCode的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | 是   | 公共事件的代码。 |
+
+
+**示例：**
+
+```ts
+
+try {
+    subscriber.setCodeSync(1);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## getData
@@ -160,8 +210,8 @@ getData(callback: AsyncCallback\<string>): void
 
 ```ts
 //获取有序公共事件代码数据回调
-function getDataCB(err, data) {
-    if (err.code) {
+function getDataCB(err:Base.BusinessError, data:string) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getData " + JSON.stringify(data));
@@ -187,11 +237,32 @@ getData(): Promise\<string>
 **示例：**
 
 ```ts
-subscriber.getData().then((data) => {
+subscriber.getData().then((data:string) => {
     console.info("getData " + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getDataSync
+
+getDataSync(): string
+
+getData的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明               |
+| ---------------- | ------------------ |
+| string | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+let data = subscriber.getDataSync();
+console.info("getDataSync " + JSON.stringify(data));
 ```
 
 ## setData
@@ -213,8 +284,8 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的结果数据回调
-function setDataCB(err) {
-    if (err.code) {
+function setDataCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setData");
@@ -248,9 +319,33 @@ setData(data: string): Promise\<void>
 ```ts
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## setDataSync
+setDataSync(data: string): void
+
+setData的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | 是   | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+try {
+    subscriber.setDataSync("publish_data_changed");
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## setCodeAndData
@@ -273,8 +368,8 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码和数据回调
-function setCodeDataCB(err) {
-    if (err.code) {
+function setCodeDataCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setCodeDataCallback");
@@ -309,11 +404,37 @@ setCodeAndData(code: number, data: string): Promise\<void>
 ```ts
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
+## setCodeAndDataSync
+
+setCodeAndData的同步接口。
+
+setCodeAndDataSync(code: number, data: string): void
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| code   | number | 是   | 公共事件的代码。 |
+| data   | string | 是   | 公共事件的数据。 |
+
+**示例：**
+
+```ts
+try {
+    subscriber.setCodeAndDataSync(1, "publish_data_changed");
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+}
+
+```
 ## isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
@@ -334,8 +455,8 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为有序事件的回调
-function isOrderedCB(err, isOrdered) {
-    if (err.code) {
+function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isOrdered " + JSON.stringify(isOrdered));
@@ -363,11 +484,34 @@ isOrderedCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.isOrderedCommonEvent().then((isOrdered) => {
+subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## isOrderedCommonEventSync
+
+isOrderedCommonEventSync(): boolean
+
+isOrderedCommonEvent的同步接口
+
+返回true代表是有序公共事件，false代表不是有序公共事件。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| boolean | 当前公共事件的是否为有序公共事件。 |
+
+**示例：**
+
+```ts
+let isOrdered  = subscriber.isOrderedCommonEventSync();
+console.info("isOrdered " + JSON.stringify(isOrdered));
 ```
 
 ## isStickyCommonEvent
@@ -390,8 +534,8 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为粘性事件的回调
-function isStickyCB(err, isSticky) {
-    if (err.code) {
+function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSticky " + JSON.stringify(isSticky));
@@ -419,11 +563,34 @@ isStickyCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.isStickyCommonEvent().then((isSticky) => {
+subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
     console.info("isSticky " + JSON.stringify(isSticky));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## isStickyCommonEventSync
+
+isStickyCommonEventSync(): boolean
+
+isStickyCommonEvent的同步接口。
+
+返回true代表是粘性公共事件，false代表不是粘性公共事件。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                             |
+| ----------------- | -------------------------------- |
+| boolean | 当前公共事件的是否为粘性公共事件。 |
+
+**示例：**
+
+```ts
+let isSticky  = subscriber.isStickyCommonEventSync();
+console.info("isSticky " + JSON.stringify(isSticky));
 ```
 
 ## abortCommonEvent
@@ -444,8 +611,8 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //取消当前有序公共事件的回调
-function abortCB(err) {
-    if (err.code) {
+function abortCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent");
@@ -473,9 +640,23 @@ abortCommonEvent(): Promise\<void>
 ```ts
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## abortCommonEventSync
+
+abortCommonEventSync(): void
+
+abortCommonEvent的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**示例：**
+
+```ts
+subscriber.abortCommonEventSync();
 ```
 
 ## clearAbortCommonEvent
@@ -496,8 +677,8 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //清除当前公共事件取消状态的回调
-function clearAbortCB(err) {
-    if (err.code) {
+function clearAbortCB(err:Base.BusinessError) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("clearAbortCommonEvent");
@@ -525,9 +706,23 @@ clearAbortCommonEvent(): Promise\<void>
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## clearAbortCommonEventSync
+
+clearAbortCommonEventSync(): void
+
+clearAbortCommonEvent的同步接口
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**示例：**
+
+```ts
+subscriber.clearAbortCommonEventSync();
 ```
 
 ## getAbortCommonEvent
@@ -548,8 +743,8 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前有序公共事件是否取消的回调
-function getAbortCB(err, abortEvent) {
-    if (err.code) {
+function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("abortCommonEvent " + abortEvent)
@@ -575,11 +770,32 @@ getAbortCommonEvent(): Promise\<boolean>
 **示例：**
 
 ```ts
-subscriber.getAbortCommonEvent().then((abortEvent) => {
+subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
     console.info("abortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getAbortCommonEventSync
+
+getAbortCommonEventSync(): boolean
+
+getAbortCommonEvent的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | ---------------------------------- |
+| boolean | 表示当前有序公共事件是否取消的状态。 |
+
+**示例：**
+
+```ts
+let abortEvent = subscriber.getAbortCommonEventSync();
+console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
 ```
 
 ## getSubscribeInfo
@@ -600,8 +816,8 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 ```ts
 //获取订阅者信息回调
-function getCB(err, subscribeInfo) {
-    if (err.code) {
+function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
+    if (err.code !== undefined && err.code != null) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
@@ -627,11 +843,32 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 **示例：**
 
 ```ts
-subscriber.getSubscribeInfo().then((subscribeInfo) => {
+subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## getSubscribeInfoSync
+
+getSubscribeInfoSync(): CommonEventSubscribeInfo
+
+getSubscribeInfo的同步接口。
+
+**系统能力**：`SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 表示订阅者的订阅信息。 |
+
+**示例：**
+
+```ts
+let subscribeInfo = subscriber.getSubscribeInfoSync();
+console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 ```
 
 ## finishCommonEvent<sup>9+</sup>
@@ -652,8 +889,8 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //结束当前有序公共事件的回调
-function finishCB(err) {
-  if (err.code) {
+function finishCB(err:Base.BusinessError) {
+  if (err.code !== undefined && err.code != null) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
     console.info("FinishCommonEvent");
@@ -682,7 +919,7 @@ finishCommonEvent(): Promise\<void>
 ```ts
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
-}).catch((err) => {
+}).catch((err:Base.BusinessError) => {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```

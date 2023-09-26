@@ -148,7 +148,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 1. 查找发行版。
    1. 访问[DevEco Marketplace](https://repo.harmonyos.com/#/cn/home)，设定搜索的对象为设备组件，并在左侧边栏选择开源发行版，如下图所示。
    2. 在搜索框输入关键字搜索，如“摄像头”。
-   3. 结果中显示与关键字匹配的发行版，可以进一步根据组件类别等过滤条件（如：适配的开发板，内核）精确筛选。
+   3. 结果中显示与关键字匹配的发行版，可以进一步根据组件类别等过滤条件（如：OS版本，适配的开发板，内核）精确筛选。
    4. 查找合适的发行版，点击查看发行版的详情介绍。
 
          **图1** 包管理
@@ -157,8 +157,9 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 2. 了解发行版详情。
    1. 仔细阅读发行版的说明信息，以了解使用场景、特性、组件构成、使用方法以及如何进行定制化，如下图所示。
-   2. 点击「直接下载」，将发行版下载到本地。
-   3. 点击「定制组件」，将对发行版包含的组件进行定制（添加/删除）。
+   2. 当前支持两种下载方式：
+      - 点击「直接下载」，将发行版下载到本地。
+      - 点击「设备组件裁剪」，将对发行版包含的组件进行定制（添加/删除）。
 
          **图2** 发行版示例
 
@@ -166,9 +167,11 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 3. 定制组件。
    1. 进入发行版的定制页面，如下图所示。
-   2. 通过关闭开关移除可选组件，或者通过“添加组件”增加新的组件。
+   2. 添加和删除组件。
+      - 点击“可定制组件”后的添加按钮，在弹出的“添加组件”窗口中进行所需组件的添加。
+      - 在“可定制组件”下拉列表中，点击待删除组件后方的删除按钮，将该组件删除。
    3. 在右边填写您的项目基本信息，包括名称、版本、描述等信息。
-   4. 点击下载，系统会根据您的选择，生成相应的OpenHarmony代码结构文件（如my_cust_dist.zip），保存至本地文件。
+   4. 点击页面右下角的「下载」，系统会根据您的选择，生成相应的OpenHarmony代码结构文件（如my_cust_dist.zip），保存至本地文件。
 
          **图3** 组件定制
 
@@ -198,12 +201,12 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | Hi3516解决方案-Linux（二进制） | 3.0 | [站点](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [站点](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/zh-cn/release-notes/OpenHarmony-v3.0-LTS.md) | - | - |
 | **最新发布版本源码** | **版本信息** | **下载站点** | **SHA256校验码** | **软件包容量** |
-| 全量代码（标准、轻量和小型系统）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz.sha256) | 26.2 GB |
-| Hi3861解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz.sha256) | 25.1 MB |
-| Hi3516解决方案-LiteOS（二进制） | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 287.6 MB |
-| Hi3516解决方案-Linux（二进制）  | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 186.4 MB |
-| RK3568标准系统解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 4.5 GB |
-| RELEASE-NOTES | 4.0 Beta1 | [站点](../../release-notes/OpenHarmony-v4.0-beta1.md) | - | - |
+| 全量代码（标准、轻量和小型系统）        | 4.0 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/code-v4.0-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/code-v4.0-Beta2.tar.gz.sha256) | 27.7 GB |
+| Hi3861解决方案（二进制）        | 4.0 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_pegasus.tar.gz.sha256) | 27.5 MB |
+| Hi3516解决方案-LiteOS（二进制） | 4.0 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_LiteOS.tar.gz.sha256) | 300.9 MB |
+| Hi3516解决方案-Linux（二进制）  | 4.0 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/hispark_taurus_Linux.tar.gz.sha256) | 192.4 MB |
+| RK3568标准系统解决方案（二进制）        | 4.0 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta2/dayu200_standard_arm32.tar.gz.sha256) | 	5.2 GB |
+| RELEASE-NOTES | 4.0 Beta1 | [站点](../../release-notes/OpenHarmony-v4.0-beta2.md) | - | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** | **软件包容量** |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/) | - | - |
 

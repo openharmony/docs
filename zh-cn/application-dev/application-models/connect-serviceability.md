@@ -19,9 +19,11 @@ PageAbility创建连接本地ServiceAbility回调实例的代码以及连接本�
 import rpc from "@ohos.rpc"
 import promptAction from '@ohos.promptAction'
 import featureAbility from '@ohos.ability.featureAbility'
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
-let option = {
-  onConnect: function onConnectCallback(element, proxy) {
+let option: common.ConnectOptions = {
+  onConnect: (element, proxy) => {
     console.info(`onConnectLocalService onConnectDone`)
     if (proxy === null) {
       promptAction.showToast({
@@ -38,21 +40,21 @@ let option = {
       message: "Connect service success"
     })
   },
-  onDisconnect: function onDisconnectCallback(element) {
+  onDisconnect: (element) => {
     console.info(`onConnectLocalService onDisconnectDone element:${element}`)
     promptAction.showToast({
       message: "Disconnect service success"
     })
   },
-  onFailed: function onFailedCallback(code) {
+  onFailed: (code) => {
     console.info(`onConnectLocalService onFailed errCode:${code}`)
     promptAction.showToast({
       message: "Connect local service onFailed"
     })
   }
-}
+};
 
-let request = {
+let request: Want = {
   bundleName: "com.example.myapplication",
   abilityName: "com.example.myapplication.ServiceAbility",
 }
@@ -69,7 +71,7 @@ Service侧把自身的实例返回给调用侧的示例代码如下：
 import rpc from "@ohos.rpc"
 
 class FirstServiceAbilityStub extends rpc.RemoteObject {
-  constructor(des: any) {
+  constructor(des: Object) {
     if (typeof des === 'string') {
       super(des)
     } else {
@@ -77,7 +79,7 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
     }
   }
 
-  onRemoteRequest(code: number, data: any, reply: any, option: any) {
+  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
     console.info(`onRemoteRequest called`)
     if (code === 1) {
       let string = data.readString()

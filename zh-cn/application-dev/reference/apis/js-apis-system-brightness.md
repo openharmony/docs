@@ -22,7 +22,7 @@ getValue(options?: GetBrightnessOptions): void
 
 获得设备当前的屏幕亮度值。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **参数：**
 
@@ -34,11 +34,11 @@ getValue(options?: GetBrightnessOptions): void
 
   ```js
   brightness.getValue({
-      success: function(data) {
-          console.log('success get brightness value:' + data.value);
+      success: (data: BrightnessResponse) => {
+        console.log('success get brightness value:' + data.value);
       },
-      fail: function(data, code) {
-          console.error('get brightness fail, code: ' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('get brightness fail, code: ' + code + ', data: ' + data);
       }
   });
   ```
@@ -50,7 +50,7 @@ setValue(options?: SetBrightnessOptions): void
 
 设置设备当前的屏幕亮度值。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **参数：**
 
@@ -63,11 +63,11 @@ setValue(options?: SetBrightnessOptions): void
   ```js
   brightness.setValue({
       value: 100,
-      success: function() {
-          console.log('handling set brightness success.');
+      success: () => {
+        console.log('handling set brightness success.');
       },
-      fail: function(data, code) {
-          console.error('handling set brightness value fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set brightness value fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -79,7 +79,7 @@ getMode(options?: GetBrightnessModeOptions): void
 
 获得当前屏幕亮度模式。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **参数：**
 
@@ -91,11 +91,11 @@ getMode(options?: GetBrightnessModeOptions): void
 
   ```js
   brightness.getMode({
-      success: function(data) {
-          console.log('success get mode:' + data.mode);
+      success: (data: BrightnessModeResponse) => {
+        console.log('success get mode:' + data.mode);
       },
-      fail: function(data, code){
-          console.error('handling get mode fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling get mode fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -107,7 +107,7 @@ setMode(options?: SetBrightnessModeOptions): void
 
 设置设备当前的屏幕亮度模式。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
@@ -119,11 +119,11 @@ setMode(options?: SetBrightnessModeOptions): void
   ```js
   brightness.setMode({
       mode: 1,
-      success: function() {
-          console.log('handling set mode success.');
+      success: () => {
+        console.log('handling set mode success.');
       },
-      fail: function(data, code) {
-          console.error('handling set mode fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set mode fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -137,7 +137,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 设置屏幕是否保持常亮状态，开启常亮模式推荐在onShow()阶段调用。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 **参数：**
 
@@ -150,11 +150,11 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
   ```js
   brightness.setKeepScreenOn({
       keepScreenOn: true,
-      success: function () {
-          console.log('handling set keep screen on success.');
+      success: () => {
+        console.log('handling set keep screen on success.');
       },
-      fail: function (data, code) {
-          console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
+      fail: (data: string, code: number) => {
+        console.error('handling set keep screen on fail, code:' + code + ', data: ' + data);
       }
   });
   ```
@@ -162,7 +162,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 获取屏幕亮度的参数对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -174,7 +174,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 设置屏幕亮度的参数对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称     | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -187,7 +187,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 包含屏幕亮度的对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -197,7 +197,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 获取屏幕亮度模式的参数对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -209,7 +209,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 设置屏幕亮度模式的参数对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称     | 类型                                 | 必填 | 说明                                                   |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
@@ -222,7 +222,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 包含屏幕亮度模式的对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -232,7 +232,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 设置屏幕常亮的参数对象。
 
-**系统能力：** SystemCapability.PowerManager.DisplayPowerManager
+**系统能力：** SystemCapability.PowerManager.DisplayPowerManager.Lite
 
 | 名称         | 类型                                 | 必填 | 说明                                                   |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------ |

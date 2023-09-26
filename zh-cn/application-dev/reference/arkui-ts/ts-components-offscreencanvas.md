@@ -55,10 +55,10 @@ struct OffscreenCanvasPage {
           .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
             offContext.fillRect(0, 0, this.offCanvas.width, 150)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
           })
@@ -91,10 +91,10 @@ struct OffscreenCanvasPage {
           .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
             offContext.fillRect(0, 0, 100, this.offCanvas.height)
-            var image = this.offCanvas.transferToImageBitmap()
+            let image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
           })
@@ -142,13 +142,13 @@ struct OffscreenCanvasPage {
         .borderColor('#00FF00')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#CDCDCD'
           offContext.fillRect(0, 0, 300, 500)
           offContext.fillStyle = '#000000'
           offContext.font = '70px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
-          var image = this.offCanvas.transferToImageBitmap()
+          let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
     }
@@ -170,14 +170,14 @@ getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanva
 
 | 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型。                        |
+| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。                       |
 | option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
 
 **返回值：**
 
 | 类型                                                         | 描述                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。 |
+| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。如果getContext方法的入参contextType为"2d"以外类型（包括null或者undefined），返回null。 |
 
 **示例：**
 
@@ -197,7 +197,7 @@ struct OffscreenCanvasExamplePage {
           .height('100%')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
-            var offContext = this.offscreenCanvas.getContext("2d", this.settings)
+            let offContext = this.offscreenCanvas.getContext("2d", this.settings)
             offContext.font = '70px sans-serif'
             offContext.fillText("Offscreen : Hello World!", 20, 60)
             offContext.fillStyle = "#0000ff"
@@ -217,7 +217,7 @@ struct OffscreenCanvasExamplePage {
             offContext.stroke()
             offContext.fillStyle = '#FF00FF'
             offContext.fillRect(100, 100, 60, 60)
-            var imageData = this.offscreenCanvas.transferToImageBitmap()
+            let imageData = this.offscreenCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(imageData)
           })
       }.width('100%').height('100%')

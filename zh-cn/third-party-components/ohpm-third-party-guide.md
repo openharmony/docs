@@ -11,8 +11,7 @@ OpenHarmony JS和TS三方组件使用的是OpenHarmony静态共享包，即HAR(H
 
 
 
-2. 访问[OpenHarmony官网](https://growing.openharmony.cn/mainPlay/tpc)，通过类型，分类，以及关键字搜索需要的三方组件。
-   ![official-website.png](official-website.png)
+2. 访问[OpenHarmony三方库中心仓](https://ohpm.openharmony.cn/)，搜索需要的三方组件。
 
 
 
@@ -50,7 +49,7 @@ ohpm install ../library
 - 方式二：在工程的oh-package.json5中设置三方包依赖，配置示例如下：
 ```
 "dependencies": {
-   "@ohos/library": "file:../library"
+   "library": "file:../library"
 }
 ```
 依赖设置完成后，需要执行ohpm install命令安装依赖包，依赖包会存储在工程的oh_modules目录下。
@@ -69,12 +68,12 @@ ohpm install
 ### 引用OpenHarmony HAR hml页面  
 在JS工程范式中，组件功能由hml承载，开发者可以在JS工程的hml页面通过<element>标签来引入OpenHarmony HAR中的共享hml页面，示例如下：
 ```
-<element name="comp" src="@ohos/library/src/main/js/components/index/index.hml"></element>
+<element name="comp" src="library/src/main/js/components/index/index.hml"></element>
 ```
-其中，@ohos/library为OpenHarmony HAR的包名，hml页面的路径为OpenHarmony HAR中的相对路径。  
+其中，library为OpenHarmony HAR的包名，hml页面的路径为OpenHarmony HAR中的相对路径。  
 随后便可以通过设置的name来使用该element元素，以引用OpenHarmony HAR中的hml页面，示例如下：
 ```typescript
-<element name="comp" src="@ohos/library/src/main/js/components/index/index.hml"></element>
+<element name="comp" src="library/src/main/js/components/index/index.hml"></element>
 
 <div class="container">
    <comp></comp>
@@ -107,7 +106,7 @@ export struct MainPage {
 ```typescript
 // entry/MainAbility/pages/index.ets
 
-import { MainPage } from "@ohos/library"
+import { MainPage } from "library"
 @Entry
 @Component
 struct Index {
@@ -136,7 +135,7 @@ export function func() {
 然后在其它的ts/js页面中，通过import引入导出的ts/js方法，示例如下所示：
 ```typescript
 // entry/src/main/js/MainAbility/pages/index/index.js
-import {func} from "@ohos/library"
+import {func} from "library"
 export default {
    data: {
       title: ""

@@ -10,7 +10,7 @@ The **Screenshot** module provides APIs for you to set information such as the r
 
 ## Modules to Import
 
-```js
+```ts
 import screenshot from '@ohos.screenshot';
 ```
 
@@ -25,8 +25,8 @@ Describes screenshot options.
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | No  | Region of the screen to capture. If this parameter is null, the full screen will be captured.                      |
 | imageSize              | [Size](#size) | No  | Size of the screen region to capture. If this parameter is null, the full screen will be captured.                      |
-| rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**.    |
-| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured.|
+| rotation               | number        | No  | Rotation angle of the screenshot. Currently, the value can be **0** only. The default value is **0**. The value must be an integer.    |
+| displayId<sup>8+</sup> | number        | No  | ID of the [display](js-apis-display.md#display) device on which the screen region is to be captured. The value must be an integer.|
 
 
 ## Rect
@@ -37,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture, in pixels.|
-| top    | number | Yes  | Top boundary of the screen region to capture, in pixels.|
-| width  | number | Yes  | Width of the screen region to capture, in pixels.|
-| height | number | Yes  | Height of the screen region to capture, in pixels.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in pixels. The value must be an integer.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in pixels. The value must be an integer.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
 
 
 ## Size
@@ -51,8 +51,8 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture, in pixels.|
-| height | number | Yes  | Height of the screen region to capture, in pixels.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels. The value must be an integer.|
+| height | number | Yes  | Height of the screen region to capture, in pixels. The value must be an integer.|
 
 ## screenshot.save
 
@@ -73,32 +73,34 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 **Example**
 
-  ```js
-  let screenshotOptions = {
-    "screenRect": {
-        "left": 200,
-        "top": 100,
-        "width": 200,
-        "height": 200},
-    "imageSize": {
-        "width": 300,
-        "height": 300},
-    "rotation": 0,
-    "displayId": 0
-  };
-  try {
-    screenshot.save(screenshotOptions, (err, pixelMap) => {
-      if (err) {
-          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // Release the memory in time after the PixelMap is used.
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenshotOptions: screenshot.ScreenshotOptions = {
+  "screenRect": {
+    "left": 200,
+    "top": 100,
+    "width": 200,
+    "height": 200 },
+  "imageSize": {
+    "width": 300,
+    "height": 300 },
+  "rotation": 0,
+  "displayId": 0
+};
+try {
+  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap) => {
+    if (err) {
+      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```
 
 ## screenshot.save
 
@@ -118,20 +120,22 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 **Example**
 
-  ```js
-  try {
-    screenshot.save((err, pixelMap) => {
-      if (err) {
-          console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-      pixelMap.release(); // Release the memory in time after the PixelMap is used.
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  screenshot.save((err: BusinessError, pixelMap) => {
+    if (err) {
+      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```
 
 ## screenshot.save
 
@@ -157,28 +161,30 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
 
 **Example**
 
-  ```js
-  let screenshotOptions = {
-  	"screenRect": {
-  		"left": 200,
-  		"top": 100,
-  		"width": 200,
-  		"height": 200},
-  	"imageSize": {
-  		"width": 300,
-  		"height": 300},
-  	"rotation": 0,
-  	"displayId": 0
-  };
-  try {
-    let promise = screenshot.save(screenshotOptions);
-    promise.then((pixelMap) => {
-        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-        pixelMap.release(); // Release the memory in time after the PixelMap is used.
-    }).catch((err) => {
-        console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-  };
-  ```
+```ts
+import { BusinessError } from '@ohos.base';
+
+let screenshotOptions: screenshot.ScreenshotOptions = {
+  "screenRect": {
+    "left": 200,
+    "top": 100,
+    "width": 200,
+    "height": 200 },
+  "imageSize": {
+    "width": 300,
+    "height": 300 },
+  "rotation": 0,
+  "displayId": 0
+};
+try {
+  let promise = screenshot.save(screenshotOptions);
+  promise.then((pixelMap) => {
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+  }).catch((err: BusinessError) => {
+    console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
+};
+```

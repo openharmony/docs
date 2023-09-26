@@ -12,8 +12,9 @@ The **Common** module provides all level-2 module APIs for developers to export.
 ```ts
 import common from '@ohos.app.ability.common';
 ```
+## Attributes
 
-**System capability**: SystemCapability.Ability.AbilityBase
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name       | Type                | Description                                                        |
 | ----------- | -------------------- | ------------------------------------------------------------ |
@@ -24,7 +25,7 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Level-2 module **Context**.|
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | Level-2 module **ExtensionContext**.|
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | Level-2 module **FormExtensionContext**.|
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | Level-2 module **ServiceExtensionContext**.|
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | Level-2 module **ServiceExtensionContext**.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | Level-2 module **PacMap**.|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|

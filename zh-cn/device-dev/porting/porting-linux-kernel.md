@@ -160,7 +160,7 @@ obj-$(CONFIG_HIEVENT)           += hievent/
      
    ```
    # 进入树莓派kernel目录
-   PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
+   PROJ_ROOT/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh \
    PROJ_ROOT  # 指定工程根目录路径 \
    PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
    PROJ_ROOT/kernel/linux/patches/linux-4.19 # 内核补丁路径.\

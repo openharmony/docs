@@ -8,9 +8,20 @@
 
 ## 导入模块
 
-```js
+```ts
 import systemDateTime from '@ohos.systemDateTime';
 ```
+
+## TimeType<sup>10+</sup>
+
+定义获取时间的枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Time
+
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| STARTUP | 0    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
+| ACTIVE  | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
 
 ## systemDateTime.setTime
 
@@ -22,6 +33,8 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME
+
 **参数：**
 
 | 参数名   | 类型            | 必填 | 说明                                       |
@@ -31,11 +44,13 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
 try {
-  systemDateTime.setTime(time, (error) => {
+  systemDateTime.setTime(time, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -43,7 +58,8 @@ try {
     console.info(`Succeeded in setting time`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -56,6 +72,8 @@ setTime(time : number) : Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -71,17 +89,20 @@ setTime(time : number) : Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 // time对应的时间为2021-01-20 02:36:25
 let time = 1611081385000;
 try {
   systemDateTime.setTime(time).then(() => {
     console.info(`Succeeded in setting time.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -102,9 +123,11 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime(true, (error, time) => {
+  systemDateTime.getCurrentTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -112,7 +135,8 @@ try {
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -132,9 +156,11 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime((error, time) => {
+  systemDateTime.getCurrentTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
       return;
@@ -142,7 +168,8 @@ try {
     console.info(`Succeeded in getting currentTime : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -158,7 +185,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                     |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -168,15 +195,18 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getCurrentTime().then((time) => {
+  systemDateTime.getCurrentTime().then((time: number) => {
     console.info(`Succeeded in getting currentTime : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -197,9 +227,11 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime(true, (error, time) => {
+  systemDateTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -207,7 +239,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -227,9 +260,11 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime((error, time) => {
+  systemDateTime.getRealActiveTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -237,7 +272,8 @@ try {
     console.info(`Succeeded in getting real active time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -253,7 +289,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -263,15 +299,18 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealActiveTime().then((time) => {
+  systemDateTime.getRealActiveTime().then((time: number) => {
     console.info(`Succeeded in getting real active time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real active time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real active time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -292,9 +331,11 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime(true, (error, time) => {
+  systemDateTime.getRealTime(true, (error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -302,7 +343,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -322,9 +364,11 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime((error, time) => {
+  systemDateTime.getRealTime((error: BusinessError, time: number) => {
     if (error) {
       console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
       return;
@@ -332,7 +376,8 @@ try {
     console.info(`Succeeded in getting real time : ${time}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -348,7 +393,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数,默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -358,27 +403,97 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getRealTime().then((time) => {
+  systemDateTime.getRealTime().then((time: number) => {
     console.info(`Succeeded in getting real time : ${time}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get real time. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get real time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.getTime<sup>10+</sup>
+
+getTime(isNanoseconds?: boolean): number
+
+ 使用同步方式获取自Unix纪元以来经过的时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名        | 类型    | 必填 | 说明                                                         |
+| ------------- | ------- | ---- | ------------------------------------------------------------ |
+| isNanoseconds | boolean | 否   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。<br>默认值为false。 |
+
+**返回值**：
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 自Unix纪元以来经过的时间。 |
+
+**示例：**
+
+```ts
+try {
+  let time = systemDateTime.getTime(true)
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getUptime<sup>10+</sup>
+
+getUptime(timeType: TimeType, isNanoseconds?: boolean): number
+
+使用同步方式获取自系统启动以来经过的时间。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名        | 类型                    | 必填 | 说明                                                         |
+| ------------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| timeType      | [TimeType](#timetype10) | 是   | 获取时间的类型。                                             |
+| isNanoseconds | boolean                 | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。<br>默认值为false。 |
+
+**返回值：**
+
+| 类型   | 说明                       |
+| ------ | -------------------------- |
+| number | 自系统启动以来经过的时间。 |
+
+**示例：**
+
+```ts
+try {
+  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统日期，使用callback异步回调。
 
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -389,10 +504,12 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date();
 try {
-  systemDateTime.setDate(date, (error) => {
+  systemDateTime.setDate(date, (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -400,19 +517,24 @@ try {
     console.info(`Succeeded in setting date.`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
 设置系统日期，使用Promise异步回调。
 
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME
 
 **参数：**
 
@@ -428,24 +550,29 @@ setDate(date: Date): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let date = new Date(); 
 try {
   systemDateTime.setDate(date).then(() => {
     console.info(`Succeeded in setting date.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 获取当前系统日期，使用callback异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -457,9 +584,11 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getDate((error, date) => {
+  systemDateTime.getDate((error: BusinessError, date: Date) => {
     if (error) {
       console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
@@ -467,15 +596,18 @@ try {
     console.info(`Succeeded in getting date : ${date}`);;
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
 获取当前系统日期，使用Promise异步回调。
+
+> **说明：** 从API version 9开始支持，从API 10开始废弃。建议使用new Date()替代，new Date()返回Date实例对象。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -487,15 +619,18 @@ getDate(): Promise&lt;Date&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getDate().then((date) => {
+  systemDateTime.getDate().then((date: Date) => {
     console.info(`Succeeded in getting date : ${date}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get date. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get date. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -509,6 +644,8 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.Time
 
+**需要权限：** ohos.permission.SET_TIME_ZONE
+
 **参数：**
 
 | 参数名   | 类型              | 必填 | 说明                  |
@@ -518,9 +655,11 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.setTimezone('Asia/Shanghai', (error) => {
+  systemDateTime.setTimezone('Asia/Shanghai', (error: BusinessError) => {
     if (error) {
       console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -528,7 +667,8 @@ try {
     console.info(`Succeeded in setting timezone.`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -541,6 +681,8 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口
 
 **系统能力：** SystemCapability.MiscServices.Time
+
+**需要权限：** ohos.permission.SET_TIME_ZONE
 
 **参数：**
 
@@ -556,15 +698,18 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   systemDateTime.setTimezone('Asia/Shanghai').then(() => {
     console.info(`Succeeded in setting timezone.`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to set timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -584,9 +729,11 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getTimezone((error, data) => {
+  systemDateTime.getTimezone((error: BusinessError, data: string) => {
     if (error) {
       console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
@@ -594,7 +741,8 @@ try {
     console.info(`Succeeded in get timezone : ${data}`);;
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -614,15 +762,43 @@ getTimezone(): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 try {
-  systemDateTime.getTimezone().then((data) => {
+  systemDateTime.getTimezone().then((data: string) => {
     console.info(`Succeeded in getting timezone: ${data}`);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
-  console.info(`Failed to get timezone. message: ${e.message}, code: ${e.code}`);
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getTimezoneSync<sup>10+</sup>
+
+getTimezoneSync(): string
+
+获取系统时区，使用同步方式。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型   | 说明                                                       |
+| ------ | ---------------------------------------------------------- |
+| string | 返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**示例：**
+
+```ts
+try {
+  let timezone = systemDateTime.getTimezoneSync();
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
 }
 ```
 

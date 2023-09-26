@@ -6,7 +6,7 @@
 
 ### 功能简介
 
-HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接口实时获取关注的事件，例如电池模块侦听功耗相关的事件，用于分析耗电情况。
+HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接口实时获取关注的事件，例如电池模块订阅功耗相关的事件，用于分析耗电情况。
 
 
 ### 约束与限制
@@ -16,40 +16,39 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 ## 开发指导
 
-
 ### 接口说明
+
+#### C++接口说明
+
+C++ HiSysEvent订阅开发能力如下：HiSysEventManager类，具体API详见接口目录（/base/hiviewdfx/hisysevent/interfaces/native/innerkits/hisysevent_manager/include/）。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> ListenerRule订阅规则对象构造函数形参类型RuleType请参考[HiSysEvent查询](subsys-dfx-hisysevent-query.md)中的“表4 RuleType匹配规则类型枚举”说明。
 
   **表1** HiSysEvent订阅接口
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| int32_t&nbsp;HiSysEventManager::AddListener(std::shared_ptr&lt;HiSysEventListener&gt;&nbsp;listener,<br/>&nbsp;std::vector&lt;ListenerRule&gt;&amp;&nbsp;rules) | 接口功能：注册订阅HiSysEvent系统事件侦听对象，可设置规则订阅某些事件。<br/>输入参数：<br/>-&nbsp;listener：订阅回调对象。<br/>-&nbsp;rules：事件订阅规则。<br/>返回值：<br/>-&nbsp;0：订阅成功。<br/>-&nbsp;负值：订阅失败。 |
-| int32_t&nbsp;HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventListener&gt;&nbsp;listener) | 接口功能：移除订阅hisysevent系统事件侦听对象。<br/>输入参数：<br/>-&nbsp;listener：订阅回调对象。<br/>返回值：<br/>-&nbsp;0：取消订阅成功。<br/>-&nbsp;负值：取消订阅失败。  |
+| int32_t&nbsp;HiSysEventManager::AddListener(std::shared_ptr&lt;HiSysEventListener&gt;&nbsp;listener,<br/>&nbsp;std::vector&lt;ListenerRule&gt;&amp;&nbsp;rules) | 接口功能：添加对系统事件的订阅，通过设置规则订阅某些特定的事件。<br/>输入参数：<br/>-&nbsp;listener：订阅回调对象。<br/>-&nbsp;rules：事件订阅规则。<br/>返回值：<br/>-&nbsp;0：订阅添加成功。<br/>-&nbsp;负值：订阅添加失败。 |
+| int32_t&nbsp;HiSysEventManager::RemoveListener(std::shared_ptr&lt;HiSysEventListener&gt;&nbsp;listener) | 接口功能：移除对系统事件的订阅。<br/>输入参数：<br/>-&nbsp;listener：订阅回调对象。<br/>返回值：<br/>-&nbsp;0：订阅移除成功。<br/>-&nbsp;负值：订阅移除失败。  |
 
   **表2** ListenerRule订阅规则对象
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| ListenerRule(const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
-| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域与事件名称订阅规则对象。<br/>输入参数：<br/>-&nbsp;domain：订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
-| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域、事件名称，事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则的HisysEvent事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;domain：订阅规则的HisysEvent事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则的HisysEvent事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
+| ListenerRule(const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则中指定的系统事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
+| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域与事件名称订阅规则对象。<br/>输入参数：<br/>-&nbsp;domain：订阅规则中指定的系统事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则中指定的系统事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型(参考表3)。 |
+| ListenerRule(const&nbsp;std::string&amp;&nbsp;domain,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;eventName,<br/>&nbsp;const&nbsp;std::string&amp;&nbsp;tag,<br/>&nbsp;RuleType&nbsp;ruleType&nbsp;=&nbsp;RuleType::WHOLE_WORD) | 接口功能：订阅规则构造函数，创建事件领域、事件名称，事件标签订阅规则对象。<br/>输入参数：<br/>-&nbsp;tag：订阅规则中指定的系统事件标签，字符串类型，最大长度16个字符（含），有效字符包含大小写字母及数字。<br/>-&nbsp;domain：订阅规则中指定的系统事件领域，字符串类型，最大长度16个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;eventName：订阅规则中指定的系统事件名称，字符串类型，最大长度32个字符（含），有效字符包含大写字母、数字及下划线。<br/>-&nbsp;ruleType：订阅规则的规则类型，RuleType枚举类型。 |
 
-  **表3** RuleType类型
-
-| 枚举值 | 描述 |
-| -------- | -------- |
-| WHOLE_WORD | 全词匹配类型 |
-| PREFIX | 前缀匹配类型 |
-| REGULAR | 正则匹配类型 |
-
-  **表4** HiSysEventListener订阅对象
+  **表3** HiSysEventListener订阅对象
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| void&nbsp;HiSysEventListener::OnEvent(std::shared_ptr&lt;HiSysEventRecord&gt;&nbsp;sysEvent) | 接口功能：订阅事件的回调接口。<br/>输入参数：<br/>-&nbsp;sysEvent：监听到的实时HiSysEvent事件。<br/>返回值：<br/>无。 |
+| void&nbsp;HiSysEventListener::OnEvent(std::shared_ptr&lt;HiSysEventRecord&gt;&nbsp;sysEvent) | 接口功能：订阅事件的回调接口。<br/>输入参数：<br/>-&nbsp;sysEvent：订阅到的实时系统事件。<br/>返回值：<br/>无。 |
 | void&nbsp;HiSysEventListener::OnServiceDied() | 接口功能：服务异常回调。<br/>输入参数：<br/>无。<br/>返回值：<br/>无。 |
 
-**表5** HiSysEventRecord系统事件对象
+  **表4** HiSysEventRecord系统事件对象
 | 接口名称 | 描述 |
 | -------- | -------- |
 |std::string&nbsp;HiSysEventRecord::AsJson()|接口功能：获取该系统事件的内容。<br/>输入参数：<br/>无。<br/>返回值：<br/>该系统事件的内容。|
@@ -77,83 +76,247 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 |int&nbsp;HiSysEventRecord::GetParamValue(const std::string&amp;&nbsp;param,&nbsp;std::vector&lt;double&gt;&amp;&nbsp;value)|接口功能：将该系统事件键名为param的值解析为double类型的数组。<br/>输入参数：<br/>-&nbsp;param：键名。<br/>-&nbsp;value：ouble类型数组引用。<br/>返回值：<br/>-&nbsp;0：解析成功。<br/>-&nbsp;-1：该系统事件初始化失败，无法解析。<br/>-&nbsp;-2：不存在的键名。<br/>-&nbsp;-3：类型不匹配，无法转换成double类型的数组。|
 |int&nbsp;HiSysEventRecord::GetParamValue(const std::string&amp;&nbsp;param,&nbsp;std::vector&lt;std::string&gt;&amp;&nbsp;value)|接口功能：将该系统事件键名为param的值解析为string类型的数组。<br/>输入参数：<br/>-&nbsp;param：键名。<br/>-&nbsp;value：std::string类型数组引用。<br/>返回值：<br/>-&nbsp;0：解析成功。<br/>-&nbsp;-1：该系统事件初始化失败，无法解析。<br/>-&nbsp;-2：不存在的键名。<br/>-&nbsp;-3：类型不匹配，无法转换成std::string类型的数组。|
 
+#### C接口说明
 
-## 开发实例
+C HiSysEvent订阅开发能力如下：具体API详见接口目录（/base/hiviewdfx/hisysevent/interfaces/native/innerkits/hisysevent_manager/include/）。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> HiSysEventWatcher订阅回调结构体OnEvent回调方法形参类型HiSysEventRecord请参考[HiSysEvent查询](subsys-dfx-hisysevent-query.md)中的“表11 HiSysEventRecord事件结构体”及“表12 HiSysEventRecord解析接口”说明。
+
+  **表5** HiSysEvent订阅接口
+
+| 接口名称                                                     | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| int OH_HiSysEvent_Add_Watcher(HiSysEventWatcher* watcher,<br/>HiSysEventWatchRule rules[],<br/>size_t ruleSize); | 接口功能：添加对系统事件的订阅，通过设置规则订阅某些特定的事件。<br/>输入参数：<br/>-&nbsp;watcher：订阅回调对象。<br/>-&nbsp;rules：事件订阅规则数组。<br/>-&nbsp;ruleSize：事件订阅规则数组长度。<br/>返回值：<br/>-&nbsp;0：订阅添加成功。<br/>-&nbsp;负值：订阅添加失败。 |
+| int OH_HiSysEvent_Remove_Watcher(HiSysEventWatcher* watcher); | 接口功能：移除对系统事件的订阅。<br/>输入参数：<br/>-&nbsp;watcher：订阅回调对象。<br/>返回值：<br/>-&nbsp;0：订阅移除成功。<br/>-&nbsp;负值：订阅移除失败。  |
 
 
-### C++接口实例
+  **表6** HiSysEventWatcher订阅回调结构体
+| 属性名称      | 属性类型                                   | 描述                                                         |
+| ------------- | -------------------------------------------------- | ------------------------------------------------------------ |
+| OnEvent       | void (*)(HiSysEventRecord record);        | 接口功能：订阅事件的回调接口。<br/>输入参数：<br/>-&nbsp;record：订阅到的实时系统事件。<br/>返回值：<br/>无。 |
+| OnServiceDied | void (*)();                                | 接口功能：服务异常回调。<br/>输入参数：<br/>无。<br/>返回值：<br/>无。  |
 
-订阅HiSysEvent事件C++接口实例。
+  **表7** HiSysEventWatchRule订阅规则结构体
+| 属性名称      | 属性类型  | 描述                               |
+| ------------- | --------- | ---------------------------------- |
+| domain        | char[]    | 用来指定订阅的系统事件领域。           |
+| name          | char[]    | 用来指定订阅的系统事件名称。           |
+| tag           | char[]    | 用来指定订阅的系统事件标签。           |
+| ruleType      | int       | 用于指定订阅事件的匹配规则，取值请参考[HiSysEvent查询](subsys-dfx-hisysevent-query.md)中的“表4 RuleType匹配规则类型枚举”。       |
+| eventType     | int       | 用于指定订阅事件的事件类型，取值请参考[HiSysEvent查询](subsys-dfx-hisysevent-query.md)中的“表3 EventType事件类型枚举”，当取值0，表示订阅所有的事件类型。       |
 
-1. 源代码开发
-   自定义订阅回调实现类头文件DemoListener.h：
+### 开发步骤
 
-   ```
-   #ifndef DEMO_LISTENER_H
-   #define DEMO_LISTENER_H
+#### C++ HiSysEvent订阅开发步骤
 
-   #include "hisysevent_listener.h"
+1. 引入对应的头文件。
 
-   #include <string>
+    ```c++
+    #include "hisysevent_manager.h"
+    ```
 
-   class DemoListener : public OHOS::HiviewDFX::HiSysEventListener {
-   public:
-       explicit DemoListener() : HiSysEventListener() {}
-     virtual ~DemoListener() {}
+2. 业务领域实现对应的订阅回调接口。
 
-   public:
-       void OnEvent(std::shared_ptr<HiSysEventRecord> sysEvent);
-       void OnServiceDied();
-   };
-   
-   #endif // DEMO_LISTENER_H
-   ```
+    ```c++
+    class TestListener : public OHOS::HiviewDFX::HiSysEventListener {
+    public:
+        void OnEvent(std::shared_ptr<HiSysEventRecord> record)
+        {
+            if (record == nullptr) {
+                return;
+            }
+            std::cout << record->AsJson() << std::endl;
+        }
 
-   增加DemoListener.cpp文件，在DemoListener类中根据实际需求自定义订阅回调接口的实现逻辑：
+        void OnServiceDied()
+        {
+            std::cout << std::string("service disconnect, exit") << std::endl;
+            exit(0);
+        }
+    };
+    ```
 
-   ```
-   #include "demo_listener.h"
+3. 在订阅事件的地方调用订阅接口，并传入相应的订阅回调参数、订阅规则列表，在业务结束，注销此次订阅。
 
-   #include <iostream>
+    ```c++
+    auto testListener = std::make_shared<TestListener>();
+    // 事件标签规则订阅，规则类型为默认的全词匹配类型
+    ListenerRule tagRule("dfx");
+    // 事件标签规则订阅，规则类型为正则匹配类型
+    ListenerRule regRule("dfx.*", RuleType::REGULAR);
+    // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
+    ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
+    std::vector<ListenerRule> sysRules;
+    sysRules.push_back(tagRule);
+    sysRules.push_back(regRule);
+    sysRules.push_back(domainNameRule);
+    // 开始系统事件订阅
+    auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+    // 订阅结束，移除订阅回调参数。
+    if (ret == 0) {
+       HiSysEventManager::RemoveListener(testListener);
+    }
+    ```
 
-   void DemoListener::OnEvent(std::shared_ptr<HiSysEventRecord> sysEvent)
-   {
-       if (sysEvent == nullptr) {
-           return;
+#### C HiSysEvent订阅开发步骤
+
+1. 引入对应的头文件。
+
+    ```c++
+    #include "hisysevent_manager_c.h"
+    ```
+
+2. 业务领域实现对应的订阅回调接口。
+
+    ```c++
+    void OnEventTest(HiSysEventRecord record)
+    {
+        printf("OnEventTest: event=%s", record.jsonStr);
+    }
+
+    void OnServiceDiedTest()
+    {
+        printf("OnServiceDied");
+    }
+    ```
+
+3. 在订阅事件的地方调用订阅接口，并传入相应的订阅回调参数、订阅规则列表，在业务结束，注销此次订阅。
+
+    ```c++
+    HiSysEventWatcher watcher;
+    watcher.OnEvent = OnEventTest;
+    watcher.OnServiceDied = OnServiceDiedTest;
+    // 事件标签规则订阅，规则类型为默认的全词匹配类型
+    constexpr char DFX_TAG[] = "dfx";
+    HiSysEventWatchRule tagRule;
+    (void)strcpy_s(tagRule.tag, strlen(DFX_TAG) + 1, DFX_TAG);
+    tagRule.ruleType = 1;
+    tagRule.eventType = 0;
+    // 事件标签规则订阅，规则类型为正则匹配类型
+    constexpr char DFX_PATTERN_TAG[] = "dfx.*";
+    HiSysEventWatchRule regRule;
+    (void)strcpy_s(regRule.tag, strlen(DFX_PATTERN_TAG) + 1, DFX_PATTERN_TAG);
+    regRule.ruleType = 3;
+    regRule.eventType = 0;
+    // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
+    constexpr char DOMAIN[] = "HIVIEWDFX";
+    constexpr char NAME[] = "APP_USAGE";
+    HiSysEventWatchRule domainNameRule;
+    (void)strcpy_s(domainNameRule.domain, strlen(DOMAIN) + 1, DOMAIN);
+    (void)strcpy_s(domainNameRule.name, strlen(NAME) + 1, NAME);
+    domainNameRule.ruleType = 2;
+    domainNameRule.eventType = 0;
+    // 开始系统事件订阅
+    HiSysEventWatchRule rules[] = {tagRule, regRule, domainNameRule};
+    int ret = OH_HiSysEvent_Add_Watcher(&watcher, rules, sizeof(rules) / sizeof(HiSysEventWatchRule));
+    // 订阅结束，移除订阅回调参数。
+    if (ret == 0) {
+        ret = OH_HiSysEvent_Remove_Watcher(&watcher);
+    }
+    ```
+
+### 开发实例
+
+#### C++ HiSysEvent订阅开发实例
+
+假设业务模块需要订阅事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
+
+1. 在业务模块的在BUILD.gn里增加hisysevent部件的libhisysevent及libhisyseventmanager依赖。
+
+    ```c++
+    external_deps = [
+      "hisysevent:libhisysevent",
+      "hisysevent:libhisyseventmanager",
+    ]
+    ```
+
+2. 在业务模块的TestEventListening()函数中，调用订阅接口去订阅事件，业务结束时移除事件订阅。
+
+    ```c++
+    #include <iostream>
+
+    #include "hisysevent_manager.h"
+
+    using namespace OHOS::HiviewDFX;
+
+    class TestListener : public HiSysEventQueryCallback {
+    public:
+        void OnEvent(std::shared_ptr<HiSysEventRecord> record)
+        {
+            if (record == nullptr) {
+                return;
+            }
+            std::cout << record->AsJson() << std::endl;
+        }
+
+        void OnServiceDied()
+        {
+            std::cout << std::string("service disconnect, exit") << std::endl;
+            exit(0);
+        }
+    };
+
+    void TestEventListening()
+    {
+        auto testListener = std::make_shared<TestListener>();
+        ListenerRule domainNameRule("HIVIEWDFX", "PLUGIN_LOAD", RuleType::WHOLE_WORD);
+        std::vector<ListenerRule> sysRules;
+        sysRules.push_back(domainNameRule);
+        auto ret = HiSysEventManager::AddEventListener(testListener, sysRules);
+        if (ret == 0) {
+            HiSysEventManager::RemoveListener(testListener);
+        }
+    }
+    ```
+
+#### C HiSysEvent订阅开发实例
+
+假设业务模块需要订阅事件领域为HIVIEWDFX、事件名称为PLUGIN_LOAD的所有事件，其完整使用示例如下所示：
+
+1. 在业务模块的在BUILD.gn里增加hisysevent部件的libhisysevent及libhisyseventmanager依赖。
+
+    ```c++
+    external_deps = [ "hisysevent:libhisyseventmanager" ]
+
+    // for strcpy_s
+    deps = [ "//third_party/bounds_checking_function:libsec_shared" ]
+    ```
+
+2. 在业务模块的TestEventListening()函数中，调用订阅接口去订阅事件，业务结束时移除事件订阅。
+
+    ```c++
+    #include <securec.h>
+
+    #include "hisysevent_manager_c.h"
+
+    void OnEventTest(HiSysEventRecord record)
+    {
+        printf("OnEventTest: event=%s", record.jsonStr);
+    }
+
+    void OnServiceDiedTest()
+    {
+        printf("OnServiceDied");
+    }
+
+    void TestEventListening()
+    {
+        HiSysEventWatcher watcher;
+        watcher.OnEvent = OnEventTest;
+        watcher.OnServiceDied = OnServiceDiedTest;
+        constexpr char DOMAIN[] = "HIVIEWDFX";
+        constexpr char NAME[] = "PLUGIN_LOAD";
+        HiSysEventWatchRule domainNameRule;
+        (void)strcpy_s(domainNameRule.domain, strlen(DOMAIN) + 1, DOMAIN);
+        (void)strcpy_s(domainNameRule.name, strlen(NAME) + 1, NAME);
+        domainNameRule.ruleType = 1;
+        domainNameRule.eventType = 0;
+        HiSysEventWatchRule rules[] = {domainNameRule};
+        int ret = OH_HiSysEvent_Add_Watcher(&watcher, rules, sizeof(rules) / sizeof(HiSysEventWatchRule));
+        if (ret == 0) {
+           ret = OH_HiSysEvent_Remove_Watcher(&watcher);
        }
-       std::cout << sysEvent.AsJson() << std::endl;
-   }
-
-   void DemoListener::OnServiceDied()
-   {
-       std::cout << std::string("service disconnect, exit") << std::endl;
-       exit(0);
-   }
-   ```
-
-   通过HiSysEventManager类提供的AddEventListener接口注册回调对象，完成对HiSysEvent的订阅：
-
-   ```
-   auto demoListener = std::make_shared<DemoListener>();
-   // 事件标签规则订阅，规则类型为默认的全词匹配类型
-   ListenerRule tagRule("dfx");
-   // 事件标签规则订阅，规则类型为正则匹配类型
-   ListenerRule regRule("dfx.*", RuleType::REGULAR);
-   // 事件领域及事件名称规则订阅，规则类型为前缀匹配类型
-   ListenerRule domainNameRule("HIVIEWDFX", "APP_USAGE", RuleType::PREFIX);
-   std::vector<ListenerRule> sysRules;
-   sysRules.push_back(tagRule);
-   sysRules.push_back(regRule);
-   sysRules.push_back(domainNameRule);
-   HiSysEventManager::AddEventListener(demoListener, sysRules);
-   ```
-
-2. 编译配置
-   在BUILD.gn编译文件中，需要添加依赖hisysevent_native组件的libhisysevent及libhisyseventmanager库：
-
-   ```
-   external_deps = [
-     "hisysevent_native:libhisysevent",
-     "hisysevent_native:libhisyseventmanager",
-   ]
-   ```
+    }
+    ```

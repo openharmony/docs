@@ -265,8 +265,8 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 2. 运行。
 
-    - 使用hdc_std连接rk3568开发板，并将demo和mobilenetv2.ms推送到设备中的相同目录。
-    - 使用hdc_std shell进入开发板，并进入demo所在的目录执行如下命令，即可得到结果。
+    - 使用hdc_std连接设备，并将demo和mobilenetv2.ms推送到设备中的相同目录。
+    - 使用hdc_std shell进入设备，并进入demo所在的目录执行如下命令，即可得到结果。
 
     ```shell
     ./demo mobilenetv2.ms

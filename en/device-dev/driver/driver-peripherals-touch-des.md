@@ -3,11 +3,11 @@
 
 ## Overview
 
-### Function Introduction
+### Functions
 
 The touchscreen driver powers on its integrated circuit (IC), initializes hardware pins, registers interrupts, configures the communication (I2C or SPI) interface, sets input configurations, and downloads and updates firmware.
 
-The touchscreen driver is developed based on the OpenHarmony input driver model, which applies basic APIs of the operating system abstraction layer (OSAL) and platform interface layer on the OpenHarmony Hardware Driver Foundation [(HDF)](../driver/driver-hdf-development.md). Common APIs include the bus communication APIs and OS native APIs (such as memory, lock, thread, and timer APIs). The OSAL and platform APIs shield the differences of underlying hardware. This allows the use of the touchscreen driver across platforms and OSs. In this regard, you can develop the touchscreen driver only once and deploy it on multiple devices.
+The touchscreen driver is developed based on the OpenHarmony input driver model, which applies basic APIs of the operating system abstraction layer (OSAL) and platform interface layer on the OpenHarmony Hardware Driver Foundation [(HDF)](driver-overview-foundation.md). Common APIs include the bus communication APIs and OS native APIs (such as memory, lock, thread, and timer APIs). The OSAL and platform APIs shield the differences of underlying hardware. This allows the use of the touchscreen driver across platforms and OSs. In this regard, you can develop the touchscreen driver only once and deploy it on multiple devices.
 
 ### Working Principles
 
@@ -23,9 +23,7 @@ The input driver model consists of the following:
 - Common input drivers: provide common APIs that are applicable to different input devices (such as the common driver APIs for touchscreens). The APIs can be used to initialize board-specific hardware, handle hardware interrupts, and register input devices with the Input Device Manager.
 - Input chip drivers: provide differentiated APIs for the drivers form different vendors. You can use these APIs to develop your drivers with minimum modification.
 - Event Hub: provides a unified channel for different input devices to report input events.
-- HDF input config: parses and manages the board-specific and private configuration of input devices.
-
-The input driver model provides configuration files to help you quickly develop your drivers.
+- HDF input config: parses and manages the board-specific and private configuration of input devices.<br>The input driver model provides configuration files to help you quickly develop your drivers.
 
 
 ## How to Develop
@@ -125,7 +123,7 @@ The load process of the input driver model (for the touchscreen driver) is as fo
 
 The development process of the touchscreen driver is as follows:
 
-1. Configure device information. <br>The input driver is developed based on the HDF. The HDF loads and starts the driver in a unified manner. You need to configure the driver information, such as whether to load the driver and the loading priority, in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about how to configure the driver, see [Driver Development](../driver/driver-hdf-development.md#how-to-develop).
+1. Configure device information. <br>The input driver is developed based on the HDF. The HDF loads and starts the driver in a unified manner. You need to configure the driver information, such as whether to load the driver and the loading priority, in the configuration file. Then, the HDF starts the registered driver modules one by one. For details about the driver configuration, see [HDF Driver Development Process](driver-hdf-manage.md).
 
 2. Configure board-specific information and touchscreen private information.<br>Configure the I/O pin functions. For example, set registers for the I2C pins on the board for the touchscreen to enable I2C communication.
 
@@ -138,7 +136,7 @@ The following example describes how to develop the touchscreen driver for an RK3
 
 1. Configure device information.
 
-   Configure the modules of the input driver model in **drivers/adapter/khdf/linux/hcs/device_info/device_info.hcs**. For details, see [Driver Development](../driver/driver-hdf-development.md). Then, the HDF loads the modules of the input model in sequence based on the configuration information.
+   Configure the modules of the input driver model in **vendor/hihope/rk3568/hdf_config/khdf/device_info/device_info.hcs**. For details, see [HDF Driver Development Process](driver-hdf-manage.md). The HDF loads modules of the input model in sequence based on the configuration information.
 
    ```c
    input :: host {
@@ -183,7 +181,7 @@ The following example describes how to develop the touchscreen driver for an RK3
 
 2. Configure board-specific and private data for the touchscreen.
 
-   Configure the data in **drivers/adapter/khdf/linux/hcs/input/input_config.hcs**. The following is an example. You can modify the configuration as required.
+   Configure the data in **vendor/hihope/rk3568/hdf_config/khdf/input/input_config.hcs**. The following is an example. You can modify the configuration as required.
 
    ```c
    root {
@@ -196,7 +194,7 @@ The following example describes how to develop the touchscreen driver for an RK3
                            inputType = 0;           // 0 indicates touchscreen.
                            solutionX = 480; 
                            solutionY = 960;
-                           devName = "main_touch"; // Device name.
+                           devName = "main_touch";  // Device name.
                        }
                        busConfig {
                            busType = 0;             // 0 indicates I2C.
@@ -272,7 +270,9 @@ The following example describes how to develop the touchscreen driver for an RK3
 
 3. Add the touchscreen driver.
 
-   Implement the touchscreen-specific APIs in **divers/framework/model/input/driver/touchscreen/touch_gt911.c**. The following uses the APIs for obtaining and parsing device data as an example. You can implement the related APIs to match your development.
+   Implement the touchscreen-specific APIs in **drivers/hdf_core/framework/model/input/driver/touchscreen/touch_gt911.c**. 
+
+   The following uses the APIs for obtaining and parsing device data as an example. You can implement the related APIs to match your development.
 
    ```c
    /* Parse the touch reporting data read from the touchscreen into coordinates. */

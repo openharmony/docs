@@ -12,46 +12,49 @@ Before obtaining or setting the audio effect mode, you must call **createAudioRe
 
 1. Import the audio module.
 
-  ```js
+  ```ts
   import audio from '@ohos.multimedia.audio';
   ```
 
 2. Configure audio rendering parameters and create an **AudioRenderer** instance. For details about the audio rendering parameters, see [AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8). For the **AudioRenderer** instance, the audio effect mode **EFFECT_DEFAULT** is used by default.
 
-  ```js
-  let audioStreamInfo = {
+  ```ts
+  import audio from '@ohos.multimedia.audio';
+  import { BusinessError } from '@ohos.base';  
+  let audioStreamInfo: audio.AudioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
     channels: audio.AudioChannel.CHANNEL_1,
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
   };
 
-  let audioRendererInfo = {
+  let audioRendererInfo: audio.AudioRendererInfo = {
     content: audio.ContentType.CONTENT_TYPE_SPEECH,
     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
     rendererFlags: 0
   };
 
-  let audioRendererOptions = {
+  let audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: audioStreamInfo,
     rendererInfo: audioRendererInfo
   };
 
-  audio.createAudioRenderer(audioRendererOptions, (err, data) => {
+  audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, data: audio.AudioRenderer) => {
     if (err) {
       console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
       return;
     } else {
       console.info('Invoke createAudioRenderer succeeded.');
-      let audioRenderer = data;
+      let audioRenderer: audio.AudioRenderer = data;
     }
   });
   ```
 
 ### Obtaining the Audio Effect Mode of the Playback Instance
 
-  ```js
-  audioRenderer.getAudioEffectMode((err, effectmode) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';  
+  audioRenderer.getAudioEffectMode((err: BusinessError, effectmode: audio.AudioEffectMode) => {
     if (err) {
       console.error(`Failed to get params, code is ${err.code}, message is ${err.message}`);
       return;    
@@ -65,8 +68,9 @@ Before obtaining or setting the audio effect mode, you must call **createAudioRe
 
 Disable the system audio effect.
 
-  ```js
-  audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';  
+  audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
       return;
@@ -78,8 +82,9 @@ Disable the system audio effect.
 
 Enable the default system audio effect.
 
-  ```js
-  audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';  
+  audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
       return;
@@ -91,14 +96,14 @@ Enable the default system audio effect.
 
 ## Obtaining the Global Audio Effect Mode
 
-You can obtain the global audio effect mode corresponding to a specific audio content type (specified by **ContentType**) and audio stream usage (specified by **StreamUsage**).
+You can obtain the global audio effect mode corresponding to a specific audio stream usage (specified by **StreamUsage**).
 For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an **AudioStreamManager** instance.
 
 ### Creating an AudioStreamManager Instance
 
 Create an **AudioStreamManager** instance. Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
 
-   ```js
+   ```ts
    import audio from '@ohos.multimedia.audio';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -106,10 +111,11 @@ Create an **AudioStreamManager** instance. Before using **AudioStreamManager** A
 
 ### Querying the Audio Effect Mode of the Corresponding Scenario
 
-  ```js
-  audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';  
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
     if (err) {
-      console.error(`Failed to get effect info array`);
+      console.error('Failed to get effect info array');
       return;    
     } else {
       console.info(`getAudioEffectInfoArray: ${audioEffectInfoArray}`);

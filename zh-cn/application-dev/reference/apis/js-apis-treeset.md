@@ -44,7 +44,7 @@ TreeSet的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
 
 **错误码：**
 
@@ -57,7 +57,7 @@ TreeSet的构造函数。
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
 ```
 
 
@@ -86,7 +86,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const treeSet = new TreeSet();
+const treeSet : TreeSet<string | number | boolean | Object>  = new TreeSet();
 let result = treeSet.isEmpty();
 ```
 
@@ -122,11 +122,10 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<number> = new TreeSet();
 treeSet.add(123);
 let result = treeSet.has(123);
 ```
-
 
 ### getFirstValue
 
@@ -153,7 +152,7 @@ getFirstValue(): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
@@ -185,7 +184,7 @@ getLastValue(): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
@@ -223,7 +222,7 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 let result = treeSet.add("squirrel");
 ```
 
@@ -259,7 +258,7 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
@@ -297,7 +296,7 @@ getLowerValue(key: T): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
@@ -336,7 +335,7 @@ getHigherValue(key: T): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
@@ -369,7 +368,7 @@ popFirst(): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
@@ -401,7 +400,7 @@ popLast(): T
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
@@ -427,7 +426,7 @@ clear(): void
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
@@ -459,14 +458,14 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let iter = treeSet.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let it = treeSet.values();
+let t: IteratorResult<string> = it.next();
+while(!t.done) {
+  console.log("TreeSet: " + t.value);
+  t = it.next()
 }
 ```
 
@@ -484,14 +483,14 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的value元素。 |
-| key | T | 否 | 当前遍历到的key元素。 |
-| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| value | T | 否 | 当前遍历到的value元素，默认值为首个键值对的值。 |
+| key | T | 否 | 当前遍历到的key元素，默认值为首个键值对的键。 |
+| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 
@@ -504,11 +503,11 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
-treeSet.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+treeSet.forEach((value ?: string, key ?: string) :void => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -538,15 +537,14 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let iter = treeSet.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let it = treeSet.entries();
+let t: IteratorResult<Object[]> = it.next();
+while(!t.done) {
+  console.log("TreeSet: " + t.value);
+  t = it.next()
 }
 ```
 
@@ -576,18 +574,18 @@ while(temp != undefined) {
 **示例：**
 
 ```ts
-let treeSet = new TreeSet();
+
+let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-  
+let numbers = Array.from(treeSet.values())
 // 使用方法一：
-for (let item of treeSet) { 
+for (let item of numbers) {
   console.log("value:" + item);
 }
-
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;

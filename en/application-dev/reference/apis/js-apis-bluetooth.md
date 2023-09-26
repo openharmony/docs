@@ -5,7 +5,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
 
 
 
@@ -38,7 +38,7 @@ Enables Bluetooth.
 **Example**
 
 ```js
-let enable = bluetooth.enableBluetooth();
+let enable : boolean = bluetooth.enableBluetooth();
 ```
 
 
@@ -64,7 +64,7 @@ Disables Bluetooth.
 **Example**
 
 ```js
-let disable = bluetooth.disableBluetooth();
+let disable : boolean = bluetooth.disableBluetooth();
 ```
 
 
@@ -90,7 +90,7 @@ Obtains the name of the local Bluetooth device.
 **Example**
 
 ```js
-let localName = bluetooth.getLocalName();
+let localName : string = bluetooth.getLocalName();
 ```
 
 
@@ -116,7 +116,7 @@ Obtains the Bluetooth state.
 **Example**
 
 ```js
-let state = bluetooth.getState();
+let state : bluetooth.BluetoothState = bluetooth.getState();
 ```
 
 
@@ -142,7 +142,7 @@ Obtains the local profile connection state.
 **Example**
 
 ```js
-let connectionState = bluetooth.getBtConnectionState();
+let connectionState : bluetooth.ProfileConnectionState = bluetooth.getBtConnectionState();
 ```
 
 
@@ -174,7 +174,7 @@ Sets the name of the local Bluetooth device.
 **Example**
 
 ```js
-let ret = bluetooth.setLocalName('device_name');
+let ret : boolean = bluetooth.setLocalName('device_name');
 ```
 
 
@@ -207,7 +207,7 @@ Initiates Bluetooth pairing.
 
 ```js
 // The address can be scanned.
-let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
+let result : boolean = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -215,9 +215,9 @@ let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 
 getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection status of a specified profile.
+Obtains the connection status of the specified profile.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getProfileConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetprofileconnectionstate).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
@@ -239,7 +239,7 @@ Obtains the connection status of a specified profile.
 **Example**
 
 ```js
-let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let result : bluetooth.ProfileConnectionState = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 
@@ -273,7 +273,7 @@ Cancels a paired remote device.
 **Example**
 
 ```js
-let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+let result : boolean = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -305,7 +305,7 @@ Obtains the name of the remote Bluetooth device.
 **Example**
 
 ```js
-let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+let remoteDeviceName : string = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -337,7 +337,7 @@ Obtains the class of the remote Bluetooth device.
 **Example**
 
 ```js
-let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+let remoteDeviceClass : bluetooth.DeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 ```
 
 
@@ -363,7 +363,7 @@ Obtains the paired devices.
 **Example**
 
 ```js
-let devices = bluetooth.getPairedDevices();
+let devices : Array<string> = bluetooth.getPairedDevices();
 ```
 
 
@@ -397,7 +397,8 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 
 ```js
 // The device can be discovered and connected only when the discoverable and connectable mode is used.
-let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+let result : boolean = bluetooth.setBluetoothScanMode(bluetooth.ScanMode
+    .SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 ```
 
 
@@ -423,7 +424,7 @@ Obtains the Bluetooth scan mode.
 **Example**
 
 ```js
-let scanMode = bluetooth.getBluetoothScanMode();
+let scanMode : bluetooth.ScanMode = bluetooth.getBluetoothScanMode();
 ```
 
 
@@ -449,12 +450,12 @@ Starts Bluetooth scan to discover remote devices.
 **Example**
 
 ```js
-let deviceId;
-function onReceiveEvent(data) {
+let deviceId : Array<string>;
+function onReceiveEvent(data : Array<string>) {
     deviceId = data;
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-let result = bluetooth.startBluetoothDiscovery();
+let result : boolean = bluetooth.startBluetoothDiscovery();
 ```
 
 
@@ -480,7 +481,7 @@ Stops Bluetooth scan.
 **Example**
 
 ```js
-let result = bluetooth.stopBluetoothDiscovery();
+let result : boolean = bluetooth.stopBluetoothDiscovery();
 ```
 
 
@@ -514,7 +515,7 @@ Sets the device pairing confirmation.
 
 ```js
 // Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
-function onReceivePinRequiredEvent(data) { // data is the input parameter for the pairing request.
+function onReceivePinRequiredEvent(data : bluetooth.PinRequiredParam) { // data is the input parameter for the pairing request.
     console.info('pin required  = '+ JSON.stringify(data));
     bluetooth.setDevicePairingConfirmation(data.deviceId, true);
 }
@@ -549,7 +550,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data is a set of Bluetooth device addresses.
+function onReceiveEvent(data : Array<string>) { // data is an array of Bluetooth device addresses.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
@@ -583,7 +584,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
@@ -618,7 +619,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data is the pairing request parameter.
+function onReceiveEvent(data : bluetooth.PinRequiredParam) { // data is the pairing request parameter.
     console.info('pin required = '+ JSON.stringify(data));
 }
 bluetooth.on('pinRequired', onReceiveEvent);
@@ -652,7 +653,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
 bluetooth.on('pinRequired', onReceiveEvent);
@@ -664,7 +665,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth pairing state change events.
+Subscribes to the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageronbondstatechange).
@@ -687,7 +688,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
+function onReceiveEvent(data : bluetooth.BondStateParam) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -698,7 +699,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth pairing state change events.
+Unsubscribes from the Bluetooth pairing state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffbondstatechange).
@@ -721,7 +722,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -733,7 +734,7 @@ bluetooth.off('bondStateChange', onReceiveEvent);
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to the Bluetooth connection state change events.
+Subscribes to the Bluetooth connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageronstatechange).
@@ -756,7 +757,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : boolean) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -767,7 +768,7 @@ bluetooth.on('stateChange', onReceiveEvent);
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from the Bluetooth connection state change events.
+Unsubscribes from the Bluetooth connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffstatechange).
@@ -790,7 +791,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
 bluetooth.on('stateChange', onReceiveEvent);
@@ -823,7 +824,7 @@ Creates a server listening socket.
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -831,7 +832,7 @@ function serverSocket(code, number) {
   }
 }
 
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption : bluetooth.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 bluetooth.sppListen('server1', sppOption, serverSocket);
 ```
 
@@ -858,7 +859,7 @@ Listens for a connection to be made to this socket from the client and accepts i
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -866,7 +867,7 @@ function serverSocket(code, number) {
   }
 }
 let clientNumber = -1;
-function acceptClientSocket(code, number) {
+function acceptClientSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth clientSocket Number: ' + number);
@@ -904,7 +905,7 @@ Initiates an SPP connection to a remote device from the client.
 ```js
 
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -912,7 +913,7 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption : bluetooth.SppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 ```
 
@@ -938,7 +939,7 @@ Closes the listening socket of the server.
 
 ```js
 let serverNumber = -1;
-function serverSocket(code, number) {
+function serverSocket(code : BusinessError, number : number) {
   console.log('bluetooth error code: ' + code.code);
   if (code.code == 0) {
     console.log('bluetooth serverSocket Number: ' + number);
@@ -971,7 +972,7 @@ Closes the client socket.
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1011,7 +1012,7 @@ Writes data to the remote device through the socket.
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1022,7 +1023,7 @@ function clientSocket(code, number) {
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
-let ret = bluetooth.sppWrite(clientNumber, arrayBuffer);
+let ret : boolean = bluetooth.sppWrite(clientNumber, arrayBuffer);
 if (ret) {
   console.log('spp write successfully');
 } else {
@@ -1058,7 +1059,7 @@ No value is returned.
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1066,7 +1067,7 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-function dataRead(dataBuffer) {
+function dataRead(dataBuffer : ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
@@ -1101,7 +1102,7 @@ No value is returned.
 
 ```js
 let clientNumber = -1;
-function clientSocket(code, number) {
+function clientSocket(code : BusinessError, number : number) {
   if (code.code != 0) {
     return;
   }
@@ -1139,13 +1140,13 @@ Obtains a profile object.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
 
 ## bluetooth.BLE
 
-### bluetooth.BLE.createGattServer<sup>(deprecated)</sup>
+### createGattServer<sup>(deprecated)</sup>
 
 createGattServer(): GattServer
 
@@ -1165,11 +1166,11 @@ Creates a **GattServer** instance.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 ```
 
 
-### bluetooth.BLE.createGattClientDevice<sup>(deprecated)</sup>
+### createGattClientDevice<sup>(deprecated)</sup>
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
@@ -1195,11 +1196,11 @@ Creates a **GattClientDevice** instance.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### bluetooth.BLE.getConnectedBLEDevices<sup>(deprecated)</sup>
+### getConnectedBLEDevices<sup>(deprecated)</sup>
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
@@ -1221,11 +1222,11 @@ Obtains the BLE devices connected to this device.
 **Example**
 
 ```js
-let result = bluetooth.BLE.getConnectedBLEDevices();
+let result : Array<string> = bluetooth.BLE.getConnectedBLEDevices();
 ```
 
 
-### bluetooth.BLE.startBLEScan<sup>(deprecated)</sup>
+### startBLEScan<sup>(deprecated)</sup>
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
@@ -1252,26 +1253,28 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on("BLEDeviceFind", onReceiveEvent);
+let scanOptions : bluetooth.ScanOptions = {
+    interval: 500,
+    dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
+    matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
+}
+
+let scanFilter : bluetooth.ScanFilter = {
+    deviceId:"XX:XX:XX:XX:XX:XX",
+    name:"test",
+    serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+}
 bluetooth.BLE.startBLEScan(
-    [{
-        deviceId:"XX:XX:XX:XX:XX:XX",
-        name:"test",
-        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
-    }],
-    {
-        interval: 500,
-        dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
-        matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
-    }
+    [scanFilter], scanOptions
 );
 ```
 
 
-### bluetooth.BLE.stopBLEScan<sup>(deprecated)</sup>
+### stopBLEScan<sup>(deprecated)</sup>
 
 stopBLEScan(): void
 
@@ -1295,7 +1298,7 @@ bluetooth.BLE.stopBLEScan();
 ```
 
 
-### bluetooth.BLE.on('BLEDeviceFind')<sup>(deprecated)</sup>
+### on('BLEDeviceFind')<sup>(deprecated)</sup>
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1322,14 +1325,14 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 ```
 
 
-### bluetooth.BLE.off('BLEDeviceFind')<sup>(deprecated)</sup>
+### off('BLEDeviceFind')<sup>(deprecated)</sup>
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
@@ -1356,7 +1359,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : Array<bluetooth.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
@@ -1391,8 +1394,8 @@ Obtains the connected devices.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let retArray = a2dpSrc.getConnectionDevices();
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let retArray : Array<string> = a2dpSrc.getConnectionDevices();
 ```
 
 ### getDeviceState<sup>8+</sup><sup>(deprecated)</sup><a name="getDeviceState"></a>
@@ -1423,8 +1426,8 @@ Obtains the connection state of the profile.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let ret : bluetooth.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
 ## A2dpSourceProfile
@@ -1460,8 +1463,8 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let ret : boolean = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1493,8 +1496,8 @@ Disconnects an A2DP connection.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1502,7 +1505,7 @@ let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the A2DP connection state change events.
+Subscribes to the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange).
@@ -1523,10 +1526,10 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1535,7 +1538,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the A2DP connection state change events.
+Unsubscribes from the A2DP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange).
@@ -1556,10 +1559,10 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1591,8 +1594,8 @@ Obtains the playing state of a device.
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let state : bluetooth.PlayingState = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1629,9 +1632,9 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let ret : boolean = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1663,9 +1666,9 @@ Disconnects the HFP connection of a device.
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile = bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let ret : boolean = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
 
@@ -1673,7 +1676,7 @@ let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HFP connection state change events.
+Subscribes to the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1).
@@ -1694,11 +1697,11 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1707,7 +1710,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HFP connection state change events.
+Unsubscribes from the HFP connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1).
@@ -1728,11 +1731,11 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) {
+function onReceiveEvent(data : bluetooth.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg : bluetooth.HandsFreeAudioGatewayProfile= bluetooth.getProfile(bluetooth.ProfileId
+    .PROFILE_HANDS_FREE_AUDIO_GATEWAY);
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1784,32 +1787,35 @@ serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.startAdvertising({
-            interval:150,
-            txPower:60,
-            connectable:true,
-        },{
-            serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                 manufactureId:4567,
-                 manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                 serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
-            }],
-        },{
-            serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
-            manufactureData:[{
-                 manufactureId:1789,
-                 manufactureValue:manufactureValueBuffer.buffer
-            }],
-            serviceData:[{
-                 serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
-            }],
-});
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let setting : bluetooth.AdvertiseSetting = {
+    interval:150,
+    txPower:60,
+    connectable:true,
+}
+
+let manufactureData : bluetooth.ManufactureData = {
+    manufactureId:4567,
+    manufactureValue:manufactureValueBuffer.buffer
+}
+
+let serviceData : bluetooth.ServiceData = {
+    serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+    serviceValue:serviceValueBuffer.buffer
+}
+
+let advData : bluetooth.AdvertiseData = {
+    serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
+    manufactureData:[manufactureData],
+    serviceData:[serviceData],
+}
+
+let advResponse : bluetooth.AdvertiseData = {
+    serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
+    manufactureData:[manufactureData],
+    serviceData:[serviceData],
+}
+gattServer.startAdvertising(setting, advData, advResponse);
 ```
 
 
@@ -1833,7 +1839,7 @@ No value is returned.
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.stopAdvertising();
 ```
 
@@ -1867,31 +1873,31 @@ Adds a service to this GATT server.
 
 ```js
 // Create descriptors.
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // Create characteristics.
-let characteristics = [];
+let characteristics : Array<bluetooth.BLECharacteristic> = [];
 let arrayBufferC = new ArrayBuffer(8);
 let cccV = new Uint8Array(arrayBufferC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let characteristicN = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristicN : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // Create a gattService instance.
-let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
+let gattService : bluetooth.GattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.addService(gattService);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let ret : boolean = gattServer.addService(gattService);
 if (ret) {
    console.log("add service successfully");
 } else {
@@ -1928,7 +1934,7 @@ Removes a service from this GATT server.
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.removeService('00001810-0000-1000-8000-00805F9B34FB');
 ```
 
@@ -1949,7 +1955,7 @@ Closes this GATT server to unregister it from the protocol stack. After this met
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.close();
 ```
 
@@ -1984,20 +1990,20 @@ Notifies the connected client device when a characteristic value changes.
 
 ```js
 // Create descriptors.
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let notifyCharacteristic : bluetooth.NotifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
-let server = bluetooth.BLE.createGattServer();
+let server : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
 ```
 
@@ -2034,7 +2040,7 @@ Sends a response to a read or write request from the GATT client.
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-let serverResponse = {
+let serverResponse : bluetooth.ServerResponse = {
     "deviceId": "XX:XX:XX:XX:XX:XX",
     "transId": 0,
     "status": 0,
@@ -2042,8 +2048,8 @@ let serverResponse = {
     "value": arrayBufferCCC,
 };
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.sendResponse(serverResponse);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+let ret : boolean = gattServer.sendResponse(serverResponse);
 if (ret) {
   console.log('bluetooth sendResponse successfully');
 } else {
@@ -2082,15 +2088,16 @@ No value is returned.
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-function ReadCharacteristicReq(CharacteristicReadReq) {
-  let deviceId = CharacteristicReadReq.deviceId;
-  let transId = CharacteristicReadReq.transId;
-  let offset = CharacteristicReadReq.offset;
-  let characteristicUuid = CharacteristicReadReq.characteristicUuid;
+function ReadCharacteristicReq(CharacteristicReadReq : bluetooth.CharacteristicReadReq) {
+  let deviceId : string = CharacteristicReadReq.deviceId;
+  let transId : number = CharacteristicReadReq.transId;
+  let offset : number = CharacteristicReadReq.offset;
+  let characteristicUuid : string = CharacteristicReadReq.characteristicUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2098,7 +2105,7 @@ function ReadCharacteristicReq(CharacteristicReadReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("characteristicRead", ReadCharacteristicReq);
 ```
 
@@ -2130,7 +2137,7 @@ No value is returned.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicRead");
 ```
 
@@ -2164,19 +2171,20 @@ No value is returned.
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-function WriteCharacteristicReq(CharacteristicWriteReq) {
-  let deviceId = CharacteristicWriteReq.deviceId;
-  let transId = CharacteristicWriteReq.transId;
-  let offset = CharacteristicWriteReq.offset;
-  let isPrep = CharacteristicWriteReq.isPrep;
-  let needRsp = CharacteristicWriteReq.needRsp;
-  let value =  new Uint8Array(CharacteristicWriteReq.value);
-  let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
+function WriteCharacteristicReq(CharacteristicWriteReq : bluetooth.CharacteristicWriteReq) {
+  let deviceId : string = CharacteristicWriteReq.deviceId;
+  let transId : number = CharacteristicWriteReq.transId;
+  let offset : number = CharacteristicWriteReq.offset;
+  let isPrep : boolean = CharacteristicWriteReq.isPrep;
+  let needRsp : boolean = CharacteristicWriteReq.needRsp;
+  let value =  new Uint8Array(arrayBufferCCC);
+  let characteristicUuid : string = CharacteristicWriteReq.characteristicUuid;
 
-  cccValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+  cccValue.set(new Uint8Array(value));
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2184,7 +2192,7 @@ function WriteCharacteristicReq(CharacteristicWriteReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("characteristicWrite", WriteCharacteristicReq);
 ```
 
@@ -2216,7 +2224,7 @@ No value is returned.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("characteristicWrite");
 ```
 
@@ -2251,15 +2259,16 @@ No value is returned.
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
-function ReadDescriptorReq(DescriptorReadReq) {
-  let deviceId = DescriptorReadReq.deviceId;
-  let transId = DescriptorReadReq.transId;
-  let offset = DescriptorReadReq.offset;
-  let descriptorUuid = DescriptorReadReq.descriptorUuid;
+function ReadDescriptorReq(DescriptorReadReq : bluetooth.DescriptorReadReq) {
+  let deviceId : string = DescriptorReadReq.deviceId;
+  let transId : number = DescriptorReadReq.transId;
+  let offset : number = DescriptorReadReq.offset;
+  let descriptorUuid : string = DescriptorReadReq.descriptorUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, 
+  offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2267,7 +2276,7 @@ function ReadDescriptorReq(DescriptorReadReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("descriptorRead", ReadDescriptorReq);
 ```
 
@@ -2299,7 +2308,7 @@ No value is returned.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorRead");
 ```
 
@@ -2333,19 +2342,19 @@ No value is returned.
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-function WriteDescriptorReq(DescriptorWriteReq) {
-  let deviceId = DescriptorWriteReq.deviceId;
-  let transId = DescriptorWriteReq.transId;
-  let offset = DescriptorWriteReq.offset;
-  let isPrep = DescriptorWriteReq.isPrep;
-  let needRsp = DescriptorWriteReq.needRsp;
-  let value = new Uint8Array(DescriptorWriteReq.value);
-  let descriptorUuid = DescriptorWriteReq.descriptorUuid;
+function WriteDescriptorReq(DescriptorWriteReq : bluetooth.DescriptorWriteReq) {
+  let deviceId : string = DescriptorWriteReq.deviceId;
+  let transId : number = DescriptorWriteReq.transId;
+  let offset : number = DescriptorWriteReq.offset;
+  let isPrep : boolean = DescriptorWriteReq.isPrep;
+  let needRsp : boolean = DescriptorWriteReq.needRsp;
+  let value = new Uint8Array(arrayBufferDesc);
+  let descriptorUuid : string = DescriptorWriteReq.descriptorUuid;
 
-  descValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+  descValue.set(new Uint8Array(value));
+  let serverResponse : bluetooth.ServerResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
+  let ret : boolean = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
   } else {
@@ -2353,8 +2362,8 @@ function WriteDescriptorReq(DescriptorWriteReq) {
   }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.on("descriptorRead", WriteDescriptorReq);
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
+gattServer.on("descriptorWrite", WriteDescriptorReq);
 ```
 
 
@@ -2385,7 +2394,7 @@ No value is returned.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
@@ -2394,7 +2403,7 @@ gattServer.off("descriptorWrite");
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('connectStateChange')](js-apis-bluetoothManager.md#onconnectstatechange).
@@ -2417,12 +2426,12 @@ No value is returned.
 **Example**
 
 ```js
-function Connected(BLEConnectChangedState) {
-  let deviceId = BLEConnectChangedState.deviceId;
-  let status = BLEConnectChangedState.state;
+function Connected(BLEConnectChangedState : bluetooth.BLEConnectChangedState) {
+  let deviceId : string = BLEConnectChangedState.deviceId;
+  let status : ProfileConnectionState = BLEConnectChangedState.state;
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
 ```
 
@@ -2431,7 +2440,7 @@ gattServer.on("connectStateChange", Connected);
 
 off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('connectStateChange')](js-apis-bluetoothManager.md#offconnectstatechange).
@@ -2454,7 +2463,7 @@ No value is returned.
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer : bluetooth.GattServer = bluetooth.BLE.createGattServer();
 gattServer.off("connectStateChange");
 ```
 
@@ -2486,8 +2495,8 @@ Initiates a connection to the remote BLE device.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.connect();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.connect();
 ```
 
 
@@ -2513,8 +2522,8 @@ Disconnects from the remote BLE device.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.disconnect();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.disconnect();
 ```
 
 
@@ -2540,8 +2549,8 @@ Closes this GATT client to unregister it from the protocol stack. After this met
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.close();
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let ret : boolean = device.close();
 ```
 
 
@@ -2574,9 +2583,9 @@ No value is returned.
 
 ```js
 // Callback
-function getServices(code, gattServices) {
+function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
-      let services = gattServices;
+      let services : Array<bluetooth.GattService> = gattServices;
       console.log('bluetooth code is ' + code.code);
       console.log("bluetooth services size is ", services.length);
 
@@ -2586,7 +2595,7 @@ function getServices(code, gattServices) {
   }
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
 device.getServices(getServices);
 ```
@@ -2615,9 +2624,9 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 ```js
 // Promise
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice= bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.connect();
-device.getServices().then(result => {
+device.getServices().then((result : Array<bluetooth.GattService>) => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -2650,7 +2659,7 @@ No value is returned.
 **Example**
 
 ```js
-function readCcc(code, BLECharacteristic) {
+function readCcc(code : BusinessError, BLECharacteristic : bluetooth.BLECharacteristic) {
   if (code.code != 0) {
       return;
   }
@@ -2659,12 +2668,12 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
-let bufferDesc = new ArrayBuffer(8);
-let descV = new Uint8Array(bufferDesc);
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
+let bufferDesc : ArrayBuffer = new ArrayBuffer(8);
+let descV : Uint8Array = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2672,7 +2681,7 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
@@ -2708,12 +2717,12 @@ Reads the characteristic value of the specific service of the remote BLE device.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2721,7 +2730,7 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
@@ -2756,7 +2765,7 @@ No value is returned.
 **Example**
 
 ```js
-function readDesc(code, BLEDescriptor) {
+function readDesc(code : BusinessError, BLEDescriptor : bluetooth.BLEDescriptor) {
   if (code.code != 0) {
       return;
   }
@@ -2765,11 +2774,11 @@ function readDesc(code, BLEDescriptor) {
   console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 device.readDescriptorValue(descriptor, readDesc);
@@ -2804,11 +2813,11 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 device.readDescriptorValue(descriptor);
@@ -2843,12 +2852,12 @@ Writes a characteristic value to the remote BLE device.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let descriptors = [];
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
 descriptors[0] = descriptor;
@@ -2856,10 +2865,10 @@ descriptors[0] = descriptor;
 let bufferCCC = new ArrayBuffer(8);
 let cccV = new Uint8Array(bufferCCC);
 cccV[0] = 1;
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
-let retWriteCcc = device.writeCharacteristicValue(characteristic);
+let retWriteCcc : boolean = device.writeCharacteristicValue(characteristic);
 if (retWriteCcc) {
   console.log('write characteristic successfully');
 } else {
@@ -2896,14 +2905,14 @@ Writes binary data to the specific descriptor of the remote BLE device.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-let retWriteDesc = device.writeDescriptorValue(descriptor);
+let retWriteDesc : boolean = device.writeDescriptorValue(descriptor);
 if (retWriteDesc) {
   console.log('bluetooth write descriptor successfully');
 } else {
@@ -2940,7 +2949,7 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setBLEMtuSize(128);
 ```
 
@@ -2975,18 +2984,18 @@ Sets the function of notifying the GATT client when the characteristic value of 
 
 ```js
 // Create descriptors.
-let descriptors = [];
+let descriptors : Array<bluetooth.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
 let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let descriptor : bluetooth.BLEDescriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
-let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+let characteristic : bluetooth.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.setNotifyCharacteristicChanged(characteristic, false);
 ```
 
@@ -2995,7 +3004,7 @@ device.setNotifyCharacteristicChanged(characteristic, false);
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
+Subscribes to the BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLECharacteristicChange')](js-apis-bluetoothManager.md#onblecharacteristicchange).
@@ -3018,12 +3027,12 @@ No value is returned.
 **Example**
 
 ```js
-function CharacteristicChange(CharacteristicChangeReq) {
-  let serviceUuid = CharacteristicChangeReq.serviceUuid;
-  let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
+function CharacteristicChange(CharacteristicChangeReq : bluetooth.BLECharacteristic) {
+  let serviceUuid : string = CharacteristicChangeReq.serviceUuid;
+  let characteristicUuid : string = CharacteristicChangeReq.characteristicUuid;
   let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLECharacteristicChange', CharacteristicChange);
 ```
 
@@ -3032,7 +3041,7 @@ device.on('BLECharacteristicChange', CharacteristicChange);
 
 off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
 
-Unsubscribes from the BLE characteristic change events.
+Unsubscribes from the BLE characteristic changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLECharacteristicChange')](js-apis-bluetoothManager.md#offblecharacteristicchange).
@@ -3055,7 +3064,7 @@ No value is returned.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLECharacteristicChange');
 ```
 
@@ -3064,7 +3073,7 @@ device.off('BLECharacteristicChange');
 
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
-Subscribes to the BLE connection state change events.
+Subscribes to the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLEConnectionStateChange')](js-apis-bluetoothManager.md#onbleconnectionstatechange).
@@ -3087,11 +3096,11 @@ No value is returned.
 **Example**
 
 ```js
-function ConnectStateChanged(state) {
+function ConnectStateChanged(state : bluetooth.BLEConnectChangedState) {
   console.log('bluetooth connect state changed');
-  let connectState = state.state;
+  let connectState : bluetooth.ProfileConnectionState = state.state;
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.on('BLEConnectionStateChange', ConnectStateChanged);
 ```
 
@@ -3100,7 +3109,7 @@ device.on('BLEConnectionStateChange', ConnectStateChanged);
 
 off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
-Unsubscribes from the BLE connection state change events.
+Unsubscribes from the BLE connection state changes.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLEConnectionStateChange')](js-apis-bluetoothManager.md#offbleconnectionstatechange).
@@ -3123,7 +3132,7 @@ No value is returned.
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+let device : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 device.off('BLEConnectionStateChange');
 ```
 
@@ -3155,8 +3164,8 @@ No value is returned.
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let deviceName = gattClient.getDeviceName((err, data)=> {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+let deviceName : void = gattClient.getDeviceName((err : BusinessError, data : string)=> {
     console.info('device name err ' + JSON.stringify(err));
     console.info('device name' + JSON.stringify(data));
 })
@@ -3186,9 +3195,9 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let deviceName = gattClient.getDeviceName().then((data) => {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+let ret : boolean = device.connect();
+gattClient.getDeviceName().then((data) => {
     console.info('device name' + JSON.stringify(data));
 })
 ```
@@ -3221,9 +3230,9 @@ No value is returned.
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let rssi = gattClient.getRssiValue((err, data)=> {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+let ret : boolean = device.connect();
+gattClient.getRssiValue((err : BusinessError, data : number)=> {
     console.info('rssi err ' + JSON.stringify(err));
     console.info('rssi value' + JSON.stringify(data));
 })
@@ -3253,8 +3262,8 @@ Obtains the RSSI of the remote BLE device. This API uses a promise to return the
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let rssi = gattClient.getRssiValue().then((data) => {
+let gattClient : bluetooth.GattClientDevice = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+gattClient.getRssiValue().then((data : number) => {
     console.info('rssi' + JSON.stringify(data));
 })
 ```

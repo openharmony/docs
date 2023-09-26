@@ -42,15 +42,23 @@ Multiple **HelloComponent** instances can be created in the **build()** function
 
 
 ```ts
+class HelloComponentParam {
+  message: string = ""
+}
+
 @Entry
 @Component
 struct ParentComponent {
+  param: HelloComponentParam = {
+    message: 'Hello, World!'
+  }
+
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent({ message: 'Hello, World!' });
+      HelloComponent(param);
       Divider()
-      HelloComponent ({ message: 'Hello!' });
+      HelloComponent(param);
     }
   }
 }
@@ -70,8 +78,6 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
-- [Custom Attribute Methods](#custom-attribute-methods)
-
 
 ## Basic Structure of a Custom Component
 
@@ -80,7 +86,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the data structures declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -106,6 +112,8 @@ To fully understand the preceding example, a knowledge of the following concepts
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
+  >
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
 
   ```ts
   @Entry
@@ -114,14 +122,31 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Recycle: A custom component decorated with \@Recycle can be reused.
+  ### EntryOptions<sup>10+</sup>
+
+  Describes the named route options.
+
+  | Name  | Type  | Mandatory| Description                                                        |
+  | ------ | ------ | ---- | ------------------------------------------------------------ |
+  | routeName | string | No| Name of the target named route.|
+  | storage | [LocalStorage](arkts-localstorage.md) | No| Storage of page-level UI state.|
+
+  ```ts
+  @Entry({ routeName : 'myPage' })
+  @Component
+  struct MyComponent {
+  }
+  ```
+
+
+- \@Reusable: Custom components decorated by \@Reusable can be reused.
 
   > **NOTE**
   >
   > Since API version 10, this decorator is supported in ArkTS widgets.
 
   ```ts
-  @Recycle
+  @Reusable
   @Component
   struct MyComponent {
   }
@@ -327,69 +352,5 @@ struct MyComponent {
 > **NOTE**
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **\<Button>** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
-
-
-## Custom Attribute Methods
-
-Custom components do not support custom attribute methods. You can use the Controller capability to implement custom APIs.
-
-
-```ts
-// Custom controller
-export class MyComponentController {
-  item: MyComponent = null;
-
-  setItem(item: MyComponent) {
-    this.item = item;
-  }
-
-  changeText(value: string) {
-    this.item.value = value;
-  }
-}
-
-// Custom component
-@Component
-export default struct MyComponent {
-  public controller: MyComponentController = null;
-  @State value: string = 'Hello World';
-
-  build() {
-    Column() {
-      Text(this.value)
-        .fontSize(50)
-    }
-  }
-
-  aboutToAppear() {
-    if (this.controller)
-      this.controller.setItem (this); // Link to the controller.
-  }
-}
-
-// Processing logic
-@Entry
-@Component
-struct StyleExample {
-  controller = new MyComponentController();
-
-  build() {
-    Column() {
-      MyComponent({ controller: this.controller })
-    }
-    .onClick(() => {
-      this.controller.changeText('Text');
-    })
-  }
-}
-```
-
-In the preceding example:
-
-1. The **aboutToAppear** method of the **MyComponent** child component passes the current **this** pointer to the **item** member variable of **MyComponentController**.
-
-2. The **StyleExample** parent component holds a **Controller** instance and with which calls the **changeText** API of **Controller**. That is, the value of the state variable **value** of **MyComponent** is changed through the **this** pointer of the **MyComponent** child component held by the controller.
-
-Through the encapsulation of the controller, **MyComponent** exposes the **changeText** API. All instances that hold the controller can call the **changeText** API to change the value of the **MyComponent** state variable **value**.
 
 <!--no_check-->

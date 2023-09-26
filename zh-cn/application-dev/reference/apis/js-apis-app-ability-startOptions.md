@@ -19,13 +19,15 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
 
 **示例：**
 
   ```ts
   import missionManager from '@ohos.app.ability.missionManager';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
@@ -37,7 +39,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
-      let startOptions = {
+      let startOptions: StartOptions = {
           windowMode : 101,
           displayId: 0
       };
@@ -46,6 +48,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       });
     });
   } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message}`);
   }
   ```

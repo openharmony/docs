@@ -16,7 +16,7 @@ import http from '@ohos.net.http';
 ## Examples
 
 ```js
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -35,17 +35,17 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // This field is used to transfer data when the POST request is used.
+    // This parameter is used to transfer data when the POST request is used.
     extraData: {
       "data": "data to send",
     },
-    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
   }, (err, data) => {
     if (!err) {
@@ -55,13 +55,13 @@ httpRequest.request(
       // data.header carries the HTTP response header. Parse the content based on service requirements.
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // Call the destroy() method to release resources after HttpRequest is complete.
+      // Call the destroy() method to release resources after the HttpRequest is complete.
       httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
-      // Call the destroy() method to release resources after HttpRequest is complete.
+      // Call the destroy() method to release resources after the HttpRequest is complete.
       httpRequest.destroy();
     }
   }
@@ -75,7 +75,10 @@ httpRequest.request(
 
 createHttp(): HttpRequest
 
-Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An **HttpRequest** object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+
+> **NOTE**
+> Call the **destroy()** method to release resources after the HttpRequest is complete.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -83,7 +86,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest** object, which contains the **request**, **request2**, **destroy**, **on**, or **off** method.|
+| HttpRequest | An **HttpRequest** object, which contains the **request**, **requestInStream**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
@@ -361,9 +364,9 @@ Destroys an HTTP request.
 httpRequest.destroy();
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -421,20 +424,20 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err, data) => {
+httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
   if (!err) {
-    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+    console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+    console.info("requestInStream ERROR : err = " + JSON.stringify(err));
   }
 })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
+requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -491,7 +494,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL",
+httpRequest.requestInStream("EXAMPLE_URL",
   {
     method: http.RequestMethod.GET,
     header: {
@@ -501,16 +504,16 @@ httpRequest.request2("EXAMPLE_URL",
     connectTimeout: 60000
   }, (err, data) => {
     if (!err) {
-      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
-      console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
     }
   })
 ```
 
-### request2<sup>10+</sup>
+### requestInStream<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<number\>
+requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result, which is a streaming response.
 
@@ -569,12 +572,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
-> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see:
+> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
 
 ```js
-let promise = httpRequest.request2("EXAMPLE_URL", {
+let promise = httpRequest.requestInStream("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
@@ -583,9 +586,9 @@ let promise = httpRequest.request2("EXAMPLE_URL", {
   }
 });
 promise.then((data) => {
-  console.info("request2 OK!" + JSON.stringify(data));
+  console.info("requestInStream OK!" + JSON.stringify(data));
 }).catch((err) => {
-  console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
 
@@ -596,7 +599,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 Registers an observer for HTTP Response Header events.
 
 > **NOTE**
-> This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8) instead.
+> This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -623,7 +626,7 @@ Unregisters the observer for HTTP Response Header events.
 
 > **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8) instead.
+>1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -718,6 +721,9 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
 
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -765,6 +771,9 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -806,11 +815,14 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 httpRequest.off('dataEnd');
 ```
 
-### on('dataProgress')<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
+
+> **NOTE**
+> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -818,20 +830,20 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
-| type     | string                  | Yes  | Event type. The value is **dataProgress**.|
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>**receiveSize**: number of received bytes.<br>**totalSize**: total number of bytes to be received.|
+| type     | string                  | Yes  | Event type. The value is **dataReceiveProgress**.|
+| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **receiveSize**: number of received bytes.<br>- **totalSize**: total number of bytes to be received.|
 
 **Example**
 
 ```js
-httpRequest.on('dataProgress', (data) => {
-  console.info('dataProgress:' + JSON.stringify(data));
+httpRequest.on('dataReceiveProgress', (data) => {
+  console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
 
-### off('dataProgress')<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -844,13 +856,13 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 
 | Name  | Type              | Mandatory| Description                                  |
 | -------- | ------------------ | ---- | -------------------------------------- |
-| type     | string             | Yes  | Event type. The value is **dataProgress**.|
+| type     | string             | Yes  | Event type. The value is **dataReceiveProgress**.|
 | callback | Callback\<{ receiveSize: number, totalSize: number }\>   | No  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-httpRequest.off('dataProgress');
+httpRequest.off('dataReceiveProgress');
 ```
 
 ## HttpRequestOptions<sup>6+</sup>
@@ -862,7 +874,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and passed to the API as a string.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
 | priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
@@ -871,7 +883,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
 | usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.
-| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.                            |
+| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificates. The path is the sandbox mapping path, and preset CA certificates are stored in **/etc/ssl/certs/cacert.pem**. You are advised to store CA certificates in this path. Currently, only **.pem** certificates are supported.                            |
 
 ## RequestMethod<sup>6+</sup>
 
@@ -898,7 +910,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | "OK." The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |

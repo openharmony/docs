@@ -16,6 +16,11 @@ Not supported
 
 Blank(min?: number | string)
 
+Since API version 10:
+ - On the main axis of the parent container **\<Row>**, **\<Column>**, or **\<Flex>**, if the size of the **\<Blank>** component is not set, the component will be automatically stretched or shrunk; if the size is not set or the container adapts to the size of its child component, the component will not be stretched or shrunk.
+ - Relationship between **size** and **min** of the **\<Blank>** component on the main axis: max(min, size).
+ - On the cross axis of the parent container, if the size of the **\<Blank>** component is set, the component will not fill up the parent container; if the size is not set, the component will fill up the parent container, following the default **alignSelf** settings **ItemAlign.Stretch**.
+
 Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**

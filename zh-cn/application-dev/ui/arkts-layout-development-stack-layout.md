@@ -1,9 +1,9 @@
-# 层叠布局
+# 层叠布局（Stack）
 
 
 ## 概述
 
-层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md/)容器组件实现位置的固定定位与层叠，容器中的子元素（子组件）依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
+层叠布局（StackLayout）用于在屏幕上预留一块区域来显示组件中的元素，提供元素可以重叠的布局。层叠布局通过[Stack](../reference/arkui-ts/ts-container-stack.md)容器组件实现位置的固定定位与层叠，容器中的子元素（子组件）依次入栈，后一个子元素覆盖前一个子元素，子元素可以叠加，也可以设置位置。
 
 层叠布局具有较强的页面层叠、位置定位能力，其使用场景有广告、卡片层叠效果等。
 
@@ -22,12 +22,13 @@ Stack组件为容器组件，容器内可包含各种子组件。其中的子组
 
 
 ```ts
+let MTop:Record<string,number> = { 'top': 50 }
 Column(){
   Stack({ }) {
     Column(){}.width('90%').height('100%').backgroundColor('#ff58b87c')
     Text('text').width('60%').height('60%').backgroundColor('#ffc3f6aa')
     Button('button').width('30%').height('30%').backgroundColor('#ff8ff3eb').fontColor('#000')
-  }.width('100%').height(150).margin({ top: 50 })
+  }.width('100%').height(150).margin(MTop)
 }
 ```
 
@@ -51,6 +52,7 @@ Stack容器中兄弟组件显示层级关系可以通过[Z序控制](../referenc
   在层叠布局中，如果后面子元素尺寸大于前面子元素尺寸，则前面子元素完全隐藏。
 
 ```ts
+let MTopM1:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
@@ -63,7 +65,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
+}.margin(MTopM1).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![zh-cn_image_0000001511900544](figures/zh-cn_image_0000001511900544.png)
@@ -72,6 +74,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
 
 
 ```ts
+let MTopM:Record<string,number> = { 'top': 100 }
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素1').fontSize(20)
@@ -84,7 +87,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
     Text('Stack子元素3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
-}.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
+}.margin(MTopM).width(350).height(350).backgroundColor(0xe0e0e0)
 ```
 
 ![zh-cn_image_0000001563060797](figures/zh-cn_image_0000001563060797.png)
@@ -104,7 +107,7 @@ struct StackSample {
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Flex({ wrap: FlexWrap.Wrap }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item:string) => {
           Text(item)
             .width(100)
             .height(100)
@@ -113,7 +116,7 @@ struct StackSample {
             .textAlign(TextAlign.Center)
             .borderRadius(10)
             .backgroundColor(0xFFFFFF)
-        }, item => item)
+        }, (item:string):string => item)
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {

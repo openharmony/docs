@@ -1,4 +1,4 @@
-# AccessibilityExtensionAbility Development
+# AccessibilityExtensionAbility
 
 The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the **ExtensionAbility** framework. You can develop your accessibility applications by applying the **AccessibilityExtensionAbility** template to enhance usability.
 
@@ -10,14 +10,6 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 >
 > Model: stage
 
-This document is organized as follows:
-
-- [AccessibilityExtensionAbility Overview](#accessibilityextensionability-overview)
-- [Creating an Accessibility Extension Service](#creating-an-accessibility-extension-service)
-- [Processing an Accessibility Event](#processing-an-accessibility-event)
-- [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
-- [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
-
 ## AccessibilityExtensionAbility Overview
 
 Accessibility is about giving equal access to everyone so that they can access and use information equally and conveniently under any circumstances. It helps narrow the digital divide between people of different classes, regions, ages, and health status in terms of information understanding, information exchange, and information utilization, so that they can participate in social life more conveniently and enjoy the benefits of technological advances.
@@ -28,11 +20,11 @@ Below shows the AccessibilityExtensionAbility framework.
 
 ![AccessibilityFramework](figures/AccessibilityFramework.png)
 
-1. Accessibility app: extension service application developed based on the AccessibilityExtensionAbility framework, for example, a screen reader application.
-2. Target app: application assisted by the accessibility app.
-3. AccessibilityAbilityManagerService (AAMS): main service of the AccessibilityExtensionAbility framework, which is used to manage the lifecycle of accessibility apps and provide a bridge for information exchange between accessibility apps and target apps.
-4. AccessibilityAbility (AAkit): ability that is used by the accessibility app to build an extension service ability operating environment and that provides interfaces for the accessibility app to query and operate the target app, including performing click/long press operations.
-5. AccessibilitySystemAbilityClient (ASACkit): used by the target app to send accessibility events, such as content change events, to AAMS, and respond to the instructions (such as performing click/long press operations) sent by the accessibility app through AAMS.
+1. Accessibility application: extension service application developed based on the AccessibilityExtensionAbility framework, for example, a screen reader application.
+2. Target application: application assisted by the accessibility application.
+3. AccessibilityAbilityManagerService (AAMS): main service of the AccessibilityExtensionAbility framework, which is used to manage the lifecycle of accessibility applications and provide a bridge for information exchange between accessibility applications and target applications.
+4. AccessibilityAbility (AAkit): ability that is used by the accessibility application to build an extension service ability operating environment and that provides interfaces for the accessibility application to query and operate the target application, including performing click/long press operations.
+5. AccessibilitySystemAbilityClient (ASACkit): used by the target application to send accessibility events, such as content change events, to AAMS, and respond to the instructions (such as performing click/long press operations) sent by the accessibility application through AAMS.
 
 ## Creating an Accessibility Extension Service
 
@@ -50,7 +42,7 @@ Perform the following steps in DevEco Studio:
 To add an accessibility extension service to a project, create the **AccessibilityExtAbility** folder in the **ets** folder of the project, create the **AccessibilityExtAbility.ts** file in the new folder, and add the following code to the new file:
 
 ```typescript
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
@@ -61,7 +53,7 @@ class AccessibilityExtAbility extends AccessibilityExtensionAbility {
         console.info('AccessibilityExtAbility onDisconnect');
     }
 
-    onAccessibilityEvent(accessibilityEvent) {
+    onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
         console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
@@ -82,7 +74,7 @@ The APIs defined in the file are as follows.
 You can process the service logic for accessibility events in the **onAccessibilityEvent()** API. For details about the events, see [AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent). The following code snippet uses the **pageStateUpdate** event as an example.
 
 ```typescript
-onAccessibilityEvent(accessibilityEvent) {
+onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
         console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
@@ -124,13 +116,24 @@ After developing the custom logic for an accessibility extension service, you mu
   ]
 }
 ```
-## Enabling a Custom Accessibility Extension Service
+## Enabling or Disabling a Custom Accessibility Extension Service
 
-To enable or disable an accessibility extension service, run the following command:
+You can enable or disable a custom accessibility extension service through the command line interface or the device settings. 
+
+**Method 1**: through the command line interface
+
+Run the **hdc shell** command, then the following system command:
+
 - To enable the service: **accessibility enable -a AccessibilityExtAbility -b com.example.demo -c rg**
 - To disable the service: **accessibility disable -a AccessibilityExtAbility -b com.example.demo**
 
-In the preceding commands, **AccessibilityExtAbility** indicates the name of the accessibility extension service, **com.example.demo** indicates the bundle name, and **rg** indicates the capabilities (**r** is short for retrieve).
+In the preceding commands, **AccessibilityExtAbility** indicates the name of the accessibility extension service, **com.example.demo** indicates the bundle name, and **rg** indicates the capabilities (**r** is short for retrieve and **g** gesture).
 
 If the service is enabled or disabled successfully, the message "enable ability successfully" or "disable ability successfully" is displayed.
 
+
+**Method 2**: through the device settings
+- From the device settings screen, access the list of installed extended services under accessibility.
+If an extended service is not installed, it is grayed out, and "No service" is displayed.
+- Select the target extended service, and toggle on or off the switch to enable or disable it.
+- If you opt to enable a service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.

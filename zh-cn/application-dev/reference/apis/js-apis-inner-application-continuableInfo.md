@@ -13,6 +13,8 @@
 import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
+## 属性
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
@@ -22,14 +24,14 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
 **示例：**
 
-```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+```ts
+import distributedMissionManager from '@ohos.distributedMissionManager';
 
-  try {
-    distributedMissionManager.on('continueStateChange', (data) => {
-      console.info("continueStateChange on:" + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
+try {
+  distributedMissionManager.on('continueStateChange', (data) => {
+    console.info("continueStateChange on:" + JSON.stringify(data));
+  });
+} catch (err) {
+  console.error("continueStateChange err: " + JSON.stringify(err));
+}
+```

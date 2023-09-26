@@ -73,8 +73,14 @@ BackupExtensionAbility，是[Stage模型](../../application-dev/application-mode
     "data/storage/el2/base/files/",
     "data/storage/el2/base/preferences/",
     "data/storage/el2/base/haps/*/database/",
-    "data/storage/el2/base/haps/*/base/files/",
-    "data/storage/el2/base/haps/*/base/preferences/",
+    "data/storage/el2/base/haps/*/files/",
+    "data/storage/el2/base/haps/*/preferences/",
     ]
 }
 ```
+
+## 相关实例
+
+针对应用接入数据的备份与恢复，有以下相关实例可供参考：
+
+- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)

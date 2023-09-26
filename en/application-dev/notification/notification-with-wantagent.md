@@ -31,6 +31,8 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    ```typescript
    import notificationManager from '@ohos.notificationManager';
    import wantAgent from '@ohos.app.ability.wantAgent';
+   import { WantAgent } from '@ohos.app.ability.wantAgent';
+   import Base from '@ohos.base';
    ```
 
 3. Create a **WantAgentInfo** object.
@@ -38,10 +40,10 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    Scenario 1: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for starting a UIAbility component.
 
    ```typescript
-   let wantAgentObj = null; // Save the WantAgent object created. It will be used to complete the trigger operations.
+   let wantAgentObj:WantAgent; // Save the created WantAgent object for completing the trigger operations at a later time.
    
    // Set the action type through operationType of WantAgentInfo.
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
      wants: [
        {
          deviceId: '',
@@ -62,10 +64,10 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    Scenario 2: Create a [WantAgentInfo](../reference/apis/js-apis-inner-wantAgent-wantAgentInfo.md) object for publishing a [common event](../application-models/common-event-overview.md).
 
    ```typescript
-   let wantAgentObj = null; // Save the WantAgent object created. It will be used to complete the trigger operations.
+   let wantAgentObj:WantAgent; // Save the created WantAgent object for completing the trigger operations at a later time.
    
    // Set the action type through operationType of WantAgentInfo.
-   let wantAgentInfo = {
+   let wantAgentInfo:wantAgent.WantAgentInfo = {
      wants: [
        {
          action: 'event_name', // Set the action name.
@@ -82,7 +84,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
    ```typescript
    // Create a WantAgent object.
-   wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
+   wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
        console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -110,7 +112,7 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
      wantAgent: wantAgentObj,
    }
    
-   notificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;

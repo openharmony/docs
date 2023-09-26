@@ -2,8 +2,9 @@
 
 - [Full SDK Compilation](full-sdk-compile-guide.md)
 - [Switching to Full SDK](full-sdk-switch-guide.md)
+- [Using NDK in a CMake Project](cmake-with-ndk.md)
 - [Application Model Development](faqs-ability.md)
-- ArkUI Framework Development (ArkTS)
+- ArkUI Development (ArkTS)
   - [ArkTS Syntax Usage](faqs-arkui-arkts.md)
   - [ArkUI Component Development (ArkTS)](faqs-arkui-component.md)
   - [ArkUI Layout Development (ArkTS)](faqs-arkui-layout.md)
@@ -27,4 +28,5 @@
 - [Startup Development](faqs-startup.md)
 - [Distributed Device Development](faqs-distributed-device-profile.md)
 - [SDK Usage](faqs-sdk.md)
+- [Compiler and Runtime](faqs-compiler-runtime.md)
 - [Usage of Third- and Fourth-Party Libraries](faqs-third-fourth-party-library.md)

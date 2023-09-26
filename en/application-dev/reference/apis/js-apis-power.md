@@ -104,7 +104,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 ```js
 try {
-    var isActive = power.isActive();
+    let isActive = power.isActive();
     console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
@@ -147,13 +147,20 @@ try {
 
 ## power.suspend<sup>9+</sup>
 
-suspend(): void
+suspend(isImmediate?: boolean): void
 
 Hibernates a device.
 
 **System API**: This is a system API.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| isImmediate<sup>10+</sup> | boolean |  No | Whether to hibernate a device immediately. If this parameter is not specified, the default value **false** is used. The system automatically determines when to enter the hibernation state.<br>**NOTE**: This parameter is supported since API version 10.|
+
 
 **Error codes**
 
@@ -199,7 +206,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 ```js
 try {
-    var mode = power.getPowerMode();
+    let mode = power.getPowerMode();
     console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
@@ -236,7 +243,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 **Example**
 
 ```js
-power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: BusinessError<void>) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -289,6 +296,39 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 });
 ```
 
+## power.isStandby<sup>10+</sup>
+
+isStandby(): boolean
+
+Checks whether the device is in standby mode.
+
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| boolean | The value **true** indicates that the device is in standby mode, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+
+**Example**
+
+```js
+try {
+    let isStandby = power.isStandby();
+    console.info('device is in standby: ' + isStandby);
+} catch(err) {
+    console.error('check isStandby failed, err: ' + err);
+}
+```
+
 ## power.rebootDevice<sup>(deprecated)</sup>
 
 rebootDevice(reason: string): void
@@ -332,7 +372,7 @@ Checks the screen status of the current device. This API uses an asynchronous ca
 **Example**
 
 ```js
-power.isScreenOn((err, data) => {
+power.isScreenOn((err: BusinessError<void>, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('screen on status is ' + data);
     } else {
@@ -360,10 +400,10 @@ Checks the screen status of the current device. This API uses a promise to retur
 
 ```js
 power.isScreenOn()
-.then(data => {
+.then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch(err => {
+.catch((err: { code: number, message: string }) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```

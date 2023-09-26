@@ -14,7 +14,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
+通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。此接口只能在测试环境下使用。
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
@@ -27,7 +27,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 添加AbilityMonitor实例（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -47,19 +47,22 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
-
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
     console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
@@ -70,7 +73,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 添加AbilityMonitor实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -95,21 +98,66 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
-
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor).then(() => {
     console.info('addAbilityMonitor promise');
 });
+```
+
+### addAbilityMonitorSync<sup>10+</sup>
+
+addAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+同步添加AbilityMonitor实例
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityMonitorSync failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
+
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitorSync(monitor);
 ```
 
 ### removeAbilityMonitor<sup>9+</sup>
@@ -118,7 +166,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 删除已经添加的AbilityMonitor实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -138,19 +186,23 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (error : any) => {
+abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
     console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
@@ -161,7 +213,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
 删除已经添加的AbilityMonitor实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -186,13 +238,16 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 - 示例
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
@@ -203,13 +258,57 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 });
 ```
 
+### removeAbilityMonitorSync<sup>10+</sup>
+
+removeAbilityMonitorSync(monitor: AbilityMonitor): void;
+
+同步删除已经添加的AbilityMonitor实例
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitorSync failed. |
+| 401  | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
+
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
+    abilityName: 'abilityname',
+    onAbilityCreate: onAbilityCreateCallback
+};
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityMonitorSync(monitor);
+```
+
 ### waitAbilityMonitor<sup>9+</sup>
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void;
 
 等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -229,19 +328,23 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAbility) => {
     if (error) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
@@ -256,14 +359,14 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
-| timeout  | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
+| timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法                                           |
 
 **错误码**：
@@ -277,20 +380,24 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, data : UIAbility) => {
     if (error && error.code !== 0) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
@@ -307,7 +414,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -333,19 +440,22 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
+function onAbilityCreateCallback(data: UIAbility) {
     console.info('onAbilityCreateCallback');
 }
 
-let monitor = {
+let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
     abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : BusinessError) => {
     console.info('waitAbilityMonitor promise');
 });
 ```
@@ -356,7 +466,7 @@ getAppContext(): Context;
 
 获取应用Context
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -367,6 +477,8 @@ getAppContext(): Context;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -379,7 +491,7 @@ getAbilityState(ability: UIAbility): number;
 
 获取指定ability的生命周期状态
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -396,11 +508,15 @@ getAbilityState(ability: UIAbility): number;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     let state = abilityDelegator.getAbilityState(ability);
@@ -414,7 +530,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 
 获取当前应用顶部ability（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -433,11 +549,15 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
 });
@@ -449,7 +569,7 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 
 获取当前应用顶部ability（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -468,11 +588,14 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility().then((data : any) => {
+abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
     console.info('getCurrentTopAbility promise');
     ability = data;
 });
@@ -484,7 +607,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 启动指定ability（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -506,6 +629,8 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -516,14 +641,18 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let want = {
+let want: Want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want, (err : any, data : any) => {
+abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
     console.info('startAbility callback');
 });
 ```
@@ -534,7 +663,7 @@ startAbility(want: Want): Promise\<void>;
 
 启动指定ability（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -561,6 +690,8 @@ startAbility(want: Want): Promise\<void>;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -571,14 +702,18 @@ startAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let want = {
+let want: Want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.startAbility(want).then((data: any) => {
+abilityDelegator.startAbility(want).then((data: void) => {
     console.info('startAbility promise');
 });
 ```
@@ -589,7 +724,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 调度指定ability生命周期状态到Foreground状态（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -609,14 +744,18 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any) => {
+    abilityDelegator.doAbilityForeground(ability, (err : BusinessError) => {
         console.info("doAbilityForeground callback");
     });
 });
@@ -628,7 +767,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 
 调度指定ability生命周期状态到Foreground状态（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -653,11 +792,15 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     abilityDelegator.doAbilityForeground(ability).then(() => {
@@ -672,7 +815,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 
 调度指定ability生命周期状态到Background状态（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -692,14 +835,18 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any) => {
+    abilityDelegator.doAbilityBackground(ability, (err : BusinessError) => {
         console.info("doAbilityBackground callback");
     });
 });
@@ -711,7 +858,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 
 调度指定ability生命周期状态到Background状态（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -736,11 +883,15 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
-let ability;
+let ability: UIAbility;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
+abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) => {
     console.info('getCurrentTopAbility callback');
     ability = data;
     abilityDelegator.doAbilityBackground(ability).then(() => {
@@ -755,7 +906,7 @@ printSync(msg: string): void;
 
 打印日志信息到单元测试终端控制台
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -766,6 +917,8 @@ printSync(msg: string): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -779,7 +932,7 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 
 打印日志信息到单元测试终端控制台（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -791,11 +944,14 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.print(msg, (err : any) => {
+abilityDelegator.print(msg, (err : BusinessError) => {
     console.info('print callback');
 });
 ```
@@ -806,7 +962,7 @@ print(msg: string): Promise\<void>;
 
 打印日志信息到单元测试终端控制台（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -823,6 +979,8 @@ print(msg: string): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -838,6 +996,8 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 执行指定的shell命令（callback形式）
 
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -850,11 +1010,14 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
     console.info('executeShellCommand callback');
 });
 ```
@@ -865,6 +1028,8 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 
 指定超时时间，并执行指定的shell命令（callback形式）
 
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
+
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -872,18 +1037,21 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | 参数名      | 类型                                                         | 必填 | 说明                          |
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串               |
-| timeoutSecs | number                                                       | 否   | 设定命令超时时间，单位秒（s） |
+| timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s） |
 | callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#ShellCmdResult)> | 是   | 表示指定的回调方法            |
 
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
+abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: AbilityDelegatorRegistry.ShellCmdResult) => {
     console.info('executeShellCommand callback');
 });
 ```
@@ -893,6 +1061,8 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
 executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
 
 指定超时时间，并执行指定的shell命令（promise形式）
+
+仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -912,12 +1082,14 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
+abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
     console.info('executeShellCommand promise');
 });
 ```
@@ -928,7 +1100,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 
 结束测试并打印日志信息到单元测试终端控制台（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -949,11 +1121,14 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.finishTest(msg, 0, (err : any) => {
+abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
     console.info('finishTest callback');
 });
 ```
@@ -964,7 +1139,7 @@ finishTest(msg: string, code: number): Promise\<void>;
 
 结束测试并打印日志信息到单元测试终端控制台（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -990,6 +1165,8 @@ finishTest(msg: string, code: number): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
@@ -1005,7 +1182,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1025,15 +1202,16 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
+}, (err : BusinessError) => {
     console.info('addAbilityStageMonitor callback');
 });
 ```
@@ -1044,7 +1222,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1069,16 +1247,54 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
+}).then(() => {
+    console.info('addAbilityStageMonitor promise');
+});
+```
+
+### addAbilityStageMonitorSync<sup>10+</sup>
+
+addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+同步添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
+| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitorSync failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
-    console.info('addAbilityStageMonitor promise');
+abilityDelegator.addAbilityStageMonitorSync({
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1088,7 +1304,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 
 从应用程序内存中删除指定的AbilityStageMonitor对象。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1108,15 +1324,16 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
+}, (err : BusinessError) => {
     console.info('removeAbilityStageMonitor callback');
 });
 ```
@@ -1127,7 +1344,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
 从应用程序内存中删除指定的AbilityStageMonitor对象。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1152,16 +1369,53 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
+}).then(() => {
+    console.info('removeAbilityStageMonitor promise');
+});
+```
+
+### removeAbilityStageMonitorSync<sup>10+</sup>
+
+removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+
+同步从应用程序内存中删除指定的AbilityStageMonitor对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | removeAbilityStageMonitorSync failed. |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
-    console.info('removeAbilityStageMonitor promise');
+abilityDelegator.removeAbilityStageMonitorSync({
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
 });
 ```
 
@@ -1171,7 +1425,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
 
-**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1191,19 +1445,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
+}, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
 ```
@@ -1214,7 +1465,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（promise形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -1240,19 +1491,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
+}).then((data : AbilityStage) => {
     console.info('waitAbilityStageMonitor promise');
 });
 ```
@@ -1263,14 +1511,14 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
-| timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
+| timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
 
 **错误码**：
@@ -1284,20 +1532,18 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 **示例：**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { BusinessError } from '@ohos.base';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
-function onAbilityCreateCallback(data) {
-    console.info('onAbilityCreateCallback');
-}
-
-let monitor = {
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor({
     moduleName: 'moduleName',
     srcEntrance: 'srcEntrance',
-};
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : any) => {
+}, timeout, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
 ```

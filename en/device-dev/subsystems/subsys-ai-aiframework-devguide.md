@@ -1,16 +1,13 @@
-# AI Framework Development
+# AI Framework Development Guide
 
 ## **Overview**
 
 ### Introduction
 
-The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins.
-
-The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Specifically, plug-in management implements lifecycle management, on-demand deployment, and quick integration of AI algorithm plug-ins; module management implements task scheduling and client instance management; communication management manages inter-process communication (IPC) between the client and server and data transmission between the AI engine and plug-ins. 
-
-Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.
-
+The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins. 
+The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Specifically, plug-in management implements lifecycle management, on-demand deployment, and quick integration of AI algorithm plug-ins; module management implements task scheduling and client instance management; communication management manages inter-process communication (IPC) between the client and server and data transmission between the AI engine and plug-ins. Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.
 The following figure shows the AI engine framework.
+
 
   **Figure 1** AI engine framework
   ![en-us_image_0000001200128073](figures/en-us_image_0000001200128073.png)
@@ -22,11 +19,11 @@ The following figure shows the AI engine framework.
 
 2. [Download the source code.](../get-code/sourcecode-acquire.md)
 
-## Technical specifications
+## Technical Specifications
 
 ### Code Management
 
-The AI engine framework consists of three modules: **client**, **server**, and **common**. The client module provides the server connection management function. The SDK needs to encapsulate and call the public APIs provided by the client in the algorithm's external APIs. The server module provides functions such as plug-in loading and task management. Plug-ins are integrated using the plug-in APIs provided by the server. The common module provides platform-related operation methods, engine protocols, and tool classes for other modules.
+The AI engine framework consists of three modules: **client**, **server**, and **common**. The client module provides the server connection management function. An OpenHarmony SDK needs to encapsulate and call the public APIs provided by the client in the algorithm's external APIs. The server module provides functions such as plug-in loading and task management. Plug-ins are integrated using the plug-in APIs provided by the server. The common module provides platform-related operation methods, engine protocols, and tool classes for other modules.
 
 
 The following figure shows the code dependency between modules of the AI engine framework.
@@ -37,9 +34,9 @@ The following figure shows the code dependency between modules of the AI engine 
   ![en-us_image_0000001151931738](figures/en-us_image_0000001151931738.jpg)
 
 
-#### Recommendation: Develop plug-ins and SDKs in the directories specified by the AI engine.
+#### Recommendation: Develop plug-ins and OpenHarmony SDKs in the directories specified by the AI engine.
 
-In the overall planning of the AI engine framework, SDKs are a part of the client, and plug-ins are called by the server and are considered a part of the server. Therefore, the following directories have been planned for plug-in and SDK development in the AI engine framework:
+In the overall planning of the AI engine framework, OpenHarmony SDKs are a part of the client, and plug-ins are called by the server and are considered a part of the server. Therefore, the following directories have been planned for plug-in and OpenHarmony SDK development in the AI engine framework:
 
 - SDK code directory: //foundation/ai/engine/services/client/algorithm_sdk
   
@@ -56,7 +53,7 @@ In the overall planning of the AI engine framework, SDKs are a part of the clien
 
 #### Rule: Store all external APIs provided by plug-ins in the **interfaces/kits** directory of the AI subsystem.
 
-The AI subsystem exposes its capabilities through external APIs of SDKs. According to API management requirements of OpenHarmony, store all external APIs of SDKs in the **interfaces/kits** directory of the subsystem. Currently, the external APIs of plug-ins of the AI subsystem are stored in the **//foundation/ai/engine/interfaces/kits** directory. You can add a sub-directory for each newly added plug-in in this directory. For example, if you add a CV plug-in, then store its external APIs in the **//foundation/ai/engine/interfaces/kits/cv** directory.
+The AI subsystem exposes its capabilities through external APIs of OpenHarmony SDKs. According to API management requirements of OpenHarmony, store all external APIs of the SDK in the **interfaces/kits** directory of the subsystem. Currently, the external APIs of plug-ins of the AI subsystem are stored in the **//foundation/ai/engine/interfaces/kits** directory. You can add a sub-directory for each newly added plug-in in this directory. For example, if you add a CV plug-in, then store its external APIs in the **//foundation/ai/engine/interfaces/kits/cv** directory.
 
 
 #### Rule: Make sure that plug-in build results are stored in the **/usr/lib** directory.
@@ -65,14 +62,14 @@ Plug-in loading on the server uses the dlopen mode and can only be performed in 
 
 ### Naming rule
 
-#### Rule: Name an SDK in the format of **domain\_keyword&lt;*other information 1*\_*other information 2*\_…&gt;\_sdk.so**.
+#### Rule: Name an SDK in the format of **domain_keyword<_other information 1_other information 2_...>_sdk.so**.
 
-You are advised to use the commonly known abbreviations for domains. For example, use **cv** for image and video, **asr** for voice recognition, and **translation** for text translation. Add one if there is no available abbreviation for a domain. Use keywords that accurately describe the algorithm capability of the plug-in. For example, use **keyword\_spotting** for wakeup keyword spotting (KWS). Add other information, such as the supported chip type and applicable region, between **keyword** and **sdk**, with each of them separated by an underscore (\_). Note that the name of a SDK must end with **\_sdk**.
+You are advised to use the commonly known abbreviations for domains. For example, use **cv** for image and video, **asr** for voice recognition, and **translation** for text translation. Add one if there is no available abbreviation for a domain. Use keywords that accurately describe the algorithm capability of the plug-in. For example, use **keyword\_spotting** for wakeup keyword spotting (KWS). Add other information, such as the supported chip type and applicable region, between **keyword** and **sdk**, with each of them separated by an underscore (\_). Note that the name of an SDK must end with **\_sdk**.
 
 For example, if the SDK for the KWS plug-in supports only the Kirin 9000 chipset and is applicable only in China, then name the SDK as follows: **asr\_keyword\_spotting\_kirin9000\_china\_sdk.so**.
 
 
-#### Rule: Name a plug-in in the format of **domain\_keyword&lt;*other information 1*\_*other information 2*\_…&gt;.so**.
+#### Rule: Name a plug-in in the format of **domain_keyword<_other information 1_other information 2_...>.so**.
 
 There is a one-to-one mapping between plug-ins and SDKs. Therefore, the definitions and requirements of terms such as the domain, keyword, and other information in plug-in names are the same as those in SDK names. The only difference is that the name of the SDK ends with **\_sdk** additionally. For example, if the plug-in is named **asr\_keyword\_spotting.so**, the corresponding SDK is named **asr\_keyword\_spotting\_sdk.so**.
 
@@ -151,14 +148,19 @@ retCode = ProcessEncode(dataInfo, arg1, arg2, arg3) // The number of parameters 
 retCode = ProcessDecode(dataInfo, arg1, arg2, arg3) // The number of parameters can be flexible.
 ```
 
-> **NOTE**
-> 
-> - The sequence of parameters must be the same during encoding and decoding.
-> - After encoding, the memory used by **dataInfo** needs to be manually released by the caller.
-> - The memory is managed and released separately on the server and the client.
-> - If a pointer contains the shared memory, no extra processing is required.
-> - If other types of pointers are used, you need to dereference them before using **ProcessEncode** or **ProcessDecode**.
-> - The codec module has not been adapted to the **class** data type and therefore it is not recommended.
+Note:
+
+- The sequence of parameters must be the same during encoding and decoding.
+
+- After encoding, the memory used by **dataInfo** needs to be manually released by the caller.
+
+- The memory is managed and released separately on the server and the client.
+
+- If a pointer contains the shared memory, no extra processing is required.
+
+- If other types of pointers are used, you need to dereference them before using **ProcessEncode** or **ProcessDecode**.
+
+- The codec module has not been adapted to the **class** data type and therefore it is not recommended.
 
 
 #### Rule: Release the memory used by the encoded or decoded parameters in the SDK. Otherwise, a memory leakage occurs.
@@ -249,7 +251,7 @@ The following table describes the data structure of **ConfigInfo**, **ClientInfo
 | ConfigInfo | Algorithm configuration item information| **const&nbsp;char&nbsp;\*description**: body of configuration item information. |
 | ClientInfo | Client information.| **long&nbsp;long&nbsp;clientVersion**: client version number. This parameter is not used currently.<br>**int&nbsp;clientId**: client ID.<br>**int&nbsp;sessionId**: session ID.<br>**uid\_t&nbsp;serverUid**: server UID.<br>**uid\_t&nbsp;clientUid**: client UID.<br>**int&nbsp;extendLen**: length of the extended information (**extendMsg**).<br>**unsigned&nbsp;char&nbsp;\*extendMsg**: body of the extended information. |
 | AlgorithmInfo | Algorithm information| **long&nbsp;long&nbsp;clientVersion**: client version number. This parameter is not used currently.<br>**bool&nbsp;isAsync**: whether asynchronous execution is used.<br>**int&nbsp;algorithmType**: algorithm type ID allocated by the AI engine framework based on the plug-in loading sequence.<br>**long&nbsp;long&nbsp;algorithmVersion**: algorithm version number.<br>**bool&nbsp;isCloud**: whether to migrate data to the cloud. This parameter is not used currently.<br>**int&nbsp;operateId**: execution ID. This parameter is not used currently.<br>**int&nbsp;requestId**: request ID, which identifies each request and corresponds to the execution result.<br>**int&nbsp;extendLen**: length of the extended information (**extendMsg**).<br>**unsigned&nbsp;char&nbsp;\*extendMsg**: body of the extended information. |
-| DataInfo | Algorithm input parameter configuration information (**inputInfo**) and output parameter configuration information (**outputInfo**)| **unsigned&nbsp;char&nbsp;\*data**: data subject.<br>**int&nbsp;length**: data length. |
+| DataInfo | Algorithm input parameter configuration information (**inputInfo**)<br>and output parameter configuration information (**outputInfo**)| **unsigned&nbsp;char&nbsp;\*data**: data subject.<br>**int&nbsp;length**: data length. |
 
 
 For details about the development process, see the development example of the [KWS SDK](#kws-sdk).
@@ -313,7 +315,7 @@ The following table describes the attributes of the **Response** class.
 
 | Attribute| Description| Default Value|
 | -------- | -------- | -------- |
-| innerSequenceId_ | Type: long&nbsp;long<br>**Function**: reserved| 0 |
+| innerSequenceId_ | **Type**: long&nbsp;long<br>**Function**: reserved| 0 |
 | requestId_ | **Type**: int<br>**Function**: Indicates the request sequence, which is used to bind the return result.| 0 |
 | retCode__ | **Type**: int<br>**Function**: Indicates the inference result code of the asynchronous algorithm.| 0 |
 | retDesc_ | **Type**: string<br>**Function**: reserved| - |
@@ -454,10 +456,11 @@ The preceding code implements the **IPlugin** APIs provided by the server. The f
 | AieClientGetOption | GetOption | Obtains algorithm-related configuration items. For KWS, this API can obtain the input and output scale of the KWS model. The input scale is the MFCC feature (fixed value: **4000**) required by the KWS model, and the output scale is the confidence (fixed value: **2**) of the result.|
 | AieClientRelease | Release | Releases the algorithm model. For KWS, this API releases the specified algorithm model and clears the dynamic memory in the feature processor.|
 
-> **NOTE**
-> 
-> - The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
-> - The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
+   Note:
+
+   1. The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
+
+   2. The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
 
 
    ```

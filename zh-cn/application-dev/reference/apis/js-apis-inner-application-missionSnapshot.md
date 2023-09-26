@@ -13,6 +13,8 @@
 import missionManager from '@ohos.app.ability.missionManager';
 ```
 
+## 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -26,7 +28,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 **示例：**
 ```ts
-  import ElementName from '@ohos.bundle';
+  import ElementName from '@ohos.bundle.bundleManager';
   import image from '@ohos.multimedia.image';
   import missionManager from '@ohos.app.ability.missionManager';
 

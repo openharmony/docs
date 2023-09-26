@@ -156,10 +156,10 @@ The **Font** type is used to set the text style.
 
 | Name    | Type                                      | Mandatory  | Description                                      |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.|
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
-| family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**. Currently, only the **'sans-serif'** font is supported.|
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.                              |
+| size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0** |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
+| family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.|
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.<br>Default value: **FontStyle.Normal**                              |
 
 ## Area<sup>8+</sup>
 
@@ -228,7 +228,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-builder.md).|
+| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md).|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -249,7 +249,7 @@ The **ModalTransition** type is used to set the transition type for a full-scree
 | ------- | ------------ |
 | NONE    | No transition animation for the modal.  |
 | DEFAULT | Slide-up and slide-down animation for the modal. |
-| ALPHA   | Opacity gradient animation for the modal. |
+| ALPHA   | Opacity gradient animation for the modal.|
 
 ## Dimension<sup>10+</sup>
 
@@ -258,7 +258,7 @@ The **Length** type is used to represent a size unit.
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
 | [PX](#px10)               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
-| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp can be included or omitted, for example, **10** or **'10vp'**.|
 | [FP](#fp10)                | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
 | [LPX](#lpx10)              | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
 | [Percentage](#percentage10)        | Percentage type. The unit % must be included, for example, **'10%'**.|
@@ -278,7 +278,7 @@ The **VP** type is used to represent a length in vp.
 
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
-| {number}vp               | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| {number}vp\|number | Pixel unit type specific to the screen density. The unit vp can be included or omitted, for example, **10** or **'10vp'**.|
 
 ## FP<sup>10+</sup>
 
@@ -311,3 +311,33 @@ The **Degree** type is used to represent a length in deg.
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
 | {number}deg               | Degree type. The unit deg must be included, for example, **'10deg'**.|
+
+## SwiperAnimationEvent<sup>10+</sup>
+
+Describes the animation information of the \<Swiper> component.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
+## SafeAreaType<sup>10+</sup>
+
+The **SafeAreaType** type is used to describe the types of expanded safe areas.
+
+| Name    | Description                                      |
+| -------- | ------------------------------------------ |
+| SYSTEM   | Default non-safe area of the system, including the status bar and navigation bar.  |
+| CUTOUT   | Non-safe area of the device, for example, the notch area.|
+| KEYBOARD | Soft keyboard area.                              |
+
+## SafeAreaEdge<sup>10+</sup>
+
+The **SafeAreaEdge** type is used to define the edge for expanding the safe area.
+
+| Name  | Description      |
+| ------ | ---------- |
+| TOP    | Top edge.|
+| BOTTOM | Bottom edge.|
+| START  | Start edge.|
+| END    | End edge.|

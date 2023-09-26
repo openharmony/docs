@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import prompt from '@ohos.prompt'
 ```
 
@@ -29,8 +29,9 @@ showToast(options: ShowToastOptions): void
 
 **示例：**
 
-```js
-prompt.showToast({            
+```ts
+import prompt from '@ohos.prompt'
+prompt.showToast({
   message: 'Message Info',
     duration: 2000
 });
@@ -72,7 +73,8 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **示例：**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showDialog({
   title: 'Title Info',
   message: 'Message Info',
@@ -90,7 +92,7 @@ prompt.showDialog({
   .then(data => {
     console.info('showDialog success, click button: ' + data.index);
   })
-  .catch(err => {
+  .catch((err:Error) => {
     console.info('showDialog error: ' + err);
   })
 ```
@@ -114,7 +116,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 **示例：**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showDialog({
   title: 'showDialog Title Info',
   message: 'Message Info',
@@ -179,7 +182,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 **示例：**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showActionMenu({
   title: 'Title Info',
   buttons: [
@@ -225,7 +229,8 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 **示例：**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showActionMenu({
   title: 'showActionMenu Title Info',
   buttons: [
@@ -242,7 +247,7 @@ prompt.showActionMenu({
   .then(data => {
     console.info('showActionMenu success, click button: ' + data.index);
   })
-  .catch(err => {
+  .catch((err:Error) => {
     console.info('showActionMenu error: ' + err);
   })
 ```

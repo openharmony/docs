@@ -19,7 +19,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 | 权限                                       | 权限等级     | 描述               |
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
-| ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用。   |
+| ohos.permission.INSTALL_BUNDLE             | system_core  | 允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。   |
 
 权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 ## UpgradeFlag
@@ -136,13 +136,14 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
 try {
     freeInstall.setHapModuleUpgradeFlag(bundleName, moduleName, upgradeFlag).then(() => {
         console.info('Operation succeed')
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -236,12 +237,13 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>;
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
     freeInstall.isHapModuleRemovable(bundleName, moduleName).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -332,12 +334,13 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
     freeInstall.getBundlePackInfo(bundleName, bundlePackFlag).then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {
@@ -402,10 +405,11 @@ getDispatchInfo(): Promise\<DispatchInfo>;
 
 ```js
 import freeInstall from '@ohos.bundle.freeInstall';
+import { BusinessError } from '@ohos.base';
 try {
     freeInstall.getDispatchInfo().then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
         console.error('Operation failed:' + JSON.stringify(err));
     });
 } catch (err) {

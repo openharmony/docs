@@ -1,4 +1,4 @@
-# Relative Layout
+# Relative Layout (RelativeContainer)
 
 
 ## Overview
@@ -26,33 +26,34 @@ A child element does not necessarily adopt the dependency shown above to determi
 
 ### Setting the Anchor
 
-By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors. To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **container**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **\<RelativeContainer>** component.
+By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors. To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **\<RelativeContainer>** component.
 
 >**NOTE**
 >
 >When using anchors, pay attention to the relative positions of child elements to avoid misplacement or blocking.
 
-- The ID of the **\<RelativeContainer>** parent component is **container**.
+- The ID of the **\<RelativeContainer>** parent component is **__container__**.
 
   ```ts
+  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+  }
+  let AlignRue:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.End }
+  }
   RelativeContainer() {
     Row()
       // Add other attributes.
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        left: { anchor: '__container__', align: HorizontalAlign.Start }
-      })
+      .alignRules(AlignRus)
       .id("row1")
 
     Row()
       ...
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        right: { anchor: '__container__', align: HorizontalAlign.End }
-      })
+      .alignRules(AlignRue)
       .id("row2")
   }
-  ...
   ```
 
   ![en-us_image_0000001562820901](figures/en-us_image_0000001562820901.png)
@@ -60,14 +61,15 @@ By setting the anchor, you set a position dependency relationship between a chil
 - A child element is used as the anchor.
 
   ```ts
-  RelativeContainer() {
-    ...
-    top: { anchor: 'row1', align: VerticalAlign.Bottom },
-    ...
+  let RelConB:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom }
   }
+  let Mleft:Record<string,number> = { 'left': 20 }
+  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
+  RelativeContainer() {RelConB}
   .width(300).height(300)
-  .margin({ left: 20 })
-  .border({ width: 2, color: '#6699FF' })
+  .margin(Mleft)
+  .border(BWC)
   ```
 
   ![en-us_image_0000001562940613](figures/en-us_image_0000001562940613.png)
@@ -81,7 +83,7 @@ Alignment modes in the horizontal direction can be left, center, or right, achie
 
 ![alignment-relative-anchor-horizontal](figures/alignment-relative-anchor-horizontal.png)
 
-Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **HorizontalAlign.Top**, **HorizontalAlign.Center**, and **HorizontalAlign.Bottom** attributes, respectively.
+Alignment modes in the vertical direction can be top, center, or bottom, achieved by the **VerticalAlign.Top**, **VerticalAlign.Center**, and **VerticalAlign.Bottom** attributes, respectively.
 
 ![alignment-relative-anchor-vertical](figures/alignment-relative-anchor-vertical.png)
 
@@ -114,7 +116,7 @@ struct Index {
         .height(100).width(100)
         .alignRules({
           top: { anchor: 'row1', align: VerticalAlign.Bottom },  // Use row1 as the anchor and align with its bottom vertically.
-          left: { anchor: 'row1', align: HorizontalAlign.Start }  // Use row1 as the anchor and align with its left horizontally.
+          left: { anchor: 'row1', align: HorizontalAlign.Start }  // Use row1 as the anchor and align with its start edge horizontally.
         })
         .id('row2') // Set the anchor to row2.
 

@@ -4,7 +4,7 @@
 
 **TreeMap** is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
 
-**[HashMap](js-apis-treemap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
+**[HashMap](js-apis-hashmap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
 
 Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
 
@@ -48,7 +48,7 @@ A constructor used to create a **TreeMap** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| comparator | function | No| Custom comparator.|
+| comparator | function | No| Custom comparator. The default value is **hole** (a blank placeholder), indicating that no comparator. is provided.|
 
 **Error codes**
 
@@ -61,7 +61,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<number, number> = new TreeMap();
 ```
 
 
@@ -90,7 +90,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-const treeMap = new TreeMap();
+let treeMap : TreeMap<number, number> = new TreeMap();
 let result = treeMap.isEmpty();
 ```
 
@@ -126,7 +126,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 let result = treeMap.hasKey("squirrel");
 ```
@@ -163,7 +163,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 let result = treeMap.hasValue(123);
 ```
@@ -200,7 +200,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
@@ -232,7 +232,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
@@ -264,7 +264,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
@@ -296,13 +296,13 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let map = new TreeMap();
+let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // Add all elements in the treeMap to the map.
-map.forEach((value, key) => {
+map.forEach((value ?: number, key ?: string) : void => {
   console.log("value" + value, "key" + key); // Print result: 12 demo, 356 sparrow, and 123 squirrel
 })
 ```
@@ -340,7 +340,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 ```
 
@@ -376,7 +376,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.remove("sparrow");
@@ -414,7 +414,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
@@ -453,7 +453,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
@@ -492,7 +492,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
 ```
@@ -517,7 +517,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
@@ -549,14 +549,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let iter = treeMap.keys();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let it = treeMap.values();
+let t: IteratorResult<number> = it.next();
+while(!t.done) {
+  console.log("TreeMap" + t.value);
+  t = it.next()
 }
 ```
 
@@ -586,14 +586,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let iter = treeMap.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let it = treeMap.values();
+let t: IteratorResult<number> = it.next();
+while(!t.done) {
+  console.log("TreeMap" + t.value);
+  t = it.next()
 }
 ```
 
@@ -611,14 +611,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the element that is currently traversed.|
-| key | K | No| Key of the element that is currently traversed.|
-| map | TreeMap<K, V> | No| Instance that invokes the **forEach** method.|
+| value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key | K | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| map | TreeMap<K, V> | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
@@ -631,11 +631,11 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
-treeMap.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+treeMap.forEach((value ?: number, key ?: string) : void => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -665,15 +665,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let iter = treeMap.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let it = treeMap.entries();
+let t: IteratorResult<Object[]> = it.next();
+while(!t.done) {
+  console.log("TreeMap" + t.value);
+  t = it.next()
 }
 ```
 
@@ -707,14 +706,15 @@ treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 
 // Method 1:
-for (let item of treeMap) { 
-  console.log("key:" + item[0]);
-  console.log("value:" + item[1]);
-}
+let it = treeMap.entries();
+let t: IteratorResult<Object[]> = it.next();
+while(!t.done) {
+  console.log("TreeMap" + t.value);
+  t = it.next()
 
 // Method 2:
 let iter = treeMap[Symbol.iterator]();
-let temp = iter.next().value;
+let temp: IteratorResult<Object[]> = iter.next().value;
 while(temp != undefined) {
   console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);

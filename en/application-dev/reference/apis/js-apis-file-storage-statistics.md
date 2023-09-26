@@ -8,7 +8,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 
 ## Modules to Import
 
-```js
+```ts
 import storageStatistics from "@ohos.file.storageStatistics";
 ```
 
@@ -47,16 +47,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid).then(function(number){
-      console.info("getTotalSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
+    console.info("getTotalSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -90,15 +91,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getTotalSizeOfVolume(uuid, function(error, number){
-      // Do something.
-      console.info("getTotalSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getTotalSizeOfVolume successfully:" + number);
   });
   ```
 
@@ -137,18 +139,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid).then(function(number){
-      console.info("getFreeSizeOfVolume successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeSizeOfVolume failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
+    console.info("getFreeSizeOfVolume successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
   });
-  
   ```
 
 ## storageStatistics.getFreeSizeOfVolume
@@ -181,15 +183,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let uuid = "";
-  storageStatistics.getFreeSizeOfVolume(uuid, function(error, number){
-      // Do something.
-      console.info("getFreeSizeOfVolume successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let uuid: string = "";
+  storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getFreeSizeOfVolume successfully: " + number);
   });
   ```
 
@@ -228,16 +231,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName).then(function(BundleStats){
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
-  }).catch(function(err){
-      console.info("getBundleStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getBundleStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -271,15 +275,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let packageName = "";
-  storageStatistics.getBundleStats(packageName, function(error, BundleStats){
-      // Do something.
-      console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let packageName: string = "";
+  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.Bundlestats) => {
+    // Do something.
+    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   });
   ```
 
@@ -295,7 +300,7 @@ Obtains the space (in bytes) of this third-party application. This API uses a pr
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application space obtained.     |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
 
 **Error codes**
 
@@ -305,13 +310,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let bundleStats = storageStatistics.getCurrentBundleStats();
-  console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.Bundlestats) => {
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
+  }).catch((err: BusinessError) => {
+    console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -336,14 +345,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | -------- | -------- |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getCurrentBundleStats(function(error, bundleStats){
-      // Do something.
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.Bundlestats) => {
+    // Do something.
+    console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
   });
   ```
 
@@ -373,7 +383,7 @@ Obtains the total size (in bytes) of the built-in storage. This API uses a promi
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the built-in storage size obtained.  |
+  | Promise&lt;number&gt; | Promise used to return the total built-in storage size obtained.  |
 
 **Error codes**
 
@@ -385,13 +395,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let number = storageStatistics.getTotalSize();
-  console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize().then((number: number) => {
+    console.info("getTotalSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getTotalSize failed with error:"+ JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
@@ -422,15 +436,53 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getTotalSize(function(error, number){
-      // Do something.
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getTotalSizeSync<sup>10+</sup>
+
+getTotalSizeSync(): number
+
+Obtains the total space (in bytes) of the built-in storage synchronously.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let number = storageStatistics.getTotalSizeSync();
+    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getTotalSizeSync failed with error:" + JSON.stringify(err));
+  }
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -461,13 +513,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let number = storageStatistics.getFreeSize();
-  console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize().then((number: number) => {
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
+  }).catch((err: BusinessError) => {
+    console.info("getFreeSize failed with error:" + JSON.stringify(err));
+  });
   ```
 
 ## storageStatistics.getFreeSize<sup>9+</sup>
@@ -498,15 +554,53 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getFreeSize(function(error, number){
-      // Do something.
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getFreeSize successfully:" + JSON.stringify(number));
   });
+  ```
+
+## storageStatistics.getFreeSizeSync<sup>10+</sup>
+
+getFreeSizeSync(): number
+
+Obtains the available space (in bytes) of the built-in storage synchronously.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001 | IPC error. |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  try {
+    let number = storageStatistics.getFreeSizeSync();
+    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+  } catch (error) {
+    let error: BusinessError = err as BusinessError;
+    console.info("getFreeSizeSync failed with error:" + JSON.stringify(err));
+  }
   ```
 
 ## storageStatistics.getSystemSize<sup>9+</sup>
@@ -537,15 +631,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getSystemSize().then(function(number){
-      console.info("getSystemSize successfully:"+ number);
-  }).catch(function(err){
-      console.info("getSystemSize failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize().then((number: number) => {
+    console.info("getSystemSize successfully:" + number);
+  }).catch((err: BusinessError) => {
+    console.info("getSystemSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -577,14 +672,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getSystemSize(function(error, number){
-      // Do something.
-      console.info("getSystemSize successfully:"+ number);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getSystemSize((error: BusinessError, number: number) => {
+    // Do something.
+    console.info("getSystemSize successfully:" + number);
   });
   ```
 
@@ -604,7 +700,7 @@ Obtains the storage statistics (in bytes) of this user. This API uses a promise 
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
 
 **Error codes**
 
@@ -616,15 +712,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getUserStorageStats().then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -656,14 +753,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  storageStatistics.getUserStorageStats(function(error, StorageStats){
-      // Do something.
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // Do something.
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 
@@ -683,13 +781,13 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | number | Yes  | User ID.|
+  | userId | number | Yes  | User ID|
 
 **Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage information obtained.|
 
 **Error codes**
 
@@ -702,16 +800,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
-  }).catch(function(err){
-      console.info("getUserStorageStats failed with error:"+ err);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
+  }).catch((err: BusinessError) => {
+    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -745,15 +844,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
-  let userId = 100;
-  storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
-      // Do something.
-      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
+    // Do something.
+    console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   });
   ```
 

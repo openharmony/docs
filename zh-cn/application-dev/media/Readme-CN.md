@@ -10,6 +10,8 @@
     - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)
     - [使用OpenSL ES开发音频播放功能](using-opensl-es-for-playback.md)
     - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
+    - [使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)
+    - [使用SoundPool开发音频播放功能](using-soundpool-for-playback.md)
     - [多音频播放的并发策略](audio-playback-concurrency.md)
     - [播放音量管理](volume-management.md)
     - [音效管理](audio-effect-management.md)
@@ -21,6 +23,7 @@
     - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
     - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
     - [使用OpenSL ES开发音频录制功能](using-opensl-es-for-recording.md)
+    - [使用OHAudio开发音频录制功能](using-ohaudio-for-recording.md)
     - [管理麦克风](mic-management.md)
     - [音频录制流管理](audio-recording-stream-management.md)
     - [音频输入设备管理](audio-input-device-management.md)
@@ -29,6 +32,15 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
+  - [屏幕录制](avscreen-capture.md)
+  - 音视频编解码
+    - [获取支持的编解码能力](obtain-supported-codecs.md)
+    - [音频编码](audio-encoding.md)
+    - [音频解码](audio-decoding.md)
+    - [视频编码](video-encoding.md)
+    - [视频解码](video-decoding.md)
+    - [音视频封装](audio-video-encapsulation.md)
+    - [音视频解封装](audio-video-decapsulation.md)
 - 媒体会话
   - [媒体会话概述](avsession-overview.md)
   - 本地媒体会话
@@ -51,6 +63,9 @@
   - 相机最佳实践
     - [拍照实现方案](camera-shooting-case.md)
     - [录像实现方案](camera-recording-case.md)
+    - [使用人像模式拍照](camera-mode.md)
+    - [双路预览](camera-dual-channel-preview.md)
+    - [性能提升方案（仅对系统应用开放）](camera-performance-improvement.md)
 - 图片
   - [图片开发概述](image-overview.md)
   - [图片解码](image-decoding.md)

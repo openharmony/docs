@@ -31,7 +31,7 @@ Sets the visible status of the mouse pointer. This API uses an asynchronous call
 
 ```js
 try {
-  pointer.setPointerVisible(true, (error) => {
+  pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -123,7 +123,7 @@ Checks the visible status of the mouse pointer. This API uses a promise to retur
 
 ```js
 try {
-  pointer.isPointerVisible().then((visible) => {
+  pointer.isPointerVisible().then((visible: boolean) => {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
@@ -135,7 +135,7 @@ try {
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mouse movement speed. This API uses an asynchronous callback to return the result.
+Sets the mouse moving speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -145,7 +145,7 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Mouse moving speed. The value ranges from **1** to **11**. The default value is **5**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -168,7 +168,7 @@ try {
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
-Sets the mouse movement speed. This API uses a promise to return the result.
+Sets the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -178,7 +178,7 @@ Sets the mouse movement speed. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Mouse moving speed. The value ranges from **1** to **11**. The default value is **5**.|
 
 **Return value**
 
@@ -202,7 +202,7 @@ try {
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
+Obtains the mouse moving speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -234,7 +234,7 @@ try {
 
 getPointerSpeed(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -279,7 +279,7 @@ Sets the status of the mouse hover scroll switch. This API uses an asynchronous 
 
 ```js
 try {
-  pointer.setHoverScrollState(true, (error) => {
+  pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
       console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -402,7 +402,7 @@ Sets the primary button of the mouse. This API uses an asynchronous callback to 
 
 ```js
 try {
-  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error) => {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
       console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -614,7 +614,7 @@ try {
 
 getMouseScrollRows(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the mouse moving speed. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -656,9 +656,11 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 **Example**
 
 ```js
+import { BusinessError }  from '@ohos.base';
 import window from '@ohos.window';
 
-window.getLastWindow(this.context, (error, win) => {
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -669,7 +671,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId, (error, style) => {
+    pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -702,8 +704,10 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 
 ```js
 import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
-window.getLastWindow(this.context, (error, win) => {
+let context = getContext(this);
+window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -714,7 +718,7 @@ window.getLastWindow(this.context, (error, win) => {
     return;
   }
   try {
-    pointer.getPointerStyle(windowId).then((style) => {
+    pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
@@ -850,3 +854,1235 @@ Enumerates mouse pointer styles.
 | MIDDLE_BTN_SOUTH_EAST            | 36   | Scrolling south-east |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
 | MIDDLE_BTN_SOUTH_WEST            | 37   | Scrolling south-west |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | Moving as a cone in four directions|![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
+| HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text cursor|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
+| CURSOR_CROSS<sup>10+</sup> | 40 | Cross cursor|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
+| CURSOR_CIRCLE<sup>10+</sup> | 41 | Circular cursor|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
+| LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)|
+| RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)|
+
+## pointer.setTouchpadScrollSwitch<sup>10+</sup>
+
+setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+Sets the scroll switch of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | Yes   | Scroll switch status. The value **true** indicates that the scroll switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadScrollSwitch(true, (error: Error) => {
+    if (error) {
+      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadScrollSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollSwitch<sup>10+</sup>
+
+setTouchpadScrollSwitch(state: boolean): Promise\<void>
+
+Sets the scroll switch of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Scroll switch status. The value **true** indicates that the scroll switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadScrollSwitch(false).then(() => {
+    console.log(`setTouchpadScrollSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollSwitch<sup>10+</sup>
+
+getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
+
+Obtains the scroll switch status of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: Boolean) => {
+    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollSwitch<sup>10+</sup>
+
+getTouchpadScrollSwitch(): Promise\<boolean>
+
+Obtains the scroll switch status of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch().then((state) => {
+    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollDirection<sup>10+</sup>
+
+setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
+
+Sets the scroll direction of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | Yes   | Scroll direction of the touchpad. The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite. The default value is **true**.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadScrollDirection(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadScrollDirection success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollDirection<sup>10+</sup>
+
+setTouchpadScrollDirection(state: boolean): Promise\<void>
+
+Sets the scroll direction of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Scroll direction of the touchpad. The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite. The default value is **true**.    |
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadScrollDirection (false).then(() => {
+    console.log(`setTouchpadScrollDirection success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollDirection<sup>10+</sup>
+
+getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
+
+Obtains the scroll direction of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch ((error: Error, state: boolean) => {
+    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollDirection<sup>10+</sup>
+
+getTouchpadScrollDirection(): Promise\<boolean>
+
+Obtains the scroll direction of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadScrollDirection().then((state) => {
+    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadTapSwitch<sup>10+</sup>
+
+setTouchpadTapSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+Sets the tap switch of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | Yes   |Tap switch status of the touchpad The value **true** indicates that the tap switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadTapSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadTapSwitch <sup>10+</sup>
+
+setTouchpadTapSwitch(state: boolean): Promise\<void>
+
+Sets the tap switch of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Tap switch status of the touchpad The value **true** indicates that the tap switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(false).then(() => {
+    console.log(`setTouchpadTapSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadTapSwitch<sup>10+</sup>
+
+getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
+
+Obtains the tap switch status of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadTapSwitch((error, state) => {
+    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadTapSwitch<sup>10+</sup>
+
+getTouchpadTapSwitch(): Promise\<boolean>
+
+Obtains the tap switch status of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadTapSwitch().then((state: Boolean) => {
+    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPointerSpeed<sup>10+</sup>
+
+setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
+
+Sets the cursor moving speed of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| speed | number                    | Yes   |Cursor moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadPointerSpeed(1, (error) => {
+    if (error) {
+      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadPointerSpeed success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPointerSpeed<sup>10+</sup>
+
+setTouchpadPointerSpeed(speed: number): Promise\<void>
+
+Sets the cursor moving speed of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| speed| number | Yes   | Cursor moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadPointerSpeed(10).then(() => {
+    console.log(`setTouchpadPointerSpeed success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPointerSpeed<sup>10+</sup>
+
+getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
+
+Obtains the cursor moving speed of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<number> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
+    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPointerSpeed<sup>10+</sup>
+
+getTouchpadPointerSpeed(): Promise\<number>
+
+Obtains the cursor moving speed of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<number> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadPointerSpeed().then((speed: number) => {
+    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPinchSwitch<sup>10+</sup>
+
+setTouchpadPinchSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+Sets the pinch switch of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | Yes   |Pinch switch status of the touchpad. The value **true** indicates that the pinch switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(true, (error: Error) => {
+    if (error) {
+      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadPinchSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPinchSwitch<sup>10+</sup>
+
+setTouchpadPinchSwitch(state: boolean): Promise\<void>
+
+Sets the pinch switch of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Pinch switch status of the touchpad. The value **true** indicates that the pinch switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadPinchSwitch(false).then(() => {
+    console.log(`setTouchpadPinchSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPinchSwitch<sup>10+</sup>
+
+getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
+
+Obtains the pinch switch status of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadPinchSwitch((error, state) => {
+    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPinchSwitch<sup>10+</sup>
+
+getTouchpadPinchSwitch(): Promise\<boolean>
+
+Obtains the pinch switch status of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadPinchSwitch().then((state) => {
+    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadSwipeSwitch<sup>10+</sup>
+
+setTouchpadSwipeSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+Sets the multi-finger swipe switch of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | Yes   |Swipe switch status of the touchpad. The value **true** indicates that the swipe switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
+    if (error) {
+      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadSwipeSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadSwipeSwitch<sup>10+</sup>
+
+setTouchpadSwipeSwitch(state: boolean): Promise\<void>
+
+Sets the swipe switch of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Swipe switch status of the touchpad. The value **true** indicates that the swipe switch is enabled, and the value **false** indicates the opposite. The default value is **true**. |
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadSwipeSwitch(false).then(() => {
+    console.log(`setTouchpadSwipeSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadSwipeSwitch<sup>10+</sup>
+
+getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
+
+Obtains the multi-finger swipe switch status of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadSwipeSwitch((error, state) => {
+    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadSwipeSwitch<sup>10+</sup>
+
+getTouchpadSwipeSwitch(): Promise\<boolean>
+
+Obtains the multi-finger swipe switch status of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
+    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## RightClickType<sup>10+</sup>
+
+Enumerates shortcut menu triggering modes.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name                              | Value   | Description    |
+| -------------------------------- | ---- | ------ |
+| TOUCHPAD_RIGHT_BUTTON            | 1    |Tapping the right-button area of the touchpad.|
+| TOUCHPAD_LEFT_BUTTON            | 2    |Tapping the left-button area of the touchpad.|
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |Tapping or pressing the touchpad with two fingers.|
+
+## pointer.setTouchpadRightClickType<sup>10+</sup>
+
+setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>): void
+
+Sets the shortcut menu type of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| RightClickType| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON , (error) => {
+    if (error) {
+      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadRightClickType success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadRightClickType<sup>10+</sup>
+
+setTouchpadRightClickType(type: RightClickType): Promise\<void>
+
+Sets the shortcut menu type of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| type| RightClickType| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON ).then(() => {
+    console.log(`setTouchpadRightClickType success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadRightClickType<sup>10+</sup>
+
+getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
+
+Obtains the shortcut menu type of the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<RightClickType> | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadRightClickType((error: Error, type: pointer.RightClickType) => {
+    console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadRightClickType<sup>10+</sup>
+
+getTouchpadRightClickType(): Promise\<RightClickType>
+
+Obtains the shortcut menu type of the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<RightClickType > | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadRightClickType().then((type) => {
+    console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the pointer size. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| size     | number                    | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSize(1, (error) => {
+    if (error) {
+      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSize<sup>10+</sup>
+
+setPointerSize(size: number): Promise&lt;void&gt;
+
+Sets the pointer size. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSize(3).then(() => {
+    console.log(`setPointerSize success`);
+  });
+} catch (error) {
+  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerSizeSync<sup>10+</sup>
+
+setPointerSizeSync(size: number): void;
+
+Sets the pointer size. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerSizeSync(5);
+  console.log(`setPointerSizeSync success`);
+} catch (error) {
+  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the pointer size. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerSize((error, size) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSize<sup>10+</sup>
+
+getPointerSize(): Promise&lt;number&gt;
+
+Obtains the pointer size. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerSize().then((size: number) => {
+    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+  });
+} catch (error) {
+  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerSizeSync<sup>10+</sup>
+
+getPointerSizeSync(): number
+
+Obtains the pointer size. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| number | Pointer size. |
+
+**Example**
+
+```js
+try {
+  let pointerSize = pointer.getPointerSizeSync();
+  console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
+} catch (error) {
+  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the pointer color. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| color     | number                    | Yes   | Pointer color. The default value is **black** (0x000000).  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800, (error: Error) => {
+    if (error) {
+      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColor<sup>10+</sup>
+
+setPointerColor(color: number): Promise&lt;void&gt;
+
+Sets the pointer color. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColor(0xF6C800).then(() => {
+    console.log(`setPointerColor success`);
+  });
+} catch (error) {
+  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setPointerColorSync<sup>10+</sup>
+
+setPointerColorSync(color: number): void;
+
+Sets the pointer color. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
+
+**Example**
+
+```js
+try {
+  pointer.setPointerColorSync(0xF6C800);
+  console.log(`setPointerColorSync success`);
+} catch (error) {
+  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the pointer color. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerColor((error, color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColor<sup>10+</sup>
+
+getPointerColor(): Promise&lt;number&gt;
+
+Obtains the pointer color. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+try {
+  pointer.getPointerColor().then((color) => {
+    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+  });
+} catch (error) {
+  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getPointerColorSync<sup>10+</sup>
+
+getPointerColorSync(): number
+
+Obtains the pointer color. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| number | Pointer color.|
+
+**Example**
+
+```js
+try {
+  let pointerColor = pointer.getPointerColorSync();
+  console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
+} catch (error) {
+  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```

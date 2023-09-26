@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 | bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory. |
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory.|
 
 ## Context.createBundleContext
 
@@ -58,6 +58,8 @@ Creates the context based on the bundle name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let bundleContext: common.Context;
 try {
     bundleContext = this.context.createBundleContext('com.example.test');
@@ -89,6 +91,8 @@ Creates the context based on the module name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
@@ -96,6 +100,10 @@ try {
     console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
 ```
+
+> **NOTE**
+>
+> Only the context of other modules in the current application and the context of the [intra-application HSP](../../../application-dev/quick-start/in-app-hsp.md) can be obtained.
 
 ## Context.createModuleContext
 
@@ -123,6 +131,8 @@ Creates the context based on the bundle name and module name.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
@@ -148,10 +158,95 @@ Obtains the context of this application.
 **Example**
 
 ```ts
+import common from '@ohos.app.ability.common';
+
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
     console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(dataGroupID: string): Promise\<string>;
+
+Obtains the shared directory based on a group ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<string> | Promise used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+
+let groupId = "1";
+let getGroupDirContext: common.Context = this.context;
+try {
+  getGroupDirContext.getGroupDir(groupId).then(data => {
+    console.log("getGroupDir result:" + data);
+  })
+} catch (error) {
+  console.error('getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
+```
+
+## Context.getGroupDir<sup>10+</sup>
+
+getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void;
+
+Obtains the shared directory based on a group ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory  | Description           |
+| -------- | ---------------------- | ---- | ------------- |
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+
+let getGroupDirContext: common.Context = this.context;
+
+getGroupDirContext.getGroupDir("1", (err, data) => {
+  if (err) {
+    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+  } else {
+    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+  }
+});
 ```

@@ -24,14 +24,14 @@ Called when an unhandled exception occurs in the JS runtime.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errMsg | string | No| Message and error stack trace about the exception.|
+| errMsg | string | Yes| Message and error stack trace about the exception.|
 
 **Example**
 
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   }
@@ -63,7 +63,7 @@ Called when an exception occurs during the application running.
 ```ts
 import errorManager from '@ohos.app.ability.errorManager';
 
-let observer = {
+let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
   },

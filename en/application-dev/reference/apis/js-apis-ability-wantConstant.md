@@ -46,7 +46,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent. The value must be an array of the string type. |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
-|   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications. |
+
 
 ## wantConstant.Entity
 
@@ -84,6 +84,6 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.<br>**System API**: This is a system API and cannot be called by third-party applications.     |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                             |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** in the [startAbility](js-apis-ability-featureAbility.md#startability) API passed to the FeatureAbility module. It must be used together with **flag_ABILITY_NEW_MISSION**. |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** in the [startAbility](js-apis-ability-featureAbility.md#startability) API passed to the FeatureAbility module. It must be used together with **flag_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

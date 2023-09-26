@@ -36,6 +36,7 @@ Provides the detailed information of the permissions to request from the system.
 | Name                 | Type                   | Readable| Writable| Description                |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
 | name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
+| moduleName<sup>10+</sup>            | string                  | Yes  | Yes  | Name of the module that requests the permission.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission. |
 | reasonId              | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
 | usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|

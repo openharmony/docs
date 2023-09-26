@@ -44,8 +44,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // publish callback
-function publishCallback(err) {
+let publishCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -98,9 +100,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // NotificationRequest object
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -112,6 +116,8 @@ let notificationRequest: notificationManager.NotificationRequest = {
 };
 notificationManager.publish(notificationRequest).then(() => {
 	console.info("publish success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 
 ```
@@ -154,8 +160,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // publish callback
-function publishCallback(err) {
+let publishCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -163,7 +171,7 @@ function publishCallback(err) {
     }
 }
 // User ID
-let userId = 1;
+let userId: number = 1;
 // NotificationRequest object
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
@@ -216,8 +224,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let notificationRequest: notificationManager.NotificationRequest = {
-    notificationId: 1,
+    id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
@@ -228,10 +238,12 @@ let notificationRequest: notificationManager.NotificationRequest = {
     }
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`publish fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -266,8 +278,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelCallback(err) {
+let cancelCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -290,7 +304,7 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
-| label | string | No  | Notification label.|
+| label | string | No  | Notification label. This parameter is left empty by default.|
 
 **Error codes**
 
@@ -306,8 +320,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 notificationManager.cancel(0).then(() => {
 	console.info("cancel success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancel fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -340,8 +358,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelCallback(err) {
+let cancelCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -378,8 +398,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // cancel callback
-function cancelAllCallback(err) {
+let cancelAllCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -410,8 +432,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 notificationManager.cancelAll().then(() => {
 	console.info("cancelAll success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancelAll fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -448,8 +474,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // addSlot callback
-function addSlotCallBack(err) {
+let addSlotCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -457,7 +485,7 @@ function addSlotCallBack(err) {
     }
 }
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot, addSlotCallBack);
@@ -495,12 +523,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -533,8 +565,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // addSlot callback
-function addSlotCallBack(err) {
+let addSlotCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -572,8 +606,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -610,8 +648,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // addSlots callback
-function addSlotsCallBack(err) {
+let addSlotsCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -619,11 +659,11 @@ function addSlotsCallBack(err) {
     }
 }
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
@@ -661,16 +701,20 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // NotificationSlot object
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // NotificationSlotArray object
-let notificationSlotArray = new Array();
+let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
 
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`addSlot fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -702,15 +746,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // getSlot callback
-function getSlotCallback(err,data) {
+let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
     if (err) {
         console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlot success");
+        console.info(`getSlot success, data is ${JSON.stringify(data)}`);
     }
 }
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType, getSlotCallback);
 ```
 
@@ -747,9 +793,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-notificationManager.getSlot(slotType).then((data) => {
-	console.info("getSlot success, data: " + JSON.stringify(data));
+import Base from '@ohos.base';
+
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+
+notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
+    console.info("getSlot success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlot fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -780,13 +831,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // getSlots callback
-function getSlotsCallback(err,data) {
-    if (err) {
-        console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getSlots success");
-    }
+let getSlotsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
+  if (err) {
+    console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info(`getSlots success, data is ${JSON.stringify(data)}`);
+  }
 }
 notificationManager.getSlots(getSlotsCallback);
 ```
@@ -818,8 +871,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getSlots().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -851,16 +908,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // removeSlot callback
-function removeSlotCallback(err) {
-    if (err) {
-        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeSlot success");
-    }
+let removeSlotCallback = (err: Base.BusinessError): void => {
+  if (err) {
+    console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeSlot success");
+  }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-notificationManager.removeSlot(slotType,removeSlotCallback);
+notificationManager.removeSlot(slotType, removeSlotCallback);
 ```
 
 ## notificationManager.removeSlot
@@ -890,9 +949,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+import Base from '@ohos.base';
+
+let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`removeSlot fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -923,7 +986,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function removeAllCallBack(err) {
+import Base from '@ohos.base';
+
+let removeAllCallBack = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -954,8 +1019,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 notificationManager.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`removeAllSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -993,17 +1062,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setNotificationEnablenCallback(err) {
+import Base from '@ohos.base';
+
+let setNotificationEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnablenCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnablenCallback success");
+        console.info("setNotificationEnableCallback success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
+notificationManager.setNotificationEnable(bundle, false, setNotificationEnableCallback);
 ```
 
 ## notificationManager.setNotificationEnable
@@ -1039,11 +1110,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1080,16 +1155,20 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+import Base from '@ohos.base';
+
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
+
 notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
@@ -1131,11 +1210,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.isNotificationEnabled(bundle).then((data) => {
+notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1170,11 +1253,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+import Base from '@ohos.base';
+
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1212,8 +1297,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.isNotificationEnabled().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.isNotificationEnabled().then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1250,15 +1339,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isNotificationEnabledCallback(err, data) {
+import Base from '@ohos.base';
+
+let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationEnabled success");
+        console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
 ```
@@ -1301,10 +1392,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 1;
+import Base from '@ohos.base';
 
-notificationManager.isNotificationEnabled(userId).then((data) => {
+let userId: number = 1;
+
+notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1342,14 +1437,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function displayBadgeCallback(err) {
+import Base from '@ohos.base';
+
+let displayBadgeCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("displayBadge success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false, displayBadgeCallback);
@@ -1388,11 +1485,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1413,7 +1514,7 @@ Checks whether the notification badge is enabled for a specified application. Th
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | Yes  | Bundle of the application.              |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1429,14 +1530,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function isBadgeDisplayedCallback(err, data) {
+import Base from '@ohos.base';
+
+let isBadgeDisplayedCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isBadgeDisplayed success");
+        console.info(`isBadgeDisplayed success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
@@ -1480,11 +1583,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
-    bundle: "bundleName1",
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-notificationManager.isBadgeDisplayed(bundle).then((data) => {
+
+notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1514,9 +1622,14 @@ Sets the notification badge number. This API uses a promise to return the result
 **Example**
 
 ```ts
-let badgeNumber = 10
+import Base from '@ohos.base';
+
+let badgeNumber: number = 10;
+
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
 	console.info("displayBadge success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1549,7 +1662,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setBadgeNumberCallback(err) {
+import Base from '@ohos.base';
+
+let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
     } else {
@@ -1557,7 +1672,7 @@ function setBadgeNumberCallback(err) {
     }
 }
 
-let badgeNumber = 10
+let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
@@ -1595,17 +1710,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setSlotByBundleCallback(err) {
+import Base from '@ohos.base';
+
+let setSlotByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSlotByBundle success");
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-let notificationSlot = {
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
@@ -1644,14 +1761,20 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-let notificationSlot = {
+
+let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
+
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1688,14 +1811,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getSlotsByBundleCallback(err, data) {
+import Base from '@ohos.base';
+
+let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlotsByBundle success");
+        console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
@@ -1739,11 +1864,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.getSlotsByBundle(bundle).then((data) => {
+
+notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1780,16 +1910,20 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getSlotNumByBundleCallback(err, data) {
+import Base from '@ohos.base';
+
+let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
         console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSlotNumByBundle success");
+        console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
 }
-let bundle = {
-    bundle: "bundleName1",
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
+
 notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
@@ -1831,11 +1965,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundle = {
-    bundle: "bundleName1",
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-notificationManager.getSlotNumByBundle(bundle).then((data) => {
+
+notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1869,11 +2008,13 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 **Example**
 
 ```ts
-function getAllActiveNotificationsCallback(err, data) {
+import Base from '@ohos.base';
+
+let getAllActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getAllActiveNotifications success");
+        console.info(`getAllActiveNotifications success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1911,8 +2052,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getAllActiveNotifications().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1943,11 +2088,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getActiveNotificationCountCallback(err, data) {
+import Base from '@ohos.base';
+
+let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
         console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotificationCount success");
+        console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -1981,8 +2128,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getActiveNotificationCount().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.getActiveNotificationCount().then((data: number) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2013,7 +2164,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getActiveNotificationsCallback(err, data) {
+import Base from '@ohos.base';
+
+let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2051,8 +2204,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getActiveNotifications().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2084,7 +2241,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function cancelGroupCallback(err) {
+import Base from '@ohos.base';
+
+let cancelGroupCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2092,7 +2251,7 @@ function cancelGroupCallback(err) {
     }
 }
 
-let groupName = "GroupName";
+let groupName: string = "GroupName";
 
 notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
@@ -2124,9 +2283,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let groupName = "GroupName";
+import Base from '@ohos.base';
+
+let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancelGroup fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2164,7 +2327,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function removeGroupByBundleCallback(err) {
+import Base from '@ohos.base';
+
+let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2172,8 +2337,8 @@ function removeGroupByBundleCallback(err) {
     }
 }
 
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
+let groupName: string = "GroupName";
 
 notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
@@ -2211,10 +2376,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let bundleOption = {bundle: "Bundle"};
-let groupName = "GroupName";
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
+let groupName: string = "GroupName";
+
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2251,7 +2421,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setDoNotDisturbDateCallback(err) {
+import Base from '@ohos.base';
+
+let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2259,7 +2431,7 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
@@ -2300,13 +2472,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let doNotDisturbDate = {
+import Base from '@ohos.base';
+
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2346,7 +2522,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function setDoNotDisturbDateCallback(err) {
+import Base from '@ohos.base';
+
+let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2354,13 +2532,13 @@ function setDoNotDisturbDateCallback(err) {
     }
 }
 
-let doNotDisturbDate = {
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
@@ -2399,16 +2577,20 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let doNotDisturbDate = {
+import Base from '@ohos.base';
+
+let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2445,11 +2627,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getDoNotDisturbDateCallback(err,data) {
+import Base from '@ohos.base';
+
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDoNotDisturbDate success");
+        console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
 
@@ -2488,8 +2672,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.getDoNotDisturbDate().then((data) => {
-	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+import Base from '@ohos.base';
+
+notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
+  console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2528,15 +2716,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-function getDoNotDisturbDateCallback(err,data) {
+import Base from '@ohos.base';
+
+let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationManager.DoNotDisturbDate): void => {
     if (err) {
         console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDoNotDisturbDate success");
+        console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
@@ -2580,10 +2770,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 1;
+import Base from '@ohos.base';
 
-notificationManager.getDoNotDisturbDate(userId).then((data) => {
+let userId: number = 1;
+
+notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2617,7 +2811,9 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-function isSupportDoNotDisturbModeCallback(err,data) {
+import Base from '@ohos.base';
+
+let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2659,8 +2855,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-notificationManager.isSupportDoNotDisturbMode().then((data) => {
+import Base from '@ohos.base';
+
+notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2691,9 +2891,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-let templateName = 'process';
-function isSupportTemplateCallback(err, data) {
+```ts
+import Base from '@ohos.base';
+
+let templateName: string = 'process';
+let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2736,11 +2938,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-let templateName = 'process';
+```ts
+import Base from '@ohos.base';
 
-notificationManager.isSupportTemplate(templateName).then((data) => {
+let templateName: string = 'process';
+
+notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isSupportTemplate fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2770,8 +2976,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function requestEnableNotificationCallback(err) {
+```ts
+import Base from '@ohos.base';
+
+let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2802,13 +3010,110 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
+```ts
+import Base from '@ohos.base';
+
 notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
 });
 ```
 
+## notificationManager.requestEnableNotification<sup>10+<sup>
 
+requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
+
+Requests notification to be enabled for this application in a modal. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.    |
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
+      if (err) {
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info("requestEnableNotification success");
+      }
+    };
+
+    notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+  }
+}
+```
+
+## notificationManager.requestEnableNotification<sup>10+<sup>
+
+requestEnableNotification(context: UIAbilityContext): Promise\<void\>
+
+Requests notification to be enabled for this application in a modal. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                |
+| -------- | ------------------------ | ---- |--------------------|
+| context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    notificationManager.requestEnableNotification(this.context).then(() => {
+      console.info("requestEnableNotification success");
+    }).catch((err: Base.BusinessError) => {
+      console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    });
+  }
+}
+```
 
 ## notificationManager.setDistributedEnable
 
@@ -2842,8 +3147,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function setDistributedEnableCallback(err) {
+```ts
+import Base from '@ohos.base';
+
+let setDistributedEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2851,7 +3158,7 @@ function setDistributedEnableCallback(err) {
     }
 };
 
-let enable = true;
+let enable: boolean = true;
 
 notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
@@ -2887,12 +3194,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-let enable = true;
+```ts
+import Base from '@ohos.base';
+
+let enable: boolean = true;
 
 notificationManager.setDistributedEnable(enable).then(() => {
-        console.info("setDistributedEnable success");
-    });
+    console.info("setDistributedEnable success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+});
 ```
 
 
@@ -2923,8 +3234,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function isDistributedEnabledCallback(err, data) {
+```ts
+import Base from '@ohos.base';
+
+let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2964,11 +3277,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
+```ts
+import Base from '@ohos.base';
+
 notificationManager.isDistributedEnabled()
-    .then((data) => {
-        console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
-    });
+.then((data: boolean) => {
+    console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isDistributedEnabled fail: ${JSON.stringify(err)}`);
+});
 ```
 
 
@@ -3006,8 +3323,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function setDistributedEnableByBundleCallback(err) {
+```ts
+import Base from '@ohos.base';
+
+let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3015,11 +3334,11 @@ function setDistributedEnableByBundleCallback(err) {
     }
 };
 
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable = true
+let enable: boolean = true;
 
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
@@ -3059,15 +3378,19 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-let bundle = {
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-let enable = true
+let enable: boolean = true;
 
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3104,8 +3427,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function isDistributedEnabledByBundleCallback(err, data) {
+```ts
+import Base from '@ohos.base';
+
+let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3113,7 +3438,7 @@ function isDistributedEnabledByBundleCallback(err, data) {
     }
 };
 
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
@@ -3158,13 +3483,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-let bundle = {
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 
-notificationManager.isDistributedEnabledByBundle(bundle).then((data) => {
+notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3199,12 +3528,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-function getDeviceRemindTypeCallback(err, data) {
+```ts
+import Base from '@ohos.base';
+
+let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationManager.DeviceRemindType): void => {
     if (err) {
         console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getDeviceRemindType success");
+        console.info(`getDeviceRemindType success, data is ${JSON.stringify(data)}`);
     }
 };
 
@@ -3241,9 +3572,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 **Example**
 
-```javascript
-notificationManager.getDeviceRemindType().then((data) => {
+```ts
+import Base from '@ohos.base';
+
+notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3287,8 +3622,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // publishAsBundle callback
-function callback(err) {
+let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3296,11 +3633,11 @@ function callback(err) {
     }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 // NotificationRequest object
-let request = {
+let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -3354,12 +3691,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 // NotificationRequest object
-let request = {
+let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
         contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
@@ -3373,6 +3712,8 @@ let request = {
 
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3414,8 +3755,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // cancelAsBundle
-function cancelAsBundleCallback(err) {
+let cancelAsBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3423,9 +3766,9 @@ function cancelAsBundleCallback(err) {
     }
 }
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
@@ -3467,13 +3810,17 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
+let representativeBundle: string = "com.example.demo";
 // User ID
-let userId = 100;
+let userId: number = 100;
 
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3512,8 +3859,10 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // setNotificationEnableSlot
-function setNotificationEnableSlotCallback(err) {
+let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3562,12 +3911,16 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // setNotificationEnableSlot
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
+    }).catch((err: Base.BusinessError) => {
+        console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
     });
 ```
 
@@ -3605,12 +3958,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // isNotificationSlotEnabled
-function getEnableSlotCallback(err, data) {
+let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isNotificationSlotEnabled success");
+        console.info(`isNotificationSlotEnabled success, data is ${JSON.stringify(data)}`);
     }
 };
 
@@ -3659,10 +4014,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3701,10 +4060,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-let enable = true;
+import Base from '@ohos.base';
 
-function callback(err) {
+let userId: number = 100;
+let enable: boolean = true;
+
+let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3755,13 +4116,15 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-let enable = true;
+import Base from '@ohos.base';
+
+let userId: number = 100;
+let enable: boolean = true;
 
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err) => {
-    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3799,9 +4162,11 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
+import Base from '@ohos.base';
 
-function getSyncNotificationEnabledWithoutAppCallback(err, data) {
+let userId: number = 100;
+
+let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
     } else {
@@ -3851,11 +4216,14 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
-let userId = 100;
-notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
-    console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
+import Base from '@ohos.base';
+
+let userId: number = 100;
+
+notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
+  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -3889,18 +4257,22 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
+let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    if(info.notificationId == 1){
+        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
+        return result;
+    } else {
+        let result: notificationManager.NotificationCheckResult =   { code: 0, message: "testMsg0"};
+        return result;
+    }
+}
 try{
     notificationManager.on("checkNotification", OnCheckNotification);
 } catch (error){
-    console.info(`notificationManager.on error: ${JSON.stringify(error)}`);
-}
-function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
-    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
-    if(info.notificationId == 1){
-        return { code: 1, message: "testMsg1"}
-    } else {
-        return { code: 0, message: "testMsg0"}
-    }
+    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -3921,7 +4293,7 @@ Unsubscribes from notification events.
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | string                                                       | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Pointer to the notification verification function.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Callback used to return the result. This parameter is left empty by default.|
 
 **Error codes**
 
@@ -3934,10 +4306,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error)}`);
+    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -3947,11 +4321,11 @@ try{
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | No  | Yes  | DND time type.|
-| begin | Date                                  | No  | Yes  | DND start time.|
-| end   | Date                                  | No  | Yes  | DND end time.|
+| Name | Type                                 | Mandatory| Description                  |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | Yes  | DND time type.|
+| begin | Date                                  | Yes  | DND start time.|
+| end   | Date                                  | Yes  | DND end time.|
 
 ## DoNotDisturbType
 
@@ -3972,12 +4346,12 @@ try{
 **System capability**: SystemCapability.Notification.Notification
 
 | Name                             | Value         | Description              |
-| --------------------------------- | ----------- | ------------------ |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.    |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.  |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.    |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification.    |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.|
+| --------------------------------- | ----------- |------------------|
+| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.         |
+| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.        |
+| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.         |
+| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification (not supported currently).|
+| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.       |
 
 ## SlotLevel
 
@@ -4041,11 +4415,11 @@ try{
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| bundleName  | string                          | No  | Yes  | Bundle name.|
-| notificationId | number                       | No  | Yes  | Notification ID.    |
-| contentType   | [ContentType](#contenttype)   | No  | Yes  | Notification type.  |
+| Name | Type                                 | Mandatory| Description                  |
+| ----- | ------------------------------------- | --- | ---------------------- |
+| bundleName  | string                          | Yes  | Bundle name.|
+| notificationId | number                       | Yes  | Notification ID.    |
+| contentType   | [ContentType](#contenttype)   | Yes  | Notification type.  |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4055,7 +4429,7 @@ try{
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| Name | Type                                 | Read-only| Mandatory| Description                  |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| code  | number                          | No  | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
-| message | string                       | No  | Yes  | Result.   |
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| code    | number                               | Yes  | Result code.<br>**0**: display.<br>**1**: no display.|
+| message | string                               | Yes  | Result.   |

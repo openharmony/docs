@@ -1,10 +1,11 @@
 # @ohos.update (Update)
 
-The **update** module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
+The **update** module implements update of the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
 
 - The SD card update depends on the update packages and SD cards.
+
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
 > **NOTE**
@@ -31,7 +32,7 @@ Obtains an **OnlineUpdater** object.
 
 | Name        | Type                         | Mandatory  | Description    |
 | ----------- | --------------------------- | ---- | ------ |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **UpgradeInfo** object.|
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **OnlineUpdater** object information.|
 
 **Return value**
 
@@ -39,29 +40,21 @@ Obtains an **OnlineUpdater** object.
 | ------------------- | ---- |
 | [Updater](#updater) | **OnlineUpdater** object.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
-
 **Example**
 
 ```ts
 try {
-  const upgradeInfo = {
-    upgradeApp: "com.ohos.ota.updateclient",
-    businessType: {
-      vendor: update.BusinessVendor.PUBLIC,
-      subType: update.BusinessSubType.FIRMWARE
+      const upgradeInfo: update.UpgradeInfo = {
+        upgradeApp: "com.ohos.ota.updateclient",
+        businessType: {
+          vendor: update.BusinessVendor.PUBLIC,
+          subType: update.BusinessSubType.FIRMWARE
+        }
+      };
+      let updater = update.getOnlineUpdater(upgradeInfo);
+    } catch(error) {
+      console.error(`Fail to get updater error: ${error}`);
     }
-  };
-  let updater = update.getOnlineUpdater(upgradeInfo);
-} catch(error) {
-  console.error(`Fail to get updater error: ${error}`);
-}
 ```
 
 ## update.getRestorer
@@ -79,13 +72,6 @@ Obtains a **Restorer** object for restoring factory settings.
 | --------------------- | ------ |
 | [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -111,13 +97,6 @@ Obtains a **LocalUpdater** object.
 | ----------------------------- | ------ |
 | [LocalUpdater](#localupdater) | **LocalUpdater** object.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
@@ -139,7 +118,7 @@ Checks whether a new version is available. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -153,14 +132,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
-});
+updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
+      console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+    });
 ```
 
 ### checkNewVersion
@@ -171,7 +150,7 @@ Checks whether a new version is available. This API uses a promise to return the
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -185,18 +164,20 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
-  // Version digest information
-  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
-}).catch(err => {
-  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-});
+updater.checkNewVersion()
+      .then((result: update.CheckResult) => {
+        console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+        // Version digest information
+        console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+      })
+      .catch((err: BusinessError)=>{
+        console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+      })
 ```
 
 ###  getNewVersionInfo
@@ -207,7 +188,7 @@ Obtains information about the new version. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -221,14 +202,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getNewVersionInfo((err, info) => {
-  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
+updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
+      console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+      console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -240,7 +221,7 @@ Obtains information about the new version. This API uses a promise to return the
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -254,16 +235,16 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getNewVersionInfo().then(info => {
-  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
-}).catch(err => {
-  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
+updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
+    console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+    console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
+}).catch((err: BusinessError) => {
+    console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -275,7 +256,7 @@ Obtains the description file of the new version. This API uses an asynchronous c
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -291,25 +272,26 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
-  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
-  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -321,7 +303,7 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -342,25 +324,25 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
 
-updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -373,7 +355,7 @@ Obtains information about the current version. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -387,12 +369,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getCurrentVersionInfo((err, info) => {
+updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -407,7 +389,7 @@ Obtains information about the current version. This API uses a promise to return
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -421,16 +403,16 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getCurrentVersionInfo().then(info => {
+updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -443,7 +425,7 @@ Obtains the description file of the current version. This API uses an asynchrono
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -458,13 +440,13 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
@@ -483,7 +465,7 @@ Obtains the description file of the current version. This API uses a promise to 
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -503,20 +485,19 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Options of the description file
-const descriptionOptions = {
+const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 };
-
-updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+updater.getCurrentVersionDescription(descriptionOptions).then((info: Array<update.ComponentDescription>) => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -529,7 +510,7 @@ Obtains information about the update task. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -543,12 +524,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getTaskInfo((err, info) => {
+updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
 ```
@@ -561,7 +542,7 @@ Obtains information about the update task. This API uses a promise to return the
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -575,14 +556,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getTaskInfo().then(info => {
+updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -595,7 +576,7 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -611,22 +592,22 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Download options
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
 };
-updater.download(versionDigestInfo, downloadOptions, (err) => {
+updater.download(versionDigestInfo, downloadOptions, (err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -639,7 +620,7 @@ Downloads the new version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -660,24 +641,24 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Download options
-const downloadOptions = {
+const downloadOptions: update.DownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-  order: update.Order.DOWNLOAD // Download
+   order: update.Order.DOWNLOAD // Download
 };
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
@@ -690,7 +671,7 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -706,21 +687,21 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo : update.VersionDigestInfo= {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for resuming download
-const resumeDownloadOptions = {
+const resumeDownloadOptions : update.ResumeDownloadOptions= {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -733,7 +714,7 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -754,23 +735,23 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for resuming download
-const resumeDownloadOptions = {
+const resumeDownloadOptions: update.ResumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
 };
-updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(() => {
   console.log(`resumeDownload start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -783,7 +764,7 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -799,21 +780,21 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for pausing download
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err: BusinessError) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -826,7 +807,7 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -847,23 +828,23 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for pausing download
-const pauseDownloadOptions = {
+const pauseDownloadOptions: update.PauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
 };
-updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(() => {
   console.log(`pauseDownload`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
@@ -876,7 +857,7 @@ Updates the version. This API uses an asynchronous callback to return the result
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -892,21 +873,21 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Installation options
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // Installation command
 };
-updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+updater.upgrade(versionDigestInfo, upgradeOptions, (err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -919,7 +900,7 @@ Updates the version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -940,23 +921,23 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Installation options
-const upgradeOptions = {
+const upgradeOptions: update.UpgradeOptions = {
   order: update.Order.INSTALL // Installation command
 };
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -969,7 +950,7 @@ Clears errors. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -985,21 +966,21 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for clearing errors
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
-updater.clearError(versionDigestInfo, clearOptions, (err) => {
+updater.clearError(versionDigestInfo, clearOptions, (err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1012,7 +993,7 @@ Clears errors. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1033,23 +1014,23 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 // Version digest information
-const versionDigestInfo = {
+const versionDigestInfo: update.VersionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
 };
 
 // Options for clearing errors
-const clearOptions = {
+const clearOptions: update.ClearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
@@ -1062,7 +1043,7 @@ Obtains the update policy. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1076,12 +1057,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getUpgradePolicy((err, policy) => {
+updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1095,7 +1076,7 @@ Obtains the update policy. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -1109,15 +1090,15 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.getUpgradePolicy().then(policy => {
+updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
-}).catch(err => {
+}).catch((err: BusinessError)  => {
   console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1130,7 +1111,7 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1145,17 +1126,17 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
+  autoUpgradePeriods: [ { start: 120, end: 240 }] // Automatic update period, in minutes
 };
-updater.setUpgradePolicy(policy, (err) => {
+updater.setUpgradePolicy(policy, (err: BusinessError) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
 ```
@@ -1168,7 +1149,7 @@ Sets the update policy. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1180,7 +1161,7 @@ Sets the update policy. This API uses a promise to return the result.
 
 | Type            | Description                 |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1188,19 +1169,19 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const policy = {
+const policy: update.UpgradePolicy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
+  autoUpgradePeriods: [ { start: 120, end: 240 }] // Automatic update period, in minutes
 };
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1213,7 +1194,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1227,12 +1208,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-updater.terminateUpgrade((err) => {
+updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1245,7 +1226,7 @@ Terminates the update. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -1259,14 +1240,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
@@ -1286,23 +1267,16 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-updater.on(eventClassifyInfo, (eventInfo) => {
+updater.on(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
 });
 ```
@@ -1321,23 +1295,16 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-updater.off(eventClassifyInfo, (eventInfo) => {
+updater.off(eventClassifyInfo, (eventInfo: update.EventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
 });
 ```
@@ -1352,7 +1319,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.FACTORY_RESET (a system permission)
+**Required permission**: ohos.permission.FACTORY_RESET
 
 **Parameters**
 
@@ -1366,7 +1333,7 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
@@ -1384,7 +1351,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.FACTORY_RESET (a system permission)
+**Required permission**: ohos.permission.FACTORY_RESET
 
 **Return value**
 
@@ -1398,14 +1365,14 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
@@ -1420,7 +1387,7 @@ Verifies the update package. This API uses an asynchronous callback to return th
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1436,12 +1403,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 };
@@ -1459,7 +1426,7 @@ Verifies the update package. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1480,18 +1447,18 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const upgradeFile = {
+const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 };
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
@@ -1503,7 +1470,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Parameters**
 
@@ -1518,12 +1485,12 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
@@ -1541,7 +1508,7 @@ Installs the update package. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+**Required permission**: ohos.permission.UPDATE_SYSTEM
 
 **Return value**
 
@@ -1555,18 +1522,18 @@ For details about the error codes, see [Update Error Codes](../errorcodes/errorc
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
+| 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-const upgradeFiles = [{
+const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
 }];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
@@ -1585,25 +1552,18 @@ Enables listening for update events. This API uses an asynchronous callback to r
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.on(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1622,25 +1582,18 @@ Disables listening for update events. This API uses an asynchronous callback to 
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
 
-**Error codes**
-
-For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
-
-| ID      | Error Message                                                 |
-| -------  | ---------------------------------------------------- |
-| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
 ```ts
-const eventClassifyInfo = {
+const eventClassifyInfo: update.EventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
 };
 
-function onTaskUpdate(eventInfo) {
+let onTaskUpdate: update.UpgradeTaskCallback = (eventInfo: update.EventInfo) => {
   console.log(`on eventInfo id `, eventInfo.eventId);
-}
+};
 
 localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ```
@@ -1664,8 +1617,8 @@ Enumerates update service types.
 
 | Name     | Type                               | Mandatory  | Description  |
 | ------- | ----------------------------------- | ---- | ---- |
-| vendor  | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
-| subType | [BusinessSubType](#businesssubtype) | Yes   | Update service type.  |
+| vendor  | [BusinessVendor](#businessvendor)   | Yes   | Supplier or vendor. |
+| subType | [BusinessSubType](#businesssubtype) | Yes   | Represents an update type. |
 
 ## CheckResult
 
@@ -1675,7 +1628,7 @@ Represents the package check result.
 
 | Name               | Type                             | Mandatory  | Description    |
 | ----------------- | --------------------------------- | ---- | ------ |
-| isExistNewVersion | bool                              | Yes   | Whether a new version is available.|
+| isExistNewVersion | boolean                              | Yes   | Whether a new version is available.<br>The value **true** indicates that a new version is available, and the value **false** indicates the opposite.|
 | newVersionInfo    | [NewVersionInfo](#newversioninfo) | No   | Information about the new version. |
 
 ## NewVersionInfo
@@ -1712,7 +1665,7 @@ Represents a version component.
 | upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Update mode.    |
 | displayVersion  | string                              | Yes   | Display version number.   |
 | innerVersion    | string                              | Yes   | Internal version number.     |
-| size            | number                              | Yes   | Update package size.   |
+| size            | number                              | Yes   | Size of the update package, in bytes.   |
 | effectiveMode   | [EffectiveMode](#effectivemode)     | Yes   | Effective mode.    |
 | descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the version description file.|
 
@@ -1790,7 +1743,7 @@ Represents options for pausing download.
 
 | Name               | Type| Mandatory  | Description      |
 | ----------------- | ---- | ---- | -------- |
-| isAllowAutoResume | bool | Yes   | Whether to allow automatic resuming of download.|
+| isAllowAutoResume | boolean | Yes   | Whether to allow automatic resuming of download.<br>The value **true** indicates that automatic resuming is allowed, and the value **false** indicates the opposite.|
 
 ## UpgradeOptions
 
@@ -1820,8 +1773,8 @@ Represents an update policy.
 
 | Name                 | Type                                   | Mandatory  | Description     |
 | ------------------- | --------------------------------------- | ---- | ------- |
-| downloadStrategy    | bool                                    | Yes   | Automatic download policy. |
-| autoUpgradeStrategy | bool                                    | Yes   | Automatic update policy. |
+| downloadStrategy    | boolean                        | Yes   | Automatic download policy.<br>The value **true** indicates that automatic download is supported, and the value **false** indicates the opposite.|
+| autoUpgradeStrategy | boolean                        | Yes   | Automatic update policy.<br>The value **true** indicates that automatic update is supported, and the value **false** indicates the opposite.|
 | autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | Yes   | Automatic update period.|
 
 ## UpgradePeriod
@@ -1843,7 +1796,7 @@ Task information.
 
 | Name       | Type                 | Mandatory  | Description    |
 | --------- | --------------------- | ---- | ------ |
-| existTask | bool                  | Yes   | Whether a task exists.|
+| existTask |  boolean                  | Yes   | Whether a task exists.<br>The value **true** indicates that the task exists, and the value **false** indicates the opposite.|
 | taskBody  | [TaskBody](#taskinfo) | Yes   | Task data.  |
 
 ## EventInfo

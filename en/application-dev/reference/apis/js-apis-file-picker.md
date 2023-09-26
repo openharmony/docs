@@ -8,7 +8,7 @@
 
 ## Modules to Import
 
-```js
+```ts
 import picker from '@ohos.file.picker';
 ```
 
@@ -47,19 +47,21 @@ Selects one or more images or videos in a **photoPicker** page. This API uses a 
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-    }).catch((err) => {
-      console.error('PhotoViewPicker.select failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-    console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -82,21 +84,23 @@ Selects one or more images or videos in a **photoPicker** page. This API uses an
 **Example**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+async function example02() {
+  try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 5;
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions, (err, PhotoSelectResult) => {
+    photoPicker.select(PhotoSelectOptions, (err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + err);
+        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
-  } catch (err) {
-    console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -118,18 +122,20 @@ Selects one or more images or videos in a **photoPicker** page. This API uses an
 **Example**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+async function example03() {
+  try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select((err, PhotoSelectResult) => {
+    photoPicker.select((err: BusinessError, PhotoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
-        console.error('PhotoViewPicker.select failed with err: ' + err);
+        console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
     });
-  } catch (err) {
-    console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -138,7 +144,7 @@ async function example() {
 
 save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+Saves one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -157,18 +163,20 @@ Saves one or more images or videos in a **photoPicker** page. This API uses a pr
 **Example**
 
 ```ts
-async function example() {
-  try {   
+import { BusinessError } from '@ohos.base';
+async function example04() {
+  try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions).then((PhotoSaveResult: Array<string>) => {
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
-    }).catch((err) => {
-      console.error('PhotoViewPicker.save failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-      console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+      console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -177,7 +185,7 @@ async function example() {
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSaveOptions** to specify the file names of the images or videos to save. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -191,20 +199,22 @@ Saves one or more images or videos in a **photoPicker** page. This API uses an a
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
     PhotoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save(PhotoSaveOptions, (err, PhotoSaveResult) => {
+    photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
-        console.error('PhotoViewPicker.save failed with err: ' + err);
+        console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
     });
-  } catch (err) {
-    console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -213,7 +223,7 @@ async function example() {
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result.
+Saves one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. The **save()** API saves the file in the file manager, not in the Gallery.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -226,25 +236,27 @@ Saves one or more images or videos in a **photoPicker** page. This API uses an a
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.save((err, PhotoSaveResult) => {
+    photoPicker.save((err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
-        console.error('PhotoViewPicker.save failed with err: ' + err);
+        console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
     });
-  } catch (err) {
-    console.error('PhotoViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
 
 ## DocumentViewPicker
 
-Provides APIs for selecting and saving non-media files, for example, documents in a variety of formats. Before using the APIs of **DocumentViewPicker**, you need to create a **DocumentViewPicker** instance.
+Provides the **DocumentViewPicker** object for selecting and saving documents in different formats. Before using the APIs of **DocumentViewPicker**, you need to create a **DocumentViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -277,17 +289,19 @@ Selects one or more documents in a **documentPicker** page. This API uses a prom
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions).then((DocumentSelectResult: Array<string>) => {
       console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
-    }).catch((err) => {
-      console.error('DocumentViewPicker.select failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -310,19 +324,21 @@ Selects one or more documents in a **documentPicker** page. This API uses an asy
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select(DocumentSelectOptions, (err, DocumentSelectResult) => {
+    documentPicker.select(DocumentSelectOptions, (err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.select failed with err: ' + err);
+        console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -344,18 +360,20 @@ Selects one or more documents in a **documentPicker** page. This API uses an asy
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.select((err, DocumentSelectResult) => {
+    documentPicker.select((err: BusinessError, DocumentSelectResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.select failed with err: ' + err);
+        console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('DocumentViewPicker.select successfully, DocumentSelectResult uri: ' + JSON.stringify(DocumentSelectResult));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -384,18 +402,20 @@ Saves one or more documents in a **documentPicker** page. This API uses a promis
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions).then((DocumentSaveResult: Array<string>) => {
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
-    }).catch((err) => {
-      console.error('DocumentViewPicker.save failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -418,20 +438,22 @@ Saves one or more documents in a **documentPicker** page. This API uses an async
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
     DocumentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save(DocumentSaveOptions, (err, DocumentSaveResult) => {
+    documentPicker.save(DocumentSaveOptions, (err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.save failed with err: ' + err);
+        console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -453,18 +475,20 @@ Saves one or more documents in a **documentPicker** page. This API uses an async
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
-    documentPicker.save((err, DocumentSaveResult) => {
+    documentPicker.save((err: BusinessError, DocumentSaveResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.save failed with err: ' + err);
+        console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('DocumentViewPicker.save successfully, DocumentSaveResult uri: ' + JSON.stringify(DocumentSaveResult));
     });
-  } catch (err) {
-    console.error('DocumentViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -504,17 +528,19 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions).then((AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions).then((AudioSelectResult: Array<string>) => {
       console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
-    }).catch((err) => {
-      console.error('AudioViewPicker.select failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -537,19 +563,21 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select(AudioSelectOptions, (err, AudioSelectResult) => {
+    audioPicker.select(AudioSelectOptions, (err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.select failed with err: ' + err);
+        console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -571,18 +599,20 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.select((err, AudioSelectResult) => {
+    audioPicker.select((err: BusinessError, AudioSelectResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.select failed with err: ' + err);
+        console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('AudioViewPicker.select successfully, AudioSelectResult uri: ' + JSON.stringify(AudioSelectResult));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -610,18 +640,20 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions).then((AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions).then((AudioSaveResult: Array<string>) => {
       console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult))
-    }).catch((err) => {
-      console.error('AudioViewPicker.save failed with err: ' + err);
+    }).catch((err: BusinessError) => {
+      console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -644,20 +676,22 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
     AudioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save(AudioSaveOptions, (err, AudioSaveResult) => {
+    audioPicker.save(AudioSaveOptions, (err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.save failed with err: ' + err);
+        console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -679,18 +713,20 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 **Example**
 
 ```ts
-async function example() {
+import { BusinessError } from '@ohos.base';
+async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();
-    audioPicker.save((err, AudioSaveResult) => {
+    audioPicker.save((err: BusinessError, AudioSaveResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.save failed with err: ' + err);
+        console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('AudioViewPicker.save successfully, AudioSaveResult uri: ' + JSON.stringify(AudioSaveResult));
     });
-  } catch (err) {
-    console.error('AudioViewPicker failed with err: ' + err);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -715,8 +751,8 @@ Defines the options for selecting images or videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
-| maxSelectNumber?       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
+| maxSelectNumber       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult
 
@@ -737,13 +773,19 @@ Defines the options for saving images or videos.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
 
 ## DocumentSelectOptions
 
-Defines the options for selecting documents. Currently, this parameter cannot be configured.
+Defines the options for selecting documents.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of files or directories that can be selected.<br>Value range: 1–500<br>Maximum value: **500**     |
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the file or directory to select.|
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to select.|
 
 ## DocumentSaveOptions
 
@@ -753,7 +795,9 @@ Defines the options for saving documents.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
+| newFileNames            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the file or directory to save.|
+| fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extensions of the documents to save.|
 
 ## AudioSelectOptions
 
@@ -769,4 +813,4 @@ Defines the options for saving audio files.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|
+| newFileNames              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|

@@ -46,7 +46,7 @@ The environment configuration is as follows:
     <sn></sn>        <!-- sn: device SN list. SNs are separated using semicolons (;). All local devices are used when the SN is empty. The device with the specified SN will be used if the SN is not empty. -->
 </device>
 
-<!-- L0 device configuration -->
+<!-- Mini-system device configuration -->
 <device type="com" label="wifiiot">    <!-- type: device connection mode. com indicates the serial port connection mode. label indicates the device type, for example, wifiot. -->
     <serial>                           <!-- serial: serial port definition. -->
         <com></com>                    <!-- com: serial port of the local connection, for example, COM20. -->
@@ -63,7 +63,7 @@ The environment configuration is as follows:
     </serial>
 </device>
 
-<!-- L1 device local connection configuration -->
+<!-- Small-system device local connection configuration -->
 <device type="com" label="ipcamera">
     <serial>
         <com></com>                       
@@ -75,7 +75,7 @@ The environment configuration is as follows:
     </serial>
 </device>
 
-<!-- L1 device remote connection configuration. Multiple connections can be configured. -->
+<!-- Small-system device remote connection configuration. Multiple connections can be configured. -->
 <device type="com" label="ipcamera">
     <ip></ip>
     <port></port>
@@ -383,7 +383,7 @@ Check whether xDevice runs properly.
 
    If the AT command serial port is the same as the log output serial port, the serial ports can be set to the same port. That is, in the **user_config** file, the COM port whose **type** is **cmd** and the COM port whose **type** is **deploy** can be set to the same port, for example, **COM18**.
 
-   ![L0-1](figures/L0-1.PNG)
+   ![Mini-system-device-1](figures/L0-1.PNG)
 
    The following is an example of the modified **user_config.xml** file:
 
@@ -476,7 +476,7 @@ Check whether xDevice runs properly.
 
    The COM port whose **type** is **cmd** corresponds to the AT command serial port on the board. The port is used to send commands to the device. In the example, the **ChA(COM20)** serial port is used.
 
-   ![L0-1](figures/L0-1.PNG)
+   ![small-system-device-1](figures/L0-1.PNG)
 
    IP camera devices have two connection modes. One is to connect through the local serial port, and the other is to connect through the IP address of the local area network.
 

@@ -31,7 +31,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 名称       | 描述                 |
 | -------- | ---------------- |
-| Checkbox | 提供单选框样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 12 px,<br>&nbsp;right: 12 px,<br>&nbsp;bottom: 12 px,<br>&nbsp;left: 12 px<br> } |
+| Checkbox | 提供单选框样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 px,<br>&nbsp;right: 14 px,<br>&nbsp;bottom: 14 px,<br>&nbsp;left: 14 px<br> } |
 | Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。       |
 | Switch   | 提供开关样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 6px,<br/>&nbsp;right: 14px,<br/>&nbsp;bottom: 6 px,<br/>&nbsp;left: 14 px<br/> } |
 

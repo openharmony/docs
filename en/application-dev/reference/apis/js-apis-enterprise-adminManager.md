@@ -4,11 +4,15 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - The APIs of this module can be used only in the stage model.
+>
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
 
 ## Modules to Import
 
-```js
+```ts
 import adminManager from '@ohos.enterprise.adminManager';
 ```
 
@@ -16,7 +20,7 @@ import adminManager from '@ohos.enterprise.adminManager';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-Enables a device administrator application of the current user. This API uses an asynchronous callback to return the result. The super administrator application can be enabled only by the administrator.
+Enables a device administrator application for the current user. The super device administrator application can be activated only by the administrator. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -28,9 +32,9 @@ Enables a device administrator application of the current user. This API uses an
 
 | Name           | Type                                 | Mandatory  | Description                |
 | -------------- | ----------------------------------- | ---- | ------------------ |
-| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.           |
+| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.           |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.     |
-| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.        |
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.        |
 | callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -45,21 +49,23 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+let enterpriseInfo: adminManager.EnterpriseInfo = {
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -67,7 +73,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
-Enables a device administrator application of the user specified by **userId**. This API uses an asynchronous callback to return the result. The super administrator application can be enabled only by the administrator.
+Enables a device administrator application for the specified user. The super device administrator application can be activated only by the administrator. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -79,10 +85,10 @@ Enables a device administrator application of the user specified by **userId**. 
 
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                     |
+| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
-| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.                  |
-| userId         | number                              | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                 |
+| userId         | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
 | callback       | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.      |
 
 **Error codes**
@@ -97,21 +103,23 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+let enterpriseInfo: adminManager.EnterpriseInfo = {
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -119,7 +127,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId?: number): Promise\<void>
 
-Enables a device administrator application of the specified user (if **userId** is passed in) or the current user (if **userId** is not passed in). This API uses a promise to return the result. The super administrator application can be enabled only by the administrator.
+Enables a device administrator application for the current or specified user. The super device administrator application can be activated only by the administrator. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -131,16 +139,16 @@ Enables a device administrator application of the specified user (if **userId** 
 
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
-| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                     |
+| admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
-| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.                  |
-| userId         | number                              | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is enabled.<br> - If **userId** is not passed in, the application of the current user is enabled.|
 
 **Return value**
 
 | Type               | Description               |
 | ----------------- | ----------------- |
-| Promise\<void>    | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise\<void>    | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -154,26 +162,29 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+let enterpriseInfo: adminManager.EnterpriseInfo = {
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100)
-.catch(error => {
-    console.log("error occurs" + error);
-});
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
+  (err: BusinessError) => {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+  });
 ```
 
 ## adminManager.disableAdmin
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
-Disables a device administrator application of the current user. This API uses an asynchronous callback to return the result.
+Disables a common administrator application for the current user. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -185,7 +196,7 @@ Disables a device administrator application of the current user. This API uses a
 
 | Name     | Type                                 | Mandatory  | Description                 |
 | -------- | ----------------------------------- | ---- | ------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.          |
+| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.          |
 | callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -198,17 +209,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -216,7 +229,7 @@ adminManager.disableAdmin(wantTemp, error => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-Disables a device administrator application of the user specified by **userId**. This API uses an asynchronous callback to return the result.
+Disables a common administrator application for the specified user. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -228,8 +241,8 @@ Disables a device administrator application of the user specified by **userId**.
 
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                   |
-| userId   | number                              | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
+| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br>The default value is the user ID of the caller. |
 | callback | AsyncCallback\<void>                | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.       |
 
 **Error codes**
@@ -242,17 +255,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, 100, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -260,7 +275,7 @@ adminManager.disableAdmin(wantTemp, 100, error => {
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-Disables a device administrator application of the specified user (if **userId** is passed in) or the current user (if **userId** is not passed in). This API uses a promise to return the result.
+Disables a common administrator application for the current or specified user. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -272,14 +287,14 @@ Disables a device administrator application of the specified user (if **userId**
 
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                   |
-| userId | number                              | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| admin  | [Want](js-apis-app-ability-want.md) | Yes   | Common administrator application to disable.                   |
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is disabled.<br> - If **userId** is not passed in, the application of the current user is disabled.|
 
 **Return value**
 
 | Type               | Description               |
 | ----------------- | ----------------- |
-| Promise\<void>    | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise\<void>    | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -291,13 +306,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
+  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -305,7 +323,7 @@ adminManager.disableAdmin(wantTemp, 100).catch(error => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-Disables a super device administrator application based on the specified bundle name. This API uses an asynchronous callback to return the result.
+Disables a super administrator application for the administrator based on **bundleName**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -317,53 +335,8 @@ Disables a super device administrator application based on the specified bundle 
 
 | Name       | Type                     | Mandatory  | Description                 |
 | ---------- | ----------------------- | ---- | ------------------- |
-| bundleName | String                  | Yes   | Bundle name of the super device administrator application.       |
+| bundleName | String                  | Yes   | Bundle name of the super administrator application to disable.       |
 | callback   | AsyncCallback\<void>    | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                          |   
-| ------- | ----------------------------------------------------------------- |
-| 9200005 | failed to disable the administrator application of the device.    |
-
-**Example**
-
-```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableSuperAdmin success");
-});
-```
-
-## adminManager.disableSuperAdmin
-
-disableSuperAdmin(bundleName: String): Promise\<void>
-
-Disables a super device administrator application based on the specified bundle name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name       | Type    | Mandatory  | Description          |
-| ---------- | ------ | ---- | ------------ |
-| bundleName | String | Yes   | Bundle name of the super device administrator application.|
-
-**Return value**
-
-| Type               | Description               |
-| ----------------- | ----------------- |
-| Promise\<void>    | Promise that returns no value. If the operation fails, an error object is thrown.|
 
 **Error codes**
 
@@ -375,10 +348,60 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName).catch(error => {
-    console.log("error occurs" + error);
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling super admin');
+});
+```
+
+## adminManager.disableSuperAdmin
+
+disableSuperAdmin(bundleName: String): Promise\<void>
+
+Disables a super administrator application for the administrator based on **bundleName**. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type    | Mandatory  | Description          |
+| ---------- | ------ | ---- | ------------ |
+| bundleName | String | Yes   | Bundle name of the super administrator application to disable.|
+
+**Return value**
+
+| Type               | Description               |
+| ----------------- | ----------------- |
+| Promise\<void>    | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                          |
+| ------- | ----------------------------------------------------------------- |
+| 9200005 | failed to disable the administrator application of the device.    |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
+  console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -396,22 +419,24 @@ Checks whether a device administrator application of the current user is enabled
 
 | Name     | Type                                 | Mandatory  | Description                  |
 | -------- | ----------------------------------- | ---- | -------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.            |
+| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to check.            |
 | callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -419,7 +444,7 @@ adminManager.isAdminEnabled(wantTemp, (error, result) => {
 
 isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
 
-Checks whether a device administrator application of the user specified by **userId** is enabled. This API uses an asynchronous callback to return the result.
+Checks whether a device administrator application of the specified user is enabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -429,23 +454,25 @@ Checks whether a device administrator application of the user specified by **use
 
 | Name     | Type                                 | Mandatory  | Description                          |
 | -------- | ----------------------------------- | ---- | ---------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                     |
-| userId   | number                              | Yes   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| admin    | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
+| userId   | number                              | Yes   | User ID, which must be greater than or equal to 0.<br> The default value is the user ID of the caller. |
 | callback | AsyncCallback\<boolean>             | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.     |
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -453,7 +480,7 @@ adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
 
 isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
-Checks whether a device administrator application of the specified user (if **userId** is passed in) or the current user (if **userId** is not passed in) is enabled. This API uses a promise to return the result.
+Checks whether a device administrator application of the current or specified user is enabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -463,26 +490,29 @@ Checks whether a device administrator application of the specified user (if **us
 
 | Name   | Type                                 | Mandatory  | Description                          |
 | ------ | ----------------------------------- | ---- | ---------------------------- |
-| admin  | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.                     |
-| userId | number                              | No   | User ID. The default value is the user ID of the caller. The user ID must be greater than or equal to **0**.|
+| admin  | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to check.                     |
+| userId | number                              | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the application of the specified user is checked.<br> - If **userId** is not passed in, the application of the current user is checked.|
 
 **Return value**
 
 | Type              | Description               |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result. If **true** is returned, the device administrator application is enabled. If **false** is returned, the device administrator application is not enabled.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means the device administrator application is enabled; the value **false** means the opposite.|
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -490,7 +520,7 @@ adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
 
 isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
-Checks whether a super device administrator application is enabled based on the specified bundle name. This API uses an asynchronous callback to return the result.
+Checks whether a super administrator application of the administrator is enabled based on **bundleName**. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -500,19 +530,21 @@ Checks whether a super device administrator application is enabled based on the 
 
 | Name       | Type                     | Mandatory  | Description                  |
 | ---------- | ----------------------- | ---- | -------------------- |
-| bundleName | String                  | Yes   | Device administrator application.             |
-| callback   | AsyncCallback\<boolean> | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the super device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
+| bundleName | String                  | Yes   | Super administrator application to check.             |
+| callback   | AsyncCallback\<boolean> | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is a Boolean value (**true** means that the device administrator application is enabled; and **false** means the opposite). If the operation fails, **err** is an error object.|
 
 **Example**
 
-```js
-let bundleName = "com.example.myapplication";
-adminManager.isSuperAdmin(bundleName, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
+
+adminManager.isSuperAdmin(bundleName, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
 });
 ```
 
@@ -520,7 +552,7 @@ adminManager.isSuperAdmin(bundleName, (error, result) => {
 
 isSuperAdmin(bundleName: String): Promise\<boolean>
 
-Checks whether a super device administrator application is enabled based on the specified bundle name. This API uses a promise to return the result.
+Checks whether a super administrator application of the administrator is enabled based on **bundleName**. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -530,22 +562,25 @@ Checks whether a super device administrator application is enabled based on the 
 
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
-| bundleName | String | Yes   | Super device administrator application.|
+| bundleName | String | Yes   | Super administrator application to check.|
 
 **Return value**
 
 | ID          | Error Message              |
 | ----------------- | ------------------- |
-| Promise\<boolean> | Promise used to return the result. If **true** is returned, the super device administrator application is enabled. If **false** is returned, the super device administrator application is not enabled.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means the super administrator application is enabled; the value **false** means the opposite. |
 
 **Example**
 
-```js
-let bundleName = "com.example.myapplication";
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
+
 adminManager.isSuperAdmin(bundleName).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -553,7 +588,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
 
-Sets the enterprise information of a device administrator application. This API uses an asynchronous callback to return the result.
+Sets enterprise information for a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_ENTERPRISE_INFO
 
@@ -566,7 +601,7 @@ Sets the enterprise information of a device administrator application. This API 
 | Name           | Type                                 | Mandatory  | Description                    |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.               |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.          |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
 | callback       | AsyncCallback\<void>;               | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -579,21 +614,23 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+let enterpriseInfo: adminManager.EnterpriseInfo = {
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("setEnterpriseInfo success");
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
+  if (err) {
+    console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting enterprise info');
 });
 ```
 
@@ -601,7 +638,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
 
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
-Sets the enterprise information of a device administrator application. This API uses a promise to return the result.
+Sets enterprise information for a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_ENTERPRISE_INFO
 
@@ -614,13 +651,13 @@ Sets the enterprise information of a device administrator application. This API 
 | Name           | Type                                 | Mandatory  | Description          |
 | -------------- | ----------------------------------- | ---- | ------------ |
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.     |
-| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.|
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.|
 
 **Return value**
 
 | Type               | Description                   |
 | ----------------- | --------------------- |
-| Promise\<void>    | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise\<void>    | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -632,17 +669,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+let enterpriseInfo: adminManager.EnterpriseInfo = {
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
+  console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -673,18 +713,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log(result.name);
-    console.log(result.description);
+
+adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
 });
 ```
 
@@ -708,7 +749,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 | Type                                      | Description                       |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise used to return the enterprise information of the specified device administrator application obtained.|
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise used to return the enterprise information obtained.|
 
 **Error codes**
 
@@ -720,16 +761,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
-    console.log(result.name);
-    console.log(result.description);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -737,7 +780,7 @@ adminManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-Subscribes to system management events through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Subscribes to system management events of a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -764,16 +807,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-let events = [0, 1];
-adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+let events: Array<adminManager.ManagedEvent> = [0, 1];
+
+adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in subscribe managed event');
 });
 ```
 
@@ -781,7 +828,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-Subscribes to system management events through the specified device administrator application. This API uses a promise to return the result.
+Subscribes to system management events of a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -800,7 +847,7 @@ Subscribes to system management events through the specified device administrato
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -813,15 +860,18 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
+
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -829,7 +879,7 @@ adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-Unsubscribes from system management events through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Unsubscribes from system management events of a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -856,16 +906,20 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-let events = [0, 1];
-adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+let events: Array<adminManager.ManagedEvent> = [0, 1];
+
+adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unsubscribe managed event');
 });
 ```
 
@@ -873,7 +927,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-Unsubscribes from system management events through the specified device administrator application. This API uses a promise to return the result.
+Unsubscribes from system management events of a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
@@ -892,7 +946,7 @@ Unsubscribes from system management events through the specified device administ
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -905,34 +959,138 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
+
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
-## EnterpriseInfo
+## adminManager.authorizeAdmin<sup>10+</sup>
 
-Defines the enterprise information of a device administrator application.
+authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
+
+Authorizes the administrator rights to an application through the specified device administrator application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 **System API**: This is a system API.
 
-| Name        | Type    | Readable| Writable  | Description                           |
-| ----------- | --------| ---- | ----- | ------------------------------- |
-| name        | string   | Yes  | No   | Name of the enterprise to which the device administrator application belongs.|
-| description | string   | Yes  | No   | Description of the enterprise to which the device administrator application belongs.|
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+
+adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Successfully authorized permission to the application');
+});
+```
+
+## adminManager.authorizeAdmin<sup>10+</sup>
+
+authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
+
+Authorizes the administrator rights to an application through the specified device administrator application. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| bundleName  | string | Yes| Bundle name of the application to be authorized with the administrator rights.|
+
+**Return value**
+
+| Type  | Description                                 |
+| ----- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                              |
+| ------- | ----------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device. |
+| 9200002 | the administrator application does not have permission to manage the device.          |
+| 9200009 | authorize permission to the application failed.          |
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let bundleName: string = "com.example.application";
+
+adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
+}).catch((err: BusinessError) => {
+  console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
+## EnterpriseInfo
+
+Represents the enterprise information of a device administrator application.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name        | Type    | Mandatory| Description                           |
+| ----------- | --------| ---- | ------------------------------- |
+| name        | string   | Yes  | Name of the enterprise.|
+| description | string   | Yes  | Description of the enterprise.|
 
 ## AdminType
 
-Enumerates the administrator types of the device administrator application.
+Enumerates the types of device administrator applications.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -940,8 +1098,8 @@ Enumerates the administrator types of the device administrator application.
 
 | Name               | Value | Description   |
 | ----------------- | ---- | ----- |
-| ADMIN_TYPE_NORMAL | 0x00 | Common administrator.|
-| ADMIN_TYPE_SUPER  | 0x01 | Super administrator.|
+| ADMIN_TYPE_NORMAL | 0x00 | Common administrator application.|
+| ADMIN_TYPE_SUPER  | 0x01 | Super administrator application.|
 
 ## ManagedEvent
 

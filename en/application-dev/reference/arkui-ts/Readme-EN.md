@@ -12,7 +12,7 @@
     - [Mouse Event](ts-universal-mouse-key.md)
     - [Component Area Change Event](ts-universal-component-area-change-event.md)
     - [Visible Area Change Event](ts-universal-component-visible-area-change-event.md)
-    - [Custom Keyboard Shortcuts](ts-universal-events-keyboardshortcut.md)
+    - [Component Keyboard Shortcut Event](ts-universal-events-keyboardshortcut.md)
   - Universal Attributes
     - [Size](ts-universal-attributes-size.md)
     - [Location](ts-universal-attributes-location.md)
@@ -33,20 +33,25 @@
     - [Gradient Color](ts-universal-attributes-gradient-color.md)
     - [Popup Control](ts-universal-attributes-popup.md)
     - [Menu Control](ts-universal-attributes-menu.md)
-    - [Click Control](ts-universal-attributes-click.md)
     - [Focus Control](ts-universal-attributes-focus.md)
     - [Hover Effect](ts-universal-attributes-hover-effect.md)
     - [Component ID](ts-universal-attributes-component-id.md)
-    - [Touch Target](ts-universal-attributes-touch-target.md)
     - [Polymorphic Style](ts-universal-attributes-polymorphic-style.md)
-    - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
-    - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
-    - [Spherical Effect](ts-universal-attributes-sphericalEffect.md)
-    - [Light Up Effect](ts-universal-attributes-lightUpEffect.md)
-    - [Pixel Stretch Effect](ts-universal-attributes-pixelStretchEffect.md)
+    - [Foreground Blur](ts-universal-attributes-foreground-blur-style.md)
+    - [Click Effect](ts-universal-attributes-click-effect.md)
+    - [Accessibility](ts-universal-attributes-accessibility.md)
+    - Touch Interactions
+      - [Touch Target](ts-universal-attributes-touch-target.md)
+      - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
+    - Transition
+      - [Modal Transition](ts-universal-attributes-modal-transition.md)
+      - [Sheet Transition](ts-universal-attributes-sheet-transition.md)
+    - [Obscuring](ts-universal-attributes-obscured.md)
   - [Universal Text Attributes](ts-universal-attributes-text-style.md)
+  - [Drag and Drop Control](ts-universal-attributes-drag-drop.md)
+  - [Safe Area](ts-universal-attributes-expand-safe-area.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -86,6 +91,7 @@
   - [Radio](ts-basic-components-radio.md)
   - [Rating](ts-basic-components-rating.md)
   - [RemoteWindow](ts-basic-components-remotewindow.md)
+  - [RichEditor](ts-basic-components-richeditor.md)
   - [RichText](ts-basic-components-richtext.md)
   - [ScrollBar](ts-basic-components-scrollbar.md)
   - [Search](ts-basic-components-search.md)
@@ -105,17 +111,18 @@
   - [Web](ts-basic-components-web.md)
   - [XComponent](ts-basic-components-xcomponent.md)
 - Container Components
-  - [AbilityComponent](ts-container-ability-component.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
   - [FlowItem](ts-container-flowitem.md)
+  - [FormLink](ts-container-formlink.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
   - [GridItem](ts-container-griditem.md)
+  - [Hyperlink](ts-container-hyperlink.md)
   - [List](ts-container-list.md)
   - [ListItem](ts-container-listitem.md)
   - [ListItemGroup](ts-container-listitemgroup.md)
@@ -131,6 +138,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [UIExtensionComponent](ts-container-ui-extension-component.md)
   - [WaterFlow](ts-container-waterflow.md)
 - Media Components
   - [Video](ts-media-components-video.md)
@@ -146,19 +154,24 @@
 - Canvas Components
   - [Canvas](ts-components-canvas-canvas.md)
   - [CanvasGradient](ts-components-canvas-canvasgradient.md)
+  - [CanvasPattern](ts-components-canvas-canvaspattern.md)
   - [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
   - [ImageBitmap](ts-components-canvas-imagebitmap.md)
   - [ImageData](ts-components-canvas-imagedata.md)
+  - [Matrix2D](ts-components-canvas-matrix2d.md)
+  - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
-  - [Lottie](ts-components-canvas-lottie.md)
+- Advanced Components
+  - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
 - Animation
-  - [AnimatorProperty](ts-animatorproperty.md)
-  - [Explicit Animatio](ts-explicit-animation.md)
+  - [Property Animation](ts-animatorproperty.md)
+  - [Explicit Animation](ts-explicit-animation.md)
   - Transition Animation
     - [Page Transition](ts-page-transition-animation.md)
     - [Component Transition](ts-transition-animation-component.md)
     - [Transition of Shared Elements](ts-transition-animation-shared-elements.md)
+    - [Implicit Shared Element Transition](ts-transition-animation-geometrytransition.md)
   - [Motion Path Animation](ts-motion-path-animation.md)
 - Global UI Methods
   - Pop-up Window
@@ -174,5 +187,8 @@
 - [Pixel Units](ts-pixel-units.md)
 - [Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
-- Components No Longer Maintained 
+- Components No Longer Maintained
+  - [AbilityComponent](ts-container-ability-component.md)
   - [GridContainer](ts-container-gridcontainer.md)
+- APIs No Longer Maintained
+  - [Click Control](ts-universal-attributes-click.md)

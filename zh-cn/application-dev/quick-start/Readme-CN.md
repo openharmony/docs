@@ -2,7 +2,7 @@
 
 - 快速入门
   - [开发准备](start-overview.md)
-  - [使用ArkTS语言开发（Stage模型）](start-with-ets-stage.md)
+  - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -22,10 +22,6 @@
       - [HAR](har-package.md)
       - HSP
         - [应用内HSP开发指导](in-app-hsp.md)
-        - [应用间HSP开发指导](cross-app-hsp.md)
-    - 原子化服务
-      - [原子化服务开发指导](atomicService.md)
-      - [原子化服务空间管理（仅对系统应用开放）](atomicService-aging.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复命令行调试开发指导](quickfix-debug.md)
@@ -41,37 +37,45 @@
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
-  - 基本语法
-    - [基本语法概述](arkts-basic-syntax-overview.md)
-    - [声明式UI描述](arkts-declarative-ui-description.md)
-    - 自定义组件
-      - [创建自定义组件](arkts-create-custom-components.md)
-      - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
-    - [\@Builder：自定义构建函数](arkts-builder.md)
-    - [\@BuilderParam：引用\@Builder函数](arkts-builderparam.md)
-    - [\@Styles：定义组件重用样式](arkts-style.md)
-    - [\@Extend：定义扩展组件样式](arkts-extend.md)
-    - [stateStyles：多态样式](arkts-statestyles.md)
-  - 状态管理
-    - [状态管理概述](arkts-state-management-overview.md)
-    - 管理组件拥有的状态
-      - [\@State：组件内状态](arkts-state.md)
-      - [\@Prop：父子单向同步](arkts-prop.md)
-      - [\@Link：父子双向同步](arkts-link.md)
-      - [\@Provide和\@Consume：与后代组件双向同步](arkts-provide-and-consume.md)
-      - [\@Observed和\@ObjectLink：嵌套类对象属性变化](arkts-observed-and-objectlink.md)
-    - 管理应用拥有的状态
-      - [管理应用拥有的状态概述](arkts-application-state-management-overview.md)
-      - [LocalStorage：页面级UI状态存储](arkts-localstorage.md)
-      - [AppStorage：应用全局的UI状态存储](arkts-appstorage.md)
-      - [PersistentStorage：持久化存储UI状态](arkts-persiststorage.md)
-      - [Environment：设备环境查询](arkts-environment.md)
-    - 其他状态管理
-      - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
-      - [\@Watch：状态变量更改通知](arkts-watch.md)
-      - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
-  - 渲染控制
-    - [渲染控制概述](arkts-rendering-control-overview.md)
-    - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
-    - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
-    - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+  - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [从TypeScript到ArkTS的迁移指导](typescript-to-arkts-migration-guide.md)
+  - UI范式
+    - 基本语法
+      - [基本语法概述](arkts-basic-syntax-overview.md)
+      - [声明式UI描述](arkts-declarative-ui-description.md)
+      - 自定义组件
+        - [创建自定义组件](arkts-create-custom-components.md)
+        - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+      - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
+      - [\@Styles装饰器：定义组件重用样式](arkts-style.md)
+      - [\@Extend装饰器：定义扩展组件样式](arkts-extend.md)
+      - [stateStyles：多态样式](arkts-statestyles.md)
+      - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
+    - 状态管理
+      - [状态管理概述](arkts-state-management-overview.md)
+      - 管理组件拥有的状态
+        - [\@State装饰器：组件内状态](arkts-state.md)
+        - [\@Prop装饰器：父子单向同步](arkts-prop.md)
+        - [\@Link装饰器：父子双向同步](arkts-link.md)
+        - [\@Provide装饰器和\@Consume装饰器：与后代组件双向同步](arkts-provide-and-consume.md)
+        - [\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](arkts-observed-and-objectlink.md)
+      - 管理应用拥有的状态
+        - [管理应用拥有的状态概述](arkts-application-state-management-overview.md)
+        - [LocalStorage：页面级UI状态存储](arkts-localstorage.md)
+        - [AppStorage：应用全局的UI状态存储](arkts-appstorage.md)
+        - [PersistentStorage：持久化存储UI状态](arkts-persiststorage.md)
+        - [Environment：设备环境查询](arkts-environment.md)
+      - 其他状态管理
+        - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
+        - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
+      - [MVVM模式](arkts-mvvm.md)
+      - [状态管理优秀实践](arkts-state-management-best-practices.md)
+      - [精准控制组件的更新范围](precisely-control-render-scope.md)
+    - 渲染控制
+      - [渲染控制概述](arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+      - [渲染控制优秀实践](arkts-rendering-control-best-practices.md)

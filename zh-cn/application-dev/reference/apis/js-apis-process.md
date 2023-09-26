@@ -25,7 +25,7 @@ import process from '@ohos.process';
 
 ## EventListener
 
-系统能力： SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 说明 |
 | -------- | -------- |

@@ -16,6 +16,8 @@ stateStyles是属性方法，可以根据UI内部状态来设置样式，类似�
 
 - disabled：不可用态。
 
+- selected<sup>10+</sup>：选中态。
+
 
 ## 使用场景
 

@@ -204,7 +204,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | 是 | 实例数组。 |
-| totalLength | number | 否 | 需要复制的总字节长度。 |
+| totalLength | number | 否 | 需要复制的总字节长度，默认值为0。 |
 
 **返回值：**
 
@@ -218,7 +218,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "totalLength" is out of range. |
+| 10200001 | The value of "length" is out of range. It must be >= 0 and <= uint32 max. Received value is: [length] |
 
 **示例：**
 
@@ -604,7 +604,7 @@ let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 
 buf1.copy(buf2, 8, 16, 20);
@@ -633,8 +633,11 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (let pair of buf.entries()) {
-  console.log(pair.toString());
+let pair = buf.entries()
+let next: IteratorResult<Object[]> = pair.next()
+while (!next.done) {
+  console.info("buffer: " + next.value)
+  next = pair.next()
 }
 ```
 
@@ -796,7 +799,8 @@ keys(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-for (const key of buf.keys()) {
+let numbers = Array.from(buf.values())
+for (const key of numbers) {
   console.log(key.toString());
 }
 ```
@@ -1387,7 +1391,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1431,7 +1435,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1681,7 +1685,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1723,7 +1727,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -1766,7 +1770,7 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.allocUninitializedFromPool(26);
 
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 const buf2 = buf1.subarray(0, 3);
 console.log(buf2.toString('ascii', 0, buf2.length));
@@ -1932,7 +1936,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
-  buf1[i] = i + 97;
+  buf1.writeInt8(i + 97, i);
 }
 console.log(buf1.toString('utf-8'));
 // 打印: abcdefghijklmnopqrstuvwxyz
@@ -1958,8 +1962,11 @@ values(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (let value of buf1.values()) {
-  console.log(value.toString());
+let pair = buf1.values()
+let next:IteratorResult<number> = pair.next()
+while (!next.done) {
+  console.log(next.value.toString());
+  next = pair.next()
 }
 ```
 
@@ -2037,7 +2044,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2076,7 +2083,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2115,7 +2122,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2154,7 +2161,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2193,7 +2200,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
@@ -2232,7 +2239,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
@@ -2271,7 +2278,7 @@ writeFloatBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
@@ -2311,7 +2318,7 @@ writeFloatLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
@@ -2350,7 +2357,7 @@ writeInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2391,7 +2398,7 @@ writeInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2431,7 +2438,7 @@ writeInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2470,7 +2477,7 @@ writeInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2510,7 +2517,7 @@ writeInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2550,7 +2557,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2591,7 +2598,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2630,7 +2637,7 @@ writeUInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2672,7 +2679,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2712,7 +2719,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2752,7 +2759,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2791,7 +2798,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2831,7 +2838,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2871,7 +2878,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[value/offset/byteLength]" is out of range. |
+| 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
@@ -2913,8 +2920,14 @@ Blob的构造函数。
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob = new buffer.Blob(['a', 'b', 'c']);
-let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
+let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
+
+class option {
+  endings: string = ""
+  type: string = ""
+}
+let o1: option = {endings:'native', type: 'MIME'}
+let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 ```
 
 ### arrayBuffer
@@ -2932,10 +2945,12 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
-pro.then(val => {
-  let uintarr = new Uint8Array(val);
+pro.then((val: ArrayBuffer) => {
+  let uintarr: Uint8Array = new Uint8Array(val);
   console.log(uintarr.toString());
 });
 ```
@@ -2962,7 +2977,9 @@ slice(start?: number, end?: number, type?: string): Blob
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
 ```
@@ -2982,9 +2999,11 @@ text(): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-let blob = new buffer.Blob(['a', 'b', 'c']);
+import buffer from '@ohos.buffer';
+
+let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
-pro.then(val => {
-    console.log(val)
+pro.then((val: string) => {
+  console.log(val)
 });
 ```

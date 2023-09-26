@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import hiAppEvent from '@ohos.hiAppEvent';
 ```
 
@@ -20,7 +20,7 @@ import hiAppEvent from '@ohos.hiAppEvent';
 
 **事件名称**
 
-事件名称为string类型，字符串非空且长度在48个字符以内，有效的字符是0-9、a-z、下划线，只能以小写字母开头，不能以下划线结尾。
+事件名称为string类型，字符串非空且长度在48个字符以内，有效的字符是数字字符、字母字符、下划线字符，只能以字母字符或$字符开头，不能以下划线字符结尾。
 
 **事件类型**
 
@@ -30,7 +30,7 @@ import hiAppEvent from '@ohos.hiAppEvent';
 
 事件参数为object类型，key为事件的参数名称，value为事件的参数值，其规格定义如下：
 
-- 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是0-9、a-z、下划线，只能以小写字母开头，不能以下划线结尾；
+- 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是数字字符、字母字符、下划线字符，只能以字母字符或$字符开头，不能以下划线字符结尾；
 - 参数值支持string、number、boolean、数组类型；
 - 参数值为string类型时，其长度需在8*1024个字符以内，超出会做丢弃处理；
 - 参数值为number类型时，其取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；
@@ -64,16 +64,21 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 
 **示例：**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"}, (err, value) => {
-    if (err) {
-        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-        console.error(`failed to write event because ${err.code}`);
-        return;
-    }
+```ts
+import { BusinessError } from '@ohos.base'
 
-    // 事件写入正常
-    console.log(`success to write event: ${value}`);
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams, (err: BusinessError) => {
+  if (err) {
+    // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+    console.error(`failed to write event, code=${err.code}`);
+    return;
+  }
+  // 事件写入正常
+  console.log(`success to write event`);
 });
 ```
 
@@ -102,15 +107,20 @@ write(eventName: string, eventType: EventType, keyValues: object): Promise&lt;vo
 
 **示例：**
 
-```js
-hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, {"int_data":100, "str_data":"strValue"})
-    .then((value) => {
-        // 事件写入正常
-        console.log(`success to write event: ${value}`);
-    }).catch((err) => {
-        // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
-        console.error(`failed to write event because ${err.code}`);
-    });
+```ts
+import { BusinessError } from '@ohos.base'
+
+let eventParams: Record<string, number | string> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+hiAppEvent.write("test_event", hiAppEvent.EventType.FAULT, eventParams).then(() => {
+  // 事件写入正常
+  console.log(`success to write event`);
+}).catch((err: BusinessError) => {
+  // 事件写入异常：事件存在异常参数时忽略异常参数后继续写入，或者事件校验失败时不执行写入
+  console.error(`failed to write event, code=${err.code}`);
+});
 ```
 
 ## hiAppEvent.configure
@@ -135,16 +145,18 @@ configure(config: ConfigOption): boolean
 
 **示例：**
 
-```js
+```ts
 // 配置应用事件打点功能开关
-hiAppEvent.configure({
-    disable: true
-});
+let config1: hiAppEvent.ConfigOption = {
+  disable: true,
+};
+hiAppEvent.configure(config1);
 
 // 配置事件文件目录存储限额大小
-hiAppEvent.configure({
-    maxStorage: '100M'
-});
+let config2: hiAppEvent.ConfigOption = {
+  maxStorage: '100M',
+};
+hiAppEvent.configure(config2);
 ```
 
 ## ConfigOption

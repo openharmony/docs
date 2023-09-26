@@ -6,12 +6,16 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用，需要在创建组件实例后使用。
+> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
+>
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](./js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](./js-apis-arkui-UIContext.md#mediaquery)对象。
 
 
 ## 导入模块
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 ```
 
@@ -26,20 +30,21 @@ matchMediaSync(condition: string): MediaQueryListener
 
 **参数：** 
 
-| 参数名       | 类型     | 必填   | 说明                                       |
-| --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
+| 参数名    | 类型   | 必填 | 说明                                                         |
+| --------- | ------ | ---- | ------------------------------------------------------------ |
+| condition | string | 是   | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：** 
 
-| 类型                 | 说明                     |
-| ------------------ | ---------------------- |
+| 类型               | 说明                                         |
+| ------------------ | -------------------------------------------- |
 | MediaQueryListener | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：** 
 
-```js
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
+```ts
+import mediaquery from '@ohos.mediaquery'
+let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
 
@@ -67,10 +72,10 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 **参数：** 
 
-| 参数名      | 类型                               | 必填   | 说明               |
-| -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | 是    | 必须填写字符串'change'。 |
-| callback | Callback&lt;MediaQueryResult&gt; | 是    | 向媒体查询注册的回调       |
+| 参数名   | 类型                             | 必填 | 说明                     |
+| -------- | -------------------------------- | ---- | ------------------------ |
+| type     | string                           | 是   | 必须填写字符串'change'。 |
+| callback | Callback&lt;MediaQueryResult&gt; | 是   | 向媒体查询注册的回调     |
 
 **示例：** 
 
@@ -94,11 +99,11 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 **示例：** 
 
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-    function onPortrait(mediaQueryResult) {
+    function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
         } else {
@@ -137,7 +142,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait'
   listener = mediaquery.matchMediaSync('(orientation: landscape)')
 
-  onPortrait(mediaQueryResult) {
+  onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {
       this.color = '#FFD700'
       this.text = 'Landscape'
@@ -148,7 +153,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    let portraitFunc = this.onPortrait.bind(this) // bind current js instance
+    let portraitFunc = (mediaQueryResult:mediaquery.MediaQueryResult):void=>this.onPortrait(mediaQueryResult)  // bind current js instance
     this.listener.on('change', portraitFunc)
   }
 

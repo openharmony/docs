@@ -72,7 +72,7 @@ java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [optio
 
 ### app包模式打包指令
 
-开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的app包。app包用于上架应用市场。开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的app包。
+开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的app包。app包用于上架应用市场。
 
 
 #### 示例
@@ -86,8 +86,8 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
 | --mode             | 是     | app         | 多个hap需满足hap的合法性校验。                                           |
-| --hap-path         | 是     | NA          | 1.hap包文件路径，文件名必须以.hap为后缀。如果时多个hap包需要用“，”分隔。<br/>2.hap包文件路径也可以是目录。 |
-| --hsp-path         | 否     | NA          | 1.hsp包文件路径，文件名必须以.hsp为后缀。如果时多个hsp包需要用“，”分隔。<br/>2.hsp包文件路径也可以是目录。 |
+| --hap-path         | 是     | NA          | 1.hap包文件路径，文件名必须以.hap为后缀。如果是多个hap包需要用“，”分隔。<br/>2.hap包文件路径也可以是目录。 |
+| --hsp-path         | 否     | NA          | 1.hsp包文件路径，文件名必须以.hsp为后缀。如果是多个hsp包需要用“，”分隔。<br/>2.hsp包文件路径也可以是目录。 |
 | --pack-info-path   | 是     | NA          | 文件名必须为pack.info。                                             |
 | --out-path         | 是     | NA          | 目标文件路径，文件名必须以.app为后缀。                                        |
 | --signature-path   | 否     | NA          | 签名路径。                                                        |

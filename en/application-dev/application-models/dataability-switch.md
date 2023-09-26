@@ -7,9 +7,9 @@ The DataAbility component in the FA model corresponds to the DataShareExtensionA
 The DataShareExtensionAbility class provides system APIs. Only system applications can create DataShareExtensionAbility instances. Therefore, DataAbility switching adopts different policies for system applications and third-party applications.  
 
 
-## Switching a DataAbility of a System Application
+## Switching a DataAbility for a System Application
 
-The procedure for switching a DataAbility of a system application is similar to the procedure of PageAbility switching.
+The procedure for switching a DataAbility for a system application is similar to the procedure of PageAbility switching.
 
 1. Create a DataShareExtensionAbility in the stage model.
 
@@ -34,7 +34,7 @@ The procedure for switching a DataAbility of a system application is similar to 
    | call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback&lt;PacMap&gt;): void | NA | This method is not provided in the stage model. You need to implement the functionality based on service functions.|
 
 
-## Switching a DataAbility of a Third-Party Application
+## Switching a DataAbility for a Third-Party Application
 
 In the stage model, third-party applications cannot provide data services for other third-party applications. You can select a switching solution based on your service requirements.
 

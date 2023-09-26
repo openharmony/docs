@@ -1,17 +1,18 @@
 # 页面间转场
 
-当路由进行切换时，可以通过 在pageTransition函数中自定义页面入场和页面退场的转场动效。
+当路由进行切换时，可以通过在pageTransition函数中自定义页面入场和页面退场的转场动效。详细指导请参考[页面转场动画](../../ui/arkts-page-transition-animation.md)。
 
 > **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
+> 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
 
 
 | 名称                | 参数                                                         | 必填 | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay?: number<br/>} | 否   | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
-| PageTransitionExit  | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay?: number<br/>} | 否   | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
+| PageTransitionEnter | {<br/>type?: [RouteType](#routetype枚举说明),<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br>delay?: number<br/>} | 否   | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
+| PageTransitionExit  | {<br/>type?: [RouteType](#routetype枚举说明),<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>,<br/>delay?: number<br/>} | 否   | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>-&nbsp;duration：动画的时长。<br/>单位：毫秒<br/>默认值：1000<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>单位：毫秒<br/>默认值：0<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。 |
 
 ## RouteType枚举说明
 
@@ -71,13 +72,13 @@ struct PageTransitionExample1 {
   // 自定义方式1：完全自定义转场过程的效果
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale1 = 1
-        this.opacity1 = progress
+        this.opacity1 = progress as number
       }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale1 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale1 = 1 - (progress as number)
         this.opacity1 = 1
       }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
   }
@@ -102,13 +103,13 @@ struct AExample {
   // 自定义方式1：完全自定义转场过程的效果
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type: RouteType, progress: number) => {
+      .onEnter((type?: RouteType, progress?: number) => {
         this.scale2 = 1
-        this.opacity2 = progress
+        this.opacity2 = progress as number
       }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type: RouteType, progress: number) => {
-        this.scale2 = 1 - progress
+      .onExit((type?: RouteType, progress?: number) => {
+        this.scale2 = 1 - (progress as number)
         this.opacity2 = 1
       }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
   }

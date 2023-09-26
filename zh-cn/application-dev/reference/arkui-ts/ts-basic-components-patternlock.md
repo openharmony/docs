@@ -22,17 +22,17 @@ PatternLock(controller?: PatternLockController)
 
 ## 属性
 
-不支持除backgroundColor以外的通用属性设置。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称            | 参数类型                              | 描述                                                         |
 | --------------- | ------------------------------------- | ------------------------------------------------------------ |
-| sideLength      | [Length](ts-types.md#length)        | 设置组件的宽度和高度（宽高相同）。设置为0或负数等非法值时组件不显示。<br/>默认值：300vp |
-| circleRadius    | [Length](ts-types.md#length)        | 设置宫格中圆点的半径。<br/>默认值：14vp                        |
+| sideLength      | [Length](ts-types.md#length)        | 设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。<br/>默认值：288vp |
+| circleRadius    | [Length](ts-types.md#length)        | 设置宫格中圆点的半径。设置为0或负数时取默认值。<br/>默认值：6vp                        |
 | regularColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“未选中”状态的填充颜色。<br/>默认值：Color.Black |
 | selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“选中”状态的填充颜色。<br/>默认值：Color.Black |
 | activeColor     | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“激活”状态的填充颜色（“激活”状态为手指经过圆点但还未选中的状态）。<br/>默认值：Color.Black |
 | pathColor       | [ResourceColor](ts-types.md#resourcecolor) | 设置连线的颜色。<br/>默认值：Color.Blue                      |
-| pathStrokeWidth | number&nbsp;\|&nbsp;string            | 设置连线的宽度。设置为0或负数等非法值时连线不显示。<br/>默认值：34vp           |
+| pathStrokeWidth | number&nbsp;\|&nbsp;string            | 设置连线的宽度。设置为0或负数时连线不显示。<br/>默认值：12vp           |
 | autoReset       | boolean                               | 设置在完成密码输入后再次在组件区域按下时是否重置组件状态。设置为true，完成密码输入后再次在组件区域按下时会重置组件状态（即清除之前输入的密码）；反之若设置为false，则不会重置组件状态。<br/>默认值：true |
 
 ## 事件
@@ -50,7 +50,7 @@ PatternLock组件的控制器，可以通过它进行组件状态重置。
 ### 导入对象
 
 ```typescript
-patternLockController: PatternLockController = new PatternLockController()
+let patternLockController: PatternLockController = new PatternLockController()
 ```
 
 ### reset

@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import stationary from '@ohos.stationary'
 ```
 
@@ -79,8 +79,8 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 
 **示例：**
 
-```js
-var reportLatencyNs = 100;
+```ts
+let reportLatencyNs = 100;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })
@@ -103,7 +103,7 @@ once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void
 
 **示例：**
 
-```js
+```ts
 stationary.once('still', (data) => {
     console.log("data="+ JSON.stringify(data));
 })
@@ -123,10 +123,10 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | 是   | 设备状态能力类型。              |
 | event  | [ActivityEvent](#activityevent)  | 是   | 事件类型。              |
-| callback | Callback<[ActivityResponse](#activityresponse)\>  | 否   | 回调函数，接收上报状态变化事件，如果没有传递callback参数，会移除该进程下订阅该类型得所有callback。  |
+| callback | Callback：\<[ActivityResponse](#activityresponse)>  | 否   | 回调函数，接收上报状态变化事件，如果没有传递callback参数或者传递的类型是undefined，会移除该进程下订阅该类型得所有callback。  |
 
 **示例：**
 
-```js
+```ts
 stationary.off('still', stationary.ActivityEvent.ENTER);
 ```

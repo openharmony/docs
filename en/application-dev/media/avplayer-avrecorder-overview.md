@@ -77,6 +77,7 @@ The table below lists the supported audio playback formats.
 
 | Video Format| Mandatory or Not|
 | -------- | -------- |
+| H.265<sup>10+</sup>      | Yes|
 | H.264     | Yes|
 | MPEG-2    | No|
 | MPEG-4    | No|
@@ -87,10 +88,10 @@ The table below lists the supported playback formats and mainstream resolutions.
 
 | Video Container Format| Description| Resolution| 
 | -------- | -------- | -------- |
-| MP4| Video formats: H.264, MPEG-2, MPEG-4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p| 
-| MKV| Video formats: H.264, MPEG-2, MPEG-4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p| 
-| TS| Video formats: H.264, MPEG-2, and MPEG-4<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p| 
-| WebM| Video format: VP8<br>Audio format: VORBIS| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p| 
+| MP4| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, MPEG4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| MKV| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, MPEG4, and H.263<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| TS| Video formats: H.265<sup>10+</sup>, H.264, MPEG2, and MPEG4<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| WebM| Video format: VP8<br>Audio format: VORBIS| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
 
 ## AVRecorder
 

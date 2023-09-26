@@ -33,7 +33,7 @@ import HashSet from '@ohos.util.HashSet';
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<number> = new HashSet();
 hashSet.add(1);
 hashSet.add(2);
 hashSet.add(3);
@@ -61,7 +61,7 @@ HashSet的构造函数。
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<number> = new HashSet();
 ```
 
 
@@ -90,7 +90,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashSet = new HashSet();
+const hashSet: HashSet<number> = new HashSet();
 let result = hashSet.isEmpty();
 ```
 
@@ -126,7 +126,7 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 let result = hashSet.has("squirrel");
 ```
@@ -163,7 +163,7 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 let result = hashSet.add("squirrel");
 ```
 
@@ -199,7 +199,7 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
@@ -225,7 +225,7 @@ clear(): void
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
@@ -257,14 +257,14 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.values();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+let temp = iter.next();
+while(!temp.done) {
+  console.log("value:" + temp.value);
+  temp = iter.next();
 }
 ```
 
@@ -282,14 +282,14 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的元素键值对的值。 |
-| key | T | 否 | 当前遍历到的元素键值对的值（和value相同）。 |
-| set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| value | T | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
+| key | T | 否 | 当前遍历到的元素键值对的键（和value相同），默认值为首个键值对的键。 |
+| set | HashSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 
@@ -302,11 +302,11 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
-hashSet.forEach((value, key) => {
-    console.log("value:" + value, "key:" + key);
+hashSet.forEach((value?: string, key?: string): void => {
+  console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -335,15 +335,15 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("key:" + temp[0]);
-  console.log("value:" + temp[1]);
-  temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value[0]);
+  console.log("value:" + temp.value[1]);
+  temp = iter.next();
 }
 ```
 
@@ -373,20 +373,21 @@ while(temp != undefined) {
 **示例：**
 
 ```ts
-let hashSet = new HashSet();
+let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // 使用方法一：
-for (let item of hashSet) { 
+let val: Array<string> = Array.from(hashSet.values())
+for (let item of val) {
   console.log("value: " + item);
 }
 
 // 使用方法二：
 let iter = hashSet[Symbol.iterator]();
-let temp = iter.next().value;
-while(temp != undefined) {
-  console.log("value: " + temp);
-  temp = iter.next().value;
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.log("value: " + temp.value);
+  temp = iter.next();
 }
 ```

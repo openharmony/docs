@@ -1,6 +1,6 @@
 # Subscribing to System Environment Variable Changes
 
-System environment variables are system settings (for example, the system language or screen direction) of a device that may change during the running of an application.
+System environment variables are system settings (for example, the system language or screen orientation) of a device that may change during the running of an application.
 
 By subscribing to the changes of system environment variables, the application can detect the changes in a timely manner and process the changes accordingly, providing better user experience. For example, when the system language changes, the application can display the UI in the new language; when the user rotates the device to landscape or portrait mode, the application can re-arrange the UI to adapt to the new screen orientation and size.
 
@@ -21,22 +21,24 @@ In OpenHarmony, you can subscribe to system environment variable changes in the 
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import { Configuration } from '@ohos.app.ability.Configuration';
+   import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
    
    @Entry
    @Component
    struct Index {
      private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number; // ID of the subscription for system environment variable changes.
+     private callbackId: number = 0; // ID of the subscription for system environment variable changes.
    
      subscribeConfigurationUpdate() {
-       let systemLanguage: string = this.context.config.language; // Obtain the system language in use.
+       let systemLanguage: string | undefined = this.context.config.language; // Obtain the system language in use.
    
        // 1. Obtain an ApplicationContext object.
        let applicationContext = this.context.getApplicationContext();
    
        // 2. Subscribe to system environment variable changes through ApplicationContext.
-       let environmentCallback = {
-         onConfigurationUpdated(newConfig) {
+       let environmentCallback: EnvironmentCallback = {
+         onConfigurationUpdated(newConfig: Configuration) {
            console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
    
            if (this.systemLanguage !== newConfig.language) {
@@ -68,7 +70,7 @@ In OpenHarmony, you can subscribe to system environment variable changes in the 
    @Component
    struct Index {
      private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number; // ID of the subscription for system environment variable changes.
+     private callbackId: number = 0; // ID of the subscription for system environment variable changes.
    
      unsubscribeConfigurationUpdate() {
        let applicationContext = this.context.getApplicationContext();
@@ -95,8 +97,9 @@ The code snippet below uses the [AbilityStage.onConfigurationUpdate()](../refere
 
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
-let systemLanguage: string; // System language in use.
+let systemLanguage: string | undefined; // System language in use.
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
@@ -104,7 +107,7 @@ export default class MyAbilityStage extends AbilityStage {
     console.info(`systemLanguage is ${systemLanguage} `);
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
@@ -127,16 +130,19 @@ The code snippet below uses the **onConfigurationUpdate()** callback to subscrib
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
-let systemLanguage: string; // System language in use.
+let systemLanguage: string | undefined; // System language in use.
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     systemLanguage = this.context.config.language; // Obtain the system language in use when the UIAbility instance is loaded for the first time.
     console.info(`systemLanguage is ${systemLanguage} `);
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
@@ -145,7 +151,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  ...
+  // ...
 }
 ```
 
@@ -161,12 +167,13 @@ The code snippet below uses FormExtensionAbility as an example to describe how t
 
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig: Configuration) {
     console.info(`newConfig is ${JSON.stringify(newConfig)}`);
   }
 
-  ...
+  // ...
 }
 ```

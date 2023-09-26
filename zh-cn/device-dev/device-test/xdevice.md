@@ -46,7 +46,7 @@ environment环境相关配置，详解介绍如下。
     <sn></sn>        <!-- sn: 设备串号列表，串号之间使用分号;分隔，sn为空时使用本地所有设备，非空时使用指定的sn设备 -->
 </device>
 
-<!-- L0设备配置 -->
+<!-- 轻量系统设备配置 -->
 <device type="com" label="wifiiot">    <!-- type: 设备连接方式，com表示连接方式是串口; label: 表示设备种类，如wifiiot -->
     <serial>                           <!-- serial:  表示一个串口定义 -->
         <com></com>                    <!-- com: 表示本地连接的串口，如COM20 -->
@@ -63,7 +63,7 @@ environment环境相关配置，详解介绍如下。
     </serial>
 </device>
 
-<!-- L1设备本地连接配置 -->
+<!-- 小型系统设备本地连接配置 -->
 <device type="com" label="ipcamera">
     <serial>
         <com></com>                       
@@ -75,7 +75,7 @@ environment环境相关配置，详解介绍如下。
     </serial>
 </device>
 
-<!-- L1设备远端连接配置,可配置多个 -->
+<!-- 小型系统设备远端连接配置,可配置多个 -->
 <device type="com" label="ipcamera">
     <ip></ip>
     <port></port>
@@ -383,7 +383,7 @@ run指令基本使用方法如下。
 
    若AT命令串口和日志输出串口共用，可以配置为相同，即user_config中的type为cmd的com口与type为deploy的com口可配置为一样的端口，如COM18。
 
-   ![L0-1](figures/L0-1.PNG)
+   ![轻量系统设备-1](figures/L0-1.PNG)
 
    user_config.xml的修改示例如下。
 
@@ -476,7 +476,7 @@ run指令基本使用方法如下。
 
    type为cmd的com口对应板子上的AT命令串口，用于对设备发送指令，示例中配置为ChA(COM20)串口号。
 
-   ![L0-1](figures/L0-1.PNG)
+   ![小型系统设备-1](figures/L0-1.PNG)
 
    ipcamera设备有两种连接方式，一种是本地串口连接，一种是通过局域网ip连接。
 

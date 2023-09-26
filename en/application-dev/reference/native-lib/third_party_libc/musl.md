@@ -1,85 +1,72 @@
-# Native Standard Libraries Supported by OpenHarmony
+# libc
 
 ## Overview
+The C standard library (libc) provides standard header files and common library implementations (such as input/output processing and string handling) in C language programming.
 
-**Table 1** Standard libraries supported by OpenHarmony
+OpenHarmony uses musl as the libc. musl is a lightweight, fast, simple, and free open-source libc. For details, see [musl libc Reference Manual](http://musl.libc.org/manual.html).
 
-| Library     | Description                                                        |
-| :-------- | :----------------------------------------------------------- |
-| C standard library  | C11 standard library implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header).      |
-| C++ standard library ([libc++](https://libcxx.llvm.org/))| An implementation of the C++ standard library.  |
-| Open Sound Library for Embedded Systems ([OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/))| An embedded, cross-platform audio processing library.|
-| [zlib](https://zlib.net/)    | A general data compression library implemented in C/C++.|
-| [EGL](https://www.khronos.org/egl/)  | A standard software interface between rendering APIs and the underlying native window system.|
-| Open Graphics Library for Embedded Systems ([OpenGL ES](https://www.khronos.org/opengles/))| A cross-platform software interface for rendering 3D graphics on embedded and mobile systems.|
+For details about the differences between musl and glibc, see [Functional differences from glibc](https://wiki.musl-libc.org/functional-differences-from-glibc.html).
 
-## C Standard Library
+## libc Components
 
-The C standard library is a C11 standard library implemented by:
+C11 is implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header). 
 
-- libc: provides thread-related functions and a majority of standard functions.
+- libc: provides thread-related interfaces and a majority of standard interfaces.
 
 
-- libm: provides basic mathematical functions.
+- libm: provides mathematical library interfaces. Currently, OpenHarmony provides a link to libm, and the interfaces are defined in libc.
+
+- libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony provides a link to libdl, and the interfaces are defined in libc.
 
 
-- libdl: provides functions related to dynamic linking, such as **dlopen**.
-
-
-**Version**
+## musl Version
 
 1.2.0
 
-**Capabilities**
+OpenHarmony 4.0 supports musl 1.2.3.
 
-C standard library includes a set of header files in accordance with standard C and provides common functions, such as the functions related to input/output (I/O) and string control.
+## Supported Capabilities
+OpenHarmony provides header files and library interfaces that are compatible (not fully compatible) with C99, C11, and POSIX, and supports Armv7-A, Arm64, and x86_64 architectures.
 
-**musl**
+To better adapt to the basic features of OpenHarmony devices, such as high performance, low memory, high security, lightweight, and multi-form support, OpenHarmony has optimized the musl library and removed the interfaces that are not applicable to embedded devices.
+
+### New Capabilities
+1. The dynamic loader supports isolation by namespace. The dynamic libraries that can be loaded by **dlopen()** are restricted by the system namespace. For example, the system dynamic libraries cannot be opened.
+2. **dlclose()** can be used to unload a dynamic library. This capability is not supported by musl.
+3. The symbol-versioning is supported.
+4. **dlopen()** can directly load uncompressed files in a .zip package.
+
+### Debugging Capabilities
+The libc provides dynamic enabling of debug logging (disabled by default). The debug logs help you learn about exceptions of the libc. With this function, you only need to set **param**, which eliminates the need for rebuilding the libc. However, you are advised not to enable debug logging in official versions because it affects the running performance.
+
+#### 1. musl.log
+Set **musl.log.enable** to **true** to enable printing of musl debug logs. You need to enable musl.log before printing other logs.
+```
+param set musl.log.enable true
+```
+
+#### 2. Loader logging
+The loader starts applications and invokes **dlopen** and **dlclose** in the libc. To view exceptions during the loading process, you need to enable the loader logging function. The following describes common operations.
+* Enable the loader logging for all applications. Exercise caution when enabling this function because a large number of logs will be generated.
+```
+param set musl.log.ld.app true
+```
+* Enable the loader logging for an application specified by {app_name}.
+```
+param set musl.log.ld.all false
+param set musl.log.ld.app.{app_name} true
+```
+* Enable the loader logging for all applications except the specified application.
+```
+param set musl.log.ld.all true
+param set musl.log.ld.app.{app_name} false
+```
+
+## Interfaces Not Supported by musl
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
-[Native API Symbols That May Fail to Be Invoked Due to Permission Control](musl-permission-control-symbol.md)
+[Native API Symbols That May Fail to Call Due to Permission Control](musl-permission-control-symbol.md)
 
-## libc++
 
-[libc++](https://libcxx.llvm.org/) is an implementation of the C++ standard library.
 
-**Version**
-
-10.0.1
-
-**Capabilities**
-
-The C++11 and C++14 standards are supported, and the C++17 and C++20 standards are on the way.
-
-## OpenSL ES
-
-[OpenGL ES](https://www.khronos.org/opengles/) is an embedded, cross-platform audio processing library.
-
-**Capabilities**
-
-[OpenSL ES Interfaces Supported by Native APIs](../third_party_opensles/opensles.md)
-
-## zlib
-
-[zlib](https://zlib.net/) is a general data compression library implemented in C/C++.
-
-## EGL
-
-EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG) and the underlying native window system. OpenHarmony supports EGL.
-
-**Symbols Exported from the Standard Library**
-
-[EGL Symbols Exported from Native APIs](../third_party_opengl/egl-symbol.md)
-
-## OpenGL ES
-
-OpenGL is a cross-platform software interface for 3D graphics processing. [OpenGL ES](https://www.khronos.org/opengles/) is a OpenGL specification for embedded devices. OpenHarmony supports OpenGL ES 3.0.
-
-**Capabilities**
-
-OpenGL ES 3.0
-
-**Symbols Exported from the Standard Library**
-
-[OpenGL ES 3.0 Symbols Exported from Native APIs](../third_party_opengl/openglesv3-symbol.md)

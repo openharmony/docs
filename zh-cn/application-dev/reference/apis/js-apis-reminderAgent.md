@@ -27,9 +27,9 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder)替代。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+**需要权限**：ohos.permission.PUBLISH_AGENT_REMINDER
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -40,14 +40,14 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **示例**：
 ```ts
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
+let timer:reminderAgent.ReminderRequestTimer = {
+  reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
 
-  reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("callback, reminderId = " + reminderId);
-  });
+reminderAgent.publishReminder(timer, (err: BusinessError, reminderId: number) => {
+  console.log("callback, reminderId = " + reminderId);
+});
 ```
 
 
@@ -76,14 +76,14 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **示例**：
 ```ts
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
+let timer:reminderAgent.ReminderRequestTimer = {
+  reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
 
-  reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("promise, reminderId = " + reminderId);
-  });
+reminderAgent.publishReminder(timer).then((reminderId: number) => {
+  console.log("promise, reminderId = " + reminderId);
+});
 ```
 
 
@@ -108,8 +108,8 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-reminderAgent.cancelReminder(1, (err, data) => {
-    console.log("cancelReminder callback");
+reminderAgent.cancelReminder(1, (err: BusinessError, data: void) => {
+  console.log("cancelReminder callback");
 });
 ```
 
@@ -165,29 +165,29 @@ getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void
 **示例**：
 
 ```ts
-reminderAgent.getValidReminders((err, reminders) => {
-    console.log("callback, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-        }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
+reminderAgent.getValidReminders((err: BusinessError, reminders: Array<reminderAgent.ReminderRequest>) => {
+  console.log("callback, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
     }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
 })
 ```
 
@@ -212,30 +212,31 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 **示例**：
 
 ```ts
-reminderAgent.getValidReminders().then((reminders) => {
-    console.log("promise, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
-        }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
+reminderAgent.getValidReminders().then((reminders: Array<reminderAgent.ReminderRequest>) => {
+  console.log("promise, getValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getValidReminders = " + reminders[i]);
+    console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+    for (let j = 0; j < reminders[i].actionButton.length; j++) {
+      console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+      console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
     }
+    console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+    console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+    console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+    console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+    console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+    console.log("getValidReminders, title = " + reminders[i].title);
+    console.log("getValidReminders, content = " + reminders[i].content);
+    console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+    console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+    console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+    console.log("getValidReminders, slotType = " + reminders[i].slotType);
+  }
 })
+
 ```
 
 
@@ -259,8 +260,8 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("cancelAllReminders callback")
+reminderAgent.cancelAllReminders((err: BusinessError, data: void) =>{
+  console.log("cancelAllReminders callback")
 })
 ```
 
@@ -311,13 +312,13 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot:notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot, (err, data) => {
-    console.log("addNotificationSlot callback");
+reminderAgent.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
+  console.log("addNotificationSlot callback");
 });
 ```
 
@@ -348,27 +349,27 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 **示例**：
 
 ```ts
-import notification from '@ohos.notification'
+import notification from '@ohos.notificationManager'
 
-let mySlot = {
-    type: notification.SlotType.SOCIAL_COMMUNICATION
+let mySlot:notification.NotificationSlot = {
+  type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 reminderAgent.addNotificationSlot(mySlot).then(() => {
-   console.log("addNotificationSlot promise");
+  console.log("addNotificationSlot promise");
 });
 ```
 
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
+removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 
 删除目标NotificationSlot，使用callback方式实现异步调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot)替代。
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -382,22 +383,22 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<
 ```ts
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-    console.log("removeNotificationSlot callback");
+reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err: BusinessError, data: void) => {
+  console.log("removeNotificationSlot callback");
 });
 ```
 
 
 ## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
 
-removeNotificationSlot(slotType: notification.SlotType): Promise<void>
+removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 删除目标NotificationSlot，使用Promise方式实现异步调用。
 
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot-1)替代。
 
-**系统能力**： SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
@@ -505,7 +506,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 > **说明：**
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#ReminderRequest)替代。
 
-**系统能力**`SystemCapability.Notification.ReminderAgent
+**系统能力**：SystemCapability.Notification.ReminderAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

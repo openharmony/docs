@@ -1,16 +1,19 @@
 # Security
 
+
 - Access Control  
   - [Access Control (Permission) Overview](accesstoken-overview.md)
   - [Applying for Permissions](accesstoken-guidelines.md)
   - [Verifying API Access Permissions](permission-verify-guidelines.md)
   - [Application Permission List](permission-list.md)
+  - [Application Permission Group List](permission-group-list.md)
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
   - [User Authentication Development](userauth-guidelines.md)
 - HUKS
   - [HUKS Overview](huks-overview.md)
-  - [HUKS Development](huks-guidelines.md)
+  - [HUKS Development (ArkTS)](huks-guidelines.md)
+  - [HUKS Development (Native)](native-huks-guidelines.md)
   - [HUKS Cipher Algorithm Specifications](huks-appendix.md)
 - Crypto Framework
   - [Crypto Framework Overview](cryptoFramework-overview.md)

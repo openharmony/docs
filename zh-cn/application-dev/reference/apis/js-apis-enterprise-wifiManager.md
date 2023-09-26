@@ -1,15 +1,18 @@
 # @ohos.enterprise.wifiManager（WiFi管理）
 
-本模块提供企业设备WiFi管理能力，包括查询WiFi开启状态等。仅企业设备管理员应用才能调用。
+本模块提供企业设备WiFi管理能力，包括查询WiFi开启状态等。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
+>
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后调用，实现相应功能。
 
 ## 导入模块
 
-```js
+```ts
 import wifiManager from '@ohos.enterprise.wifiManager';
 ```
 
@@ -17,7 +20,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-指定设备管理员应用查询wifi开启状态，使用callback形式返回wifi开启状态。
+指定设备管理应用查询wifi开启状态。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -29,7 +32,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示wifi开启，false表示wifi关闭，否则err为错误对象。       |
 
 **错误码**：
@@ -43,17 +46,19 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-wifiManager.isWifiActive(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("result:" + result);
+
+wifiManager.isWifiActive(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
 });
 ```
 
@@ -61,7 +66,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-获取wifi开启状态，使用Promise形式返回wifi开启状态。
+指定设备管理应用获取wifi开启状态。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -73,7 +78,7 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 
 **返回值：**
 
@@ -92,15 +97,18 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 wifiManager.isWifiActive(wantTemp).then((result) => {
-    console.log("result:" + result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -108,7 +116,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-配置wifi，使连接到指定网络，使用callback返回配置结果。
+指定设备管理应用为设备配置wifi，使连接到指定网络。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -120,7 +128,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
@@ -135,22 +143,24 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+let profile: wifiManager.WifiProfile = {
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-wifiManager.setWifiProfile(wantTemp, profile, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("set wifi success");
+
+wifiManager.setWifiProfile(wantTemp, profile, (err) => {
+  if (err) {
+    console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting wifi profile');
 });
 ```
 
@@ -158,7 +168,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (error) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-配置wifi，使连接到指定网络，使用Promise返回配置结果。
+指定设备管理应用为设备配置wifi，使连接到指定网络。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -170,7 +180,7 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 
 **返回值：**
@@ -190,20 +200,23 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 **示例：**
 
-```js
-let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+let profile: wifiManager.WifiProfile = {
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
+
 wifiManager.setWifiProfile(wantTemp, profile).then(() => {
-    console.log("set wifi success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting wifi profile');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
