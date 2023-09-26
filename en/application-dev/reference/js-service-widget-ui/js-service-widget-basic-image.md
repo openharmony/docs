@@ -18,7 +18,7 @@ In addition to the [universal attributes](js-service-widget-common-attributes.md
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| src | string | - | No| Image path.<br>- The local path is supported. Supported formats are as follows: PNG, JPG, BMP, SVG, and GIF.<br>- The path to the in-memory image is also supported in the scheme format of **memory://**.|
+| src | string | - | No| Image path.<br>- The local path is supported. Supported formats are as follows: PNG, JPG, BMP, SVG, and GIF.<br>- The path to the in-memory image is also supported in the scheme format of **memory://**.<br>**NOTE**<br>To display an online image, download it and then access it with its in-memory path. Do not use URLs.|
 | alt | string | - | No| Placeholder image displayed during image loading.|
 
 

@@ -43,10 +43,12 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## TimePickerResult
 
-| Name    | Type  | Description     |
-| ------ | ------ | ------- |
-| hour   | number | Hour portion of the selected time.|
-| minute | number | Minute portion of the selected time.|
+Describes a time in 24-hour format.
+
+| Name  | Type| Description                               |
+| ------ | -------- | ----------------------------------- |
+| hour   | number   | Hour portion of the selected time.<br>Value range: [0-23]|
+| minute | number   | Minute portion of the selected time.<br>Value range: [0-59]|
 
 
 ## Example

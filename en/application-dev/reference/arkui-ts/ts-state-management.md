@@ -188,7 +188,7 @@ let value: number = AppStorage.Get('PropA'); // 47
 
 static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage.
+Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 **Parameters**
 
@@ -215,7 +215,9 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 **Parameters**
 
@@ -499,7 +501,8 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
