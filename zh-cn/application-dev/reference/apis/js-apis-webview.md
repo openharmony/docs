@@ -1372,7 +1372,6 @@ class testObj {
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
-
   build() {
     Column() {
       Button('refresh')
@@ -1831,7 +1830,7 @@ function test() {
 
 deleteJavaScriptRegister(name: string): void
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后，须调用[refresh](#refresh)接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1857,14 +1856,45 @@ deleteJavaScriptRegister(name: string): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class testObj {
+  constructor() {
+  }
+
+  test(): string {
+    return "ArkUI Web Component";
+  }
+
+  toString(): void {
+    console.log('Web Component toString');
+  }
+}
+
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State name: string = 'Object';
-
+  @State testObjtest: testObj = new testObj();
+  @State name: string = 'objName';
   build() {
     Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, this.name, ["test", "toString"]);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
       Button('deleteJavaScriptRegister')
         .onClick(() => {
           try {
@@ -1874,10 +1904,31 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
 ```
 
 ### zoom
@@ -1966,7 +2017,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State searchString: string = "xxx";
+  @State searchString: string = "Hello World";
 
   build() {
     Column() {
@@ -1979,7 +2030,7 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .onSearchResultReceive(ret => {
           if (ret) {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
@@ -1989,6 +2040,17 @@ struct WebComponent {
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World Highlight Hello World</p>
+  </body>
+</html>
 ```
 
 ### clearMatches
@@ -2030,11 +2092,13 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+加载的html文件，请参考[searchAllAsync](#searchallasync)接口下加载的html文件。
 
 ### searchNext
 
@@ -2081,11 +2145,13 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+加载的html文件，请参考[searchAllAsync](#searchallasync)接口下加载的html文件。
 
 ### clearSslCache
 
@@ -3446,6 +3512,8 @@ setNetworkAvailable(enable: boolean): void
 
 设置JavaScript中的window.navigator.onLine属性。
 
+**需要权限：** ohos.permission.GET_NETWORK_INFO
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -3485,10 +3553,26 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<h1>online 属性</h1>
+<p id="demo"></p>
+<script>
+    let online = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+</script>
+</body>
+</html>
 ```
 
 ### hasImage
@@ -5122,7 +5206,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5136,12 +5220,56 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件。
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>数据表已创建,且插入了两条数据。</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>查询记录条数：" + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">状态信息</div>
+  </body>
+  </html>
+  ```
 
 ### getOrigins
 
@@ -5199,12 +5327,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOrigins
 
@@ -5262,12 +5392,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginQuota
 
@@ -5303,7 +5435,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5323,12 +5455,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginQuota
 
@@ -5369,7 +5503,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5389,12 +5523,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginUsage
 
@@ -5430,7 +5566,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5450,12 +5586,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### getOriginUsage
 
@@ -5496,7 +5634,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5516,12 +5654,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下的html文件。
 
 ### deleteAllData
 
@@ -5554,12 +5694,14 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+加载的html文件，请参考[deleteOrigin](#deleteorigin)接口下加载的html文件。
 
 ## WebDataBase
 
@@ -6291,6 +6433,7 @@ getBoolean(): boolean
 getArrayBuffer(): ArrayBuffer
 
 获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
