@@ -94,11 +94,11 @@ SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 | fpsJitters   | 每一帧绘制间隔    |单位ns|
 | gpuFrequ     | GPU的频率         |单位Hz|
 | gpuLoad      | GPU的负载占比     |%|
-| shell_front  | 前壳温度          |单位°|
-| shell_frame  | 边框温度          |单位°|
-| shell_back   | 后壳温度          |单位°|
-| soc_thermal  | SOC温度           |单位°|
-| system_h     | 系统温度          |单位°|
+| shell_front  | 前壳温度          |单位°C|
+| shell_frame  | 边框温度          |单位°C|
+| shell_back   | 后壳温度          |单位°C|
+| soc_thermal  | SOC温度           |单位°C|
+| system_h     | 系统温度          |单位°C|
 | timeStamp    |当前时间戳         |对应采集时间|
-| voltageNow   |当前读到的电压值    |单位uV(微伏)|
+| voltageNow   |当前读到的电压值    |单位μV(微伏)|
 ```
