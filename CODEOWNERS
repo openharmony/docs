@@ -110,9 +110,9 @@ zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @ningningW @wangwenli_wolf @tangtiantian2021 @nan-xiansen
 zh-cn/application-dev/work-scheduler/ @ningningW
 zh-cn/application-dev/internationalization/ @ningningW @Buda-Liu @mengjingzhimo @yangqing3
-zh-cn/application-dev/device/usb-overview.md @ge-yafang @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/device/usb-guidelines.md @ge-yafang @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/napi/usb-ddk-guidelines.md @ge-yafang @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-overview.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/device/usb-guidelines.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/napi/usb-ddk-guidelines.md @warehouse12 @Kevin-Lau @liuhonggang123
 zh-cn/application-dev/device/device-location-overview.md @RayShih
 zh-cn/application-dev/device/device-location-info.md @RayShih
 zh-cn/application-dev/device/device-location-geocoding.md @RayShih
@@ -386,9 +386,9 @@ zh-cn/application-dev/reference/apis/js-apis-uitest.md @inter515 @ningningW @int
 zh-cn/application-dev/reference/apis/js-apis-update.md @hughes802 @ningningW @zhangzhengxue @mamba-ting
 zh-cn/application-dev/reference/apis/js-apis-uri.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-url.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
-zh-cn/application-dev/reference/apis/js-apis-usbManager.md @ge-yafang @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis/js-apis-usb.md @ge-yafang @Kevin-Lau @liuhonggang123
-zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md @ge-yafang @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-usbManager.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-usb.md @warehouse12 @Kevin-Lau @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-usb-deprecated.md @warehouse12 @Kevin-Lau @liuhonggang123
 zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md @gaoyong @zengyawen @niejiteng @jumozhanjiang
 zh-cn/application-dev/reference/apis/js-apis-util.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
 zh-cn/application-dev/reference/apis/js-apis-vector.md @gongjunsong @ge-yafang @flyingwolf @BlackStone
@@ -547,7 +547,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-thermal.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-uitest.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-universal.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-update.md @ningningW
-zh-cn/application-dev/reference/errorcodes/errorcode-usb.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-usb.md @warehouse12
 zh-cn/application-dev/reference/errorcodes/errorcode-useriam.md @zengyawen
 zh-cn/application-dev/reference/errorcodes/errorcode-vibrator.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-webview.md @HelloCrease
