@@ -2620,7 +2620,7 @@ constructor(icsPath: String)
 
 **示例：**
   ```ts
-  let holidayManager = new I18n.HolidayManager("/system/lib/US.ics");
+  let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
   ```
 
 ### isHoliday<sup>11+</sup>
@@ -2693,7 +2693,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
   import { BusinessError } from '@ohos.base';
 
   try {
-    let holidayManager = new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
     for (let i =0 ;i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
