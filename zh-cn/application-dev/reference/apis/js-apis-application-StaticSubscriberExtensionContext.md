@@ -48,7 +48,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                                | 必填 | 说明                       |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| want     | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。    |
 | callback | AsyncCallback&lt;void&gt;           | 是   | callback形式返回启动结果。 |
 
 **错误码：**
@@ -122,7 +122,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 | 参数名 | 类型                                | 必填 | 说明                    |
 | ------ | ----------------------------------- | ---- | ----------------------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 启动Ability的want信息。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability的want信息。 |
 
 **返回值：**
 

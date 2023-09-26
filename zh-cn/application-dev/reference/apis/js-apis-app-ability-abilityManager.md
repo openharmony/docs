@@ -74,13 +74,13 @@ const config: Configuration = {
 try {
     abilityManager.updateConfiguration(config, (err) => {
         if (err) {
-            console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
+            console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
         } else {
             console.log('updateConfiguration success.');
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
 }
 ```
 
@@ -135,10 +135,10 @@ try {
     abilityManager.updateConfiguration(config).then(() => {
         console.log('updateConfiguration success.');
     }).catch((err: BusinessError) => {
-        console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
 }
 ```
 
@@ -174,9 +174,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
         if (err) {
-            console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(err)}');
+            console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
-            console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
+            console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
         }
     });
 } catch (paramError) {
@@ -216,9 +216,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
     abilityManager.getAbilityRunningInfos().then((data) => {
-        console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
+        console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-        console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
+        console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
@@ -260,9 +260,9 @@ let upperLimit = 10;
 try {
     abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
         if (err) {
-            console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
+            console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
-            console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
+            console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
         }
     });
 } catch (paramError) {
@@ -310,9 +310,9 @@ let upperLimit = 10;
 
 try {
     abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
+        console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-        console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
+        console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
@@ -348,9 +348,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
     if (err) {
-        console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
+        console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
-        console.log('getTopAbility success, data: ${JSON.stringify(data)}');
+        console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -384,9 +384,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 abilityManager.getTopAbility().then((data) => {
-    console.log('getTopAbility success, data: ${JSON.stringify(data)}');
+    console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
+    console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
 });
 ```
 
