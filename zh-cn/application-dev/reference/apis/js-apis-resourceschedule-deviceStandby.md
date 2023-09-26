@@ -45,6 +45,8 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
 deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<deviceStandby.ExemptedAppInfo>) => {
   if (err) {
@@ -97,6 +99,8 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 **示例**：
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
 deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.ExemptedAppInfo>) => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
