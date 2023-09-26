@@ -53,7 +53,7 @@ async function example() {
 
 ### 指定URI获取图片或视频资源
 
-下面以查询指定URI为'file://media/Photo/1'为例。
+下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -63,7 +63,8 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, 'file://media/Photo/1');
+  let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
+  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates

@@ -16,6 +16,7 @@
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
 - 用户文件
   - [用户文件概述](user-file-overview.md)
+  - [用户文件uri介绍](user-file-uri-intro.md)
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
