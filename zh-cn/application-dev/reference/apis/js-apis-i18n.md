@@ -2620,7 +2620,7 @@ constructor(icsPath: String)
 
 **示例：**
   ```ts
-  let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+  let holidayManager = new I18n.HolidayManager("/system/lib/US.ics");
   ```
 
 ### isHoliday<sup>11+</sup>
@@ -2645,6 +2645,8 @@ isHoliday(date?: Date): boolean;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
@@ -2652,7 +2654,8 @@ isHoliday(date?: Date): boolean;
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
     console.log(isHoliday2);
   } catch(error) {
-    console.error(`call holidayManager.isHoliday failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2687,14 +2690,17 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
-    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager = new I18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
     for (let i =0 ;i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
     }
   } catch(error) {
-    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
