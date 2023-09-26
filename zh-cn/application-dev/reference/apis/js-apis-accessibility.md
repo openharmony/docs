@@ -462,7 +462,7 @@ import { BusinessError } from '@ohos.base';
 
 let abilityType : accessibility.AbilityType = 'spoken';
 let abilityState : accessibility.AbilityState = 'enable';
-let abilityList: accessibility.AccessibilityInfo[];
+let abilityList: accessibility.AccessibilityAbilityInfo[];
 try {
     accessibility.getAbilityLists(abilityType, abilityState, 
     (err: BusinessError<void>, data: accessibility.AccessibilityAbilityInfo[]) => {
