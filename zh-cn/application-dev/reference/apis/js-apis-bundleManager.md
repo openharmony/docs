@@ -117,6 +117,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md)：自定义服务扩展能力，为开发者提供基于UIExtension的自定义操作业务模板。 |
+| REMOTE_NOTIFICATION<sup>11+</sup> | 20 | RemoteNotificationExtensionAbility：远程通知扩展能力，提供远程通知能力。预留能力，当前暂未支持。 |
+| REMOTE_LOCATION<sup>11+</sup> | 21 | RemoteLocationExtensionAbility：远程定位扩展能力，提供远程定位能力。预留能力，当前暂未支持。 |
+| VOIP<sup>11+</sup> | 22 | VoIPExtensionAbility：网络音视频通话扩展能力，提供网络音视频通话能力。预留能力，当前暂未支持。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
