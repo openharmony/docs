@@ -4,6 +4,7 @@
     - [高性能编程规范](high-performance-programming.md)
     - [高效并发编程](efficient-concurrent-programming.md)
     - [多线程能力场景化](multi_thread_capability.md)
+    - [安全和高效的使用N-API开发Native模块](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
   - 减少卡顿丢帧
     - [列表场景性能提升实践](list-perf-improvment.md)
     - [动效能力实践](animation_practice.md)
@@ -18,5 +19,6 @@
     - [减少视图嵌套层次](reduce-view-nesting-levels.md)
     - [优化布局性能](reduce-view-nesting-levels.md)
     - [合理使用IPC通信](reasonable-using-ipc.md)
+    - [减少首帧绘制时的冗余操作](reduce-redundant-operations-when-render-first-frame.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
