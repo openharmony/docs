@@ -53,8 +53,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -103,8 +102,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -153,8 +151,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
 
-```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+```ts 
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -196,7 +193,6 @@ cancelSuspendDelay(requestId: number): void
 **示例**：
 
   ```js
-  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
   import { BusinessError } from '@ohos.base';
 
   let id = 1;
@@ -517,7 +513,6 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import { BusinessError } from '@ohos.base';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
@@ -561,7 +556,7 @@ resetAllEfficiencyResources(): void
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { BusinessError } from '@ohos.base';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
