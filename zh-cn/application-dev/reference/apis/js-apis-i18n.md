@@ -2650,9 +2650,9 @@ isHoliday(date?: Date): boolean;
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
-    console.log(isHoliday);
+    console.log(isHoliday.toString());
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
-    console.log(isHoliday2);
+    console.log(isHoliday2.toString());
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
