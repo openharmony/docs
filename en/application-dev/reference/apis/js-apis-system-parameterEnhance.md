@@ -41,10 +41,9 @@ Obtains the value of the system parameter with the specified key.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -78,10 +77,9 @@ Obtains the value of the system parameter with the specified key.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -122,10 +120,9 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -172,10 +169,9 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | System parameter can not be found.                           |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700101 | if key is not found                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -215,9 +211,9 @@ Sets a value for the system parameter with the specified key.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -253,9 +249,9 @@ Sets a value for the system parameter with the specified key. This API uses an a
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 
@@ -301,9 +297,9 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | System parameter value is invalid.                           |
-| 14700103 | System permission operation permission denied.               |
-| 14700104 | System internal error including out of memory, deadlock etc. |
+| 14700102 | if value is invalid                                          |
+| 14700103 | if permission denied                                         |
+| 14700104 | if system internal error                                     |
 
 For details about the error codes, see [System Parameter Error Codes](../errorcodes/errorcode-system-parameterV9.md).
 

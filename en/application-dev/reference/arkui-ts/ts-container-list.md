@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                                   | Type                                    | Description                                      |
 | ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | listDirection                         | [Axis](ts-appendix-enums.md#axis)        | Direction in which the list items are arranged.<br>Default value: **Axis.Vertical**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| divider                               | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Since API version 9, this API is supported in ArkTS widgets.<br>The sum of **endMargin** and **startMargin** cannot exceed the column width.<br>**startMargin** and **endMargin** cannot be set in percentage.<br>The divider is drawn between list items along the main axis, and not above the first list item and below the last list item.<br>In multi-column mode, the value of **startMargin** is calculated from the start edge of the cross axis of each column. In other cases, it is calculated from the start edge of the cross axis of the list.|
+| divider                               | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: Length,<br>endMargin?: Length<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Since API version 9, this API is supported in ArkTS widgets.<br>The sum of **endMargin** and **startMargin** cannot exceed the column width.<br>**strokeWidth**, **startMargin**, and **endMargin** cannot be set in percentage.<br>The divider is drawn between list items along the main axis, and not above the first list item and below the last list item.<br>In multi-column mode, the value of **startMargin** is calculated from the start edge of the cross axis of each column. In other cases, it is calculated from the start edge of the cross axis of the list.|
 | scrollBar                             | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **BarState.Off**. In API version 10, the default value is **BarState.Auto**.|
 | cachedCount                           | number                                   | Number of list items or list item groups to be preloaded (cached). It works only in [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md). A list item group is calculated as a whole, and all list items of the group are preloaded at the same time. For details, see [Minimizing White Blocks During Swiping](../../ui/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>In single-column mode, the number of the list items to be cached before and after the currently displayed one equals the value of **cachedCount**.<br>In multi-column mode, the number of the list items to be cached is the value of **cachedCount** multiplied by the number of columns.|
 | editMode<sup>(deprecated)</sup>       | boolean                                  | Whether to enter editing mode.<br>This API is deprecated since API version 9. For details about how to implement deletion of a selected list item, see [Example 3](#example-3).<br>Default value: **false**|
@@ -143,7 +143,7 @@ This API is available only when the heights of list items are the same.
 | onReachStart(event: () => void)          | Triggered when the list reaches the start position.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This event is triggered once when **initialIndex** is **0** during list initialization and once when the list scrolls to the start position. When the list edge scrolling effect is the spring effect, this event is triggered once when the list passes the start position and is triggered again when the list returns to the start position.|
 | onReachEnd(event: () => void)            | Triggered when the list reaches the end position.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When the list edge scrolling effect is the spring effect, this event is triggered once when the list passes the end position and is triggered again when the list returns to the end position.|
 | onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the list starts to scroll. The input parameters indicate the amount by which the list will scroll. The event handler then works out the amount by which the list needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the list scrolls, in vp.<br>This event is triggered when the user starts dragging the list or the list starts inertial scrolling. This event is not triggered when the list rebounds or the scrolling controller is used.<br>This API is supported in ArkTS widgets.<br>**NOTE**<br>If **listDirection** is set to **Axis.Vertical**, the return value is the amount by which the list needs to scroll in the vertical direction. If **listDirection** is set to **Axis.Horizontal**, the return value is the amount by which the list needs to scroll in the horizontal direction.|
-| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when the list starts scrolling initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.<br>This API is supported in ArkTS widgets.|
+| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when the list starts scrolling initiated by the user's finger dragging the list or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.<br>This API is supported in ArkTS widgets.|
 | onScrollStop(event: () => void)          | Triggered when the list stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | onItemMove(event: (from: number, to: number) => boolean) | Triggered when a list item moves.<br>- **from**: index of the item before moving.<br>- **to**: index of the item after moving.|
 | onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => ((() => any) \| void) | Triggered when a list element starts to be dragged.<br>- **event**: See [ItemDragInfo](ts-container-grid.md#itemdraginfo).<br>- **itemIndex**: index of the dragged list element.|
@@ -204,13 +204,13 @@ struct ListExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }
       .listDirection(Axis.Vertical) // Arrangement direction
       .scrollBar(BarState.Off)
@@ -251,7 +251,7 @@ struct ListLanesExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('100%')
@@ -262,7 +262,7 @@ struct ListLanesExample {
               .backgroundColor(0xFFFFFF)
           }
           .border({ width: 2, color: Color.Green })
-        }, item => item)
+        }, (item: string) => item)
       }
       .height(300)
       .width("90%")
@@ -295,17 +295,17 @@ struct ListLanesExample {
 // xxx.ets
 @Entry
 @Component
-struct ListExample{
+struct ListExample {
   @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State editFlag: boolean = false
 
-  build(){
-    Stack({alignContent: Alignment.TopStart}) {
-      Column(){
-        List({space:20, initialIndex:0}) {
-          ForEach(this.arr, (item, index) => {
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number, index?: number) => {
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center}) {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
                 Text('' + item)
                   .width('100%')
                   .height(80)
@@ -319,15 +319,17 @@ struct ListExample{
                     Text("delete").fontSize(16)
                   }.width('30%').height(40)
                   .onClick(() => {
-                    console.info(this.arr[index] + 'Delete')
-                    this.arr.splice(index, 1)
-                    console.info(JSON.stringify(this.arr))
-                    this.editFlag = false
+                    if (index != undefined) {
+                      console.info(this.arr[index] + 'Delete')
+                      this.arr.splice(index, 1)
+                      console.info(JSON.stringify(this.arr))
+                      this.editFlag = false
+                    }
                   }).stateEffect(true)
                 }
               }
             }
-          }, item => item)
+          }, (item: string) => item)
         }.width('90%')
         .scrollBar(BarState.Off)
         .friction(0.6)
@@ -351,14 +353,19 @@ struct ListExample{
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = Array.apply(this, {length: 20}).map((item, i) => i)
+  private arr: number[] = []
   private scrollerForList: Scroller = new Scroller()
 
+  aboutToAppear() {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i)
+    }
+  }
   build() {
     Column() {
       Row() {
-        List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-          ForEach(this.arr, (item) => {
+        List({ space: 20, initialIndex: 3, scroller: this.scrollerForList }) {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
@@ -367,8 +374,13 @@ struct ListExample {
             .borderRadius(10).backgroundColor(0xFFFFFF)
             .width('60%')
             .height('80%')
-          }, item => item)
+          }, (item: number) => JSON.stringify(item))
         }
+        .chainAnimationOptions({
+          minSpace: 20,
+          maxSpace: 60,
+          edgeEffect: ChainEdgeEffect.STRETCH
+        })
         .chainAnimation(true)
         .edgeEffect(EdgeEffect.Spring)
         .listDirection(Axis.Horizontal)
@@ -377,16 +389,16 @@ struct ListExample {
         .scrollSnapAlign(ScrollSnapAlign.CENTER)
         .borderRadius(10)
         .backgroundColor(0xDCDCDC)
-        .listDirection(Axis.Horizontal)
         .width('100%')
       }
       .width('100%')
       .height('100%')
       .backgroundColor(0xDCDCDC)
-      .padding({ top: 10})
+      .padding({ top: 10 })
     }
   }
 }
+
 ```
 
 ![list](figures/list4.gif)

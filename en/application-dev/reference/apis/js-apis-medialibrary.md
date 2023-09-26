@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```js
+```ts
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
@@ -20,6 +20,7 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 This API can be used only in the stage model.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. Use [getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -36,21 +37,12 @@ This API can be used only in the stage model.
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | **MediaLibrary** instance obtained.|
 
-**Example (from API version 9)**
+**Example**
 
 ```ts
 // Obtain a MediaLibrary instance. The instance obtained here is used in later.
 const context = getContext(this);
-let media = mediaLibrary.getMediaLibrary(context);
-```
-
-**Example (API version 8)**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();
-let media = mediaLibrary.getMediaLibrary(context);
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## mediaLibrary.getMediaLibrary
@@ -62,6 +54,7 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 This API can be used only in the FA model.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. There is no substitute API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -74,8 +67,8 @@ This API can be used only in the FA model.
 
 **Example**
 
-```js
-let media = mediaLibrary.getMediaLibrary();
+```ts
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary
@@ -104,12 +97,12 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // Create options for fetching the files of the image type.
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -182,12 +175,14 @@ Obtains file assets. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // Create options for fetching the files of the image type.
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -216,11 +211,11 @@ async function example() {
       }
       // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       // Calling getFirstObject fails.
       console.error('get first object failed with error: ' + error);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     // Calling getFileAssets fails.
     console.error('get file assets failed with error: ' + error);
   });
@@ -248,7 +243,7 @@ Subscribes to the media library changes. This API uses a callback to return the 
 
 **Example**
 
-```js
+```ts
 media.on('imageChange', () => {
   // image file had changed, do something.
 });
@@ -275,7 +270,7 @@ Unsubscribes from the media library changes. This API uses a callback to return 
 
 **Example**
 
-```js
+```ts
 media.off('imageChange', () => {
   // stop listening successfully.
 });
@@ -307,7 +302,7 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```js
+```ts
 async function example() {
   // Create an image file in callback mode.
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -344,7 +339,7 @@ Creates a media asset. This API uses a promise to return the result.
 | ------------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | mediaType    | [MediaType](#mediatype8) | Yes  | Media type.                                                    |
 | displayName  | string                   | Yes  | File name to display.                                                  |
-| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by [getPublicDirectory](#getpublicdirectory8).|
+| relativePath | string                   | Yes  | Relative path of the file, which can be obtained by **getPublicDirectory**.|
 
 **Return value**
 
@@ -354,7 +349,9 @@ Creates a media asset. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // Create an image file in promise mode.
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -362,7 +359,7 @@ async function example() {
   const path = await media.getPublicDirectory(DIR_IMAGE);
   media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
     console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('createAsset failed with error: ' + error);
   });
 }
@@ -400,11 +397,13 @@ Before calling this API, call [FileAsset.trash](#trash8) to move the file to the
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -416,7 +415,7 @@ async function example() {
   }
   media.deleteAsset(asset.uri).then(() => {
     console.info('deleteAsset successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('deleteAsset failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -450,11 +449,11 @@ Before calling this API, call [FileAsset.trash](#trash8) to move the file to the
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -496,7 +495,7 @@ Obtains a user directory. This API uses an asynchronous callback to return the r
 
 **Example**
 
-```js
+```ts
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
   if (dicResult == 'Camera/') {
@@ -533,7 +532,9 @@ Obtains a user directory. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
   media.getPublicDirectory(DIR_CAMERA).then((dicResult) => {
@@ -542,7 +543,7 @@ async function example() {
     } else {
       console.error('getPublicDirectory DIR_CAMERA failed');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPublicDirectory failed with error: ' + error);
   });
 }
@@ -557,7 +558,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -572,13 +573,13 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
+```ts
 async function example() {
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+  media.getAlbums(albumFetchOp, (error, albumList) => {
     if (albumList != undefined) {
       console.info('getAlbums successfully: ' + JSON.stringify(albumList));
     } else {
@@ -597,7 +598,7 @@ Obtains albums. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAlbums](js-apis-photoAccessHelper.md#getalbums-2) instead.
-> - From the SDK of API version 10, **relativePath** is no longer associated with an album. Therefore, **relativePath** cannot be used as a search criterion in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For more details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
+> - From the SDK of API version 10, **relativePath** is no longer associated with an album and cannot be used in **getAlbums**. Currently, only **Camera** and **ScreenShots** albums are supported. For details, see [changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md).
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -617,15 +618,17 @@ Obtains albums. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+  media.getAlbums(albumFetchOp).then((albumList) => {
     console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAlbums failed with error: ' + error);
   });
 }
@@ -652,7 +655,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Example**
 
-```js
+```ts
 media.release(() => {
   // do something.
 });
@@ -666,6 +669,7 @@ Releases this **MediaLibrary** instance.
 Call this API when you no longer need to use the APIs in the **MediaLibrary** instance.
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. Use [release](js-apis-photoAccessHelper.md#release-1) instead.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -678,7 +682,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Example**
 
-```js
+```ts
 media.release();
 ```
 
@@ -704,8 +708,8 @@ Stores a media asset. This API uses an asynchronous callback to return the URI o
 
 **Example**
 
-```js
-let option = {
+```ts
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
@@ -747,16 +751,18 @@ Stores a media asset. This API uses a promise to return the URI of the media ass
 
 **Example**
 
-```js
-let option = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
 };
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
   console.info('Media resources stored.');
-  // Obtain the URI of the media asset.
-}).catch((error) => {
+  // Obtain the URI that stores media resources.
+}).catch((error: BusinessError) => {
   console.error('storeMediaAsset failed with error: ' + error);
 });
 ```
@@ -765,7 +771,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
-Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image (**file://**) or all online images (**https://**). It uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -784,7 +790,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 **Example**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -827,7 +833,7 @@ Starts image preview. This API can be used to preview the first local image (**f
 
 **Example**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -851,7 +857,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
-Starts image preview, with the first image to preview specified. This API can be used to preview a local image with the specified index (**file://**) or all online images (**https://**). It uses a promise to return the execution result.
+Starts image preview, with the first image to preview specified. This API can be used to preview a local image (**file://**) or all online images (**https://**). It uses a promise to return the execution result.
 
 > **NOTE**
 >
@@ -875,7 +881,9 @@ Starts image preview, with the first image to preview specified. This API can be
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -889,7 +897,7 @@ let images = [
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
   console.info('Succeeded in previewing the images.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startImagePreview failed with error: ' + error);
 });
 ```
@@ -916,7 +924,7 @@ Starts media selection. This API uses an asynchronous callback to return the URI
 
 **Example**
 
-```js
+```ts
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -958,7 +966,9 @@ Starts media selection. This API uses a promise to return the URIs of the select
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -966,7 +976,7 @@ let option : mediaLibrary.MediaSelectOption = {
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
   console.info('Media resources selected.');
   // Obtain the media selection value.
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startMediaSelect failed with error: ' + error);
 });
 ```
@@ -995,7 +1005,9 @@ Obtains information about online peer devices. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getActivePeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1003,7 +1015,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -1033,7 +1045,7 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 async function example() {
   media.getActivePeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1069,7 +1081,9 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getAllPeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1077,7 +1091,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -1107,7 +1121,7 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 **Example**
 
-```js
+```ts
 async function example() {
   media.getAllPeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1179,11 +1193,11 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1223,11 +1237,13 @@ Checks whether this file asset is a directory. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1236,7 +1252,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isDirectory().then((isDirectory) => {
     console.info('isDirectory result:' + isDirectory);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isDirectory failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1266,11 +1282,11 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1308,11 +1324,11 @@ Commits the modification on the file asset to the database. This API uses a prom
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1351,7 +1367,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```js
+```ts
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1397,7 +1413,9 @@ Opens this file asset. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1405,7 +1423,7 @@ async function example() {
   const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
   asset.open('rw').then((fd) => {
     console.info('File open fd: ' + fd);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
 }
@@ -1434,11 +1452,13 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1454,7 +1474,7 @@ async function example() {
         console.info('asset.close successfully');
       }
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1489,11 +1509,13 @@ Closes a file. This API uses a promise to return the result.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1507,7 +1529,7 @@ async function example() {
     }).catch((closeErr) => {
       console.error('asset.close fail, closeErr: ' + closeErr);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('open File failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1536,11 +1558,11 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1581,16 +1603,16 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size, (error, pixelmap) => {
@@ -1632,21 +1654,23 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size).then((pixelmap) => {
     console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary getThumbnail failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1676,11 +1700,11 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1726,11 +1750,13 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1739,7 +1765,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.favorite(true).then(() => {
     console.info('mediaLibrary favorite Successful');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favorite failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1768,11 +1794,11 @@ Checks whether this file asset is favorited. This API uses an asynchronous callb
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1812,11 +1838,13 @@ Checks whether this file asset is favorited. This API uses a promise to return t
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1825,7 +1853,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isFavorite().then((isFavorite) => {
     console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1857,11 +1885,11 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1909,11 +1937,13 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1922,7 +1952,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.trash(true).then(() => {
     console.info('trash successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('trash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1951,11 +1981,11 @@ Checks whether this file asset is in the trash. This API uses an asynchronous ca
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1995,11 +2025,13 @@ Checks whether this file asset is in the trash. This API uses a promise to retur
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2008,7 +2040,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isTrash().then((isTrash) => {
     console.info('isTrash result: ' + isTrash);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isTrash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -2043,11 +2075,11 @@ Obtains the total number of files in the result set.
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let getFileCountOneOp = {
+  let getFileCountOneOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2079,11 +2111,11 @@ Checks whether the cursor is in the last row of the result set.
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2092,10 +2124,10 @@ async function example() {
   const fetchCount = fetchFileResult.getCount();
   console.info('mediaLibrary fetchFileResult.getCount, count:' + fetchCount);
   let fileAsset = await fetchFileResult.getFirstObject();
-  for (var i = 1; i < fetchCount; i++) {
+  for (let i = 1; i < fetchCount; i++) {
     fileAsset = await fetchFileResult.getNextObject();
     if(i == fetchCount - 1) {
-      var result = fetchFileResult.isAfterLast();
+      let result = fetchFileResult.isAfterLast();
       console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
       fetchFileResult.close();
     }
@@ -2117,11 +2149,11 @@ Releases and invalidates this **FetchFileResult** instance. After this instance 
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2151,11 +2183,11 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2192,11 +2224,13 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2205,7 +2239,7 @@ async function example() {
   fetchFileResult.getFirstObject().then((fileAsset) => {
     console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getFirstObject failed with error: ' + error);
   });
 }
@@ -2232,11 +2266,11 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2279,11 +2313,13 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2295,7 +2331,7 @@ async function example() {
     fetchFileResult.getNextObject().then((fileAsset) => {
       console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error('fetchFileResult getNextObject failed with error: ' + error);
     })
   }
@@ -2322,11 +2358,11 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2363,11 +2399,13 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2376,7 +2414,7 @@ async function example() {
   fetchFileResult.getLastObject().then((fileAsset) => {
     console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getLastObject failed with error: ' + error);
   });
 }
@@ -2403,11 +2441,11 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2450,11 +2488,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2463,7 +2503,7 @@ async function example() {
   fetchFileResult.getPositionObject(0).then((fileAsset) => {
     console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPositionObject failed with error: ' + error);
   });
 }
@@ -2489,11 +2529,11 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2532,11 +2572,13 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2547,7 +2589,7 @@ async function example() {
       console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
     } 
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAllObject failed with error: ' + error);
   });
 }
@@ -2597,14 +2639,14 @@ Commits the modification on the album attributes to the database.
 
 **Example**
 
-```js
+```ts
 async function example() {
   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs:['New Album 1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify((error) => {
@@ -2639,19 +2681,21 @@ Commits the modification on the album attributes to the database.
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs:['New Album 1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('commitModify failed with error: ' + error);
   });
 }
@@ -2679,15 +2723,15 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 **Example**
 
-```js
+```ts
 async function example() {
   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs:['New Album 1'],
   };
   // Obtain the albums that meet the retrieval options and return the album list.
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
   album.getFileAssets((error, fetchFileResult) => {
@@ -2725,19 +2769,19 @@ Obtains the file assets in this album based on specified conditions. This API us
 
 **Example**
 
-```js
+```ts
 async function example() {
   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs:['New Album 1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // Obtain the albums that meet the retrieval options and return the album list.
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
   album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
@@ -2780,26 +2824,28 @@ Obtains the file assets in this album based on specified conditions. This API us
 
 **Example**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs:['New Album 1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // Obtain the albums that meet the retrieval options and return the album list.
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
   album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
     let count = fetchFileResult.getCount();
     console.info('album getFileAssets successfully, count: ' + count);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('album getFileAssets failed with error: ' + error);
   });
 }
@@ -2962,7 +3008,7 @@ Defines the media asset option.
 | Name        | Type  | Readable| Writable| Description                                                        |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | src          | string | Yes  | Yes  | Application sandbox oath of the local file.                                      |
-| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file/*'. |
+| mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be **'image/\*'**, **'video/\*'**, **'audio/\*'**, or **'file/\*'**.|
 | relativePath | string | Yes  | Yes  | Customized path of media assets, for example, **Pictures/**. If this parameter is unspecified, the default paths of media assets are as follows:<br> Default path of images: **'Pictures/'**<br> Default path of videos: **'Videos/'**<br> Default path of audio files: **'Audios/'**<br> Default path of documents: **'Documents/'** |
 
 ## MediaSelectOption
@@ -2978,4 +3024,4 @@ Defines the media selection option.
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Yes | Maximum number of media assets that can be selected.<br/>The value **1** means to select only one media asset; the value greater than **1** means to select multiple media assets. |
+| count | number | Yes   | Yes | Maximum number of media assets that can be selected.<br>The value **1** means to select only one media asset; the value greater than **1** means to select multiple media assets.  |

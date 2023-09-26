@@ -4,15 +4,15 @@ The **adminManager** module provides enterprise device management capabilities s
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts).
 
 ## Modules to Import
 
-```js
+```ts
 import adminManager from '@ohos.enterprise.adminManager';
 ```
 
@@ -49,12 +49,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -102,12 +103,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -160,19 +162,22 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
 
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch((err) => {
-  console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
-});
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
+  (err: BusinessError) => {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+  });
 ```
 
 ## adminManager.disableAdmin
@@ -204,8 +209,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -249,8 +255,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -299,13 +306,15 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
-adminManager.disableAdmin(wantTemp, 100).catch((err) => {
+adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
   console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -333,14 +342,15 @@ Disables a super administrator application for the administrator based on **bund
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |   
+| ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
 **Example**
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
   if (err) {
@@ -385,10 +395,12 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
 
-adminManager.disableSuperAdmin(bundleName).catch((err) => {
+adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
   console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -412,8 +424,9 @@ Checks whether a device administrator application of the current user is enabled
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -447,8 +460,9 @@ Checks whether a device administrator application of the specified user is enabl
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
@@ -487,15 +501,17 @@ Checks whether a device administrator application of the current or specified us
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
   console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -519,8 +535,9 @@ Checks whether a super administrator application of the administrator is enabled
 
 **Example**
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
   if (err) {
@@ -555,12 +572,14 @@ Checks whether a super administrator application of the administrator is enabled
 
 **Example**
 
-```js
-let bundleName = 'com.example.myapplication';
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
   console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -595,12 +614,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
@@ -649,17 +669,19 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let enterpriseInfo = {
+let enterpriseInfo: adminManager.EnterpriseInfo = {
   name: 'enterprise name',
   description: 'enterprise description'
 }
 
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err) => {
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
   console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -691,8 +713,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -738,15 +761,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
   console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -782,12 +807,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -834,15 +860,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -878,12 +906,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -930,15 +959,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [0, 1];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
@@ -975,12 +1006,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 let bundleName: string = "com.example.application";
+
 adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
   if (err) {
     console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
@@ -1027,14 +1060,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
 let bundleName: string = "com.example.application";
+
 adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to authorize permission to the application. Code: ${err.code}, message: ${err.message}`);
 })
 ```

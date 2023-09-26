@@ -64,7 +64,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 
@@ -112,7 +112,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 
@@ -157,7 +157,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -210,7 +210,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -270,7 +270,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -323,7 +323,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid.|
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -382,7 +382,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -466,7 +466,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -635,13 +635,13 @@ The ArkTS syntax does not support direct use of **globalThis**. A singleton map 
 
 The sample code of **globalThis.ets** is as follows:
 ```ts
-import common from '@ohos.app.ability.common';
+import { Context } from '@ohos.abilityAccessCtrl';
 
 // Construct a singleton object.
 export class GlobalThis {
     private constructor() {}
     private static instance: GlobalThis;
-    private _uiContexts = new Map<string, common.UIAbilityContext>();
+    private _uiContexts = new Map<string, Context>();
 
     public static getInstance(): GlobalThis {
     if (!GlobalThis.instance) {
@@ -650,11 +650,11 @@ export class GlobalThis {
     return GlobalThis.instance;
     }
 
-    getContext(key: string): common.UIAbilityContext | undefined {
+    getContext(key: string): Context | undefined {
     return this._uiContexts.get(key);
     }
 
-    setContext(key: string, value: common.UIAbilityContext): void {
+    setContext(key: string, value: Context): void {
     this._uiContexts.set(key, value);
     }
 
@@ -663,15 +663,15 @@ export class GlobalThis {
 ```
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data)=>{
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
     console.info('data authResults:' + data.authResults);
@@ -721,15 +721,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 The procedure for modifying **EntryAbility.ets** and importing **GlobalThis** is the same as the preceding procedure, and omitted here.
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
 import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data) => {
+    let context: Context = GlobalThis.getInstance().getContext('context');
+    atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);
         console.info('data authResults:' + data.authResults);
@@ -812,7 +811,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 
 **Example**
 

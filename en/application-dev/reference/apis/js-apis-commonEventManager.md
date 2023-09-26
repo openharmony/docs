@@ -10,7 +10,6 @@ The **CommonEventManager** module provides common event capabilities, including 
 
 ```ts
 import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
 ```
 
 ## Support
@@ -48,9 +47,11 @@ Publishes a common event and executes an asynchronous callback after the event i
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
-	if (err) {
+    if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish");
@@ -96,6 +97,8 @@ Publishes a common event with given attributes. This API uses an asynchronous ca
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
@@ -153,6 +156,8 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
 	if (err) {
@@ -208,6 +213,8 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 
 ```ts
+import Base from '@ohos.base';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
@@ -253,6 +260,8 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
@@ -301,6 +310,8 @@ Creates a subscriber. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
@@ -346,6 +357,8 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Subscriber information.
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
@@ -417,6 +430,8 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 // Subscriber information.
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
@@ -504,6 +519,8 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
         console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
@@ -551,6 +568,8 @@ Removes a sticky common event. This API uses a promise to return the result.
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`Remove sticky event AsyncCallback success`);
 }).catch ((err:Base.BusinessError) => {
@@ -588,6 +607,8 @@ Enables or disables static subscription for the current application. This API us
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
         console.info(`Set static subscriber state callback failed, err is null.`);
@@ -636,6 +657,8 @@ Enables or disables static subscription for the current application. This API us
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscriber state promise success`);
 }).catch ((err:Base.BusinessError) => {

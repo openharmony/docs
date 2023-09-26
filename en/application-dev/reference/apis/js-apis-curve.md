@@ -140,10 +140,10 @@ Creates a spring curve. The curve shape is subject to the spring parameters, and
 **Parameters**
 | Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| velocity  | number | Yes  | Initial velocity. It is applied by external factors to the spring animation, designed to help ensure the smooth transition from the previous motion state.<br>Value range: (-∞, +∞)|
-| mass      | number | Yes  | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| stiffness | number | Yes  | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| damping   | number | Yes  | Damping. It is a pure number and has no real physical meaning. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
+| velocity  | number | Yes  | Initial velocity. It is applied by external factors to the spring animation, designed to help ensure the smooth transition from the previous motion state. The velocity is the normalized velocity, and its value is equal to the actual velocity at the beginning of the animation divided by the animation attribute change value.<br>Value range: (-∞, +∞)|
+| mass      | number | Yes  | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
+| stiffness | number | Yes  | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
+| damping   | number | Yes  | Damping. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
 
 
 **Return value**
@@ -157,7 +157,7 @@ Creates a spring curve. The curve shape is subject to the spring parameters, and
 
 ```ts
 import Curves from '@ohos.curves'
-Curves.springCurve(100, 1, 228, 30) // Create a spring curve.
+Curves.springCurve(10, 1, 228, 30) // Create a spring curve.
 ```
 
 
@@ -173,7 +173,7 @@ Creates a spring animation curve. If multiple spring animations are applied to t
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
-| response  | number | No   | Duration of one complete oscillation.<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
+| response  | number | No   | Duration of one complete oscillation.<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the default value **0.55** is used.|
 | dampingFraction      | number | No   | Damping coefficient.<br>**0**: undamped. In this case, the spring oscillates forever.<br>> 0 and < 1: underdamped. In this case, the spring overshoots the equilibrium position.<br>**1**: critically damped.<br>> 1: overdamped. In this case, the spring approaches equilibrium gradually.<br>Default value: **0.825**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.825**.|
 | overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, the **response** values of these animations will transit smoothly over this duration if they are different.<br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
@@ -207,7 +207,7 @@ Creates a responsive spring animation curve. It is a special case of [springMoti
 
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
-| response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.15**.|
+| response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the default value **0.15** is used.|
 | dampingFraction      | number | No   | See **dampingFraction** in **springMotion**.<br>Default value: **0.86**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.86**.|
 | overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained using the **interpolate** function of the curve.|
 
@@ -215,7 +215,7 @@ Creates a responsive spring animation curve. It is a special case of [springMoti
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. In addition, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained using the [interpolate](#interpolate9) function of the curve.|
 
 **Example**
 
@@ -238,9 +238,9 @@ Creates an interpolating spring curve animated from 0 to 1. The actual animation
 | Name      | Type    | Mandatory  | Description   |
 | --------- | ------ | ---- | ----- |
 | velocity  | number | Yes   | Initial velocity. It is applied by external factors to the spring animation, designed to help ensure the smooth transition from the previous motion state. The velocity is the normalized velocity, and its value is equal to the actual velocity at the beginning of the animation divided by the animation attribute change value.<br>Value range: (-∞, +∞)|
-| mass      | number | Yes   | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| stiffness | number | Yes   | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| damping   | number | Yes   | Damping. It is a pure number and has no real physical meaning. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
+| mass      | number | Yes   | Mass, which influences the inertia in the spring system. The greater the mass, the greater the amplitude of the oscillation, and the slower the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
+| stiffness | number | Yes   | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
+| damping   | number | Yes   | Damping. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.<br>Value range: [0, +∞)<br>**NOTE**<br>If this parameter is set to a value less than or equal to 0, the value **1** is used.|
 
 **Return value**
 
@@ -252,7 +252,7 @@ Creates an interpolating spring curve animated from 0 to 1. The actual animation
 
 ```ts
 import Curves from '@ohos.curves'
-Curves.interpolatingSpring(100, 1, 228, 30) // Create an interpolating spring curve whose duration is subject to spring parameters.
+Curves.interpolatingSpring(10, 1, 228, 30) // Create an interpolating spring curve whose duration is subject to spring parameters.
 ```
 
 ## Curves.customCurve<sup>10+</sup>

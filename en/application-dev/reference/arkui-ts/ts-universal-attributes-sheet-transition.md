@@ -7,6 +7,8 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 >  The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  Switching between landscape and portrait modes is not supported.
+>
+>  Route hopping is not supported.
 
 ## Attributes
 
@@ -25,6 +27,7 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar. By default, the drag bar is displayed .  |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the sheet.    |
+| maskColor | [ResourceColor](ts-types.md#resourcecolor) | No| Mask color of the sheet.|
 | onAppear        | () => void                               | No   | Callback invoked when the sheet is displayed.   |
 | onDisappear     | () => void                               | No   | Callback invoked when the sheet is hidden.   |
 
@@ -60,7 +63,7 @@ struct SheetTransitionExample {
         .margin(10)
         .fontSize(20)
         .onClick(()=>{
-          this.sheetHeight = null;
+          this.sheetHeight = 300;
         })
 
       Button("close dragBar")

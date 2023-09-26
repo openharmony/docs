@@ -10,8 +10,8 @@ The **Emitter** module provides the capabilities of sending and processing inter
 
 ## Modules to Import
 
-```javascript
-import emitter from '@ohos.events.emitter'
+```ts
+import emitter from '@ohos.events.emitter';
 ```
 
 ## Required Permissions
@@ -35,16 +35,15 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 
 **Example**
 
-```javascript
-let innerEvent = {
-    eventId: 1
+```ts
+let innerEvent: emitter.InnerEvent = {
+  eventId: 1
 };
 
 // Execute the callback after receiving the event whose eventId is 1.
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.on(innerEvent, emitterCallback);
+emitter.on(innerEvent, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.once
@@ -64,16 +63,15 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 
 **Example**
 
-```javascript
-let innerEvent = {
+```ts
+let innerEvent: emitter.InnerEvent = {
     eventId: 1
 };
 
 // Execute the callback after receiving the event whose eventId is 1.
-function emitterCallback() {
+emitter.once(innerEvent, () => {
     console.info('once callback');
-};
-emitter.once(innerEvent, emitterCallback);
+});
 ```
 
 ## emitter.off
@@ -92,7 +90,7 @@ Unsubscribes from an event.
 
 **Example**
 
-```javascript
+```ts
 // Unregister the callbacks of all events whose eventID is 1.
 emitter.off(1);
 ```
@@ -114,13 +112,12 @@ Unsubscribes from an event. If the specified callback has been registered throug
 
 **Example**
 
-```javascript
+```ts
 // Unregister the emitterCallback callback for the event whose eventID is 1.
 // If the callback has not been registered, no processing is performed.
-function emitterCallback() {
-    console.info('callback');
-}
-emitter.off(1, emitterCallback);
+emitter.off(1, () => {
+  console.info('callback');
+});
 ```
 
 ## emitter.emit
@@ -140,15 +137,15 @@ Emits an event.
 
 **Example**
 
-```javascript
-let eventData = {
+```ts
+let eventData: emitter.EventData = {
     data: {
         "content": "c",
         "id": 1,
     }
 };
 
-let innerEvent = {
+let innerEvent: emitter.InnerEvent = {
     eventId: 1,
     priority: emitter.EventPriority.HIGH
 };

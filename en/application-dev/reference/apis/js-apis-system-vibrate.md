@@ -37,18 +37,22 @@ Triggers device vibration.
 **Example**
 
 ```ts
-vibrator.vibrate({
+import vibrator from '@system.vibrator';
+import { VibrateOptions } from '@system.vibrator';
+
+let vibrateOptions: VibrateOptions = {
   mode: 'short',
-  success: function() {
+  success: () => {
     console.info('Succeed in vibrating');
   },
-  fail: function(data, code) {
+  fail: (data: string, code: number) => {
     console.info(`Failed to vibrate. Data: ${data}, code: ${code}`);
   },
-  complete: function() {
+  complete: () => {
     console.info('completed in vibrating');
   }
-});
+};
+vibrator.vibrate(vibrateOptions);
 ```
 
 ## VibrateOptions

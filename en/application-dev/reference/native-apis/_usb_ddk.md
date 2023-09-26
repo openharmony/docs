@@ -1,4 +1,4 @@
-# UsbDdk
+# UsbDDK
 
 
 ## Overview
@@ -19,8 +19,8 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 
 | Name| Description|
 | -------- | -------- |
-| [usb_ddk_api.h](usb__ddk__api_8h.md) | Declares the USB DDK APIs used by the USB host to access USB devices.<br>File to include: &lt;usb/usb_ddk_api.h&gt;|
-| [usb_ddk_types.h](usb__ddk__types_8h.md) | Provides the enumerated variables, structures, and macros used in USB DDK APIs.<br>File to include: &lt;usb/usb_ddk_types.h&gt; |
+| [usb_ddk_api.h](usb__ddk__api_8h.md) | Declares the USB DDK APIs used by the USB host to access USB devices.<br>File to include: &lt;usb/usb_ddk_api.h&gt;<br>Library: libusb_ndk.z.so|
+| [usb_ddk_types.h](usb__ddk__types_8h.md) | Provides the enumerated variables, structures, and macros used in USB DDK APIs.<br>File to include: &lt;usb/usb_ddk_types.h&gt; <br>Library: libusb_ndk.z.so|
 
 
 ### Structs
@@ -181,6 +181,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 
 Declares a USB interface.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -204,6 +206,8 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 **Description**
 
 Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
@@ -229,6 +233,8 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 
 Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -247,6 +253,8 @@ void OH_Usb_FreeConfigDescriptor (const struct UsbDdkConfigDescriptor *const con
 
 Releases the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -264,6 +272,8 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 **Description**
 
 Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
@@ -289,6 +299,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 
 Obtains the activated alternate setting of a USB interface.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -311,6 +323,8 @@ int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescripto
 **Description**
 
 Obtains the device descriptor.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
@@ -335,6 +349,8 @@ int32_t OH_Usb_Init (void )
 
 Initializes the DDK.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Returns**
 
 **0** if the operation is successful; a negative value otherwise.
@@ -351,6 +367,8 @@ void OH_Usb_Release (void )
 
 Releases the DDK.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 
 ### OH_Usb_ReleaseInterface()
 
@@ -362,6 +380,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 **Description**
 
 Releases a USB interface.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
@@ -385,6 +405,8 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 Activates the alternate setting of a USB interface.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -407,6 +429,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 **Description**
 
 Sends a control read transfer request. This API works in a synchronous manner.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
@@ -434,6 +458,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 Sends a control write transfer request. This API works in a synchronous manner.
 
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
 **Parameters**
 
 | Name| Description|
@@ -459,6 +485,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 **Description**
 
 Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
 
 **Parameters**
 
