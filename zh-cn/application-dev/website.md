@@ -681,6 +681,8 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
+  - 增值服务
+    - [广告标识服务](ads-service/oaid/oaid-service.md)
   - 应用测试
     - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
     - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
@@ -789,6 +791,7 @@
         - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis/js-apis-app-ability-contextConstant.md)
         - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-app-ability-environmentCallback.md)
         - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis/js-apis-app-ability-extensionAbility.md)
+        - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis/js-apis-app-ability-printExtensionAbility.md)
         - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)](reference/apis/js-apis-app-ability-serviceExtensionAbility.md)
         - [@ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)](reference/apis/js-apis-app-ability-shareExtensionAbility.md)
         - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis/js-apis-app-ability-startOptions.md)
@@ -1240,6 +1243,8 @@
       - [@ohos.util.Vector (线性容器Vector)](reference/apis/js-apis-vector.md)
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
+    - 广告
+      - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
@@ -1787,6 +1792,8 @@
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
+    - 广告
+      - [广告标识服务错误码](reference/errorcodes/errorcode-oaid.md)
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
   - Native接口参考
