@@ -11,7 +11,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
     ```ts
     // a.ts
     import fs from '@ohos.file.fs';
-    
+
     // 定义并发函数，内部密集调用I/O能力
     // 写入文件的实现
     export async function write(data: string, filePath: string): Promise<void> {
@@ -24,7 +24,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
 	```ts
     import { write } from './a'
     import { BusinessError } from '@ohos.base';
-    
+
     @Concurrent
     async function concurrentTest(fileList: string[]): Promise<boolean> {
       // 循环写文件操作
@@ -44,10 +44,10 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
 
     ```ts
     import taskpool from '@ohos.taskpool';
-    
+
     let filePath1: string = "path1"; // 应用文件路径
     let filePath2: string = "path2";
-    
+
     // 使用TaskPool执行包含密集I/O的并发函数
     // 数组较大时，I/O密集型任务任务分发也会抢占主线程，需要使用多线程能力
     taskpool.execute(concurrentTest, [filePath1, filePath2]).then(() => {
