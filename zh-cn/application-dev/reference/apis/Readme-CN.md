@@ -489,6 +489,9 @@
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
 
+- 广告
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
+
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
