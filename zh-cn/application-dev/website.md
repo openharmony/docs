@@ -731,21 +731,24 @@
     - ArkTS高性能编程
       - [高性能编程规范](performance/high-performance-programming.md)
       - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [安全和高效的使用N-API开发Native模块](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
     - 减少卡顿丢帧
-      - [列表场景性能提升实践](performance/list-perf-improvment.md)
-      - [动效能力实践](performance/animation_practice.md)
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [组件复用使用指导](performance/component-recycle.md)
+      - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
       - [Swiper高性能开发指导](performance/swiper_optimization.md)
-      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [合理进行状态管理](performance/proper_state_management.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
-      - [减少视图嵌套层次](performance/reduce-view-nesting-levels.md)
       - [优化布局性能](performance/reduce-view-nesting-levels.md)
       - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+      - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
