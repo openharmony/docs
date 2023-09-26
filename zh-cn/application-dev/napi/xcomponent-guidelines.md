@@ -15,7 +15,7 @@ Native XComponent是XComponent组件提供在Native层的实例，可作为JS层
 |OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|获取XComponent的id。|
 |OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|获取XComponent持有的surface的大小。|
 |OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|获取XComponent持有的surface相对窗口左上角的偏移量。|
-|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|获取由XComponent触发的触摸事件。|
+|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/native-apis/_o_h___native_x_component___touch_event.md)。|
 |OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|获取XComponent触摸点的工具类型。|
 |OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|获取XComponent触摸点处相对X轴的倾斜角度。|
 |OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|获取XComponent触摸点处相对Y轴的倾斜角度。|
@@ -349,6 +349,12 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
        OH_NativeXComponent_TouchEvent touchEvent;
        // 获取由XComponent触发的触摸事件
        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
+       // 获取XComponent触摸点相对于XComponent组件左边缘的坐标x和相对于XComponent组件上边缘的坐标y
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: x = %{public}lf, y = %{public}lf", touchEvent.x, touchEvent.y);
+       // 获取XComponent触摸点相对于XComponent所在应用窗口左上角的x坐标和相对于XComponent所在应用窗口左上角的y坐标
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
+           "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
        std::string id(idStr);
        PluginRender* render = PluginRender::GetInstance(id);
        if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
