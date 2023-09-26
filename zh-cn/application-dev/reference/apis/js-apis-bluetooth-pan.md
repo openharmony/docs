@@ -12,6 +12,7 @@ pan模块提供了访问蓝牙个人区域网相关功能的方法。
 
 ```js
 import pan from '@ohos.bluetooth.pan';
+import { BusinessError } from '@ohos.base';
 ```
 
 

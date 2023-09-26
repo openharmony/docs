@@ -11,6 +11,7 @@ access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 
 ```js
 import access from '@ohos.bluetooth.access';
+import { BusinessError } from '@ohos.base';
 ```
 
 
