@@ -59,26 +59,27 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timetable: any = [
+  private timetable: TimeTable[] = [
     {
-      title:'星期一',
-      projects:['语文', '数学', '英语']
+      title: '星期一',
+      projects: ['语文', '数学', '英语']
     },
     {
-      title:'星期二',
-      projects:['物理', '化学', '生物']
+      title: '星期二',
+      projects: ['物理', '化学', '生物']
     },
     {
-      title:'星期三',
-      projects:['历史', '地理', '政治']
+      title: '星期三',
+      projects: ['历史', '地理', '政治']
     },
     {
-      title:'星期四',
-      projects:['美术', '音乐', '体育']
+      title: '星期四',
+      projects: ['美术', '音乐', '体育']
     }
   ]
 
-  @Builder itemHead(text:string) {
+  @Builder
+  itemHead(text: string) {
     Text(text)
       .fontSize(20)
       .backgroundColor(0xAABBCC)
@@ -86,7 +87,8 @@ struct ListItemGroupExample {
       .padding(10)
   }
 
-  @Builder itemFoot(num:number) {
+  @Builder
+  itemFoot(num: number) {
     Text('共' + num + "节课")
       .fontSize(16)
       .backgroundColor(0xAABBCC)
@@ -97,24 +99,32 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timetable, (item) => {
-          ListItemGroup({ header:this.itemHead(item.title), footer:this.itemFoot(item.projects.length) }) {
-            ForEach(item.projects, (project) => {
+        ForEach(this.timetable, (item: TimeTable) => {
+          ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
+            ForEach(item.projects, (project: string) => {
               ListItem() {
                 Text(project)
-                  .width("100%").height(100).fontSize(20)
-                  .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+                  .width("100%")
+                  .height(100)
+                  .fontSize(20)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(0xFFFFFF)
               }
-            }, item => item)
+            }, (item: string) => item)
           }
           .divider({ strokeWidth: 1, color: Color.Blue }) // 每行之间的分界线
         })
       }
       .width('90%')
-      .sticky(StickyStyle.Header|StickyStyle.Footer)
+      .sticky(StickyStyle.Header | StickyStyle.Footer)
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
+}
+
+interface TimeTable {
+  title: string;
+  projects: string[];
 }
 ```
 
@@ -127,47 +137,54 @@ struct ListItemGroupExample {
 @Entry
 @Component
 struct ListItemGroupExample2 {
- private arr: any = [
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
-  },
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
-  },
-  {
-   style:ListItemGroupStyle.CARD,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
-  },
-  {
-   style:ListItemGroupStyle.NONE,
-   itemStyles:[ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+  private arr: ArrObject[] = [
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.CARD]
+    },
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+    },
+    {
+      style: ListItemGroupStyle.CARD,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.NONE, ListItemStyle.CARD]
+    },
+    {
+      style: ListItemGroupStyle.NONE,
+      itemStyles: [ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE]
+    }
+  ]
+
+  build() {
+    Column() {
+      List({ space: "4vp", initialIndex: 0 }) {
+        ForEach(this.arr, (item: ArrObject, index?: number) => {
+          ListItemGroup({ style: item.style }) {
+            ForEach(item.itemStyles, (itemStyle: number, itemIndex?: number) => {
+              ListItem({ style: itemStyle }) {
+                if (index != undefined && itemIndex != undefined) {
+                  Text("第" + (index + 1) + "个Group中第" + (itemIndex + 1) + "个item")
+                    .width("100%")
+                    .textAlign(TextAlign.Center)
+                }
+              }
+            }, (item: string) => item)
+          }
+        })
+      }
+      .width('100%')
+      .multiSelectable(true)
+      .backgroundColor(0xDCDCDC) // 浅蓝色的List
+    }
+    .width('100%')
+    .padding({ top: 5 })
   }
- ]
- build() {
-  Column() {
-   List({ space: "4vp", initialIndex: 0 }) {
-    ForEach(this.arr, (item,index) => {
-     ListItemGroup({ style:item.style }) {
-      ForEach(item.itemStyles, (itemStyle,itemIndex) => {
-       ListItem({style:itemStyle}) {
-        Text("第"+(index+1)+"个Group中第"+(itemIndex+1)+"个item")
-         .width("100%")
-         .textAlign(TextAlign.Center)
-       }
-      }, item => item)
-     }
-    })
-   }
-   .width('100%')
-   .multiSelectable(true)
-   .backgroundColor(0xDCDCDC) // 浅蓝色的List
-  }
-  .width('100%')
-  .padding({ top: 5 })
- }
 }
 
+interface ArrObject {
+  style: number;
+  itemStyles: number[];
+}
 ```
 ![ListItemGroupStyle](figures/listItemGroup2.jpeg)

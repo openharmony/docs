@@ -11,7 +11,7 @@
 
 数据管理服务仅支持数据库的基本访问或数据托管，如果有业务处理，需要将业务处理封装成接口，给数据访问方调用。
 
-如果业务过于复杂，无法放到数据访问方，建议通过DataShareExtensionAbility拉起数据提供方实现功能。
+如果业务过于复杂，无法放到数据访问方，建议通过[DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)拉起数据提供方实现功能。
 
 
 ## 运作机制
@@ -138,25 +138,29 @@
 
 1. 导入基础依赖包。
 
-   ```js
+   ```ts
    import dataShare from '@ohos.data.dataShare';
    import dataSharePredicates from '@ohos.data.dataSharePredicates';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
 
-   ```js
+   ```ts
    let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/test');
    ```
 
 3. 创建工具接口类对象。
 
-   ```js
-   let dsHelper;
-   let abilityContext;
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
+   let abilityContext: Context;
 
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, "", {
          isProxy: true
@@ -169,60 +173,78 @@
 
 4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增、删、改、查等。
 
-   ```js
+   ```ts
    // 构建一条数据
-   let valuesBucket = {
-     'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3])
-   };
-   let updateBucket = {
-     'name': 'LiSi', 'age': 18, 'isStudent': true, 'Binary': new Uint8Array([1, 2, 3])
-   };
+   let key1 = 'name';
+   let key2 = 'age';
+   let key3 = 'isStudent';
+   let key4 = 'Binary';
+   let valueName1 = 'ZhangSan';
+   let valueName2 = 'LiSi';
+   let valueAge1 = 21;
+   let valueAge2 = 18;
+   let valueIsStudent1 = false;
+   let valueIsStudent2 = true;
+   let valueBinary = new Uint8Array([1, 2, 3]);
+   let valuesBucket: ValuesBucket = { key1: valueName1, key2: valueAge1, key3: valueIsStudent1, key4: valueBinary };
+   let updateBucket: ValuesBucket = { key1: valueName2, key2: valueAge2, key3: valueIsStudent2, key4: valueBinary };
    let predicates = new dataSharePredicates.DataSharePredicates();
    let valArray = ['*'];
-   // 插入一条数据
-   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
-     console.info(`dsHelper insert result:${data}`);
-   });
-   // 更新数据
-   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
-     console.info(`dsHelper update result:${data}`);
-   });
-   // 查询数据
-   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
-     console.info(`dsHelper query result:${data}`);
-   });
-   // 删除指定的数据
-   dsHelper.delete(dseUri, predicates, (err, data) => {
-     console.info(`dsHelper delete result:${data}`);
-   });
+   if (dsHelper != undefined) {
+     // 插入一条数据
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+       console.info(`dsHelper insert result:${data}`);
+     });
+     // 更新数据
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+       console.info(`dsHelper update result:${data}`);
+     });
+     // 查询数据
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+       console.info(`dsHelper query result:${data}`);
+     });
+     // 删除指定的数据
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+       console.info(`dsHelper delete result:${data}`);
+     });
+   }
    ```
 
 5. 对指定的数据进行订阅。
 
-   ```js
-   function onCallback(err, node: dataShare.RdbDataChangeNode) {
-       console.info("uri " + JSON.stringify(node.uri));
-       console.info("templateId " + JSON.stringify(node.templateId));
-       console.info("data length " + node.data.length);
-       for (let i = 0; i < node.data.length; i++) {
-           console.info("data " + node.data[i]);
-       }
+   ```ts
+   function onCallback(err: BusinessError, node: dataShare.RdbDataChangeNode) {
+     console.info("uri " + JSON.stringify(node.uri));
+     console.info("templateId " + JSON.stringify(node.templateId));
+     console.info("data length " + node.data.length);
+     for (let i = 0; i < node.data.length; i++) {
+       console.info("data " + node.data[i]);
+     }
    }
 
-   let template = {
-       predicates: {
-           "p1": "select * from TBL00",
-           "p2": "select name from TBL00",
-       },
-       scheduler: ""
+   let key21: string = "p1";
+   let value21: string = "select * from TBL00";
+   let key22: string = "p2";
+   let value22: string = "select name from TBL00";
+   let template: dataShare.Template = {
+     predicates: {
+       key21: value21,
+       key22: value22,
+     },
+     scheduler: ""
    }
-   dsProxyHelper.addTemplate(dseUri, "111", template);
+   if(dsHelper != undefined)
+   {
+     (dsHelper as dataShare.DataShareHelper).addTemplate(dseUri, "111", template);
+   }
    let templateId: dataShare.TemplateId = {
-       subscriberId: "111",
-       bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
+     subscriberId: "111",
+     bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
    }
-   // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
-   let result: Array<dataShare.OperationResult> = dsProxyHelper.on("rdbDataChange", [dseUri], templateId, onCallback);
+   if(dsHelper != undefined) {
+     // 使用数据管理服务修改数据时触发onCallback回调，回调内容是template中的规则查到的数据
+     let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("rdbDataChange", [dseUri], templateId, onCallback);
+   }
    ```
 
 ## 过程数据实现说明
@@ -263,18 +285,21 @@
 
 1. 导入基础依赖包。
 
-   ```js
+   ```ts
    import dataShare from '@ohos.data.dataShare';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 创建工具接口类对象。
 
-   ```js
-   let dsHelper;
-   let abilityContext;
+   ```ts
+   let dsHelper: dataShare.DataShareHelper | undefined = undefined;
+   let abilityContext: Context;
 
    export default class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage) {
+     onWindowStageCreate(windowStage: window.WindowStage) {
        abilityContext = this.context;
        dataShare.createDataShareHelper(abilityContext, "", {isProxy : true}, (err, data) => {
          dsHelper = data;
@@ -285,23 +310,27 @@
 
 3. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增、删、改、查等。
 
-   ```js
+   ```ts
    // 构建两条数据，第一条为免配置的数据，仅自己使用
    let data : Array<dataShare.PublishedItem> = [
      {key:"city", subscriberId:"11", data:"xian"},
      {key:"datashareproxy://com.acts.ohos.data.datasharetest/weather", subscriberId:"11", data:JSON.stringify("Qing")}];
    // 发布数据
-    let result: Array<dataShare.OperationResult> = await dsProxyHelper.publish(data, "com.acts.ohos.data.datasharetestclient");
+   if (dsHelper != undefined) {
+     let result: Array<dataShare.OperationResult> = await (dsHelper as dataShare.DataShareHelper).publish(data, "com.acts.ohos.data.datasharetestclient");
+   }
    ```
 
 4. 对指定的数据进行订阅。
 
-   ```js
-   function onPublishCallback(err, node:dataShare.PublishedDataChangeNode) {
-       console.info("onPublishCallback");
+   ```ts
+   function onPublishCallback(err: BusinessError, node:dataShare.PublishedDataChangeNode) {
+     console.info("onPublishCallback");
    }
    let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/weather"];
-   let result: Array<dataShare.OperationResult> = dsProxyHelper.on("publishedDataChange", uris, "11", onPublishCallback);
+   if (dsHelper != undefined) {
+     let result: Array<dataShare.OperationResult> = (dsHelper as dataShare.DataShareHelper).on("publishedDataChange", uris, "11", onPublishCallback);
+   }
    ```
 
    ​

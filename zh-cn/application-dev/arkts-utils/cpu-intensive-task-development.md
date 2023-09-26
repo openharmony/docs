@@ -19,7 +19,6 @@ CPU密集型任务是指需要占用系统资源处理大量计算能力的任�
 
 3. 结果数组汇总处理。
 
-
 ```ts
 import taskpool from '@ohos.taskpool';
 
@@ -58,8 +57,8 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let data: ArrayBuffer;
-            histogramStatistic(data);
+            let buffer: ArrayBuffer = new ArrayBuffer(24);
+            histogramStatistic(buffer);
           })
       }
       .width('100%')
@@ -80,107 +79,105 @@ struct Index {
 
 2. 在主线程中通过调用ThreadWorker的[constructor()](../reference/apis/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
 
-   ```js
-   import worker from '@ohos.worker';
+    ```ts
+    import worker from '@ohos.worker';
 
-  const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
-   ```
+    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    ```
 
 3. 在宿主线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
    例如向Worker线程发送训练和预测的消息，同时接收Worker线程发送回来的消息。
 
+    ```ts
+    import worker  from '@ohos.worker';
 
-   ```js
-   // 接收Worker子线程的结果
-   workerInstance.onmessage = function(e) {
+    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+
+    // 接收Worker子线程的结果
+    workerInstance.onmessage = (() => {
      console.info('MyWorker.ts onmessage');
      // 在Worker线程中进行耗时操作
-   }
+    })
 
-   workerInstance.onerror = function (d) {
+    workerInstance.onerror = (() => {
      // 接收Worker子线程的错误信息
-   }
+    })
 
-   // 向Worker子线程发送训练消息
-   workerInstance.postMessage({ 'type': 0 });
-   // 向Worker子线程发送预测消息
-   workerInstance.postMessage({ 'type': 1, 'value': [90, 5] });
-   ```
+    // 向Worker子线程发送训练消息
+    workerInstance.postMessage({ 'type': 0 });
+    // 向Worker子线程发送预测消息
+    workerInstance.postMessage({ 'type': 1, 'value': [90, 5] });
+    ```
+
 
 4. 在MyWorker.ts文件中绑定Worker对象，当前线程为Worker线程。
 
-   ```js
+   ```ts
    import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
 
 5. 在Worker线程中通过调用[onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1)方法接收宿主线程发送的消息内容，并通过调用[postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2)方法向宿主线程发送消息。
-   例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
+    例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
 
-
-   ```js
-   import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
-
-   let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-
-   // 定义训练模型及结果
-   let result;
-
-   // 定义预测函数
-   function predict(x) {
+    ```ts
+    import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+    // 定义训练模型及结果
+    let result: Array<number>;
+    // 定义预测函数
+    function predict(x: number): number {
      return result[x];
-   }
-
-   // 定义优化器训练过程
-   function optimize() {
-     result = {};
-   }
-
-   // Worker线程的onmessage逻辑
-   workerPort.onmessage = (e: MessageEvents): void => {
+    }
+    // 定义优化器训练过程
+    function optimize(): void {
+     result = [];
+    }
+    // Worker线程的onmessage逻辑
+    workerPort.onmessage = (e: MessageEvents): void => {
      // 根据传输的数据的type选择进行操作
-     switch (e.data.type) {
-       case 0:
-       // 进行训练
-         optimize();
-       // 训练之后发送主线程训练成功的消息
-         workerPort.postMessage({ type: 'message', value: 'train success.' });
-         break;
-       case 1:
-       // 执行预测
-         const output = predict(e.data.value);
-       // 发送主线程预测的结果
-         workerPort.postMessage({ type: 'predict', value: output });
-         break;
-       default:
-         workerPort.postMessage({ type: 'message', value: 'send message is invalid' });
-         break;
+     switch (e.data.type as number) {
+      case 0:
+      // 进行训练
+       optimize();
+      // 训练之后发送主线程训练成功的消息
+       workerPort.postMessage({ type: 'message', value: 'train success.' });
+       break;
+      case 1:
+      // 执行预测
+       const output: number = predict(e.data.value as number);
+      // 发送主线程预测的结果
+       workerPort.postMessage({ type: 'predict', value: output });
+       break;
+      default:
+       workerPort.postMessage({ type: 'message', value: 'send message is invalid' });
+       break;
      }
-   }
-   ```
+    }
+    ```
 
 6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。销毁线程的方式主要有两种：根据需要可以在宿主线程中对Worker线程进行销毁；也可以在Worker线程中主动销毁Worker线程。
 
-   在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
+    在宿主线程中通过调用[onexit()](../reference/apis/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
 
-   ```js
-   // Worker线程销毁后，执行onexit回调方法
-   workerInstance.onexit = function() {
+    ```ts
+    // Worker线程销毁后，执行onexit回调方法
+    workerInstance.onexit = (): void => {
      console.info("main thread terminate");
-   }
-   ```
+    }
+    ```
 
-   方式一：在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收消息。
+    方式一：在宿主线程中通过调用[terminate()](../reference/apis/js-apis-worker.md#terminate9)方法销毁Worker线程，并终止Worker接收息。
 
-   ```js
-   // 销毁Worker线程
-   workerInstance.terminate();
-   ```
+    ```ts
+    // 销毁Worker线程
+    workerInstance.terminate();
+    ```
 
-   方式二：在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
+    方式二：在Worker线程中通过调用[close()](../reference/apis/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
 
-   ```js
-   // 销毁线程
-   workerPort.close();
-   ```
+    ```ts
+    // 销毁线程
+    workerPort.close();
+    ```

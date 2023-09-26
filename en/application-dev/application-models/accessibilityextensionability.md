@@ -42,7 +42,7 @@ Perform the following steps in DevEco Studio:
 To add an accessibility extension service to a project, create the **AccessibilityExtAbility** folder in the **ets** folder of the project, create the **AccessibilityExtAbility.ts** file in the new folder, and add the following code to the new file:
 
 ```typescript
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
@@ -53,7 +53,7 @@ class AccessibilityExtAbility extends AccessibilityExtensionAbility {
         console.info('AccessibilityExtAbility onDisconnect');
     }
 
-    onAccessibilityEvent(accessibilityEvent) {
+    onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
         console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
@@ -74,7 +74,7 @@ The APIs defined in the file are as follows.
 You can process the service logic for accessibility events in the **onAccessibilityEvent()** API. For details about the events, see [AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent). The following code snippet uses the **pageStateUpdate** event as an example.
 
 ```typescript
-onAccessibilityEvent(accessibilityEvent) {
+onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
         console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
@@ -132,7 +132,7 @@ In the preceding commands, **AccessibilityExtAbility** indicates the name of the
 If the service is enabled or disabled successfully, the message "enable ability successfully" or "disable ability successfully" is displayed.
 
 
- **Method 2**: through the device settings
+**Method 2**: through the device settings
 - From the device settings screen, access the list of installed extended services under accessibility.
 If an extended service is not installed, it is grayed out, and "No service" is displayed.
 - Select the target extended service, and toggle on or off the switch to enable or disable it.

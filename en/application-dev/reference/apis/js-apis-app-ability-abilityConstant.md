@@ -45,9 +45,11 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
             console.log('The ability has been started by the way of startAbility.');
         }
@@ -77,9 +79,11 @@ Enumerates the reasons for the last exit. You can use it together with [onCreate
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
             console.log('The ability has exit last because the ability was not responding.');
         }
@@ -95,17 +99,18 @@ Enumerates the ability continuation results. You can use it together with [onCon
 
 | Name                         | Value  | Description                                                        |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| AGREE           | 0    | Continuation agreed.|
-| REJECT           | 1    | Continuation denied.|
-| MISMATCH  | 2    | Mismatch.|
+| AGREE           | 0    | The ability continuation is accepted.|
+| REJECT           | 1    | The ability continuation is rejected. If the application is abnormal in **onContinue**, which results in abnormal display during data restoration, this error code is returned. |
+| MISMATCH  | 2    | The version does not match. The application on the initiator can obtain the version of the target application from **onContinue**. If the ability continuation cannot be performed due to version mismatch, this error code is returned. |
 
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onContinue(wantParam) {
+    onContinue(wantParam: Record<string, Object>) {
         return AbilityConstant.OnContinueResult.AGREE;
     }
 }
@@ -130,18 +135,22 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 **Example**
 
 ```ts
-let want = {
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+let want: Want = {
     bundleName: 'com.example.myapplication',
     abilityName: 'EntryAbility'
 };
-let option = {
+let option: StartOptions = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // Ensure that the context is obtained.
 this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
-}).catch((error)=>{
+}).catch((error: BusinessError)=>{
     console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
@@ -162,9 +171,10 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onMemoryLevel(level) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
             console.log('The memory of device is critical, please release some memory.');
         }
@@ -191,9 +201,10 @@ Enumerates the result types for the operation of saving application data. You ca
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
@@ -214,9 +225,10 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason, wantParam) {
+    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
             console.log('Save the ability data when the ability continuation.');
         } 
@@ -240,8 +252,9 @@ Enumerates the mission continuation states of the application. It is used in the
 
 ```ts
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@ohos.base';
 
-  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+  this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result: BusinessError) => {
     console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
   });
 ```

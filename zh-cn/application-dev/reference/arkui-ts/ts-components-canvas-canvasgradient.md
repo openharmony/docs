@@ -42,7 +42,7 @@ struct Page45 {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() => {
-          var grad = this.context.createLinearGradient(50, 0, 300, 100)
+          let grad = this.context.createLinearGradient(50, 0, 300, 100)
           grad.addColorStop(0.0, '#ff0000')
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')

@@ -113,3 +113,31 @@ struct Page3 {
   }
 }
 ```
+
+## cl.arkui.2 更新4.0.10.x sdk后，出现组件功能异常的适配指导
+更新4.0.10.x sdk之后，如果设备未使用配套的镜像版本，应用代码中调用UI组件时，会无法正常显示。
+
+**示例：**
+
+```
+@Entry
+@Component
+struct Index { // 自定义组件
+  build() {
+    Text('Hello, world') // 基础组件
+  }
+}
+```
+
+**变更影响**
+
+更新4.0.10.x sdk之后，如果设备未使用配套的镜像版本，应用代码中调用UI组件时，
+运行到设备上会出现`this.observeComponentCreation2 is not callable`的报错。
+
+**关键的接口/组件变更**
+
+不涉及。
+
+**适配指导**
+
+更新SDK配套的设备镜像。

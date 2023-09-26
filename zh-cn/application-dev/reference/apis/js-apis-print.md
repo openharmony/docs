@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import print from '@ohos.print';
 ```
 
@@ -39,28 +39,30 @@ on(type: 'block' | 'succeed' | 'fail' | 'cancel', callback: Callback&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask) => {
+print.print(file).then((printTask: print.PrintTask) => {
   printTask.on('succeed', () => {
-    console.log('print state is succeed')
+    console.log('print state is succeed');
   })
   printTask.on('block', () => {
-    console.log('print state is block')
+    console.log('print state is block');
   })
   printTask.on('succeed', () => {
-    console.log('print state is succeed')
+    console.log('print state is succeed');
   })
   printTask.on('fail', () => {
-    console.log('print state is fail')
+    console.log('print state is fail');
   })
   printTask.on('cancel', () => {
-    console.log('print state is cancel')
+    console.log('print state is cancel');
   })
   // ...
-}).catch((error) => {
-  console.log('print err')
+}).catch((error: BusinessError) => {
+  console.log('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -88,28 +90,30 @@ off(type: 'block' | 'succeed' | 'fail' | 'cancel', callback?: Callback&lt;void&g
 
 **示例：**
 
-```js
+```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask) => {
+print.print(file).then((printTask: print.PrintTask) => {
   printTask.off('succeed', () => {
-    console.log('unregister state succeed')
+    console.log('unregister state succeed');
   })
   printTask.off('block', () => {
-    console.log('unregister state block')
+    console.log('unregister state block');
   })
   printTask.off('succeed', () => {
-    console.log('unregister state succeed')
+    console.log('unregister state succeed');
   })
   printTask.off('fail', () => {
-    console.log('unregister state fail')
+    console.log('unregister state fail');
   })
   printTask.off('cancel', () => {
-    console.log('unregister state cancel')
+    console.log('unregister state cancel');
   })
   // ...
-}).catch((error) => {
-  console.log('print err')
+}).catch((error: BusinessError) => {
+  console.log('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -131,18 +135,20 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 
 **示例：**
 
-```js
+```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
 //传入文件的uri
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
 // 或者传入fd
 // let file = ['fd://1', 'fd://2'];
-print.print(file, (err, printTask: print.PrintTask) => {
+print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
   if (err) {
-    console.log('print err')
+    console.log('print err ' + JSON.stringify(err));
   } else {
     printTask.on('succeed', () => {
-      console.log('print state is succeed')
+      console.log('print state is succeed');
     })
     // ...
   }
@@ -172,18 +178,20 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
 **示例：**
 
-```js
+```ts
 import print from '@ohos.print';
+import { BusinessError } from '@ohos.base';
+
 //传入文件的uri
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
 // 或者传入fd
 // let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask) => {
+print.print(file).then((printTask: print.PrintTask) => {
   printTask.on('succeed', () => {
-    console.log('print state is succeed')
+    console.log('print state is succeed');
   })
   // ...
-}).catch((error) => {
-  console.log('print err')
+}).catch((error: BusinessError) => {
+  console.log('print err ' + JSON.stringify(error));
 })
 ```

@@ -27,7 +27,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 | 参数名    | 类型                                   | 必填 | 说明                                                       |
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。                                             |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。                    |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
 | callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
@@ -39,7 +39,9 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 | -------- | ------------------------ |
 | 14600101 | Device operation failed. |
 
-示例：
+**示例：**
+
+按照指定持续时间触发马达振动：
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -65,6 +67,66 @@ try {
 }
 ```
 
+按照预置振动效果触发马达振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+按照自定义振动配置文件触发马达振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+
+const fileName: string = 'xxx.json';
+
+let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+
+try {
+  vibrator.startVibration({
+    type: "file",
+    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+getContext().resourceManager.closeRawFdSync(fileName);
+```
+
 ## vibrator.startVibration<sup>9+</sup>
 
 startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
@@ -79,7 +141,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 | 参数名    | 类型                                   | 必填 | 说明           |
 | --------- | -------------------------------------- | ---- | -------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。 |
 
 **返回值：** 
@@ -97,6 +159,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 | 14600101 | Device operation failed. |
 
 **示例：** 
+
+按照指定持续时间触发马达振动：
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -120,6 +184,62 @@ try {
 }
 ```
 
+按照预置振动效果触发马达振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+按照自定义振动配置文件触发马达振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
+
+const fileName: string = 'xxx.json';
+
+let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+
+try {
+  vibrator.startVibration({
+    type: "file",
+    hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+getContext().resourceManager.closeRawFdSync(fileName);
+```
+
 ## vibrator.stopVibration<sup>9+</sup>
 
 stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void
@@ -134,10 +254,12 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式。                                     |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10)。                                  |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
+
+停止固定时长振动：
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -178,6 +300,48 @@ try {
 }
 ```
 
+停止预置振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 按照预置效果振动
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in starting vibration');
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+try {
+  // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
+    if (error) {
+      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    console.info('Succeed in stopping vibration');
+  })
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## vibrator.stopVibration<sup>9+</sup>
 
 stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
@@ -192,7 +356,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式。 |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1)。 |
 
 **返回值：** 
 
@@ -201,6 +365,8 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象。 |
 
 **示例：** 
+
+停止固定时长振动：
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -226,6 +392,44 @@ try {
 
 try {
   // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
+    console.info('Succeed in stopping vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+停止预置振动：
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 按照预置效果振动
+  vibrator.startVibration({
+    type: 'preset',
+    effectId: 'haptic.clock.timer',
+    count: 1,
+  }, {
+    id: 0,
+    usage: 'alarm'
+  }).then(() => {
+    console.info('Succeed in starting vibration');
+  }, (error: BusinessError) => {
+    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+  });
+} catch (err) {
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+
+try {
+  // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
   vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
     console.info('Succeed in stopping vibration');
   }, (error: BusinessError) => {
@@ -258,26 +462,6 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import vibrator from '@ohos.vibrator';
 import { BusinessError } from '@ohos.base';
-
-try {
-  // 按照固定时长振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
-    }
-    console.info('Succeed in starting vibration');
-  });
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
 
 try {
   // 停止所有模式的马达振动
@@ -315,24 +499,6 @@ stopVibration(): Promise&lt;void&gt;
 ```ts
 import vibrator from '@ohos.vibrator';
 import { BusinessError } from '@ohos.base';
-
-try {
-  // 按照固定时长振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }).then(() => {
-    console.info('Succeed in starting vibration');
-  }, (error: BusinessError) => {
-    console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-  });
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
 
 try {
   // 停止所有模式的马达振动
@@ -485,7 +651,7 @@ try {
 
 ## VibrateEffect<sup>9+</sup>
 
-马达振动效果。
+马达振动效果，支持以下三种。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -497,7 +663,7 @@ try {
 
 ## VibrateTime<sup>9+</sup>
 
-马达振动时长。
+固定时长振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -508,7 +674,7 @@ try {
 
 ## VibratePreset<sup>9+</sup>
 
-马达预置振动类型。
+预置振动类型。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -531,7 +697,7 @@ try {
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动格式)。
+自定义振动配置文件的描述符，必须确认资源文件可用，其参数可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动)。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 

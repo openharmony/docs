@@ -9,14 +9,14 @@ Create an AudioCapturer by referring to [Using AudioCapturer for Audio Recording
 - Check the [state](../reference/apis/js-apis-audio.md#attributes) of the AudioCapturer.
     
   ```ts
-  let audioCapturerState = audioCapturer.state;
+  let audioCapturerState: audio.AudioState = audioCapturer.state;
   console.info(`Current state is: ${audioCapturerState }`)
   ```
 
 - Register **stateChange** to listen for state changes of the AudioCapturer.
     
   ```ts
-  audioCapturer.on('stateChange', (capturerState) => {
+  audioCapturer.on('stateChange', (capturerState: audio.AudioState) => {
     console.info(`State change to: ${capturerState}`)
   });
   ```
@@ -48,6 +48,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -55,13 +56,13 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 2. Use **on('audioCapturerChange')** to listen for audio recording stream changes. If the application needs to receive a notification when the audio recording stream state or device changes, it can subscribe to this event.
      
    ```ts
-   audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
+   audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) =>  {
      for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
        console.info(`## CapChange on is called for element ${i} ##`);
        console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
        console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
        console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-       let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
+       let devDescriptor: audio.AudioDeviceDescriptors = AudioCapturerChangeInfoArray[i].deviceDescriptors;
        for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
          console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
          console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -92,7 +93,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 
    ```ts
    async function getCurrentAudioCapturerInfoArray(){
-     await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+     await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
        console.info('getCurrentAudioCapturerInfoArray  Get Promise Called ');
        if (AudioCapturerChangeInfoArray != null) {
          for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -111,7 +112,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
            }
          }
        }
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Invoke getCurrentAudioCapturerInfoArray failed, code is ${err.code}, message is ${err.message}`);
      });
    }

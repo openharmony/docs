@@ -117,7 +117,7 @@ N/A
 
 Pass in an @Builder method as the initial value of the @BuilderParam variable.
 
-## cl.arkui.4 Type Change of the searchButton Attribute of the \<Search> Component from SearchButtonOption to SearchButtonOptions
+## cl.arkui.4 Type Change of the searchButton Attribute in the \<Search> Component from SearchButtonOption to SearchButtonOptions
 
 **Change Impact**
 
@@ -125,8 +125,52 @@ If the **SearchButtonOption** type is explicitly used, the compilation will fail
 
 **Key API/Component Changes**
 
-The type **SearchButtonOption** of the **searchButton** attribute is changed to **SearchButtonOptions**.
+The type of the **searchButton** attribute is changed from **SearchButtonOption** to **SearchButtonOptions**.
 
 **Adaptation Guide**
 
 Change **SearchButtonOption** to **SearchButtonOptions**.
+
+## cl.arkui.5 Type Change of the BindSheet Attribute in Overlay Components from SheetStyle to SheetOptions
+
+**Change Impact**
+
+If the **SheetStyle** type is explicitly used, the compilation will fail.
+
+**Key API/Component Changes**
+
+The type of the **BindSheet** attribute is changed from **SheetStyle** to **SheetOptions**.
+
+**Adaptation Guide**
+
+Change **SheetStyle** to **SheetOptions**.
+
+## cl.arkui.6 Change of the Value Returned by onBackPress from void to void | boolean for Custom Components
+
+**Example**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  async onBackPress() {}    // Compile-time error
+  build() {
+    Column() {
+
+    }
+  }
+}
+```
+
+**Change Impact**
+
+When the lifecycle function **onBackPress** of a custom component is modified with **async**, the compilation fails.
+
+**Key API/Component Changes**
+
+**onBackPress? (): void** is changed to **onBackPress? (): void | boolean**.
+
+**Adaptation Guide**
+
+The custom component lifecycle APIs are synchronous callbacks invoked by the system when appropriate. They must be used according to the synchronous API specifications defined by the SDK. Do not use modifiers such as **async** to change API specifications.

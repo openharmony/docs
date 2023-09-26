@@ -22,12 +22,12 @@ For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 
 ### APIs Called by the AVSessionManager Object
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| getAllSessionDescriptors(callback: AsyncCallback&lt;Array&lt;Readonly&lt;AVSessionDescriptor&gt;&gt;&gt;): void | Obtains the descriptors of all AVSessions in the system.|
-| createController(sessionId: string, callback: AsyncCallback&lt;AVSessionController&gt;): void | Creates an AVSessionController.|
-| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | Sends a key event to the top session.|
-| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | Sends a playback control command to the top session.|
+| getAllSessionDescriptors(callback: AsyncCallback&lt;Array&lt;Readonly&lt;AVSessionDescriptor&gt;&gt;&gt;): void | Obtains the descriptors of all AVSessions in the system.| 
+| createController(sessionId: string, callback: AsyncCallback&lt;AVSessionController&gt;): void | Creates an AVSessionController.| 
+| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | Sends a key event to the top session.|  
+| sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | Sends a playback control command to the top session.| 
 | getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void<sup>10+<sup> | Obtains the descriptors of historical sessions.|
 
 ### APIs Called by the AVSessionController Object
@@ -48,6 +48,13 @@ For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 | getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | Obtains the name of the playlist.|
 | skipToQueueItem(itemId: number, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | Sends the ID of an item in the playlist to the session for processing. The session can play the song.|
 | getExtras(callback: AsyncCallback&lt;{[key: string]: Object}&gt;): void<sup>10+<sup> | Obtains the custom media packet set by the provider.|
+| getOutputDeviceSync(): OutputDeviceInfo<sup>10+<sup> | Obtains the output device information. This API is a synchronous API.|
+| getAVPlaybackStateSync(): AVPlaybackState<sup>10+<sup> | Obtains the information related to the playback state. This API is a synchronous API.|
+| getAVMetadataSync(): AVMetadata<sup>10+<sup> | Obtains the session metadata. This API is a synchronous API.|
+| getAVQueueTitleSync(): string<sup>10+<sup> | Obtains the name of the playlist. This API is a synchronous API.|
+| getAVQueueItemsSync(): Array&lt;AVQueueItem&gt;<sup>10+<sup> | Obtains the information related to the items in the playlist. This API is a synchronous API.|
+| isActiveSync(): boolean<sup>10+<sup> | Checks whether the session is activated. This API is a synchronous API.|
+| getValidCommandsSync(): Array&lt;AVControlCommandType&gt;<sup>10+<sup> | Obtains valid commands supported by the session. This API is a synchronous API.|
 
 ## How to Develop
 
@@ -58,27 +65,28 @@ To enable a system application to access the AVSession service as a controller, 
 
    ```ts
    // Import the AVSessionManager module.
-   import AVSessionManager from '@ohos.multimedia.avsession'; 
-   
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { BusinessError } from '@ohos.base';
+
    // Define global variables.
    let g_controller = new Array<AVSessionManager.AVSessionController>();
    let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
    let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
    // Obtain the session descriptors and create an AVSessionController object.
    AVSessionManager.getAllSessionDescriptors().then((descriptors) => {
-      descriptors.forEach((descriptor) => {
-          AVSessionManager.createController(descriptor.sessionId).then((controller) => {
-              g_controller.push(controller);
-          }).catch((err) => {
-              console.error(`Failed to create controller. Code: ${err.code}, message: ${err.message}`);
-          });
-      });
-   }).catch((err) => {
-      console.error(`Failed to get all session descriptors. Code: ${err.code}, message: ${err.message}`);
+     descriptors.forEach((descriptor) => {
+       AVSessionManager.createController(descriptor.sessionId).then((controller) => {
+         g_controller.push(controller);
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to create controller. Code: ${err.code}, message: ${err.message}`);
+       });
+     });
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to get all session descriptors. Code: ${err.code}, message: ${err.message}`);
    });
-   
+
    // Obtain the descriptors of historical sessions.
-   avSession.getHistoricalSessionDescriptors().then((descriptors) => {
+   AVSessionManager.getHistoricalSessionDescriptors().then((descriptors) => {
      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
      if (descriptors.length > 0){
        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -87,7 +95,7 @@ To enable a system application to access the AVSession service as a controller, 
        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
      }
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to get historical session descriptors, error code: ${err.code}, error message: ${err.message}`);
    });
    ```
@@ -103,42 +111,46 @@ To enable a system application to access the AVSession service as a controller, 
    The service state event **sessionServiceDie** is reported when the AVSession service is abnormal.
 
    ```ts
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { BusinessError } from '@ohos.base';
+
+   let g_controller = new Array<AVSessionManager.AVSessionController>();
    // Subscribe to the 'sessionCreate' event and create an AVSessionController object.
    AVSessionManager.on('sessionCreate', (session) => {
      // After an AVSession is added, you must create an AVSessionController object.
      AVSessionManager.createController(session.sessionId).then((controller) => {
        g_controller.push(controller);
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Failed to create controller. Code: ${err.code}, message: ${err.message}`);
      });
    });
-   
+
    // Subscribe to the 'sessionDestroy' event to enable the application to get notified when the session dies.
    AVSessionManager.on('sessionDestroy', (session) => {
-      let index = g_controller.findIndex((controller) => {
-          return controller.sessionId === session.sessionId;
-      });
-      if (index !== 0) {
-          g_controller[index].destroy();
-          g_controller.splice(index, 1);
-      }
+     let index = g_controller.findIndex((controller) => {
+       return controller.sessionId === session.sessionId;
+     });
+     if (index !== 0) {
+       g_controller[index].destroy();
+       g_controller.splice(index, 1);
+     }
    });
    // Subscribe to the 'topSessionChange' event.
    AVSessionManager.on('topSessionChange', (session) => {
-      let index = g_controller.findIndex((controller) => {
-          return controller.sessionId === session.sessionId;
-      });
-      // Place the session on the top.
-      if (index !== 0) {
-          g_controller.sort((a, b) => {
-              return a.sessionId === session.sessionId ? -1 : 0;
-          });
-      }
+     let index = g_controller.findIndex((controller) => {
+       return controller.sessionId === session.sessionId;
+     });
+     // Place the session on the top.
+     if (index !== 0) {
+       g_controller.sort((a, b) => {
+         return a.sessionId === session.sessionId ? -1 : 0;
+       });
+     }
    });
    // Subscribe to the 'sessionServiceDie' event.
    AVSessionManager.on('sessionServiceDie', () => {
-      // The server is abnormal, and the application clears resources.
-      console.info(`Server exception.`);
+     // The server is abnormal, and the application clears resources.
+     console.info(`Server exception.`);
    })
    ```
 
@@ -160,6 +172,13 @@ To enable a system application to access the AVSession service as a controller, 
    The controller can listen for events as required.
 
    ```ts
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { BusinessError } from '@ohos.base';
+
+   let g_controller = new Array<AVSessionManager.AVSessionController>();
+   let controller = g_controller[0];
+   let g_validCmd:Set<AVSessionManager.AVControlCommandType>;
+   let g_centerSupportCmd:Set<AVSessionManager.AVControlCommandType> = new Set(['play', 'pause', 'playNext', 'playPrevious', 'fastForward', 'rewind', 'seek','setSpeed', 'setLoopMode', 'toggleFavorite']);
    // Subscribe to the 'activeStateChange' event.
    controller.on('activeStateChange', (isActive) => {
      if (isActive) {
@@ -170,38 +189,37 @@ To enable a system application to access the AVSession service as a controller, 
    });
    // Subscribe to the 'sessionDestroy' event to enable the controller to get notified when the session dies.
    controller.on('sessionDestroy', () => {
-      info(`on sessionDestroy : SUCCESS `);
-      controller.destroy().then(() => {
-          console.info(`destroy : SUCCESS`);
-      }).catch((err) => {
-          console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-      });
+     console.info(`on sessionDestroy : SUCCESS `);
+     controller.destroy().then(() => {
+       console.info(`destroy : SUCCESS`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+     });
    });
-   
+
    // Subscribe to metadata changes.
-   let metaFilter = ['assetId', 'title', 'description'];
-   controller.on('metadataChange', metaFilter, (metadata) => {
-      console.info(`on metadataChange assetId : ${metadata.assetId}`);
+   controller.on('metadataChange', ['assetId', 'title', 'description'], (metadata: AVSessionManager.AVMetadata) => {
+     console.info(`on metadataChange assetId : ${metadata.assetId}`);
    });
    // Subscribe to playback state changes.
-   let playbackFilter = ['state', 'speed', 'loopMode'];
-   controller.on('playbackStateChange', playbackFilter, (playbackState) => {
-      console.info(`on playbackStateChange state : ${playbackState.state}`);
+   controller.on('playbackStateChange', ['state', 'speed', 'loopMode'], (playbackState: AVSessionManager.AVPlaybackState) => {
+     console.info(`on playbackStateChange state : ${playbackState.state}`);
    });
    // Subscribe to supported command changes.
    controller.on('validCommandChange', (cmds) => {
-      console.info(`validCommandChange : SUCCESS : size : ${cmds.size}`);
-      console.info(`validCommandChange : SUCCESS : cmds : ${cmds.values()}`);
-      g_validCmd.clear();
-      for (let c of g_centerSupportCmd) {
-          if (cmds.has(c)) {
-              g_validCmd.add(c);
-          }
-      }
+     console.info(`validCommandChange : SUCCESS : size : ${cmds.length}`);
+     console.info(`validCommandChange : SUCCESS : cmds : ${cmds.values()}`);
+     g_validCmd.clear();
+     let centerSupportCmd = Array.from(g_centerSupportCmd.values())
+     for (let c of centerSupportCmd) {
+       if (cmds.concat(c)) {
+         g_validCmd.add(c);
+       }
+     }
    });
    // Subscribe to output device changes.
-   controller.on('outputDeviceChange', (device) => {
-      console.info(`on outputDeviceChange device isRemote : ${device.isRemote}`);
+   controller.on('outputDeviceChange', (state, device) => {
+     console.info(`outputDeviceChange device are : ${JSON.stringify(device)}`);
    });
    // Subscribe to custom session event changes.
    controller.on('sessionEvent', (eventName, eventArgs) => {
@@ -222,42 +240,43 @@ To enable a system application to access the AVSession service as a controller, 
    ```
 
 4. Obtain the media information transferred by the provider for display on the UI, for example, displaying the track being played and the playback state in Media Controller.
-   
+     
    ```ts
-   async getInfoFromSessionByController() {
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   async function getInfoFromSessionByController() {
      // It is assumed that an AVSessionController object corresponding to the session already exists. For details about how to create an AVSessionController object, see the code snippet above.
-     let controller: AVSessionManager.AVSessionController = ALLREADY_HAVE_A_CONTROLLER;
+     let controller = await AVSessionManager.createController("")
      // Obtain the session ID.
-     let sessionId: string = controller.sessionId;
+     let sessionId = controller.sessionId;
      console.info(`get sessionId by controller : isActive : ${sessionId}`);
      // Obtain the activation state of the session.
-     let isActive: boolean = await controller.isActive();
+     let isActive = await controller.isActive();
      console.info(`get activeState by controller : ${isActive}`);
      // Obtain the media information of the session.
-     let metadata: AVSessionManager.AVMetadata = await controller.getAVMetadata();
+     let metadata = await controller.getAVMetadata();
      console.info(`get media title by controller : ${metadata.title}`);
      console.info(`get media artist by controller : ${metadata.artist}`);
      // Obtain the playback information of the session.
-     let avPlaybackState: AVSessionManager.AVPlaybackState = await controller.getAVPlaybackState();
+     let avPlaybackState = await controller.getAVPlaybackState();
      console.info(`get playbackState by controller : ${avPlaybackState.state}`);
      console.info(`get favoriteState by controller : ${avPlaybackState.isFavorite}`);
      // Obtain the playlist items of the session.
-     let queueItems: Array<AVSessionManager.AVQueueItem> = await controller.getAVQueueItems();
+     let queueItems = await controller.getAVQueueItems();
      console.info(`get queueItems length by controller : ${queueItems.length}`);
      // Obtain the playlist name of the session.
-     let queueTitle: string = await controller.getAVQueueTitle();
+     let queueTitle = await controller.getAVQueueTitle();
      console.info(`get queueTitle by controller : ${queueTitle}`);
      // Obtain the custom media packet of the session.
-     let extras: any = await controller.getExtras();
+     let extras = await controller.getExtras();
      console.info(`get custom media packets by controller : ${JSON.stringify(extras)}`);
      // Obtain the ability information provided by the application corresponding to the session.
-     let agent: WantAgent = await controller.getLaunchAbility();
+     let agent = await controller.getLaunchAbility();
      console.info(`get want agent info by controller : ${JSON.stringify(agent)}`);
      // Obtain the current playback position of the session.
-     let currentTime: number = controller.getRealPlaybackPositionSync();
+     let currentTime = controller.getRealPlaybackPositionSync();
      console.info(`get current playback time by controller : ${currentTime}`);
      // Obtain valid commands supported by the session.
-     let validCommands: Array<AVSessionManager.AVControlCommandType> = await controller.getValidCommands();
+     let validCommands = await controller.getValidCommands();
      console.info(`get valid commands by controller : ${JSON.stringify(validCommands)}`);
    }
    ```
@@ -267,11 +286,14 @@ To enable a system application to access the AVSession service as a controller, 
    After listening for the playback control command event, the audio and video application serving as the provider needs to implement the corresponding operation.
 
    ```ts
-   async sendCommandToSessionByController() {
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { BusinessError } from '@ohos.base';
+
+   async function  sendCommandToSessionByController() {
      // It is assumed that an AVSessionController object corresponding to the session already exists. For details about how to create an AVSessionController object, see the code snippet above.
-     let controller: AVSessionManager.AVSessionController = ALLREADY_HAVE_A_CONTROLLER;
+     let controller = await AVSessionManager.createController("")
      // Obtain valid commands supported by the session.
-     let validCommandTypeArray: Array<AVSessionManager.AVControlCommandType> = await controller.getValidCommands();
+     let validCommandTypeArray = await controller.getValidCommands();
      console.info(`get validCommandArray by controller : length : ${validCommandTypeArray.length}`);
      // Deliver the 'play' command.
      // If the 'play' command is valid, deliver it. Normal sessions should provide and implement the playback.
@@ -295,34 +317,34 @@ To enable a system application to access the AVSession service as a controller, 
        controller.sendControlCommand(avCommand);
      }
      // Deliver a custom playback control command.
-     let commandName: string = 'custom command';
-     let args = {
-       command : 'This is my custom command'
-     }
-     await controller.sendCommonCommand(commandName, args).then(() => {
+     let commandName = 'custom command';
+     await controller.sendCommonCommand(commandName, {command : 'This is my custom command'}).then(() => {
        console.info(`SendCommonCommand successfully`);
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Failed to send common command. Code: ${err.code}, message: ${err.message}`);
      })
      // Set the ID of an item in the specified playlist for the session to play.
-     let queueItemId: number = 0;
+     let queueItemId = 0;
      await controller.skipToQueueItem(queueItemId).then(() => {
        console.info(`SkipToQueueItem successfully`);
-     }).catch((err) => {
+     }).catch((err: BusinessError) => {
        console.error(`Failed to skip to queue item. Code: ${err.code}, message: ${err.message}`);
      });
    }
    ```
 
 6. When the audio and video application exits, cancel the listener and release the resources.
-   
+     
    ```ts
-   async destroyController() {
+   import AVSessionManager from '@ohos.multimedia.avsession';
+   import { BusinessError } from '@ohos.base';
+
+   async function destroyController() {
      // It is assumed that an AVSessionController object corresponding to the session already exists. For details about how to create an AVSessionController object, see the code snippet above.
-     let controller: AVSessionManager.AVSessionController = ALLREADY_HAVE_A_CONTROLLER;
-   
+     let controller = await AVSessionManager.createController("")
+     
      // Destroy the AVSessionController object. After being destroyed, it is no longer available.
-     controller.destroy(function (err) {
+     controller.destroy((err: BusinessError) => {
        if (err) {
          console.error(`Failed to destroy controller. Code: ${err.code}, message: ${err.message}`);
        } else {

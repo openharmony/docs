@@ -14,8 +14,8 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 
 ## Modules to Import
 
-```js
-import promptAction from '@ohos.promptAction'
+```ts
+import promptAction from '@ohos.promptAction';
 ```
 
 ## promptAction.showToast
@@ -42,14 +42,18 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showToast({            
     message: 'Message Info',
     duration: 2000 
   });
 } catch (error) {
-  console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showToast args error code is ${code}, message is ${message}`);
 };
 
 ```
@@ -62,11 +66,11 @@ Describes the options for showing the toast.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text to display.                                |
-| duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
-| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.<br>Default value: **80vp**                          |
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes  | Text to display.<br>**NOTE**<br>The default font is **'Harmony Sans'**. Other fonts are not supported.|
+| duration | number                                                       | No  | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
+| bottom   | string\| number                                              | No  | Distance between the toast border and the bottom of the screen.<br>Default value: **80vp**            |
 
 ## promptAction.showDialog
 
@@ -98,7 +102,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction'
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -117,11 +123,13 @@ try {
     .then(data => {
       console.info('showDialog success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showDialog error: ' + err);
     })
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -152,7 +160,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -175,7 +185,9 @@ try {
     console.info('showDialog success callback, click button: ' + data.index);
   });
 } catch (error) {
-  console.error(`showDialog args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -231,7 +243,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -253,7 +267,9 @@ try {
     console.info('showActionMenu success callback, click button: ' + data.index);
   })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 
@@ -289,7 +305,9 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 **Example**
 
-```js
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -307,11 +325,13 @@ try {
     .then(data => {
       console.info('showActionMenu success, click button: ' + data.index);
     })
-    .catch(err => {
+    .catch((err:Error) => {
       console.info('showActionMenu error: ' + err);
     })
 } catch (error) {
-  console.error(`showActionMenu args error code is ${error.code}, message is ${error.message}`);
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
 

@@ -33,7 +33,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.<br>Default value: **'#99182431'**  |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box.<br>Default value: **TextAlign.Start**   |
+| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box. Currently, the following alignment modes are supported: **Start**, **Center**, and **End**.<br>Default value: **TextAlign.Start**   |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy or cut is not allowed. |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.                                      |
 | cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
@@ -55,7 +55,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type                                  | Mandatory| Description|
 | ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | No  | Caret width.|
+| width  | [Length](ts-types.md#length)               | No  | Caret size. It cannot be set in percentage.|
 | color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.|
 
 ## SearchButtonOptions<sup>10+</sup>
@@ -257,7 +257,7 @@ struct SearchExample {
         this.controller.stopEditing()
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {

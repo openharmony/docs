@@ -42,14 +42,16 @@
    import distributedKVStore from '@ohos.data.distributedKVStore';
    
    // Stage模型
+   import window from '@ohos.window';
    import UIAbility from '@ohos.app.ability.UIAbility';
+   import { BusinessError } from '@ohos.base';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
-       const kvManagerConfig = {
+       const kvManagerConfig: distributedKVStore.KVManagerConfig = {
          context: context,
          bundleName: 'com.example.datamanagertest'
        };
@@ -59,9 +61,15 @@
          console.info('Succeeded in creating KVManager.');
          // 继续创建获取数据库
        } catch (e) {
-         console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+         let error = e as BusinessError;
+         console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
        }
      }
+   }
+   if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+     //进行后续操作
+     //...
    }
    ```
 
@@ -75,9 +83,9 @@
    // FA模型
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let kvManager;
+   let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
-   const kvManagerConfig = {
+   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
      bundleName: 'com.example.datamanagertest'
    };
@@ -86,33 +94,49 @@
      console.info('Succeeded in creating KVManager.');
      // 继续创建获取数据库
    } catch (e) {
-     console.error(`Failed to create KVManager. Code:${e.code},message:${e.message}`);
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
    }
+   if (kvManager !== undefined) {
+     kvManager = kvManager as distributedKVStore.KVManager;
+     //进行后续操作
+     //...
+   }
+
    ```
 
 2. 创建并获取键值数据库。示例代码如下所示：
      
    ```js
+   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
-     const options = {
-       createIfMissing: true, // 当数据库文件不存在时是否创建数据库，默认创建
-       encrypt: false, // 设置数据库文件是否加密，默认不加密 
-       backup: false, // 设置数据库文件是否备份，默认备份
-       autoSync: true, // 设置数据库文件是否自动同步。默认为false，即手动同步；设置为true时，表示自动同步
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION, // 设置要创建的数据库类型，默认为多设备协同数据库
-       securityLevel: distributedKVStore.SecurityLevel.S2 // 设置数据库安全级别
+     const options: distributedKVStore.Options = {
+       createIfMissing: true,
+       encrypt: false,
+       backup: false,
+       autoSync: false,
+       // kvStoreType不填时，默认创建多设备协同数据库
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+       // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       securityLevel: distributedKVStore.SecurityLevel.S1
      };
-     // storeId为数据库唯一标识符
-     kvManager.getKVStore('storeId', options, (err, kvStore) => {
+     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
-         console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+         console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
          return;
        }
        console.info('Succeeded in getting KVStore.');
-       // 进行相关数据操作
+       kvStore = store;
+       // 请确保获取到键值数据库实例后，再进行相关数据操作
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+   }
+   if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       //进行后续操作
+       //...
    }
    ```
 
@@ -130,7 +154,8 @@
        console.info('Succeeded in putting data.');
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -150,16 +175,18 @@
          return;
        }
        console.info('Succeeded in putting data.');
+       kvStore = kvStore as distributedKVStore.SingleKVStore;
        kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
-         if (err !== undefined) {
+         if (err != undefined) {
            console.error(`Failed to get data. Code:${err.code},message:${err.message}`);
            return;
          }
-         console.info(`Succeeded in getting data. data:${data}`);
+         console.info(`Succeeded in getting data. Data:${data}`);
        });
      });
    } catch (e) {
-     console.error(`Failed to get data. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`Failed to get data. Code:${error.code},message:${error.message}`);
    }
    ```
 
@@ -175,6 +202,7 @@
          return;
        }
        console.info('Succeeded in putting data.');
+       kvStore = kvStore as distributedKVStore.SingleKVStore;
        kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
          if (err !== undefined) {
            console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
@@ -184,6 +212,7 @@
        });
      });
    } catch (e) {
-     console.error(`An unexpected error occurred. Code:${e.code},message:${e.message}`);
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```

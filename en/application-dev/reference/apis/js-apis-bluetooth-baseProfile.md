@@ -79,11 +79,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err, data) => {
-        console.info('setConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
+    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
+        console.info('setConnectionStrategy, err: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -129,13 +129,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data) => {
+    a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then(() => {
         console.info('setConnectionStrategy');
-    }, (err) => {
+    }, (err: BusinessError) => {
         console.error('setConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -175,11 +175,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err, data) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -224,13 +224,13 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 import a2dp from '@ohos.bluetooth.a2dp';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
-    let setRet = a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data) => {
+    a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data: baseProfile.ConnectionStrategy) => {
         console.info('getConnectionStrategy');
-    }, (error) => {
+    }, (err: BusinessError) => {
         console.error('getConnectionStrategy errCode: ' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -270,7 +270,7 @@ try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let retArray = a2dpSrc.getConnectedDevices();
 } catch (err) {
-    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
 ```
 
@@ -316,7 +316,7 @@ try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let ret = a2dpSrc.getConnectionState('XX:XX:XX:XX:XX:XX');
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -342,14 +342,14 @@ Subscribes to profile connection state changes.
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -375,14 +375,13 @@ Unsubscribes from profile connection state changes.
 
 ```js
 import a2dp from '@ohos.bluetooth.a2dp';
+function onReceiveEvent(data: baseProfile.StateChangeParam) {
+    console.info('a2dp state = '+ JSON.stringify(data));
+}
 try {
-    function onReceiveEvent(data) {
-        console.info('a2dp state = '+ JSON.stringify(data));
-    }
-    let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.on('connectionStateChange', onReceiveEvent);
     a2dpSrc.off('connectionStateChange', onReceiveEvent);
 } catch (err) {
-    console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```

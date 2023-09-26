@@ -17,26 +17,13 @@ library
 │       └── module.json5
 └── oh-package.json5
 ```
-In the **module.json5** file, set **type** to **shared** for the HSP.
-```json
-{
-    "type": "shared"
-}
-```
-
-The HSP provides capabilities for external systems by exporting APIs in the entry file. Specify the entry file in **main** in the **oh-package.json5** file. For example:
-```json
-{
-    "main": "./src/main/ets/index.ets"
-}
-```
 
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
 // library/src/main/ets/utils/test.ts
 export class Log {
-    static info(msg) {
+    static info(msg: string) {
         console.info(msg);
     }
 }
@@ -49,7 +36,7 @@ export function minus(a: number, b: number) {
   return a - b;
 }
 ```
-In the entry file **index.ets**, declare the APIs to be exposed.
+In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'
@@ -75,28 +62,68 @@ export struct MyTitleBar {
   }
 }
 ```
-In the entry file **index.ets**, declare the APIs to be exposed.
+In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
 export { MyTitleBar } from './components/MyTitleBar'
 ```
-#### About Using Resources in the HSP
-To reference resources in the **resources** directory of the current HSP module, use **$r** or **$rawfile**.
-If a relative path is used, the resources in the HSP caller are referenced instead. For example,
-if **Image("common/example.png")** is used in the HSP module, the **\<Image>** component will reference the resource **entry/src/main/ets/common/example.png** in the HSP caller (which is **entry** in this example).
+
+### Accessing Resources in an HSP Through $r
+More often than not, you may need to use resources, such as strings and images, in components. For components in an HSP, such resources are typically placed in the HSP package, rather than in the package where the HSP is invoked, for the purpose of complying with the principle of high cohesion and low coupling.
+
+In a project, application resources are referenced in the $r/$rawfile format. You can use **$r**/**$rawfile** to access resources in the **resources** directory of the current module. For example, you can use **$r("app.media.example")** to access the **src/main/resources/base/media/example.png** image stored in the **resources** directory. For details about how to use **$r**/**$rawfile**, see [Resource Access: Application Resources](./resource-categories-and-access.md#application-resources).
+
+To avoid reference errors, do not use relative paths. For example, if you use **Image("../../resources/base/media/example.png")**, the image actually used will be the one in the directory of the module that invokes the HSP. That is, if the module that invokes the HSP is **entry**, then the image used will be **entry/src/main/resources/base/media/example.png**.
+
+```ts
+// library/src/main/ets/pages/Index.ets
+// Correct
+Image($r("app.media.example"))
+  .width("100%")
+// Incorrect
+Image("../../resources/base/media/example.png")
+  .width("100%")
+```
+
+### Exporting Resources from an HSP
+When resources in an HSP need to be exported for cross-package access, it is recommended that a resource manager class be implemented to encapsulate the exported resources. In this way:
+- You can keep resources well under your control, eliminating the need for exporting resources that do not need to be exposed.
+- The invoking module does not need to be aware of the internal resource names of the HSP, or make adaptation to changes in these internal resource names.
+
+The implementation is as follows:
+
+Implement the **ResManager** class for encapsulating resources to be exported.  
+```ts
+// library/src/main/ets/ResManager.ets
+export class ResManager{
+  static getPic(): Resource{
+    return $r("app.media.pic");
+  }
+  static getDesc(): Resource{
+    return $r("app.string.shared_desc");
+  }
+}
+```
+
+In the entry point file **index.ets**, declare the APIs to be exposed.
+```ts
+// library/src/main/ets/index.ets
+export { ResManager } from './ResManager'
+```
 
 ### Exporting Native Methods
-The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** method in the **libnative.so** file is exported.
+The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **libnative.so** file is exported.
 ```ts
 // library/src/main/ets/utils/nativeTest.ts
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
-    return native.multi(a, b);
+    let result: number = native.multi(a, b);
+    return result;
 }
 ```
 
-In the entry file **index.ets**, declare the APIs to be exposed.
+In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
 export { nativeMulti } from './utils/nativeTest'
@@ -110,12 +137,14 @@ You can then call the external APIs of the HSP in the same way as calling the AP
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'
 export { MyTitleBar } from './components/MyTitleBar'
+export { ResManager } from './ResManager'
 export { nativeMulti } from './utils/nativeTest'
 ```
 The APIs can be used as follows in the code of the invoking module:
 ```ts
 // entry/src/main/ets/pages/index.ets
-import { Log, add, MyTitleBar, nativeMulti } from "library"
+import { Log, add, MyTitleBar, ResManager, nativeMulti } from "library"
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -133,6 +162,21 @@ struct Index {
             Log.info("add button click!");
             this.message = "result: " + add(1, 2);
           })
+        // Resource object returned by ResManager, which can be passed to a component for direct use or be extracted.
+        Image(ResManager.getPic())
+          .width("100%")
+        Button('getStringValue')
+          .onClick(()=> {
+            // Obtain the context of the HSP module based on the current context, obtain the resourceManager object of the HSP module, and then call the API of resourceManager to obtain resources.
+            getContext().createModuleContext('library').resourceManager.getStringValue(ResManager.getDesc())
+              .then(value => {
+                console.log("getStringValue is " + value);
+              })
+              .catch((err: BusinessError) => {
+                console.log("getStringValue promise error is " + error);
+              });
+          })
+          .width("50%")
         Button('nativeMulti(3, 4)')
           .onClick(()=>{
             Log.info("nativeMulti button click!");
@@ -151,6 +195,7 @@ struct Index {
 If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/MainAbility/Index.ets** file of the **entry** module:
 ```ts
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -182,7 +227,7 @@ struct Index {
               url: '@bundle:com.example.hmservice/library/ets/pages/menu'
             }).then(() => {
               console.log("push page success");
-            }).catch(err => {
+            }).catch((err: BusinessError) => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
         })

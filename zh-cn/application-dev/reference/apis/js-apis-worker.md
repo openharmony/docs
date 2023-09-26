@@ -11,7 +11,7 @@ Worker的上下文对象和主线程的上下文对象是不同的，Worker线�
 
 ## 导入模块
 
-```js
+```ts
 import worker from '@ohos.worker';
 ```
 
@@ -77,7 +77,7 @@ ThreadWorker构造函数。
 
 **示例：**
 
-```js
+```ts
 import worker from '@ohos.worker';
 // worker线程创建
 
@@ -184,10 +184,10 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
-var buffer = new ArrayBuffer(8);
+let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
 
@@ -217,12 +217,12 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
-var buffer = new ArrayBuffer(8);
+let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
 
@@ -252,7 +252,7 @@ on(type: string, listener: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
@@ -286,7 +286,7 @@ once(type: string, listener: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
@@ -320,7 +320,7 @@ off(type: string, listener?: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
@@ -345,7 +345,7 @@ terminate(): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.terminate();
 ```
@@ -376,10 +376,10 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onexit = function(e) {
-    console.log("onexit");
+workerInstance.onexit = () => {
+ console.log("onexit");
 }
 
 //onexit被执行两种方式：
@@ -416,9 +416,9 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onerror = function(e) {
+workerInstance.onerror = () => {
     console.log("onerror");
 }
 ```
@@ -449,12 +449,14 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **示例：**
 
-```js
+```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessage = function(e) {
-    // e : MessageEvents, 用法如下：
-    // let data = e.data;
-    console.log("onmessage");
+workerInstance.onmessage = (e: MessageEvents): void => {
+ // e : MessageEvents, 用法如下：
+ // let data = e.data;
+ console.log("onmessage");
 }
 ```
 
@@ -484,9 +486,9 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.onmessageerror= function(e) {
+workerInstance.onmessageerror= () => {
     console.log("onmessageerror");
 }
 ```
@@ -517,7 +519,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -550,7 +552,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -589,7 +591,7 @@ dispatchEvent(event: Event): boolean
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
@@ -597,7 +599,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -630,7 +632,7 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.addEventListener("message", (e)=>{
     console.log("message listener callback");
 })
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage : message listener callback");
 }
 //调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
@@ -656,7 +658,7 @@ removeAllListener(): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -692,7 +694,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -725,7 +727,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -764,7 +766,7 @@ dispatchEvent(event: Event): boolean
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
@@ -772,7 +774,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 //用法一:
@@ -805,7 +807,7 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 workerInstance.addEventListener("message", (e)=>{
     console.log("message listener callback");
 })
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage : message listener callback");
 }
 //调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
@@ -831,7 +833,7 @@ removeAllListener(): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -870,24 +872,22 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = function(e) {
-    // let data = e.data;
+workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("receive data from worker.ts");
 }
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessage = function(e){
-    // let data = e.data;
-    var buffer = new ArrayBuffer(8);
+workerPort.onmessage = (e: MessageEvents): void => {
+    let buffer = new ArrayBuffer(8);
     workerPort.postMessage(buffer, [buffer]);
 }
 ```
@@ -918,23 +918,21 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = function(e) {
-    // let data = e.data;
+workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("receive data from worker.ts");
 }
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessage = function(e){
-    // let data = e.data;
+workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
 }
 ```
@@ -958,17 +956,17 @@ close(): void
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessage = function(e) {
+workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
 }
 ```
@@ -1000,18 +998,18 @@ ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessage = function(e) {
+workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
 }
 ```
@@ -1043,17 +1041,17 @@ ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessageerror = function(e) {
+workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -1090,9 +1088,9 @@ workerPort.onmessageerror = function(e) {
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1128,17 +1126,17 @@ GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort
-workerPort.onerror = function(e){
+workerPort.onerror = () => {
     console.log("worker.ts onerror")
 }
 ```
@@ -1187,7 +1185,7 @@ Worker构造函数。
 
 **示例：**
 
-```js
+```ts
 import worker from '@ohos.worker';
 // worker线程创建
 
@@ -1273,10 +1271,10 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 
-var buffer = new ArrayBuffer(8);
+let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
 
@@ -1300,12 +1298,12 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 
 workerInstance.postMessage("hello world");
 
-var buffer = new ArrayBuffer(8);
+let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
 
@@ -1330,9 +1328,9 @@ on(type: string, listener: EventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.on("alert", (e)=>{
+workerInstance.on("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1358,7 +1356,7 @@ once(type: string, listener: EventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
@@ -1386,7 +1384,7 @@ off(type: string, listener?: EventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 //使用on接口、once接口或addEventListener接口创建“alert”事件，使用off接口删除事件。
 workerInstance.off("alert");
@@ -1406,7 +1404,7 @@ terminate(): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.terminate();
 ```
@@ -1431,9 +1429,9 @@ Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序�
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onexit = function(e) {
+workerInstance.onexit = () => {
     console.log("onexit");
 }
 
@@ -1465,9 +1463,9 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onerror = function(e) {
+workerInstance.onerror = function() {
     console.log("onerror");
 }
 ```
@@ -1492,11 +1490,9 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessage = function(e) {
-    // e : MessageEvent, 用法如下：
-    // let data = e.data;
+workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
 }
 ```
@@ -1521,9 +1517,9 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.onmessageerror= function(e) {
+workerInstance.onmessageerror= () => {
     console.log("onmessageerror");
 }
 ```
@@ -1553,9 +1549,9 @@ addEventListener(type: string, listener: EventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1581,9 +1577,9 @@ removeEventListener(type: string, callback?: EventListener): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -1615,7 +1611,7 @@ dispatchEvent(event: Event): boolean
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 
 workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未支持。
@@ -1623,7 +1619,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 
 //用法一:
@@ -1675,7 +1671,7 @@ removeAllListener(): void
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -1729,21 +1725,21 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     console.log("receive data from worker.ts");
 }
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const workerPort = worker.workerPort;
-workerPort.onmessage = function(e){
+workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
     workerPort.postMessage(buffer, [buffer]);
@@ -1770,21 +1766,21 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     console.log("receive data from worker.ts");
 }
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessage = function(e){
+parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
     parentPort.postMessage("receive data from main thread");
 }
@@ -1803,16 +1799,16 @@ close(): void
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessage = function(e) {
+parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
 }
 ```
@@ -1838,17 +1834,17 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessage = function(e) {
+parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
 }
 ```
@@ -1874,16 +1870,16 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
-parentPort.onmessageerror = function(e) {
+parentPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
 }
 ```
@@ -1937,9 +1933,9 @@ parentPort.onmessageerror = function(e) {
 
 **示例：**
 
-```js
+```ts
 const workerInstance = new worker.Worker("workers/worker.ts");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -2007,16 +2003,16 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 
 **示例：**
 
-```js
+```ts
 // main thread
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.ts")
 ```
-```js
+```ts
 // worker.ts
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
-parentPort.onerror = function(e){
+parentPort.onerror = () => {
     console.log("worker.ts onerror")
 }
 ```
@@ -2032,19 +2028,19 @@ parentPort.onerror = function(e){
 > **说明：**<br/>
 > 以API version 9的FA工程为例。
 
-```js
+```ts
 // main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("message from main thread to worker");
-workerInstance.onmessage = function(d) {
+workerInstance.onmessage = (d: MessageEvents): void => {
   // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
-  let data = d.data;
+  let data: string  = d.data;
 }
 ```
-```js
+```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
@@ -2052,10 +2048,10 @@ class MyModel {
         this.name = "MyModel"
     }
 }
-workerPort.onmessage = function(d) {
+workerPort.onmessage = (d: MessageEvents): void => {
     console.log("worker.ts onmessage");
-    let data = d.data;
-    let func1 = function() {
+    let data: string = d.data;
+    let func1 = () => {
         console.log("post message is function");
     }
     let obj1 = {
@@ -2070,16 +2066,16 @@ workerPort.onmessage = function(d) {
     // workerPort.postMessage(obj1);  传递obj1发生序列化错误
     workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }
-workerPort.onmessageerror = function(e) {
+workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror");
 }
-workerPort.onerror = function(e) {
+workerPort.onerror = () => {
     console.log("worker.ts onerror");
 }
 ```
 
 ### 内存模型
-Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。 
+Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。
 
 Actor并发模型的交互原理：各个Actor并发地处理主线程任务，每个Actor内部都有一个消息队列及单线程执行模块，消息队列负责接收主线程及其他Actor的请求，单线程执行模块则负责串行地处理请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离没有数据竞争，因此Actor可以高并发运行。
 
@@ -2088,9 +2084,9 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 > 以API version 9的工程为例。<br> API version 8及之前的版本仅支持FA模型，如需使用，注意更换构造Worker的接口和创建worker线程中与主线程通信的对象的两个方法。
 ### FA模型
 
-```js
+```ts
 // main thread(同级目录为例)
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 
@@ -2098,9 +2094,9 @@ const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("123");
 
 // 主线程接收worker线程信息
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // data：worker线程发送的信息
-    let data = e.data;
+    let data: string = e.data;
     console.log("main thread onmessage");
 
     // 销毁Worker对象
@@ -2108,21 +2104,21 @@ workerInstance.onmessage = function(e) {
 }
 
 // 在调用terminate后，执行回调onexit
-workerInstance.onexit = function() {
+workerInstance.onexit = () => {
     console.log("main thread terminate");
 }
 ```
-```js
+```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort
 
 // worker线程接收主线程信息
-workerPort.onmessage = function(e) {
+workerPort.onmessage = (e: MessageEvents): void => {
     // data：主线程发送的信息
-    let data = e.data;
+    let data: string = e.data;
     console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
@@ -2130,7 +2126,7 @@ workerPort.onmessage = function(e) {
 }
 
 // worker线程发生error的回调
-workerPort.onerror= function(e) {
+workerPort.onerror= () => {
     console.log("worker.ts onerror");
 }
 ```
@@ -2145,9 +2141,9 @@ build-profile.json5 配置 :
   }
 ```
 ### Stage模型
-```js
+```ts
 // main thread（以不同目录为例）
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
@@ -2156,30 +2152,30 @@ const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.t
 workerInstance.postMessage("123");
 
 // 主线程接收worker线程信息
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = (e: MessageEvents): void => {
     // data：worker线程发送的信息
-    let data = e.data;
+    let data: string = e.data;
     console.log("main thread onmessage");
 
     // 销毁Worker对象
     workerInstance.terminate();
 }
 // 在调用terminate后，执行onexit
-workerInstance.onexit = function() {
+workerInstance.onexit = () => {
     console.log("main thread terminate");
 }
 ```
-```js
+```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort
 
 // worker线程接收主线程信息
-workerPort.onmessage = function(e) {
+workerPort.onmessage = (e: MessageEvents): void => {
     // data：主线程发送的信息
-    let data = e.data;
+    let data: string = e.data;
     console.log("worker.ts onmessage");
 
     // worker线程向主线程发送信息
@@ -2187,7 +2183,7 @@ workerPort.onmessage = function(e) {
 }
 
 // worker线程发生error的回调
-workerPort.onerror= function(e) {
+workerPort.onerror= () => {
     console.log("worker.ts onerror");
 }
 ```

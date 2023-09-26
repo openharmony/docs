@@ -19,6 +19,7 @@
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -33,7 +34,8 @@ struct WebComponent {
             // 点击按钮时，通过loadUrl，跳转到www.example1.com
             this.webviewController.loadUrl('www.example1.com');
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // 组件创建时，加载www.example.com
@@ -64,6 +66,7 @@ struct WebComponent {
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
 
   @Entry
   @Component
@@ -78,7 +81,8 @@ struct WebComponent {
               // 点击按钮时，通过loadUrl，跳转到local1.html
               this.webviewController.loadUrl($rawfile("local1.html"));
             } catch (error) {
-              console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         // 组件创建时，通过$rawfile加载本地文件local.html
@@ -111,6 +115,7 @@ Web组件可以通过[loadData()](../reference/apis/js-apis-webview.md#loaddata)
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
 
 @Entry
 @Component
@@ -129,7 +134,8 @@ struct WebComponent {
               'UTF-8'
             );
           } catch (error) {
-            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // 组件创建时，加载www.example.com

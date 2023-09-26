@@ -22,7 +22,7 @@ Shows a time picker dialog box.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | selected | Date | No| Selected time.<br>Default value: current system time|
-| useMilitaryTime | boolean | No| Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
+| useMilitaryTime | boolean | No| Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
@@ -49,13 +49,15 @@ struct TimePickerDialogExample {
         .onClick(() => {
           TimePickerDialog.show({
             selected: this.selectTime,
-            disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-            textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-            selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
             onAccept: (value: TimePickerResult) => {
               // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-              this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
             },
             onCancel: () => {
               console.info("TimePickerDialog:onCancel()")
@@ -71,12 +73,14 @@ struct TimePickerDialogExample {
           TimePickerDialog.show({
             selected: this.selectTime,
             useMilitaryTime: true,
-            disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-            textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-            selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+            disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+            textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
             onAccept: (value: TimePickerResult) => {
-              this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
             },
             onCancel: () => {
               console.info("TimePickerDialog:onCancel()")

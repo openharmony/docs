@@ -43,6 +43,7 @@ HTTP数据请求功能主要由http模块提供。
 ```js
 // 引入包名
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -57,13 +58,11 @@ httpRequest.request(
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
-    header: {
+    header: [{
       'Content-Type': 'application/json'
-    },
+    }],
     // 当使用POST请求时此字段用于传递内容
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
     usingCache: true, // 可选，默认为true
     priority: 1, // 可选，默认为1
@@ -71,7 +70,7 @@ httpRequest.request(
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
-  }, (err, data) => {
+  }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析
       console.info('Result:' + JSON.stringify(data.result));
@@ -105,16 +104,17 @@ httpRequest.request(
 ```js
 // 引入包名
 import http from '@ohos.net.http'
+import ArrayList from '@ohos.util.ArrayList';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头事件
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 // 用于订阅HTTP流式响应数据接收事件
 let res = '';
-httpRequest.on('dataReceive', (data) => {
+httpRequest.on('dataReceive', (data: ArrayList) => {
   res += data;
   console.info('res: ' + res);
 });
@@ -123,43 +123,41 @@ httpRequest.on('dataEnd', () => {
   console.info('No more data in response, data receive end');
 });
 // 用于订阅HTTP流式响应数据接收进度事件
-httpRequest.on('dataReceiveProgress', (data) => {
+httpRequest.on('dataReceiveProgress', (data: Object) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
+
+let streamInfo: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,  // 可选，默认为http.RequestMethod.GET
+  // 开发者根据自身业务需要添加header字段
+  header: ['Content-Type', 'application/json'],
+  // 当使用POST请求时此字段用于传递内容
+  extraData: ["data", "data to send"],
+  expectDataType:  http.HttpDataType.STRING,// 可选，指定返回数据的类型
+  usingCache: true, // 可选，默认为true
+  priority: 1, // 可选，默认为1
+  connectTimeout: 60000, // 可选，默认为60000ms
+  readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止
+  usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定
+}
 
 httpRequest.requestInStream(
   // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
   "EXAMPLE_URL",
-  {
-    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-    // 开发者根据自身业务需要添加header字段
-    header: {
-      'Content-Type': 'application/json'
-    },
-    // 当使用POST请求时此字段用于传递内容
-    extraData: {
-      "data": "data to send",
-    },
-    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
-    usingCache: true, // 可选，默认为true
-    priority: 1, // 可选，默认为1
-    connectTimeout: 60000, // 可选，默认为60000ms
-    readTimeout: 60000, // 可选，默认为60000ms。若传输的数据较大，需要较长的时间，建议增大该参数以保证数据传输正常终止
-    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
-  }, (err, data) => {
-    console.error('error:' + JSON.stringify(err));
-    console.info('ResponseCode :' + JSON.stringify(data));
-    // 取消订阅HTTP响应头事件
-    httpRequest.off('headersReceive');
-    // 取消订阅HTTP流式响应数据接收事件
-    httpRequest.off('dataReceive');
-    // 取消订阅HTTP流式响应数据接收进度事件
-    httpRequest.off('dataReceiveProgress');
-    // 取消订阅HTTP流式响应数据接收完毕事件
-    httpRequest.off('dataEnd');
-    // 当该请求使用完毕时，调用destroy方法主动销毁
-    httpRequest.destroy();
-  }
+  streamInfo, (err: string, data: string) => {
+  console.error('error:' + JSON.stringify(err));
+  console.info('ResponseCode :' + JSON.stringify(data));
+  // 取消订阅HTTP响应头事件
+  httpRequest.off('headersReceive');
+  // 取消订阅HTTP流式响应数据接收事件
+  httpRequest.off('dataReceive');
+  // 取消订阅HTTP流式响应数据接收进度事件
+  httpRequest.off('dataReceiveProgress');
+  // 取消订阅HTTP流式响应数据接收完毕事件
+  httpRequest.off('dataEnd');
+  // 当该请求使用完毕时，调用destroy方法主动销毁
+  httpRequest.destroy();
+}
 );
 ```
 

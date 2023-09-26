@@ -50,7 +50,7 @@ let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
 context.setMissionLabel('test').then(() => {
   console.info('Succeeded in seting mission label.');
-}).catch((err: BusinessErrpr) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```

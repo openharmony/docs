@@ -10,7 +10,7 @@ dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo�
 
 ## 导入模块
 
-```js
+```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 ```
 
@@ -196,10 +196,32 @@ getRequestCallback(want: Want): RequestCallback
    }
    ```
 
+## WindowRect<sup>10+</sup>
+
+表示模态弹框的属性。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型   | 必填 | 说明                        |
+| ---- | ------ | ---- | --------------------------- |
+| left  | number | 否   | 弹框边框的左上角的X坐标。 |
+| top  | number | 否   | 弹框边框的左上角的Y坐标。 |
+| width  | number | 否   | 弹框的宽度。 |
+| height  | number | 否   | 弹框的高度。 |
+
 ## RequestInfo
 
 表示发起方请求信息，作为窗口绑定模态弹框的入参。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称      | 类型       | 必填   | 说明     |
+| ------------ | ------------------| ------ | ---------------------- |
+| windowRect<sup>10+</sup>            | windowRect    | 否   | 表示模态弹框的位置属性。          |
 
 **示例：**
 
@@ -308,21 +330,28 @@ getRequestCallback(want: Want): RequestCallback
 
 ## 属性
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 是 | 是 | 表示结果码。 |
+| want<sup>10+</sup> | [ResultWant](js-apis-application-want.md)  | 是 | 是 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
 用于设置模态弹框请求结果的callback接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 ### RequestCallback.setRequestResult
 
 setRequestResult(result: RequestResult): void;
 
 设置请求结果
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

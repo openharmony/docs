@@ -40,14 +40,6 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 | ------------------- | ---- |
 | [Updater](#updater) | 升级对象。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.     |
-
 **示例：**
 
 ```ts
@@ -80,13 +72,6 @@ getRestorer(): Restorer
 | --------------------- | ------ |
 | [Restorer](#restorer) | 恢复出厂对象。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -112,13 +97,6 @@ getLocalUpdater(): LocalUpdater
 | ----------------------------- | ------ |
 | [LocalUpdater](#localupdater) | 本地升级对象。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1289,13 +1267,6 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1324,13 +1295,6 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1588,13 +1552,6 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 
@@ -1625,13 +1582,6 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 | eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
 | taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调。 |
 
-**错误码**：
-
-以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
-
-| 错误码ID       | 错误信息                                                  |
-| -------  | ---------------------------------------------------- |
-| 11500104 | IPC error.               |
 
 **示例：**
 

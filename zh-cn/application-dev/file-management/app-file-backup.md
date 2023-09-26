@@ -36,12 +36,13 @@
   import backup from '@ohos.file.backup';
   import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
 
   // 获取应用文件路径
   let context = getContext(this) as common.UIAbilityContext;
   let filesDir = context.filesDir;
 
-  async function getLocalCapabilities() {
+  async function getLocalCapabilities(): Promise<void> {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
@@ -106,8 +107,8 @@
   let filesDir = context.filesDir;
   // 创建SessionBackup类的实例用于备份数据
   let g_session: backup.SessionBackup;
-  function createSessionBackup() {
-    let sessionBackup = new backup.SessionBackup({
+  function createSessionBackup(): backup.SessionBackup {
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -148,11 +149,12 @@
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
-    });
+    }
+    let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
   }
 
-  async function sessionBackup () {
+  async function sessionBackup (): Promise<void> {
     g_session = createSessionBackup();
     // 此处可根据backup.getLocalCapabilities()提供的能力文件，选择需要备份的应用
     // 也可直接根据应用包名称进行备份
@@ -180,20 +182,21 @@
   import { BusinessError } from '@ohos.base';
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File) {
-    await g_session.publishFile({
+  async function publishFile(file: backup.File): Promise<void> {
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
+  function createSessionRestore(): backup.SessionRestore {
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
         // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
-        let bundlePath: string;
+        let bundlePath: string = '';
         if (!fs.accessSync(bundlePath)) {
           console.info('onFileReady bundlePath err : ' + bundlePath);
         }
@@ -224,11 +227,12 @@
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
 
-  async function restore01 () {
+  async function restore01 (): Promise<void> {
     g_session = createSessionRestore();
     const restoreApps: string[] = [
       "com.example.hiworld",
@@ -240,14 +244,13 @@
     console.info('appendBundles success');
     // 添加需要恢复的应用成功后，请根据需要恢复的应用名称，调用getFileHandle接口获取待恢复应用数文件的文件句柄
     // 应用待恢复数据文件数请依据实际备份文件个数为准，此处仅为请求示例
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```
@@ -273,19 +276,20 @@
   let filesDir = context.filesDir;
   // 创建SessionRestore类的实例用于恢复数据
   let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File) {
-    await g_session.publishFile({
+  async function publishFile(file: backup.File): Promise<void> {
+    let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
       uri: file.uri
-    });
+    }
+    await g_session.publishFile(fileMeta);
   }
-  function createSessionRestore() {
-    let sessionRestore = new backup.SessionRestore({
+  function createSessionRestore(): backup.SessionRestore {
+    let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
         }
-        let bundlePath: string;
+        let bundlePath: string = '';
         if( file.uri == "/data/storage/el2/restore/bundle.hap" )
         {
           // 此处开发者请根据实际场景安装包的存放位置进行调整
@@ -322,11 +326,12 @@
       onBackupServiceDied: () => {
         console.info('service died');
       }
-    });
+    }
+    let sessionRestore = new backup.SessionRestore(generalCallbacks);
     return sessionRestore;
   }
 
-  async function restore02 () {
+  async function restore02 (): Promise<void> {
     g_session = createSessionRestore();
     const restoreApps: string[] = [
       "com.example.hiworld",
@@ -342,19 +347,15 @@
     console.info('appendBundles success');
 
     // 开发者需要请求安装应用的文件句柄
-    await g_session.getFileHandle({
+    let handle: backup.FileMeta = {
       bundleName: restoreApps[0],
       uri: "/data/storage/el2/restore/bundle.hap"
-    });
-
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "manage.json"
-    });
-    await g_session.getFileHandle({
-      bundleName: restoreApps[0],
-      uri: "1.tar"
-    });
+    }
+    await g_session.getFileHandle(handle);
+    handle.uri = "manage.json";
+    await g_session.getFileHandle(handle);
+    handle.uri = "1.tar";
+    await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
  ```

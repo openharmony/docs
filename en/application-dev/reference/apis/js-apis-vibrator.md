@@ -43,6 +43,7 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   vibrator.startVibration({
@@ -51,7 +52,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -59,7 +60,8 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -98,6 +100,7 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   vibrator.startVibration({
@@ -108,11 +111,12 @@ try {
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -137,6 +141,7 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Start vibration at a fixed duration.
@@ -146,7 +151,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -154,12 +159,13 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -167,7 +173,8 @@ try {
     console.info('Succeed in stopping vibration');
   })
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -197,33 +204,36 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Start vibration at a fixed duration.
   vibrator.startVibration({
     type: 'time',
-    duration: 1000
+    duration: 1000,
   }, {
     id: 0,
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // Stop vibration in VIBRATOR_STOP_MODE_TIME mode.
-  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
+  vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME).then(() => {
     console.info('Succeed in stopping vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (err) {
-  console.error(`An unexpected error occurred. Code: ${err.code}, message: ${err.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -247,6 +257,7 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Start vibration at a fixed duration.
@@ -256,7 +267,7 @@ try {
   }, {
     id: 0,
     usage: 'alarm'
-  }, (error) => {
+  }, (error: BusinessError) => {
     if (error) {
       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -264,12 +275,13 @@ try {
     console.info('Succeed in starting vibration');
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // Stop vibration in all modes.
-  vibrator.stopVibration(function (error) {
+  vibrator.stopVibration((error: BusinessError) => {
     if (error) {
       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
       return;
@@ -277,7 +289,8 @@ try {
     console.info('Succeed in stopping vibration');
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -301,33 +314,36 @@ Stops vibration in all modes. This API uses a promise to return the result.
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Start vibration at a fixed duration.
   vibrator.startVibration({
     type: 'time',
-    duration: 1000
+    duration: 1000,
   }, {
     id: 0,
     usage: 'alarm'
   }).then(() => {
     console.info('Succeed in starting vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 
 try {
   // Stop vibration in all modes.
   vibrator.stopVibration().then(() => {
     console.info('Succeed in stopping vibration');
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -350,10 +366,11 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Check whether 'haptic.clock.timer' is supported.
-  vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+  vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
     if (err) {
       console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -361,13 +378,14 @@ try {
     console.info('Succeed in querying effect');
     if (state) {
       try {
-        vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+        // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+        vibrator.startVibration({
           type: 'preset',
           effectId: 'haptic.clock.timer',
           count: 1,
         }, {
           usage: 'unknown'
-        }, (error) => {
+        }, (error: BusinessError) => {
           if (error) {
             console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
           } else {
@@ -375,12 +393,14 @@ try {
           }
         });
       } catch (error) {
-        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
       }
     }
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -396,7 +416,7 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 | Name  | Type  | Mandatory| Description        |
 | -------- | ------ | ---- | ------------ |
-| effectId | string | Yes  | Vibration effect ID.|
+| effectId | string | Yes  | Describes the preset vibration effect ID.|
 
 **Return value**
 
@@ -408,10 +428,11 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 ```ts
 import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
 
 try {
   // Check whether 'haptic.clock.timer' is supported.
-  vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+  vibrator.isSupportEffect('haptic.clock.timer').then((state: boolean) => {
     console.info(`The query result is ${state}`);
     if (state) {
       try {
@@ -423,18 +444,20 @@ try {
           usage: 'unknown'
         }).then(() => {
           console.info('Succeed in starting vibration');
-        }).catch((error) => {
+        }).catch((error: BusinessError) => {
           console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
         });
       } catch (error) {
-        console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+        let e: BusinessError = error as BusinessError;
+        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
       }
     }
-  }, (error) => {
+  }, (error: BusinessError) => {
     console.error(`Failed to query effect. Code: ${error.code}, message: ${error.message}`);
   })
 } catch (error) {
-  console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -526,7 +549,7 @@ Describes the vibration attribute.
 
 | Name | Type| Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
-| id    | number      |  No| Vibrator ID. The default value is 0.    |
+| id    | number      |  No| Vibrator ID. The default value is **0**.   |
 | usage | [Usage](#usage9)      | Yes| Vibration scenario.|
 
 ## Usage<sup>9+</sup>
@@ -574,9 +597,12 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 vibrator.vibrate(1000).then(() => {
   console.info('Succeed in vibrating');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -603,7 +629,10 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-vibrator.vibrate(1000, function (error) {
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+vibrator.vibrate(1000, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -640,9 +669,12 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
   console.info('Succeed in vibrating');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -670,7 +702,10 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -706,8 +741,11 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 **Example**
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 // Start vibration based on the specified effect ID.
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -717,7 +755,7 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
 // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
 vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(() => {
   console.info('Succeed in stopping');
-}, (error) => {
+}, (error: BusinessError) => {
   console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
 });
 ```
@@ -745,8 +783,11 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 **Example**
 
 ```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
 // Start vibration based on the specified effect ID.
-vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to vibrate. Code: ${error.code}, message: ${error.message}`);
   } else {
@@ -754,11 +795,11 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function (error) {
   }
 })
 // Stop vibration in VIBRATOR_STOP_MODE_PRESET mode.
-vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function (error) {
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, (error: BusinessError) => {
   if (error) {
     console.error(`Failed to stop. Code: ${error.code}, message: ${error.message}`);
   } else {
-    onsole.info('Succeed in stopping');
+    console.info('Succeed in stopping');
   }
 })
 ```

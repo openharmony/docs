@@ -8,240 +8,287 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 
 ## Sample Code
-
+There are multiple [methods for obtaining the context](../application-models/application-context-stage.md).
 ```ts
-import camera from '@ohos.multimedia.camera'
-import media from '@ohos.multimedia.media'
+import camera from '@ohos.multimedia.camera';
+import { BusinessError } from '@ohos.base';
+import media from '@ohos.multimedia.media';
+import featureAbility from '@ohos.ability.featureAbility';
 
-// Create a CameraManager instance.
-context: any = getContext(this)
-let cameraManager = camera.getCameraManager(this.context)
-if (!cameraManager) {
-    console.error("camera.getCameraManager error")
+async function videoRecording(context: featureAbility.Context, surfaceId: string): Promise<void> {
+  // Create a CameraManager instance.
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+  if (!cameraManager) {
+    console.error("camera.getCameraManager error");
     return;
-} 
+  }
 
-// Listen for camera status changes.
-cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
+  // Listen for camera status changes.
+  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
-})
+  });
 
-// Obtain the output stream capabilities supported by the camera.
-let cameraOutputCap = cameraManager.getSupportedOutputCapability(cameraArray[0]);
-if (!cameraOutputCap) {
+  // Obtain the camera list.
+  let cameraArray: Array<camera.CameraDevice> = [];
+  try {
+    cameraArray = cameraManager.getSupportedCameras();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getSupportedCameras call failed. error code: ${err.code}`);
+  }
+
+  if (cameraArray.length <= 0) {
+    console.error("cameraManager.getSupportedCameras error");
+    return;
+  }
+
+  // Obtain the output stream capabilities supported by the camera.
+  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
+  if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
-}
-console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
+  }
+  console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
 
-let previewProfilesArray = cameraOutputCap.previewProfiles;
-if (!previewProfilesArray) {
-    console.error("createOutput previewProfilesArray == null || undefined")
-} 
+  let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
+  if (!previewProfilesArray) {
+    console.error("createOutput previewProfilesArray == null || undefined");
+  }
 
-let photoProfilesArray = cameraOutputCap.photoProfiles;
-if (!photoProfilesArray) {
-    console.error("createOutput photoProfilesArray == null || undefined")
-} 
+  let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
+  if (!photoProfilesArray) {
+    console.error("createOutput photoProfilesArray == null || undefined");
+  }
 
-let videoProfilesArray = cameraOutputCap.videoProfiles;
-if (!videoProfilesArray) {
-    console.error("createOutput videoProfilesArray == null || undefined")
-} 
+  let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCap.videoProfiles;
+  if (!videoProfilesArray) {
+    console.error("createOutput videoProfilesArray == null || undefined");
+  }
 
-let metadataObjectTypesArray = cameraOutputCap.supportedMetadataObjectTypes;
-if (!metadataObjectTypesArray) {
-    console.error("createOutput metadataObjectTypesArray == null || undefined")
-}
+  let metadataObjectTypesArray: Array<camera.MetadataObjectType> = cameraOutputCap.supportedMetadataObjectTypes;
+  if (!metadataObjectTypesArray) {
+    console.error("createOutput metadataObjectTypesArray == null || undefined");
+  }
 
-// Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile = {
-    audioBitrate : 48000,
-    audioChannels : 2,
-    audioCodec : media.CodecMimeType.AUDIO_AAC,
-    audioSampleRate : 48000,
-    fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-    videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
-    videoFrameWidth : 640,
-    videoFrameHeight : 480,
-    videoFrameRate : 30
-}
-let AVRecorderConfig = {
-    audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-    videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-    profile : AVRecorderProfile,
-    url : 'fd://', // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
+  // Configure the parameters based on those supported by the hardware device.
+  let aVRecorderProfile: media.AVRecorderProfile = {
+    audioBitrate: 48000,
+    audioChannels: 2,
+    audioCodec: media.CodecMimeType.AUDIO_AAC,
+    audioSampleRate: 48000,
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4,
+    videoBitrate: 2000000,
+    videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+    videoFrameWidth: 640,
+    videoFrameHeight: 480,
+    videoFrameRate: 30
+  };
+  let aVRecorderConfig: media.AVRecorderConfig = {
+    audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+    videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+    profile: aVRecorderProfile,
+    url: 'fd://', // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
     rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
-    location : { latitude : 30, longitude : 130 }
-}
+    location: { latitude: 30, longitude: 130 }
+  };
 
-let avRecorder
-media.createAVRecorder((error, recorder) => {
-   if (recorder != null) {
-       avRecorder = recorder;
-       console.log('createAVRecorder success');
-   } else {
-       console.log(`createAVRecorder fail, error:${error}`);
-   }
-});
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`createAVRecorder call failed. error code: ${err.code}`);
+  }
 
-avRecorder.prepare(AVRecorderConfig, (err) => {
-    if (err == null) {
-        console.log('prepare success');
-    } else {
-        console.log('prepare failed and error is ' + err.message);
-    }
-})
-
-let videoSurfaceId = null; // The surfaceID is passed in to the camera API to create a VideoOutput instance.
-avRecorder.getInputSurface((err, surfaceId) => {
-    if (err == null) {
-        console.log('getInputSurface success');
-        videoSurfaceId = surfaceId;
-    } else {
-        console.log('getInputSurface failed and error is ' + err.message);
-    }
-});
-
-// Create a VideoOutput instance.
-let videoOutput
-try {
-    videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
-} catch (error) {
-    console.error('Failed to create the videoOutput instance. errorCode = ' + error.code);
-}
-
-// Listen for video output errors.
-videoOutput.on('error', (error) => {
-    console.log(`Preview output error code: ${error.code}`);
-})
-
-// Create a session.
-let captureSession
-try {
-    captureSession = cameraManager.createCaptureSession()
-} catch (error) {
-    console.error('Failed to create the CaptureSession instance. errorCode = ' + error.code);
-}
-
-// Listen for session errors.
-captureSession.on('error', (error) => {
-    console.log(`Capture session error code: ${error.code}`);
-})
-
-// Start configuration for the session.
-try {
-    captureSession.beginConfig()
-} catch (error) {
-    console.error('Failed to beginConfig. errorCode = ' + error.code);
-}
-
-// Obtain the camera list.
-let cameraArray = cameraManager.getSupportedCameras();
-if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error")
+  if (avRecorder === undefined) {
     return;
-}
+  }
 
-// Create a camera input stream.
-let cameraInput
-try {
+  try {
+    await avRecorder.prepare(aVRecorderConfig);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`prepare call failed. error code: ${err.code}`);
+  }
+
+  let videoSurfaceId: string | undefined = undefined; // The surfaceID is passed in to the camera API to create a VideoOutput instance.
+  try {
+    videoSurfaceId = await avRecorder.getInputSurface();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getInputSurface call failed. error code: ${err.code}`);
+  }
+  if (videoSurfaceId === undefined) {
+    return;
+  }
+  // Create a VideoOutput instance.
+  let videoOutput: camera.VideoOutput | undefined = undefined;
+  try {
+    videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
+  }
+  if (videoOutput === undefined) {
+    return;
+  }
+  // Listen for video output errors.
+  videoOutput.on('error', (error: BusinessError) => {
+    console.log(`Preview output error code: ${error.code}`);
+  });
+
+  // Create a session.
+  let captureSession: camera.CaptureSession | undefined = undefined;
+  try {
+    captureSession = cameraManager.createCaptureSession();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
+  }
+  if (captureSession === undefined) {
+    return;
+  }
+  // Listen for session errors.
+  captureSession.on('error', (error: BusinessError) => {
+    console.log(`Capture session error code: ${error.code}`);
+  });
+
+  // Start configuration for the session.
+  try {
+    captureSession.beginConfig();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+  }
+
+  // Create a camera input stream.
+  let cameraInput: camera.CameraInput | undefined = undefined;
+  try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
-} catch (error) {
-   console.error('Failed to createCameraInput errorCode = ' + error.code);
-}
-
-// Listen for camera input errors.
-let cameraDevice = cameraArray[0];
-cameraInput.on('error', cameraDevice, (error) => {
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to createCameraInput. error: ${JSON.stringify(err)}`);
+  }
+  if (cameraInput === undefined) {
+    return;
+  }
+  // Listen for camera input errors.
+  let cameraDevice: camera.CameraDevice = cameraArray[0];
+  cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.log(`Camera input error code: ${error.code}`);
-})
+  });
 
-// Open the camera.
-await cameraInput.open();
+  // Open the camera.
+  try {
+    await cameraInput.open();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to open cameraInput. error: ${JSON.stringify(err)}`);
+  }
 
-// Add the camera input stream to the session.
-try {
-    captureSession.addInput(cameraInput)
-} catch (error) {
-    console.error('Failed to addInput. errorCode = ' + error.code);
-}
+  // Add the camera input stream to the session.
+  try {
+    captureSession.addInput(cameraInput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
+  }
 
-// Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
-let previewOutput
-try {
-    previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId)
-} catch (error) {
-    console.error("Failed to create the PreviewOutput instance.")
-}
+  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
+  try {
+    previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
+  }
 
-// Add the preview input stream to the session.
-try {
-    captureSession.addOutput(previewOutput)
-} catch (error) {
-    console.error('Failed to addOutput(previewOutput). errorCode = ' + error.code);
-}
+  if (previewOutput === undefined) {
+    return;
+  }
+  // Add the preview input stream to the session.
+  try {
+    captureSession.addOutput(previewOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+  }
 
-// Add a video output stream to the session.
-try {
-    captureSession.addOutput(videoOutput)
-} catch (error) {
-    console.error('Failed to addOutput(videoOutput). errorCode = ' + error.code);
-}
+  // Add a video output stream to the session.
+  try {
+    captureSession.addOutput(videoOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+  }
 
-// Commit the session configuration.
-await captureSession.commitConfig()
+  // Commit the session configuration.
+  try {
+    await captureSession.commitConfig();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`captureSession commitConfig error: ${JSON.stringify(err)}`);
+  }
 
-// Start the session.
-await captureSession.start().then(() => {
-    console.log('Promise returned to indicate the session start success.');
-})
+  // Start the session.
+  try {
+    await captureSession.start();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`captureSession start error: ${JSON.stringify(err)}`);
+  }
 
-// Start the video output stream.
-videoOutput.start(async (err) => {
+  // Start the video output stream.
+  videoOutput.start((err: BusinessError) => {
     if (err) {
-        console.error('Failed to start the video output ${err.message}');
-        return;
+      console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
+      return;
     }
     console.log('Callback invoked to indicate the video output start success.');
-});
+  });
 
-// Start video recording.
-avRecorder.start().then(() => {
-    console.log('videoRecorder start success');
-})
+  // Start video recording.
+  try {
+    await avRecorder.start();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+  }
 
-// Stop the video output stream.
-videoOutput.stop((err) => {
+  // Stop the video output stream.
+  videoOutput.stop((err: BusinessError) => {
     if (err) {
-        console.error('Failed to stop the video output ${err.message}');
-        return;
+      console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
+      return;
     }
     console.log('Callback invoked to indicate the video output stop success.');
-});
+  });
 
-// Stop video recording.
-avRecorder.stop().then(() => {
-    console.log('stop success');
-})
+  // Stop video recording.
+  try {
+    await avRecorder.stop();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+  }
 
-// Stop the session.
-captureSession.stop()
+  // Stop the session.
+  captureSession.stop();
 
-// Release the camera input stream.
-cameraInput.close()
+  // Release the camera input stream.
+  cameraInput.close();
 
-// Release the preview output stream.
-previewOutput.release()
+  // Release the preview output stream.
+  previewOutput.release();
 
-// Release the video output stream.
-videoOutput.release()
+  // Release the video output stream.
+  videoOutput.release();
 
-// Release the session.
-captureSession.release()
+  // Release the session.
+  captureSession.release();
 
-// Set the session to null.
-captureSession = null
+  // Set the session to null.
+  captureSession = undefined;
+}
 ```

@@ -153,7 +153,7 @@ import Want from '@ohos.app.ability.Want';
         });
         ```
     * 文件描述符（FD）
-        ```ts
+      ```ts
         import fs from '@ohos.file.fs';        
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -182,10 +182,10 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-        ```
+      ```
     - parameter参数用法：以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
 
-    ```ts
+      ```ts
         // (1) UIAbility1启动一个ServiceExtension
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -199,8 +199,8 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    ```ts
-
+    
+      ```ts
         // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
@@ -217,6 +217,6 @@ import Want from '@ohos.app.ability.Want';
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
-    ```
+      ```
 
-    说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。
+    > 说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。

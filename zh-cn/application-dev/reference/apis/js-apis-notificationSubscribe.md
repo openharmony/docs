@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
@@ -45,23 +45,25 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **示例：**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 //subscribe回调
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe success");
-    }
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
-let info = {
-    bundleNames: ["bundleName1","bundleName2"]
+let info: notificationSubscribe.NotificationSubscribeInfo = {
+  bundleNames: ["bundleName1","bundleName2"]
 };
 notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
@@ -98,19 +100,21 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **示例：**
 
-```js
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let subscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("subscribe success");
+  }
 }
-function onConsumeCallback(data) {
-	console.info("Consume callback: " + JSON.stringify(data));
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
@@ -134,7 +138,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空。   |
 
 **错误码：**
 
@@ -149,15 +153,19 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **示例：**
 
-```js
-function onConsumeCallback(data) {
-    console.info("Consume callback: " + JSON.stringify(data));
+```ts
+import Base from '@ohos.base';
+
+let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+  console.info("Consume callback: " + JSON.stringify(data));
 }
-let subscriber = {
-    onConsume: onConsumeCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onConsume: onConsumeCallback
 };
 notificationSubscribe.subscribe(subscriber).then(() => {
-	console.info("subscribe success");
+  console.info("subscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error("subscribe fail: " + JSON.stringify(err));
 });
 ```
 
@@ -194,19 +202,21 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **示例：**
 
-```js
-function unsubscribeCallback(err) {
-    if (err) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribe success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let unsubscribeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("unsubscribe success");
+  }
 }
-function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+let onDisconnectCallback = () => {
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
@@ -241,15 +251,19 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **示例：**
 
-```js
-function onDisconnectCallback() {
-	console.info("subscribe disconnect");
+```ts
+import Base from '@ohos.base';
+
+let onDisconnectCallback = () => {
+  console.info("subscribe disconnect");
 }
-let subscriber = {
-    onDisconnect: onDisconnectCallback
+let subscriber: notificationSubscribe.NotificationSubscriber = {
+  onDisconnect: onDisconnectCallback
 };
 notificationSubscribe.unsubscribe(subscriber).then(() => {
-	console.info("unsubscribe success");
+  console.info("unsubscribe success");
+}).catch((err: Base.BusinessError) => {
+  console.error("unsubscribe fail: " + JSON.stringify(err));
 });
 ```
 
@@ -288,22 +302,25 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **示例：**
 
-```js
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: NotificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: notificationSubscribe.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
@@ -343,17 +360,22 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 **示例：**
 
-```js
-let bundle = {
-    bundle: "bundleName1",
+```ts
+import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
+
+let bundle: NotificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
-let notificationKey = {
-    id: 0,
-    label: "label",
+let notificationKey: notificationSubscribe.NotificationKey = {
+  id: 0,
+  label: "label",
 };
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
-	console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 
@@ -390,17 +412,19 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 **示例：**
 
-```js
-let hashCode = 'hashCode';
+```ts
+import Base from '@ohos.base';
 
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+let hashCode: string = 'hashCode';
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -436,11 +460,15 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 **示例：**
 
-```js
-let hashCode = 'hashCode';
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+```ts
+import Base from '@ohos.base';
+
+let hashCode: string = 'hashCode';
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 ## NotificationSubscribe.remove<sup>10+<sup>
@@ -475,17 +503,19 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 
 **示例：**
 
-```js
-let hashCodes = ['hashCode1', 'hashCode2'];
+```ts
+import Base from '@ohos.base';
 
-function removeCallback(err) {
-    if (err) {
-        console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("remove success");
-    }
+let hashCodes: string[] = ['hashCode1', 'hashCode2'];
+
+let removeCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("remove success");
+  }
 }
-let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
@@ -520,11 +550,15 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
 **示例：**
 
-```js
-let hashCodes = ['hashCode1','hashCode2'];
-let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+```ts
+import Base from '@ohos.base';
+
+let hashCodes: string[] = ['hashCode1','hashCode2'];
+let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(hashCodes, reason).then(() => {
-    console.info("remove success");
+  console.info("remove success");
+}).catch((err: Base.BusinessError) => {
+  console.error("remove fail: " + JSON.stringify(err));
 });
 ```
 
@@ -560,16 +594,18 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
-let bundle = {
-    bundle: "bundleName1",
+let bundle: notificationSubscribe.BundleOption = {
+  bundle: "bundleName1",
 };
 notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
@@ -604,8 +640,10 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
-function removeAllCallback(err) {
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
     if (err) {
         console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -632,7 +670,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否   | 指定应用的包信息。默认为空，表示删除所有通知。 |
 
 **错误码：**
 
@@ -647,10 +685,14 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
+import Base from '@ohos.base';
+
 // 不指定应用时，删除所有通知
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error("removeAll fail: " + JSON.stringify(err));
 });
 ```
 
@@ -686,16 +728,18 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -731,16 +775,18 @@ removeAll(userId: number): Promise\<void>
 
 **示例：**
 
-```js
-function removeAllCallback(err) {
-    if (err) {
-        console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeAll success");
-    }
+```ts
+import Base from '@ohos.base';
+
+let removeAllCallback = (err: Base.BusinessError) => {
+  if (err) {
+    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("removeAll success");
+  }
 }
 
-let userId = 1;
+let userId: number = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
@@ -754,7 +800,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 | 名称  | 类型   | 必填 | 说明     |
 | ----- | ------ | --- | -------- |
 | id    | number | 是  | 通知ID。   |
-| label | string | 否  | 通知标签。 |
+| label | string | 否  | 通知标签，默认为空。 |
 
 ## RemoveReason
 

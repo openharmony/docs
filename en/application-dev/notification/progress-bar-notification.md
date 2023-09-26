@@ -20,17 +20,18 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
+   import Base from '@ohos.base';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
-   notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
+   notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
      console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
      // ...
-   }).catch((err) => {
+   }).catch((err:Base.BusinessError) => {
      console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
@@ -60,7 +61,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    }
    
    // Publish the notification.
-   notificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
        console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;

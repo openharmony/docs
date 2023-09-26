@@ -73,5 +73,5 @@ The table below lists the APIs changes of the ability framework in OpenHarmony 3
 | FormExtensionContext | FormExtensionContext | updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void;<br>updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void>; | Deleted|
 | ServiceExtensionContext | ServiceExtensionContext | extensionAbilityInfo: ExtensionAbilityInfo; | Deleted|
 | ohos.application.appManager | appManager | getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;<br>getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void; | Deprecated|
-| ohos.application.Ability | Ability | old : onNewWant(want: Want): void;<br>new : onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void; | Updated|
+| ohos.application.Ability | Ability | old : onNewWant(want: Want): void;<br>new : onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void; | Updated|
 | ohos.application.Ability | Callee | old : on(method: string, callback: CaleeCallBack): void;<br>new : on(method: string, callback: CalleeCallBack): void; | Updated|

@@ -22,10 +22,6 @@
       - [HAR](har-package.md)
       - HSP
         - [In-Application HSP Development](in-app-hsp.md)
-        - [Inter-Application HSP Development](cross-app-hsp.md)
-    - Atomic Service
-      - [Atomic Service Development](atomicService.md)
-      - [Atomic Service Space Management (for System Applications Only)](atomicService-aging.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
@@ -74,8 +70,11 @@
         - [Overview of Other State Management Features](arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch: Getting Notified of State Variable Changes](arkts-watch.md)
         - [$$ Syntax: Two-Way Synchronization of Built-in Components](arkts-two-way-sync.md)
+      - [MVVM](arkts-mvvm.md)
+      - [Best Practices for State Management](arkts-state-management-best-practices.md)
     - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
+      - [Best Practices for Rendering Control](arkts-rendering-control-best-practices.md)

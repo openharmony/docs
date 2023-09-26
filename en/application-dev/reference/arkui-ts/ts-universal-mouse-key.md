@@ -62,7 +62,7 @@ struct MouseEventExample {
       Button(this.hoverText)
         .width(180).height(80)
         .backgroundColor(this.color)
-        .onHover((isHover: boolean, event: HoverEvent) => {
+        .onHover((isHover?: boolean, event?: HoverEvent):void => {
           // Use the onHover event to dynamically change the text content and background color of a button when the mouse pointer is hovered on it.
           if (isHover) {
             this.hoverText = 'hover';
@@ -74,44 +74,46 @@ struct MouseEventExample {
         })
       Button('onMouse')
         .width(180).height(80)
-        .onMouse((event: MouseEvent) => {
-          switch (event.button) {
-            case MouseButton.None:
-              this.mouseBtn = 'None';
-              break;
-            case MouseButton.Left:
-              this.mouseBtn = 'Left';
-              break;
-            case MouseButton.Right:
-              this.mouseBtn = 'Right';
-              break;
-            case MouseButton.Back:
-              this.mouseBtn = 'Back';
-              break;
-            case MouseButton.Forward:
-              this.mouseBtn = 'Forward';
-              break;
-            case MouseButton.Middle:
-              this.mouseBtn = 'Middle';
-              break;
+        .onMouse((event?: MouseEvent):void => {
+          if(event){
+            switch (event.button) {
+              case MouseButton.None:
+                this.mouseBtn = 'None';
+                break;
+              case MouseButton.Left:
+                this.mouseBtn = 'Left';
+                break;
+              case MouseButton.Right:
+                this.mouseBtn = 'Right';
+                break;
+              case MouseButton.Back:
+                this.mouseBtn = 'Back';
+                break;
+              case MouseButton.Forward:
+                this.mouseBtn = 'Forward';
+                break;
+              case MouseButton.Middle:
+                this.mouseBtn = 'Middle';
+                break;
+            }
+            switch (event.action) {
+              case MouseAction.Hover:
+                this.action = 'Hover';
+                break;
+              case MouseAction.Press:
+                this.action = 'Press';
+                break;
+              case MouseAction.Move:
+                this.action = 'Move';
+                break;
+              case MouseAction.Release:
+                this.action = 'Release';
+                break;
+            }
+            this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
+            '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
+            '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
           }
-          switch (event.action) {
-            case MouseAction.Hover:
-              this.action = 'Hover';
-              break;
-            case MouseAction.Press:
-              this.action = 'Press';
-              break;
-            case MouseAction.Move:
-              this.action = 'Move';
-              break;
-            case MouseAction.Release:
-              this.action = 'Release';
-              break;
-          }
-          this.mouseText = 'onMouse:\nButton = ' + this.mouseBtn +
-          '\nAction = ' + this.action + '\nXY=(' + event.x + ',' + event.y + ')' +
-          '\nwindowXY=(' + event.windowX + ',' + event.windowY + ')';
         })
       Text(this.mouseText)
     }.padding({ top: 30 }).width('100%')

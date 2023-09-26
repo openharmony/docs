@@ -394,25 +394,32 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
 
-let info = {
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
-}
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info).then((data) => {
+}).then((data) => {
   console.info('Operation successful.');
 }).catch((error: BusinessError) => {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
 let userId = 100;
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, userId).then((data) => {
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId).then((data) => {
   console.info('Operation successful.');
 }).catch((error: BusinessError) => {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
-defaultAppMgr.setDefaultApplication("image/png", info, userId).then((data) => {
+defaultAppMgr.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId).then((data) => {
   console.info('Operation successful.');
 }).catch((error: BusinessError) => {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -457,12 +464,11 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
 
 let userId = 100;
-let info = {
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
-}
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, userId, (err: BusinessError, data) => {
+}, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -470,7 +476,11 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info,
   console.info('Operation successful.');
 });
 
-defaultAppMgr.setDefaultApplication("image/png", info, userId, (err: BusinessError, data) => {
+defaultAppMgr.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -514,12 +524,11 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
 
-let info = {
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
-}
-defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info, (err: BusinessError, data) => {
+}, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -527,7 +536,11 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, info,
   console.info('Operation successful.');
 });
 
-defaultAppMgr.setDefaultApplication("image/png", info, (err: BusinessError, data) => {
+defaultAppMgr.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -570,13 +583,12 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
-let info = {
+try {
+  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
-}
-try {
-  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, info);
+});
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -584,14 +596,22 @@ try {
 
 let userId = 100;
 try {
-  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, info, userId);
+  defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
 
 try {
-  defaultAppMgr.setDefaultApplicationSync("image/png", info, userId);
+  defaultAppMgr.setDefaultApplicationSync("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));

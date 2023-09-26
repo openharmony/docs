@@ -145,7 +145,7 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
 
     ```
     # Go to the Raspberry Pi kernel directory.
-    PROJ_ROOT/drivers/hdf_core/khdf/linux/patch_hdf.sh \
+    PROJ_ROOT/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh \
     PROJ_ROOT # Specify the path of the project root directory.\
     PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b # Specify the kernel directory for applying the patch.\
     PROJ_ROOT/kernel/linux/patches/linux-4.19 # Kernel patch patch.\

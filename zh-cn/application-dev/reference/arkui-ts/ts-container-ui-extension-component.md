@@ -131,41 +131,46 @@ onError(callback:[ErrorCallback](../apis/js-apis-base.md#errorcallback))
 
 ```ts
 // 组件使用示例：
+import Want from '@ohos.app.ability.Want';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
-  private myProxy: UIExtensionProxy
+  private myProxy: UIExtensionProxy | null = null;
+  want: Want = {
+    bundleName: "com.example.uiextensionprovider",
+    abilityName: "UIExtensionProvider",
+    parameters: { "x": 12345, "y": "data" }
+  }
+
   build() {
     Row() {
       Column() {
         Text(this.message).fontColor(Color.Red)
-        UIExtensionComponent(
-          {
-            bundleName: "com.example.uiextensionprovider",
-            abilityName: "UIExtensionProvider",
-            parameters: { "x": 12345, "y": "data" }
-          }
-        )
-        .size({ width: "100%", height:"100%" })
-        .onRemoteReady((proxy) => {
+        UIExtensionComponent(this.want)
+          .size({ width: "100%", height: "100%" })
+          .onRemoteReady((proxy: UIExtensionProxy) => {
             this.message = "remote ready"
             this.myProxy = proxy
-        })
-        .onReceive((data) => {
+          })
+          .onReceive((data: Object) => {
             this.message = JSON.stringify(data)
-        })
-        .onRelease((releaseCode) => {
-          this.message = "Release: " + releaseCode
-        })
-        .onResult((data) => {
-          this.message = JSON.stringify(data)
-        })
-        .onError((error) => {
-          this.message = "onError: " + error["code"] + ", name: " + error.name + ", message: " + error.message
-        })
+          })
+          .onRelease((releaseCode: number) => {
+            this.message = "Release: " + releaseCode
+          })
+          .onResult((data: Object) => {
+            this.message = JSON.stringify(data)
+          })
+          .onError((error: ErrorObject) => {
+            this.message = "onError: " + error.code + ", name: " + error.name + ", message: " + error.message
+          })
         Button("sendData").onClick(() => {
-          this.myProxy.send({ "x": 5678910 })
+          if (this.myProxy != null) {
+            let a: Record<string, number> = { "x": 5678910 };
+            this.myProxy.send(a)
+          }
         })
       }
       .width("100%")
@@ -173,13 +178,22 @@ struct Index {
     .height('100%')
   }
 }
+
+interface ErrorObject {
+  code: number;
+  name: string;
+  message: string;
+}
 ```
 
 ```ts
 // 扩展入口文件UIExtensionProvider.ts
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+import Want from '@ohos.app.ability.Want';
 const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
+  
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`)
   }
@@ -196,15 +210,16 @@ export default class UIExtAbility extends UIExtensionAbility {
     console.log(TAG, `UIExtAbility onDestroy`)
   }
 
-  onSessionCreate(want, session) {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+    let param: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
+    };
+    let storage: LocalStorage = new LocalStorage(param);
     session.loadContent('pages/extension', storage);
   }
 
-  onSessionDestroy(session) {
+  onSessionDestroy(session: UIExtensionContentSession) {
     console.log(TAG, `UIExtAbility onSessionDestroy`)
   }
 }
@@ -213,43 +228,56 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 // 扩展Ability入口页面文件extension.ets
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
+
 let storage = LocalStorage.GetShared()
+
 @Entry(storage)
 @Component
 struct Index {
   @State message: string = 'UIExtension'
-  @State message2:string = 'message from comp'
-  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
+  @State message2: string = 'message from comp'
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   controller: TextInputController = new TextInputController()
+
   onPageShow() {
-    this.session.setReceiveDataCallback((data)=> {
-      this.message2 = "data come from comp"
-      this.message = JSON.stringify(data)
-    })
+    if (this.session != undefined) { 
+      this.session.setReceiveDataCallback((data: Object) => {
+        this.message2 = "data come from comp"
+        this.message = JSON.stringify(data)
+      })
+    }
   }
+
   build() {
     Row() {
       Column() {
         Text(this.message2)
         Text(this.message)
         Button("sendData")
-          .onClick(()=>{
-            this.session.sendData({"xxx": "data from extension"})
+          .onClick(() => {
+            if (this.session != undefined) {
+              let a: Record<string, string> = {"xxx": "data from extension"};
+              this.session.sendData(a)
+            }
           })
         Button("terminateSelf")
-          .onClick(()=>{
-            this.session.terminateSelf();
-            storage.clear();
+          .onClick(() => {
+            if (this.session != undefined) {
+              this.session.terminateSelf();
+              storage.clear();
+            }
           }).margin(5)
         Button("TerminateSelfWithResult")
-          .onClick(()=>{
-            this.session.terminateSelfWithResult({
-              "resultCode": 0,
-              "want": {
-                "bundleName": "myName"
-              }
-            });
-            storage.clear();
+          .onClick(() => {
+            if (this.session != undefined) {
+              this.session.terminateSelfWithResult({
+                "resultCode": 0,
+                "want": {
+                  "bundleName": "myName"
+                }
+              });
+              storage.clear();
+            }
           }).margin(5)
       }
       .width('100%')
@@ -257,4 +285,5 @@ struct Index {
     .height('100%')
   }
 }
+
 ```

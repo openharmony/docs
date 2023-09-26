@@ -22,7 +22,6 @@
       - [HAR](har-package.md)
       - HSP
         - [应用内HSP开发指导](in-app-hsp.md)
-        - [应用间HSP开发指导](cross-app-hsp.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复命令行调试开发指导](quickfix-debug.md)
@@ -73,6 +72,7 @@
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
+      - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

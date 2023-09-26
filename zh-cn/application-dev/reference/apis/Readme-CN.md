@@ -43,6 +43,7 @@
     - [@ohos.app.ability.wantAgent (WantAgent模块)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
     - [@ohos.app.businessAbilityRouter (业务路由模块)](js-apis-businessAbilityRouter.md)
+    - [@ohos.app.form.formAgent (FormAgent)](js-apis-app-form-formAgent.md)
     - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
@@ -229,9 +230,6 @@
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
   - [@ohos.window (窗口)](js-apis-window.md)
-  - webgl
-    - [webgl (WebGL)](js-apis-webgl.md)
-    - [webgl2 (WebGL2)](js-apis-webgl2.md)
 
 - 媒体
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](js-apis-app-ability-MediaControlExtensionAbility.md)
@@ -245,6 +243,7 @@
     - [MediaControlExtensionContext (播控扩展能力上下文)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
+    - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -263,6 +262,7 @@
 
 - 安全
   - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
@@ -287,6 +287,7 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
+  - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](js-apis-application-backupExtensionAbility.md)
   - [@ohos.file.backup (备份恢复)](js-apis-file-backup.md)
   - [@ohos.file.cloudSync (端云同步能力)](js-apis-file-cloudsync.md)
   - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
@@ -298,9 +299,11 @@
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
+  - [@ohos.file.recent(最近访问列表)](js-apis-file-recent.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
+  - [@ohos.file.trash (回收站)](js-apis-file-trash.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)

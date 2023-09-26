@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
@@ -17,11 +17,11 @@ getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在Stage模型下使用。
-
 > **说明：**
 >
 > 此接口从API version 9开始废弃。请使用[getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)替代。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -37,21 +37,12 @@ getMediaLibrary(context: Context): MediaLibrary
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | 媒体库实例。 |
 
-**示例：（从API version 9开始）**
+**示例：**
 
 ```ts
 // 获取mediaLibrary实例，后续用到此实例均采用此处获取的实例。
 const context = getContext(this);
-let media = mediaLibrary.getMediaLibrary(context);
-```
-
-**示例：（API version 8）**
-
-```js
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();
-let media = mediaLibrary.getMediaLibrary(context);
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(context);
 ```
 
 ## mediaLibrary.getMediaLibrary
@@ -60,11 +51,11 @@ getMediaLibrary(): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
-此接口仅可在FA模型下使用。
-
 > **说明：**
 >
 > 此接口从API version 9开始废弃。无替代接口。
+
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -76,8 +67,8 @@ getMediaLibrary(): MediaLibrary
 
 **示例：**
 
-```js
-let media = mediaLibrary.getMediaLibrary();
+```ts
+let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary
@@ -106,12 +97,12 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -184,12 +175,14 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
   // 创建文件获取选项，此处参数为获取image类型的文件资源。
-  let imagesFetchOp = {
+  let imagesFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
   };
@@ -218,11 +211,11 @@ async function example() {
       }
       // 释放FetchFileResult实例并使其失效。无法调用其他方法。
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       // 调用getFirstObject接口失败。
       console.error('get first object failed with error: ' + error);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     // 调用getFileAssets接口失败。
     console.error('get file assets failed with error: ' + error);
   });
@@ -250,7 +243,7 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 
 **示例：**
 
-```js
+```ts
 media.on('imageChange', () => {
   // image file had changed, do something.
 });
@@ -277,7 +270,7 @@ off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange
 
 **示例：**
 
-```js
+```ts
 media.off('imageChange', () => {
   // stop listening successfully.
 });
@@ -309,7 +302,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 使用Callback方式创建Image类型文件。
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -356,7 +349,9 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 使用Promise方式创建Image类型文件。
   let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -364,7 +359,7 @@ async function example() {
   const path = await media.getPublicDirectory(DIR_IMAGE);
   media.createAsset(mediaType, 'imagePromise.jpg', path + 'myPicture/').then((fileAsset) => {
     console.info('createAsset successfully, message = ' + JSON.stringify(fileAsset));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('createAsset failed with error: ' + error);
   });
 }
@@ -402,11 +397,13 @@ deleteAsset(uri: string): Promise\<void>
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -418,7 +415,7 @@ async function example() {
   }
   media.deleteAsset(asset.uri).then(() => {
     console.info('deleteAsset successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('deleteAsset failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -452,11 +449,11 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let option = {
+  let option: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
   };
@@ -498,7 +495,7 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 
 **示例：**
 
-```js
+```ts
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (error, dicResult) => {
   if (dicResult == 'Camera/') {
@@ -535,7 +532,9 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
   media.getPublicDirectory(DIR_CAMERA).then((dicResult) => {
@@ -544,7 +543,7 @@ async function example() {
     } else {
       console.error('getPublicDirectory DIR_CAMERA failed');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPublicDirectory failed with error: ' + error);
   });
 }
@@ -574,13 +573,13 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 **示例：**
 
-```js
+```ts
 async function example() {
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+  media.getAlbums(albumFetchOp, (error, albumList) => {
     if (albumList != undefined) {
       console.info('getAlbums successfully: ' + JSON.stringify(albumList));
     } else {
@@ -619,15 +618,17 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['Camera'],
   };
-  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+  media.getAlbums(albumFetchOp).then((albumList) => {
     console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAlbums failed with error: ' + error);
   });
 }
@@ -654,7 +655,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 media.release(() => {
   // do something.
 });
@@ -681,7 +682,7 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 media.release();
 ```
 
@@ -707,8 +708,8 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 
 **示例：**
 
-```js
-let option = {
+```ts
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
@@ -750,8 +751,10 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
 **示例：**
 
-```js
-let option = {
+```ts
+import { BusinessError } from '@ohos.base';
+
+let option: mediaLibrary.MediaAssetOption = {
   src : '/data/storage/el2/base/haps/entry/image.png',
   mimeType : 'image/*',
   relativePath : 'Pictures/'
@@ -759,7 +762,7 @@ let option = {
 mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
   console.info('Media resources stored.');
   // Obtain the URI that stores media resources.
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('storeMediaAsset failed with error: ' + error);
 });
 ```
@@ -787,7 +790,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 **示例：**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -830,7 +833,7 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-```js
+```ts
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -878,7 +881,9 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let images = [
   'file://media/xxxx/2',
   'file://media/xxxx/3'
@@ -892,7 +897,7 @@ let images = [
 let index = 1;
 mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
   console.info('Succeeded in previewing the images.');
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startImagePreview failed with error: ' + error);
 });
 ```
@@ -919,7 +924,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 **示例：**
 
-```js
+```ts
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -961,7 +966,9 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 let option : mediaLibrary.MediaSelectOption = {
   type : 'media',
   count : 2
@@ -969,7 +976,7 @@ let option : mediaLibrary.MediaSelectOption = {
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
   console.info('Media resources selected.');
   // Obtain the media selection value.
-}).catch((error) => {
+}).catch((error: BusinessError) => {
   console.error('startMediaSelect failed with error: ' + error);
 });
 ```
@@ -998,7 +1005,9 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getActivePeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1006,7 +1015,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -1036,7 +1045,7 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   media.getActivePeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1072,7 +1081,9 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   media.getAllPeers().then((devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1080,7 +1091,7 @@ async function example() {
     } else {
       console.info('get distributed info is undefined!');
     }
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('get distributed info failed with error: ' + error);
   });
 }
@@ -1110,7 +1121,7 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   media.getAllPeers((error, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1182,11 +1193,11 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1226,11 +1237,13 @@ isDirectory():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1239,7 +1252,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isDirectory().then((isDirectory) => {
     console.info('isDirectory result:' + isDirectory);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isDirectory failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1269,11 +1282,11 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1311,11 +1324,11 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1353,7 +1366,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1399,7 +1412,9 @@ open(mode: string): Promise&lt;number&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let mediaType = mediaLibrary.MediaType.IMAGE;
   let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1407,7 +1422,7 @@ async function example() {
   const asset = await media.createAsset(mediaType, 'image00003.jpg', path);
   asset.open('rw').then((fd) => {
     console.info('File open fd: ' + fd);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
 }
@@ -1436,11 +1451,13 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1456,7 +1473,7 @@ async function example() {
         console.info('asset.close successfully');
       }
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('File open failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1491,11 +1508,13 @@ close(fd: number): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1509,7 +1528,7 @@ async function example() {
     }).catch((closeErr) => {
       console.error('asset.close fail, closeErr: ' + closeErr);
     });
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('open File failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1538,11 +1557,11 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1583,16 +1602,16 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size, (error, pixelmap) => {
@@ -1634,21 +1653,23 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
   };
-  let size = { width: 720, height: 720 };
+  let size: mediaLibrary.Size = { width: 720, height: 720 };
   const fetchFileResult = await media.getFileAssets(getImageOp);
   const asset = await fetchFileResult.getFirstObject();
   asset.getThumbnail(size).then((pixelmap) => {
     console.info('mediaLibrary getThumbnail Successful, pixelmap ' + JSON.stringify(pixelmap));
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary getThumbnail failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1678,11 +1699,11 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1728,11 +1749,13 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1741,7 +1764,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.favorite(true).then(() => {
     console.info('mediaLibrary favorite Successful');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favorite failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1770,11 +1793,11 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1814,11 +1837,13 @@ isFavorite():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1827,7 +1852,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isFavorite().then((isFavorite) => {
     console.info('mediaLibrary isFavorite Successful, isFavorite result: ' + isFavorite);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('mediaLibrary favoriisFavoritete failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1859,11 +1884,11 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1911,11 +1936,13 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1924,7 +1951,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.trash(true).then(() => {
     console.info('trash successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('trash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -1953,11 +1980,11 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -1997,11 +2024,13 @@ isTrash():Promise&lt;boolean&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2010,7 +2039,7 @@ async function example() {
   const asset = await fetchFileResult.getFirstObject();
   asset.isTrash().then((isTrash) => {
     console.info('isTrash result: ' + isTrash);
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('isTrash failed with error: ' + error);
   });
   fetchFileResult.close();
@@ -2045,11 +2074,11 @@ getCount(): number
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let fileType = mediaLibrary.MediaType.FILE;
-  let getFileCountOneOp = {
+  let getFileCountOneOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [fileType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2081,11 +2110,11 @@ isAfterLast(): boolean
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2094,10 +2123,10 @@ async function example() {
   const fetchCount = fetchFileResult.getCount();
   console.info('mediaLibrary fetchFileResult.getCount, count:' + fetchCount);
   let fileAsset = await fetchFileResult.getFirstObject();
-  for (var i = 1; i < fetchCount; i++) {
+  for (let i = 1; i < fetchCount; i++) {
     fileAsset = await fetchFileResult.getNextObject();
     if(i == fetchCount - 1) {
-      var result = fetchFileResult.isAfterLast();
+      let result = fetchFileResult.isAfterLast();
       console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
       fetchFileResult.close();
     }
@@ -2119,11 +2148,11 @@ close(): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2153,11 +2182,11 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2194,11 +2223,13 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2207,7 +2238,7 @@ async function example() {
   fetchFileResult.getFirstObject().then((fileAsset) => {
     console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getFirstObject failed with error: ' + error);
   });
 }
@@ -2234,11 +2265,11 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2281,11 +2312,13 @@ getNextObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2297,7 +2330,7 @@ async function example() {
     fetchFileResult.getNextObject().then((fileAsset) => {
       console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
       fetchFileResult.close();
-    }).catch((error) => {
+    }).catch((error: BusinessError) => {
       console.error('fetchFileResult getNextObject failed with error: ' + error);
     })
   }
@@ -2324,11 +2357,11 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2365,11 +2398,13 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2378,7 +2413,7 @@ async function example() {
   fetchFileResult.getLastObject().then((fileAsset) => {
     console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getLastObject failed with error: ' + error);
   });
 }
@@ -2405,11 +2440,11 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2452,11 +2487,13 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2465,7 +2502,7 @@ async function example() {
   fetchFileResult.getPositionObject(0).then((fileAsset) => {
     console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getPositionObject failed with error: ' + error);
   });
 }
@@ -2491,11 +2528,11 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2534,11 +2571,13 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   let fileKeyObj = mediaLibrary.FileKey;
   let imageType = mediaLibrary.MediaType.IMAGE;
-  let getImageOp = {
+  let getImageOp: mediaLibrary.MediaFetchOptions = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
     order: fileKeyObj.DATE_ADDED + ' DESC',
@@ -2549,7 +2588,7 @@ async function example() {
       console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
     } 
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('getAllObject failed with error: ' + error);
   });
 }
@@ -2599,14 +2638,14 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify((error) => {
@@ -2641,19 +2680,21 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('commitModify failed with error: ' + error);
   });
 }
@@ -2681,15 +2722,15 @@ getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets((error, fetchFileResult) => {
@@ -2727,19 +2768,19 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 **示例：**
 
-```js
+```ts
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
@@ -2782,26 +2823,28 @@ async function example() {
 
 **示例：**
 
-```js
+```ts
+import { BusinessError } from '@ohos.base';
+
 async function example() {
   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
-  let AlbumNoArgsfetchOp = {
+  let albumFetchOp: mediaLibrary.MediaFetchOptions = {
     selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
     selectionArgs: ['新建相册1'],
   };
-  let fileNoArgsfetchOp = {
+  let fileNoArgsfetchOp: mediaLibrary.MediaFetchOptions = {
     selections: '',
     selectionArgs: [],
   };
   // 获取符合检索要求的相册，返回相册列表。
-  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const albumList = await media.getAlbums(albumFetchOp);
   const album = albumList[0];
   // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
   album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
     let count = fetchFileResult.getCount();
     console.info('album getFileAssets successfully, count: ' + count);
     fetchFileResult.close();
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('album getFileAssets failed with error: ' + error);
   });
 }

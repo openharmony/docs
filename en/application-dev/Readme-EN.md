@@ -27,7 +27,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development (for System Applications Only)](quick-start/cross-app-hsp.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)

@@ -433,7 +433,16 @@ context.startAbility(want, options).then(() => {
 
 ## 启动UIAbility的指定页面
 
-一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。本文主要讲解目标UIAbility首次启动和目标UIAbility非首次启动两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
+### 概述
+
+一个UIAbility可以对应多个页面，在不同的场景下启动该UIAbility时需要展示不同的页面，例如从一个UIAbility的页面中跳转到另外一个UIAbility时，希望启动目标UIAbility的指定页面。
+
+UIAbility的启动分为两种情况：UIAbility冷启动和UIAbility热启动。
+
+- UIAbility冷启动：指的是UIAbility实例处于完全关闭状态下被启动，这需要完整地加载和初始化UIAbility实例的代码、资源等。
+- UIAbility热启动：指的是UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例，这种情况下可以快速恢复UIAbility实例的状态。
+
+本文主要讲解[目标UIAbility冷启动](#目标uiability冷启动)和[目标UIAbility热启动](#目标uiability热启动)两种启动指定页面的场景，以及在讲解启动指定页面之前会讲解到在调用方如何指定启动页面。
 
 
 ### 调用方UIAbility指定启动页面
@@ -465,9 +474,9 @@ context.startAbility(want).then(() => {
 ```
 
 
-### 目标UIAbility首次启动
+### 目标UIAbility冷启动
 
-目标UIAbility首次启动时，在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
+目标UIAbility冷启动时，在目标UIAbility的`onCreate()`生命周期回调中，接收调用方传过来的参数。然后在目标UIAbility的`onWindowStageCreate()`生命周期回调中，解析EntryAbility传递过来的want参数，获取到需要加载的页面信息url，传入`windowStage.loadContent()`方法。
 
 
 ```ts
@@ -497,7 +506,7 @@ export default class FuncAbility extends UIAbility {
 }
 ```
 
-### 目标UIAbility非首次启动
+### 目标UIAbility热启动
 
 在应用开发中，会遇到目标UIAbility实例之前已经启动过的场景，这时再次启动目标UIAbility时，不会重新走初始化逻辑，只会直接触发`onNewWant()`生命周期方法。为了实现跳转到指定页面，需要在`onNewWant()`中解析要参数进行处理。
 
@@ -509,26 +518,12 @@ export default class FuncAbility extends UIAbility {
 4. 用户点击联系人张三的短信按钮，会重新启动短信应用的UIAbility实例。
 5. 由于短信应用的UIAbility实例已经启动过了，此时会触发该UIAbility的`onNewWant()`回调，而不会再走`onCreate()`和`onWindowStageCreate()`等初始化逻辑。
 
-```mermaid
-sequenceDiagram
-Participant U as 用户
-Participant S as 短信应用
-Participant C as 联系人应用
-
-U->>S: 打开短信应用
-S-->>U: 显示短信应用主页
-U->>S: 将设备回到桌面界面
-S->>S: 短信应用进入后台
-U->>C: 打开联系人应用
-C-->>U: 显示联系人应用界面
-U->>C: 点击联系人张三的短信按钮
-C->>S: 构造Want启动短信应用
-S-->>U: 显示给张三发短信的页面
-```
+图1 目标UIAbility热启动  
+![](figures/uiability-hot-start.png)
 
 开发步骤如下所示。
 
-1. 首次启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在`onWindowStageCreate()`生命周期回调中，通过调用[`getUIContext()`](../reference/apis/js-apis-window.md#getuicontext10)接口获取UI上下文实例[`UIContext`](../reference/apis/js-apis-arkui-UIContext.md)对象。
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -546,17 +541,26 @@ S-->>U: 显示给张三发短信的页面
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Main window is created, set main page for this ability
-       // ...
+       let url = 'pages/Index';
+       if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
+         url = 'pages/Second';
+       }
 
-       let windowClass: window.Window;
-       windowStage.getMainWindow((err, data) => {
+       windowStage.loadContent(url, (err, data) => {
          if (err.code) {
-           console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
            return;
          }
-         windowClass = data;
-         this.uiContext = windowClass.getUIContext();
-       })
+
+         let windowClass: window.Window;
+         windowStage.getMainWindow((err, data) => {
+           if (err.code) {
+             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           windowClass = data;
+           this.uiContext = windowClass.getUIContext();
+         })
+       });
      }
    }
    ```

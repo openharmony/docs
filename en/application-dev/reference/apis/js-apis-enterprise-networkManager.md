@@ -4,15 +4,15 @@ The **networkManager** module provides APIs for network management of enterprise
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
+> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager.md#adminmanagerenableadmin).
 
 ## Modules to Import
 
-```js
+```ts
 import networkManager from '@ohos.enterprise.networkManager';
 ```
 
@@ -39,15 +39,16 @@ Obtains all activated network ports through the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -89,22 +90,24 @@ Obtains all activated network ports through the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
   console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -133,15 +136,16 @@ Obtains the device IP address based on the network port through the specified de
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -184,22 +188,24 @@ Obtains the device IP address based on the network port through the specified de
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting ip address, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -228,15 +234,16 @@ Obtains the device MAC address based on the network port through the specified d
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -279,22 +286,24 @@ Obtains the device MAC address based on the network port through the specified d
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getMac(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in getting mac, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -323,15 +332,16 @@ Checks whether a network port is disabled through the specified device administr
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -374,22 +384,24 @@ Checks whether a network port is disabled through the specified device administr
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
   console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -426,8 +438,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -478,15 +491,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
   console.info(`Succeeded in setting network interface disabled`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -522,14 +537,16 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let exclusionStr = "192.168,baidu.com"
-let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
@@ -581,14 +598,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import connection from '@ohos.net.connection';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let exclusionStr = "192.168,baidu.com"
-let exclusionArray = exclusionStr.split(',');
-let httpProxy = {
+let exclusionStr: string = "192.168,baidu.com"
+let exclusionArray: Array<string> = exclusionStr.split(',');
+let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
   port: 8080,
   exclusionList: exclusionArray
@@ -596,7 +616,7 @@ let httpProxy = {
 
 networkManager.setGlobalProxy(wantTemp, httpProxy).then(() => {
   console.info(`Succeeded in setting network global proxy`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set network global proxy. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -631,8 +651,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -681,15 +702,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.getGlobalProxy(wantTemp).then(() => {
   console.info(`Succeeded in getting network global proxy`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to get network global proxy. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -725,12 +748,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
@@ -788,12 +812,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
@@ -808,7 +834,7 @@ let filterRule = {
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in setting iptables filter rule`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to set iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -844,12 +870,13 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.RemoveFilterRule = {
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -905,12 +932,14 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let filterRule = {
+let filterRule: networkManager.RemoveFilterRule = {
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -923,7 +952,7 @@ let filterRule = {
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in removing iptables filter rule`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```
@@ -958,8 +987,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1008,15 +1038,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 networkManager.listIptablesFilterRules(wantTemp).then((result) => {
   console.info(`Succeeded in getting iptables filter rule, result: ${result}`);
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to remove iptables filter rule. Code: ${err.code}, message: ${err.message}`);
 });
 ```

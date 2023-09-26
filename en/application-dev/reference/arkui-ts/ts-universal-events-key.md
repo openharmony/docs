@@ -43,14 +43,16 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('KeyEvent')
-        .onKeyEvent((event: KeyEvent) => {
-          if (event.type === KeyType.Down) {
-            this.eventType = 'Down'
+        .onKeyEvent((event?: KeyEvent) => {
+          if(event){
+            if (event.type === KeyType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.type === KeyType.Up) {
+              this.eventType = 'Up'
+            }
+            this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText + '\nintentionCode:' + event.intentionCode
           }
-          if (event.type === KeyType.Up) {
-            this.eventType = 'Up'
-          }
-          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText + '\nintentionCode:' + event.intentionCode
         })
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
@@ -58,4 +60,4 @@ struct KeyEventExample {
 }
 ```
 
- ![keyEvent](figures/keyEvent.gif)
+ ![keyEvent](figures/keyEvent.gif) 

@@ -101,7 +101,7 @@ try {
 }
 ```
 
-> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context和[应用间HSP](../../../application-dev/quick-start/cross-app-hsp.md)的Context。
+> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context。
 
 ## Context.createModuleContext
 

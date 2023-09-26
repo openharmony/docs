@@ -185,7 +185,7 @@ struct Index {
 @Reusable
 @Component
 struct Child {
-  aboutToReuse(params) {
+  aboutToReuse(params: Object) {
     console.info("Recycle Child")
   }
 
@@ -248,7 +248,7 @@ struct Index {
   build() {
     Column() {
       CustomLayout() {
-        ForEach([1, 2, 3], (index) => {
+        ForEach([1, 2, 3], (index: number) => {
           Text('Sub' + index)
             .fontSize(30)
             .borderWidth(2)
@@ -261,7 +261,11 @@ struct Index {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => {};
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
 
   onLayout(children: Array<LayoutChild>, constraint: ConstraintSizeOptions) {
     let pos = 0;
@@ -295,9 +299,11 @@ struct CustomLayout {
 
 | 参数          | 参数类型      | 描述                  |
 |-------------|-----------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。            |
-| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。        |
-| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。 |
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。<br>单位：vp            |
+| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。 <br>单位：vp       |
+| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。<br>单位：vp |
+| width  | Number | 测量后的宽。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比宽。 |
+| height | Number | 测量后的高。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比高。 |
 
 
 ## Layoutable<sup>10+</sup>
@@ -308,7 +314,7 @@ struct CustomLayout {
 
 | 参数         | 参数类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10+)                                           | 子组件测量后的尺寸信息。        |
+| measureResult| [MeasureResult](#measureresult10+)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
 | layout     | ([Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## Measurable<sup>10+</sup>
@@ -329,8 +335,8 @@ struct CustomLayout {
 
 | 参数     | 参数类型   | 描述    |
 |--------|--------|-------|
-| width  | Number | 测量后的宽。 |
-| height | Number | 测量后的高。 |
+| width  | Number | 测量后的宽。<br>单位：vp |
+| height | Number | 测量后的高。<br>单位：vp |
 
 
 ## SizeResult<sup>10+</sup>
@@ -341,15 +347,16 @@ struct CustomLayout {
 
 | 参数     | 参数类型   | 描述    |
 |--------|--------|-------|
-| width  | Number | 测量后的宽。 |
-| height | Number | 测量后的高。 |
+| width  | Number | 测量后的宽。<br>单位：vp |
+| height | Number | 测量后的高。<br>单位：vp |
 
 > **说明：**
 >
->- 自定义布局暂不支持LazyForEach写法
->- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法
->- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息
->- onPlaceChildren和onMeasureSize使用自定义组件写法时，暂不支持尾随闭包式写法，建议使用示例内写法
+>- 自定义布局暂不支持LazyForEach写法。
+>- 使用builder形式的自定义布局创建，自定义组件的build()方法内只允许存在this.builder()，即示例的推荐用法。
+>- 子组件设置的位置信息和尺寸信息，优先级小于onMeasureSize设置的尺寸信息和onPlaceChildren设置的位置信息。
+>- 使用自定义布局方法时，如未调用子组件的measure和layout方法，将不显示布局。
+>- 调用onPlaceChildren后，影响子组件布局位置的部分通用属性将失效，如margin、align等。
 
 ```
 // xxx.ets
@@ -365,7 +372,7 @@ struct Index {
 
 @Builder
 function ColumnChildren() {
-  ForEach([1, 2, 3], (index) => { //暂不支持lazyForEach的写法
+  ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
     Text('S' + index)
       .fontSize(30)
       .width(100)
@@ -377,8 +384,16 @@ function ColumnChildren() {
 
 @Component
 struct CustomLayout {
-  @BuilderParam builder: () => void;
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
   @State startSize: number = 100;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
 
   onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
     let startPos = 400;
@@ -395,7 +410,9 @@ struct CustomLayout {
       size += result.width / 2
       ;
     })
-    return { width: 100, height: 400 };
+    this.result.width = 100;
+    this.result.height = 400;
+    return this.result;
   }
 
   build() {

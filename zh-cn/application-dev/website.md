@@ -24,7 +24,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -685,31 +684,7 @@
     - [前言](key-features/multi-device-app-dev/foreword.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
     - [从一个例子开始](key-features/multi-device-app-dev/start-with-a-example.md)
-    - 应用UX设计
-      - [设计原则和要点](key-features/multi-device-app-dev/design-principles.md)
-      - 应用架构设计
-        - [应用导航结构设计要求](key-features/multi-device-app-dev/navigation-design.md)
-        - [应用页面结构设计](key-features/multi-device-app-dev/page-design.md)
-      - 界面布局
-        - [概述](key-features/multi-device-app-dev/interface-layout-design-intro.md)
-        - 布局基础
-          - [栅格系统](key-features/multi-device-app-dev/design-grid.md)
-          - [自适应布局](key-features/multi-device-app-dev/design-adaptive-layout.md)
-          - [响应式布局](key-features/multi-device-app-dev/design-responsive-layout.md)
-        - [布局基础运用案例](key-features/multi-device-app-dev/design-layout-cases.md)
-      - 人机交互
-        - [交互基础](key-features/multi-device-app-dev/interaction-basics.md)
-        - [常见输入方式](key-features/multi-device-app-dev/common-input-modes.md)
-        - [交互事件归一](key-features/multi-device-app-dev/design-interaction-event-normalization.md)
-      - 视觉风格
-        - [视觉基础](key-features/multi-device-app-dev/visual-basics.md)
-        - [色彩](key-features/multi-device-app-dev/visual-style-color.md)
-        - [字体](key-features/multi-device-app-dev/visual-style-font.md)
-        - [图标](key-features/multi-device-app-dev/visual-style-icon.md)
-      - [多态控件](key-features/multi-device-app-dev/design-polymorphic-controls.md)
-      - [设计自检表](key-features/multi-device-app-dev/design-checklist.md)
-      - [设计交付](key-features/multi-device-app-dev/design-delivery.md)
-      - [资源](key-features/multi-device-app-dev/design-resources.md)
+    - [应用UX设计](key-features/multi-device-app-dev/design-principles.md)
     - [工程管理](key-features/multi-device-app-dev/ide-using.md)
     - 页面开发的一多能力介绍
       - [简介](key-features/multi-device-app-dev/page-development-intro.md)
@@ -751,6 +726,28 @@
       - [USB DDK开发指导](napi/usb-ddk-guidelines.md)
     - 数据管理
       - [RelationalStore开发指导](napi/native-relational-store-guidelines.md)
+  - 性能
+    - [性能优化概览](performance/performance-overview.md)
+    - ArkTS高性能编程
+      - [高性能编程规范](performance/high-performance-programming.md)
+      - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [多线程能力场景化](performance/multi_thread_capability.md)
+    - 减少卡顿丢帧
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
+      - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [Swiper高性能开发指导](performance/swiper_optimization.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [合理进行状态管理](performance/proper_state_management.md)
+      - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [减少视图嵌套层次](performance/reduce-view-nesting-levels.md)
+      - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理使用IPC通信](performance/reasonable-using-ipc.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -763,7 +760,6 @@
     - [anm工具](tools/anm-tool.md)
     - [restool工具](tools/restool.md)
     - [LLDB调试器使用指导](tools/lldb-tool.md)
-    - [suap工具](tools/suap-tool.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
@@ -996,9 +992,6 @@
       - [@ohos.screen (屏幕)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
-      - webgl
-        - [webgl (WebGL)](reference/apis/js-apis-webgl.md)
-        - [webgl2 (WebGL2)](reference/apis/js-apis-webgl2.md)
     - 媒体
       - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)](reference/apis/js-apis-app-ability-MediaControlExtensionAbility.md)
       - [@ohos.multimedia.audio (音频管理)](reference/apis/js-apis-audio.md)
@@ -1164,7 +1157,6 @@
       - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis/js-apis-multimodalinput-gestureevent.md)
       - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(待停用)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
@@ -1253,6 +1245,7 @@
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](reference/apis/js-apis-cooperate.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)

@@ -2,7 +2,7 @@
 
 ## When to Use
 
-**NativeImage** is a module provided by OpenHarmony for associating a surface with a OpenGL external texture. It functions as the consumer of a graphics queue. It provides APIs for you to obtain and use a buffer, and output the buffer content to a OpenGL external texture.
+**NativeImage** is a module for associating a surface with a OpenGL external texture. It functions as the consumer of a graphics queue. It provides APIs for you to obtain and use a buffer, and output the buffer content to a OpenGL external texture. 
 
 The following scenario is common for **NativeImage** development:
 
@@ -10,16 +10,16 @@ Use the native APIs provided by **NativeImage** to create a **NativeImage** inst
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the OpenGL ES texture ID and target.|
-| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image) | Obtains a **NativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **NativeWindow** instance when it is no longer needed.|
-| OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
-| OH_NativeImage_DetachContext (OH_NativeImage \*image) | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.|
-| OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image) | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.|
-| OH_NativeImage_GetTimestamp (OH_NativeImage \*image) | Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
-| OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | Obtains the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
-| OH_NativeImage_Destroy (OH_NativeImage \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**.|
+| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the OpenGL ES texture ID and target.| 
+| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image) | Obtains a **NativeWindow** instance associated with an **OH_NativeImage** instance. You need to call **OH_NativeWindow_DestroyNativeWindow** to release the **NativeWindow** instance when it is no longer needed.| 
+| OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to an **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.| 
+| OH_NativeImage_DetachContext (OH_NativeImage \*image) | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.| 
+| OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image) | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.| 
+| OH_NativeImage_GetTimestamp (OH_NativeImage \*image) | Obtains the timestamp of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.| 
+| OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | Obtains the transform matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.| 
+| OH_NativeImage_Destroy (OH_NativeImage \*\*image) | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to the **OH_NativeImage** instance is assigned **NULL**.| 
 
 For details about the APIs, see [native_image](../reference/native-apis/_o_h___native_image.md).
 
@@ -52,8 +52,11 @@ libnative_buffer.so
 
     Refer to the code snippet below.
     ```c++
+    #include <iostream>
+    #include <string>
     #include <EGL/egl.h>
     #include <EGL/eglext.h>
+
     using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
     constexpr const char* EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";
     constexpr const char* EGL_KHR_PLATFORM_WAYLAND = "EGL_KHR_platform_wayland";
@@ -168,54 +171,63 @@ libnative_buffer.so
     OHNativeWindow* nativeWindow = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
-4. Write the produced content to a **NativeWindowBuffer** instance.
+4. Sets the width and height of the native window.
+    ```c++
+    int code = SET_BUFFER_GEOMETRY;
+    int32_t width = 800;
+    int32_t height = 600;
+    int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
+    ```
+
+5. Write the produced content to a **NativeWindowBuffer** instance.
     1. Obtain a NativeWindowBuffer instance from the NativeWindow instance.
+    ```c++
+    OHNativeWindowBuffer* buffer = nullptr;
+    int fenceFd;
+    // Obtain a NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
+    OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
     
-       ```c++
-       OHNativeWindowBuffer* buffer = nullptr;
-       int fenceFd;
-       // Obtain a NativeWindowBuffer instance by calling OH_NativeWindow_NativeWindowRequestBuffer.
-       OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &buffer, &fenceFd);
-       
-       BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
-       int code = SET_BUFFER_GEOMETRY;
-       int32_t width = 0x100;
-       int32_t height = 0x100;
-       ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
-       ```
-    
+    BufferHandle *handle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
+    ```
     2. Write the produced content to the **NativeWindowBuffer** instance.
+    ```c++
+    #include <sys/mman.h>
     
-       ```c++
-       static uint32_t value = 0x00;
-       value++;
-       uint32_t *pixel = static_cast<uint32_t *>(handle->virAddr);
-       for (uint32_t x = 0; x < width; x++) {
-           for (uint32_t y = 0;  y < height; y++) {
-               *pixel++ = value;
-           }
-       }
-       ```
-    
+    // Use mmap() to obtain the memory virtual address of buffer handle.
+    void* mappedAddr = mmap(handle->virAddr, handle->size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd, 0);
+    if (mappedAddr == MAP_FAILED) {
+        // mmap failed
+    }
+    static uint32_t value = 0x00;
+    value++;
+    uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
+    for (uint32_t x = 0; x < width; x++) {
+        for (uint32_t y = 0;  y < height; y++) {
+            *pixel++ = value;
+        }
+    }
+    // Unmap the memory when the memory is no longer required.
+    int result = munmap(mappedAddr, handle->size);
+    if (result == -1) {
+        // munmap failed
+    }
+    ```
     3. Flush the **NativeWindowBuffer** to the **NativeWindow**.
-    
-       ```c++
-       // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the NativeWindowBuffer are changed.
-       Region region{nullptr, 0};
-       // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
-       OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
-   ```
-    
+    ```c++
+    // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the NativeWindowBuffer are changed.
+    Region region{nullptr, 0};
+    // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
+    OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, fenceFd, region);
+    ```
     4. Destroy the **NativeWindow** instance when it is no longer needed.
-    
-       ```c++
-       OH_NativeWindow_DestroyNativeWindow(nativeWindow);
-       ```
-    
-5. Update the content to the OpenGL texture.
+    ```c++
+    OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+    ```
+
+6. Update the content to the OpenGL texture.
     ```c++
     // Update the content to the OpenGL texture.
-    int32_t ret = OH_NativeImage_UpdateSurfaceImage(image);
+    ret = OH_NativeImage_UpdateSurfaceImage(image);
     if (ret != 0) {
         std::cout << "OH_NativeImage_UpdateSurfaceImage failed" << std::endl;
     }
@@ -228,7 +240,7 @@ libnative_buffer.so
     }
     ```
 
-6. Unbind the OpenGL texture and bind it to a new external texture.
+7. Unbind the OpenGL texture and bind it to a new external texture.
     ```c++
     // Detach an OH_NativeImage instance from the current OpenGL ES context.
     ret = OH_NativeImage_DetachContext(image);
@@ -241,7 +253,7 @@ libnative_buffer.so
     ret = OH_NativeImage_AttachContext(image, textureId2);
     ```
 
-7. Destroy the **OH_NativeImage** instance when it is no longer needed.
+8. Destroy the **OH_NativeImage** instance when it is no longer needed.
     ```c++
     // Destroy the OH_NativeImage instance.
     OH_NativeImage_Destroy(&image);

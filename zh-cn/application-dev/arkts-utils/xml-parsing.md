@@ -29,111 +29,109 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 1. 引入模块。
 
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // 需要使用util模块函数对文件编码
-   ```
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    ```
 
 2. 对XML文件编码后调用XmlPullParser。
    可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
 
-
-   ```js
-  let strXml: string =
-  '<?xml version="1.0" encoding="utf-8"?>' +
-    '<note importance="high" logged="true">' +
-    '<title>Play</title>' +
-    '<lens>Work</lens>' +
-    '</note>';
-  let textEncoder: util.TextEncoder = new util.TextEncoder();
-  let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-  // 1.基于ArrayBuffer构造XmlPullParser对象
-  let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-
-  // 2.基于DataView构造XmlPullParser对象
-  let dataView: DataView = new DataView(arrBuffer.buffer);
-  let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
-   ```
+    ```ts
+    let strXml: string =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '<title>Play</title>' +
+      '<lens>Work</lens>' +
+      '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
+    // 1.基于ArrayBuffer构造XmlPullParser对象
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+   
+    // 2.基于DataView构造XmlPullParser对象
+    let dataView: DataView = new DataView(arrBuffer.buffer);
+    let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
+    ```
 
 3. 自定义回调函数，本例直接打印出标签及标签值。
 
-   ```js
-   let str: string = '';
-   function func(name: string, value: string): boolean {
-     str = name + value;
-     console.info(str);
-     return true; //true:继续解析 false:停止解析
-   }
-   ```
+    ```ts
+    let str: string = '';
+    function func(name: string, value: string): boolean {
+      str = name + value;
+      console.info(str);
+      return true; //true:继续解析 false:停止解析
+    }
+    ```
 
 4. 设置解析选项，调用parse函数。
 
-   ```js
-   let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
-   that.parse(options);
-   ```
+    ```ts
+    let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
+    that.parse(options);
+    ```
 
-   输出结果如下所示：
+	输出结果如下所示：
+
+	```
+	note
+	title
+	Play
+	title
+	lens
+	Work
+	lens
+	note
+	```
 
 
-   ```js
-   note
-   title
-   Play
-   title
-   lens
-   Work
-   lens
-   note
-   ```
 
 
 ## 解析XML属性和属性值
 
 1. 引入模块。
 
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // 需要使用util模块函数对文件编码
-   ```
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    ```
 
 2. 对XML文件编码后调用XmlPullParser。
 
-   ```js
-   let strXml: string =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-       '<note importance="high" logged="true">' +
-       '    <title>Play</title>' +
-       '    <title>Happy</title>' +
-       '    <lens>Work</lens>' +
-       '</note>';
-   let textEncoder: util.TextEncoder = new util.TextEncoder();
-   let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-   let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-   ```
+    ```ts
+    let strXml: string =
+      '<?xml version="1.0" encoding="utf-8"?>' +
+        '<note importance="high" logged="true">' +
+        '    <title>Play</title>' +
+        '    <title>Happy</title>' +
+        '    <lens>Work</lens>' +
+        '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    ```
 
 3. 自定义回调函数，本例直接打印出属性及属性值。
 
-   ```js
-   let str: string = '';
-   function func(name: string, value: string): boolean {
-     str += name + ' ' + value + ' ';
-     return true; // true:继续解析 false:停止解析
-   }
-   ```
+    ```ts
+    let str: string = '';
+    function func(name: string, value: string): boolean {
+      str += name + ' ' + value + ' ';
+      return true; // true:继续解析 false:停止解析
+    }
+    ```
 
 4. 设置解析选项，调用parse函数。
 
-   ```js
-   let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
-   that.parse(options);
-   console.info(str); // 一次打印出所有的属性及其值
-   ```
+    ```ts
+    let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
+    that.parse(options);
+    console.info(str); // 一次打印出所有的属性及其值
+    ```
 
    输出结果如下所示：
-
-
-   ```js
+   ```
    importance high logged true // note节点的属性及属性值
    ```
 
@@ -142,54 +140,55 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 1. 引入模块。
 
-   ```js
-   import xml from '@ohos.xml';
-   import util from '@ohos.util'; // 需要使用util模块函数对文件编码
-   ```
+    ```ts
+    import xml from '@ohos.xml';
+    import util from '@ohos.util'; // 需要使用util模块函数对文件编码
+    ```
 
 2. 对XML文件编码后调用XmlPullParser。
 
-   ```js
-   let strXml: string =
-     '<?xml version="1.0" encoding="utf-8"?>' +
-     '<note importance="high" logged="true">' +
-     '<title>Play</title>' +
-     '</note>';
-   let textEncoder: util.TextEncoder = new util.TextEncoder();
-   let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-   let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
-   ```
+    ```ts
+    let strXml: string =
+      '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '<title>Play</title>' +
+      '</note>';
+    let textEncoder: util.TextEncoder = new util.TextEncoder();
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    ```
 
 3. 自定义回调函数，本例直接打印元素事件类型及元素深度。
 
-   ```js
-   let str: string  = '';
-   function func(name: string, value: xml.ParseInfo): boolean {
-     str = name + ' ' + value.getDepth(); // getDepth 获取元素的当前深度
-     console.info(str)
-     return true; //true:继续解析 false:停止解析
-   }
-   ```
+    ```ts
+    let str: string  = '';
+    function func(name: xml.EventType, value: xml.ParseInfo): boolean {
+      str = name + ' ' + value.getDepth(); // getDepth 获取元素的当前深度
+      console.info(str)
+      return true; //true:继续解析 false:停止解析
+    }
+    ```
 
 4. 设置解析选项，调用parse函数。
 
-   ```js
-   let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
-   that.parse(options);
-   ```
+     ```ts
+     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
+     that.parse(options);
+     ```
 
    输出结果如下所示：
 
+	```
+	 0 0 // 0：<?xml version="1.0" encoding="utf-8"?> 对应事件类型		START_DOCUMENT值为0  0：起始深度为0
+	 2 1 // 2：<note importance="high" logged="true"> 对应事件类型START_TAG值为2       1：深度为1
+	 2 2 // 2：<title>对应事件类型START_TAG值为2                                       2：深度为2
+	 4 2 // 4：Play对应事件类型TEXT值为4                                               2：深度为2
+	 3 2 // 3：</title>对应事件类型END_TAG值为3                                        2：深度为2
+	 3 1 // 3：</note>对应事件类型END_TAG值为3                                         1：深度为1（与<note对应>）
+	 1 0 // 1：对应事件类型END_DOCUMENT值为1                                           0：深度为0
+	```
 
-   ```js
-   0 0 // 0：<?xml version="1.0" encoding="utf-8"?> 对应事件类型START_DOCUMENT值为0  0：起始深度为0
-   2 1 // 2：<note importance="high" logged="true"> 对应事件类型START_TAG值为2       1：深度为1
-   2 2 // 2：<title>对应事件类型START_TAG值为2                                       2：深度为2
-   4 2 // 4：Play对应事件类型TEXT值为4                                               2：深度为2
-   3 2 // 3：</title>对应事件类型END_TAG值为3                                        2：深度为2
-   3 1 // 3：</note>对应事件类型END_TAG值为3                                         1：深度为1（与<note对应>）
-   1 0 // 1：对应事件类型END_DOCUMENT值为1                                           0：深度为0
-   ```
+
 
 
 ## 场景示例
@@ -197,7 +196,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 此处以调用所有解析选项为例，提供解析XML标签、属性和事件类型的开发示例。
 
 
-```js
+```ts
 import xml from '@ohos.xml';
 import util from '@ohos.util';
 
@@ -218,53 +217,51 @@ function tagFunc(name: string, value: string): boolean {
   return true;
 }
 
-function attFunc(name: string, value: string): boolean {
+function attFunc(name: xml.EventType, value: string): boolean {
   str = name + ' ' + value;
   console.info('attri-' + str);
   return true;
 }
 
-function tokenFunc(name: string, value: xml.ParseInfo): boolean {
+function tokenFunc(name: xml.EventType, value: xml.ParseInfo): boolean {
   str = name + ' ' + value.getDepth();
   console.info('token-' + str);
   return true;
 }
 
 let options: xml.ParseOptions = {
-  supportDocType: true,
+  supportDoctype: true,
   ignoreNameSpace: true,
   tagValueCallbackFunction: tagFunc,
   attributeValueCallbackFunction: attFunc,
   tokenValueCallbackFunction: tokenFunc
 };
 that.parse(options);
-
 ```
 
 输出结果如下所示：
 
-
-```js
-tag-
-token-0 0
-tag-book
-attri-category COOKING
-token-2 1
-tag-title
-attri-lang en
-token-2 2
-tag-Everyday
-token-4 2
-tag-title
-token-3 2
-tag-author
-token-2 2
-tag-Giada
-token-4 2
-tag-author
-token-3 2
-tag-book
-token-3 1
-tag-
-token-1 0
-```
+   ```
+   tag-
+   token-0 0
+   tag-book
+   attri-category COOKING
+   token-2 1
+   tag-title
+   attri-lang en
+   token-2 2
+   tag-Everyday
+   token-4 2
+   tag-title
+   token-3 2
+   tag-author
+   token-2 2
+   tag-Giada
+   token-4 2
+   tag-author
+   token-3 2
+   tag-book
+   token-3 1
+   tag-
+   token-1 0
+   ```

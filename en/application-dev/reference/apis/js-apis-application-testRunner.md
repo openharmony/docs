@@ -25,6 +25,8 @@ Prepares the unit test environment to run test cases.
 **Example**
 
 ```ts
+import TestRunner from '@ohos.application.testRunner';
+
 export default class UserTestRunner implements TestRunner {
     onPrepare() {
         console.log('Trigger onPrepare');
@@ -46,6 +48,8 @@ Runs test cases.
 **Example**
 
 ```ts
+import TestRunner from '@ohos.application.testRunner';
+
 export default class UserTestRunner implements TestRunner {
     onPrepare() {}
     onRun() {

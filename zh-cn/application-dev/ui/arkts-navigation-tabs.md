@@ -283,7 +283,17 @@ TabContent() {
 
 
 ```ts
-private tabsController : TabsController = new TabsController()
+class Tmp{
+  currentIndex:number = 0;
+  tabsController : TabsController = new TabsController()
+  foo(val:number){
+    this.currentIndex = val;
+  }
+  tabfoo(){
+    this.tabsController.changeIndex(this.currentIndex);
+  }
+}
+private tabsController : object = new TabsController()
 @State currentIndex:number = 0;
 
 @Builder TabBuilder(title: string, targetIndex: number) {
@@ -293,8 +303,9 @@ private tabsController : TabsController = new TabsController()
   }
   ...
   .onClick(() => {
-    this.currentIndex = targetIndex;
-    this.tabsController.changeIndex(this.currentIndex);
+    let Cur:Tmp = new Tmp()
+    Cur.foo(targetIndex)
+    Cur.tabfoo()
   })
 }
 ```
@@ -342,6 +353,12 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
 
 ```ts
+class Tmp{
+  currentIndex:number = 0;
+  foo(val:number){
+    this.currentIndex = val;
+  }
+}
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
@@ -359,8 +376,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
     ...
   }
   .tabBar(this.TabBuilder('我的', 3))
-}.onChange((index) => {
-  this.currentIndex = index
+}.onChange((index:number) => {
+  let Cur:Tmp = new Tmp()
+  Cur.foo(index)
 })
 ```
 

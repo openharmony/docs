@@ -9,7 +9,7 @@
 
 
 ```ts
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 ```
 
 ## App
@@ -33,9 +33,10 @@ static getInfo(): AppResponse
 **示例：**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class Info {
   getInfo() {
-    let info = app.getInfo()
+    let info:AppResponse = app.getInfo()
     console.log(JSON.stringify(info))
   }
 }
@@ -54,7 +55,8 @@ static terminate(): void
 **示例：**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class TerM {
   terminate() {
     app.terminate()
   }
@@ -78,9 +80,9 @@ static setImageCacheCount(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
     console.info('Application onCreate')
@@ -109,9 +111,9 @@ static setImageRawDataCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageRawDataCacheSize(104857600)
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
@@ -141,9 +143,9 @@ static setImageFileCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app from '@system.app'
+import app, { AppResponse } from '@system.app'
 
-export default {
+export default class OnC {
   onCreate() {
     app.setImageFileCacheSize(209715200)
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
@@ -188,13 +190,14 @@ static requestFullWindow(options?: RequestFullWindowOptions): void
 **示例：**
 
 ```ts
-export default {
+import app, { AppResponse } from '@system.app'
+export default class Req {
   requestFullWindow() {
     app.requestFullWindow({
       duration: 200
     })
   }
-}
+} 
 ```
 
 ## AppResponse

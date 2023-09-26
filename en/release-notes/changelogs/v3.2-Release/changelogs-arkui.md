@@ -306,3 +306,11 @@ pluginComponentManager.request({
     }
 )
 ```
+
+## cl.arkui.4 Disabling Online Images for JS Widgets in \<FormComponent>
+
+Disabled online images for JS widgets in the **\<FormComponent>**.
+
+**Change Impact**
+
+ After the change, JS widgets in the **\<FormComponent>** cannot load or display online images. You are advised to save online images to the memory to display them in JS widgets.

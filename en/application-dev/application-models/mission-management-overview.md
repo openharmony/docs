@@ -36,34 +36,35 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
 
    ```ts
    import missionManager from '@ohos.app.ability.missionManager'
+   import { BusinessError } from '@ohos.base';
    
-   let listener = {
+   let listener: missionManager.MissionListener = {
      // Listen for mission creation.
-     onMissionCreated: function (mission) {
+     onMissionCreated: (mission) => {
        console.info("--------onMissionCreated-------")
      },
      // Listen for mission destruction.
-     onMissionDestroyed: function (mission) {
+     onMissionDestroyed: (mission) => {
        console.info("--------onMissionDestroyed-------")
      },
      // Listen for mission snapshot changes.
-     onMissionSnapshotChanged: function (mission) {
+     onMissionSnapshotChanged: (mission) => {
        console.info("--------onMissionSnapshotChanged-------")
      },
      // Listen for switching the mission to the foreground.
-     onMissionMovedToFront: function (mission) {
+     onMissionMovedToFront: (mission) => {
        console.info("--------onMissionMovedToFront-------")
      },
      // Listen for mission icon changes.
-     onMissionIconUpdated: function (mission, icon) {
+     onMissionIconUpdated: (mission, icon) => {
        console.info("--------onMissionIconUpdated-------")
      },
      // Listen for mission name changes.
-     onMissionLabelUpdated: function (mission) {
+     onMissionLabelUpdated: (mission) => {
        console.info("--------onMissionLabelUpdated-------")
      },
      // Listen for mission closure events.
-     onMissionClosed: function (mission) {
+     onMissionClosed: (mission) => {
        console.info("--------onMissionClosed-------")
      }
    };
@@ -80,8 +81,8 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
    
    // 3. Obtain the detailed information about a mission.
    let missionId = 11; // The mission ID 11 is only an example.
-   let mission = missionManager.getMissionInfo("", missionId).catch(function (err) {
-     console.info(err);
+   let mission = missionManager.getMissionInfo("", missionId).catch((err: BusinessError) => {
+     console.info('${err.code}');
    });
    
    // 4. Obtain the mission snapshot.
@@ -116,8 +117,8 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
    });
    
    // 9. Clear all missions.
-   missionManager.clearAllMissions().catch(function (err) {
-     console.info(err);
+   missionManager.clearAllMissions().catch((err: BusinessError) => {
+     console.info('${err.code}');
    });
    
    // 10. Deregister the mission change listener.

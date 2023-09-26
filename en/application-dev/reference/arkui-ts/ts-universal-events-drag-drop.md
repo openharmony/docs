@@ -8,21 +8,22 @@ A drag event is triggered when a component is dragged.
 >
 > The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 
-By default, ArkUI components can be dragged.
+The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.
 
-When the [draggable](ts-universal-attributes-drag-drop.md) attribute of the following components is set to **true**, the components can respond to drag events. In this case, you do not need to configure data transmission for the components to drag them. To drag other components, you need to set the [draggable](ts-universal-attributes-drag-drop.md) attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
-- The following component supports drop actions by default: **\<Video>**.
+You can also define drag responses by implementing common drag events.
 
-- The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
+To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+
 
 ## Events
 
 | Name                                                        | Bubbling Supported| Description                                                    |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br> Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br> Event priority:<br>- Long press time < 500 ms: Long press event > Drag event<br> - Other: Drag event > Long press event|
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event. For details, see [DragEvent](#dragevent).<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br> Return value: component information displayed during dragging.<br>Trigger condition: long press for at least 500 ms.<br> Event priority:<br>- Long press time < 500 ms: Long press event > Drag event<br> - Other: Drag event > Long press event<br>**NOTE**<br>[dragController.executeDrag](../apis/js-apis-arkui-dragController.md#dragcontrollerexecutedrag) and **onDragStart** cannot be configured at the same time.|
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
@@ -54,9 +55,9 @@ When the [draggable](ts-universal-attributes-drag-drop.md) attribute of the foll
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the default drop animation when the dragging ends.|
-| setData(unifiedData: [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
-| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-udmf.md#unifieddata) | Obtains drag-related data from the drag event.|
-| getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-udmf.md#summary) | Obtains the summary of drag-related data from the drag event.|
+| setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
+| getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.|
+| getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.|
 | setResult(dragRect: [DragResult](#dragresult10))<sup>10+</sup> | void | Sets the drag and drop result in the drag event.|
 | getResult()<sup>10+</sup> | [DragResult](#dragresult10) | Obtains the drag and drop result from the drag event.|
 | getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the rectangle where the preview image is located.|
@@ -69,6 +70,15 @@ When the [draggable](ts-universal-attributes-drag-drop.md) attribute of the foll
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
+
+**Error codes**
+
+For details about the error codes, see [Drag Event Error Codes](../errorcodes/errorcode-drag-event.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 190001    | GetData failed, data not found. |
+| 190002    | GetData failed, data error. |
 
 ## DragResult<sup>10+</sup>
 
@@ -86,6 +96,8 @@ When the [draggable](ts-universal-attributes-drag-drop.md) attribute of the foll
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct Index {
@@ -100,16 +112,21 @@ struct Index {
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
-    let data = event.getData();
-    if (!data) {
+    try {
+      let data:UnifiedData = event.getData();
+      if (!data) {
+        return false;
+      }
+      let records: Array<UDC.UnifiedRecord> = data.getRecords();
+      if (!records || records.length <= 0) {
+        return false;
+      }
+      callback(event);
+      return true;
+    } catch (e) {
+      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
-    let records: Array<UDC.UnifiedRecord> = data.getRecords();
-    if (!records || records.length <= 0) {
-      return false;
-    }
-    callback(event);
-    return true;
   }
 
   getDataFromUdmf(event: DragEvent, callback: (data: DragEvent)=>void)
@@ -167,7 +184,7 @@ struct Index {
           let video: UDC.Video = new UDC.Video();
           video.videoUri = 'resource://RAWFILE/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
-          event.setData(data);
+          (event as DragEvent).setData(data);
         })
         Column() {
           Text('this is abstract')
@@ -180,7 +197,7 @@ struct Index {
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
-          event.setData(new UDC.UnifiedData(data));
+          (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
       }.width('45%')
       .height('100%')
@@ -198,13 +215,13 @@ struct Index {
           .margin({left: 15})
           .border({color: Color.Black, width: 1})
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmf(dragEvent, (event)=>{
+          .onDrop((dragEvent?: DragEvent)=> {
+            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
-              this.targetImage = (<UDC.Image>(records[0])).imageUri;
+              this.targetImage = (records[0] as UDC.Image).imageUri;
               event.useCustomDropAnimation = false;
               animateTo({duration: 1000}, ()=>{
                 this.imageWidth = 100;
@@ -221,10 +238,11 @@ struct Index {
           .border({color: Color.Black, width: 1})
           .margin(15)
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((dragEvent: DragEvent)=>{
-            this.getDataFromUdmf(dragEvent, event => {
+          .onDrop((dragEvent?: DragEvent)=>{
+            this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
               let records:Array<UDC.UnifiedRecord> = event.getData().getRecords();
-              this.targetText = (<UDC.Text>(records[0])).details['value'];
+              let plainText:UDC.PlainText = records[0] as UDC.PlainText;
+              this.targetText = plainText.textContent;
             })
           })
 
@@ -239,11 +257,11 @@ struct Index {
           Text(this.textContent).fontSize(15).width('100%')
         }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
         .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent)=>{
-          this.getDataFromUdmf(dragEvent, event=>{
+        .onDrop((dragEvent?: DragEvent)=>{
+          this.getDataFromUdmf((dragEvent as DragEvent), (event:DragEvent) => {
             let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();
-            let plainText: UDC.PlainText = <UDC.PlainText>(records[0]);
-            this.abstractContent = plainText.abstract;
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.abstractContent = plainText.abstract as string;
             this.textContent = plainText.textContent;
           })
         })

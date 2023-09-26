@@ -16,15 +16,11 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 ohos.permission.MANAGE_MISSIONS
 
-## missionManager.on(type:'mission', listener: MissionListener)<sup>(deprecated)</sup>
+## missionManager.on
 
 on(type:'mission', listener: MissionListener): number;
 
 注册系统任务状态监听器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[missionManager.on(type:'missionEvent', listener: MissionListener)](#missionmanagerontypemissionevent-listener-missionlistener10)。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -36,7 +32,6 @@ on(type:'mission', listener: MissionListener): number;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 调用接口类型，固定填'mission'字符串。 |
   | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
 
 **返回值：**
@@ -105,24 +100,21 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
                 return;
             }
-            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
     }
 };
 ```
 
-## missionManager.off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;)<sup>(deprecated)</sup>
+
+## missionManager.off
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 解注册任务状态监听器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[missionManager.off(type: 'missionEvent', listenerId: number)](#missionmanagerofftype-missionevent-listenerid-number10)。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -134,7 +126,6 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 调用接口类型，固定填'mission'字符串。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
@@ -206,24 +197,21 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
                 return;
             }
-            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
     }
 };
 ```
 
-## missionManager.off(type: 'mission', listenerId: number)<sup>(deprecated)</sup>
+
+## missionManager.off
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
 
 解注册任务状态监听，以promise方式返回执行结果。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[missionManager.off(type: 'missionEvent', listenerId: number)](#missionmanagerofftype-missionevent-listenerid-number10)。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
@@ -235,7 +223,6 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 调用接口类型，固定填'mission'字符串。 |
   | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由on方法返回。 |
 
 **返回值：**
@@ -312,197 +299,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
+                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
                 return;
             }
-            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
-        });
-    }
-};
-```
-
-## missionManager.on(type:'missionEvent', listener: MissionListener)<sup>10+</sup>
-
-on(type:'missionEvent', listener: MissionListener): number;
-
-注册系统任务状态监听器。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 调用接口类型，固定填'missionEvent'字符串。 |
-  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | 是 | 系统任务监听器。 |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 监听器的index值，由系统创建，在注册系统任务状态监听时分配，和监听器一一对应&nbsp;。 |
-
-**示例：**
-
-```ts
-import missionManager from '@ohos.app.ability.missionManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
-
-let listener: missionManager.MissionListener = {
-    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
-};
-
-let listenerId = -1;
-let abilityWant: Want;
-let context: common.UIAbilityContext;
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log('[Demo] EntryAbility onCreate');
-        abilityWant = want;
-        context = this.context;
-    }
-
-    onDestroy() {
-        try {
-            if (listenerId !== -1) {
-                missionManager.off('missionEvent', listenerId);
-            }
-        } catch (paramError) {
-            let code = (paramError as BusinessError).code;
-            let message = (paramError as BusinessError).message;
-            console.error(`error: ${code}, ${message} `);
-        }
-        console.log('[Demo] EntryAbility onDestroy');
-    }
-
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created, set main page for this ability
-        console.log('[Demo] EntryAbility onWindowStageCreate');
-        try {
-            listenerId = missionManager.on('missionEvent', listener);
-        } catch (paramError) {
-            let code = (paramError as BusinessError).code;
-            let message = (paramError as BusinessError).message;
-            console.error(`error: ${code}, ${message} `);
-        }
-
-        windowStage.loadContent('pages/index', (err, data) => {
-            if (err.code) {
-                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
-                return;
-            }
-            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
-        });
-    }
-};
-```
-
-## missionManager.off(type: 'missionEvent', listenerId: number)<sup>10+</sup>
-
-off(type: 'missionEvent', listenerId: number): void;
-
-解注册任务状态监听器。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 调用接口类型，固定填'missionEvent'字符串。 |
-  | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16300002 | Input error. The specified mission listener does not exist. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import missionManager from '@ohos.app.ability.missionManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
-
-let listener: missionManager.MissionListener = {
-    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
-};
-
-let listenerId = -1;
-let abilityWant: Want;
-let context: common.UIAbilityContext;
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log('[Demo] EntryAbility onCreate');
-        abilityWant = want;
-        context = this.context;
-    }
-
-    onDestroy() {
-        try {
-            if (listenerId !== -1) {
-                missionManager.off('missionEvent', listenerId);
-            }
-        } catch (paramError) {
-            let code = (paramError as BusinessError).code;
-            let message = (paramError as BusinessError).message;
-            console.error(`error: ${code}, ${message} `);
-        }
-        console.log('[Demo] EntryAbility onDestroy');
-    }
-
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created, set main page for this ability
-        console.log('[Demo] EntryAbility onWindowStageCreate');
-        try {
-            listenerId = missionManager.on('missionEvent', listener);
-        } catch (paramError) {
-            let code = (paramError as BusinessError).code;
-            let message = (paramError as BusinessError).message;
-            console.error(`error: ${code}, ${message} `);
-        }
-
-        windowStage.loadContent('pages/index', (err, data) => {
-            if (err.code) {
-                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
-                return;
-            }
-            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
         });
     }
 };
@@ -1300,7 +1100,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。默认为空，表示按照默认启动参数。 |
 
 **返回值：**
 
@@ -1484,7 +1284,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | topMission | number | 否 | 待移动到最顶层的任务ID |
+  | topMission | number | 否 | 待移动到最顶层的任务ID。默认值为-1，表示将默认任务移动到最顶层。 |
 
 **返回值：**
 
@@ -1660,4 +1460,3 @@ try {
 }
 
 ```
-<!--no_check-->

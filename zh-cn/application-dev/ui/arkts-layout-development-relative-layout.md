@@ -35,24 +35,25 @@
 - RelativeContainer父组件为锚点，__container__代表父容器的id。
 
   ```ts
+  let AlignRus:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start }
+  }
+  let AlignRue:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': '__container__', 'align': VerticalAlign.Top },
+    'left': { 'anchor': '__container__', 'align': HorizontalAlign.End }
+  }
   RelativeContainer() {
     Row()
       // 添加其他属性
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        left: { anchor: '__container__', align: HorizontalAlign.Start }
-      })
+      .alignRules(AlignRus)
       .id("row1")
 
     Row()
       ...
-      .alignRules({
-        top: { anchor: '__container__', align: VerticalAlign.Top },
-        right: { anchor: '__container__', align: HorizontalAlign.End }
-      })
+      .alignRules(AlignRue)
       .id("row2")
   }
-  ...
   ```
 
   ![zh-cn_image_0000001562820901](figures/zh-cn_image_0000001562820901.png)
@@ -60,14 +61,15 @@
 - 以子元素为锚点。
 
   ```ts
-  RelativeContainer() {
-    ...
-    top: { anchor: 'row1', align: VerticalAlign.Bottom },
-    ...
+  let RelConB:Record<string,Record<string,string|VerticalAlign|HorizontalAlign>> = {
+    'top': { 'anchor': 'row1', 'align': VerticalAlign.Bottom }
   }
+  let Mleft:Record<string,number> = { 'left': 20 }
+  let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
+  RelativeContainer() {RelConB}
   .width(300).height(300)
-  .margin({ left: 20 })
-  .border({ width: 2, color: '#6699FF' })
+  .margin(Mleft)
+  .border(BWC)
   ```
 
   ![zh-cn_image_0000001562940613](figures/zh-cn_image_0000001562940613.png)

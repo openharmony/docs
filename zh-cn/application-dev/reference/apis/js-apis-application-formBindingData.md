@@ -50,6 +50,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 ```ts
 import formBindingData from '@ohos.application.formBindingData';
 import fs from '@ohos.file.fs';
+import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
@@ -61,6 +62,6 @@ try {
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  console.error('catch error, error: ${JSON.stringify(error)}');
+  console.error(`catch error, error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```

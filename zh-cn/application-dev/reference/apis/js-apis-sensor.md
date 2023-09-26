@@ -1040,7 +1040,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
-once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): voidMAGNETIC_FIELD
+once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 获取一次未校准加速度传感器数据。
 

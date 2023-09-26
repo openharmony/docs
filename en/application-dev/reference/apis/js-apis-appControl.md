@@ -1,6 +1,6 @@
 # @ohos.bundle.appControl (appControl)
 
-The **appControl** module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed state is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
+The **appControl** module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
 
 > **NOTE**
 >
@@ -50,18 +50,24 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import appControl from '@ohos.bundle.appControl';
+
+let appId = "com.example.myapplication_xxxxx";
+let want:Want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want)
         .then(() => {
             console.info('setDisposedStatus success');
-        }).catch((error) => {
-            console.error('setDisposedStatus failed ' + error.message);
+        }).catch((error: BusinessError) => {
+            let message = (error as BusinessError).message;
+            console.error('setDisposedStatus failed ' + message);
         });
 } catch (error) {
-    console.error('setDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
 }
 ```
 
@@ -83,7 +89,7 @@ Sets the disposed status for an application. This API uses an asynchronous callb
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -96,19 +102,70 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
-var want = {bundleName: 'com.example.myapplication'};
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId = "com.example.myapplication_xxxxx";
+let want: Want = {bundleName: 'com.example.myapplication'};
 
 try {
-    appControl.setDisposedStatus(appId, want, (error, data) => {
-        if (error) {
-            console.error('setDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('setDisposedStatus success');
-    });
+  appControl.setDisposedStatus(appId, want, (error: BusinessError, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('setDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('setDisposedStatus success');
+  });
 } catch (error) {
-    console.error('setDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('setDisposedStatus failed ' + message);
+}
+```
+
+## appControl.setDisposedStatusSync<sup>10+</sup>
+
+setDisposedStatusSync(appId: string, disposedWant: Want): void;
+
+Sets the disposed status for an application. This API is a synchronous API. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                             | Mandatory  | Description                                   |
+| ----------- | ------------------------------- | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
+| disposedWant | Want  | Yes| Disposal intent of the application.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId: string = "com.example.myapplication_xxxxx";
+let want: Want = {bundleName: 'com.example.myapplication'};
+
+try {
+  appControl.setDisposedStatusSync(appId, want);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -147,17 +204,22 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId)
-        .then((data) => {
-            console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-        }).catch((error) => {
-            console.error('getDisposedStatus failed ' + error.message);
-        });
+  appControl.getDisposedStatus(appId)
+    .then((data) => {
+      console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+    }).catch((error: BusinessError) => {
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
+  });
 } catch (error) {
-    console.error('getDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
 }
 ```
 
@@ -178,7 +240,7 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 | Name      | Type    | Mandatory  | Description                                 |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -191,18 +253,73 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.getDisposedStatus(appId, (error, data) => {
-        if (error) {
-            console.error('getDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-    });
+  appControl.getDisposedStatus(appId, (error, data) => {
+    if (error) {
+      let message = (error as BusinessError).message;
+      console.error('getDisposedStatus failed ' + message);
+      return;
+    }
+    console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+  });
 } catch (error) {
-    console.error('getDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatus failed ' + message);
+}
+```
+
+## appControl.getDisposedStatusSync<sup>10+</sup>
+
+getDisposedStatusSync(appId: string): Want;
+
+Obtains the disposed status of an application. This API is a synchronous API. If the operation is successful, the disposed status of the application is returned. If the operation fails, an error message is returned.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+
+**Return value**
+
+| Type                       | Description                |
+| ------------------------- | ------------------ |
+| Want | Disposed status. |
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId: string = "com.example.myapplication_xxxxx";
+let want: Want;
+
+try {
+    want = appControl.getDisposedStatusSync(appId);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -241,17 +358,22 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.deleteDisposedStatus(appId)
-        .then(() => {
-            console.info('deleteDisposedStatus success');
-        }).catch((error) => {
-            console.error('deleteDisposedStatus failed ' + error.message);
-        });
+  appControl.deleteDisposedStatus(appId)
+    .then(() => {
+      console.info('deleteDisposedStatus success');
+    }).catch((error: BusinessError) => {
+      let message = (error as BusinessError).message;
+      console.error('deleteDisposedStatus failed ' + message);
+  });
 } catch (error) {
-    console.error('deleteDisposedStatus failed ' + error.message);
+  let message = (error as BusinessError).message;
+  console.error('deleteDisposedStatus failed ' + message);
 }
 ```
 
@@ -272,7 +394,7 @@ Deletes the disposed status for an application. This API uses an asynchronous ca
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -285,17 +407,63 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-var appId = "com.example.myapplication_xxxxx";
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId = "com.example.myapplication_xxxxx";
 try {
-    appControl.deleteDisposedStatus(appId, (error, data) => {
-        if (error) {
-            console.error('deleteDisposedStatus failed ' + error.message);
-            return;
-        }
-        console.info('deleteDisposedStatus success');
-    });
+  appControl.deleteDisposedStatus(appId, (error: BusinessError, data) => {
+    if (error) {
+      console.error('deleteDisposedStatus failed ' + error.message);
+      return;
+    }
+    console.info('deleteDisposedStatus success');
+  });
 } catch (error) {
-    console.error('deleteDisposedStatus failed ' + error.message);
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatus failed ' + message);
+}
+```
+
+## appControl.deleteDisposedStatusSync<sup>10+</sup>
+
+deleteDisposedStatusSync(appId: string) : void
+
+Deletes the disposed status for an application. This API is a synchronous API. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is empty string.  |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId: string = "com.example.myapplication_xxxxx";
+
+try {
+    appControl.deleteDisposedStatusSync(appId);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatusSync failed ' + message);
 }
 ```
 
@@ -307,18 +475,21 @@ try {
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
-var bundleName = 'com.example.myapplication';
-var appId;
+let bundleName = 'com.example.myapplication';
+let appId: string;
 try {
-    bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-        .then((data) => {
-            appId = data.signatureInfo.appId;
-            console.info("appId is " + appId);
-        }).catch((error) => {
-            console.error("getBundleInfo failed " + error.message);
-        });
+  bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
+    .then((data) => {
+      appId = data.signatureInfo.appId;
+      console.info("appId is " + appId);
+    }).catch((error: BusinessError) => {
+      let message = (error as BusinessError).message;
+      console.error("getBundleInfo failed " + message);
+  });
 } catch (error) {
-    console.error("getBundleInfo failed " + error.message);
+    let message = (error as BusinessError).message;
+    console.error("getBundleInfo failed " + message);
 }
 ```

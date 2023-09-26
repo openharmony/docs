@@ -143,27 +143,29 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
    ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
+   import Want from '@ohos.app.ability.Want';
+   import rpc from '@ohos.rpc';
    
    const TAG: string = "[ServiceExtAbility]";
    
    export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl = new ServiceExtImpl("ExtImpl");
+     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl("ExtImpl");
 
-     onCreate(want) {
+     onCreate(want: Want) {
        console.info(TAG, `onCreate, want: ${want.abilityName}`);
      }
    
-     onRequest(want, startId) {
+     onRequest(want: Want, startId: number) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
      }
    
-     onConnect(want) {
+     onConnect(want: Want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
        // Return the ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
-       return this.serviceExtImpl;
+       return this.serviceExtImpl as rpc.RemoteObject;
      }
    
-     onDisconnect(want) {
+     onDisconnect(want: Want) {
        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
      }
    
@@ -204,15 +206,19 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 1. Start a new ServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
-     "deviceId": "",
-     "bundleName": "com.example.myapplication",
-     "abilityName": "ServiceExtAbility"
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
+     deviceId: "",
+     bundleName: "com.example.myapplication",
+     abilityName: "ServiceExtAbility"
    };
    context.startServiceExtensionAbility(want).then(() => {
      console.info('Succeeded in starting ServiceExtensionAbility.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -220,15 +226,19 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 2. Stop the ServiceExtensionAbility in the system application.
 
    ```ts
-   let context = ...; // UIAbilityContext
-   let want = {
-     "deviceId": "",
-     "bundleName": "com.example.myapplication",
-     "abilityName": "ServiceExtAbility"
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.UIAbilityContext = ...; // UIAbilityContext
+   let want: Want = {
+     deviceId: "",
+     bundleName: "com.example.myapplication",
+     abilityName: "ServiceExtAbility"
    };
    context.stopServiceExtensionAbility(want).then(() => {
      console.info('Succeeded in stopping ServiceExtensionAbility.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -236,10 +246,13 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 3. Enable the ServiceExtensionAbility to stop itself.
 
    ```ts
-   let context = ...; // ServiceExtensionContext
+   import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+
+   let context: common.ServiceExtensionContext = ...; // ServiceExtensionContext
    context.terminateSelf().then(() => {
      console.info('Succeeded in terminating self.');
-   }).catch((err) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
@@ -260,12 +273,15 @@ The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** call
 - Call **connectServiceExtensionAbility()** to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   
   ```ts
-  let want = {
-    "deviceId": "",
-    "bundleName": "com.example.myapplication",
-    "abilityName": "ServiceExtAbility"
+  import common from '@ohos.app.ability.common';
+  import Want from '@ohos.app.ability.Want';
+
+  let want: Want = {
+    deviceId: "",
+    bundleName: "com.example.myapplication",
+    abilityName: "ServiceExtAbility"
   };
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       /* remote is the object returned by the ServiceExtensionAbility in the onConnect lifecycle callback.
        * This object is used for communication with the ServiceExtensionAbility. For details, see the section below.
@@ -284,16 +300,17 @@ The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** call
     }
   }
   // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
-  let connectionId = this.context.connectServiceExtensionAbility(want, options);
+  let connectionId: number = this.context.connectServiceExtensionAbility(want, options);
   ```
 
 - Use **disconnectServiceExtensionAbility()** to disconnect from the background service.
   
   ```ts
+  import { BusinessError } from '@ohos.base';
   // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
-  this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
+  this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
     console.info('disconnectServiceExtensionAbility success');
-  }).catch((error) => {
+  }).catch((error: BusinessError) => {
     console.error('disconnectServiceExtensionAbility failed');
   })
   ```
@@ -307,20 +324,21 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
   ```ts
   // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+  import common from '@ohos.app.ability.common';
 
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       console.info('onConnect callback');
       if (remote === null) {
         console.info(`onConnect remote is null`);
         return;
       }
-      let serviceExtProxy = new IdlServiceExtProxy(remote);
+      let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
       // Communication is carried out by API calling, without exposing RPC details.
-      serviceExtProxy.processData(1, (errorCode, retVal) => {
+      serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
         console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
-      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
         console.info(`insertDataToMap, errorCode: ${errorCode}`);
       })
     },
@@ -337,9 +355,11 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
 
   ```ts
   import rpc from '@ohos.rpc';
-  
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+
   const REQUEST_CODE = 1;
-  let options = {
+  let options: common.ConnectOptions = {
     onConnect(elementName, remote) {
       console.info('onConnect callback');
       if (remote === null) {
@@ -363,7 +383,7 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
       remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
         let msg = reply.readInt();
         console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         console.info('sendMessageRequest failed');
       });
     },
@@ -386,6 +406,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
   ```ts
   import rpc from '@ohos.rpc';
+  import { BusinessError } from '@ohos.base';
   import bundleManager from '@ohos.bundle.bundleManager';
   import { processDataCallback } from './i_idl_service_ext';
   import { insertDataToMapCallback } from './i_idl_service_ext';
@@ -408,7 +429,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
           return;
         }
         // The verification is successful, and service logic is executed normally.
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.info(TAG, 'getBundleNameByUid failed: ' + err.message);
       });
     }

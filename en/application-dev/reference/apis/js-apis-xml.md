@@ -31,7 +31,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 **Example**
 
-```js
+```ts
 let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 thatSer.setDeclaration();
@@ -62,7 +62,7 @@ Writes an attribute and its value.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -95,7 +95,7 @@ Adds an empty element.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -120,7 +120,7 @@ Writes an XML file declaration.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -154,7 +154,7 @@ Writes the start tag based on the given element name.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -181,7 +181,7 @@ Writes the end tag of the element.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -216,7 +216,7 @@ Sets the namespace for an element tag.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -249,7 +249,7 @@ Writes a comment.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -280,7 +280,7 @@ Writes CDATA data.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -311,7 +311,7 @@ Writes a tag value.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -345,7 +345,7 @@ Writes a document type.
 
 **Example**
 
-```js
+```ts
 const myMAX = 2048;
 let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
@@ -380,10 +380,10 @@ Creates and returns an **XmlPullParser** object.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-    '<?xml version="1.0" encoding="utf-8"?>' +
+  '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
     '<note importance="high" logged="true">' +
     '    <![CDATA[\r\nfuncrion matchwo(a,6)\r\n{\r\nreturn 1;\r\n}\r\n]]>' +
@@ -406,13 +406,14 @@ let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
 let str1 = '';
-function func1(name, value){
-    str1 += name+':'+value;
-    return true;
+function func1(name: string, value: string) {
+  str1 += name + value;
+  return true;
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
 that.parse(options);
-console.log(str1) //'note:company:title:title:lens:lens:a:b:h:table:h:tr:h:td:h:td:'
+console.log(str1)
+//   note [<!ENTITY foo "baa">]note    funcrion matchwo(a,6){return 1;}    Hello, World!    companyJohn amp;amp; Hanscompany    titleHappytitle    titleHappytitle    lensWorklens    lensPlaylens    go there    abba    h:table        h:tr            h:tdApplesh:td            h:tdBananash:td        h:tr    h:tablenote
 ```
 
 
@@ -432,32 +433,28 @@ Parses XML information.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getDepth() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
+// key:0 value:0 key:2 value:1 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 // Note:
 // key indicates the event type, and value indicates the parsing depth. You can learn the specific parsed event based on EVENTTYPE. In this example, key: value means:
 // 0(START_DOCUMENT):0 (START_DOCUMENT is being parsed, and the depth is 0), 2(START_TAG):1 (START_TAG is being parsed, and the depth is 1), 10(WHITESPACE):1 (WHITESPACE is being parsed, and the depth is 1), 2(START_TAG):2 (START_TAG is being parsed, and the depth is 2), ...
@@ -500,32 +497,28 @@ Obtains the column line number, starting from 1.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getColumnNumber();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getColumnNumber() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:1key:2 value:77key:10 value:81key:2 value:88key:4 value:93key:3 value:101key:10 value:105key:2 value:111key:4 value:115key:3 value:122key:10 value:126key:2 value:132key:4 value:136key:3 value:143key:3 value:150key:1 value:299
+// key:0 value:1 key:2 value:77 key:10 value:81 key:2 value:88 key:4 value:93 key:3 value:101 key:10 value:105 key:2 value:111 key:4 value:115 key:3 value:122 key:10 value:126 key:2 value:132 key:4 value:136 key:3 value:143 key:3 value:150 key:1 value:299
 ```
 
 ### getDepth
@@ -544,32 +537,28 @@ Obtains the depth of this element.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getDepth() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
+// key:0 value:0 key:2 value:1 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:10 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 // Note:
 // key indicates the event type, and value indicates the parsing depth. You can learn the specific parsed event based on EVENTTYPE. In this example, key: value means:
 // 0(START_DOCUMENT):0 (START_DOCUMENT is being parsed, and the depth is 0), 2(START_TAG):1 (START_TAG is being parsed, and the depth is 1), 10(WHITESPACE):1 (WHITESPACE is being parsed, and the depth is 1), 2(START_TAG):2 (START_TAG is being parsed, and the depth is 2), ...
@@ -591,32 +580,28 @@ Obtains the current line number, starting from 1.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getLineNumber();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getLineNumber() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:1key:2 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:3 value:1key:1 value:1
+// key:0 value:1 key:2 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:10 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:3 value:1 key:1 value:1
 ```
 
 ### getName
@@ -635,32 +620,28 @@ Obtains the name of this element.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getName();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getName() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:key:2 value:notekey:10 value:key:2 value:titlekey:4 value:key:3 value:titlekey:10 value:key:2 value:todokey:4 value:key:3 value:todokey:10 value:key:2 value:todokey:4 value:key:3 value:todokey:3 value:notekey:1 value:
+// key:0 value: key:2 value:note key:10 value: key:2 value:title key:4 value: key:3 value:title key:10 value: key:2 value:todo key:4 value: key:3 value:todo key:10 value: key:2 value:todo key:4 value: key:3 value:todo key:3 value:note key:1 value:
 ```
 ### getNamespace
 
@@ -678,32 +659,28 @@ Obtains the namespace of this element.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getNamespace();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getNamespace() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:key:2 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:3 value:key:1 value:
+// key:0 value: key:2 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:3 value: key:1 value:
 ```
 ### getPrefix
 
@@ -721,32 +698,28 @@ Obtains the prefix of this element.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getPrefix();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getPrefix() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:key:2 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:3 value:key:1 value:
+// key:0 value: key:2 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:10 value: key:2 value: key:4 value: key:3 value: key:3 value: key:1 value:
 ```
 
 ### getText
@@ -765,32 +738,28 @@ Obtains the text of the current event.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getText();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += ' key:' + key + ' value:' + value.getText() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:key:2 value:key:10 value:    key:2 value:key:4 value:Happykey:3 value:key:10 value:    key:2 value:key:4 value:Workkey:3 value:key:10 value:    key:2 value:key:4 value:Playkey:3 value:key:3 value:key:1 value:
+// key:0 value:  key:2 value:  key:10 value:      key:2 value:  key:4 value:Happy  key:3 value:  key:10 value:      key:2 value:  key:4 value:Work  key:3 value:  key:10 value:      key:2 value:  key:4 value:Play  key:3 value:  key:3 value:  key:1 value:
 ```
 ### isEmptyElementTag
 
@@ -808,32 +777,28 @@ Checks whether the current element is empty.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.isEmptyElementTag();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.isEmptyElementTag() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:falsekey:2 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:3 value:falsekey:1 value:false
+// key:0 value:false key:2 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:10 value:false key:2 value:false key:4 value:false key:3 value:false key:3 value:false key:1 value:false
 ```
 ### isWhitespace
 
@@ -851,32 +816,28 @@ Checks whether the current text event contains only whitespace characters.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.isWhitespace();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.isWhitespace() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:truekey:2 value:falsekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:3 value:truekey:1 value:true
+// key:0 value:true key:2 value:false key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:10 value:true key:2 value:true key:4 value:false key:3 value:true key:3 value:true key:1 value:true
 ```
 ### getAttributeCount
 
@@ -893,32 +854,28 @@ Obtains the number of attributes for the current start tag.
 
 **Example**
 
-```js
+```ts
 import util from '@ohos.util';
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title>Happy</title>' +
+    '    <todo>Work</todo>' +
+    '    <todo>Play</todo>' +
+    '</note>';
 let textEncoder = new util.TextEncoder();
 let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer);
-let arrTag = {};
 let str = "";
-let i = 0;
-function func(key, value){
-    arrTag[i] = 'key:'+key+' value:'+ value.getAttributeCount();
-    str += arrTag[i];
-    i++;
-    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  str += 'key:' + key + ' value:' + value.getAttributeCount() + ' ';
+  return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
-let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
-// key:0 value:0key:2 value:2key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:3 value:0key:1 value:0
+// key:0 value:0 key:2 value:2 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:10 value:0 key:2 value:0 key:4 value:0 key:3 value:0 key:3 value:0 key:1 value:0
 ```
 
 ## EventType
@@ -936,7 +893,7 @@ Enumerates the event types.
 | TEXT             | 4    | Text event.           |
 | CDSECT           | 5    | CDATA section event.          |
 | COMMENT          | 6    | XML comment event.        |
-| DOCDECL          | 7    | XML document type declaration event. |
-| INSTRUCTION      | 8    | XML processing instruction event. |
+| DOCDECL          | 7    | XML document type declaration event.|
+| INSTRUCTION      | 8    | XML processing instruction event.|
 | ENTITY_REFERENCE | 9    | Entity reference event.       |
 | WHITESPACE       | 10   | Whitespace character event.           |

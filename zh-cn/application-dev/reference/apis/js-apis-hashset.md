@@ -305,7 +305,7 @@ callbackfn的参数说明：
 let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
-hashSet.forEach((value: string, key: string) => {
+hashSet.forEach((value?: string, key?: string): void => {
   console.log("value:" + value, "key:" + key);
 });
 ```
@@ -339,7 +339,7 @@ let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
-let temp = iter.next();
+let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
@@ -385,7 +385,7 @@ for (let item of val) {
 
 // 使用方法二：
 let iter = hashSet[Symbol.iterator]();
-let temp = iter.next();
+let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
   console.log("value: " + temp.value);
   temp = iter.next();

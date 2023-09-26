@@ -19,7 +19,7 @@ Navigation()
 
 ### Navigation<sup>10+</sup>
 
-Navigation(pathInfos: NavPathStack)<sup>10+</sup>
+Navigation(pathInfos: NavPathStack)
 
 绑定路由栈到Navigation组件。
 
@@ -48,7 +48,7 @@ Navigation(pathInfos: NavPathStack)<sup>10+</sup>
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition枚举说明)    | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。<br/>**说明：** <br/>支持Stack、Split与Auto模式。 |
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
-| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
+| hideNavBar<sup>9+</sup>            | boolean                                  | 是否显示导航栏。 |
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 导航栏最小和最大宽度（双栏模式下生效）。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432。<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar 优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。 |
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | 导航栏内容区最小宽度（双栏模式下生效）。<br/>默认值：360<br/>单位：vp<br/>规则：<br/>开发者设置优先级 > 默认值<br/>最小值优先级 > 最大值<br/>navBar优先级 > content优先级<br/>开发者设置多个值冲突，以全局数值优先，局部最小值跟随容器大小。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
@@ -348,8 +348,14 @@ constructor(name: string, param: unknown)
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
+class A {
+text:string=''
+num:number=0
+}
 @Entry
 @Component
 struct NavigationExample {
@@ -359,15 +365,15 @@ struct NavigationExample {
     {
       text: 'add',
       num: 0
-    },
+    } as A,
     {
       text: 'app',
       num: 1
-    },
+    } as A,
     {
       text: 'collect',
       num: 2
-    }
+    } as A
   ]
 
   @Builder NavigationTitle() {
@@ -404,7 +410,7 @@ struct NavigationExample {
 
   @Builder NavigationToolbar() {
     Row() {
-      ForEach(this.Build, item => {
+      ForEach(this.Build, (item:A) => {
         Column() {
           Image(this.currentIndex == item.num ? 'common/public_icon_selected.svg' : 'common/public_icon.svg')
             .width(24)
@@ -433,7 +439,7 @@ struct NavigationExample {
           .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -444,7 +450,7 @@ struct NavigationExample {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+        }, (item:number) => item.toString())
         }
         .height(324)
         .width('100%')
@@ -465,3 +471,151 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_0000001192655288](figures/zh-cn_image_0000001192655288.gif)
+
+
+
+### 示例2
+```ts
+// Index.ets
+import { pageOneTmp } from './pageOne'
+import { pageTwoTmp } from './pageTwo'
+import { pages }  from './pageTwo'
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneTmp()
+    } else if (name === 'pageTwo') {
+      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
+    }
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+      Column() {
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPath({ name: 'pageOne' }) //将name指定的NavDestination页面信息入栈
+          })
+      }
+    }.title('NavIndex').navDestination(this.PageMap)
+  }
+}
+```
+```ts
+// pageOne.ets
+class tmpClass{
+  count:number=10
+}
+@Component
+export struct pageOneTmp {
+  @Consume('pageInfos') pageInfos: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            let tmp = new tmpClass()
+            this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
+          })
+        Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToName('pageTwo') //回退路由栈到第一个名为name的NavDestination页面
+            console.log('popToName' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+          })
+        Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToIndex(1) // 回退路由栈到index指定的NavDestination页面
+            console.log('popToIndex' + JSON.stringify(this.pageInfos))
+          })
+        Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveToTop('pageTwo') // 将第一个名为name的NavDestination页面移到栈顶
+            console.log('moveToTop' + JSON.stringify(this.pageInfos), '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+          })
+        Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveIndexToTop(1) // 将index指定的NavDestination页面移到栈顶
+            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos))
+          })
+        Button('clear', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.clear() //清除栈中所有页面
+          })
+        Button('get', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            console.log('-------------------')
+            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()))
+            console.log('获取index指定的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByIndex(1)))
+            console.log('获取全部名为name的NavDestination页面的参数信息', JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+            console.log('获取全部名为name的NavDestination页面的位置索引', JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
+            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()))
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(this.pageInfos.pop()))
+      return true
+    })
+  }
+}
+```
+```ts
+// pageTwo.ets
+
+export class pages {
+  names: string = ""
+  values: NavPathStack | null = null
+}
+
+@Builder
+export function pageTwoTmp(info: pages) {
+  NavDestination() {
+    Column() {
+      Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).pushPathByName('pageOne', null)
+        })
+    }.width('100%').height('100%')
+  }.title('pageTwo')
+  .onBackPressed(() => {
+    (info.values as NavPathStack).pop()
+    return true
+  })
+}
+```
+![navigation.gif](figures/navigation.gif)

@@ -31,9 +31,9 @@ struct HoverExample {
           .width('80%').height(200).backgroundColor(Color.Gray)
           .position({ x: 40, y: 120 })
           .hoverEffect(HoverEffect.Scale)
-          .onHover((isHover: boolean) => {
-            console.info('Scale isHover: ' + isHover)
-            this.isHoverVal = isHover
+          .onHover((isHover?: boolean) => {
+            console.info('Scale isHover: ' + isHover as string)
+            this.isHoverVal = isHover as boolean
           })
 
         Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
@@ -41,16 +41,16 @@ struct HoverExample {
           .width('80%').height(200).backgroundColor(Color.Gray)
           .hoverEffect(HoverEffect.Highlight)
           .position({ x: 40, y: 420 })
-          .onHover((isHover: boolean) => {
-            console.info('Highlight isHover: ' +isHover )
-            this.isHoverVal = isHover
+          .onHover((isHover?: boolean) => {
+            console.info('Highlight isHover: ' +isHover as string)
+            this.isHoverVal = isHover as boolean
           })
       }
       .hoverEffect(HoverEffect.None)
       .width('100%').height('100%').border({ width: 1 })
-      .onHover((isHover: boolean) => {
+      .onHover((isHover?: boolean) => {
         console.info('HoverEffect.None')
-        this.isHoverVal = isHover
+        this.isHoverVal = isHover as boolean
       })
     }
   }

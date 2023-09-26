@@ -34,13 +34,13 @@ PersistentStorage can be called to persist data only when the [UIContext](../ref
 1. Initialize the PersistentStorage instance.
 
    ```ts
-   PersistentStorage.PersistProp('aProp', 47);
+   PersistentStorage.persistProp('aProp', 47);
    ```
 
 2. Obtain the corresponding attribute from AppStorage.
 
    ```ts
-   AppStorage.Get('aProp'); // returns 47
+   AppStorage.get<number>('aProp'); // returns 47
    ```
 
    Alternatively, apply local definition within the component:
@@ -54,7 +54,7 @@ The complete code is as follows:
 
 
 ```ts
-PersistentStorage.PersistProp('aProp', 47);
+PersistentStorage.persistProp('aProp', 47);
 
 @Entry
 @Component
@@ -78,7 +78,7 @@ struct Index {
 ```
 
 - First running after fresh application installation:
-  1. **PersistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute on the PersistentStorage disk returns no result, because the application has just been installed.
+  1. **persistProp** is called to initialize PersistentStorage. A search for the **aProp** attribute on the PersistentStorage disk returns no result, because the application has just been installed.
   2. A search for the attribute **aProp** in AppStorage still returns no result.
   3. Create the **aProp** attribute of the number type in AppStorge and initialize it with the value 47.
   4. PersistentStorage writes the **aProp** attribute and its value **47** to the disk. The value of **aProp** in AppStorage and its subsequent changes are persisted.
@@ -95,21 +95,21 @@ struct Index {
   4. Because the attribute corresponding to **aProp** has been persisted, the change of the **aProp** attribute in AppStorage triggers PersistentStorage to write the attribute and its new value to the device disk.
 
 - Subsequent application running:
-  1. **PersistentStorage.PersistProp('aProp', 47)** is called. A search for the **aProp** attribute on the PersistentStorage disk succeeds.
+  1. **PersistentStorage.persistProp('aProp', 47)** is called. A search for the **aProp** attribute on the PersistentStorage disk succeeds.
   2. The attribute is added to AppStorage with the value found on the PersistentStorage disk.
   3. In the **\<Index>** component, the value of the @StorageLink decorated **aProp** attribute is the value written by PersistentStorage to AppStorage, that is, the value stored when the application was closed last time.
 
 
 ### Accessing Attribute in AppStorage Before PersistentStorage
 
-This example is an incorrect use. It is incorrect to use the API to access the attributes in AppStorage before calling **PersistentStorage.PersistProp** or **PersistProps**, because such a call sequence will result in loss of the attribute values used in the previous application run:
+This example is an incorrect use. It is incorrect to use the API to access the attributes in AppStorage before calling **PersistentStorage.persistProp** or **persistProps**, because such a call sequence will result in loss of the attribute values used in the previous application run:
 
 
 ```ts
-let aProp = AppStorage.SetOrCreate('aProp', 47);
-PersistentStorage.PersistProp('aProp', 48);
+let aProp = AppStorage.setOrCreate('aProp', 47);
+PersistentStorage.persistProp('aProp', 48);
 ```
 
-**AppStorage.SetOrCreate('aProp', 47)**: The **aProp** attribute is created in AppStorage, its type is number, and its value is set to the specified default value **47**. **aProp** is a persisted attribute. Therefore, it is written back to the PersistentStorage disk, and the value stored in the PersistentStorage disk from the previous run is lost.
+**AppStorage.setOrCreate('aProp', 47)**: The **aProp** attribute is created in AppStorage, its type is number, and its value is set to the specified default value **47**. **aProp** is a persisted attribute. Therefore, it is written back to the PersistentStorage disk, and the value stored in the PersistentStorage disk from the previous run is lost.
 
-**PersistentStorage.PersistProp('aProp', 48)**: An attribute with same name **aProp** is available in PersistentStorage.
+**PersistentStorage.persistProp('aProp', 48)**: An attribute with same name **aProp** is available in PersistentStorage.

@@ -10,7 +10,6 @@ The **CommonEventManager** module provides common event capabilities, including 
 
 ```ts
 import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
 ```
 
 ## Support
@@ -48,9 +47,11 @@ Publishes a common event and executes an asynchronous callback after the event i
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
-	if (err) {
+    if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish");
@@ -60,7 +61,8 @@ function publishCB(err:Base.BusinessError) {
 // Publish a common event.
 try {
     CommonEventManager.publish("event", publishCB);
-} catch(err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -95,6 +97,8 @@ Publishes a common event with given attributes. This API uses an asynchronous ca
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
@@ -114,7 +118,8 @@ function publishCB(err:Base.BusinessError) {
 // Publish a common event.
 try {
     CommonEventManager.publish("event", options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -151,6 +156,8 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Callback for common event publication
 function publishCB(err:Base.BusinessError) {
 	if (err) {
@@ -166,7 +173,8 @@ let userId = 100;
 // Publish a common event.
 try {
     CommonEventManager.publishAsUser("event", userId, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -205,6 +213,8 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 
 ```ts
+import Base from '@ohos.base';
+
 // Attributes of a common event.
 let options:CommonEventManager.CommonEventPublishData = {
 	code: 0,			 // Result code of the common event.
@@ -226,7 +236,8 @@ let userId = 100;
 // Publish a common event.
 try {
     CommonEventManager.publishAsUser("event", userId, options, publishCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -249,6 +260,8 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
@@ -269,7 +282,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -296,6 +310,8 @@ Creates a subscriber. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information.
@@ -310,6 +326,47 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:C
 }).catch((err:Base.BusinessError) => {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 });
+
+```
+
+## CommonEventManager.createSubscriberSync
+
+createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscriber
+
+Creates a subscriber. The API returns the result synchronously.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name         | Type                                                 | Mandatory| Description          |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Yes  | Subscriber information.|
+
+**Return value**
+| Type                                                     | Description            |
+| --------------------------------------------------------- | ---------------- |
+| [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | Promise used to return the subscriber object.|
+
+**Example**
+
+```ts
+import Base from '@ohos.base';
+
+let subscriber: CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+
+// Subscriber information.
+let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
+};
+
+// Create a subscriber.
+try {
+    subscriber = CommonEventManager.createSubscriberSync(subscribeInfo);
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
+    console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+}
 
 ```
 
@@ -341,6 +398,8 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 // Subscriber information.
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 
@@ -366,7 +425,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         // Subscribe to a common event.
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
-        } catch (err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     } else {
@@ -377,7 +437,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -410,6 +471,8 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 **Example**
 
 ```ts
+import Base from '@ohos.base';
+
 let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
 // Subscriber information.
 let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
@@ -433,7 +496,8 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         // Subscribe to a common event.
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
-        } catch(err) {
+        } catch (error) {
+            let err:Base.BusinessError = error as Base.BusinessError;
             console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         }
     }
@@ -449,14 +513,16 @@ function unsubscribeCB(err:Base.BusinessError) {
 // Create a subscriber.
 try {
     CommonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
 }
 
 // Unsubscribe from the common event.
 try {
     CommonEventManager.unsubscribe(subscriber, unsubscribeCB);
-} catch (err) {
+} catch (error) {
+    let err:Base.BusinessError = error as Base.BusinessError;
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -494,6 +560,8 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
         console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
@@ -541,6 +609,8 @@ Removes a sticky common event. This API uses a promise to return the result.
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
     console.info(`Remove sticky event AsyncCallback success`);
 }).catch ((err:Base.BusinessError) => {
@@ -553,6 +623,8 @@ CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 Enables or disables static subscription for the current application. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -578,12 +650,14 @@ Enables or disables static subscription for the current application. This API us
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
         console.info(`Set static subscriber state callback failed, err is null.`);
         return;
     }
-    if (err.code) {
+    if (err.code !== undefined && err.code != null) {
         console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
@@ -596,6 +670,8 @@ CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
 setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 Enables or disables static subscription for the current application. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -626,6 +702,8 @@ Enables or disables static subscription for the current application. This API us
 
 
 ```ts
+import Base from '@ohos.base';
+
 CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscriber state promise success`);
 }).catch ((err:Base.BusinessError) => {

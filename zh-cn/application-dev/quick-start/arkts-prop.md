@@ -118,7 +118,7 @@ this.title.push('3')
 ```ts
 @Component
 struct DateComponent {
-  @Prop selectedDate: Date;
+  @Prop selectedDate: Date = new Date('');
 
   build() {
     Column() {
@@ -188,7 +188,7 @@ struct ParentComponent {
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
 
-以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件CountDownComponent。
+以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件ParentComponent。
 
 
 ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
@@ -198,7 +198,7 @@ ParentComponent的状态变量countDownStartValue的变化将重置CountDownComp
 ```ts
 @Component
 struct CountDownComponent {
-  @Prop count: number;
+  @Prop count: number = 0;
   costOfOneAttempt: number = 1;
 
   build() {
@@ -264,7 +264,7 @@ struct ParentComponent {
 ```ts
 @Component
 struct Child {
-  @Prop value: number;
+  @Prop value: number = 0;
 
   build() {
     Text(`${this.value}`)
@@ -288,10 +288,10 @@ struct Index {
         Divider().height(5)
 
         ForEach(this.arr, 
-          item => {
+          (item: void) => {
             Child({value: item})
           }, 
-          item => item.toString()
+          (item: string) => item.toString()
         )
         Text('replace entire arr')
         .fontSize(50)
@@ -370,7 +370,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 0);
 
   build() {
     Row() {
@@ -419,7 +419,7 @@ class Book {
 
 @Component
 struct ReaderComp {
-  @Prop book: Book;
+  @Prop book: Book = new Book("", 1);
 
   build() {
     Row() {
@@ -442,10 +442,10 @@ struct Library {
       ReaderComp({ book: this.allBooks[2] })
       Divider()
       Text('Books on loaan to a reader')
-      ForEach(this.allBooks, book => {
+      ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
       },
-        book => book.id)
+        (book: Book) => book.id.toString())
       Button('Add new')
         .onClick(() => {
           this.allBooks.push(new Book("The C++ Standard Library", 512));
@@ -497,7 +497,7 @@ class Book {
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number;
+  @Prop customCounter: number = 0;
   @Prop customCounter2: number = 5;
 
   build() {
@@ -579,7 +579,6 @@ class ClassB {
 以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
 
 ```ts
-
 @Entry
 @Component
 struct Parent {
@@ -588,10 +587,10 @@ struct Parent {
   build() {
     Column() {
       Button('change')
-      .onClick(() => {
-        this.votes.name = "aaaaa"
-        this.votes.a.title = "wwwww"
-      })
+        .onClick(() => {
+          this.votes.name = "aaaaa"
+          this.votes.a.title = "wwwww"
+        })
       Child({ vote: this.votes })
     }
 
@@ -600,33 +599,33 @@ struct Parent {
 
 @Component
 struct Child {
-  @Prop vote: ClassB
+  @Prop vote: ClassB = new ClassB('', new ClassA(''));
   build() {
-  Column() {
+    Column() {
 
-    Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
-      .onClick(() => {
-        this.vote.name = 'Bye'
-      })
-    Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
-      .onClick(() => {
-        this.vote.a.title = "openHarmony"
-      })
-    Child1({vote1:this.vote.a})
+      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote.name = 'Bye'
+        })
+      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+        .onClick(() => {
+          this.vote.a.title = "openHarmony"
+        })
+      Child1({vote1:this.vote.a})
 
-  }
+    }
   }
 }
 
 @Component
 struct Child1 {
-  @Prop vote1: ClassA
+  @Prop vote1: ClassA = new ClassA('');
   build() {
     Column() {
-    Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
-    .onClick(() => {
-      this.vote1.title = 'Bye Bye'
-    })
+      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+        .onClick(() => {
+          this.vote1.title = 'Bye Bye'
+        })
     }
   }
 }

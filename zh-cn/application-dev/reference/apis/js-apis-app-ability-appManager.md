@@ -394,15 +394,11 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
 注册全部应用程序的状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -464,15 +460,11 @@ try {
 }
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序的状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver-bundlenamelist-arraystring10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -536,15 +528,11 @@ try {
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>)<sup>(deprecated)</sup>
+## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
 
 取消注册应用程序状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -621,15 +609,11 @@ try {
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number)<sup>(deprecated)</sup>
+## appManager.off
 
 off(type: 'applicationState', observerId: number): Promise\<void>;
 
 取消注册应用程序状态观测器。
-
-> **说明：**
->
-> 从 API version 9开始支持，从API version 10开始废弃，推荐使用[appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10)。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -700,214 +684,6 @@ try {
     }).catch((err: BusinessError) => {
         console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
     });
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-```
-
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)<sup>10+</sup>
-
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver): number;
-
-注册全部应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口取消注册观测器。|
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-```
-
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>10+</sup>
-
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
-
-注册指定应用程序的状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
-| bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| number | 已注册观测器的数字代码，可用于off接口注销观测器。|
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-```
-
-## appManager.off(type: 'applicationStateEvent', observerId: number)<sup>10+</sup>
-
-off(type: 'applicationStateEvent', observerId: number): void;
-
-取消注册应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationStateEvent'字符串。 |
-| observerId | number | 是 | 表示观测器的编号代码。 |
-| callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
-
-let observerId = 0;
-
-// 1.注册应用状态监听器
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-
-// 2.注销应用状态监听器
-try {
-    appManager.off('applicationStateEvent', observerId);
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
@@ -1633,9 +1409,8 @@ try {
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 3   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 4   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 5   |         当进程在销毁的时候处于的状态。         |
-<!--no_check-->
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |

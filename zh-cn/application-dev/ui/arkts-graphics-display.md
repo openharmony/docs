@@ -77,7 +77,8 @@ Image支持加载存档图、多媒体像素图两种类型。
   1. 调用接口获取图库的照片url。
       ```ts
       import picker from '@ohos.file.picker';
-      
+      import { BusinessError } from '@ohos.base';
+
       @Entry
       @Component
       struct Index {
@@ -86,18 +87,22 @@ Image支持加载存档图、多媒体像素图两种类型。
         getAllImg() {
           let result = new Array<string>();
           try {
-            let PhotoSelectOptions = new picker.PhotoSelectOptions();
+            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
+            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-            }).catch((err) => {
-              console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
+            }).catch((err:Error) => {
+              let message = (err as BusinessError).message;
+              let code = (err as BusinessError).code;
+              console.error(`PhotoViewPicker.select failed with. Code: ${code}, message: ${message}`);
             });
           } catch (err) {
-            console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
+            let message = (err as BusinessError).message;
+            let code = (err as BusinessError).code;
+            console.error(`PhotoViewPicker failed with. Code: ${code}, message: ${message}`);    }
         }
       
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
@@ -108,12 +113,12 @@ Image支持加载存档图、多媒体像素图两种类型。
         build() {
           Column() {
             Grid() {
-              ForEach(this.imgDatas, item => {
+              ForEach(this.imgDatas, (item:string) => {
                 GridItem() {
                   Image(item)
                     .width(200)
                 }
-              }, item => JSON.stringify(item))
+              }, (item:string):string => JSON.stringify(item))
             }
           }.width('100%').height('100%')
         }
@@ -156,7 +161,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    2. 填写网络图片地址。
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
-         (error, data) => {
+         (error:Error) => {
            if (error){
              console.error(`http reqeust failed with. Code: ${error.code}, message: ${error.message}`);
            } else {
@@ -166,26 +171,47 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        ```
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
        ```ts
-       let code = data.responseCode;
+       let code:object = data.responseCode;
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource = image.createImageSource(data.result);
-         let options = {
-           alphaType: 0, // 透明度
-           editable: false, // 是否可编辑
-           pixelFormat: 3, // 像素格式
-           scaleMode: 1, // 缩略值
-           size: { height: 100, width: 100 }
+         let imageSource:image = image.createImageSource(data.result);
+         class tmp{
+           height:number = 100
+           width:number = 100
+         }
+         let si:tmp = new tmp()
+         let options:Record<string,number|boolean|tmp> = {
+           'alphaType': 0, // 透明度
+           'editable': false, // 是否可编辑
+           'pixelFormat': 3, // 像素格式
+           'scaleMode': 1, // 缩略值
+           'size': { height: 100, width: 100 }
          } // 创建图片大小
-         imageSource.createPixelMap(options).then((pixelMap) => {
-           this.image = pixelMap
-         })
+         class imagetmp{
+           image:image
+           set(val:PixelMap){
+             this.image = val
+           }
+         }
+          imageSource.createPixelMap(options).then((pixelMap:PixelMap) => {
+          let im = new imagetmp()
+            im.set(pixelMap)
+       })
        }
        ```
    4. 显示图片。
        ```ts
+       class htp{
+        httpRequest:Function|undefined = undefined
+        set(){
+          if(this.httpRequest){
+          this.httpRequest()
+          }
+        }
+      }
        Button("获取网络图片")
          .onClick(() => {
-           this.httpRequest()
+           let sethtp = new htp()
+           sethtp.set()
          })
        Image(this.image).height(100).width(100)
        ```
@@ -512,16 +538,13 @@ struct MyComponent {
           .width(200)
           .height(150)
           .margin(15)
-          .onComplete((msg: {
-            width: number,
-            height: number,
-            componentWidth: number,
-            componentHeight: number
-          }) => {
-            this.widthValue = msg.width
-            this.heightValue = msg.height
-            this.componentWidth = msg.componentWidth
-            this.componentHeight = msg.componentHeight
+          .onComplete(msg => {
+            if(msg){
+              this.widthValue = msg.width
+              this.heightValue = msg.height
+              this.componentWidth = msg.componentWidth
+              this.componentHeight = msg.componentHeight
+            }
           })
             // 图片获取失败，打印结果
           .onError(() => {

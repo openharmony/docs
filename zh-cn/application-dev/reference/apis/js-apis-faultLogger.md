@@ -6,7 +6,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import faultLogger from '@ohos.faultLogger'
 ```
 
@@ -65,13 +65,16 @@ query(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;FaultLogInfo&gt;
 
 **示例：**
 
-```js
-function queryFaultLogCallback(error, value) {
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
+function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);
@@ -88,7 +91,7 @@ function queryFaultLogCallback(error, value) {
 try {
     faultLogger.query(faultLogger.FaultType.JS_CRASH, queryFaultLogCallback);
 } catch (err) {
-    console.error(`code: ${err.code}, message: ${err.message}`);
+    console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
 }
 ```
 
@@ -122,13 +125,16 @@ query(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&gt;
 
 **示例：**
 
-```js
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
 async function getLog() {
     try {
-        let value = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
+        let value: Array<faultLogger.FaultLogInfo> = await faultLogger.query(faultLogger.FaultType.JS_CRASH);
         if (value) {
             console.info("value length is " + value.length);
-            let len = value.length;
+            let len: number = value.length;
             for (let i = 0; i < len; i++) {
                 console.info("log: " + i);
                 console.info("Log pid: " + value[i].pid);
@@ -142,7 +148,7 @@ async function getLog() {
             }
         }
     } catch (err) {
-        console.error(`code: ${err.code}, message: ${err.message}`);
+        console.error(`code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
     }
 }
 ```
@@ -168,13 +174,16 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 **示例：**
 
-```js
-function queryFaultLogCallback(error, value) {
+```ts
+import faultLogger from '@ohos.faultLogger'
+import { BusinessError } from '@ohos.base'
+
+function queryFaultLogCallback(error: BusinessError, value: Array<faultLogger.FaultLogInfo>) {
     if (error) {
         console.info('error is ' + error);
     } else {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);
@@ -217,12 +226,14 @@ querySelfFaultLog(faultType: FaultType) : Promise&lt;Array&lt;FaultLogInfo&gt;&g
 
 **示例：**
 
-```js
+```ts
+import faultLogger from '@ohos.faultLogger'
+
 async function getLog() {
-    let value = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
+    let value: Array<faultLogger.FaultLogInfo> = await faultLogger.querySelfFaultLog(faultLogger.FaultType.JS_CRASH);
     if (value) {
         console.info("value length is " + value.length);
-        let len = value.length;
+        let len: number = value.length;
         for (let i = 0; i < len; i++) {
             console.info("log: " + i);
             console.info("Log pid: " + value[i].pid);

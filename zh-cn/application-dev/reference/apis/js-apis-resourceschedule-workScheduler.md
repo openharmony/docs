@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
@@ -42,8 +42,9 @@ startWork(work: WorkInfo): void
 
 **示例**：
 
-```js
-  let workInfo = {
+```ts
+  import { BusinessError } from '@ohos.base';
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -61,7 +62,7 @@ startWork(work: WorkInfo): void
     workScheduler.startWork(workInfo);
     console.info('workschedulerLog startWork success');
   } catch (error) {
-    console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog startwork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -93,8 +94,9 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **示例**：
 
-```js
-  let workInfo = {
+```ts
+  import { BusinessError } from '@ohos.base';
+  let workInfo: workScheduler.WorkInfo = {
       workId: 1,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
@@ -112,7 +114,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
     workScheduler.stopWork(workInfo, false);
     console.info('workschedulerLog stopWork success');
   } catch (error) {
-    console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -144,20 +146,15 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **示例**：
 
-```js
-  try{
-    workScheduler.getWorkStatus(50, (error, res) => {
-      if (error) {
-        console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        for (let item in res) {
-          console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-        }
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
+    if (error) {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.getWorkStatus
@@ -193,18 +190,13 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **示例**：
 
-```js
-  try{
-    workScheduler.getWorkStatus(50).then((res) => {
-      for (let item in res) {
-        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-      }
-    }).catch((error) => {
-      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
+    console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.obtainAllWorks
@@ -239,18 +231,15 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 **示例**：
 
-```js
-  try{
-    workScheduler.obtainAllWorks((error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
+    if (error) {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+    }
+  });
 ```
 
 ## workScheduler.obtainAllWorks
@@ -279,16 +268,13 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **示例**：
 
-```js
-  try{
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-    }).catch((error) => {
-      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-    })
-  } catch (error) {
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
+    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+  }).catch((error: BusinessError) => {
     console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
-  }
+  })
 ```
 
 ## workScheduler.stopAndClearWorks
@@ -311,12 +297,13 @@ stopAndClearWorks(): void
 
 **示例**：
 
-```js
+```ts
+  import { BusinessError } from '@ohos.base';
   try{
     workScheduler.stopAndClearWorks();
     console.info(`workschedulerLog stopAndClearWorks success`);
   } catch (error) {
-    console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
+    console.error(`workschedulerLog stopAndClearWorks failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
   }
 ```
 
@@ -354,18 +341,15 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **示例**：
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500, (error, res) =>{
-      if (error) {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      } else {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      }
-    });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
+    if (error) {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    } else {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    }
+  });
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -401,18 +385,15 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **示例**：
 
-```js
-  try{
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-      })
-      .catch(error =>  {
-        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-      });
-  } catch (error) {
-    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
-  }
+```ts
+  import { BusinessError } from '@ohos.base';
+  workScheduler.isLastWorkTimeOut(500)
+    .then((res: boolean) => {
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+    })
+    .catch((error: BusinessError) =>  {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    });
 ```
 
 ## WorkInfo

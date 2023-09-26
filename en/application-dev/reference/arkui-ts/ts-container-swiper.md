@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | vertical                              | boolean                                  | Whether vertical swiping is used.<br>Default value: **false**                  |
 | itemSpace                             | number \| string               | Space between child components.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage.|
 | displayMode                           | SwiperDisplayMode                        | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
-| cachedCount<sup>8+</sup>              | number                                   | Number of child components to be cached.<br>Default value: **1**<br>**NOTE**<br>This attribute applies only when the **\<Swiper>** component uses [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md).|
+| cachedCount<sup>8+</sup>              | number                                   | Number of child components to be cached.<br>Default value: **1**|
 | disableSwipe<sup>8+</sup>             | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**               |
 | curve<sup>8+</sup>                    | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the [interpolation calculation](../apis/js-apis-curve.md) module.<br>Default value: **Curve.Linear**|
 | indicatorStyle<sup>(deprecated)</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md),<br>selectedColor?: [ResourceColor](ts-types.md)<br>} | Style of the navigation point indicator.<br>\- **left**: distance between the navigation point indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation point indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation point indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation point indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation point indicator. The value cannot be in percentage. Default value: **6vp**<br>\- **mask**: whether to enable the mask for the navigation point indicator.<br>\- **color**: color of the navigation point indicator.<br>\- **selectedColor**: color of the selected navigation dot.<br>This API is supported since API version 8 and is deprecated since API version 10. You are advised to use [indicator](#indicator10) instead.|
@@ -112,10 +112,10 @@ Defines the navigation point indicator of the dot style, which inherits attribut
 
 | Name               | Type                                    | Mandatory. | Description                                    |
 | ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| itemWidth          | [Length](ts-types.md#length)             | No   | Width of the navigation point indicator of the dot style.<br>Default value: **6**<br>Unit: vp|
-| itemHeight         | [Length](ts-types.md#length)             | No   | Height of the navigation point indicator of the dot style.<br>Default value: **6**<br>Unit: vp|
-| selectedItemWidth  | [Length](ts-types.md#length)             | No   | Width of the selected navigation point indicator of the dot style.<br>Default value: **6**<br>Unit: vp|
-| selectedItemHeight | [Length](ts-types.md#length)             | No   | Height of the selected navigation point indicator of the dot style.<br>Default value: **6**<br>Unit: vp|
+| itemWidth          | [Length](ts-types.md#length)             | No   | Width of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+| itemHeight         | [Length](ts-types.md#length)             | No   | Height of the navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+| selectedItemWidth  | [Length](ts-types.md#length)             | No   | Width of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
+| selectedItemHeight | [Length](ts-types.md#length)             | No   | Height of the selected navigation point indicator of the dot style. This parameter cannot be set in percentage.<br>Default value: **6**<br>Unit: vp|
 | mask               | boolean                                  | No   | Whether to enable the mask for the navigation point indicator of the dot style.<br>Default value: **false**|
 | color              | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the navigation point indicator of the dot style.<br>Default value: **'\#182431'** (10% opacity)|
 | selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the selected indicator dot.<br>Default value: **'\#007DFF'**|
@@ -128,8 +128,8 @@ Defines the navigation point indicator of the digit style, which inherits attrib
 | ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | fontColor         | [ResourceColor](ts-types.md#resourcecolor) | No   | Font color of the navigation point indicator of the digit style.<br>Default value: **'\#ff182431'**|
 | selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | No   | Font color of the selected navigation point indicator of the digit style.<br>Default value: **'\#ff182431'**|
-| digitFont         | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | No   | Font style of the navigation point indicator of the digit style.<br>\- **size**: font size.<br>Default value: **14vp**<br>\- **weight**: font weight.|
-| selectedDigitFont | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | No   | Font style of the selected navigation point indicator of the digit style.<br>\- **size**: font size.<br>Default value: **14vp**<br>\- **weight**: font weight.|
+| digitFont         | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | No   | Font style of the navigation point indicator of the digit style.<br>\- **size**:font size. It cannot be set in percentage.<br>Default value: **14vp**<br>\- **weight**: font weight.|
+| selectedDigitFont | {<br>size?:[Length](ts-types.md#length)<br>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br>} | No   | Font style of the selected navigation point indicator of the digit style.<br>\- **size**:font size. It cannot be set in percentage.<br>Default value: **14vp**<br>\- **weight**: font weight.|
 
 ## ArrowStyle<sup>10+</sup>
 Describes the left and right arrow attributes.
@@ -169,7 +169,6 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -179,12 +178,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -198,9 +196,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -209,8 +207,13 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
@@ -221,12 +224,13 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        showBackground:true,
-        isSidebarMiddle:true,
-        backgroundSize:24,
-        backgroundColor:Color.White,
-        arrowSize:18,
-        arrowColor:Color.Blue},false)
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
@@ -270,7 +274,6 @@ struct SwiperExample {
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -280,12 +283,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -299,9 +301,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -310,8 +312,13 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
@@ -327,7 +334,8 @@ struct SwiperExample {
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow(true,true)
+      .displayArrow(true, true)
+
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
@@ -350,7 +358,6 @@ struct SwiperExample {
 // xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
 
   constructor(list: number[]) {
     this.list = list
@@ -360,12 +367,11 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener
   }
 
   unregisterDataChangeListener() {
@@ -379,9 +385,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -390,24 +396,30 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
       .autoPlay(true)
       .interval(4000)
       .indicator(Indicator.digit()
-        .right(130)
+        .right("43%")
         .top(200)
         .fontColor(Color.Gray)
         .selectedFontColor(Color.Gray)
-        .digitFont({size:20,weight:FontWeight.Bold})
-        .selectedDigitFont({size:20,weight:FontWeight.Normal}))
+        .digitFont({ size: 20, weight: FontWeight.Bold })
+        .selectedDigitFont({ size: 20, weight: FontWeight.Normal }))
       .loop(true)
       .duration(1000)
       .itemSpace(0)
-      .displayArrow(true,false)
+      .displayArrow(true, false)
+
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {

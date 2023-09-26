@@ -121,7 +121,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-   import workScheduler fron '@ohos.resourceschedule.workScheduler';
+   import workScheduler from '@ohos.resourceschedule.workScheduler';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -169,6 +169,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    
    ```ts
    import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { BusinessError } from '@ohos.base';
    ```
 
 2. 申请延迟任务。
@@ -184,8 +185,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    try {
      workScheduler.startWork(this.workInfo);
      console.info(`startWork success`);
-   } catch (error: BusinessError) {
-     console.error(`startWork failed. code is ${error.code} message is ${error.message}`);
+   } catch (error) {
+     console.error(`startWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
    ```
 
@@ -202,8 +203,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    try {
      workScheduler.stopWork(this.workInfo);
      console.info(`stopWork success`);
-   } catch (error: BusinessError) {
-     console.error(`stopWork failed. code is ${error.code} message is ${error.message}`);
+   } catch (error) {
+     console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
    ```
 

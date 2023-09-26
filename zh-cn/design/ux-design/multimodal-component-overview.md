@@ -72,7 +72,7 @@
 | -------- | -------- | -------- |
 | [勾选](multimodal-tick-box.md) | [开关](multimodal-toggle.md) | [单选框](multimodal-radio-button.md) | 
 |![1_zh-cn_image_0000001517133778.png](figures/1_zh-cn_image_0000001517133778.png) | ![1_zh-cn_image_0000001517452964.png](figures/1_zh-cn_image_0000001517452964.png)|![3_zh-cn_image_0000001517133822.png](figures/3_zh-cn_image_0000001517133822.png) |
-| [多选](multimodal-check-box.md) |[评分条](multimodal-rating-bar.md) | [滑动条](multimodal-scrollbar.md) | 
+| [多选](multimodal-check-box.md) |[评分条](multimodal-rating-bar.md) | [滑动条](multimodal-slider.md) | 
 |![1_zh-cn_image_0000001517293372.png](figures/1_zh-cn_image_0000001517293372.png) | | |
 |[滑动选择器](multimodal-picker.md) |  |  | 
 

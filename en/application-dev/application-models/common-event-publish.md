@@ -28,19 +28,20 @@ Common events that do not carry information can be published only as unordered c
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. Pass in the common event name and callback, and publish the event.
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err) => {
+   commonEventManager.publish("usual.event.SCREEN_OFF", (err: Base.BusinessError) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
            console.info(`[CommonEvent] Publish success`);
        }
-   })
+   });
    ```
 
 
@@ -52,13 +53,14 @@ Common events that carry information can be published as unordered, ordered, and
    
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
+   import Base from '@ohos.base';
    ```
 
 2. Pass in the common event name and callback, and publish the event.
    
    ```ts
    // Attributes of a common event.
-   let options = {
+   let options: commonEventManager.CommonEventPublishData = {
        code: 1, // Result code of the common event.
        data: "initial data", // Result data of the common event.
    }
@@ -68,11 +70,11 @@ Common events that carry information can be published as unordered, ordered, and
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err) => {
+   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err: Base.BusinessError) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {
            console.info('[CommonEvent] Publish success')
        }
-   })
+   });
    ```

@@ -79,10 +79,11 @@
            console.error(`Invoke startAbility failed, code is ${err.code}, message is ${err.message}`);
          });
      }
-   
-     ...
+     // ...
    }
    ```
+**图1** 效果示意图：<br/>
+![share-app-file](figures/share-app-file.png)
 
 ## 使用其他应用分享的文件
 
@@ -123,6 +124,7 @@
 // xxx.ets
 import fs from '@ohos.file.fs';
 import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {

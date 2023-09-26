@@ -1,7 +1,7 @@
 # LazyForEach：数据懒加载
 
 
-LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当LazyForEach在滚动容器中使用了，框架会根据滚动容器可视区域按需创建组件，当组件划出可视区域外时，框架会进行组件销毁回收以降低内存占用。
+LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
 
 
 ## 接口描述
@@ -9,9 +9,9 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ```ts
 LazyForEach(
-    dataSource: IDataSource,             // 需要进行数据迭代的数据源 
-    itemGenerator: (item: any) => void,  // 子组件生成函数
-    keyGenerator?: (item: any) => string // (可选) .键值生成函数
+    dataSource: IDataSource,             // 需要进行数据迭代的数据源
+    itemGenerator: (item: Object) => void,  // 需要进行数据迭代的数据源
+    keyGenerator?: (item: Object): string => string // 需要进行数据迭代的数据源
 ): void
 interface IDataSource {
     totalCount(): number;                                             // 获得数据总数
@@ -44,7 +44,7 @@ interface DataChangeListener {
 ```ts
 interface IDataSource {
     totalCount(): number;
-    getData(index: number): any; 
+    getData(index: number): Object;
     registerDataChangeListener(listener: DataChangeListener): void;
     unregisterDataChangeListener(listener: DataChangeListener): void;
 }
@@ -78,13 +78,13 @@ interface DataChangeListener {
 | 接口声明                                                     | 参数类型                               | 说明                                                         |
 | ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------------------------ |
 | onDataReloaded():&nbsp;void                                  | -                                      | 通知组件重新加载所有数据。                                   |
-| onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值 |
+| onDataAdd(index:&nbsp;number):&nbsp;void<sup>8+</sup>        | number                                 | 通知组件index的位置有数据添加。<br/>index：数据添加位置的索引值。 |
 | onDataMove(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>8+</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
-| onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
-| onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值 |
-| onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值 |
+| onDataDelete(index: number):void<sup>8+</sup>                | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>index：数据删除位置的索引值。<br/>**说明：** <br/>需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。 |
+| onDataChange(index:&nbsp;number):&nbsp;void<sup>8+</sup>     | number                                 | 通知组件index的位置有数据有变化。<br/>index：数据变化位置的索引值。 |
+| onDataAdded(index:&nbsp;number):void<sup>(deprecated)</sup>  | number                                 | 通知组件index的位置有数据添加。<br/>从API 8开始，建议使用onDataAdd。<br/>index：数据添加位置的索引值。 |
 | onDataMoved(from:&nbsp;number,&nbsp;to:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | from:&nbsp;number,<br/>to:&nbsp;number | 通知组件数据有移动。<br/>从API 8开始，建议使用onDataMove。<br/>from:&nbsp;数据移动起始位置，to:&nbsp;数据移动目标位置。<br/>**说明：**<br/>数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。 |
-| onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值 |
+| onDataDeleted(index: number):void<sup>(deprecated)</sup>     | number                                 | 通知组件删除index位置的数据并刷新LazyForEach的展示内容。<br/>从API 8开始，建议使用onDataDelete。<br/>index：数据删除位置的索引值。 |
 | onDataChanged(index:&nbsp;number):&nbsp;void<sup>(deprecated)</sup> | number                                 | 通知组件index的位置有数据有变化。<br/>从API 8开始，建议使用onDataChange。<br/>index：数据变化监听器。 |
 
 
@@ -109,8 +109,8 @@ interface DataChangeListener {
 
   ```ts
   LazyForEach(dataSource, 
-    item => Text(`${item.i}. item.data.label`),
-    item => item.data.id.toString())
+    (item: Object) => Text(`${item.i}. item.data.label`),
+    (item: Object): string => item.data.id.toString())
   ```
 
 
@@ -126,7 +126,7 @@ class BasicDataSource implements IDataSource {
     return 0;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): undefined {
     return undefined;
   }
 
@@ -183,7 +183,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): Object {
     return this.dataArray[index];
   }
 
@@ -202,7 +202,7 @@ class MyDataSource extends BasicDataSource {
 @Component
 struct MyComponent {
   aboutToAppear() {
-    for (var i = 100; i >= 80; i--) {
+    for (let i = 100; i >= 80; i--) {
       this.data.pushData(`Hello ${i}`)
     }
   }
@@ -223,7 +223,7 @@ struct MyComponent {
         .onClick(() => {
           this.data.pushData(`Hello ${this.data.totalCount()}`);
         })
-      }, item => item)
+      }, (item: string) => item)
     }.cachedCount(5)
   }
 }

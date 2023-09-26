@@ -119,6 +119,9 @@
 - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
 
     A component that is used to select or deselect all check boxes in a group.
+- [CalendarPicker](ts-basic-components-calendarpicker.md)
+
+    A component that provides a drop-down calendar for users to select a date.
 - [DatePicker](ts-basic-components-datepicker.md)
 
     A component that allows users to select a date from the given range.
@@ -323,4 +326,4 @@
 
 - [UIExtensionComponent](ts-container-ui-extension-component.md)
 
-    A component that is used to embed UIs provided by other applications in the local application UI.
+    A component that is used to embed UIs provided by other applications in the local application UI. 

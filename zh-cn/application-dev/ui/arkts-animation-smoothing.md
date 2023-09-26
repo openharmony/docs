@@ -11,7 +11,13 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 
 ```ts
 import curves from '@ohos.curves'
-
+class SetSlt{
+  scaleToggle:boolean = true
+  set():void{
+    this.scaleToggle = !this.scaleToggle;
+  }
+}
+let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 // 第一步：声明相关状态变量
 @state scaleToggle: boolean = true;
 
@@ -22,12 +28,11 @@ Column() {
     .scale(this.scaleToggle ? 1 : 0.5)
     // 第三步：通过点击事件改变状态变量值，影响可动画属性值
     .onclick(() => {
-      this.scaleToggle = !this.scaleToggle;
+      let sets = new SetSlt()
+      sets.set()
     })
     // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
-    .animation({
-      curve: curves.springMotion()
-    })
+    .animation(CurAn)
 }
 ...
 ```
@@ -37,11 +42,16 @@ Column() {
 
 ```ts
 import curves from '@ohos.curves';
-
+class SetSlt{
+  isAnimation:boolean = true
+  set():void{
+    this.isAnimation = !this.isAnimation;
+  }
+}
 @Entry
 @Component
 struct AnimationToAnimationDemo {
-  @State isAnimation: boolean = false;
+  @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
     Column() {
@@ -54,13 +64,13 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
-        .scale({ x: this.isAnimation ? 2 : 1, y: this.isAnimation ? 2 : 1 })
+        .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
         .animation({ curve: curves.springMotion(0.4, 0.8) })
 
       Button('Click')
         .margin({ top: 200 })
         .onClick(() => {
-          this.isAnimation = !this.isAnimation;
+          this.SetAnimation.set()
         })
     }
     .width('100%')
@@ -85,7 +95,14 @@ struct AnimationToAnimationDemo {
 
 ```ts
 import curves from '@ohos.curves'
-
+class SetOffset{
+  offsetX:number = 0;
+  offsetY:number = 0;
+  set(x:number,y:number):void{
+    this.offsetX = x;
+    this.offsetY = y;
+  }
+}
 // 第一步：声明相关状态变量
 @state offsetX: number = 0;
 @State offsetY: number = 0;
@@ -97,13 +114,15 @@ Column()
   .translate({ x: this.offsetX, y: this.offsetY})
   .gesture(
     PanGesture({})
-      .onActionUpdate((event: GestureEvent) => {
+      .onActionUpdate((event?: GestureEvent) => {
         // 第三步：在跟手过程改变状态变量值，并且采用reponsiveSpringMotion动画运动到新的值
         animateTo({
           curve: curves.responsiveSpringMotion()
         }, () => {
-          this.offsetX = event.offsetX;
-          this.offsetY = event.offsetY;
+          if(event){
+            let setxy = new SetOffset();
+            setxy.set(event.offsetX,event.offsetY)
+          }
         })
       })
       .onActionEnd(() => {
@@ -111,8 +130,8 @@ Column()
         animateTo({
           curve: curves.SpringMotion()
         }, () => {
-          this.offsetX = targetOffsetX;
-          this.offsetY = targetOffsetY;
+          let setxy = new SetOffset();
+          setxy.set(targetOffsetX,targetOffsetY)
         })
       })
   )
@@ -124,7 +143,20 @@ Column()
 
 ```ts
 import curves from '@ohos.curves';
-
+class SetOffset{
+  offsetX:number = 0;
+  offsetY:number = 0;
+  positionX:number = 100;
+  positionY:number = 100;
+  set(x:number,y:number):void{
+    this.offsetX = x;
+    this.offsetY = y;
+  }
+  setJ(x:number,y:number,diameter:number = 50):void{
+    this.positionX = x - diameter / 2;
+    this.positionY = y - diameter / 2;
+  }
+}
 @Entry
 @Component
 struct SpringMotionDemo {
@@ -138,22 +170,24 @@ struct SpringMotionDemo {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
           .position({ x: this.positionX, y: this.positionY })
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Move) {
-              // 跟手过程，使用responsiveSpringMotion曲线
-              animateTo({ curve: curves.responsiveSpringMotion() }, () => {
-                // 减去半径，以使球的中心运动到手指位置
-                this.positionX = event.touches[0].screenX - this.diameter / 2;
-                this.positionY = event.touches[0].screenY - this.diameter / 2;
-                console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
-              })
-            } else if (event.type === TouchType.Up) {
-              // 离手时，使用springMotion曲线
-              animateTo({ curve: curves.springMotion() }, () => {
-                this.positionX = 100;
-                this.positionY = 100;
-                console.info(`touchUp, animateTo x:100, y:100`);
-              })
+          .onTouch((event?: TouchEvent) => {
+            if(event){
+              if (event.type === TouchType.Move) {
+                // 跟手过程，使用responsiveSpringMotion曲线
+                animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+                  // 减去半径，以使球的中心运动到手指位置
+                  let setxy = new SetOffset();
+                  setxy.setJ(event.touches[0].screenX,event.touches[0].screenY,this.diameter)
+                  console.info(`move, animateTo x:${setxy.positionX}, y:${setxy.positionY}`);
+                })
+              } else if (event.type === TouchType.Up) {
+                // 离手时，使用springMotion曲线
+                animateTo({ curve: curves.springMotion() }, () => {
+                  let setxy = new SetOffset();
+                  setxy.set(100,100)
+                  console.info(`touchUp, animateTo x:100, y:100`);
+                })
+              }
             }
           })
       }

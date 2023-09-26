@@ -12,7 +12,7 @@ The **accountManager** module provides APIs for account management of enterprise
 
 ## Modules to Import
 
-```js
+```ts
 import accountManager from '@ohos.enterprise.accountManager';
 ```
 
@@ -47,8 +47,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -98,15 +99,17 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 **Example**
 
-```js
-let wantTemp = {
+```ts
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
   console.info('Succeeded in disallowing add local account');
-}).catch((err) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
 });
 ```

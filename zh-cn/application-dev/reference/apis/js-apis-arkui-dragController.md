@@ -37,7 +37,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 ```ts
 import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import UDMF from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
@@ -54,23 +54,32 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDMF.Text()
+              let unifiedData = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            dragController.executeDrag(this.DraggingBuilder.bind(this), dragInfo, (err, {event, extraParams}) => {
-              if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                // ...
-              } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                // ...
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
-            })
+              class tmp{
+                event:DragEvent|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
+                }
+              })
+            }
           }
         })
     }
@@ -105,12 +114,12 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
+import UDMF from '@ohos.data.unifiedDataChannel';
 
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap = null
+  @State pixmap: image.PixelMap|null = null
 
   @Builder DraggingBuilder() {
     Column() {
@@ -133,35 +142,42 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event) => {
-          if (event.type == TouchType.Down) {
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDMF.Text()
+              let unifiedData = new UDMF.UnifiedData(text)
 
-            let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
-              data: unifiedData,
-              extraParams: ''
-            }
-            componentSnapshot.createFromBuilder(this.PixmapBuilder.bind(this)).then((pix: image.PixelMap) => {
-              this.pixmap = pix;
-              let dragItemInfo: DragItemInfo = {
-                pixelMap: this.pixmap,
-                builder: this.DraggingBuilder.bind(this),
-                extraInfo: "DragItemInfoTest"
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
               }
+              componentSnapshot.createFromBuilder((dragControllerPage:DragControllerPage)=>{this.PixmapBuilder()}).then((pix: image.PixelMap) => {
+                this.pixmap = pix;
+                let dragItemInfo: DragItemInfo = {
+                  pixelMap: this.pixmap,
+                  builder: ()=>{this.DraggingBuilder()},
+                  extraInfo: "DragItemInfoTest"
+                }
 
-              dragController.executeDrag(dragItemInfo, dragInfo)
-                .then(({event, extraParams}) => {
-                  if (event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    // ...
-                  } else if (event.getResult() == DragResult.DRAG_FAILED) {
-                    // ...
-                  }
-                })
-                .catch((err) => {
-                })
-            })
+                class tmp{
+                  event:DragResult|undefined = undefined
+                  extraParams:string = ''
+                }
+                let eve:tmp = new tmp()
+                dragController.executeDrag(dragItemInfo, dragInfo)
+                  .then((eve) => {
+                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                      // ...
+                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                      // ...
+                    }
+                  })
+                  .catch((err:Error) => {
+                  })
+              })
+            }
           }
         })
     }

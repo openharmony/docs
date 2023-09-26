@@ -4,22 +4,17 @@
 >
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。
+选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker或FilePicker。
 
 ## 导入模块
 
-> **说明：**
->
-> 示例代码里有使用BusinessError的都需要导入BusinessError模块，没有的话则不需要导入。
-
 ```ts
 import picker from '@ohos.file.picker';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## PhotoViewPicker
 
-图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](js-apis-photoAccessHelper.md)。在使用前，需要先创建PhotoViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -52,6 +47,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example01() {
   try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -65,7 +61,7 @@ async function example01() {
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + + JSON.stringify(err));
+    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
   }
 }
 ```
@@ -88,6 +84,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example02() {
   try {
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -125,6 +122,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example03() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -165,6 +163,7 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example04() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -200,6 +199,7 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example05() {
   try {
     let PhotoSaveOptions = new picker.PhotoSaveOptions();
@@ -207,7 +207,7 @@ async function example05() {
     let photoPicker = new picker.PhotoViewPicker();
     photoPicker.save(PhotoSaveOptions, (err: BusinessError, PhotoSaveResult: Array<string>) => {
       if (err) {
-        console.error('PhotoViewPicker.save failed with err: ' JSON.stringify(err));
+        console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('PhotoViewPicker.save successfully, PhotoSaveResult uri: ' + JSON.stringify(PhotoSaveResult));
@@ -236,6 +236,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example06() {
   try {
     let photoPicker = new picker.PhotoViewPicker();
@@ -288,6 +289,7 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example07() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -322,6 +324,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example08() {
   try {
     let DocumentSelectOptions = new picker.DocumentSelectOptions();
@@ -357,6 +360,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example09() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -398,6 +402,7 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example10() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -433,6 +438,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example11() {
   try {
     let DocumentSaveOptions = new picker.DocumentSaveOptions();
@@ -469,6 +475,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example12() {
   try {
     let documentPicker = new picker.DocumentViewPicker();
@@ -521,6 +528,7 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example13() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -555,6 +563,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example14() {
   try {
     let AudioSelectOptions = new picker.AudioSelectOptions();
@@ -590,6 +599,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example15() {
   try {
     let audioPicker = new picker.AudioViewPicker();
@@ -630,6 +640,7 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example16() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -665,6 +676,7 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example17() {
   try {
     let AudioSaveOptions = new picker.AudioSaveOptions();
@@ -701,6 +713,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 async function example18() {
   try {
     let audioPicker = new picker.AudioViewPicker();

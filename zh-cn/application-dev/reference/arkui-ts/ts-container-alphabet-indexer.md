@@ -86,7 +86,7 @@ struct AlphabetIndexerSample {
     Stack({ alignContent: Alignment.Start }) {
       Row() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arrayA, (item) => {
+          ForEach(this.arrayA, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -94,9 +94,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayB, (item) => {
+          ForEach(this.arrayB, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -104,9 +104,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayC, (item) => {
+          ForEach(this.arrayC, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -114,9 +114,9 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
 
-          ForEach(this.arrayL, (item) => {
+          ForEach(this.arrayL, (item: string) => {
             ListItem() {
               Text(item)
                 .width('80%')
@@ -124,7 +124,7 @@ struct AlphabetIndexerSample {
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
         }
         .width('50%')
         .height('100%')
