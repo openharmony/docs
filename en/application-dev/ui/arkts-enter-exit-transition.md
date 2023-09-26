@@ -6,7 +6,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 
   **Table 1** Transition effect APIs
 
-| API | Description| Animation|
+| API| Description| Animation|
 | -------- | -------- | -------- |
 | IDENTITY | Disables the transition effect.| None.|
 | OPACITY | Applies the default opacity transition effect.| The component appears by changing the opacity from 0 to 1 and disappears by changing the opacity from 1 to 0.|
@@ -17,7 +17,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 | move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/arkui-ts/ts-appendix-enums.md#transitionedge10).| The component appears by sliding in from the edge specified by **TransitionEdge** and disappears by sliding out of the same edge.|
 | asymmetric | Applies an asymmetric transition effect.<br>**appear**: transition effect for appearance.<br>**disappear**: transition effect for disappearance.| The component appears by applying the transition effect specified by **appear** and disappears by applying the transition effect specified by **disappear**.|
 | combine | Combines with other transition effects.| The component appears and disappears by combing with other transition effects.|
-| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect. | The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
+| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
 
 
 1. Create a **TransitionEffect** object.
@@ -25,7 +25,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
    ```ts
    // The component appears by applying all transition effects for appearance and disappears by applying all transition effects for disappearance.
    // Define the animation settings for each transition effect.
-   private effect: TransitionEffect =
+   private effect: object =
      TransitionEffect.OPACITY // Apply an opacity transition effect. As the animation API is not called here, the animation settings of animateTo are used.
        // Apply a scaling transition effect and specify springMotion (0.6, 1.2) as the curve.
        .combine(TransitionEffect.scale({ x: 0, y: 0 }).animation({curve: curves.springMotion(0.6, 1.2) }))

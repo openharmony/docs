@@ -12,7 +12,7 @@ ArkUI provides the \<[Grid](../reference/arkui-ts/ts-container-grid.md)> contain
 
 Each item in the **\<Grid>** container corresponds to a **\<GridItem>** component, as shown below.
 
-  **Figure 1** Relationship between \<Grid> and \<GridItem> components
+**Figure 1** Relationship between \<Grid> and \<GridItem> components
 
 ![en-us_image_0000001511900472](figures/en-us_image_0000001511900472.png)
 
@@ -22,7 +22,7 @@ Each item in the **\<Grid>** container corresponds to a **\<GridItem>** componen
 
 The grid layout is a two-dimensional layout. The **\<Grid>** component allows you to define the number of rows and columns, proportion of each row and column, number of rows or columns that child components span, and the horizontal and vertical alignment. When the **\<Grid>** container size changes, the child components and spacing are adjusted proportionally. By leveraging these layout capabilities, you can build grid layouts of different styles, as shown below.
 
-  **Figure 2** Grid layout
+**Figure 2** Grid layout
 
 ![en-us_image_0000001562700473](figures/en-us_image_0000001562700473.png)
 
@@ -50,7 +50,7 @@ You can set the number and proportion of rows and columns to determine the overa
 
 The values of **rowsTemplate** and **columnsTemplate** are a string consisting of 'number+fr' segments, separated by spaces. Wherein **frs** indicates the number of rows or columns in the grid layout, and the number before **fr** is used to calculate the proportion of the row or column in the grid width, thereby determining the width of the row or column.
 
-  **Figure 3** Example of the proportion of rows and columns
+**Figure 3** Example of the proportion of rows and columns
 
 ![en-us_image_0000001562820833](figures/en-us_image_0000001562820833.png)
 
@@ -76,13 +76,13 @@ Grid() {
 
 In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To implement an uneven grid layout, as shown below, you can set **rowStart**, **rowEnd**, **columnStart**, and **columnEnd** of **\<GridItem>**.
 
-  **Figure 4** Uneven grid layout
+**Figure 4** Uneven grid layout
 
 ![en-us_image_0000001511900480](figures/en-us_image_0000001511900480.png)
 
 A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **\<Grid>** component, the row and column numbers start from 1 and increase continuously.
 
-  **Figure 5** Calculator
+**Figure 5** Calculator 
 
 ![en-us_image_0000001511421292](figures/en-us_image_0000001511421292.png)
 
@@ -117,7 +117,7 @@ GridItem() {
 
 When neither the number nor proportion is set for rows and columns in a grid layout, you can use the **layoutDirection** attribute to set the main axis direction and thereby specify the arrangement mode of child components. In addition, you can use the **minCount** and **maxCount** attributes to restrict the number of grid cells along the main axis.
 
-  **Figure 6** Main axis direction
+**Figure 6** Main axis direction
 
 ![en-us_image_0000001562700469](figures/en-us_image_0000001562700469.png)
 
@@ -143,7 +143,7 @@ Grid() {
 
 The grid layout organizes its internal elements in two-dimensional layout mode, as shown in the following figure.
 
-**Figure 7** General office services
+**Figure 7** General office services 
 
 ![en-us_image_0000001563060729](figures/en-us_image_0000001563060729.png)
 
@@ -173,7 +173,7 @@ Grid() {
   }
 }
 .rowsTemplate('1fr 1fr')
-.rowsTemplate('1fr 1fr')
+.columnsTemplate('1fr 1fr')
 ```
 
 For multiple **\<GridItem>** components with similar content structures, you are advised to nest them in **ForEach** statements to reduce repeated code.
@@ -183,23 +183,19 @@ For multiple **\<GridItem>** components with similar content structures, you are
 @Component
 struct OfficeService {
   @State services: Array<string> = ['Conference', 'Vote','Sign-in', 'Print']
-  ...
 
   build() {
     Column() {
       Grid() {
-        ForEach(this.services, service => {
+        ForEach(this.services, (service:string) => {
           GridItem() {
             Text(service)
-              ...
           }
-        }, service => service)
+        }, (service:string):string => service)
       }
-      .rowsTemplate('1fr 1fr')
-      .rowsTemplate('1fr 1fr')
-      ...
+      .rowsTemplate(('1fr 1fr') as string)
+      .columnsTemplate(('1fr 1fr') as string)
     }
-    ...
   }
 }
 ```
@@ -209,7 +205,7 @@ struct OfficeService {
 
 The horizontal spacing between two grid cells is called row spacing, and the vertical spacing is called column spacing, as shown in the following figure.
 
-**Figure 8** Row spacing and column spacing
+**Figure 8** Row spacing and column spacing 
 
 ![en-us_image_0000001511580908](figures/en-us_image_0000001511580908.png)
 
@@ -241,24 +237,20 @@ In the horizontal scrollable grid layout shown in the preceding figure, **rowsTe
 ```ts
 @Component
 struct Shopping {
-  @State services: Array<string> = ['Live', 'Premium', ...]
-  ...
+  @State services: Array<string> = ['Live', 'Premium']
 
   build() {
     Column({ space: 5 }) {
       Grid() {
         ForEach(this.services, (service: string, index) => {
           GridItem() {
-            ...
           }
           .width('25%')
-        }, service => service)
+        }, (service:string):string => service)
       }
       .rowsTemplate('1fr 1fr') // Set only the rowsTemplate attribute. When the content exceeds the display area of the grid, the grid can be scrolled horizontally.
       .rowsGap(15)
-      ...
     }
-    ...
   }
 }
 ```
@@ -272,17 +264,23 @@ Similar to the Back to top button in a list layout, the feature of controlling t
 
 ![en-us_image_0000001562940549](figures/en-us_image_0000001562940549.gif)
 
-When the **\<Grid>** component is initialized, it can be bound to a [Scroller](../reference/arkui-ts/ts-container-scroll.md/#scroller) object for scrolling control. In this example, the [scrollPage](../reference/arkui-ts/ts-container-scroll.md/#scrollpage) API of the **Scroller** object is used to turn pages.
+When the **\<Grid>** component is initialized, it can be bound to a [Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller) object for scrolling control. In this example, the [scrollPage](../reference/arkui-ts/ts-container-scroll.md#scrollpage) API of the **Scroller** object is used to turn pages.
 
 
 ```ts
-private scroller: Scroller = new Scroller()
+export let scroller: Scroller = new Scroller()
 ```
 
 On the calendar page, when a user clicks the **Next** button, the application responds to the click event by setting the **next** parameter in the **scrollPage** API to **true** to scroll to the next page.
 
 
 ```ts
+class Tmp{
+  scroller: Scroller = new Scroller()
+  set(boo:boolean){
+    this.scroller.scrollPage({next:boo})
+  }
+}
 Column({ space: 5 }) {
   Grid(this.scroller) {
     ...
@@ -293,16 +291,14 @@ Column({ space: 5 }) {
  Row({space: 20}) {
    Button ('Previous')
      .onClick(() => {
-       this.scroller.scrollPage({
-         next: false
-       })
+       let ClickN = new Tmp()
+       ClickN.set(false)
      })
 
    Button ('Next')
      .onClick(() => {
-       this.scroller.scrollPage({
-         next: true
-       })
+       let ClickN = new Tmp()
+       ClickN.set(true)
      })
  }
 }
@@ -318,20 +314,19 @@ For details about the implementation, see the example in [LazyForEach: Lazy Data
 
 When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **\<Grid>** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
 
-Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
+  Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
 
 ```ts
 Grid() {
-  LazyForEach(this.dataSource, item => {
+  LazyForEach(this.dataSource, () => {
     GridItem() {
-      ...
     }
   })
 }
 .cachedCount(3)
 ```
 
-> **NOTE**
-> 
-> A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
-<!--no_check-->
+>**NOTE**
+>
+>A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
+

@@ -54,36 +54,33 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 
 - Capsule button (default type)
-  
   Buttons of this type have rounded corners whose radius is automatically set to half of the button height. The rounded corners cannot be reset through the **borderRadius** attribute.
-  
+
   ```ts
   Button('Disable', { type: ButtonType.Capsule, stateEffect: false }) 
     .backgroundColor(0x317aff) 
     .width(90)
     .height(40)
   ```
-  
+
   ![en-us_image_0000001511421208](figures/en-us_image_0000001511421208.png)
 
 
 - Circle button
-  
   Buttons of this type are round. The rounded corners cannot be reset through the **borderRadius** attribute.
-  
+
   ```ts
   Button('Circle', { type: ButtonType.Circle, stateEffect: false }) 
     .backgroundColor(0x317aff) 
     .width(90) 
     .height(90)
   ```
-  
+
   ![en-us_image_0000001511740428](figures/en-us_image_0000001511740428.png)
-  
+
 - Normal button
-  
   Buttons of this type have rounded corners set to 0. The rounded corners can be reset through the **borderRadius** attribute.
-  
+
   ```ts
   Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 
     .borderRadius(8) 
@@ -91,60 +88,57 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
     .width(90)
     .height(40)
   ```
-  
+
   ![en-us_image_0000001563060641](figures/en-us_image_0000001563060641.png)
 
 
 ## Setting Styles
 
 - Set the border radius.
-  
   In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
-  
+
   ```ts
   Button('circle border', { type: ButtonType.Normal }) 
     .borderRadius(20)
     .height(40)
   ```
-  
+
   ![en-us_image_0000001511900392](figures/en-us_image_0000001511900392.png)
 
 
 - Set the text style.
-  
   Add text style attributes for the button.
-  
+
   ```ts
   Button('font style', { type: ButtonType.Normal }) 
     .fontSize(20) 
     .fontColor(Color.Pink) 
     .fontWeight(800)
   ```
-  
+
   ![en-us_image_0000001511580828](figures/en-us_image_0000001511580828.png)
 
 
 - Set the background color.
-  
   Add the **backgroundColor** attribute for the button.
-  
+
   ```ts
   Button('background color').backgroundColor(0xF55A42)
   ```
-  
+
   ![en-us_image_0000001562940477](figures/en-us_image_0000001562940477.png)
 
 
 - Assign a function to the button.
-  
   In this example, the delete function is assigned to the button.
-  
+
   ```ts
-  Button({ type: ButtonType.Circle, stateEffect: true }) { 
-    Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
-  }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
+  let MarLeft:Record<string,number> = {'left':20}
+  Button({ type: ButtonType.Circle, stateEffect: true }) {
+  Image($r('app.media.ic_public_delete_filled')).width(30).height(30) 
+  }.width(55).height(55).margin(MarLeft).backgroundColor(0xF55A42)
   ```
-  
+
   ![en-us_image_0000001511740436](figures/en-us_image_0000001511740436.png)
 
 
@@ -169,6 +163,9 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ```ts
   // xxx.ets
   import router from '@ohos.router';
+  let furl:Record<string,string> = {'url':'pages/first_page'}
+  let surl:Record<string,string> = {'url':'pages/second_page'}
+  let turl:Record<string,string> = {'url':'pages/third_page'}
   @Entry
   @Component
   struct ButtonCase1 {
@@ -176,19 +173,19 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl({ url: 'pages/first_page' })
+            router.pushUrl(furl)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl({ url: 'pages/second_page' })
+            router.pushUrl(surl)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl({ url: 'pages/third_page' })
+            router.pushUrl(turl)
           })
             .width('100%')
         }
@@ -239,13 +236,13 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
     build() {
       Stack() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('100%').height(100).fontSize(16)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
-          }, item => item)
+          }, ((item:number):number => item))
         }.width('90%')
         Button() {
           Image($r('app.media.ic_public_add'))
