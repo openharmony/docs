@@ -510,8 +510,8 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -558,8 +558,8 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
@@ -587,8 +587,8 @@ Destroys an input method panel. This API uses an asynchronous callback to return
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
@@ -639,8 +639,8 @@ Destroys an input method panel. This API uses a promise to return the result.
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
+  type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  flag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
