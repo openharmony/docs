@@ -244,8 +244,8 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
   ```ts
   class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
-          console.log('onNewWant, want: ${want.abilityName}');
-          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
+          console.log(`onNewWant, want: ${want.abilityName}`);
+          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
       }
   }
   ```
@@ -269,7 +269,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
@@ -683,10 +683,10 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
                       console.log('Remote state changed ' + str);
                   });
               } catch (error) {
-                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                  console.log(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
               }
           }).catch((err) => {
-              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+              console.log(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
           })
       }
   }

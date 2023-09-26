@@ -34,7 +34,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyUIAbility extends UIAbility {
     onConfigurationUpdate(config) {
-        console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
     }
 }
   ```
@@ -61,7 +61,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyUIAbility extends UIAbility {
     onMemoryLevel(level) {
-        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
+        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
     } 
 }
   ```

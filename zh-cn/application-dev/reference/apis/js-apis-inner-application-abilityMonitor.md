@@ -52,7 +52,7 @@ let monitor = {
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
     if (error) {
-        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     }
 });
 ```

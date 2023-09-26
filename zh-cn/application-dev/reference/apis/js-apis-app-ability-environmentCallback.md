@@ -56,7 +56,7 @@ export default class MyAbility extends UIAbility {
         globalThis.applicationContext = this.context.getApplicationContext();
         let environmentCallback  =  {
             onConfigurationUpdated(config){
-                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
+                console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
             },
 
             onMemoryLevel(level){
@@ -73,9 +73,9 @@ export default class MyAbility extends UIAbility {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
             if (error && error.code !== 0) {
-                console.error('unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}');
+                console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
             } else {
-                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
             }
         });
     }

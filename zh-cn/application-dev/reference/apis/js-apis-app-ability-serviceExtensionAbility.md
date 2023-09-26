@@ -254,7 +254,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
   ```ts
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
+          console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
       }
   }
   ```
@@ -280,7 +280,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class ServiceExt extends ServiceExtension {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }

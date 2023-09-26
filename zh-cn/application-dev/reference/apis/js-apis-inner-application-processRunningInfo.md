@@ -32,8 +32,8 @@ import appManager from '@ohos.app.ability.appManager';
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInfos().then((data) => {
-    console.log('success: ${JSON.stringify(data)}');
-}).catch((error) => {
-    console.error('failed: ${JSON.stringify(error)}');
+    console.log(`success: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`failed: ${JSON.stringify(error)}`);
 });
 ```

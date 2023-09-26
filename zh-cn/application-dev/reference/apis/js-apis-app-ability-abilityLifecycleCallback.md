@@ -273,9 +273,9 @@ export default class MyFirstAbility extends UIAbility {
         // 2.通过applicationContext注册监听应用内生命周期
         try {
             globalThis.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-            console.log('registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}');
+            console.log(`registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}`);
         } catch (paramError) {
-            console.error('error: ${paramError.code}, ${paramError.message}');
+            console.error(`error: ${paramError.code}, ${paramError.message}`);
         }
     }
 }
@@ -291,7 +291,7 @@ export default class MySecondAbility extends UIAbility {
         // 3.通过applicationContext注销监听应用内生命周期
         applicationContext.off('abilityLifecycle', globalThis.lifecycleId, (error) => {
             if (error && error.code !== 0) {
-                console.error('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
+                console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
             } else {
                 console.log('unregisterAbilityLifecycleCallback success.');
             }

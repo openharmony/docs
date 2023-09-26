@@ -243,9 +243,9 @@ let monitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
     if (error) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -292,9 +292,9 @@ let monitor = {
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
     if (error && error.code !== 0) {
-        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+        console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
     } else {
-        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+        console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
     }
 });
 ```
@@ -490,7 +490,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
-| want     | [Want](js-apis-application-want.md) | 是   | 启动Ability参数    |
+| want     | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
 **错误码**：
@@ -542,7 +542,7 @@ startAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型                                   | 必填 | 说明            |
 | ------ | -------------------------------------- | ---- | --------------- |
-| want   | [Want](js-apis-application-want.md) | 是   | 启动Ability参数 |
+| want   | [Want](js-apis-app-ability-want.md) | 是   | 启动Ability参数 |
 
 **返回值：**
 

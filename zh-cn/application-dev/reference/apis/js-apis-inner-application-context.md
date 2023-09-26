@@ -228,9 +228,9 @@ let getGroupDirContext: common.Context;
 
 getGroupDirContext.getGroupDir("1", (err, data) => {
   if (err) {
-    console.error('getGroupDir faile, err: ${JSON.stringify(err)}');
+    console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getGroupDir result is: ${JSON.stringify(data)}');
+    console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
   }
 });
 ```

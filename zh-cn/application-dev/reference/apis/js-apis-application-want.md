@@ -113,7 +113,7 @@ import Want from '@ohos.application.Want';
             try {
                 fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
-                console.error('openSync fail: ${JSON.stringify(e)}');
+                console.error(`openSync fail: ${JSON.stringify(e)}`);
             }
             let want = {
                 'deviceId': '', // deviceId为空表示本设备
