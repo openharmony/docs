@@ -13,6 +13,7 @@
 
 ```js
 import bluetoothManager from '@ohos.bluetoothManager';
+import { BusinessError } from '@ohos.base';
 ```
 
 
