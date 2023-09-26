@@ -1244,7 +1244,7 @@
       - [@ohos.worker (启动一个Worker)](reference/apis/js-apis-worker.md)
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
     - 广告
-      - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
+      - [@ohos.identifier.oaid (广告标识服务)](reference/apis/js-apis-oaid.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
