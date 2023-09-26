@@ -45,8 +45,8 @@ struct LongPressGestureExample {
         .gesture(
         LongPressGesture({ repeat: true })
           // When repeat is set to true, the event callback is triggered continuously when the gesture is detected. The triggering interval is specified by duration (500 ms by default).
-          .onAction((event: GestureEvent) => {
-            if (event.repeat) {
+          .onAction((event?: GestureEvent) => {
+            if (event && event.repeat) {
               this.count++
             }
           })

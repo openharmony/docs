@@ -50,8 +50,8 @@ If the given attribute does not exist in AppStorage, **undefined** is returned.
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let linkToPropA1 = AppStorage.link('PropA');
-let linkToPropA2 = AppStorage.link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.link('PropA');
+let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
@@ -91,7 +91,7 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 >**NOTE**
 >
->Prop supports only simple types.
+> Prop supports only simple types.
 
 **Parameters**
 
@@ -186,7 +186,7 @@ Obtains the attribute with the specified attribute name in AppStorage. If the at
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-let value: number = AppStorage.get('PropA'); // 47
+let value: number = AppStorage.get('PropA') as number; // 47
 ```
 
 
@@ -194,7 +194,7 @@ let value: number = AppStorage.get('PropA'); // 47
 
 static set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets the value for the attribute with the specified attribute name in AppStorage.
+Sets the value for the attribute with the specified attribute name in AppStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 **Parameters**
 
@@ -221,7 +221,9 @@ let res1: boolean = AppStorage.set('PropB', 47) // false
 
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in AppStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 **Parameters**
 
@@ -240,9 +242,7 @@ AppStorage.setOrCreate('simpleProp', 121);
 
 static delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage
-
-under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
@@ -261,7 +261,7 @@ The subscribers of the attribute are attributes with the same name bound to APIs
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
-AppStorage.link('PropA');
+AppStorage.link<number>('PropA');
 let res: boolean = AppStorage.delete('PropA'); // false, PropA still has a subscriber
 
 AppStorage.setOrCreate('PropB', 48);
@@ -356,8 +356,8 @@ This API is deprecated since API version 10. You are advised to use [link10+](#l
 
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let linkToPropA1 = AppStorage.Link('PropA');
-let linkToPropA2 = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
+let linkToPropA1:SubscribedAbstractProperty<number> = AppStorage.Link('PropA');
+let linkToPropA2:SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
@@ -397,10 +397,8 @@ static Prop(propName: string): any
 Establishes one-way data binding with the given attribute (specified by **propName**) in AppStorage. If the given attribute exists in AppStorage, the one-way bound data of the attribute in AppStorage is returned. If the given attribute does not exist in AppStorage, **undefined** is returned. Updates of the one-way bound data are not synchronized back to AppStorage.
 
 >**NOTE**
->
->Prop supports only simple types.
->
->This API is deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
+> Prop supports only simple types.
+> This API is deprecated since API version 10. You are advised to use [prop10+](#prop10) instead.
 
 **Parameters**
 
@@ -417,8 +415,8 @@ Establishes one-way data binding with the given attribute (specified by **propNa
 
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let prop1 = AppStorage.Prop('PropA');
-let prop2 = AppStorage.Prop('PropA');
+let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
+let prop2:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 ```
 
@@ -500,7 +498,7 @@ This API is deprecated since API version 10. You are advised to use [get10+](#ge
 
 ```ts
 AppStorage.SetOrCreate('PropA', 47);
-let value: number = AppStorage.Get('PropA'); // 47
+let value: number = AppStorage.Get('PropA') as number; // 47
 ```
 
 
@@ -558,9 +556,7 @@ AppStorage.SetOrCreate('simpleProp', 121);
 
 static Delete(propName: string): boolean
 
-Deletes the attribute with the specified attribute name from AppStorage
-
-under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
+Deletes the attribute with the specified attribute name from AppStorage under the prerequisite that the attribute does not have a subscriber. If there is a subscriber, **false** is returned. If the deletion is successful, **true** is returned.
 
 The subscribers of the attribute are attributes with the same name bound to APIs such as **Link** and **Prop**, **\@StorageLink('propName')**, and **\@StorageProp('propName')**. This means that if **\@StorageLink('propName')** and **\@StorageProp('propName')** are used in a custom component or if there is still a **SubscribedAbstractProperty** instance in sync with the attribute, the attribute cannot be deleted from AppStorage.
 
@@ -723,7 +719,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 ```
 
 
@@ -744,7 +741,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | [LocalStorage](#localstorage9) | **LocalStorage** instance.|
 
 
-For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
+For details about how to use **getShared**, see [Sharing a LocalStorage Instance from UIAbility to One or More Pages](../../quick-start/arkts-localstorage.md#example-of-sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ### has<sup>9+</sup>
@@ -768,8 +765,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | boolean | Returns **true** if the attribute with the specified attribute name exists in AppStorage; returns **false** otherwise.|
 
 
-```
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+```ts
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 storage.has('PropA'); // true
 ```
 
@@ -796,8 +794,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
-let value: number = storage.get('PropA'); // 47
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let value: number = storage.get('PropA') as number; // 47
 ```
 
 
@@ -805,7 +804,7 @@ let value: number = storage.get('PropA'); // 47
 
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a value for the attribute with the specified attribute name in LocalStorage.
+Sets a value for the attribute with the specified attribute name in LocalStorage. If the value of **newValue** is the same as the value of the attribute with the specified attribute name, that is, no value needs to be assigned, the state variable will not instruct the UI to update the value of attribute.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -824,7 +823,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.set('PropA', 47); // true
 let res1: boolean = storage.set('PropB', 47); // false
 ```
@@ -834,7 +834,8 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
-Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and default value.
+Sets a new value for the attribute with the specified attribute name in LocalStorage or, if the attribute does not exist, creates one with the specified attribute name and the set value.
+If the new value is the same as the existing value of the attribute with the specified attribute name, the state variable will not instruct the UI to update the value of the attribute.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -853,10 +854,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let res: boolean =storage.setOrCreate('PropA', 121); // true
 let res1: boolean =storage.setOrCreate('PropB', 111); // true
-let res2: boolean =storage.setOrCreate('PropB', undefined); // false
+let res2: boolean =storage.setOrCreate('PropB', null); // false
 ```
 
 
@@ -886,7 +888,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let linkToPropA1: SubscribedAbstractProperty<number> = storage.link('PropA');
 let linkToPropA2: SubscribedAbstractProperty<number> = storage.link('PropA'); // linkToPropA2.get() == 47
 linkToPropA1.set(48); // Two-way synchronization: linkToPropA1.get() == linkToPropA2.get() == 48
@@ -916,9 +919,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let link1: SubscribedAbstractProperty<number> = storage.setAndLink('PropB', 49); // Create PropB 49
-var link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA exists, remains 47
+let link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50); // PropA exists, remains 47
 ```
 
 
@@ -944,7 +948,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let prop1: SubscribedAbstractProperty<number> = storage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = storage.prop('PropA');
 prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
@@ -974,7 +979,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let prop: SubscribedAbstractProperty<number> = storage.setAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
 
@@ -1003,8 +1009,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
-storage.link('PropA');
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+storage.link<number>('PropA');
 let res: boolean = storage.delete('PropA'); // false, PropA still has a subscriber
 let res1: boolean = storage.delete('PropB'); // false, PropB is not in storage
 storage.setOrCreate('PropB', 48);
@@ -1028,7 +1035,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let keys: IterableIterator<string> = storage.keys();
 ```
 
@@ -1049,7 +1057,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let res: number = storage.size(); // 1
 ```
 
@@ -1073,7 +1082,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 ```ts
-let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
+let para:Record<string,number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.clear(); // true, there are no subscribers
 ```
 
@@ -1122,7 +1132,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ```ts
 AppStorage.SetOrCreate('PropA', 47); 
-let prop1 = AppStorage.Prop('PropA');    
+let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');    
 prop1.get(); //  prop1.get()=47
 ```
 
@@ -1145,9 +1155,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 
 
-```
+```ts
 AppStorage.SetOrCreate('PropA', 47);
-let prop1 = AppStorage.Prop('PropA');
+let prop1:SubscribedAbstractProperty<number> = AppStorage.Prop('PropA');
 prop1.set(1); //  prop1.get()=1
 ```
 

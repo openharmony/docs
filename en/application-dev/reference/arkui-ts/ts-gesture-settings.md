@@ -108,10 +108,10 @@ struct GestureSettingsExample {
       Column() {
         Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.priorityTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.priorityTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -120,18 +120,18 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // When priorityGesture is set, the tap gesture on the <Column> component is prioritized over the tap gesture on the child <Text> component.
       .priorityGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.priorityTestValue += '\nColumn'
-        }), GestureMask.IgnoreInternal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.priorityTestValue += '\nColumn'
+          }), GestureMask.IgnoreInternal)
 
       Column() {
         Text('TapGesture:' + this.parallelTestValue).fontSize(28)
           .gesture(
-          TapGesture()
-            .onAction(() => {
-              this.parallelTestValue += '\nText'
-            }))
+            TapGesture()
+              .onAction(() => {
+                this.parallelTestValue += '\nText'
+              }))
       }
       .height(200)
       .width(250)
@@ -140,14 +140,13 @@ struct GestureSettingsExample {
       .border({ width: 3 })
       // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
       .parallelGesture(
-      TapGesture()
-        .onAction((event: GestureEvent) => {
-          this.parallelTestValue += '\nColumn'
-        }), GestureMask.Normal)
+        TapGesture()
+          .onAction((event?: GestureEvent) => {
+            this.parallelTestValue += '\nColumn'
+          }), GestureMask.Normal)
     }
   }
 }
-
 ```
 
 ![en-us_image_0000001257058419](figures/en-us_image_0000001257058419.gif)

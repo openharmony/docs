@@ -21,7 +21,7 @@ Navigation()
 
 ### Navigation<sup>10+</sup>
 
-Navigation(pathInfos: NavPathStack)<sup>10+</sup>
+Navigation(pathInfos: NavPathStack)
 
 Binds a navigation stack to the **\<Navigation>** component.
 
@@ -43,14 +43,14 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | titleMode                          | [NavigationTitleMode](#navigationtitlemode) | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
 | toolBar<sup>(deprecated)</sup>     | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: all items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).<br>This API is deprecated since API version 10. You are advised to use **toolbarConfiguration** instead.|
 | toolbarConfiguration<sup>10+</sup> | Array<[ToolbarItem](#toolbaritem10)<sup>10+</sup>&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**NOTE**<br>When the value type is Array<[ToolbarItem](#ToolbarItem>, the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array<[NavigationMenuItem](#navigationmenuitem)> of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
-| hideToolBar                        | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
-| hideTitleBar                       | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton                     | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Display the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button works only when **titleMode** is set to **NavigationTitleMode.Mini**.|
+| hideToolBar                        | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
+| hideTitleBar                       | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
+| hideBackButton                     | boolean                                  | Whether to hide the back button.<br>Default value: **false**<br>**true**: Hide the back button.<br>**false**: Show the back button.<br>The back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The back button works only when **titleMode** is set to **NavigationTitleMode.Mini**.|
 | navBarWidth<sup>9+</sup>           | [Length](ts-types.md#length)             | Width of the navigation bar.<br>Default value: **240**<br>Unit: vp<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | navBarPosition<sup>9+</sup>        | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
 | mode<sup>9+</sup>                  | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.<br>**NOTE**<br>Available options are **Stack**, **Split**, and **Auto**.|
 | backButtonIcon<sup>9+</sup>        | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
+| hideNavBar<sup>9+</sup>            | boolean                                  | Whether to hide the navigation bar.|
 | navDestination<sup>10+</sup>       | builder: (name: string, param: unknown) => void | Creates a **\<NavDestination>** component.<br>**NOTE**<br>The **builder** function is used, with the **name** and **param** parameters passed in. In the builder, a layer of custom components can be included outside the **\<NavDestination>** component. However, no attributes or events can be set for the custom components. Otherwise, only blank components are displayed.|
 | navBarWidthRange<sup>10+</sup>     | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | Minimum and maximum widths of the navigation bar (valid in dual-column mode).<br>Default value: **240** for the minimum value; 40% of the component width (not greater than 432) for the maximum value<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.|
 | minContentWidth<sup>10+</sup>      | [Dimension](ts-types.md#dimension10)     | Minimum width of the navigation bar content area (valid in dual-column mode).<br>Default value: **360**<br>Unit: vp<br>Priority rules:<br>Custom value > Default value<br>Minimum value > Maximum value<br>navBar > content<br>If values conflict, the global value takes precedence, and the local minimum value depends on the container size.<br>Breakpoint calculation in Auto mode: default 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp)|
@@ -70,7 +70,7 @@ Implements a navigation stack.
 
 pushPath(info: NavPathInfo): void
 
-Pushes the NavDestination page information specified by **info** to the stack.
+Pushes the navigation destination page specified by **info** to the navigation stack.
 
 **Parameters**
 
@@ -223,7 +223,7 @@ Obtains the parameter information of all the navigation destination pages that m
 
 getIndexByName(name: string): Array<number\>
 
-Obtains the indexes information of all the navigation destination pages that match the value of **name**.
+Obtains the indexes of all the navigation destination pages that match the value of **name**.
 
 **Parameters**
 
@@ -350,8 +350,14 @@ constructor(name: string, param: unknown)
 
 ## Example
 
+### Example 1
+
 ```ts
 // xxx.ets
+class A {
+text:string=''
+num:number=0
+}
 @Entry
 @Component
 struct NavigationExample {
@@ -361,15 +367,15 @@ struct NavigationExample {
     {
       text: 'add',
       num: 0
-    },
+    } as A,
     {
       text: 'app',
       num: 1
-    },
+    } as A,
     {
       text: 'collect',
       num: 2
-    }
+    } as A
   ]
 
   @Builder NavigationTitle() {
@@ -406,7 +412,7 @@ struct NavigationExample {
 
   @Builder NavigationToolbar() {
     Row() {
-      ForEach(this.Build, item => {
+      ForEach(this.Build, (item:A) => {
         Column() {
           Image(this.currentIndex == item.num ? 'common/public_icon_selected.svg' : 'common/public_icon.svg')
             .width(24)
@@ -435,7 +441,7 @@ struct NavigationExample {
           .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -446,7 +452,7 @@ struct NavigationExample {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+        }, (item:number) => item.toString())
         }
         .height(324)
         .width('100%')
@@ -467,3 +473,151 @@ struct NavigationExample {
 ```
 
 ![en-us_image_0000001192655288](figures/en-us_image_0000001192655288.gif)
+
+
+
+### Example 2
+```ts
+// Index.ets
+import { pageOneTmp } from './pageOne'
+import { pageTwoTmp } from './pageTwo'
+import { pages }  from './pageTwo'
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneTmp()
+    } else if (name === 'pageTwo') {
+      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
+    }
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+      Column() {
+        Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPath({ name:'pageOne'}) // Push the navigation destination page specified by name to the navigation stack.
+          })
+      }
+    }.title('NavIndex').navDestination(this.PageMap)
+  }
+}
+```
+```ts
+// pageOne.ets
+class tmpClass{
+  count:number=10
+}
+@Component
+export struct pageOneTmp {
+  @Consume('pageInfos') pageInfos: NavPathStack;
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            let tmp = new tmpClass()
+            this.pageInfos.pushPathByName('pageTwo', tmp) // Push the navigation destination page specified by name to the navigation stack, with the data specified by param passed in.
+          })
+        Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToName('pageTwo') // Return the navigation stack to the first navigation destination page that matches the value of name.
+            console.log('popToName' + JSON.stringify(this.pageInfos), 'Return value' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+          })
+        Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.popToIndex(1) // Return the navigation stack to the navigation destination page that matches the value of index.
+            console.log('popToIndex' + JSON.stringify(this.pageInfos))
+          })
+        Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveToTop('pageTwo') // Move to the top of the navigation stack the first navigation destination page that matches the value of name.
+            console.log('moveToTop' + JSON.stringify(this.pageInfos), 'Return value' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+          })
+        Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.moveIndexToTop(1) // Move to the top of the navigation stack the navigation destination page that matches the value of index.
+            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos))
+          })
+        Button('clear', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.clear() // Clear the navigation stack.
+          })
+        Button('get', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            console.log('-------------------')
+            console.log('Obtained the names of all pages in the navigation stack', JSON.stringify(this.pageInfos.getAllPathName()))
+            console.log('Obtained parameter information of the navigation destination page specified by index', JSON.stringify(this.pageInfos.getParamByIndex(1)))
+            console.log('Obtained parameter information of all the navigation destination pages specified by name', JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+            console.log('Obtained the index information of all the navigation destination pages specified by name', JSON.stringify(this.pageInfos.getIndexByName('pageOne'))))
+            console.log ('Obtained the stack size', JSON.stringify (this.pageInfos.size ()))
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfos.pop() // Pop the top element out of the navigation stack.
+      console.log ('pop' + 'Return value' + JSON.stringify (this.pageInfos.pop ()))
+      return true
+    })
+  }
+}
+```
+```ts
+// pageTwo.ets
+
+export class pages {
+  names: string = ""
+  values: NavPathStack | null = null
+}
+
+@Builder
+export function pageTwoTmp(info: pages) {
+  NavDestination() {
+    Column() {
+      Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          (info.values as NavPathStack).pushPathByName('pageOne', null)
+        })
+    }.width('100%').height('100%')
+  }.title('pageTwo')
+  .onBackPressed(() => {
+    (info.values as NavPathStack).pop()
+    return true
+  })
+}
+```
+![navigation.gif](figures/navigation.gif)

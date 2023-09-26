@@ -41,8 +41,10 @@ struct TapGestureExample {
       Text('Click twice').fontSize(28)
         .gesture(
         TapGesture({ count: 2 })
-          .onAction((event: GestureEvent) => {
-            this.value = JSON.stringify(event.fingerList[0])
+          .onAction((event?: GestureEvent) => {
+            if (event) {
+              this.value = JSON.stringify(event.fingerList[0])
+            }
           })
         )
       Text(this.value)
