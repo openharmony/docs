@@ -152,7 +152,7 @@ struct MyComponent {
           Row() {  
             Text() {  
               //Content Abbreviations for Latest News  
-              Span('Hello World'.replace(/[\r\n]/g, " "))  
+              Span('Hello World'.replace(new RegExp("/[\r\n]/g"), " "))  
                 .fontSize("14fp")  
                 .fontColor('# 66182431')  
             }  
@@ -250,7 +250,7 @@ struct MyComponent {
           .id("time")  
         Text() {  
           //Content Abbreviations for Latest News  
-          Span('Hello World'.replace(/[\r\n]/g, " "))  
+          Span('Hello World'.replace(new RegExp("/[\r\n]/g"), " "))  
             .fontSize('14fp')  
             .fontColor('# 66182431')  
         }  
