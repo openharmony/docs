@@ -87,18 +87,18 @@ SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 
 | 被测数据项    | 含义             |备注|
 | :-----| :--------------------- |:-----|
-| cpuFrequ     | CPU的频率        |单位HZ|
-| cpuLoad      | CPU的负载占比     |单位%|
-| currentNow   | 电流             |单位毫安|  
-| fps          | 屏幕刷新帧率      |帧/秒|
+| cpuFrequ     | CPU的频率        |单位Hz|
+| cpuLoad      | CPU的负载占比     |%|
+| currentNow   | 当前读到的电流值  |单位mA|  
+| fps          | 屏幕刷新帧率      |单位fps|
 | fpsJitters   | 每一帧绘制间隔    |单位ns|
-| gpuFrequ     | GPU的频率         |单位HZ|
-| gpuLoad      | GPU的负载占比     |单位%|
-| shell_front  | 前壳温度          
-| shell_frame  | 边框温度          
-| shell_back   | 后壳温度
-| soc_thermal  | SOC温度
-| system_h     | 系统温度
+| gpuFrequ     | GPU的频率         |单位Hz|
+| gpuLoad      | GPU的负载占比     |%|
+| shell_front  | 前壳温度          |单位°|
+| shell_frame  | 边框温度          |单位°|
+| shell_back   | 后壳温度          |单位°|
+| soc_thermal  | SOC温度           |单位°|
+| system_h     | 系统温度          |单位°|
 | timeStamp    |当前时间戳         |对应采集时间|
-| voltageNow   |当前读到的电流值    |单位mA|
+| voltageNow   |当前读到的电压值    |单位uV(微伏)|
 ```
