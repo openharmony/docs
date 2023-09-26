@@ -9,6 +9,7 @@
     - [动效能力实践](animation_practice.md)
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [Swiper高性能开发指导](swiper_optimization.md)
+    - [WaterFlow高性能开发指导](waterflow_optimization.md)
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [合理进行状态管理](proper_state_management.md)
     - [减少动画丢帧](reduce-animation-frame-loss.md)
