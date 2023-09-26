@@ -10,7 +10,7 @@ The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-a
 
 ## Implementing an Input Method Application
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestory()** callbacks, as described below. Override them as required.
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.
 
 - **onCreate**
   This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
