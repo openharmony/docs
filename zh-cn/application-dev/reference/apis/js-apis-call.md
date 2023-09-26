@@ -2016,7 +2016,7 @@ getSubCallIdList\(callId: number, callback: AsyncCallback\<Array\<string\>\>\): 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1, (err: BusinessError, data: string) => {
+call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2061,7 +2061,7 @@ getSubCallIdList\(callId: number\): Promise\<Array\<string\>\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.getSubCallIdList(1).then((data: string) => {
+call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSubCallIdList fail, promise: err->${JSON.stringify(err)}`);
