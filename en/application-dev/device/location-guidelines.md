@@ -1,6 +1,6 @@
 # Location Service Development
 
-## When to Use
+## Overview
 
 People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
 
@@ -37,7 +37,6 @@ Your application can use the location function only after the user has granted t
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
 
 
-
 ## Applying for Location Permissions
 
 ### When to Use
@@ -72,7 +71,6 @@ For details about the permissions required for each API of the location service,
 ### How to Develop
 
 You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../security/accesstoken-guidelines.md).
-
 
 ## Obtaining Device Location Information
 
@@ -405,4 +403,3 @@ After obtaining the **WantAgent** object, call the geofencing API to add a geofe
    ```
 
 5. Have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
-

@@ -373,7 +373,7 @@
   -  [公共基础库开发指导](subsystems/subsys-utils-guide.md)
   -  AI服务
      - [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
-     - [NNRt开发指导](subsystems/subsys-ai-nnrt-guide.md)
+     - [NNRt接入适配指导](subsystems/subsys-ai-nnrt-guide.md)
   -  Sensor服务
      - [Sensor服务概述](subsystems/subsys-sensor-overview.md)
      - [Sensor服务使用指导](subsystems/subsys-sensor-guide.md)

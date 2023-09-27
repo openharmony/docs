@@ -105,7 +105,7 @@ Obtains the URI of the string type.
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-## fileUri.getUriFromPath
+## fileuri.getUriFromPath
 
 getUriFromPath(path: string): string
 

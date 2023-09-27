@@ -10,7 +10,7 @@ The **systemTimer** module provides system timer features. You can use the APIs 
 ## Modules to Import
 
 
-```js
+```ts
 import systemTimer from '@ohos.systemTimer';
 ```
 
@@ -59,25 +59,24 @@ Creates a timer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-export default {
-  systemTimer () {
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat: false
-    };
-    try {
-      systemTimer.createTimer(options, (error, timerId) => {
-        if (error) {
-          console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
-          return;
-        }
-        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
-      });
-    } catch(e) {
-      console.info(`Failed to create timer. message: ${e.message}, code: ${e.code}`);
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat: false
+};
+try {
+  systemTimer.createTimer(options, (error: BusinessError, timerId: Number) => {
+    if (error) {
+      console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-  }
+    console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -104,23 +103,22 @@ Creates a timer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-export default {
-  systemTimer () {
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
-    };   
-    try {
-      systemTimer.createTimer(options).then((timerId) => {
-        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
-      }).catch((error) => {
-        console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
-      });
-    } catch(e) {
-      console.info(`Failed to create timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+};
+try {
+  systemTimer.createTimer(options).then((timerId: Number) => {
+    console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -142,28 +140,27 @@ Starts a timer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer () {
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+try {
+  systemTimer.startTimer(timerId, triggerTime, (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-  let timerId = await systemTimer.createTimer(options);
-  let triggerTime = new Date().getTime();
-  triggerTime += 3000;
-  try {
-      systemTimer.startTimer(timerId, triggerTime, (error) => {
-        if (error) {
-          console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
-          return;
-        }
-        console.info(`Succeeded in starting timer.`);
-      });
-    } catch(e) {
-      console.info(`Failed to start timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+    console.info(`Succeeded in starting timer.`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -190,26 +187,25 @@ Starts a timer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer (){
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
-    }
-    let timerId = await systemTimer.createTimer(options);
-    let triggerTime = new Date().getTime();
-    triggerTime += 3000;
-    try {
-      systemTimer.startTimer(timerId, triggerTime).then(() => {
-        console.info(`Succeeded in starting timer.`);
-         }).catch((error) => {
-        console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
-      });
-    } catch(e) {
-      console.info(`Failed to start timer. message: ${e.message}, code: ${e.code}`);
-    } 
-  }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+try {
+  systemTimer.startTimer(timerId, triggerTime).then(() => {
+    console.info(`Succeeded in starting timer.`);
+      }).catch((error: BusinessError) => {
+    console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -230,29 +226,28 @@ Stops a timer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer () {
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+systemTimer.startTimer(timerId, triggerTime);
+try {
+  systemTimer.stopTimer(timerId, (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    let timerId = await systemTimer.createTimer(options);
-    let triggerTime = new Date().getTime();
-    triggerTime += 3000;
-    systemTimer.startTimer(timerId, triggerTime);
-    try {
-      systemTimer.stopTimer(timerId, (error) => {
-        if (error) {
-          console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
-          return;
-        }
-        console.info(`Succeeded in stopping timer.`);
-      });
-    } catch(e) {
-      console.info(`Failed to stop timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+    console.info(`Succeeded in stopping timer.`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -278,27 +273,26 @@ Stops a timer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer (){
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
-    }
-    let timerId = await systemTimer.createTimer(options);
-    let triggerTime = new Date().getTime();
-    triggerTime += 3000;
-    systemTimer.startTimer(timerId, triggerTime);
-    try {
-      systemTimer.stopTimer(timerId).then(() => {
-        console.info(`Succeeded in stopping timer.`);
-      }).catch((error) => {
-        console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
-      });
-    } catch(e) {
-      console.info(`Failed to stop timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+systemTimer.startTimer(timerId, triggerTime);
+try {
+  systemTimer.stopTimer(timerId).then(() => {
+    console.info(`Succeeded in stopping timer.`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -319,30 +313,29 @@ Destroys a timer. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer () {
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+systemTimer.startTimer(timerId, triggerTime);
+systemTimer.stopTimer(timerId);
+try {
+  systemTimer.destroyTimer(timerId, (error: BusinessError) => {
+    if (error) {
+      console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
+      return;
     }
-    let timerId = await systemTimer.createTimer(options);
-    let triggerTime = new Date().getTime();
-    triggerTime += 3000;
-    systemTimer.startTimer(timerId, triggerTime);
-    systemTimer.stopTimer(timerId);
-    try {
-      systemTimer.destroyTimer(timerId, (error) => {
-        if (error) {
-          console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
-          return;
-        }
-        console.info(`Succeeded in destroying timer.`);
-      });
-    } catch(e) {
-      console.info(`Failed to destroying timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+    console.info(`Succeeded in destroying timer.`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to destroying timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -368,27 +361,26 @@ Destroys a timer. This API uses a promise to return the result.
 
 **Example**
 
-```js
-export default {
-  async systemTimer (){
-    let options = {
-      type: systemTimer.TIMER_TYPE_REALTIME,
-      repeat:false
-    }
-    let timerId = await systemTimer.createTimer(options);
-    let triggerTime = new Date().getTime();
-    triggerTime += 3000;
-    systemTimer.startTimer(timerId, triggerTime);
-    systemTimer.stopTimer(timerId);
-    try {
-      systemTimer.destroyTimer(timerId).then(() => {
-         console.info(`Succeeded in destroying timer.`);
-      }).catch((error) => {
-        console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
-      });
-    } catch(e) {
-      console.info(`Failed to destroying timer. message: ${e.message}, code: ${e.code}`);
-    }
-  }
+```ts
+import { BusinessError } from '@ohos.base';
+
+let options: systemTimer.TimerOptions = {
+  type: systemTimer.TIMER_TYPE_REALTIME,
+  repeat:false
+}
+let timerId = await systemTimer.createTimer(options);
+let triggerTime = new Date().getTime();
+triggerTime += 3000;
+systemTimer.startTimer(timerId, triggerTime);
+systemTimer.stopTimer(timerId);
+try {
+  systemTimer.destroyTimer(timerId).then(() => {
+      console.info(`Succeeded in destroying timer.`);
+  }).catch((error: BusinessError) => {
+    console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to destroying timer. message: ${error.message}, code: ${error.code}`);
 }
 ```

@@ -9,7 +9,7 @@ The **convertxml** module provides APIs for converting XML text into JavaScript 
 
 ## Modules to Import
 
-```js
+```ts
 import convertxml from '@ohos.convertxml';
 ```
 
@@ -46,27 +46,27 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 try {
-    let xml =
-        '<?xml version="1.0" encoding="utf-8"?>' +
-        '<note importance="high" logged="true">' +
-        '    <title>Happy</title>' +
-        '    <todo>Work</todo>' +
-        '    <todo>Play</todo>' +
-        '</note>';
-    let conv = new convertxml.ConvertXML()
-    let options = {
-        trim: false, declarationKey: "_declaration",
-        instructionKey: "_instruction", attributesKey: "_attributes",
-        textKey: "_text", cdataKey: "_cdata", doctypeKey: "_doctype",
-        commentKey: "_comment", parentKey: "_parent", typeKey: "_type",
-        nameKey: "_name", elementsKey: "_elements"
-    }
-    let result = JSON.stringify(conv.convertToJSObject(xml, options));
-    console.log(result);
+  let xml =
+    '<?xml version="1.0" encoding="utf-8"?>' +
+      '<note importance="high" logged="true">' +
+      '    <title>Happy</title>' +
+      '    <todo>Work</todo>' +
+      '    <todo>Play</todo>' +
+      '</note>';
+  let conv = new convertxml.ConvertXML()
+  let options: convertxml.ConvertOptions = {
+    trim: false, declarationKey: "_declaration",
+    instructionKey: "_instruction", attributesKey: "_attributes",
+    textKey: "_text", cdataKey: "_cdata", doctypeKey: "_doctype",
+    commentKey: "_comment", parentKey: "_parent", typeKey: "_type",
+    nameKey: "_name", elementsKey: "_elements"
+  }
+  let result = JSON.stringify(conv.convertToJSObject(xml, options));
+  console.log(result);
 } catch (e) {
-    console.log(e.toString());
+  console.log((e as Object).toString());
 }
 // Output (non-compact)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
@@ -99,20 +99,20 @@ Converts an XML text into a JavaScript object.
 
 **Example**
 
-```js
+```ts
 let xml =
-    '<?xml version="1.0" encoding="utf-8"?>' +
+  '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
     '    <title>Happy</title>' +
     '    <todo>Work</todo>' +
     '    <todo>Play</todo>' +
     '</note>';
 let conv = new convertxml.ConvertXML();
-let options = {trim : false, declarationKey:"_declaration",
-    instructionKey : "_instruction", attributesKey : "_attributes",
-    textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-    commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-    nameKey : "_name", elementsKey : "_elements"}
+let options: convertxml.ConvertOptions = {trim : false, declarationKey:"_declaration",
+  instructionKey : "_instruction", attributesKey : "_attributes",
+  textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
+  commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
+  nameKey : "_name", elementsKey : "_elements"}
 let result = JSON.stringify(conv.convert(xml, options));
 console.log(result);
 // Output (non-compact)

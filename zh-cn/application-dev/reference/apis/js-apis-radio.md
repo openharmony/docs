@@ -507,7 +507,7 @@ getPrimarySlotId\(\): Promise\<number\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-radio.getPrimarySlotId().then((data: string) => {
+radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -625,7 +625,7 @@ getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 ```js
 let slotId = 0;
 let signalInfo = radio.getSignalInformationSync(slotId);
-console.log(`signal information size is:` + signalInfo.size());
+console.log(`signal information size is:` + signalInfo.length);
 ```
 
 ## radio.isNrSupported<sup>(deprecated)</sup>

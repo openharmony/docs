@@ -5246,7 +5246,7 @@ getRemoteObject(): rpc.RemoteObject;
   }
 
   export default {
-    onConnect(want): rpc.RemoteObject { // serviceAbility 生命周期函数
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

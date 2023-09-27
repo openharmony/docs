@@ -759,7 +759,7 @@ textZoomAtio(textZoomAtio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
 **示例：**
 
@@ -789,7 +789,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------- | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值范围为(0, +∞)。 |
+| textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
 **示例：**
 
@@ -2837,7 +2837,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onPermissionRequest((event) => {
             if (event) {
               AlertDialog.show({
@@ -2864,6 +2864,41 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
       }
     }
   }
+  ```
+
+  加载的html文件。
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <canvas id="canvas" width="500px" height="500px"></canvas>
+  <br>
+  <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
+  <script>
+    function getMedia()
+    {
+      let constraints = {
+        video: {width: 500, height: 500},
+        audio: true
+      };
+      //获取video摄像头区域
+      let video = document.getElementByld("video");
+      //返回的Promise对象
+      let promise = navigator.mediaDevices.getUserMedia(constraints);
+      //then()异步，调用MediaStream对象作为参数
+      promise.then(function (MediaStream) {
+        video.srcObject = MediaStream;
+        video.play();
+      });
+    }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onContextMenuShow<sup>9+</sup>
@@ -2970,7 +3005,7 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src:$rawfile('index.html'), controller:this.controller })
         .geolocationAccess(true)
         .onGeolocationShow((event) => {
           if (event) {
@@ -2992,6 +3027,40 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
       }
     }
   }
+  ```
+
+  加载的html文件。
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <p id="demo">点击按钮获取您当前坐标 （可能需要比较长的时间获取）：</p>
+  <button onclick="getLocation()">点我</button>
+  <script>
+    var x=document.grtElementByld("demo");
+    function getLocation()
+    {
+      if (navigator.geolocation)
+      {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+      else
+      {
+        x.innerHTML="该浏览器不支持获取地理位置。";
+      }
+    }
+
+    function showPosition(position)
+    {
+      x.innerHTML="纬度：" + position.coords.latitude + "经度：" + position.coords.longitude;
+    }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onGeolocationHide
@@ -3266,13 +3335,24 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  import business_error from '@ohos.base';
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        //在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
+        Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        Web({ src:$rawfile('index.html'), controller: this.controller })
          .onDataResubmitted((event) => {
           console.log('onDataResubmitted')
           event.handler.resend();
@@ -3280,6 +3360,23 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
       }
     }
   }
+  ```
+
+ 加载的html文件。
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <form action="http://httpbin.org/post" method="post">
+      <input type="text" name="username">
+      <input type="submit" name="提交">
+    </form>
+  </body>
+  </html>
   ```
 
 ### onPageVisible<sup>9+</sup>

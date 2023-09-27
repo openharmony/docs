@@ -6,15 +6,15 @@ The drag and drop control attributes set whether a component can respond to drag
 > 
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 
-By default, ArkUI components cannot be dragged.
+The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their **draggable** attribute to **true**.
 
-When the **draggable** attribute of the following components is set to **true**, the components can respond to drag events. In this case, you do not need to configure data transmission for the components to drag them. To drag other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following components support drag and drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**.
+- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
-- The following component supports drop actions by default: **\<Video>**.
+You can also define drag responses by implementing common drag events.
 
-- The following components support drag actions by default: **\<Text>**, **\<List>**, **\<Grid>**, **\<FormComponent>**, **\<Image>**, **\<Hyperlink>**.
+To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
 
 
 ## Attributes
@@ -31,6 +31,7 @@ When the **draggable** attribute of the following components is set to **true**,
 // xxx.ets
 import UDC from '@ohos.data.unifiedDataChannel';
 import UTD from '@ohos.data.uniformTypeDescriptor';
+
 @Entry
 @Component
 struct ImageExample {
@@ -69,7 +70,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.AblockArr, (item, index) => {
+            ForEach(this.AblockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -77,15 +78,14 @@ struct ImageExample {
                   .border({width: 1})
               }
               .margin({ left: 30 , top : 30})
-            }, item => item)
+            }, (item:string) => item)
           }
           .height('90%')
           .width('100%')
           .allowDrop([UTD.UniformDataType.TEXT])
-          .onDrop((event: DragEvent, extraParams: string) => {
-            let jsonString = JSON.parse(extraParams);
-            this.uri = jsonString.extraInfo;
-            this.AblockArr.splice(jsonString.insertIndex, 0, this.uri);
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            this.uri = JSON.parse(extraParams as string).extraInfo;
+            this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
             console.log("ondrop not udmf data");
           })
           .border({width: 1})
@@ -99,7 +99,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.BblockArr, (item, index) => {
+            ForEach(this.BblockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -107,23 +107,21 @@ struct ImageExample {
                   .border({width: 1})
               }
               .margin({ left: 30 , top : 30})
-            }, item => item)
+            }, (item:string) => item)
           }
           .border({width: 1})
           .height('90%')
           .width('100%')
           .allowDrop([UTD.UniformDataType.IMAGE])
-          .onDrop((event: DragEvent, extraParams: string) => {
+          .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
-            let dragData = event.getData();
-            let summary = event.getSummary();
+            let dragData:UnifiedData = (event as DragEvent).getData() as UnifiedData;
             if(dragData != undefined) {
-              let arr = dragData.getRecords();
+              let arr:Array<UDC.UnifiedRecord> = dragData.getRecords();
               if(arr.length > 0) {
-                let image = <UDC.Image>(arr[0]);
+                let image = arr[0] as UDC.Image;
                 this.uri = image.imageUri;
-                let jsonString = JSON.parse(extraParams);
-                this.BblockArr.splice(jsonString.insertIndex, 0, this.uri);
+                this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
                 console.log(`dragData arr is null`)
               }
@@ -144,4 +142,6 @@ struct ImageExample {
 }
 ```
 
-
+![dragImage1.jpeg](figures/dragImage1.jpeg)
+![dragImage2.jpeg](figures/dragImage2.jpeg)
+![dragImage3.jpeg](figures/dragImage3.jpeg)

@@ -8,7 +8,7 @@ The **screenlock** module is a system module in OpenHarmony. It provides APIs fo
 
 ## Modules to Import
 
-```js
+```ts
 import screenLock from '@ohos.screenLock';
 ```
 
@@ -68,7 +68,7 @@ Checks whether the screen is locked.
 
 **Example**
 
-```js
+```ts
 let isLocked = screenLock.isLocked();
 ```
 
@@ -98,13 +98,15 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.unlock((err, data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
-      console.error(`Failed to unlock the screen. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in unlocking the screen. Result: ${data}`);
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
   });
   ```
 
@@ -134,10 +136,12 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.unlock().then((data) => {
-    console.info(`Succeeded in unlocking the screen. Result: ${data}`);
-  }).catch((err) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlock().then((data: Boolean) => {
+    console.info(`Succeeded in unlocking the screen. result: ${data}`);
+  }).catch((err: BusinessError) => {
     console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -170,10 +174,12 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.lock((err, data) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
-      console.error(`Failed to lock the screen. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in locking the screen. result: ${data}`);
@@ -208,11 +214,13 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.lock().then((data) => {
-    console.info(`Succeeded in locking the screen. Result: ${data}`);
-  }).catch((err) => {
-    console.error(`Failed to lock the screen. Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.lock().then((data: Boolean) => {
+    console.info(`Succeeded in locking the screen. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to lock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -250,13 +258,14 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
+  ```ts
   try {
-    let isSuccess = screenLock.onSystemEvent((event) => {
-      console.log(`Succeeded in registering the system event related to screenlock. eventType: ${event.eventType}`)
+    let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
+      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
     });
   } catch (err) {
-    console.error(`Failed to register the system event related to screenlock. Code: ${err.code}, message: ${err.message}`)
+    let error = err as BusinessError;
+    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`)
   }
   ```
 
@@ -290,13 +299,15 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
-      console.error(`Failed to send the screenlock event. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in sending the screenlock event. result: ${result}`);
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
   });
   ```
 
@@ -335,11 +346,13 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 **Example**
 
-  ```js
-  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
-    console.info(`Succeeded in sending the screenlock event. Result: ${result}`);
-  }).catch((err) => {
-    console.error(`Failed to send the screenlock event. Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
+    console.info(`Succeeded in Sending screenlock event. result: ${result}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to send screenlock event, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -363,13 +376,15 @@ Checks whether the screen is locked. This API uses an asynchronous callback to r
 
 **Example**
 
-  ```js
-  screenLock.isScreenLocked((err, data)=>{      
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isScreenLocked((err: BusinessError, data: Boolean)=>{      
     if (err) {
-      console.error(`Failed to obtain whether the screen is locked. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
       return;    
     }
-    console.info(`Succeeded in obtaining whether the screen is locked. Result: ${data}`);
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
   });
   ```
 
@@ -393,11 +408,13 @@ Checks whether the screen is locked. This API uses a promise to return the resul
 
 **Example**
 
-  ```js
-  screenLock.isScreenLocked().then((data) => {
-    console.info(`Succeeded in obtaining whether the screen is locked. Result: ${data}`);
-  }).catch((err) => {
-    console.error(`Failed to obtain whether the screen is locked. Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isScreenLocked().then((data: Boolean) => {
+    console.info(`Succeeded in Obtaining whether the screen is locked. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain whether the screen is locked, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -421,13 +438,15 @@ Checks whether the device is in secure mode. When the device is in secure mode, 
 
 **Example**
 
-  ```js
-  screenLock.isSecureMode((err, data)=>{
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isSecureMode((err: BusinessError, data: Boolean)=>{
     if (err) {
-      console.error(`Failed to obtain whether the device is in secure mode. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in obtaining whether the device is in secure mode. Result: ${data}`);
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
   });
   ```
 
@@ -451,11 +470,13 @@ Checks whether the device is in secure mode. When the device is in secure mode, 
 
 **Example**
 
-  ```js
-  screenLock.isSecureMode().then((data) => {
-    console.info(`Succeeded in obtaining whether the device is in secure mode. Result: ${data}`);
-  }).catch((err) => {
-    console.error(`Failed to obtain whether the device is in secure mode. Code: ${err.code}, message: ${err.message}`);
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.isSecureMode().then((data: Boolean) => {
+    console.info(`Succeeded in Obtaining whether the device is in secure mode. result: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain whether the device is in secure mode, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -479,13 +500,15 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-  ```js
-  screenLock.unlockScreen((err) => {      
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  screenLock.unlockScreen((err: BusinessError) => {      
     if (err) {
-      console.error(`Failed to unlock the screen. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
       return;    
     }
-    console.info(`Succeeded in unlocking the screen.`);
+    console.info(`Succeeded unlocking the screen.`);
   });
   ```
 
@@ -509,10 +532,12 @@ Unlocks the screen. This API uses a promise to return the result.
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
   screenLock.unlockScreen().then(() => {
-    console.info('Succeeded in unlocking the screen.');
-  }).catch((err) => {
-    console.error(`Failed to unlock the screen. Code: ${err.code}, message: ${err.message}`);
+    console.info('Succeeded unlocking the screen.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to unlock the screen, Code: ${err.code}, message: ${err.message}`);
   });
   ```

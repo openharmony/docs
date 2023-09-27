@@ -16,19 +16,19 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 2. Create a surface.
    
    Call **createAVRecorder()** of the media module to create an **AVRecorder** instance, and call **getInputSurface()** of the instance to obtain the surface ID, which is associated with the view output stream to process the data output by the stream.
- 
+
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string> {  // For details about aVRecorderConfig, see the next section.
-     let avRecorder: media.AVRecorder;
-     media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-       if (recorder != null) {
-         avRecorder = recorder;
-         console.info('createAVRecorder success');
-       } else {
-         console.info(`createAVRecorder fail, error:${error}`);
-       }
-     });
-   
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
+     let avRecorder: media.AVRecorder | undefined;
+     try {
+       avRecorder = await media.createAVRecorder();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`createAVRecorder call failed. error code: ${err.code}`);
+     }
+     if (avRecorder === undefined) {
+       return undefined;
+     }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
          console.log('prepare success');
@@ -42,15 +42,17 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 3. Create a video output stream.
-     
-    Obtain the video output streams supported by the current device from **videoProfiles** in the **CameraOutputCapability** class. Then, define video recording parameters and use **createVideoOutput()** to create a video output stream.
-     
+
+   Obtain the video output streams supported by the current device from **videoProfiles** in the **CameraOutputCapability** class. Then, define video recording parameters and use **createVideoOutput()** to create a video output stream.
+
+   **NOTE**: The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
+
    ```ts
-   function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): camera.VideoOutput {
+   async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
      if (!videoProfilesArray) {
        console.error("createOutput videoProfilesArray == null || undefined");
-       return null;
+       return undefined;
      }
      // AVRecorderProfile
      let aVRecorderProfile: media.AVRecorderProfile = {
@@ -61,7 +63,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        videoFrameHeight: 480, // Video frame height.
        videoFrameRate: 30 // Video frame rate.
      }
-     // Define video recording parameters.
+     // Define video recording parameters. The ratio of the resolution width (videoFrameWidth) to the resolution height (videoFrameHeight) of the video output stream must be the same as that of the preview stream.
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
@@ -69,19 +71,20 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
        rotation: 90 // 90° is the default vertical display angle. You can use other values based on project requirements.
      }
      // Create an AVRecorder instance.
-     let avRecorder: media.AVRecorder;
-     media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-       if (recorder != null) {
-         avRecorder = recorder;
-         console.info('createAVRecorder success');
-       } else {
-         console.info(`createAVRecorder fail, error:${error}`);
-       }
-     });
+     let avRecorder: media.AVRecorder | undefined = undefined;
+     try {
+       avRecorder = await media.createAVRecorder();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`createAVRecorder call failed. error code: ${err.code}`);
+     }
+     if (avRecorder === undefined) {
+       return undefined;
+     }
      // Set video recording parameters.
      avRecorder.prepare(aVRecorderConfig);
      // Create a VideoOutput instance.
-     let videoOutput: camera.VideoOutput;
+     let videoOutput: camera.VideoOutput | undefined = undefined;
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
      } catch (error) {

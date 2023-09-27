@@ -1,7 +1,7 @@
 # @ohos.router (Page Routing)
 
 
-The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in an application, and return to the previous page or a specified page.
+The **Router** module provides APIs to access pages through URLs. You can use the APIs to navigate to a specified page in an application, replace the current page with another one in the same application, and return to the previous page or a specified page.
 
 > **NOTE**
 >
@@ -1123,7 +1123,8 @@ Describes the named route options.
 
 ### JavaScript-based Web-like Development Paradigm
 
-```ts
+The following sample code applies only to JavaScript files, not ArkTS files.
+```js
 // Current page
 export default {
   pushPage() {
@@ -1136,7 +1137,7 @@ export default {
   }
 }
 ```
-```ts
+```js
 // detail page
 export default {
   onInit() {
@@ -1175,14 +1176,14 @@ class routerParams {
 @Component
 struct Index {
   async routePage() {
-    let options = {
+    let options:router.RouterOptions = {
       url: 'pages/second',
       params: new routerParams ('This is the value on the first page', [12, 45, 78])
     }
     try {
       await router.pushUrl(options)
     } catch (err) {
-      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).msg}`)
+      console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
     }
   }
 

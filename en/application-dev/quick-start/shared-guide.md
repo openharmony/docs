@@ -15,4 +15,4 @@ Restrictions on the HSP:
 - The HSP and its invoking modules must use the **esmodule** compilation mode.
 - The HSP does not support the declaration of **abilities** and **extensionAbilities** in its configuration file.
 
-The HSP can be classified as [in-application HSP](in-app-hsp.md) or [inter-application HSP](cross-app-hsp.md), depending on the configuration files and usage methods.
+The HSP can be classified as [in-application HSP](in-app-hsp.md) or inter-application HSP, which will be supported in later versions.

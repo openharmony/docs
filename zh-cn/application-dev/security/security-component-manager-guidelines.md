@@ -49,7 +49,7 @@ SaveButton(options: SaveButtonOptions)
 SaveButton({ icon:SaveIconStyle.FULL_FILLED })
 
 /* 只有文字和图标的样式 */
-SaveButton({ icon:SaveIconStyle.FULL_FILLED， text:SaveDescription.DOWNLOAD })
+SaveButton({ icon:SaveIconStyle.FULL_FILLED, text:SaveDescription.DOWNLOAD })
 ```
 
 
@@ -88,24 +88,25 @@ SaveButton({ icon:SaveIconStyle.FULL_FILLED， text:SaveDescription.DOWNLOAD })
 
 2. 配置安全控件的属性。
    ```
-      LocationButton().iconSize(15.0)
+      LocationButton().iconSize(40.0)
    ```
 
 3. 注册onCLick回调，回调中调用特权接口，以位置控件为例，获取定位信息。
    ```
    import geoLocationManager from '@ohos.geoLocationManager';
+   import BusinessError from "@ohos.base";
    @Entry
    @Component
    struct locationButton {
      build() {
        Row() {
          Column() {
-           LocationButton({ icon: LocationIconStyle.FULL_FILLED }).iconSize(15.0)
+           LocationButton({ icon: LocationIconStyle.FULL_FILLED }).iconSize(40.0)
              .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
                if (result == LocationButtonOnClickResult.SUCCESS) {
                  /* 示例接口来自js-apis-geoLocationManager.md#currentlocationrequest */
-                 let requestInfo = { 'priority': 0x203, 'scenario': 0x300, 'maxAccuracy': 0 };
-                 let locationChange = (err, location) => {
+                 let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
+                 let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
                    if (err) {
                      console.log('locationChanger: err=' + JSON.stringify(err));
                    }
@@ -117,12 +118,12 @@ SaveButton({ icon:SaveIconStyle.FULL_FILLED， text:SaveDescription.DOWNLOAD })
                  try {
                    geoLocationManager.getCurrentLocation(requestInfo, locationChange);
                  } catch (err) {
-                   console.error("errCode:" + err.code + ",errMessage:" + err.message);
+                   console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
                  }
                }
              })
-         }
-       }
+         }.width('100%')
+       }.height('100%')
      }
    }
    ```

@@ -30,10 +30,10 @@ The figure below shows the recommended API calling process of the dual-channel p
 2. Create a surface of the **ImageReceiver** object.
 
    ```ts
-   async function getImageReceiverSurfaceId(): Promise<string> {
+   async function getImageReceiverSurfaceId(): Promise<string | undefined> {
      let receiver: image.ImageReceiver = image.createImageReceiver(640, 480, 4, 8);
      console.info('before ImageReceiver check');
-     let ImageReceiverSurfaceId: string;
+     let ImageReceiverSurfaceId: string | undefined = undefined;
      if (receiver !== undefined) {
        console.info('ImageReceiver is ok');
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
@@ -51,7 +51,7 @@ The figure below shows the recommended API calling process of the dual-channel p
 
    ```ets
    //xxx.ets
-   // Create an XComponentController object. 
+   // Create an XComponentController object.
    @Component
    struct XComponentPage {
      // Create an XComponentController object.
@@ -87,10 +87,10 @@ The figure below shows the recommended API calling process of the dual-channel p
    import camera from '@ohos.multimedia.camera';
 
    async function createDualChannelPreview(cameraManager: camera.CameraManager, XComponentSurfaceId: string, receiver: image.ImageReceiver): Promise<void> {
-     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // 获取支持的相机设备对象
+     let camerasDevices: Array<camera.CameraDevice> = cameraManager.getSupportedCameras(); // Obtain the supported camera devices.
    
      // Obtain the profile object.
-     let profiles: camera.CameraOutputCapability = await this.cameraManager.getSupportedOutputCapability(camerasDevices[0]); // 获取对应相机设备profiles
+     let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(camerasDevices[0]); // Obtain the profiles of the camera.
      let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
    
      // Preview stream 1.
@@ -153,7 +153,7 @@ The figure below shows the recommended API calling process of the dual-channel p
              return;
            }
            let buffer: ArrayBuffer;
-           if (imgComponent.byteBuffer) {
+           if (imgComponent.byteBuffer as ArrayBuffer) {
              buffer = imgComponent.byteBuffer;
            } else {
              return;
@@ -164,5 +164,3 @@ The figure below shows the recommended API calling process of the dual-channel p
      })
    }
    ```
-
- <!--no_check--> 

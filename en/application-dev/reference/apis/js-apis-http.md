@@ -23,22 +23,32 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
-httpRequest.on('headersReceive', (header) => {
+httpRequest.on('headersReceive', (header:Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
+class ExtraData {
+  public data: string;
+
+  constructor(data: string) {
+    this.data = data;
+  }
+}
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
 httpRequest.request(
   // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
     // You can add header fields based on service requirements.
-    header: {
-      'Content-Type': 'application/json'
-    },
+    header: new Header('application/json'),
     // This parameter is used to transfer data when the POST request is used.
-    extraData: {
-      "data": "data to send",
-    },
+    extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
@@ -47,24 +57,25 @@ httpRequest.request(
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
-  }, (err, data) => {
-    if (!err) {
-      // data.result carries the HTTP response. Parse the response based on service requirements.
-      console.info('Result:' + JSON.stringify(data.result));
-      console.info('code:' + JSON.stringify(data.responseCode));
-      // data.header carries the HTTP response header. Parse the content based on service requirements.
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // Call the destroy() method to release resources after the HttpRequest is complete.
-      httpRequest.destroy();
-    } else {
-      console.info('error:' + JSON.stringify(err));
-      // Unsubscribe from HTTP Response Header events.
-      httpRequest.off('headersReceive');
-      // Call the destroy() method to release resources after the HttpRequest is complete.
-      httpRequest.destroy();
-    }
+  },
+  (err: BusinessError, data: http.HttpResponse ) => {
+  if (!err) {
+    // data.result carries the HTTP response. Parse the response based on service requirements.
+    console.info('Result:' + JSON.stringify(data.result));
+    console.info('code:' + JSON.stringify(data.responseCode));
+    // data.header carries the HTTP response header. Parse the content based on service requirements.
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    // Call the destroy() method to release resources after the HttpRequest is complete.
+    httpRequest.destroy();
+  } else {
+    console.info('error:' + JSON.stringify(err));
+    // Unsubscribe from HTTP Response Header events.
+    httpRequest.off('headersReceive');
+    // Call the destroy() method to release resources after the HttpRequest is complete.
+    httpRequest.destroy();
   }
+}
 );
 ```
 
@@ -163,7 +174,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```js
-httpRequest.request("EXAMPLE_URL", (err, data) => {
+httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
   if (!err) {
     console.info('Result:' + data.result);
     console.info('code:' + data.responseCode);
@@ -239,26 +250,36 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.request("EXAMPLE_URL",
-  {
-    method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
-    readTimeout: 60000,
-    connectTimeout: 60000
-  }, (err, data) => {
-    if (!err) {
-      console.info('Result:' + data.result);
-      console.info('code:' + data.responseCode);
-      console.info('header:' + JSON.stringify(data.header));
-      console.info('cookies:' + data.cookies); // 8+
-      console.info('header.Content-Type:' + data.header['Content-Type']);
-      console.info('header.Status-Line:' + data.header['Status-Line']);
-    } else {
-      console.info('error:' + JSON.stringify(err));
-    }
-  });
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: new Header('application/json')
+});
+
+promise.then((data:http.HttpResponse) => {
+  console.info('Result:' + data.result);
+  console.info('code:' + data.responseCode);
+  console.info('header:' + JSON.stringify(data.header));
+  console.info('cookies:' + data.cookies); // 8+
+  console.info('header.Content-Type:' + data.header.ContentType);
+  console.info('header.Status-Line:' + data.header.StatusLine);
+
+}).catch((err:Error) => {
+  console.info('error:' + JSON.stringify(err));
+});
+
 ```
 
 ### request<sup>6+</sup>
@@ -330,22 +351,31 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-let promise = httpRequest.request("EXAMPLE_URL", {
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json')
 });
-promise.then((data) => {
+promise.then((data:http.HttpResponse) => {
   console.info('Result:' + data.result);
   console.info('code:' + data.responseCode);
   console.info('header:' + JSON.stringify(data.header));
   console.info('cookies:' + data.cookies); // 8+
-  console.info('header.Content-Type:' + data.header['Content-Type']);
-  console.info('header.Status-Line:' + data.header['Status-Line']);
-}).catch((err) => {
+  console.info('header.Content-Type:' + data.header.Content-Type);
+  console.info('header.Status-Line:' + data.header.Status-Line);
+}).catch((err:Error) => {
   console.info('error:' + JSON.stringify(err));
 });
 ```
@@ -424,7 +454,9 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.requestInStream("EXAMPLE_URL", (err, data) => {
+import http from '@ohos.net.http';
+
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
   if (!err) {
     console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
   } else {
@@ -494,15 +526,19 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-httpRequest.requestInStream("EXAMPLE_URL",
-  {
-    method: http.RequestMethod.GET,
-    header: {
-      'Content-Type': 'application/json'
-    },
-    readTimeout: 60000,
-    connectTimeout: 60000
-  }, (err, data) => {
+import http from '@ohos.net.http';
+
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError<void> , data: number) => {
     if (!err) {
       console.info("requestInStream OK! ResponseCode is " + JSON.stringify(data));
     } else {
@@ -577,17 +613,26 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```js
-let promise = httpRequest.requestInStream("EXAMPLE_URL", {
+import http from '@ohos.net.http';
+
+class Header {
+  public contentType: string;
+
+  constructor(contentType: string) {
+    this.contentType = contentType;
+  }
+}
+
+let httpRequest = http.createHttp();
+let promise:RequestOptions = httpRequest.request("EXAMPLE_URL", {
   method: http.RequestMethod.GET,
   connectTimeout: 60000,
   readTimeout: 60000,
-  header: {
-    'Content-Type': 'application/json'
-  }
+  header: new Header('application/json')
 });
-promise.then((data) => {
+promise.then((data: http.HttpResponse) => {
   console.info("requestInStream OK!" + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: Error) => {
   console.info("requestInStream ERROR : err = " + JSON.stringify(err));
 });
 ```
@@ -613,7 +658,9 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```js
-httpRequest.on('headerReceive', (data) => {
+import http from '@ohos.net.http';
+
+httpRequest.on('headerReceive', (data: BusinessError) => {
   console.info('error:' + JSON.stringify(data));
 });
 ```
@@ -642,6 +689,8 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpRequest.off('headerReceive');
 ```
 
@@ -663,7 +712,9 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```js
-httpRequest.on('headersReceive', (header) => {
+import http from '@ohos.net.http';
+
+httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -710,7 +761,9 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 **Example**
 
 ```js
-httpRequest.once('headersReceive', (header) => {
+import http from '@ohos.net.http';
+
+httpRequest.once('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 ```
@@ -736,7 +789,9 @@ Registers an observer for events indicating receiving of HTTP streaming response
 **Example**
 
 ```js
-httpRequest.on('dataReceive', (data) => {
+import http from '@ohos.net.http';
+
+httpRequest.on('dataReceive', (data: ArrayBuffer) => {
   console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
@@ -762,6 +817,8 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpRequest.off('dataReceive');
 ```
 
@@ -786,6 +843,8 @@ Registers an observer for events indicating completion of receiving HTTP streami
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpRequest.on('dataEnd', () => {
   console.info('Receive dataEnd !');
 });
@@ -812,6 +871,8 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpRequest.off('dataEnd');
 ```
 
@@ -836,7 +897,14 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 **Example**
 
 ```js
-httpRequest.on('dataReceiveProgress', (data) => {
+import http from '@ohos.net.http';
+
+class RequestData{
+  receiveSize: number = 2000 
+  totalSize: number = 2000 
+}
+
+httpRequest.on('dataReceiveProgress', (data: RequestData) => {
   console.info('dataReceiveProgress:' + JSON.stringify(data));
 });
 ```
@@ -862,6 +930,8 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpRequest.off('dataReceiveProgress');
 ```
 
@@ -1009,7 +1079,9 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```js
-httpResponseCache.flush(err => {
+import http from '@ohos.net.http';
+
+httpResponseCache.flush((err: BusinessError) => {
   if (err) {
     console.info('flush fail');
     return;
@@ -1035,9 +1107,11 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpResponseCache.flush().then(() => {
   console.info('flush success');
-}).catch(err => {
+}).catch((err: BusinessError) => {
   console.info('flush fail');
 });
 ```
@@ -1059,7 +1133,9 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 **Example**
 
 ```js
-httpResponseCache.delete(err => {
+import http from '@ohos.net.http';
+
+httpResponseCache.delete((err: BusinessError) => {
   if (err) {
     console.info('delete fail');
     return;
@@ -1085,9 +1161,11 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 **Example**
 
 ```js
+import http from '@ohos.net.http';
+
 httpResponseCache.delete().then(() => {
   console.info('delete success');
-}).catch(err => {
+}).catch((err: Error) => {
   console.info('delete fail');
 });
 ```

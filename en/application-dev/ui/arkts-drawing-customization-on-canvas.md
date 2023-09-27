@@ -63,7 +63,7 @@ You can draw custom graphics on the canvas in any of the following ways:
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             // You can draw content here.
             offContext.strokeRect(50, 50, 200, 150);
             // Display the image rendered by the offscreen drawing value on the common canvas.
@@ -98,13 +98,18 @@ You can draw custom graphics on the canvas in any of the following ways:
 **onReady(event: () =&gt; void)** is the event callback when the **Canvas** component initialization is complete. After this event is called, the determined width and height of the **Canvas** component can be obtained. The **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects can then be used to call related APIs to draw graphics.
 
 ```ts
+class Contextset{
+  settings: RenderingContextSettings = new RenderingContextSettings(true)
+  context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+}
 Canvas(this.context)
   .width('100%')
   .height('100%')
   .backgroundColor('#F5DC62')
   .onReady(() => {
-    this.context.fillStyle = '#0097D4';
-    this.context.fillRect(50, 50, 100, 100);
+    let con:Contextset = new Contextset()
+    con.context.fillStyle = '#0097D4';
+    con.context.fillRect(50, 50, 100, 100);
   })
 
 ```
@@ -119,15 +124,20 @@ Two modes are available for drawing with the **Canvas** component:
 - After the **onReady()** callback of the **Canvas** component is invoked, use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to call related APIs for drawing.
 
   ```ts
+  class Contextset{
+    settings: RenderingContextSettings = new RenderingContextSettings(true)
+    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
-      this.context.beginPath();
-      this.context.moveTo(50, 50);
-      this.context.lineTo(280, 160);
-      this.context.stroke();
+      let con:Contextset = new Contextset()
+      con.context.beginPath();
+      con.context.moveTo(50, 50);
+      con.context.lineTo(280, 160);
+      con.context.stroke();
      })
   ```
 
@@ -136,14 +146,19 @@ Two modes are available for drawing with the **Canvas** component:
 - Define an individual **path2d** object to build an ideal path, and then call the **stroke** or **fill** API of the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw the path. For details, see [Path2D](../reference/arkui-ts/ts-components-canvas-path2d.md).
 
   ```ts
+  class Contextset{
+    settings: RenderingContextSettings = new RenderingContextSettings(true)
+    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
+       let con:Contextset = new Contextset()
        let region = new Path2D();
        region.arc(100, 75, 50, 0, 6.28);
-       this.context.stroke(region);
+       con.context.stroke(region);
     })
   ```
 
@@ -158,23 +173,28 @@ Two modes are available for drawing with the **Canvas** component:
   You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
 
   ```ts
+  class Contextset{
+    settings: RenderingContextSettings = new RenderingContextSettings(true)
+    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
+        let con:Contextset = new Contextset()
        // Draw a rectangle.
-       this.context.beginPath();
-       this.context.rect(100, 50, 100, 100);
-       this.context.stroke();
+       con.context.beginPath();
+       con.context.rect(100, 50, 100, 100);
+       con.context.stroke();
        // Draw a circle on the canvas.
-       this.context.beginPath();
-       this.context.arc(150, 250, 50, 0, 6.28);
-       this.context.stroke();
+       con.context.beginPath();
+       con.context.arc(150, 250, 50, 0, 6.28);
+       con.context.stroke();
        // Draw an oval on the canvas.
-       this.context.beginPath();
-       this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
-       this.context.stroke();
+       con.context.beginPath();
+       con.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
+       con.context.stroke();
     })
 
   ```
@@ -186,17 +206,22 @@ Two modes are available for drawing with the **Canvas** component:
   You can use APIs such as [fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
 
   ```ts
+  class Contextset{
+    settings: RenderingContextSettings = new RenderingContextSettings(true)
+    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
+        let con:Contextset = new Contextset()
        // Draw filled text on the canvas.
-       this.context.font = '50px sans-serif';
-       this.context.fillText("Hello World!", 50, 100);
+       con.context.font = '50px sans-serif';
+       con.context.fillText("Hello World!", 50, 100);
        // Draw a text stroke on the canvas.
-       this.context.font = '55px sans-serif';
-       this.context.strokeText("Hello World!", 50, 150);
+       con.context.font = '55px sans-serif';
+       con.context.strokeText("Hello World!", 50, 150);
     })
   ```
 
@@ -222,7 +247,7 @@ Two modes are available for drawing with the **Canvas** component:
           .height('100%')
           .backgroundColor('#F5DC62')
           .onReady(() =>{
-            var offContext = this.offCanvas.getContext("2d", this.settings)
+            let offContext = this.offCanvas.getContext("2d", this.settings)
             // Use the drawImage API to draw an image in the area with the width and height of 130 starting from (0, 0).
             offContext.drawImage(this.img,0,0,130,130);
             // Use the getImageData API to obtain the image data with the width and height of 130 starting from (50, 50).
@@ -247,20 +272,27 @@ Two modes are available for drawing with the **Canvas** component:
   **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
 
   ```ts
+  class Contextset{
+    settings: RenderingContextSettings = new RenderingContextSettings(true)
+    context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+  }
   Canvas(this.context)
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
     .onReady(() =>{
+      let con:Contextset = new Contextset()
        // Create a CanvasGradient object with radial gradient colors.
-       let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
+       let grad:CanvasRenderingContext2D|undefined = con.context.createRadialGradient(200,200,50, 200,200,200)
        // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
-       grad.addColorStop(0.0, '#E87361');
-       grad.addColorStop(0.5, '#FFFFF0');
-       grad.addColorStop(1.0, '#BDDB69');
+       if(grad){
+        grad.addColorStop(0.0, '#E87361');
+        grad.addColorStop(0.5, '#FFFFF0');
+        grad.addColorStop(1.0, '#BDDB69');
+        con.context.fillStyle = grad;
+       }
        // Fill the rectangle with the CanvasGradient object.
-       this.context.fillStyle = grad;
-       this.context.fillRect(0, 0, 400, 400);
+      con.context.fillRect(0, 0, 400, 400);
     })
   ```
 

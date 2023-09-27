@@ -21,7 +21,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-   
+     
    ```ts
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
@@ -33,10 +33,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description|
+   | Event Type| Description| 
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
-   | error | Mandatory; used to listen for AVRecorder errors.|
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
+   | error | Mandatory; used to listen for AVRecorder errors.| 
 
    ```ts
    // Callback function for state changes.
@@ -84,11 +84,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 4. Obtain the surface ID required for video recording.
-   
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
-   The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-   
+     The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
+     
    ```ts
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
@@ -120,7 +119,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-
+  
 ```ts
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
@@ -130,7 +129,7 @@ export class VideoRecorderDemo {
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
-    videoBitrate: 100000, // Video bit rate.
+    videoBitrate : 100000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
@@ -145,8 +144,8 @@ export class VideoRecorderDemo {
 
   // Set AVRecorder callback functions.
   setAvRecorderCallback() {
-    // Callback function for state changes.
     if (this.avRecorder != undefined) {
+      // Callback function for state changes.
       this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
         console.info(TAG + 'current state is: ' + state);
       })
@@ -198,7 +197,7 @@ export class VideoRecorderDemo {
 
   // Process of pausing recording.
   async pauseRecordingProcess() {
-    if (this.avRecorder != undefined && this.avRecorder.state ==='started') { // pause() can be called only when the AVRecorder is in the started state .
+    if (this.avRecorder != undefined && this.avRecorder.state === 'started') { // pause() can be called only when the AVRecorder is in the started state .
       await this.avRecorder.pause();
       await this.stopCameraOutput(); // Stop the camera stream output.
     }
@@ -216,7 +215,7 @@ export class VideoRecorderDemo {
     if (this.avRecorder != undefined) {
       // 1. Stop recording.
       if (this.avRecorder.state === 'started'
-        || this.avRecorder.state === 'paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
+        || this.avRecorder.state ==='paused') { // stop() can be called only when the AVRecorder is in the started or paused state.
         await this.avRecorder.stop();
         await this.stopCameraOutput();
       }
@@ -240,5 +239,3 @@ export class VideoRecorderDemo {
   }
 }
 ```
-
- <!--no_check--> 

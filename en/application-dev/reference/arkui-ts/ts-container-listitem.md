@@ -118,13 +118,17 @@ struct ListItemExample {
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }.width('90%')
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
@@ -138,6 +142,7 @@ struct ListItemExample {
 
 
 ```ts
+// xxx.ets
 // xxx.ets
 @Entry
 @Component
@@ -157,7 +162,7 @@ struct ListItemExample2 {
   build() {
     Column() {
       List({ space: 10 }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: number) => {
           ListItem() {
             Text("item" + item)
               .width('100%')
@@ -170,7 +175,7 @@ struct ListItemExample2 {
           .transition({ type: TransitionType.Delete, opacity: 0 })
           .swipeAction({
             end: {
-              builder: this.itemEnd.bind(this, item),
+              builder: this.itemEnd,
               onAction: () => {
                 animateTo({ duration: 1000 }, () => {
                   let index = this.arr.indexOf(item)
@@ -188,7 +193,7 @@ struct ListItemExample2 {
               }
             }
           })
-        }, item => item)
+        }, (item: string) => item)
       }
       Text(this.enterEndDeleteAreaString).fontSize(20)
       Text(this.exitEndDeleteAreaString).fontSize(20)
@@ -209,35 +214,33 @@ struct ListItemExample2 {
 @Entry
 @Component
 struct ListItemExample3 {
- private arr: any = [ListItemStyle.CARD, ListItemStyle.CARD,ListItemStyle.NONE]
- build() {
-  Column() {
-   List({ space: "4vp", initialIndex: 0 }) {
-    ListItemGroup({style:ListItemGroupStyle.CARD}){
-     ForEach(this.arr, (itemStyle,index) => {
-      ListItem({style:itemStyle}) {
-       Text(""+index)
-        .width("100%")
-        .textAlign(TextAlign.Center)
+  build() {
+    Column() {
+      List({ space: "4vp", initialIndex: 0 }) {
+        ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+          ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
+            ListItem({ style: itemStyle }) {
+              Text("" + index)
+                .width("100%")
+                .textAlign(TextAlign.Center)
+            }
+          })
+        }
+        ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
+          ListItem({ style: itemStyle }) {
+            Text("" + index)
+              .width("100%")
+              .textAlign(TextAlign.Center)
+          }
+        })
       }
-     })
+      .width('100%')
+      .multiSelectable(true)
+      .backgroundColor(0xDCDCDC) // List in light blue
     }
-    ForEach(this.arr, (itemStyle,index) => {
-     ListItem({style:itemStyle}) {
-      Text(""+index)
-       .width("100%")
-       .textAlign(TextAlign.Center)
-     }
-    })
-   }
-   .width('100%')
-   .multiSelectable(true)
-   .backgroundColor(0xDCDCDC) // List in light blue
+    .width('100%')
+    .padding({ top: 5 })
   }
-  .width('100%')
-  .padding({ top: 5 })
- }
 }
-
 ```
 ![ListItemStyle](figures/listItem3.jpeg)

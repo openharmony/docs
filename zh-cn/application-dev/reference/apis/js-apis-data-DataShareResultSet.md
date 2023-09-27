@@ -28,7 +28,7 @@ import { BusinessError } from '@ohos.base'
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+dataShare.createDataShareHelper(this.context, uri, (err, data) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {

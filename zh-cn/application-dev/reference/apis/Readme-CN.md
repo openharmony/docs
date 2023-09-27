@@ -209,7 +209,7 @@
   - [@ohos.arkui.dragController (DragController)](js-apis-arkui-dragController.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
-  - [ @ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
+  - [@ohos.arkui.performanceMonitor (性能监测)](js-apis-arkui-performancemonitor.md)
   - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.font (注册自定义字体)](js-apis-font.md)
@@ -243,6 +243,7 @@
     - [MediaControlExtensionContext (播控扩展能力上下文)](js-apis-inner-application-MediaControlExtensionContext.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
+    - [soundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -261,6 +262,7 @@
 
 - 安全
   - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
@@ -297,7 +299,7 @@
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
-  - [@ohos.file.recent(最近访问列表)](js-apis-file-recent.md)
+  - [@ohos.file.recent (最近访问列表)](js-apis-file-recent.md)
   - [@ohos.file.securityLabel (数据标签)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (文件系统空间统计)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
@@ -333,16 +335,16 @@
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
-  - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
-  - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)
-  - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](js-apis-bluetooth-baseProfile.md)
-  - [@ohos.bluetooth.ble(蓝牙ble模块)(推荐)](js-apis-bluetooth-ble.md)
-  - [@ohos.bluetooth.connection(蓝牙connection模块)(推荐)](js-apis-bluetooth-connection.md)
-  - [@ohos.bluetooth.constant(蓝牙constant模块)(推荐)](js-apis-bluetooth-constant.md)
-  - [@ohos.bluetooth.hfp(蓝牙hfp模块)(推荐)](js-apis-bluetooth-hfp.md)
-  - [@ohos.bluetooth.hid(蓝牙hid模块)(推荐)](js-apis-bluetooth-hid.md)
-  - [@ohos.bluetooth.pan(蓝牙pan模块)(推荐)](js-apis-bluetooth-pan.md)
-  - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
+  - [@ohos.bluetooth.a2dp (蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
+  - [@ohos.bluetooth.access (蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)
+  - [@ohos.bluetooth.baseProfile (蓝牙baseProfile模块)(推荐)](js-apis-bluetooth-baseProfile.md)
+  - [@ohos.bluetooth.ble (蓝牙ble模块)(推荐)](js-apis-bluetooth-ble.md)
+  - [@ohos.bluetooth.connection (蓝牙connection模块)(推荐)](js-apis-bluetooth-connection.md)
+  - [@ohos.bluetooth.constant (蓝牙constant模块)(推荐)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.hfp (蓝牙hfp模块)(推荐)](js-apis-bluetooth-hfp.md)
+  - [@ohos.bluetooth.hid (蓝牙hid模块)(推荐)](js-apis-bluetooth-hid.md)
+  - [@ohos.bluetooth.pan (蓝牙pan模块)(推荐)](js-apis-bluetooth-pan.md)
+  - [@ohos.bluetooth.socket (蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
@@ -403,7 +405,7 @@
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
   - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
-  - [@ohos. deviceStatus.dragInteraction (拖拽)](js-apis-devicestatus-draginteraction.md)
+  - [@ohos.deviceStatus.dragInteraction (拖拽)](js-apis-devicestatus-draginteraction.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
@@ -486,6 +488,9 @@
   - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
+
+- 广告
+  - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

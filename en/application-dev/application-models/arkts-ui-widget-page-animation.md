@@ -13,9 +13,15 @@ To make your ArkTS widget more engaging, you can apply animations to it, includi
 | delay | Animation delay duration.| Do not set this parameter in the widget. Use the default value 0.|
 | iterations | Number of times that the animation is played.| Do not set this parameter in the widget. Use the default value 1.|
 
-The following sample code implements the animation effect of button rotation:
+>**NOTE**
+>
+>Static widgets do not support animations.
+
+The following sample code implements the animation effect of button rotation.
 
 ![WidgetAnimation](figures/WidgetAnimation.gif)
+
+
 
 ```ts
 @Entry

@@ -30,11 +30,19 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   });
 
   // Obtain the camera list.
-  let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  let cameraArray: Array<camera.CameraDevice> = [];
+  try {
+    cameraArray = cameraManager.getSupportedCameras();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getSupportedCameras call failed. error code: ${err.code}`);
+  }
+
   if (cameraArray.length <= 0) {
     console.error("cameraManager.getSupportedCameras error")
     return;
   }
+
   // Obtain the output stream capabilities supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0]);
   if (!cameraOutputCap) {
@@ -85,57 +93,62 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
     location: { latitude: 30, longitude: 130 }
   };
 
-  let avRecorder: media.AVRecorder;
-  media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
-    if (recorder != null) {
-      avRecorder = recorder;
-      console.log('createAVRecorder success');
-    } else {
-      console.log(`createAVRecorder fail, error:${error}`);
-    }
-  });
+  let avRecorder: media.AVRecorder | undefined = undefined;
+  try {
+    avRecorder = await media.createAVRecorder();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`createAVRecorder call failed. error code: ${err.code}`);
+  }
 
-  avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-    if (err == null) {
-      console.log('prepare success');
-    } else {
-      console.log(`prepare failed. error: ${JSON.stringify(err)}`);
-    }
-  })
+  if (avRecorder === undefined) {
+    return;
+  }
 
-  let videoSurfaceId: string = null; // The surfaceID is passed in to the camera API to create a VideoOutput instance.
-  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
-    if (err == null) {
-      console.log('getInputSurface success');
-      videoSurfaceId = surfaceId;
-    } else {
-      console.log(`getInputSurface failed. error: ${JSON.stringify(err)}`);
-    }
-  });
+  try {
+    await avRecorder.prepare(aVRecorderConfig);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`prepare call failed. error code: ${err.code}`);
+  }
 
+  let videoSurfaceId: string | undefined = undefined; // The surfaceID is passed in to the camera API to create a VideoOutput instance.
+  try {
+    videoSurfaceId = await avRecorder.getInputSurface();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`getInputSurface call failed. error code: ${err.code}`);
+  }
+  if (videoSurfaceId === undefined) {
+    return;
+  }
   // Create a VideoOutput instance.
-  let videoOutput: camera.VideoOutput;
+  let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(videoProfilesArray[0], videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
   }
-
+  if (videoOutput === undefined) {
+    return;
+  }
   // Listen for video output errors.
   videoOutput.on('error', (error: BusinessError) => {
     console.log(`Preview output error code: ${error.code}`);
   });
 
   // Create a session.
-  let captureSession: camera.CaptureSession;
+  let captureSession: camera.CaptureSession | undefined = undefined;
   try {
     captureSession = cameraManager.createCaptureSession();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to create the CaptureSession instance. error: ${JSON.stringify(err)}`);
   }
-
+  if (captureSession === undefined) {
+    return;
+  }
   // Listen for session errors.
   captureSession.on('error', (error: BusinessError) => {
     console.log(`Capture session error code: ${error.code}`);
@@ -150,14 +163,16 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   // Create a camera input stream.
-  let cameraInput: camera.CameraInput;
+  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to createCameraInput. error: ${JSON.stringify(err)}`);
   }
-
+  if (cameraInput === undefined) {
+    return;
+  }
   // Listen for camera input errors.
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
@@ -181,7 +196,7 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   }
 
   // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
-  let previewOutput: camera.PreviewOutput;
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
@@ -189,6 +204,9 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
     console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
   }
 
+  if (previewOutput === undefined) {
+    return;
+  }
   // Add the preview input stream to the session.
   try {
     captureSession.addOutput(previewOutput);
@@ -271,6 +289,6 @@ async function videoRecording(context: featureAbility.Context, surfaceId: string
   captureSession.release();
 
   // Set the session to null.
-  captureSession = null;
+  captureSession = undefined;
 }
 ```

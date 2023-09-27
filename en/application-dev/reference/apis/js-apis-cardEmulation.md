@@ -280,21 +280,22 @@ For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode
 
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
+import bundleManager from '@ohos.bundle.bundleManager';
 
-var isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
 
-var hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
 
-var elementName = {
-    "bundleName": "com.example.myapplication",
-    "abilityName": "EntryAbility",
+let elementName: bundleManager.ElementName = {
+    bundleName : "com.example.myapplication",
+    abilityName : "EntryAbility",
 };
-var isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 console.log('is the app is default service for this card type: ' + isDefaultService);
 ```
