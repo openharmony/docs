@@ -60,7 +60,7 @@ for (int i = 0; i < 1000000; i++) {
 
 ### 延长对象生命周期
 
-开发者可以通过创建 napi_ref 来延长 napi_value 对象的生命周期，通过 napi_create_reference 创建的对象需要用户手动调用 napi_delete_reference 释放，否则可能造成内存泄漏。（反例复制上去）
+开发者可以通过创建 napi_ref 来延长 napi_value 对象的生命周期，通过 napi_create_reference 创建的对象需要用户手动调用 napi_delete_reference 释放，否则可能造成内存泄漏。
 
 #### 使用案例1：保存 napi_value
 
