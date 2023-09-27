@@ -37,7 +37,7 @@
     }
 
     // 查询当前能力中，码控模式是否支持
-    bool isEncoderBitrateModeSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, &bitrateMode);
+    bool isEncoderBitrateModeSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, BITRATE_MODE_CBR);
 
     // 查询当前能力中，编码质量范围
     OH_AVRange qualityRange;
@@ -151,6 +151,6 @@
     uint32_t levelNum = 0;
     int32_t ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, 0, &levels, &levelNum);
 
-    // 校验当前能力是否支持分辨率1080p、帧率30的场景
-    bool areVideoSizeAndFrameRateSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, 1920, 1080, 30);
+    // 检查编解码器是否支持配置文件和级别的特定组合
+    bool areProfileAndLevelSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_BASELINE, 1);
     ```
