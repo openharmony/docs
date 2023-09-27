@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputEventClient (Key Injection)
+# @ohos.multimodalInput.inputEventClient (Device Injection)
 
-The **inputEventClient** module implements injection of key events.
+The **inputEventClient** module provides the device injection capability.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 injectEvent({KeyEvent: KeyEvent}): void
 
-Injects a key event. Currently, this API applies only to the **/KEYCODE_BACK** key (key value 2).
+Injects keys (including single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -51,10 +51,89 @@ try {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+## inputEventClient.injectMouseEvent<sup>11+</sup>
+
+injectMouseEvent({mouseEvent: MouseEvent}): void;
+
+Injects a mouse/touchpad event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+**Parameters**
+
+| Name      | Type                   | Mandatory  | Description       |
+| -------- | --------------------- | ---- | --------- |
+| mouseEvent | [MouseEvent](../apis/js-apis-mouseevent.md) | Yes   | Mouse/touchpad event to inject.|
+
+**Example**
+
+```js
+try {
+  let mouseButtonUp = {
+      action: 2,
+      screenX: 200,
+      screenY: 620,
+      button: 0,
+      toolType: 1,
+  }
+  inputEventClient.injectMouseEvent({ mouseEvent: mouseButtonUp });
+
+  let mouseButtonDown = {
+      action: 3,
+      screenX: 200,
+      screenY: 620,
+      button: 0,
+      toolType: 1,
+  };
+  inputEventClient.injectMouseEvent({ mouseEvent: mouseButtonDown });
+} catch (error) {
+  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputEventClient.injectTouchEvent<sup>11+</sup>
+
+injectTouchEvent({touchEvent: TouchEvent}): void;
+
+Injects a touchscreen event.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+**Parameters**
+
+| Name      | Type                   | Mandatory  | Description       |
+| -------- | --------------------- | ---- | --------- |
+| touchEvent | [TouchEvent](../apis/js-apis-touchevent.md) | Yes   | Touchscreen event to inject.|
+
+**Example**
+
+```js
+try {
+  let touchEventUp = {
+      action: 1,
+      sourceType: 0,
+      screenX: 200,
+      screenY: 620,
+      pressedTime: 0,
+  };
+  inputEventClient.injectTouchEvent({ touchEvent: touchEventUp });
+
+  let touchEventDown = {
+      action: 3,
+      sourceType: 0,
+      screenX: 200,
+      screenY: 620,
+      pressedTime: 0,
+  };
+    inputEventClient.injectTouchEvent({ touchEvent: touchEventDown });
+} catch (error) {
+    console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 ## KeyEvent
 
-Represents information about the key event to inject.
+Represents the key event to inject.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 

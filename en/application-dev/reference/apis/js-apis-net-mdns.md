@@ -43,33 +43,6 @@ Adds an mDNS service. This API uses an asynchronous callback to return the resul
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -107,16 +80,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+  address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:localServiceInfo) =>  {
   console.log(JSON.stringify(error));
@@ -161,32 +133,6 @@ Adds an mDNS service. This API uses a promise to return the result.
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -224,16 +170,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
@@ -272,33 +217,6 @@ Removes an mDNS service. This API uses an asynchronous callback to return the re
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -336,16 +254,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+  address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
@@ -390,32 +307,6 @@ Removes an mDNS service. This API uses a promise to return the result.
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -453,16 +344,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+  address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
@@ -497,18 +387,6 @@ Creates a **DiscoveryService** object, which is used to discover mDNS services o
 | 401     | Parameter error. |
 
 **Example**
-
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context, serviceType);
-```
 
 Stage model:
 
@@ -583,33 +461,6 @@ Resolves an mDNS service. This API uses an asynchronous callback to return the r
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -647,16 +498,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+  address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
@@ -701,32 +551,6 @@ Resolves an mDNS service. This API uses a promise to return the result.
 
 **Example**
 
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-
-let localServiceInfo: mdns.LocalServiceInfo = {
-  serviceType: "_print._tcp",
-  serviceName: "servicename",
-  port: 5555,
-  host: {
-    address: "10.14.**.***",
-  },
-  serviceAttribute: [{
-    key: "111",
-    value: [1]
-  }]
-}
-
-mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
-});
-```
-
 Stage model:
 
 ```js
@@ -764,16 +588,15 @@ class EntryAbility extends UIAbility {
 }
 let context = GlobalContext.getContext().getObject("value");
 
-let localServiceInfo: mdns.LocalServiceInfo
-localServiceInfo.serviceType = "_print._tcp"
-localServiceInfo.serviceName = "servicename"
-localServiceInfo.port = 5555
-localServiceInfo.host.address = "10.14.**.***"
-
-let mdnsServiceAttribute : mdns.ServiceAttribute
-mdnsServiceAttribute.key = "111"
-mdnsServiceAttribute.value = [1]
-localServiceInfo.serviceAttribute.push(mdnsServiceAttribute)
+let localServiceInfo: mdns.LocalServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+  address: "10.14.**.***",
+  }
+  serviceAttribute: [{key: "111", value: [1]}]
+}
 
 mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
@@ -792,18 +615,6 @@ Searches for mDNS services on the LAN.
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
-
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context, serviceType);
-discoveryService.startSearchingMDNS();
-```
 
 Stage model:
 
@@ -855,18 +666,6 @@ Stops searching for mDNS services on the LAN.
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
-
-FA model:
-
-```js
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context, serviceType);
-discoveryService.stopSearchingMDNS();
-```
 
 Stage model:
 
@@ -961,8 +760,8 @@ class EntryAbility extends UIAbility {
 
 // See mdns.createDiscoveryService.
 class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo
-  errorCode?: mdns.MdnsError
+  serviceInfo: mdns.LocalServiceInfo = {}
+  errorCode?: mdns.MdnsError = INTERNAL_ERROR
 }
 let context = GlobalContext.getContext().getObject("value");
 let serviceType = "_print._tcp";

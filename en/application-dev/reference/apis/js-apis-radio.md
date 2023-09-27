@@ -247,7 +247,7 @@ radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
 
 getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelectionMode\>\): void
 
-Obtains the network selection mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network selection mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -286,7 +286,7 @@ radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSe
 
 getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
-Obtains the network selection mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network selection mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -509,7 +509,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 ```ts
 import { BusinessError } from '@ohos.base';
 
-radio.getPrimarySlotId().then((data: string) => {
+radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
@@ -629,7 +629,7 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
-console.log(`signal information size is:` + signalInfo.size());
+console.log(`signal information size is:` + signalInfo.length);
 ```
 
 ## radio.isNrSupported<sup>(deprecated)</sup>
@@ -876,7 +876,7 @@ radio.isRadioOn(slotId).then((data: boolean) => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the carrier name of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -915,7 +915,7 @@ radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
 
 getOperatorName\(slotId: number\): Promise\<string\>
 
-Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the carrier name of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -960,7 +960,7 @@ radio.getOperatorName(slotId).then((data: string) => {
 
 getOperatorNameSync\(slotId: number\): string
 
-Obtains the carrier name for the SIM card in the specified slot.
+Obtains the carrier name of the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1089,7 +1089,7 @@ radio.setPrimarySlotId(slotId).then(() => {
 
 getIMEI\(callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1132,7 +1132,7 @@ radio.getIMEI((err: BusinessError, data: string) => {
 
 getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1177,7 +1177,7 @@ radio.getIMEI(slotId, (err: BusinessError, data: string) => {
 
 getIMEI\(slotId?: number\): Promise\<string\>
 
-Obtains the IMEI for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1228,7 +1228,7 @@ radio.getIMEI(slotId).then((data: string) => {
 
 getMEID\(callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1271,7 +1271,7 @@ radio.getMEID((err: BusinessError, data: string) => {
 
 getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1316,7 +1316,7 @@ radio.getMEID(slotId, (err: BusinessError, data: string) => {
 
 getMEID\(slotId?: number\): Promise\<string\>
 
-Obtains the MEID for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1367,7 +1367,7 @@ radio.getMEID(slotId).then((data: string) => {
 
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID for the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1410,7 +1410,7 @@ radio.getUniqueDeviceId((err: BusinessError, data: string) => {
 
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1455,7 +1455,7 @@ radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
 
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
-Obtains the unique device ID for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1686,7 +1686,7 @@ radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>
 
 getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
-Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains cell information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1731,7 +1731,7 @@ radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInfo
 
 getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
-Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains cell information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1899,7 +1899,7 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions).then(() => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSearchResult\>\): void
 
-Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains network search information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1942,7 +1942,7 @@ radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSea
 
 getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
-Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains network search information of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2036,7 +2036,7 @@ radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
 
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2082,7 +2082,7 @@ radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => 
 
 getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2412,7 +2412,7 @@ radio.turnOffRadio(slotId).then(() => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback\<void\>\): void
 
-Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the preferred network of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2458,7 +2458,7 @@ radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promise\<void\>
 
-Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the preferred network of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2511,7 +2511,7 @@ radio.setPreferredNetwork(slotId, mode).then(() => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMode\>\): void
 
-Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the preferred network of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2555,7 +2555,7 @@ radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetw
 
 getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
-Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the preferred network of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2800,7 +2800,7 @@ radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
 
 getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the baseband version of the device for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the device baseband version of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2845,7 +2845,7 @@ radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
 
 getBasebandVersion\(slotId: number\): Promise\<string\>
 
-Obtains the baseband version of the device for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the device baseband version of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2897,7 +2897,7 @@ radio.getBasebandVersion(slotId).then((data: string) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
 
-Sets the NR mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the NR mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2944,7 +2944,7 @@ radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
-Sets the NR mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the NR mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2993,6 +2993,7 @@ radio.setNROptionMode(slotId, mode).then(() => {
 });
 ```
 
+
 ## radio.getNROptionMode<sup>10+</sup>
 
 getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
@@ -3005,16 +3006,16 @@ Obtains the NR option mode of the SIM card in the specified slot. This API uses 
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description                                   |
+| Name  | Type                                             | Mandatory| Description                                  |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                           | Yes   | Card slot ID.<br/>- **0**: card slot 1<br/>- **1**: card slot 2  |
-| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | Yes   | Callback used to return the result.                              |
+| slotId   | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | Yes  | Callback used to return the result.                             |
 
 **Error codes**
 
 For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
-| ID |                  Error Message                     |
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
@@ -3034,12 +3035,11 @@ radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => 
 });
 ```
 
-
 ## radio.getNROptionMode<sup>10+</sup>
 
 getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the NR option mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3088,7 +3088,7 @@ radio.getNROptionMode(slotId).then((data: radio.NROptionMode) => {
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: AsyncCallback\<NetworkCapabilityState\>\): void
 
-Obtains the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network capability of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3135,7 +3135,7 @@ radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.Networ
 
 getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<NetworkCapabilityState\>
 
-Obtains the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network capability of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3190,7 +3190,7 @@ radio.getNetworkCapability(slotId, type).then((data: radio.NetworkCapabilityStat
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState,
       callback: AsyncCallback\<void\>\): void
 
-Sets the network capability for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sets the network capability of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3239,7 +3239,7 @@ radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
 
 setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: NetworkCapabilityState\): Promise\<void\>
 
-Sets the network capability for the SIM card in the specified slot. This API uses a promise to return the result.
+Sets the network capability of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
