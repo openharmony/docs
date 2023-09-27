@@ -63,7 +63,7 @@
 
 
 
-```
+```ts
 @Entry
 @Component
 struct FlexibleCapabilitySample1 {
@@ -114,7 +114,7 @@ struct FlexibleCapabilitySample1 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct FlexibleCapabilitySample2 {
@@ -186,7 +186,7 @@ struct FlexibleCapabilitySample2 {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct EquipartitionCapabilitySample {
@@ -297,7 +297,7 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ProportionCapabilitySample {
@@ -387,7 +387,7 @@ struct ProportionCapabilitySample {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ScaleCapabilitySample {
@@ -474,7 +474,7 @@ struct ScaleCapabilitySample {
 
 
 
-```
+```ts
 @Entry
 @Component
 struct ExtensionCapabilitySample1 {
@@ -535,7 +535,7 @@ struct ExtensionCapabilitySample1 {
 
   （2）通过Scroll组件配合Row组件实现。
 
-```
+```ts
 @Entry
 @Component
 struct ExtensionCapabilitySample2 {
@@ -613,7 +613,7 @@ struct ExtensionCapabilitySample2 {
 ![zh-cn_image_0000001335485154](figures/zh-cn_image_0000001335485154.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct HiddenCapabilitySample {
@@ -704,7 +704,7 @@ struct HiddenCapabilitySample {
 ![zh-cn_image_0000001385645821](figures/zh-cn_image_0000001385645821.gif)
 
 
-```
+```ts
 @Entry
 @Component
 struct WrapCapabilitySample {
