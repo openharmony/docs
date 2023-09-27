@@ -192,8 +192,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   @Component
   struct Child {
@@ -235,9 +234,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let storage = new LocalStorage({ 'PropA': 47 });
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
   @Component
@@ -277,10 +274,9 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -392,10 +388,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
