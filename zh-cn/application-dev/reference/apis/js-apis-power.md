@@ -243,7 +243,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: BusinessError<void>) => {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: Error) => {
     if (typeof err === 'undefined') {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
@@ -291,7 +291,7 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .then(() => {
     console.info('set power mode to MODE_PERFORMANCE');
 })
-.catch(err => {
+.catch((err : Error)=> {
     console.error('set power mode failed, err: ' + err);
 });
 ```
@@ -372,7 +372,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-power.isScreenOn((err: BusinessError<void>, data: boolean) => {
+power.isScreenOn((err: Error, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('screen on status is ' + data);
     } else {
