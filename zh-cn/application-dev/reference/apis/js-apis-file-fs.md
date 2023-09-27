@@ -887,7 +887,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let arrayBuffer = new ArrayBuffer(4096);
   fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -4037,7 +4037,7 @@ open接口flags参数常量。文件打开标签。
 | 名称        | 类型       | 说明                |
 | ----------- | --------------- | ------------------ |
 | suffix | Array&lt;string&gt;     | 文件后缀名完全匹配，各个关键词OR关系。           |
-| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。 |
+| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
 | mimeType    | Array&lt;string&gt; | mime类型完全匹配，各个关键词OR关系。       |
 | fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
 | lastModifiedAfter    | number | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
