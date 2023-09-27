@@ -167,12 +167,11 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 
 ```ts
-let storage = new LocalStorage(); // 创建新实例并使用给定对象初始化
-storage['PropA'] = 47
-let propA = storage.get<number>('PropA') // propA == 47
-let link1 = storage.link<number>('PropA'); // link1.get() == 47
-let link2 = storage.link<number>('PropA'); // link2.get() == 47
-let prop = storage.prop<number>('PropA'); // prop.get() = 47
+let storage = new LocalStorage({ 'PropA': 47 }); // 创建新实例并使用给定对象初始化
+let propA = storage.get('PropA') // propA == 47
+let link1 = storage.link('PropA'); // link1.get() == 47
+let link2 = storage.link('PropA'); // link2.get() == 47
+let prop = storage.prop('PropA'); // prop.get() = 47
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
 prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
@@ -193,8 +192,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   @Component
   struct Child {
@@ -236,8 +234,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
@@ -278,10 +275,9 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -322,11 +318,7 @@ Child自定义组件中的变化：
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
    ```ts
-   class Data {
-     countStorage: number = 0;
-   }
-   let data: Data = { countStorage: 1 }
-   let storage = new LocalStorage(data);
+   let storage = new LocalStorage({ countStorage: 1 });
 
    @Component
    struct Child {
@@ -370,11 +362,7 @@ Child自定义组件中的变化：
              .width(50).height(60).fontSize(12)
            Text(`countStorage ${this.playCount} incr by 1`)
              .onClick(() => {
-               let countStorage: number | undefined = storage.get<number>('countStorage');
-              if (countStorage != undefined){
-                 countStorage += 1;
-                 storage.set<number>('countStorage', countStorage);
-               }
+               storage.set<number>('countStorage', 1 + storage.get<number>('countStorage'));
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
@@ -401,10 +389,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
