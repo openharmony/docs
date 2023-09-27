@@ -3221,8 +3221,6 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 开启本窗口区域范围外的点击事件的监听。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -3249,8 +3247,6 @@ try {
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 关闭本窗口区域范围外的点击事件的监听。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
