@@ -67,8 +67,10 @@ on(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void
   **示例：**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+
 try {
-  inputMonitor.on('mouse', (mouseEvent) => {
+  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
     console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
     return false;
   });
@@ -100,7 +102,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 
 ```js
 // 取消监听单个回调函数
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -115,7 +117,7 @@ try {
 
 ```js
 // 取消监听所有回调函数
-let callback = (touchEvent: touchEvent) => {
+let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
   return false;
 };
@@ -263,6 +265,8 @@ off(type: 'pinch', receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestur
 
 ```js
 // 取消监听单个回调函数
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -278,6 +282,8 @@ try {
 
 ```js
 // 取消监听所有回调函数
+import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
   return false;
@@ -342,6 +348,8 @@ off(type: 'threeFingersSwipe', receiver?: Callback&lt;[ThreeFingersSwipe](js-api
 
 ```js
 // 取消监听单个回调函数
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -357,6 +365,8 @@ try {
 
 ```js
 // 取消监听所有回调函数
+import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
   return false;
@@ -421,6 +431,8 @@ off(type: 'fourFingersSwipe', receiver?: Callback&lt;[FourFingersSwipe](js-apis-
 
 ```js
 // 取消监听单个回调函数
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
@@ -436,6 +448,8 @@ try {
 
 ```js
 // 取消监听所有回调函数
+import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
   return false;
