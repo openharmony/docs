@@ -1077,7 +1077,7 @@ let c2 = new C("abc") // OK，使用第二个签名
 
 类的方法和属性都可以使用可见性修饰符。
 
-可见性修饰符包括：`private`、`protected`、`public`和`internal`。默认可见性为`public`。`internal`意味着只在当前包中可见。
+可见性修饰符包括：`private`、`protected`和`public`。默认可见性为`public`。
 
 #### Public（公有）
 
