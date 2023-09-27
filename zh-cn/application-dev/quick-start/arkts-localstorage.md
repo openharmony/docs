@@ -361,7 +361,11 @@ Child自定义组件中的变化：
              .width(50).height(60).fontSize(12)
            Text(`countStorage ${this.playCount} incr by 1`)
              .onClick(() => {
-               storage.set<number>('countStorage', 1 + storage.get<number>('countStorage'));
+               let countStorage: number | undefined = storage.get<number>('countStorage');
+              if (countStorage != undefined){
+                 countStorage += 1;
+                 storage.set<number>('countStorage', countStorage);
+               }
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
