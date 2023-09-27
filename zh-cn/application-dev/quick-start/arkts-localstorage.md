@@ -193,7 +193,6 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   ```ts
   // 创建新实例并使用给定对象初始化
   let storage = new LocalStorage({ 'PropA': 47 });
-
   @Component
   struct Child {
     // @LocalStorageLink变量装饰器与LocalStorage中的'PropA'属性建立双向绑定
