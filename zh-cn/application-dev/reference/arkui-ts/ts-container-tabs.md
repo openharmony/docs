@@ -48,7 +48,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | fadingEdge<sup>10+</sup>         | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true         |
 | barOverlap<sup>10+</sup>         | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
 | barBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置TabBar的背景颜色。<br />默认值：透明               |
-| barGridAlign<sup>10+</sup> | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效。              |
+| barGridAlign<sup>10+</sup> | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 以栅格化方式设置TabBar的可见区域。具体参见BarGridColumnOptions对象。仅水平模式下有效，[不适用于XS、XL和XXL设备](../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)。              |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -561,6 +561,7 @@ struct TabsExample5 {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
         }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
       }
+      .width('350vp')
       .animationDuration(300)
       .height('60%')
       .barGridAlign({ sm: this.sm, margin: this.gridMargin, gutter: this.gridGutter })
@@ -572,7 +573,7 @@ struct TabsExample5 {
     .width('100%')
     .height(500)
     .margin({ top: 5 })
-    .padding('24vp')
+    .padding('10vp')
   }
 }
 ```
