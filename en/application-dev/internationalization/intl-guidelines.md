@@ -386,8 +386,3 @@ Call [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
 
-## 相关实例
-
-针对Intl开发，有以下相关实例可供参考：
-
-- [`International`：国际化（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International)
