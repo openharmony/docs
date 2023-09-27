@@ -56,7 +56,6 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 | -u | 否，默认安装到当前所有用户上 | 给指定用户安装一个HAP |
 | -r | 否，默认值为覆盖安装 | 覆盖安装一个HAP |
 | -w | 否，默认等待5s | 安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s |
-| -s | 否 | 安装应用间HSP路径，支持指定多个应用间HSP路径同时安装 |
 
 
 示例：
@@ -65,12 +64,6 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 bm install -p /data/app/ohosapp.hap -u 100 -w 5s -r
 // 执行结果
 install bundle successfully.
-# 安装一个应用间共享库
-bm install -s xxx.hsp
-# 同时安装多个应用间共享库
-bm install -s xxx.hsp yyy.hsp
-# 同时安装使用方应用和其依赖的应用间共享库
-bm install -p aaa.hap -s xxx.hsp yyy.hsp
 ```
 
 
@@ -90,7 +83,6 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 | -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块 |
 | -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用 |
 | -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据 |
-| -s | 否 | 安装应用间HSP路径，支持指定多个应用间HSP路径同时安装 |
 | -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号 |
 
 
@@ -100,10 +92,6 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
 // 执行结果
 uninstall bundle successfully.
-# 卸载一个shared bundle
-bm uninstall -s -n com.ohos.example
-# 卸载一个shared bundle的指定版本
-bm uninstall -s -n com.ohos.example -v 100001
 ```
 
 
