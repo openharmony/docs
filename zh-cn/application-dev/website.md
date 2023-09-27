@@ -731,7 +731,7 @@
     - ArkTS高性能编程
       - [高性能编程规范](performance/high-performance-programming.md)
       - [高效并发编程](performance/efficient-concurrent-programming.md)
-      - [安全和高效的使用N-API开发Native模块](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
       - [多线程能力场景化](performance/multi_thread_capability.md)
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
