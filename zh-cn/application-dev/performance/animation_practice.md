@@ -12,14 +12,14 @@
 ## 合理使用动效
 
 ### 组件转场动画使用transition
-在实现组件出现和消失的动画效果时，通常有两种实现方式：
+在实现组件出现和消失的动画效果时，通常有两种方式：
 
-1. 使用组件动画（animateTo），并在在动画结束回调中增加逻辑处理。
-2. 直接使用转场动画（transition）。
+- 使用组件动画（animateTo），并在在动画结束回调中增加逻辑处理。
+- 直接使用转场动画（transition）。
 
 animateTo需要在动画前后做两次属性更新，而transition只需做一次条件改变更新，性能更好。此外，使用transition，可以避免在结束回调中做复杂逻辑处理，开发实现更容易。因此，推荐优先使用transition。
 
-反例：通过改变透明度属性，从1到0进行隐藏，并在动画结束回调中控制组件的下树。
+反例：通过改变透明度属性，从1到0进行隐藏，并在动画结束回调中控制组件的消失。
 
 ```typescript
 @Entry
@@ -47,7 +47,7 @@ struct MyComponent {
           this.show = true;
           // 通过改变透明度属性，对Text控件做隐藏或出现的动画
           animateTo({ duration: 1000, onFinish: () => {
-            // 最后一个动画且是让Text控件隐藏的动画，再改变条件使控件消失
+            // 在最后一个动画中，先让Text控件隐藏，再改变条件让Text控件消失
             if (thisCount === this.count && this.mOpacity === 0) {
               this.show = false;
             }
@@ -98,7 +98,7 @@ struct MyComponent {
 
 界面布局是非常耗时的操作，而当图形变换属性发生变化时，并不会重新触发布局。因此，优先推荐使用图形变换属性来实现组件布局的改动。接下来，采用上述两种方式分别对组件实现放大10倍的效果。
 
-反例：直接通过设置组件的width和height布局属性改变组件大小。
+反例：通过设置布局属性width和height，改变组件大小。
 
 ```typescript
     @State textWidth: number = 10;
@@ -128,7 +128,7 @@ struct MyComponent {
 
 在对组件位置或大小变化做动画时，由于布局属性的改变会触发重新测量布局，导致性能开销大。scale属性的改变不会重新触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如手指缩放的动画场景，推荐使用scale。
 
-正例：通过设置scale属性改变组件大小。
+正例：通过设置图形变换属性scale，改变组件大小。
 
 ```typescript
     @State textScaleX: number = 1;
