@@ -373,7 +373,7 @@ type T = number[] // 为避免名称冲突，此处不允许使用X
 
 **级别：错误**
 
-ArkTS不支持 `var`，请始终使用`let`代替。
+ArkTS不支持`var`，请始终使用`let`代替。 
 
 **TypeScript**
 
@@ -453,31 +453,7 @@ let value_o2: Object = 42
 
 **相关约束**
 
-* 使用Object[]而非tuple
-
-### 使用`Object[]`而非tuple
-
-**规则：**`arkts-no-tuples`
-
-**级别：错误**
-
-当前ArkTS不支持tuple。可以使用`Object[]`来代替tuple。
-
-**TypeScript**
-
-```typescript
-var t: [number, string] = [3, "three"]
-var n = t[0]
-var s = t[1]
-```
-
-**ArkTS**
-
-```typescript
-let t: Object[] = [3, "three"]
-let n = t[0]
-let s = t[1]
-```
+* 强制进行严格类型检查
 
 ### 使用`class`而非具有call signature的类型
 
@@ -1087,7 +1063,7 @@ let regex: RegExp = /bc*d/
 **ArkTS**
 
 ```typescript
-let regex: RegExp = new RegExp("/bc*d/")
+let regex: RegExp = new RegExp('bc*d')
 ```
 
 ### 需要显式标注对象字面量的类型
@@ -1113,7 +1089,26 @@ let o2: Object = {n: 42, s: "foo"}
 let o3: object = {n: 42, s: "foo"}
 
 let oo: Object[] = [{n: 1, s: "1"}, {n: 2, s: "2"}]
+```
 
+**ArkTS**
+
+```typescript
+class C1 {
+    n: number = 0
+    s: string = ""
+}
+
+let o1: C1 = {n: 42, s: "foo"}
+let o2: C1 = {n: 42, s: "foo"}
+let o3: C1 = {n: 42, s: "foo"}
+
+let oo: C1[] = [{n: 1, s: "1"}, {n: 2, s: "2"}]
+```
+
+**TypeScript**
+
+```typescript
 class C2 {
     s: string
     constructor(s: string) {
@@ -1121,16 +1116,58 @@ class C2 {
     }
 }
 let o4: C2 = {s: "foo"}
+```
 
+**ArkTS**
+
+```typescript
+class C2 {
+    s: string
+    constructor(s: string) {
+        this.s = "s =" + s
+    }
+}
+let o4 = new C2("foo")
+```
+
+**TypeScript**
+
+```typescript
 class C3 {
     readonly n: number = 0
     readonly s: string = ""
 }
 let o5: C3 = {n: 42, s: "foo"}
+```
 
+**ArkTS**
+
+```typescript
+class C3 {
+    n: number = 0
+    s: string = ""
+}
+let o5: C3 = {n: 42, s: "foo"}
+```
+
+**TypeScript**
+
+```typescript
 abstract class A {}
 let o6: A = {}
+```
 
+**ArkTS**
+
+```typescript
+abstract class A {}
+class C extends A {}
+let o6: C = {} // 或 let o6: C = new C()
+```
+
+**TypeScript**
+
+```typescript
 class C4 {
     n: number = 0
     s: string = ""
@@ -1139,7 +1176,26 @@ class C4 {
     }
 }
 let o7: C4 = {n: 42, s: "foo", f : () => {}}
+```
 
+**ArkTS**
+
+```typescript
+class C4 {
+    n: number = 0
+    s: string = ""
+    f() {
+        console.log("Hello")
+    }
+}
+let o7 = new C4()
+o7.n = 42
+o7.s = "foo"
+```
+
+**TypeScript**
+
+```typescript
 class Point {
     x: number = 0
     y: number = 0
@@ -1160,46 +1216,6 @@ id_x_y({x: 5, y: 10})
 **ArkTS**
 
 ```typescript
-class C1 {
-    n: number = 0
-    s: string = ""
-}
-
-let o1: C1 = {n: 42, s: "foo"}
-let o2: C1 = {n: 42, s: "foo"}
-let o3: C1 = {n: 42, s: "foo"}
-
-let oo: C1[] = [{n: 1, s: "1"}, {n: 2, s: "2"}]
-
-class C2 {
-    s: string
-    constructor(s: string) {
-        this.s = "s =" + s
-    }
-}
-let o4 = new C2("foo")
-
-class C3 {
-    n: number = 0
-    s: string = ""
-}
-let o5: C3 = {n: 42, s: "foo"}
-
-abstract class A {}
-class C extends A {}
-let o6: C = {} // 或 let o6: C = new C()
-
-class C4 {
-    n: number = 0
-    s: string = ""
-    f() {
-        console.log("Hello")
-    }
-}
-let o7 = new C4()
-o7.n = 42
-o7.s = "foo"
-
 class Point {
     x: number = 0
     y: number = 0
@@ -1921,31 +1937,34 @@ for (let i = 0; i < a.length; ++i) {
 
 **相关约束**
 
-* for-of仅适用于数组和字符串
+* 部分支持for-of
 
-### `for-of`仅适用于数组和字符串
+### 部分支持`for-of`
 
 **规则：**`arkts-for-of-str-arr`
 
 **级别：错误**
 
-ArkTS支持通过`for .. of`迭代数组、字符串和`TypedArray`（例如`Int32Array`），但不支持迭代对象。
+ArkTS支持通过`for .. of`迭代数组、字符串、`set`、`map`以及它们的子类、`TypedArray`（例如`Int32Array`），但不支持迭代对象。
 
 **TypeScript**
 
 ```typescript
-let a: Set<number> = new Set([1, 2, 3])
-for (let s of a) {
-    console.log(s)
+class A {
+    prop1: number;
+    prop2: number;
+}
+let a = new A()
+for (let prop of a) {
+    console.log(prop)
 }
 ```
 
 **ArkTS**
 
 ```typescript
-let a: Set<number> = new Set([1, 2, 3])
-let numbers = Array.from(a.values())
-for (let n of numbers) {
+let a = new Set<number>([1, 2, 3])
+for (let n of a) {
     console.log(n)
 }
 ```
@@ -1983,10 +2002,6 @@ class CFlags {
     s: boolean = false
 }
 ```
-
-**相关约束**
-
-* 不支持keyof运算符
 
 ### 不支持`with`语句
 
@@ -2330,66 +2345,15 @@ function main(): void {
 }
 ```
 
-### 不支持`keyof`运算符
-
-**规则：**`arkts-no-keyof`
-
-**级别：错误**
-
-在ArkTS中，由于对象布局在编译时就确定了，且不能在运行时被更改，因此，不支持使用`keyof`运算符。直接访问对象的属性。
-
-**TypeScript**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-type PointKeys = keyof Point  // PointKeys表示Point属性名称组成的联合类型
-
-function getPropertyValue(obj: Point, key: PointKeys) {
-    return obj[key]
-}
-
-let obj = new Point()
-console.log(getPropertyValue(obj, "x"))  // 打印"1"
-console.log(getPropertyValue(obj, "y"))  // 打印"2"
-```
-
-**ArkTS**
-
-```typescript
-class Point {
-    x: number = 1
-    y: number = 2
-}
-
-function getPropertyValue(obj: Point, key: string): number {
-    if (key == "x") {
-        return obj.x
-    }
-    if (key == "y") {
-        return obj.y
-    }
-    throw new Error()  // 处理没有该属性的分支
-    return 0
-}
-
-function main(): void {
-    let obj = new Point()
-    console.log(getPropertyValue(obj, "x"))  // 打印"1"
-    console.log(getPropertyValue(obj, "y"))  // 打印"2"
-}
-```
-
-### 展开运算符仅支持函数剩余参数为数组类型
+### 部分支持展开运算符
 
 **规则：**`arkts-no-spread`
 
 **级别：错误**
 
-展开运算符唯一支持的场景是函数剩余参数为数组类型，包括`TypedArray`（例如`Int32Array`）。
+ArkTS仅支持使用展开运算符展开数组、`Array`的子类和`TypedArray`（例如`Int32Array`）。仅支持使用在以下场景中：
+1. 传递给剩余参数时 
+2. 复制一个数组到数组字面量 
 
 **TypeScript**
 
@@ -2444,15 +2408,22 @@ class Point3D {
 
 let p3d = new Point3D({x: 1, y: 2} as Point2D, 3)
 console.log(p3d.x, p3d.y, p3d.z)
+
+class DerivedFromArray extends Uint16Array {};
+
+let arr1 = [1, 2, 3]
+let arr2 = new Uint16Array([4, 5, 6])
+let arr3 = new DerivedFromArray([7, 8, 9])
+let arr4 = [...arr1, 10, ...arr2, 11, ...arr3]
 ```
 
-### 接口不能继承具有相同属性的两个接口
+### 接口不能继承具有相同方法的两个接口
 
 **规则：**`arkts-no-extend-same-prop`
 
 **级别：错误**
 
-在TypeScript中，如果一个接口继承了具有相同方法的两个接口，则该接口必须使用联合类型来声明该方法。在ArkTS中，由于一个接口中不能包含两个无法区分的方法（例如两个参数列表相同但返回类型不同的方法），因此，接口不能继承具有相同属性的两个接口。
+在TypeScript中，如果一个接口继承了具有相同方法的两个接口，则该接口必须使用联合类型来声明该方法的返回值类型。在ArkTS中，由于一个接口中不能包含两个无法区分的方法（例如两个参数列表相同但返回类型不同的方法），因此，接口不能继承具有相同方法的两个接口。
 
 **TypeScript**
 
@@ -2616,47 +2587,6 @@ interface SelectableControl extends Control {
 **级别：错误**
 
 ArkTS中，对象布局在编译时就确定了，且不能在运行时被更改。禁止运行时检查对象属性。使用`as`运算符进行类型转换以访问相应的属性和方法。访问对象中不存在的属性将导致编译时错误。
-
-**TypeScript**
-
-```typescript
-class A {
-    foo() {}
-    bar() {}
-}
-
-function getSomeObject() {
-    return new A()
-}
-
-let obj: any = getSomeObject()
-if (obj && obj.foo && obj.bar) {
-    console.log("Yes")  // 此示例中将打印 "Yes"
-} else {
-    console.log("No")
-}
-```
-
-**ArkTS**
-
-```typescript
-class A {
-    foo(): void {}
-    bar(): void {}
-}
-
-function getSomeObject(): A {
-    return new A()
-}
-
-function main(): void {
-    let tmp: Object = getSomeObject()
-    let obj: A = tmp as A
-    obj.foo()       // OK
-    obj.bar()       // OK
-    obj.some_foo()  // 编译时错误：方法some_foo不存在于此类型上
-}
-```
 
 **相关约束**
 
@@ -2961,62 +2891,6 @@ import * as m from "mod"
 
 * 不支持export = ...语法 
 
-### 部分支持重导出
-
-**规则：**`arkts-limited-reexport`
-
-**级别：错误**
-
-ArkTS支持命名重导出和重命名重导出。支持`export * ...`的语法，不支持`export * as ...`的语法。
-
-**TypeScript**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class Class2 {
-    // ...
-}
-
-// module2
-export * as utilities from "module1"
-
-// consumer模块
-import { utilities } from "module2"
-
-const myInstance = new MyClass()
-```
-
-**ArkTS**
-
-```typescript
-// module1
-export class Class1 {
-    // ...
-}
-export class Class2 {
-    // ...
-}
-
-// module2
-export { Class1 } from "module1"
-export { C2 as Class2 } from "module1"
-
-// 支持以下语法
-// export * from "module1"
-
-// consumer模块
-import { Class1, Class2 } from "module2"
-
-const myInstance = new MyClass()
-```
-
-**相关约束**
-
-* 不支持export = ...语法 
-
 ### 不支持`export = ...`语法
 
 **规则：**`arkts-no-export-assignment`
@@ -3039,7 +2913,7 @@ class Point {
 // module2
 import Pt = require("module1")
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **ArkTS**
@@ -3054,13 +2928,12 @@ export class Point {
 // module2
 import * as Pt from "module1"
 
-let p = Pt.origin
+let p = Pt.Point.origin
 ```
 
 **相关约束**
 
 * 不支持require和import赋值表达式
-* 部分支持重导出
 
 ### 不支持`export type`
 **规则：**`arkts-no-special-exports`
@@ -3126,7 +2999,6 @@ import { normalize } from "someModule"
 **相关约束**
 
 * 不支持在模块名中使用通配符
-* 模块标识符中不允许使用.js扩展名
 
 ### 不支持在模块名中使用通配符
 
@@ -3164,7 +3036,6 @@ console.log("N.foo called: ", N.foo(42))
 
 * 不支持ambient module声明
 * 不支持通用模块定义(UMD)
-* 模块标识符中不允许使用.js扩展名
 
 ### 不支持通用模块定义(UMD)
 
@@ -3200,31 +3071,6 @@ mathLib.isPrime(2)
 
 **相关约束**
 
-* 不支持在模块名中使用通配符
-
-### 模块标识符中不允许使用.js扩展名
-
-**规则：**`arkts-no-js-extension`
-
-**级别：错误**
-
-ArkTS不允许在模块标识符中使用`.js`扩展名，因为ArkTS本身有与JavaScript交互的机制。
-
-**TypeScript**
-
-```typescript
-import { something } from "module.js"
-```
-
-**ArkTS**
-
-```typescript
-import { something } from "module"
-```
-
-**相关约束**
-
-* 不支持ambient module声明
 * 不支持在模块名中使用通配符
 
 ### 不支持`new.target`
@@ -3300,38 +3146,6 @@ let x: number = initialize()
 console.log("x = " + x)
 ```
 
-### 不支持IIFE（立即调用函数表达式）作为命名空间的声明
-
-**规则：**`arkts-no-iife`
-
-**级别：错误**
-
-由于在ArkTS中，匿名函数不能作为命名空间，因此不支持IIFE作为命名空间的声明。请使用命名空间的常规语法。
-
-**TypeScript**
-
-```typescript
-const C = (function () {
-    class Cl {
-        static static_value = "static_value";
-        static any_value: any = "any_value";
-        string_field = "string_field";
-    }
-
-    return Cl;
-})();
-
-C.prop = 2;
-```
-
-**ArkTS**
-
-```typescript
-namespace C {
-    // ...
-}
-```
-
 ### 不支持在原型上赋值
 
 **规则：**`arkts-no-prototype-assignment`
@@ -3343,7 +3157,7 @@ ArkTS没有原型的概念，因此不支持在原型上赋值。此特性不符
 **TypeScript**
 
 ```typescript
-var C = function(p) {
+let C = function(p) {
     this.p = p // 只有在开启noImplicitThis选项时会产生编译时错误
 }
 
@@ -3419,8 +3233,7 @@ M.abc = 200
 
 ArkTS仅支持`Partial`和`Record`，不支持TypeScript中其他的`Utility Types`。
 
-对于*Record<K, V>*类型，表达式*rec[index]*的类型是*V | undefined*。
-对于`Record`类型，键-值中的值的类型必须是可选类型或者包含`undefined`的联合类型。
+对于`Record`类型的对象，通过索引获访问到的值的类型是包含`undefined`的联合类型。
 
 **TypeScript**
 
@@ -3597,32 +3410,6 @@ console.log(person1.fullName())
 
 * 不支持在函数中使用this
 
-### 不支持`readonly`修饰函数参数
-
-**规则：**`arkts-no-readonly-params`
-
-**级别：错误**
-
-当前ArkTS中，`readonly`可以用于修饰属性，但不能用于修饰函数参数。
-
-**TypeScript**
-
-```typescript
-function foo(arr: readonly string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // 编译时错误
-}
-```
-
-**ArkTS**
-
-```typescript
-function foo(arr: string[]) {
-    arr.slice()        // OK
-    arr.push("hello!") // OK
-}
-```
-
 ### 不支持`as const`断言
 
 **规则：**`arkts-no-as-const`
@@ -3704,16 +3491,16 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 
 `Object`：`__proto__`、`__defineGetter__`、`__defineSetter__`、
 `__lookupGetter__`、`__lookupSetter__`、`assign`、`create`、
-`defineProperties`、`defineProperty`、`entries`、`freeze`、
+`defineProperties`、`defineProperty`、`freeze`、
 `fromEntries`、`getOwnPropertyDescriptor`、`getOwnPropertyDescriptors`、
-`getOwnPropertyNames`、`getOwnPropertySymbols`、`getPrototypeOf`、
-`hasOwn`、`hasOwnProperty`、`is`、`isExtensible`、`isFrozen`、
-`isPrototypeOf`、`isSealed`、`keys`、`preventExtensions`、
-`propertyIsEnumerable`、`seal`、`setPrototypeOf`、`values`
+`getOwnPropertySymbols`、`getPrototypeOf`、
+`hasOwnProperty`、`is`、`isExtensible`、`isFrozen`、
+`isPrototypeOf`、`isSealed`、`preventExtensions`、
+`propertyIsEnumerable`、`seal`、`setPrototypeOf`
 
 `Reflect`：`apply`、`construct`、`defineProperty`、`deleteProperty`、
-`get`、`getOwnPropertyDescriptor`、`getPrototypeOf`、`has`、
-`isExtensible`、`ownKeys`、`preventExtensions`、`set`,
+`getOwnPropertyDescriptor`、`getPrototypeOf`、
+`isExtensible`、`preventExtensions`、
 `setPrototypeOf`
 
 `Proxy`：`handler.apply()`、`handler.construct()`、
@@ -3721,8 +3508,6 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 `handler.getOwnPropertyDescriptor()`、`handler.getPrototypeOf()`、
 `handler.has()`、`handler.isExtensible()`、`handler.ownKeys()`、
 `handler.preventExtensions()`、`handler.set()`、`handler.setPrototypeOf()`
-
-`Array`：`isArray`
 
 `ArrayBuffer`：`isView`
 
@@ -3736,14 +3521,17 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 * 禁止运行时检查对象属性
 * 不支持globalThis
 
-### 强制开启严格类型检查
+### 强制进行严格类型检查
 
 **规则：**`arkts-strict-typing`
 
 **级别：错误**
 
-在ArkTS中，以下TypeScript的严格类型检查选项必须打开：`noImplicitReturns`,
-`strictFunctionTypes`, `strictNullChecks`, `strictPropertyInitialization`。
+在编译阶段，会进行TypeScript严格模式的类型检查，包括：
+`noImplicitReturns`, 
+`strictFunctionTypes`, 
+`strictNullChecks`, 
+`strictPropertyInitialization`。
 
 **TypeScript**
 
@@ -3820,7 +3608,7 @@ let s2: string = null // 编译时报错
 **相关约束**
 
 * 使用具体的类型而非any或unknown
-* 强制开启严格类型检查
+* 强制进行严格类型检查
 
 ### 允许ArkTS代码导入TS代码, 不允许TS代码导入ArkTS代码
 
@@ -3858,7 +3646,7 @@ import { C } from "lib1"
 
 **规则：**`arkts-no-decorators-except-arkui`
 
-**级别：错误**
+**级别：警告**
 
 现在，ArkTS中只支持ArkUI中的装饰器。使用其他装饰器会造成编译时错误。
 
