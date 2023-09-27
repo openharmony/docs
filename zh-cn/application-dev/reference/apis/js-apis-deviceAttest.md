@@ -13,6 +13,7 @@
 
 ```ts
 import deviceAttest from '@ohos.deviceAttest';
+import base from '@ohos.base';
 ```
 
 ## deviceAttest.getAttestStatus
