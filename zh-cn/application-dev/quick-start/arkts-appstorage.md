@@ -149,10 +149,10 @@ let storage: LocalStorage = new LocalStorage({ 'PropA': 17 });
 let propA: number = AppStorage.Get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
 var link1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link1.get() == 47
 var link2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link2.get() == 47
-var prop: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA'); // prop.get() = 47
+var prop: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA'); // prop.get() == 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 storage.get('PropA') // == 17 
