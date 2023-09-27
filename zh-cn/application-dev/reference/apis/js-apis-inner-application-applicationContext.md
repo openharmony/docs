@@ -385,9 +385,9 @@ export default class MyAbility extends UIAbility {
     onForeground() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.getRunningProcessInformation().then((data) => {
-            console.log('The process running information is: ${JSON.stringify(data)}');
+            console.log(`The process running information is: ${JSON.stringify(data)}`);
         }).catch((error: BusinessError) => {
-            console.error('error: ${JSON.stringify(error)}');
+            console.error(`error: ${JSON.stringify(error)}`);
         });
     }
 }
@@ -426,9 +426,9 @@ export default class MyAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.getRunningProcessInformation((err, data) => {
             if (err) {
-                console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
+                console.error(`getRunningProcessInformation faile, err: ${JSON.stringify(err)}`);
             } else {
-                console.log('The process running information is: ${JSON.stringify(data)}');
+                console.log(`The process running information is: ${JSON.stringify(data)}`);
             }
         })
     }
@@ -502,7 +502,7 @@ export default class MyAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.killAllProcesses(error => {
             if (error) {
-                console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
+                console.error(`killAllProcesses fail, error: ${JSON.stringify(error)}`);
             }
         });
     }

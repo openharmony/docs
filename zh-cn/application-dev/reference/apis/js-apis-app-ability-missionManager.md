@@ -100,10 +100,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -197,10 +197,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -299,10 +299,10 @@ export default class EntryAbility extends UIAbility {
 
         windowStage.loadContent('pages/index', (err: BusinessError, data) => {
             if (err.code) {
-                console.error('Failed to load the content. Cause: ${JSON.stringify(err)}');
+                console.error(`Failed to load the content. Cause: ${JSON.stringify(err)}`);
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ${JSON.stringify(data)}');
+            console.info(`Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
         });
     }
 };
@@ -398,12 +398,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 1;
 try {
     missionManager.getMissionInfo('', testMissionId).then((data) => {
-        console.info('getMissionInfo successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getMissionInfo failed. Cause: ${error.message}');
+        console.error(`getMissionInfo failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getMissionInfo failed. Cause: ${error.message}');
+    console.error(`getMissionInfo failed. Cause: ${error.message}`);
 }
 ```
 
@@ -436,10 +436,10 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
       } else {
-        console.log('size = ${missions.length}');
-        console.log('missions = ${JSON.stringify(missions)}');
+        console.log(`size = ${missions.length}`);
+        console.log(`missions = ${JSON.stringify(missions)}`);
       }
     });
   } catch (paramError) {
@@ -520,13 +520,13 @@ let testMissionId = 2;
 try {
     missionManager.getMissionSnapShot('', testMissionId, (err, data) => {
         if (err) {
-            console.error('getMissionSnapShot failed: ${err.message}');
+            console.error(`getMissionSnapShot failed: ${err.message}`);
         } else {
-            console.info('getMissionSnapShot successfully: ${JSON.stringify(data)}');
+            console.info(`getMissionSnapShot successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('getMissionSnapShot failed: ${err.message}');
+    console.error(`getMissionSnapShot failed: ${err.message}`);
 }
 ```
 
@@ -563,12 +563,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.getMissionSnapShot('', testMissionId).then((data) => {
-        console.info('getMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getMissionSnapShot failed. Cause: ${error.message}');
+        console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getMissionSnapShot failed. Cause: ${error.message}');
+    console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
 }
 ```
 
@@ -600,13 +600,13 @@ let testMissionId = 2;
 try {
     missionManager.getLowResolutionMissionSnapShot('', testMissionId, (err, data) => {
         if (err) {
-            console.error('getLowResolutionMissionSnapShot failed: ${err.message}');
+            console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
         } else {
-            console.info('getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}');
+            console.info(`getLowResolutionMissionSnapShot successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('getLowResolutionMissionSnapShot failed: ${err.message}');
+    console.error(`getLowResolutionMissionSnapShot failed: ${err.message}`);
 }
 ```
 
@@ -644,12 +644,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.getLowResolutionMissionSnapShot('', testMissionId).then((data) => {
-        console.info('getLowResolutionMissionSnapShot successfully. Data: ${JSON.stringify(data)}');
+        console.info(`getLowResolutionMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('getLowResolutionMissionSnapShot failed. Cause: ${error.message}');
+        console.error(`getLowResolutionMissionSnapShot failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('getLowResolutionMissionSnapShot failed. Cause: ${error.message}');
+    console.error(`getLowResolutionMissionSnapShot failed. Cause: ${error.message}`);
 }
 ```
 
@@ -690,13 +690,13 @@ let testMissionId = 2;
 try {
     missionManager.lockMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('lockMission failed: ${err.message}');
+            console.error(`lockMission failed: ${err.message}`);
         } else {
-            console.info('lockMission successfully: ${JSON.stringify(data)}');
+            console.info(`lockMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('lockMission failed: ${err.message}');
+    console.error(`lockMission failed: ${err.message}`);
 }
 ```
 
@@ -740,12 +740,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.lockMission(testMissionId).then((data) => {
-        console.info('lockMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`lockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('lockMission failed. Cause: ${error.message}');
+        console.error(`lockMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('lockMission failed. Cause: ${error.message}');
+    console.error(`lockMission failed. Cause: ${error.message}`);
 }
 ```
 
@@ -784,13 +784,13 @@ let testMissionId = 2;
 try {
     missionManager.unlockMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('unlockMission failed: ${err.message}');
+            console.error(`unlockMission failed: ${err.message}`);
         } else {
-            console.info('unlockMission successfully: ${JSON.stringify(data)}');
+            console.info(`unlockMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('unlockMission failed: ${err.message}');
+    console.error(`unlockMission failed: ${err.message}`);
 }
 ```
 
@@ -835,12 +835,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.unlockMission(testMissionId).then((data) => {
-        console.info('unlockMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`unlockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('unlockMission failed. Cause: ${error.message}');
+        console.error(`unlockMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('unlockMission failed. Cause: ${error.message}');
+    console.error(`unlockMission failed. Cause: ${error.message}`);
 }
 ```
 
@@ -872,13 +872,13 @@ let testMissionId = 2;
 try {
     missionManager.clearMission(testMissionId, (err, data) => {
         if (err) {
-            console.error('clearMission failed: ${err.message}');
+            console.error(`clearMission failed: ${err.message}`);
         } else {
-            console.info('clearMission successfully: ${JSON.stringify(data)}');
+            console.info(`clearMission successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('clearMission failed: ${err.message}');
+    console.error(`clearMission failed: ${err.message}`);
 }
 ```
 
@@ -916,12 +916,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.clearMission(testMissionId).then((data) => {
-        console.info('clearMission successfully. Data: ${JSON.stringify(data)}');
+        console.info(`clearMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('clearMission failed. Cause: ${error.message}');
+        console.error(`clearMission failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('clearMission failed. Cause: ${error.message}');
+    console.error(`clearMission failed. Cause: ${error.message}`);
 }
 ```
 
@@ -981,12 +981,12 @@ import { BusinessError } from '@ohos.base';
 
 try {
     missionManager.clearAllMissions().then((data) => {
-        console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
+        console.info(`clearAllMissions successfully. Data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-        console.error('clearAllMissions failed: ${err.message}');
+        console.error(`clearAllMissions failed: ${err.message}`);
     });
 } catch (err) {
-    console.error('clearAllMissions failed: ${err.message}');
+    console.error(`clearAllMissions failed: ${err.message}`);
 }
 ```
 
@@ -1026,13 +1026,13 @@ let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId, (err, data) => {
         if (err) {
-            console.error('moveMissionToFront failed: ${err.message}');
+            console.error(`moveMissionToFront failed: ${err.message}`);
         } else {
-            console.info('moveMissionToFront successfully: ${JSON.stringify(data)}');
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('moveMissionToFront failed: ${err.message}');
+    console.error(`moveMissionToFront failed: ${err.message}`);
 }
 ```
 
@@ -1073,13 +1073,13 @@ let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId, {windowMode : 101}, (err, data) => {
         if (err) {
-            console.error('moveMissionToFront failed: ${err.message}');
+            console.error(`moveMissionToFront failed: ${err.message}`);
         } else {
-            console.info('moveMissionToFront successfully: ${JSON.stringify(data)}');
+            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
         }
     });
 } catch (err) {
-    console.error('moveMissionToFront failed: ${err.message}');
+    console.error(`moveMissionToFront failed: ${err.message}`);
 }
 ```
 
@@ -1125,12 +1125,12 @@ import { BusinessError } from '@ohos.base';
 let testMissionId = 2;
 try {
     missionManager.moveMissionToFront(testMissionId).then((data) => {
-        console.info('moveMissionToFront successfully. Data: ${JSON.stringify(data)}');
+        console.info(`moveMissionToFront successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error('moveMissionToFront failed. Cause: ${error.message}');
+        console.error(`moveMissionToFront failed. Cause: ${error.message}`);
     });
 } catch (error) {
-    console.error('moveMissionToFront failed. Cause: ${error.message}');
+    console.error(`moveMissionToFront failed. Cause: ${error.message}`);
 }
 ```
 
@@ -1186,9 +1186,9 @@ try {
         }
         missionManager.moveMissionsToForeground(toShows, (err, data) => {
             if (err) {
-                console.error('moveMissionsToForeground failed: ${err.message}');
+                console.error(`moveMissionsToForeground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToForeground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
@@ -1253,9 +1253,9 @@ try {
         }
         missionManager.moveMissionsToForeground(toShows, toShows[0], (err, data) => {
             if (err) {
-                console.error('moveMissionsToForeground failed: ${err.message}');
+                console.error(`moveMissionsToForeground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToForeground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToForeground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
@@ -1384,9 +1384,9 @@ try {
         }
         missionManager.moveMissionsToBackground(toHides, (err, data) => {
             if (err) {
-                console.error('moveMissionsToBackground failed: ${err.message}');
+                console.error(`moveMissionsToBackground failed: ${err.message}`);
             } else {
-                console.info('moveMissionsToBackground successfully: ${JSON.stringify(data)}');
+                console.info(`moveMissionsToBackground successfully: ${JSON.stringify(data)}`);
             }
         });
     });
