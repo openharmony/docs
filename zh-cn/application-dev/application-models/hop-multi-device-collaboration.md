@@ -314,17 +314,17 @@
                             return;
                         }
                         let option = new rpc.MessageOption();
-                        let data = new rpc.MessageParcel();
-                        let reply = new rpc.MessageParcel();
+                        let data = new rpc.MessageSequence();
+                        let reply = new rpc.MessageSequence();
                         data.writeInt(1);
                         data.writeInt(99);  // 开发者可发送data到目标端应用进行相应操作
                         // @param code 表示客户端发送的服务请求代码。
-                        // @param data 表示客户端发送的{@link MessageParcel}对象。
+                        // @param data 表示客户端发送的{@link MessageSequence}对象。
                         // @param reply 表示远程服务发送的响应消息对象。
                         // @param options 指示操作是同步的还是异步的。
                         //
                         // @return 如果操作成功返回{@code true}； 否则返回 {@code false}。
-                        remote.sendRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.SendRequestResult) => {
+                        remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.RequestResult) => {
                             let msg = reply.readInt();   // 在成功连接的情况下，会收到来自目标端返回的信息（100）
                             console.info(`sendRequest ret:${ret} msg:${msg}`);
                         }).catch((error: BusinessError) => {
@@ -433,7 +433,7 @@
          
          ```ts
          import rpc from '@ohos.rpc'
-         export default class MyParcelable {
+         class MyParcelable {
              num: number = 0;
              str: string = "";
          
@@ -442,13 +442,13 @@
                  this.str = string;
              }
          
-             marshalling(messageSequence: rpc.MessageParcel) {
+             marshalling(messageSequence: rpc.MessageSequence) {
                  messageSequence.writeInt(this.num);
                  messageSequence.writeString(this.str);
                  return true;
              }
          
-             unmarshalling(messageSequence: rpc.MessageParcel) {
+             unmarshalling(messageSequence: rpc.MessageSequence) {
                  this.num = messageSequence.readInt();
                  this.str = messageSequence.readString();
                  return true;
