@@ -39,7 +39,7 @@
 | 栅格布局图 | ![zh-cn_image_0000001330137692](figures/zh-cn_image_0000001330137692.png) | ![zh-cn_image_0000001329977740](figures/zh-cn_image_0000001329977740.png) | ![zh-cn_image_0000001329658136](figures/zh-cn_image_0000001329658136.png) | 
 
   
-```
+```ts
 @Component
 export struct PlayListHeader {
   @State moreBackgroundColor: Resource = $r('app.color.play_list_cover_background_color');
@@ -90,7 +90,7 @@ export struct PlayListHeader {
 | 栅格布局图 | ![zh-cn_image_0000001381220165](figures/zh-cn_image_0000001381220165.png) | ![zh-cn_image_0000001381220169](figures/zh-cn_image_0000001381220169.png) | 
 
   
-```
+```ts
 @Component
 export default struct PlayListCover {
   ...
@@ -128,7 +128,7 @@ export default struct PlayListCover {
 不同断点下，歌单列表的样式基本一致，但sm和md断点下是歌单列表是单列显示，lg断点下是双列显示。可以通过[List组件](../../reference/arkui-ts/ts-container-list.md)的lanes属性实现这一效果。
 
   
-```
+```ts
 @Component
 export default struct PlayList {
   ...
@@ -162,7 +162,7 @@ export default struct PlayList {
 在不同断点下，播放控制栏显示的内容完全一致，唯一的区别是歌曲信息与播放控制按钮之间的间距有差异，这是典型的拉伸能力的使用场景。
 
   
-```
+```ts
 @Component
 export struct MusicBar {
   build() {
@@ -197,7 +197,7 @@ export struct MusicBar {
 | 栅格布局图 | ![zh-cn_image_0000001330145976](figures/zh-cn_image_0000001330145976.png) | ![zh-cn_image_0000001381385985](figures/zh-cn_image_0000001381385985.png) | ![zh-cn_image_0000001381226321](figures/zh-cn_image_0000001381226321.png) | 
 
   
-```
+```ts
 @Component
 export default struct MusicContent {
   ...
@@ -220,7 +220,7 @@ export default struct MusicContent {
 最后将页面各部分组合在一起即可。
 
   
-```
+```ts
 @Entry
 @Component
 struct Index {
