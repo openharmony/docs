@@ -91,7 +91,7 @@
            this.updateBreakpoint(windowSize.width)
          })
        });
-       ...
+       //...
      }
        
      // 窗口销毁时，取消窗口尺寸变化监听
@@ -100,7 +100,7 @@
          this.windowObj.off('windowSizeChange')
        }
      }
-     ...
+     //...
    }
    ```
 
