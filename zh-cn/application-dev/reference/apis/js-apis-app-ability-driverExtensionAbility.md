@@ -189,7 +189,7 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class DriverExt extends DriverExtension {
       onDump(params) {
-          console.log('dump, params: ${JSON.stringify(params)}');
+          console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }

@@ -10,9 +10,7 @@
    
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
-   import formProvider from '@ohos.app.form.formProvider';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import request from '@ohos.request';
    import fs from '@ohos.file.fs';
    
    export default class EntryFormAbility extends FormExtensionAbility {

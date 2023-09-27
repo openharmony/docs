@@ -45,6 +45,7 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -77,6 +78,7 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
