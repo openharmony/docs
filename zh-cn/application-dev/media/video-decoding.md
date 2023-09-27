@@ -192,14 +192,15 @@
     int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
    ```
 
-8. 调用OH_VideoDecoder_FreeOutputData()，输出解码帧。
+8. surface模式显示场景，调用OH_VideoDecoder_RenderOutputData()显示并释放解码帧；
+   surface模式不显示场景和buffer模式，调用OH_VideoDecoder_FreeOutputData()释放解码帧。
 
    ``` c++
     int32_t ret;
     // 将解码完成数据 data 写入到对应输出文件中
     outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
     // buffer 模式, 释放已完成写入的数据, index 为对应 surface/buffer 队列下标
-    if (isSurfaceMode) {
+    if (isSurfaceMode && isRender) {
         ret = OH_VideoDecoder_RenderOutputData(videoDec, index);
     } else {
         ret = OH_VideoDecoder_FreeOutputData(videoDec, index);
