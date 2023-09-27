@@ -40,7 +40,7 @@
 
 - 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
 
-  ```typescript
+  ```ts
   if (canIUse("SystemCapability.Communication.NFC.Core")) {
      console.log("该设备支持SystemCapability.Communication.NFC.Core");
   } else {
@@ -51,7 +51,7 @@
 
 - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。 
 
-  ```typescript
+  ```ts
   import controller from '@ohos.nfc.controller';
   try {
       controller.enableNfc();
