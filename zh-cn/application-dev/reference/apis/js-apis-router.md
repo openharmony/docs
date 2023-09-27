@@ -269,7 +269,7 @@ router.pushUrl({
 
 replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
-用应用内的某个页面替换当前页面，并销毁被替换的页面。
+用应用内的某个页面替换当前页面，并销毁被替换的页面。不支持设置页面转场动效，如需设置，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
