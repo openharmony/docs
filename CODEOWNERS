@@ -342,7 +342,7 @@ zh-cn/application-dev/reference/apis/js-apis-securityLabel.md @panqinxu @zengyaw
 zh-cn/application-dev/reference/apis/js-apis-sensor.md @hellohyh001 @ningningW @butterls @star-wind-snow-and-rain
 zh-cn/application-dev/reference/apis/js-apis-service-extension-ability.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-service-extension-context.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-settings.md @xue-seu @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-settings.md @xue-seu @hu-zhiqiong
 zh-cn/application-dev/reference/apis/js-apis-sim.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-sms.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-socket.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
@@ -553,5 +553,5 @@ zh-cn/application-dev/reference/errorcodes/errorcode-webview.md @HelloCrease
 zh-cn/application-dev/reference/errorcodes/errorcode-window.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-workScheduler.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-zlib.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-calendarManager.md @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/reference/apis/js-apis-calendarManager.md @hu-zhiqiong @jt_123456 @edollar
 zh-cn/application-dev/arkts-utils @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
