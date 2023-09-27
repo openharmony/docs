@@ -317,11 +317,7 @@ Child自定义组件中的变化：
 1. playCountLink的刷新会同步回LocalStorage，并且引起兄弟组件和父组件相应的刷新。
 
    ```ts
-   class Data {
-     countStorage: number = 0;
-   }
-   let data: Data = { countStorage: 1 }
-   let storage = new LocalStorage(data);
+   let storage = new LocalStorage({ countStorage: 1 });
 
    @Component
    struct Child {
@@ -365,11 +361,7 @@ Child自定义组件中的变化：
              .width(50).height(60).fontSize(12)
            Text(`countStorage ${this.playCount} incr by 1`)
              .onClick(() => {
-               let countStorage: number | undefined = storage.get<number>('countStorage');
-              if (countStorage != undefined){
-                 countStorage += 1;
-                 storage.set<number>('countStorage', countStorage);
-               }
+               storage.set<number>('countStorage', 1 + storage.get<number>('countStorage'));
              })
              .width(250).height(60).fontSize(12)
          }.width(300).height(60)
