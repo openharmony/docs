@@ -107,8 +107,8 @@ let rendererInfo: audio.AudioRendererInfo = {
     rendererFlags : 0,
 }
 
-async function getPreferredOutputDeviceForRendererInfo() {
-  audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
+async function getPreferOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
     console.info(`device descriptor: ${desc}`);
   }).catch((err: BusinessError) => {
     console.error(`Result ERROR: ${err}`);
@@ -127,11 +127,11 @@ let rendererInfo: audio.AudioRendererInfo = {
 }
 
 // 监听最高优先级输出设备变化
-audioRoutingManager.on('preferredOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
     console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色
     console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型
 });
 
 // 取消监听最高优先级输出设备变化
-audioRoutingManager.off('preferredOutputDeviceChangeForRendererInfo');
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
