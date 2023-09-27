@@ -10,6 +10,7 @@
 
 ```js
 import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## sharing.isSharingSupported<sup>9+</sup>
