@@ -1,6 +1,6 @@
 # i18n Development
 
-The **i18n** module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. For more details about APIs and their usage, see [i18n](../reference/apis/js-apis-i18n.md).
+The **i18n** module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. For more details about APIs and their usage, see [i18n API Reference](../reference/apis/js-apis-i18n.md).
 
 The [intl](intl-guidelines.md) module provides basic i18n capabilities through the standard i18n interfaces defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
@@ -365,7 +365,7 @@ try {
      Call **isValidNumber** to check whether the format of the input phone number is correct.
 
    ```ts
-   let validNumber = phoneNumberFormat.isValidNumber("15812341234"); // validNumber = true
+   let validNumber = phoneNumberFormat.isValidNumber("123****8911"); // validNumber = true
    ```
 
 4. Format a phone number.
@@ -373,7 +373,7 @@ try {
      Call **format** to format the input phone number.
 
    ```ts
-   let formattedNumber = phoneNumberFormat.format("15812341234"); // formattedNumber = "+8615812341234"
+   let formattedNumber = phoneNumberFormat.format("123****8911"); // formattedNumber = "+86123****8911"
    ```
 
 ## Measurement Conversion
