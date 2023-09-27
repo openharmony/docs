@@ -38,7 +38,7 @@
 在sm和md断点下，导航栏在底部；在lg断点下，导航栏在左侧。可以通过[Tab组件](../../reference/arkui-ts/ts-container-tabs.md)的barPosition和vertical属性控制TabBar的位置，同时还可以通过barWidth和barHeight属性控制TabBar的尺寸。
 
   
-```
+```ts
 @Entry
 @Component
 struct Index {
@@ -68,7 +68,7 @@ struct Index {
 另外在sm及lg断点下，TabBar中各个Item的图标和文字是按照垂直方向排布的，在md断点下，TabBar中各个Item的图标和文字是按照水平方向排布的。
 
   
-```
+```ts
 @Component
 export default struct TabBarItem {
   ...
@@ -99,7 +99,7 @@ export default struct TabBarItem {
 | 栅格布局图 | ![zh-cn_image_0000001379464981](figures/zh-cn_image_0000001379464981.png) | ![zh-cn_image_0000001328745102](figures/zh-cn_image_0000001328745102.png) | 
 
   
-```
+```ts
 @Component
 export default struct IndexHeader {
   ...
@@ -124,7 +124,7 @@ export default struct IndexHeader {
 不同断点下的运营横幅，sm断点下显示一张图片，md断点下显示两张图片，lg断点下显示三张图片。可以通过[Swiper组件的displayCount属性](../../reference/arkui-ts/ts-container-swiper.md)实现目标效果。
 
   
-```
+```ts
 @Component
 export default struct IndexSwiper {
   ...
@@ -159,7 +159,7 @@ export default struct IndexSwiper {
 在不同的断点下，快捷入口的5个图标始终均匀排布，这是典型的均分能力使用场景。
 
   
-```
+```ts
 @Component
 @Component
 export default struct IndexEntrance {
@@ -185,7 +185,7 @@ export default struct IndexEntrance {
 随着可用显示区域的增加，精品应用中显示的图标数量也不断增加，这是典型的延伸能力使用场景。精品游戏的实现与精品应用类似，不再展开分析。
 
   
-```
+```ts
 @Component
 @Component
 export default struct IndexApps {
@@ -219,7 +219,7 @@ export default struct IndexApps {
 将上述各页面主要部分组合在一起后，即可完成整体页面开发。
 
   
-```
+```ts
 @Component
 struct IndexContent {
   ...
