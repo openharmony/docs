@@ -134,7 +134,7 @@ hdc shell reboot
 如下所示，通过配置文件分别限制自由窗口的最大和最小尺寸。
 
 
-```
+```json5
 {
   "module": {
     ...
@@ -163,7 +163,7 @@ hdc shell reboot
 
 ![](figures/onAreaChange.gif)
 
-```
+```typescript
 @Entry
 @Component
 struct OnAreaChangeSample {
