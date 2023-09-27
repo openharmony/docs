@@ -12,7 +12,7 @@
 
 
 ```js
-import brightness from '@system.brightness';
+import brightness, { BrightnessModeResponse, BrightnessResponse } from '@system.brightness';
 ```
 
 

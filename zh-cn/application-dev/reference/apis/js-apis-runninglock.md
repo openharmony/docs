@@ -72,7 +72,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
@@ -136,7 +136,7 @@ isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boo
 **示例：**
 
 ```js
-runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, data: boolean) => {
+runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (err: Error, data: boolean) => {
     if (typeof err === 'undefined') {
         console.info('BACKGROUND lock support status: ' + data);
     } else {
@@ -202,7 +202,7 @@ createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&l
 **示例：**
 
 ```js
-runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: BusinessError<void>, lock: runningLock.RunningLock) => {
+runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
         console.info('created running lock: ' + lock);
     } else {
