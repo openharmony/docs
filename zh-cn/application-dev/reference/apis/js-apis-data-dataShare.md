@@ -562,7 +562,7 @@ let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) =
 let uris:Array<string> = ["city", "datashareproxy://com.acts.ohos.data.datasharetest/appInfo", "key2"];
 let subscriberId = '11';
 if (dataShareHelper != undefined) {
-  let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDataChange", uris, subscriberId, offCallback);
+  let result: Array<dataShare.OperationResult> = (dataShareHelper as dataShare.DataShareHelper).off("publishedDataChange", uris, subscriberId, offCallback);
 }
 ```
 
