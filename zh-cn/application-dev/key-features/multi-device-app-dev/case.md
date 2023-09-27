@@ -110,7 +110,7 @@
 | ![contact_details_default](figures/contact_details_default.png) | ![contact_details_tablet](figures/contact_details_tablet.png) | 
 
 
-```
+```ts
 @Component
  struct TopArea {
    build() {
@@ -130,7 +130,7 @@
 | ![top_title_blank_default](figures/top_title_blank_default.png) | ![top_title_blank_tablet](figures/top_title_blank_tablet.png) | 
 
 
-```
+```ts
 @Component
  struct TopArea {
    build() {
@@ -168,7 +168,7 @@
 | ![top_title_done_default](figures/top_title_done_default.png) | ![top_title_done_tablet](figures/top_title_done_tablet.png) | 
 
 
-```
+```ts
 @Component
  struct TopArea {
    build() {
@@ -216,7 +216,7 @@
 | ![bottom_input_default](figures/bottom_input_default.png) | ![bottom_input_tablet](figures/bottom_input_tablet.png) | 
 
 
-```
+```ts
 @Component
  struct BottomArea {
    build() {
@@ -265,7 +265,7 @@
 | ![message_bubble_basic_default](figures/message_bubble_basic_default.png) | ![message_bubble_basic_tablet](figures/message_bubble_basic_tablet.png) | 
 
 
-```
+```ts
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -297,7 +297,7 @@ struct MessageBubble {
 | ![message_bubble_radius_default](figures/message_bubble_radius_default.png) | ![message_bubble_radius_tablet](figures/message_bubble_radius_tablet.png) | 
 
 
-```
+```ts
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -334,7 +334,7 @@ struct MessageBubble {
 | ![message_bubble_recv_default](figures/message_bubble_recv_default.png) | ![message_bubble_recv_tablet](figures/message_bubble_recv_tablet.png) | 
 
 
-```
+```ts
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -382,7 +382,7 @@ struct MessageBubble {
 | ![message_bubble_send_default](figures/message_bubble_send_default.png) | ![message_bubble_send_tablet](figures/message_bubble_send_tablet.png) | 
 
 
-```
+```ts
 @Component
  struct MessageBubble {
    private isReceived:boolean = true// 通过标志位，判断是发送or接收场景，进而使用不同的样式
@@ -430,7 +430,7 @@ struct MessageBubble {
 回顾方舟开发框架一多能力，消息气泡在默认设备和平板上布局不同，可以借助栅格布局来解决。为了方便测试，我们预定义一个全局数组。
 
 
-```
+```ts
 const globalMessageList:any[] = [
    {
      'time':'上午 10:20',
@@ -475,7 +475,7 @@ const globalMessageList:any[] = [
 | ![message_list_default](figures/message_list_default.png) | ![message_list_tablet](figures/message_list_tablet.png) | 
 
 
-```
+```ts
 @Component
 export default struct MessageItem {
   private isReceived: boolean
@@ -532,7 +532,7 @@ struct Conversation {
   | ![overview_default](figures/overview_default.png) | ![overview_tablet](figures/overview_tablet.png) | 
 
   
-```
+```ts
 @Entry
  @Component
  struct Conversation {

@@ -242,7 +242,7 @@ export class BreakpointSystem {
 
 ```
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
-```
+```typescript
 // MediaQuerySample.ets
 import { BreakpointSystem, BreakPointType } from 'common/breakpointsystem'
 
