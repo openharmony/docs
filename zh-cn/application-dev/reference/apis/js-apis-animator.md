@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 本模块从API version 9开始支持在ArkTS中使用。
+>
 > 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
@@ -380,7 +382,7 @@ struct AnimatorTest {
       duration: 2000,
       easing: "ease",
       delay: 0,
-      fill: "none",
+      fill: "forwards",
       direction: "normal",
       iterations: 1,
       begin: 100,
@@ -400,6 +402,12 @@ struct AnimatorTest {
       _this.wid = value
       _this.hei = value
     }
+  }
+
+  aboutToDisappear() {
+    // 由于backAnimator在onframe中引用了this, this中保存了backAnimator，
+    // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator = undefined;
   }
 
   build() {
@@ -496,12 +504,12 @@ struct AnimatorTest {
                 this.flag = false
                 if(this.backAnimator){
                   this.backAnimator.reset({
-                    duration: 5000,
+                    duration: 3000,
                     easing: "ease-in",
                     delay: 0,
-                    fill: "none",
-                    direction: "normal",
-                    iterations: 4,
+                    fill: "forwards",
+                    direction: "alternate",
+                    iterations: 3,
                     begin: 100,
                     end: 300
                   })
