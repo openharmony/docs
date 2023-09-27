@@ -711,7 +711,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf, (err, readLen) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
       console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
@@ -1210,7 +1210,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fs.readText(filePath, { offset: 1, encoding: 'UTF-8' }, (err, str) => {
+  fs.readText(filePath, { offset: 1, encoding: 'utf-8' }, (err, str) => {
     if (err) {
       console.info("read text failed with error message: " + err.message + ", error code: " + err.code);
     } else {
