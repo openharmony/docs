@@ -44,7 +44,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    // 导入USB接口api包。
    import usb from '@ohos.usbManager';
    // 获取设备列表。
-   let deviceList : Array<USBDevice> = usb.getDevices();
+   let deviceList : Array<usb.USBDevice> = usb.getDevices();
    /*
    deviceList结构示例
    [

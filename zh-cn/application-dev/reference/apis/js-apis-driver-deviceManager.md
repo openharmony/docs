@@ -44,13 +44,17 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 **示例：**
 
 ```js
+import deviceManager from "@ohos.driver.deviceManager";
+import type Device from '@system.device';
+
 try {
   let devices : Array<Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
-  for (let item : Device of devices : Array<Device>) {
-    console.info('Device id is ${item.deviceId}')
+  for (let item of devices) {
+    let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
+    console.info(`Device id is ${device.deviceId}`)
   }
 } catch (error) {
-  console.error('Failed to query device. Code is ${error.code}, message is ${error.message}');
+  console.error(`Failed to query device. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -85,21 +89,22 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDevice(12345678, (error : BusinessError, data : MessageSequence) => {
-    console.error('Device is disconnected');
+  deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+    console.error(`Device is disconnected`);
   }, (error, data) => {
     if (error) {
-      console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+      console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
       return;
     }
-    console.info('bindDevice success');
+    console.info(`bindDevice success`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -139,19 +144,20 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.bindDevice(12345678, (error, data) => {
-    console.error('Device is disconnected');
+    console.error(`Device is disconnected`);
   }).then(data => {
-    console.info('bindDevice success');
+    console.info(`bindDevice success`);
   }, (error : BusinessError) => {
-    console.error('bindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('bindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`bindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
@@ -182,17 +188,19 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
+import deviceManager from "@ohos.driver.deviceManager";
+
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678, (error, data) => {
-  if (error) {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
-    return;
-  }
-  console.info('unbindDevice success');
+    if (error) {
+      console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
+      return;
+    }
+    console.info(`unbindDevice success`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 ## deviceManager.unbindDevice
@@ -227,17 +235,18 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import deviceManager from "@ohos.driver.deviceManager";
+import type { BusinessError } from '@ohos.base';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
   deviceManager.unbindDevice(12345678).then(data => {
-    console.info('unbindDevice success');
+    console.info(`unbindDevice success`);
   }, (error : BusinessError) => {
-    console.error('unbindDevice async fail. Code is ${error.code}, message is ${error.message}');
+    console.error(`unbindDevice async fail. Code is ${error.code}, message is ${error.message}`);
   });
 } catch (error) {
-  console.error('unbindDevice fail. Code is ${error.code}, message is ${error.message}');
+  console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 
