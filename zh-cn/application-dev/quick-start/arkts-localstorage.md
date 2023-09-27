@@ -236,7 +236,6 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
   ```ts
   // 创建新实例并使用给定对象初始化
   let storage = new LocalStorage({ 'PropA': 47 });
-
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
   @Component
