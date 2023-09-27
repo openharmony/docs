@@ -192,8 +192,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
+  let storage = new LocalStorage({ 'PropA': 47 });
 
   @Component
   struct Child {
@@ -202,7 +201,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
     build() {
       Button(`Child from LocalStorage ${this.storLink2}`)
-        // 更改将同步至LocalStorage中的'PropA'以及Parent.storLink1
+        // 更改将同步至LocalStorage中的'ProA'以及Parent.storLink1
         .onClick(() => this.storLink2 += 1)
     }
   }
@@ -235,14 +234,12 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
   ```ts
   // 创建新实例并使用给定对象初始化
-  let storage = new LocalStorage();
-  storage['PropA'] = 47;
-
+  let storage = new LocalStorage({ 'PropA': 47 });
   // 使LocalStorage可从@Component组件访问
   @Entry(storage)
   @Component
   struct CompA {
-    // @LocalStorageProp变量装饰器与LocalStorage中的'PropA'属性建立单向绑定
+    // @LocalStorageProp变量装饰器与LocalStorage中的'ProA'属性建立单向绑定
     @LocalStorageProp('PropA') storProp1: number = 1;
 
     build() {
@@ -277,10 +274,9 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 ```ts
 // 构造LocalStorage实例
-let storage = new LocalStorage();
-storage['PropA'] = 47;
+let storage = new LocalStorage({ 'PropA': 47 });
 // 调用link9+接口构造'PropA'的双向同步数据，linkToPropA 是全局变量
-let linkToPropA = storage.link<number>('PropA');
+let linkToPropA = storage.link('PropA');
 
 @Entry(storage)
 @Component
@@ -392,10 +388,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage = new LocalStorage();
+  storage: LocalStorage = new LocalStorage({
+    'PropA': 47
+  });
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    this.storage['PropA'] = 47;
     windowStage.loadContent('pages/Index', this.storage);
   }
 }
