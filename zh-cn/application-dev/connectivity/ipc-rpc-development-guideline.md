@@ -270,7 +270,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    try{
        deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
    } catch(error) {
-       let e: BusinessError = error as BusinessError;
+       let err: BusinessError = error as BusinessError;
        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
    }
 
@@ -298,6 +298,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    服务端被绑定的Ability在onConnect方法里返回继承自rpc.RemoteObject的对象，该对象需要实现onRemoteMessageRequest方法，处理客户端的请求。
 
    ```ts
+    import rpc from '@ohos.rpc';
+    import Want from '@ohos.app.ability.Want';
     class Stub extends rpc.RemoteObject {
        constructor(descriptor: string) {
            super(descriptor);
@@ -306,10 +308,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
            // 根据code处理客户端的请求
            return true;
        }
-    }
-    onConnect(want: Want) {
+
+       onConnect(want: Want) {
            const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
            return robj;
+       }
     } 
    ```
 
@@ -324,6 +327,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    let data = rpc.MessageParcel.create();
    let reply = rpc.MessageParcel.create();
    // 往data里写入参数
+   let proxy: rpc.IRemoteObject | undefined = undefined;
    proxy.sendRequest(1, data, reply, option)
        .then((result: rpc.SendRequestResult) => {
            if (result.errCode != 0) {
@@ -353,11 +357,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
            result.reply.reclaim();
        }
    }
-   let option = new rpc.MessageOption();
-   let data = rpc.MessageParcel.create();
-   let reply = rpc.MessageParcel.create();
+   let options = new rpc.MessageOption();
+   let datas = rpc.MessageParcel.create();
+   let replys = rpc.MessageParcel.create();
    // 往data里写入参数
-   proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+   proxy.sendRequest(1, datas, replys, options, sendRequestCallback);
    ```
 
 5. 断开连接
@@ -366,14 +370,40 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
    ```ts
    import rpc from "@ohos.rpc";
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
    // 仅FA模型需要导入@ohos.ability.featureAbility
    // import featureAbility from "@ohos.ability.featureAbility";
 
    function disconnectCallback() {
-       console.info("disconnect ability done");
+     console.info("disconnect ability done");
    }
    // FA模型使用此方法断开连接
    // featureAbility.disconnectAbility(connectId, disconnectCallback);
+
+   let proxy: rpc.IRemoteObject | undefined = undefined;
+   let connectId: number;
+
+   // 单个设备绑定Ability
+   let want: Want = {
+     // 包名和组件名写实际的值
+     bundleName: "ohos.rpc.test.server",
+     abilityName: "ohos.rpc.test.server.ServiceAbility",
+   };
+   let connect: common.ConnectOptions = {
+     onConnect: (elementName, remote) => {
+       proxy = remote;
+     },
+     onDisconnect: (elementName) => {
+     },
+     onFailed: () => {
+       proxy;
+     }
+   };
+   // FA模型使用此方法连接服务
+   // connectId = featureAbility.connectAbility(want, connect);
+
+   connectId = this.context.connectServiceExtensionAbility(want,connect);
 
    this.context.disconnectServiceExtensionAbility(connectId);
    ```
