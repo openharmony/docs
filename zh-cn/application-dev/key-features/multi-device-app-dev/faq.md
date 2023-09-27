@@ -19,7 +19,7 @@
 2. 在应用开发过程中查询设备类型。
    - 通过deviceInfo查询设备类型，deviceInfo中各个字段的含义请参考[设备信息](../../reference/apis/js-apis-device-info.md)。
      
-      ```typescript
+      ```ts
        import deviceInfo from'@ohos.deviceInfo'
       
        @Entry
@@ -65,7 +65,7 @@ launchType字段配置为specified时，系统会根据AbilityStage的onAcceptWa
 - 平板设备，将设备类型与毫秒级时间戳叠加作为key，保证每次启动的key不同，即以多实例模式运行。
 
   
-```typescript
+```ts
 // MyAbilityStage.ts
 import AbilityStage from "@ohos.app.ability.AbilityStage"
 import deviceInfo from'@ohos.deviceInfo'
@@ -164,7 +164,7 @@ hdc shell reboot
 
 ![](figures/onAreaChange.gif)
 
-```typescript
+```ts
 @Entry
 @Component
 struct OnAreaChangeSample {

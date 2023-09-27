@@ -115,7 +115,7 @@
 延伸能力是指容器组件内的子组件，按照其在列表中的先后顺序，随容器组件尺寸变化显示或隐藏。随着可用显示区域的增加，用户可以看到的“每小时天气”信息也不断增加，故“每小时天气”可以通过延伸能力实现，其核心代码如下所示。
 
 
-```typescript
+```ts
 @Component
 export default struct HoursWeather {
   ...
@@ -153,7 +153,7 @@ export default struct HoursWeather {
 > 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以调整通过GridCol栅格子组件的order属性，实现目标效果。
 
 
-```typescript
+```ts
 @Component
 export default struct HomeContent {
   ...
@@ -216,7 +216,7 @@ export default struct HomeContent {
 - 大设备中用户通过点击侧边栏中的城市列表即可高效的切换不同城市，此时需要关闭Swiper组件的导航点。
 
   
-```typescript
+```ts
 @Entry
 @Component
 struct Home {
