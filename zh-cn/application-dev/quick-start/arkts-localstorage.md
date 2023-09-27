@@ -182,7 +182,7 @@ link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 除了应用程序逻辑使用LocalStorage，还可以借助LocalStorage相关的两个装饰器\@LocalStorageProp和\@LocalStorageLink，在UI组件内部获取到LocalStorage实例中存储的状态变量。
 
-本示例以\@LocalStorage为例，展示了：
+本示例以\@LocalStorageLink为例，展示了：
 
 - 使用构造函数创建LocalStorage实例storage；
 
