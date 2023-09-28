@@ -29,11 +29,10 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 **示例：**
 
 ```ts
-/*
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 console.log(`devicesList = ${devicesList}`);
-//devicesList  返回的数据结构
-//此处提供一个简单的示例，如下
+/*
+devicesList 返回的数据结构,此处提供一个简单的示例，如下
 [
   {
     name: "1-1",
@@ -118,7 +117,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -279,7 +278,7 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -318,7 +317,7 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -358,7 +357,7 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -397,7 +396,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -436,7 +435,7 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -471,7 +470,7 @@ getFileDescriptor(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -526,7 +525,7 @@ let param: PARA = {
   data: 0
 };
 
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -554,7 +553,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
 | endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
-| buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
+| buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
 
 **返回值：**
@@ -569,7 +568,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 //usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
@@ -612,7 +611,7 @@ closePipe(pipe: USBDevicePipe): number
 **示例：**
 
 ```ts
-let devicesList: Array<USBDevice> = usb.getDevices();
+let devicesList: Array<usb.USBDevice> = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
 }
