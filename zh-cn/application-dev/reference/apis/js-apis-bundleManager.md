@@ -4332,7 +4332,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-以同步方法根据给定的want、extensionAbilityTypeName、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
+根据给定的want、extensionAbilityTypeName、extensionAbilityFlags和userId获取ExtensionAbilityInfo，使用同步方式返回结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4345,7 +4345,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 | 参数名                | 类型                            | 必填 | 说明                                                      |
 | --------------------- | ------------------------------- | ---- | --------------------------------------------------------- |
 | want                  | Want                            | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
-| extensionAbilityTypeName  | string                          | 是   | 标识自定义extensionAbility的类型。                        |
+| extensionAbilityTypeName  | string                          | 是   | 表示自定义extensionAbility的类型。                        |
 | extensionAbilityFlags | [number](#extensionabilityflag) | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
 | userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
