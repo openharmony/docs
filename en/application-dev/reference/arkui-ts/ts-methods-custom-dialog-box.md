@@ -18,7 +18,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | CustomDialog                             | Yes   | Constructor of the custom dialog box content.                             |
+| builder                       | CustomDialog                             | Yes   | Builder of the custom dialog box content.                             |
 | cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay exits.                            |
 | autoCancel                    | boolean                                  | No   | Whether to allow users to click the overlay to exit.<br>Default value: **true**                |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
@@ -108,16 +108,15 @@ struct CustomDialogUser {
     }),
     cancel: this.existApp,
     autoCancel: true,
-    alignment: DialogAlignment.Default,
+    alignment: DialogAlignment.Bottom,
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
     customStyle: false
   })
 
-  // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
+  // Set dialogController to null when the custom component is about to be destructed.
   aboutToDisappear() {
-    delete this.dialogController, // Delete the dialogController instance.
-    this.dialogController = undefined // Set dialogController to undefined.
+    this.dialogController = null // Set dialogController to null.
   }
 
   onCancel() {

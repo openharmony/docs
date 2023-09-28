@@ -134,7 +134,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information.  |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
 
 **Error codes**
 
@@ -632,7 +632,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application.|
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
 
 **Error codes**
 
@@ -754,7 +754,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 | Name | Type  | Mandatory| Description    |
 | ----- | ------ | --- | -------- |
 | id    | number | Yes | Notification ID.  |
-| label | string | No | Notification label.|
+| label | string | No | Notification label. This parameter is left empty by default.|
 
 ## RemoveReason
 

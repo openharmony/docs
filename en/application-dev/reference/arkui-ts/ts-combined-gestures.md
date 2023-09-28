@@ -21,7 +21,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
-| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized.|
+| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
 | Parallel  | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.    |
 | Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.      |
 
@@ -67,9 +67,6 @@ struct GestureGroupExample {
           this.count++
         }
         console.info('LongPress onAction')
-      })
-      .onActionEnd(() => {
-        console.info('LongPress end')
       }),
     PanGesture()
       .onActionStart(() => {

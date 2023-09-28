@@ -224,7 +224,6 @@ export const taskDataArr: Array<TaskData> =
 export struct TaskSwitchMainPage {
   displayWidth: number = WindowManager.getInstance().getDisplayWidth();
   scroller: Scroller = new Scroller();
-  bgImage: Resource = $r('app.media.share');
   cardSpace: number = 0; // Widget spacing
   cardWidth: number = this.displayWidth / 2 - this.cardSpace / 2; // Widget width
   cardHeight: number = 400; // Widget height
@@ -280,7 +279,7 @@ export struct TaskSwitchMainPage {
               .translate({ x: this.cardOffset })
               .animation({ curve: curves.springMotion() })
               .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-          }, item => item)
+          }, item => item.index)
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))
         .height('100%')

@@ -24,8 +24,8 @@ Obtains a **Font** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type           | Description         |
+| ------------- | ----------- |
 | [Font](#font) | **Font** object.|
 
 **Example**
@@ -43,8 +43,8 @@ Obtains the **ComponentUtils** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                               | Description                   |
+| --------------------------------- | --------------------- |
 | [ComponentUtils](#componentutils) | **ComponentUtils** object.|
 
 **Example**
@@ -63,9 +63,9 @@ Obtains the **UIInspector** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
-| [UInspector](#uiinspector) | **UIInspector** object.|
+| Type                         | Description                |
+| --------------------------- | ------------------ |
+| [UIInspector](#uiinspector) | **UIInspector** object.|
 
 **Example**
 
@@ -83,8 +83,8 @@ Obtains a **MediaQuery** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                       | Description               |
+| ------------------------- | ----------------- |
 | [MediaQuery](#mediaquery) | **MediaQuery** object.|
 
 **Example**
@@ -103,8 +103,8 @@ Obtains a **Router** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type               | Description           |
+| ----------------- | ------------- |
 | [Router](#router) | **Router** object.|
 
 **Example**
@@ -123,8 +123,8 @@ Obtains a **PromptAction** object.
 
 **Return value**
 
-| Type | Description         |
-| ----- | ----------------- |
+| Type                           | Description                 |
+| ----------------------------- | ------------------- |
 | [PromptAction](#promptaction) | **PromptAction** object.|
 
 **Example**
@@ -145,10 +145,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name           | Type       |       Mandatory    |        Description       |
-| ---------------- | ------------ | -------------------- | -------------------- |
-| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes| Animation settings.|
-| event | () => void | Yes| Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
+| Name  | Type                                      | Mandatory  | Description                                   |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| value | [AnimateParam](../arkui-ts/ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+| event | () => void                               | Yes   | Closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
 
 **Example**
 
@@ -222,9 +222,9 @@ Shows an alert dialog box.
 
 **Parameters**
 
-| Name   | Type | Mandatory| Description|
-| ---- | --------------- | -------- | -------- |
-| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) | Yes| Defines and displays the **\<AlertDialog>** component.|
+| Name    | Type                                      | Mandatory  | Description                 |
+| ------- | ---------------------------------------- | ---- | ------------------- |
+| options | [AlertDialogParamWithConfirm](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](../arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons)  | Yes   | Defines and displays the **\<AlertDialog>** component.|
 
 
 **Example**
@@ -261,24 +261,24 @@ Defines and shows the action sheet.
 
 **ActionSheetOptions parameters**
 
-| Name       | Type                   | Mandatory | Description                       |
-| ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    |  Title of the dialog box.|
-| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes    | Content of the dialog box. |
-| autoCancel | boolean                           | No    | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
-| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
-| cancel     | () =&gt; void           | No    | Callback invoked when the dialog box is closed after the overlay is clicked.  |
-| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No    |  Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
-| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No     | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
-| sheets     | Array&lt;SheetInfo&gt; | Yes      | Options in the dialog box. Each option supports the image, text, and callback.|
+| Name       | Type                                      | Mandatory  | Description                                      |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| title      | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Title of the dialog box.                                   |
+| message    | [Resource](../arkui-ts/ts-types.md#resource) \| string | Yes   | Content of the dialog box.                                   |
+| autoCancel | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**              |
+| confirm    | {<br>value: [ResourceStr](../arkui-ts/ts-types.md#resourcestr),<br>action: () =&gt; void<br>} | No   | Text content of the confirm button and callback upon button clicking.<br>Default value:<br>**value**: button text.<br>**action**: callback upon button clicking.|
+| cancel     | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay is clicked.                      |
+| alignment  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Bottom**|
+| offset     | {<br>dx: [Length](../arkui-ts/ts-types.md#length),<br>dy: [Length](../arkui-ts/ts-types.md#length)<br>} | No   | Offset of the dialog box relative to the alignment position.{<br>dx: 0,<br>dy: 0<br>} |
+| sheets     | Array&lt;SheetInfo&gt;                   | Yes   | Options in the dialog box. Each option supports the image, text, and callback.            |
 
 **SheetInfo parameters**
 
-| Name| Type                                                    | Mandatory| Description       |
-| ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes  | Text of the option.      |
-| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No  | Sheet icon. By default, no icon is displayed.    |
-| action | ()=&gt;void                                          | Yes  | Callback when the sheet is selected.|
+| Name   | Type                                      | Mandatory  | Description            |
+| ------ | ---------------------------------------- | ---- | -------------- |
+| title  | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | Yes   | Text of the option.      |
+| icon   | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | No   | Sheet icon. By default, no icon is displayed.|
+| action | ()=&gt;void                              | Yes   | Callback when the sheet is selected.      |
 
 **Example**
 
@@ -331,20 +331,20 @@ Shows a date picker dialog box.
 
 **DatePickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| start | Date | No| Start date of the picker.<br>Default value: **Date('1970-1-1')**|
-| end | Date | No| End date of the picker.<br>Default value: **Date('2100-12-31')**|
-| selected | Date | No| Selected date.<br>Default value: current system date|
-| lunar | boolean | No| Whether to display the lunar calendar.<br>Default value: **false**|
-| showTime | boolean | No| Whether to display the time item.<br>Default value: **false**|
-| useMilitaryTime | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the selected item in the picker changes.|
+| Name               | Type                                      | Mandatory  | Description                                    |
+| ------------------ | ---------------------------------------- | ---- | -------------------------------------- |
+| start              | Date                                     | No   | Start date of the picker.<br>Default value: **Date('1970-1-1')**  |
+| end                | Date                                     | No   | End date of the picker.<br>Default value: **Date('2100-12-31')**|
+| selected           | Date                                     | No   | Selected date.<br>Default value: current system date             |
+| lunar              | boolean                                  | No   | Whether to display the lunar calendar.<br>Default value: **false**              |
+| showTime           | boolean                                  | No   | Whether to display the time item.<br>Default value: **false**                |
+| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format.<br>Default value: **false**           |
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.        |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.    |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                   |
+| onAccept           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                   |
+| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                   |
+| onChange           | (value: [DatePickerResult](../arkui-ts/ts-basic-components-datepicker.md#datepickerresult)) => void | No   | Callback invoked when the selected item in the picker changes.            |
 
 **Example**
 
@@ -378,16 +378,16 @@ Shows a time picker dialog box.
 
 **TimePickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| selected | Date | No| Selected time.<br>Default value: current system time|
-| useMilitaryTime | boolean | No| Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No| Callback invoked when the selected time changes.|
+| Name               | Type                                      | Mandatory  | Description                                  |
+| ------------------ | ---------------------------------------- | ---- | ------------------------------------ |
+| selected           | Date                                     | No   | Selected time.<br>Default value: current system time           |
+| useMilitaryTime    | boolean                                  | No   | Whether to display time in 24-hour format. The 12-hour format is used by default.<br>Default value: **false**|
+| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.      |
+| textStyle          | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.  |
+| selectedTextStyle  | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                 |
+| onAccept           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                 |
+| onCancel           | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                 |
+| onChange           | (value: [TimePickerResult](../arkui-ts/ts-basic-components-timepicker.md#timepickerresult)) => void | No   | Callback invoked when the selected time changes.           |
 
 **Example**
 
@@ -419,18 +419,18 @@ Shows a text picker in the given settings.
 
 **TextPickerDialogOptions parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- |  -------- |
-| range | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
-| selected | number | No|  Index of the selected item.<br>Default value: **0**|
-| value       | string           | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
-| defaultPickerItemHeight | number \| string | No| Height of the picker item.|
-| disappearTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
-| textStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
-| selectedTextStyle | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
-| onAccept | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No|  Callback invoked when the OK button in the dialog box is clicked.|
-| onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No|  Callback invoked when the selected item changes.|
+| Name                    | Type                                      | Mandatory  | Description                                      |
+| ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| range                   | string[] \| [Resource](../arkui-ts/ts-types.md#resource)\|[TextPickerRangeContent](../arkui-ts/ts-basic-components-textpicker.md#textpickerrangecontent10)[] | Yes   | Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.   |
+| selected                | number                                   | No   | Index of the selected item.<br>Default value: **0**                     |
+| value                   | string                                   | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
+| defaultPickerItemHeight | number \| string                         | No   | Height of the picker item.                            |
+| disappearTextStyle      | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width for the top and bottom items.          |
+| textStyle               | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of all items except the top, bottom, and selected items.      |
+| selectedTextStyle       | [PickerTextStyle](../arkui-ts/ts-basic-components-datepicker.md#pickertextstyle10) | No   | Font color, font size, and font width of the selected item.                     |
+| onAccept                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the OK button in the dialog box is clicked.                     |
+| onCancel                | () => void                               | No   | Callback invoked when the Cancel button in the dialog box is clicked.                     |
+| onChange                | (value: [TextPickerResult](../arkui-ts/ts-methods-textpicker-dialog.md#textpickerresult)) => void | No   | Callback invoked when the selected item changes.                |
 
 **Example**
 
@@ -464,14 +464,14 @@ Creates an **Animator** object.
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory  | Description     |
-| ------- | ----------------------------------- | ---- | ------- |
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
 | options | [AnimatorOptions](./js-apis-animator.md#animatoroptions) | Yes   | Animator options.|
 
 **Return value**
 
-| Type                               | Description           |
-| --------------------------------- | ------------- |
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
 | [AnimatorResult](./js-apis-animator.md#animatorresult) | Animator result.|
 
 **Example**
@@ -500,9 +500,9 @@ Executes the specified callback in this UI context.
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory  | Description     |
-| ------- | ----------------------------------- | ---- | ------- |
-| callback | () => void            | Yes   | Callback used to return the result.|
+| Name     | Type        | Mandatory  | Description  |
+| -------- | ---------- | ---- | ---- |
+| callback | () => void | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -528,9 +528,9 @@ Registers a custom font with the font manager.
 
 **Parameters**
 
-| Name | Type                                           | Mandatory| Description                  |
-| ------- | ----------------------------------------------- | ---- | ---------------------- |
-| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes  | Information about the custom font to register.|
+| Name    | Type                                      | Mandatory  | Description         |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| options | [font.FontOptions](js-apis-font.md#fontoptions) | Yes   | Information about the custom font to register.|
 
 **Example**
 
@@ -551,8 +551,8 @@ Obtains the list of supported fonts.
 
 **Return value**
 
-| Type          | Description              |
-| -------------- | ------------------ |
+| Type            | Description       |
+| -------------- | --------- |
 | Array\<string> | List of supported fonts.|
 
 **Example**
@@ -572,14 +572,14 @@ Obtains information about a system font based on the font name.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description          |
-| -------- | ------ | ---- | -------------- |
-| fontName | string | Yes  | System font name.|
+| Name     | Type    | Mandatory  | Description     |
+| -------- | ------ | ---- | ------- |
+| fontName | string | Yes   | System font name.|
 
 **Return value**
 
-| Type                                | Description          |
-| ------------------------------------ | -------------- |
+| Type                                  | Description     |
+| ------------------------------------ | ------- |
 | [FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
@@ -603,14 +603,14 @@ Obtains the size, position, translation, scaling, rotation, and affine matrix in
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| id     | string | Yes  | Unique component ID.|
+| Name | Type    | Mandatory  | Description       |
+| ---- | ------ | ---- | --------- |
+| id   | string | Yes   | Unique component ID.|
 
 **Return value**
 
-| Type                                                    | Description                                            |
-| -------------------------------------------------------- | ------------------------------------------------ |
+| Type                                      | Description                      |
+| ---------------------------------------- | ------------------------ |
 | [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | Size, position, translation, scaling, rotation, and affine matrix information of the component.|
 
 **Example**
@@ -636,14 +636,14 @@ Creates an observer for the specified component.
 
 **Parameters**
 
-| Name    | Type                         | Mandatory  | Description         |
-| ------- | --------------------------- | ---- | ----------- |
-| id | string | Yes   | Component ID.|
+| Name | Type    | Mandatory  | Description     |
+| ---- | ------ | ---- | ------- |
+| id   | string | Yes   | Component ID.|
 
 **Return value**
 
-| Type                                                        | Description                                              |
-| ------------------------------------------------------------ | -------------------------------------------------- |
+| Type                                      | Description                       |
+| ---------------------------------------- | ------------------------- |
 | [ComponentObserver](js-apis-arkui-inspector.md#componentobserver) | Component observer, which is used to register and unregister listeners for completion of component layout or drawing.|
 
 **Example**
@@ -698,25 +698,25 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description              |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
@@ -749,20 +749,20 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
@@ -795,26 +795,26 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Page routing parameters.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
@@ -847,21 +847,21 @@ Navigates to a specified page in the application.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Page routing parameters. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100002 | if the uri is not exist.           |
+| 100003 | if the pages are pushed too much.  |
 
 **Example**
 
@@ -894,24 +894,24 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description              |
-| ------- | ------------------------------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
@@ -941,19 +941,19 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
@@ -983,25 +983,25 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes  | Description of the new page.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
@@ -1029,20 +1029,20 @@ Replaces the current page with another one in the application and destroys the c
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.RouterOptions](js-apis-router.md#routeroptions) | Yes   | Description of the new page. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 200002 | if the uri is not exist.                 |
 
 **Example**
 
@@ -1072,25 +1072,25 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
@@ -1123,20 +1123,20 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description       |
-| ------- | ------------------------------- | ---- | --------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
@@ -1168,26 +1168,26 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Page routing parameters.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
@@ -1220,21 +1220,21 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Page routing parameters. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
+| 100003 | if the pages are pushed too much.  |
+| 100004 | if the named route is not exist.   |
 
 **Example**
 
@@ -1267,24 +1267,24 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
@@ -1314,19 +1314,19 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
@@ -1356,26 +1356,26 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                |
-| ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes  | Description of the new page.  |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9)           | Yes  | Routing mode.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
 
 
 **Return value**
 
-| Type               | Description       |
-| ------------------- | --------- |
+| Type                 | Description     |
+| ------------------- | ------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if can not get the delegate, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
@@ -1405,20 +1405,20 @@ Replaces the current page with another one using the named route and destroys th
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description        |
-| ------- | ------------------------------- | ---- | ---------- |
-| options | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
-| mode    | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| options  | [router.NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | Yes   | Description of the new page. |
+| mode     | [router.RouterMode](js-apis-router.md#routermode9) | Yes   | Routing mode.|
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if UI execution context not found, only throw in standard system. |
+| 100004 | if the named route is not exist.         |
 
 **Example**
 
@@ -1448,9 +1448,9 @@ Returns to the previous page or a specified page.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| Name    | Type                                      | Mandatory  | Description                                      |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| options | [router.RouterOptions](js-apis-router.md#routeroptions) | No   | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -1530,17 +1530,17 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description              |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes  | Description of the dialog box.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [router.EnableAlertOptions](js-apis-router.md#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Error codes**
 
 For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
@@ -1582,8 +1582,8 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 **Return value**
 
-| Type  | Description                              |
-| ------ | ---------------------------------- |
+| Type    | Description               |
+| ------ | ----------------- |
 | object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
@@ -1607,17 +1607,17 @@ Shows a toast.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options.|
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes   | Toast options.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
@@ -1643,18 +1643,18 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                    |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
-| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes  | Callback used to return the dialog box response result.    |
+| Name     | Type                                      | Mandatory  | Description          |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
@@ -1696,23 +1696,23 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description        |
-| ------- | ------------------------------------------------------------ | ---- | ------------ |
-| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes  | Dialog box options.|
+| Name    | Type                                      | Mandatory  | Description    |
+| ------- | ---------------------------------------- | ---- | ------ |
+| options | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | Yes   | Dialog box options.|
 
 **Return value**
 
-| Type                                                        | Description            |
-| ------------------------------------------------------------ | ---------------- |
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
 | Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise used to return the dialog box response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
@@ -1754,18 +1754,18 @@ Shows an action menu. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description              |
-| -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.    |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes  | Callback used to return the action menu response result.|
+| Name     | Type                                      | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.  |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | Yes   | Callback used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 
@@ -1806,23 +1806,23 @@ Shows an action menu. This API uses a promise to return the result synchronously
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description          |
-| ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes  | Action menu options.|
+| Name    | Type                                      | Mandatory  | Description     |
+| ------- | ---------------------------------------- | ---- | ------- |
+| options | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | Yes   | Action menu options.|
 
 **Return value**
 
-| Type                                                        | Description          |
-| ------------------------------------------------------------ | -------------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Error codes**
 
 For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
 
-| ID  | Error Message|
-| --------- | ------- |
-| 100001    | if UI execution context not found. |
+| ID | Error Message                              |
+| ------ | ---------------------------------- |
+| 100001 | if UI execution context not found. |
 
 **Example**
 

@@ -44,7 +44,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
 | Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access | None.                                      |
+| Access | Not supported.                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
@@ -142,23 +142,23 @@ Since AppStorage is a singleton, its APIs are all static ones. How these APIs wo
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropA', 47);
 
 let storage: LocalStorage = new LocalStorage({ 'PropA': 17 });
-let propA: number = AppStorage.Get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
-var link1: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link1.get() == 47
-var link2: SubscribedAbstractProperty<number> = AppStorage.Link('PropA'); // link2.get() == 47
-var prop: SubscribedAbstractProperty<number> = AppStorage.Prop('PropA'); // prop.get() = 47
+let propA: number = AppStorage.get('PropA') // propA in AppStorage == 47, propA in LocalStorage == 17
+var link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link1.get() == 47
+var link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
+var prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
 link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get()=1; but link1.get() == link2.get() == 48
+prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
 link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
 
 storage.get('PropA') // == 17 
 storage.set('PropA', 101);
 storage.get('PropA') // == 101
 
-AppStorage.Get('PropA') // == 49
+AppStorage.get('PropA') // == 49
 link1.get() // == 49
 link2.get() // == 49
 prop.get() // == 49
@@ -171,7 +171,7 @@ prop.get() // == 49
 
 
 ```ts
-AppStorage.SetOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropA', 47);
 let storage = new LocalStorage({ 'PropA': 48 });
 
 @Entry(storage)
@@ -372,9 +372,9 @@ export struct TapImage {
 
 When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-- A call to **PersistentStorage.PersistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
+- A call to **PersistentStorage.persistProp()** after creating the attribute in AppStorage uses the type and value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
 
-- A call to **Environment.EnvProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
+- A call to **Environment.envProp()** after creating the attribute in AppStorage will fail. This is because AppStorage already has an attribute with the same name, and the environment variable will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable name in AppStorage.
 
 - Changes to the variables decorated by state decorators will cause UI re-render. If the changes are for message communication, rather than for UI re-render, the emitter mode is recommended. For the example, see [Persistent Subscription and Callback](#persistent-subscription-and-callback).
 <!--no_check-->
