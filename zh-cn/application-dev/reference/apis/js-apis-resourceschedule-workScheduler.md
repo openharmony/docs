@@ -303,7 +303,7 @@ stopAndClearWorks(): void
 
 ## workScheduler.isLastWorkTimeOut
 
-isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): boolean
+isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 检查延迟任务的最后一次执行是否超时，使用Callback异步回调。
 
@@ -315,12 +315,6 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): boolean
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | 是    | 指定延迟任务的Id。                                 |
 | callback | AsyncCallback\<boolean> | 是    | 回调函数。 |
-
-**返回值**：
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true表示指定任务的最后一次执行超时，false表示未超时。 |
 
 **错误码**：
 
