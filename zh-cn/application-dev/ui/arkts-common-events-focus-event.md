@@ -449,7 +449,7 @@ let MarginTmp:TmpM = new TmpM()
 @Entry
 @Component
 struct SwiperExample {
-  @State swiperController: SwiperController = new SwiperController()
+  private swiperController: SwiperController = new SwiperController()
   @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
   private data: MyDataSource = new MyDataSource([])
 
