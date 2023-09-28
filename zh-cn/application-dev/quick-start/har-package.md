@@ -212,6 +212,6 @@ struct Index {
 
 发布HAR可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。
 
-## 应用开发示例
+## 开发示例
 
 示例[参考](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)中，扫一扫、媒体库视频等功能依赖HAR静态共享包实现。
