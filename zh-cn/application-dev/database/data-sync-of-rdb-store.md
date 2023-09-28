@@ -178,4 +178,4 @@
 
 - [分布式组网认证（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/DistributedAppDev/DistributedAuthentication)
 
--[分布式关系型数据库（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/DistributedAppDev/DistributedRdb)
+- [分布式关系型数据库（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/DistributedAppDev/DistributedRdb)
