@@ -99,26 +99,17 @@ List组件的lanes属性通常用于在不同尺寸的设备自适应构建不�
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let Mn:Tmp = new Tmp()
 List() {
   ...
 }
-.lanes(Mn)
+.lanes(2)
 ```
 
 当其取值为LengthConstrain类型时，表示会根据LengthConstrain与List组件的尺寸自适应决定行或列数。
 
 
 ```ts
-class Tmp{
-  minLength:number = 200
-  maxLength:number = 300
-}
-let mn:Tmp = new Tmp()
+let mn:LengthConstrain = { 'minLength': 200,'maxLength': 300}
 List() {
   ...
 }
@@ -155,6 +146,7 @@ List() {
 ![zh-cn_image_0000001563060761](figures/zh-cn_image_0000001563060761.png)
 
 ```ts
+@Entry
 @Component
 struct CityList {
   build() {
@@ -297,12 +289,20 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 
 ```ts
-let opt = {
-  'strokeWidth': 1,
-  'startMargin': 60,
-  'endMargin': 10,
-  'color': '#ffe9f0f0'
-} as Record<string,number|string>
+class dividerTmp{
+  strokeWidth: Length = 1
+  startMargin: Length = 60
+  endMargin: Length = 10
+  color: ResourceColor ='#ffe9f0f0'
+
+  constructor(strokeWidth: Length,startMargin: Length,endMargin: Length,color: ResourceColor) {
+    this.strokeWidth = strokeWidth
+    this.startMargin = startMargin
+    this.endMargin = endMargin
+    this.color = color
+  }
+}
+let opt:dividerTmp = new dividerTmp(1,60,10,'#ffe9f0f0')
 List() {
   ...
 }
@@ -353,6 +353,7 @@ List() {
 
 
 ```ts
+@Entry
 @Component
 struct ContactsList {
   
@@ -732,10 +733,10 @@ Badge({
 
     然后，初始化待办列表数据和可选事项：
 
-   ```ts
-   @State toDoData: ToDo[] = [];
-   export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
-   ```
+  ```ts
+  @State toDoData: ToDo[] = [];
+  export let availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
+  ```
 
    最后，构建列表布局和列表项：
 
@@ -813,7 +814,7 @@ Badge({
       })
     )
   )
-  ```
+   ```
 
 2. 需要响应用户的选择交互，记录要删除的列表项数据。
    在待办列表中，通过勾选框的勾选或取消勾选，响应用户勾选列表项变化，记录所有选择的列表项。
@@ -851,7 +852,7 @@ Badge({
         }
       })
   }
-  ```
+   ```
 
 3. 需要响应用户点击删除按钮事件，删除列表中对应的选项。
 

@@ -38,18 +38,18 @@
 3. 通过模态接口调起模态展示界面，通过转场动画或者共享元素动画去实现对应的动画效果。
   
    ```ts
-   class PresentTmp{
-     isPresent: boolean = false;
-     set(){
-       this.isPresent = !this.isPresent;
-     }
-   }
+    class PresentTmp{
+      isPresent: boolean = false;
+      set(){
+        this.isPresent = !this.isPresent;
+      }
+    }
    // 模态转场控制变量
    @State isPresent: boolean = false;
    
    Button('Click to present model view')
      // 通过选定的模态接口，绑定模态展示界面，ModalTransition是内置的ContentCover转场动画类型，这里选择None代表系统不加默认动画
-     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.None)
+     .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
      .onClick(() => {
        // 改变状态变量，让模态界面显示
        let setPre:PresentTmp = new PresentTmp()
