@@ -159,7 +159,7 @@ Creates a video encoder instance based on a MIME type. This function is recommen
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**.| 
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIMETYPE](_codec_base.md#variables). | 
 
 **Returns**
 
