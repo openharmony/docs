@@ -32,32 +32,32 @@ upload(options: UploadRequestOptions): void
 **示例：**
 
   ```js
-  class Files {
-    filename: string = "test"
-    name: string = "test"
-    uri: string = "internal://cache/test.jpg"
-    type: string = "jpg"
-  }
-  class Data {
-    name: string = "name123"
-    value: string = "123"
-  }
-  class UploadRequestOptions {
-    url: string = 'http://www.path.com'
-    method: string = 'POST'
-    files: Object = new Files()
-    data: Object = new Data()
-    success(data:string) {
-      console.info(' upload success, code:' + JSON.stringify(data))
+  import request, { UploadRequestOptions } from '@system.request';
+
+  let uploadRequestOptions: UploadRequestOptions = {
+    url: 'http://www.path.com',
+    method: 'POST',
+    files: [{
+      filename: "test",
+      name: "test",
+      uri: "internal://cache/test.jpg",
+      type: "jpg"
+    }],
+    data: [{
+      name: "name123",
+      value: "123"
+    }],
+    success: (data: object) => {
+      console.info(' upload success, code:' + JSON.stringify(data));
+    },
+    fail: (data:string, code:number) => {
+      console.info(' upload fail data: ' + data + 'code: ' + code);
+    },
+    complete: () => {
+      console.info(' upload complete');
     }
-    fail(data:string, code:string) {
-      console.info(' upload fail data: ' + data + 'code: ' + code)
-    }
-    complete() {
-      console.info(' upload complete')
-    }
   }
-  let uploadRequestOptions = new UploadRequestOptions()
+
   try {
     request.upload(uploadRequestOptions);
     console.info('upload start ');
@@ -147,22 +147,24 @@ download(options: DownloadRequestOptions): void
 **示例：**
 
   ```js
-  class DownloadRequestOptions {
-    url: string = 'http://www.path.com'
-    filename: string = 'requestSystenTest'
-    header: string = ""
-    description: string = 'this is requeSystem download response'
-    success(data:string) {
-      console.info(' download success, code:' + JSON.stringify(data))
-    }
-    fail(data:string, code:string) {
-      console.info(' download fail data: ' + data + 'code: ' + code)
-    }
-    complete() {
-      console.info(' download complete')
+  import request, { DownloadRequestOptions } from '@system.request';
+
+  let downloadRequestOptions: DownloadRequestOptions = {
+    url: 'http://www.path.com',
+    filename: 'requestSystenTest',
+    header: "",
+    description: 'this is requeSystem download response',
+    success: (data:object) => {
+      console.info(' download success, code:' + JSON.stringify(data));
+    },
+    fail: (data:string, code:number) => {
+      console.info(' download fail data: ' + data + 'code: ' + code);
+    },
+    complete: () => {
+      console.info(' download complete');
     }
   }
-  let downloadRequestOptions = new DownloadRequestOptions()
+
   try {
     request.download(downloadRequestOptions);
     console.info('download start ');
@@ -223,22 +225,21 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 **示例：**
 
   ```js
-  class OnDownloadCompleteOptions {
-    token: string = 'token-index'
-    filename: string = ""
-    header: string = ""
-    description: string = ""
-    success(data:string) {
-      console.info(' download success, code:' + JSON.stringify(data))
-    }
-    fail(data:string, code:string) {
-      console.info(' download fail data: ' + data + 'code: ' + code)
-    }
-    complete() {
-      console.info(' download complete')
+  import request, { OnDownloadCompleteOptions } from '@system.request';
+
+  let onDownloadCompleteOptions: OnDownloadCompleteOptions = {
+    token: 'token-index',
+    success: (data:object) => {
+      console.info(' download success, code:' + JSON.stringify(data));
+    },
+    fail: (data:string, code:number) => {
+      console.info(' download fail data: ' + data + 'code: ' + code);
+    },
+    complete: () => {
+      console.info(' download complete');
     }
   }
-  let onDownloadCompleteOptions = new OnDownloadCompleteOptions()
+
   request.onDownloadComplete(onDownloadCompleteOptions);
   ```
 
