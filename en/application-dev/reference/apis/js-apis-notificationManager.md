@@ -3026,8 +3026,6 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 Requests notification to be enabled for this application in a modal. This API uses an asynchronous callback to return the result.
 
-**Model restriction**: This API can be used only in the stage model.
-
 **System capability**: SystemCapability.Notification.Notification
 
 **Parameters**
@@ -3075,8 +3073,6 @@ class MyAbility extends UIAbility {
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 Requests notification to be enabled for this application in a modal. This API uses a promise to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.Notification.Notification
 
