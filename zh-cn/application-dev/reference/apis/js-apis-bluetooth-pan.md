@@ -152,7 +152,7 @@ isTetheringOn(): boolean
 ```js
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
-    let ret = panProfile.isTetheringOn();
+    panProfile.isTetheringOn();
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
