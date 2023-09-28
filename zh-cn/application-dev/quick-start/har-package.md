@@ -214,4 +214,4 @@ struct Index {
 
 ## 开发示例
 
-示例[参考](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)中，扫一扫、媒体库视频等功能依赖HAR静态共享包实现。
+示例可[参考](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)。
