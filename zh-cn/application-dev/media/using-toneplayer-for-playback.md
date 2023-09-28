@@ -50,31 +50,41 @@ let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
 };
-let tonePlayerPromise = audio.createTonePlayer(audioRendererInfo);
+async function createTonePlayer() {
+  let tonePlayerPromise = await audio.createTonePlayer(audioRendererInfo);
+}
 ```
 
 2. 加载指定类型DTMF音调配置。
      
 ```ts
-tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+async function load() {
+    await tonePlayerPromise.load(audio.ToneType.TONE_TYPE_DIAL_0);
+}
 ```
 
 3. 启动DTMF音调播放。
      
 ```ts
-tonePlayerPromise.start();
+async function start() {
+    await tonePlayerPromise.start();
+}
 ```
 
 4. 停止当前正在播放的音调。
      
 ```ts
-tonePlayerPromise.stop();
+async function stop() {
+    await tonePlayerPromise.stop();
+}
 ```
 
 5. 释放与此TonePlayer对象关联的资源。
      
 ```ts
-tonePlayerPromise.release();
+async function release() {
+    await tonePlayerPromise.release();
+}
 ```
 
 在接口未按此正常调用时序调用时，接口会返回错误码6800301 NAPI_ERR_SYSTEM。
