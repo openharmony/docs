@@ -4316,6 +4316,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo;
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
@@ -4323,7 +4324,7 @@ try {
     hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
     let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed.');
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
 }
 ```
 
@@ -4371,7 +4372,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityTypeName: string, exte
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "share";
+let extensionAbilityTypeName = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want = {
@@ -4391,7 +4392,7 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import hilog from '@ohos.hilog';
 
-let extensionAbilityTypeName = "share";
+let extensionAbilityTypeName = "form";
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want = {
     bundleName : "com.example.myapplication",
