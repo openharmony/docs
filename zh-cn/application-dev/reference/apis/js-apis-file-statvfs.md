@@ -107,7 +107,7 @@ getFreeSizeSync(path:string): number
 
 **示例：**
 
-  ```js
+  ```ts
   let path = "/dev";
   let number = statvfs.getFreeSizeSync(path);
   console.info("getFreeSize promise successfully, Size: " + number);
@@ -208,7 +208,7 @@ getTotalSizeSync(path: string): number
 
 **示例：**
 
-  ```js
+  ```ts
   let path = "/dev";
   let number = statvfs.getTotalSizeSync(path);
   console.info("getTotalSize promise successfully, Size: " + number);
